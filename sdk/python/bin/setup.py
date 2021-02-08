@@ -32,7 +32,7 @@ def readme():
 
 
 setup(name='pulumi_spacelift',
-      version='0.0.1a1612788560+dirty',
+      version='0.0.1a1612789317+dirty',
       description="A Pulumi package for creating and managing Spacelift resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
