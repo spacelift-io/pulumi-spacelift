@@ -5,7 +5,7 @@
   },
   "projects": {
     "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj": {
-      "version": "0.0.1-alpha.1612789317+4d486f2a.dirty",
+      "version": "0.0.1-alpha.1612789635+98ac495c.dirty",
       "restore": {
         "projectUniqueName": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
         "projectName": "Pulumi.Spacelift",
