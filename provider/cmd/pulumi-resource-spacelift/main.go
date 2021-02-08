@@ -7,7 +7,7 @@ import (
 	"github.com/spacelift-io/pulumi-spacelift/provider/pkg/version"
 )
 
-//go:generate go run ./generate.go)
+//go:generate go run ./generate.go
 
 func main() {
 	tfbridge.Main("spacelift", version.Version, spacelift.Provider(), pulumiSchema)
