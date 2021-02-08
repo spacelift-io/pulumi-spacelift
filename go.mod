@@ -27,6 +27,7 @@ require (
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/oklog/run v1.1.0 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/v2 v2.18.1
+	github.com/pulumi/pulumi/pkg/v2 v2.18.0
 	github.com/pulumi/pulumi/sdk/v2 v2.18.0
 	github.com/shurcooL/graphql v0.0.0-20200928012149-18c5c3165e3a // indirect
 	github.com/spacelift-io/terraform-provider-spacelift v0.0.0-20210127123709-467e79ec4b0f
@@ -40,6 +41,4 @@ require (
 	google.golang.org/genproto v0.0.0-20210207032614-bba0dbe2a9ea // indirect
 )
 
-replace (
-	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20201218231525-9cca98608a5e
-)
+replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20201218231525-9cca98608a5e
