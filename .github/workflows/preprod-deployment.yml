@@ -50,7 +50,7 @@ jobs:
       - name: create package directory
         run: mkdir package && mv bin/pulumi-resource-* package/ && ls -la package/
       - name: create package
-        run: cd package && tar -zcf pulumi-resource-spacelift-v0.0.0-${{matrix.provider_os}}-amd64.tar.gz .
+        run: cd package && tar -zcf pulumi-resource-spacelift-v0.0.0-${{matrix.provider_os}}-amd64.tar.gz pulumi-resource-*
       - name: list
         run: ls -la package/
 
