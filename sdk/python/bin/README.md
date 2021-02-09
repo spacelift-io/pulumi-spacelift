@@ -1,5 +1,7 @@
 # Spacelift Pulumi Provider
 
+WARNING: This provider is a work in progress.
+
 ## Installing
 
 This package is available in many languages in the standard packaging formats.
