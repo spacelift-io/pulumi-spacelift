@@ -56,7 +56,7 @@ tfgen:: install_plugins
 	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
 
 provider:: tfgen install_plugins # build the provider binary
-	(cd provider && GOOS=$(PROVIDER_OS) go build -a -o $(WORKING_DIR)/bin/ -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+	(cd provider && GOOS=$(PROVIDER_OS) go build -a -tags netgo -o $(WORKING_DIR)/bin/ -ldflags "-s -w -extldflags '-static' -X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
 
 build_sdks:: install_plugins provider build_nodejs build_python build_go build_dotnet # build all the sdks
 
