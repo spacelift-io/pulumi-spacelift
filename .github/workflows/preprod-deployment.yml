@@ -39,6 +39,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
+      - name: build
+        run: make build_sdks
       - name: list
         run: ls -la ${{ github.workspace }}/bin
       - name: list
