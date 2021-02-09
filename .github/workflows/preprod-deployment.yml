@@ -46,7 +46,7 @@ jobs:
       - name: build
         run: make provider
         env:
-          GOOS: ${{ ${{matrix.goos}} }}
+          GOOS: ${{ matrix.goos }}
       - name: list
         run: ls -la
       - name: list
