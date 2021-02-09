@@ -11,6 +11,7 @@ VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 TFGEN           := pulumi-tfgen-${PACK}
 PROVIDER        := pulumi-resource-${PACK}
 VERSION         := "$(shell pulumictl get version)"
+PROVIDER_OS     := ${PROVIDER_OS}
 
 TESTPARALLELISM := 4
 
@@ -55,7 +56,7 @@ tfgen:: install_plugins
 	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
 
 provider:: tfgen install_plugins # build the provider binary
-	(cd provider && go build -a -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+	(cd provider && GOOS=$(PROVIDER_OS) go build -a -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
 
 build_sdks:: install_plugins provider build_nodejs build_python build_go build_dotnet # build all the sdks
 

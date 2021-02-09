@@ -44,9 +44,9 @@ jobs:
         with:
           python-version: 3.7
       - name: build
-        run: make build_sdks
+        run: make provider
         env:
-          GOOS: ${{ matrix.goos }}
+          PROVIDER_OS: ${{ matrix.provider_os }}
       - name: list
         run: ls -la
       - name: list
@@ -94,7 +94,7 @@ jobs:
 #          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
     strategy:
       matrix:
-        goos:
+        provider_os:
           - darwin
           - linux
           - windows
