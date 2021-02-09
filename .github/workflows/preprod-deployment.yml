@@ -7,10 +7,6 @@ jobs:
     name: Build and upload provider
     runs-on: ubuntu-latest
     container: golang:1.15
-    env:
-      BASE_NAME: spacelift-vcs-agent
-      BIN_DIR: build
-
     steps:
       - name: Check out repository code
         uses: actions/checkout@master
@@ -43,38 +39,37 @@ jobs:
 #        uses: actions/setup-python@v2
 #        with:
 #          python-version: 3.7
-      - name: build
+      - name: Print version
+        run: pulumictl get version
+      - name: Build provider
         run: make provider
         env:
           PROVIDER_OS: ${{ matrix.provider_os }}
-      - name: create package directory
+      - name: Create package directory
         run: mkdir package && mv bin/pulumi-resource-* package/ && ls -la package/
-      - name: create package
+      - name: Create package
         run: cd package && tar -zcvf pulumi-resource-spacelift-v0.0.0-${{matrix.provider_os}}-amd64.tar.gz pulumi-resource-*
-      - name: create upload directory
-        run: mkdir upload && mv package/*.tar.gz upload/
-      - name: list
-        run: ls -la upload/
+      - name: Create upload directory
+        run: mkdir upload/pulumi-plugins && mv package/*.tar.gz upload/pulumi-plugins/
+      - name: Upload the provider binary to downloads.spacelift.dev
+        uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311
+        if: github.ref == 'refs/heads/master'
+        env:
+          SOURCE_DIR: upload/
+          AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
+          AWS_S3_BUCKET: ${{ secrets.PREPROD_AWS_S3_BUCKET }}
+          AWS_REGION: ${{ secrets.PREPROD_AWS_REGION }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY}}
 
-#      - name: Upload the VCS Agent binary to downloads.spacelift.dev
-#        uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311
-#        if: github.ref == 'refs/heads/master'
-#        env:
-#          SOURCE_DIR: $BIN_DIR
-#          AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
-#          AWS_S3_BUCKET: ${{ secrets.PREPROD_AWS_S3_BUCKET }}
-#          AWS_REGION: ${{ secrets.PREPROD_AWS_REGION }}
-#          AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY}}
-#
-#      - name: Invalidate downloads.spacelift.dev cache
-#        uses: chetan/invalidate-cloudfront-action@2d2d3f464dcae0bea80ceff79e89960bbac6a754
-#        if: github.ref == 'refs/heads/master'
-#        env:
-#          AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
-#          AWS_REGION: ${{ secrets.PREPROD_AWS_REGION }}
-#          AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY }}
-#          DISTRIBUTION: ${{ secrets.PREPROD_DISTRIBUTION }}
-#          PATHS: "/*"
+      - name: Invalidate downloads.spacelift.dev cache
+        uses: chetan/invalidate-cloudfront-action@2d2d3f464dcae0bea80ceff79e89960bbac6a754
+        if: github.ref == 'refs/heads/master'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
+          AWS_REGION: ${{ secrets.PREPROD_AWS_REGION }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY }}
+          DISTRIBUTION: ${{ secrets.PREPROD_DISTRIBUTION }}
+          PATHS: "/*"
 #
 #      - name: Update deployment status (success)
 #        uses: chrnorm/deployment-status@releases/v1
