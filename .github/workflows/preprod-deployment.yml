@@ -37,6 +37,8 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.301
+      - name: Setup DotNet ICU
+        run: apt-get update && apt-get install -y icu-devtools
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
