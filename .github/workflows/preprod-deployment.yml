@@ -1,0 +1,93 @@
+name: Preprod deployment
+
+on: [push]
+
+jobs:
+  preprod-worker-deployment:
+    name: Build and upload worker
+    runs-on: ubuntu-latest
+    container: golang:1.15
+    env:
+      BASE_NAME: spacelift-vcs-agent
+      BIN_DIR: build
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@master
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15.x
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.1.0
+        with:
+          repo: pulumi/pulumictl
+      - name: Install Pulumi CLI
+        uses: pulumi/action-install-pulumi-cli@v1.0.1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
+          registry-url: https://registry.npmjs.org
+      - name: Setup DotNet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.301
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Download provider + tfgen binaries
+        uses: actions/download-artifact@v2
+        with:
+          name: spacelift-provider.tar.gz
+          path: ${{ github.workspace }}/bin
+      - name: Untar provider binaries
+        run: tar -zxf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace }}/bin
+      - name: list
+        run: ls -la ${{ github.workspace }}/bin
+      - name: list
+        run: ls -la ${{ github.workspace }}
+      - name: list
+        run: ls -la
+#      - name: Restore binary perms
+#        run: find ${{ github.workspace }} -name "pulumi-*-${{ env.PROVIDER }}" -print
+#          -exec chmod +x {} \;
+
+#      - name: Upload the VCS Agent binary to downloads.spacelift.dev
+#        uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311
+#        if: github.ref == 'refs/heads/master'
+#        env:
+#          SOURCE_DIR: $BIN_DIR
+#          AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
+#          AWS_S3_BUCKET: ${{ secrets.PREPROD_AWS_S3_BUCKET }}
+#          AWS_REGION: ${{ secrets.PREPROD_AWS_REGION }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY}}
+#
+#      - name: Invalidate downloads.spacelift.dev cache
+#        uses: chetan/invalidate-cloudfront-action@2d2d3f464dcae0bea80ceff79e89960bbac6a754
+#        if: github.ref == 'refs/heads/master'
+#        env:
+#          AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
+#          AWS_REGION: ${{ secrets.PREPROD_AWS_REGION }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY }}
+#          DISTRIBUTION: ${{ secrets.PREPROD_DISTRIBUTION }}
+#          PATHS: "/*"
+#
+#      - name: Update deployment status (success)
+#        uses: chrnorm/deployment-status@releases/v1
+#        if: success() && github.ref == 'refs/heads/master'
+#        with:
+#          token: "${{ github.token }}"
+#          target_url: https://downloads.spacelift.dev/spacelift-vcs-agent
+#          state: "success"
+#          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+#
+#      - name: Update deployment status (failure)
+#        uses: chrnorm/deployment-status@releases/v1
+#        if: failure() && github.ref == 'refs/heads/master'
+#        with:
+#          token: "${{ github.token }}"
+#          target_url: https://downloads.spacelift.dev/spacelift-vcs-agent
+#          state: "failure"
+#          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
