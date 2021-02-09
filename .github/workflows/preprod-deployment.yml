@@ -46,11 +46,9 @@ jobs:
       - name: build
         run: make build_sdks
       - name: list
-        run: ls -la ${{ github.workspace }}/bin
-      - name: list
-        run: ls -la ${{ github.workspace }}
-      - name: list
         run: ls -la
+      - name: list
+        run: ls -la bin
 #      - name: Restore binary perms
 #        run: find ${{ github.workspace }} -name "pulumi-*-${{ env.PROVIDER }}" -print
 #          -exec chmod +x {} \;
