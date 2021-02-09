@@ -1,9 +1,6 @@
 name: Preprod deployment
 
-on:
-  push:
-    tags:
-      - v*.*.*-prerelease
+on: [push]
 
 jobs:
   preprod-provider-deployment:
@@ -42,6 +39,8 @@ jobs:
 #        uses: actions/setup-python@v2
 #        with:
 #          python-version: 3.7
+      - name: Tag version
+        run: git tag v0.0.0
       - name: Print version
         run: pulumictl get version
       - name: Build provider
@@ -56,6 +55,7 @@ jobs:
         run: mkdir -p upload/pulumi-plugins && mv package/*.tar.gz upload/pulumi-plugins/
       - name: Upload the provider binary to downloads.spacelift.dev
         uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311
+        if: github.ref == 'refs/heads/main'
         env:
           SOURCE_DIR: upload/
           AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
@@ -65,15 +65,13 @@ jobs:
 
       - name: Invalidate downloads.spacelift.dev cache
         uses: chetan/invalidate-cloudfront-action@2d2d3f464dcae0bea80ceff79e89960bbac6a754
+        if: github.ref == 'refs/heads/main'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
           AWS_REGION: ${{ secrets.PREPROD_AWS_REGION }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY }}
           DISTRIBUTION: ${{ secrets.PREPROD_DISTRIBUTION }}
           PATHS: "/*"
-
-      - name: Print ref
-        run: echo ${{ github.ref }}
 #
 #      - name: Update deployment status (success)
 #        uses: chrnorm/deployment-status@releases/v1
