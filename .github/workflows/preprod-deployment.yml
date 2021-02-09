@@ -45,6 +45,8 @@ jobs:
 #          python-version: 3.7
       - name: build
         run: make provider
+        env:
+          GOOS: ${{ ${{matrix.goos}} }}
       - name: list
         run: ls -la
       - name: list
@@ -90,3 +92,9 @@ jobs:
 #          target_url: https://downloads.spacelift.dev/spacelift-vcs-agent
 #          state: "failure"
 #          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+    strategy:
+      matrix:
+        goos:
+          - darwin
+          - linux
+          - windows
