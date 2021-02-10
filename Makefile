@@ -79,6 +79,12 @@ build_python:: install_plugins tfgen # build the python sdk
         sed -i.bak -e "s/\$${VERSION}/$(PYPI_VERSION)/g" -e "s/\$${PLUGIN_VERSION}/$(VERSION)/g" ./bin/setup.py && \
         rm ./bin/setup.py.bak && \
         cd ./bin && python3 setup.py build sdist
+	if [[ "${OS}" == "Darwin" ]]; then \
+        sed -i '' -r "s/check_call\(\['pulumi', 'plugin', 'install', 'resource', 'spacelift', '[^']+']\)/check_call(['pulumi', 'plugin', 'install', '--server', 'https:\/\/downloads.spacelift.io\/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])/g" sdk/python/bin/setup.py; \
+    fi
+	if [[ "${OS}" != "Darwin" ]]; then \
+        sed -i -r "s/check_call\(\['pulumi', 'plugin', 'install', 'resource', 'spacelift', '[^']+']\)/check_call(['pulumi', 'plugin', 'install', '--server', 'https:\/\/downloads.spacelift.io\/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])/g" sdk/python/bin/setup.py; \
+    fi
 
 build_dotnet:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
 build_dotnet:: install_plugins tfgen # build the dotnet sdk
