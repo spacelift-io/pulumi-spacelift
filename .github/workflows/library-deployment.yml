@@ -47,14 +47,12 @@ jobs:
       #   run: make build_sdks
       #   env:
       #     PROVIDER_OS: linux
-#      - name: Create .npmrc
-#        run: echo "@spacelift-io:registry=https://npm.pkg.github.com
-#  //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > sdk/nodejs/bin/.npmrc
-#      - name: Create .npmrc
-#        run: echo "@spacelift-io:registry=https://npm.pkg.github.com
-#        //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
       - name: Create .npmrc
-        run: echo "registry=https://npm.pkg.github.com/spacelift-io" > sdk/nodejs/bin/.npmrc
+        run: printf "@spacelift-io:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}\n" > sdk/nodejs/bin/.npmrc
+      - name: Create .npmrc
+        run: printf "@spacelift-io:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}\n" > ~/.npmrc
+      #- name: Create .npmrc
+      #  run: echo "registry=https://npm.pkg.github.com/spacelift-io" > sdk/nodejs/bin/.npmrc
       - name: Publish npm package.
         run: cd sdk/nodejs/bin && npm publish
         env:
