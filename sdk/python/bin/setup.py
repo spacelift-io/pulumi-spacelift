@@ -12,7 +12,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'spacelift', '1.0.0'])
+            check_call(['pulumi', 'plugin', 'install', '--server', 'https://downloads.spacelift.dev/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print("""
