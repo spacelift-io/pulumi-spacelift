@@ -6,7 +6,6 @@ jobs:
   preprod-provider-deployment:
     name: Build and upload provider
     runs-on: ubuntu-latest
-    container: golang:1.15
     steps:
       - name: Check out repository code
         uses: actions/checkout@master
@@ -40,7 +39,7 @@ jobs:
 #        with:
 #          python-version: 3.7
       - name: Tag version
-        run: git tag v0.0.0
+        run: git tag -d `git tag | grep -E '.'` && git tag v0.0.0
       - name: Print version
         run: pulumictl get version
       - name: Build provider

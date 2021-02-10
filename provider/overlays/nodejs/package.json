@@ -1,0 +1,24 @@
+{
+    "name": "@spacelift-io/pulumi-spacelift",
+    "version": "${VERSION}",
+    "description": "A Pulumi package for creating and managing Spacelift resources.",
+    "keywords": [
+        "pulumi",
+        "spacelift"
+    ],
+    "homepage": "https://spacelift.io",
+    "repository": "https://github.com/spacelift-io/pulumi-spacelift",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^2.15.0"
+    },
+    "devDependencies": {
+        "@types/node": "^8.0.25"
+    },
+    "pulumi": {
+        "resource": true
+    }
+}
