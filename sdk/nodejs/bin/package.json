@@ -7,7 +7,7 @@
         "spacelift"
     ],
     "homepage": "https://spacelift.io",
-    "repository": "https://github.com/spacelift-io/pulumi-spacelift",
+    "repository": "git://github.com/spacelift-io/pulumi-spacelift.git",
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc"
