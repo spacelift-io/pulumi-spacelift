@@ -6,7 +6,7 @@
     <Company>Pulumi Corp.</Company>
     <Description>A Pulumi package for creating and managing Spacelift resources.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://pulumi.io</PackageProjectUrl>
+    <PackageProjectUrl>https://spacelift.io</PackageProjectUrl>
     <RepositoryUrl>https://github.com/spacelift-io/pulumi-spacelift</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
 
