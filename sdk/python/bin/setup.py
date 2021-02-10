@@ -12,7 +12,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', '--server', 'https://downloads.spacelift.dev/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])
+            check_call(['pulumi', 'plugin', 'install', '--server', 'https://downloads.spacelift.io/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print("""
@@ -32,7 +32,7 @@ def readme():
 
 
 setup(name='pulumi_spacelift',
-      version='1.0.0',
+      version='1.1.0a1612959257+dirty',
       description="A Pulumi package for creating and managing Spacelift resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
