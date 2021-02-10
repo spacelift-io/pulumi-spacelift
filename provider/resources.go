@@ -58,7 +58,7 @@ func Provider() tfbridge.ProviderInfo {
 		Description: "A Pulumi package for creating and managing Spacelift resources.",
 		Keywords:    []string{"pulumi", "spacelift"},
 		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
+		Homepage:    "https://spacelift.io",
 		GitHubOrg:   "spacelift-io",
 		Repository:  "https://github.com/spacelift-io/pulumi-spacelift",
 		Config: map[string]*tfbridge.SchemaInfo{
@@ -126,6 +126,7 @@ func Provider() tfbridge.ProviderInfo {
 			"spacelift_worker_pools":              {Tok: makeDataSource(spaceliftMod, "getWorkerPools")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
+			PackageName: "@spacelift-io/pulumi-spacelift",
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^2.15.0",
 			},

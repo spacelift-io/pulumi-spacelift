@@ -5,7 +5,7 @@
         "pulumi",
         "spacelift"
     ],
-    "homepage": "https://pulumi.io",
+    "homepage": "https://spacelift.io",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`spacelift` Terraform Provider](https://github.com/spacelift-io/terraform-provider-spacelift).",
     "repository": "https://github.com/spacelift-io/pulumi-spacelift",
@@ -2408,7 +2408,7 @@
             },
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing Spacelift resources.",
-            "packageName": "",
+            "packageName": "@spacelift-io/pulumi-spacelift",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/spacelift-io/terraform-provider-spacelift)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-spacelift` repo](https://github.com/pulumi/pulumi-spacelift/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`spacelift-io/terraform-provider-spacelift` repo](https://github.com/spacelift-io/terraform-provider-spacelift/issues).",
             "typescriptVersion": ""
         },

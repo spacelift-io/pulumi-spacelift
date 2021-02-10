@@ -1,12 +1,12 @@
 {
-    "name": "@pulumi/spacelift",
-    "version": "v1.0.0",
+    "name": "@spacelift-io/pulumi-spacelift",
+    "version": "v1.1.0-alpha.1612963065+31cdd6ab.dirty",
     "description": "A Pulumi package for creating and managing Spacelift resources.",
     "keywords": [
         "pulumi",
         "spacelift"
     ],
-    "homepage": "https://pulumi.io",
+    "homepage": "https://spacelift.io",
     "repository": "https://github.com/spacelift-io/pulumi-spacelift",
     "license": "Apache-2.0",
     "scripts": {
