@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "noroIPJsyb0a+soUXji5rjvim7xXvfJXFxuA0eeimLcgXr4A2lfWpv2NO7Cxyshpf/mS8Gez4K4tbPlCqyUQPg==",
+  "dgSpecHash": "s3SwZlcJ90MON4cZpnUlAm8BOwDJuNJCehIYqH3SOXldRE3+fmoh3QuRInQRL/SlYl7ISnHqa6R2LP1ps2ykJA==",
   "success": true,
-  "projectFilePath": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
+  "projectFilePath": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift-gen/sdk/dotnet/Pulumi.Spacelift.csproj",
   "expectedPackageFiles": [
     "/Users/jakub/.nuget/packages/grpc/2.34.0/grpc.2.34.0.nupkg.sha512",
     "/Users/jakub/.nuget/packages/grpc.core/2.34.0/grpc.core.2.34.0.nupkg.sha512",

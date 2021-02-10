@@ -12,7 +12,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'spacelift', '1.1.0-alpha.1612868868+a689327d.dirty'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'spacelift', '1.0.0'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print("""
@@ -20,7 +20,7 @@ class InstallPluginCommand(install):
                 It looks like `pulumi` is not installed on your system.
                 Please visit https://pulumi.com/ to install the Pulumi CLI.
                 You may try manually installing the plugin by running
-                `pulumi plugin install resource spacelift 1.1.0-alpha.1612868868+a689327d.dirty`
+                `pulumi plugin install resource spacelift 1.0.0`
                 """)
             else:
                 raise
@@ -32,7 +32,7 @@ def readme():
 
 
 setup(name='pulumi_spacelift',
-      version='1.1.0a1612868868+dirty',
+      version='1.0.0',
       description="A Pulumi package for creating and managing Spacelift resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',

@@ -246,9 +246,9 @@ google-protobuf@^3.5.0:
   integrity sha512-bwa8dBuMpOxg7COyqkW6muQuvNnWgVN8TX/epDRGW5m0jcrmq2QJyCyiV8ZE2/6LaIIqJtiv9bYokFhfpy/o6w==
 
 graceful-fs@^4.1.2:
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.5.tgz#bc18864a6c9fc7b303f2e2abdb9155ad178fbe29"
-  integrity sha512-kBBSQbz2K0Nyn+31j/w36fUfxkBW9/gfwRWdUY1ULReH3iokVJgddZAFcD1D0xlgTmFxJCbUkUclAlc6/IDJkw==
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
+  integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
 has-symbols@^1.0.1:
   version "1.0.1"
@@ -578,9 +578,9 @@ ts-node@^7.0.1:
     yn "^2.0.0"
 
 typescript@~3.7.3:
-  version "3.7.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
-  integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
+  version "3.7.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.6.tgz#dc0404270a2819593cb184cd49ff06e7d3854e75"
+  integrity sha512-EN/xStKHt+xi97N9SdoxbWgcTEMbcLNPK2GmTz93IOR067it9BX4bkhRSJdDSc2et05XF72ngCVCOrjaM0J+dA==
 
 upath@^1.1.0:
   version "1.2.0"

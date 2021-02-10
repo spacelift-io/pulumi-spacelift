@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj": {}
+    "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift-gen/sdk/dotnet/Pulumi.Spacelift.csproj": {}
   },
   "projects": {
-    "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj": {
-      "version": "1.1.0-alpha.1612868868+a689327d.dirty",
+    "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift-gen/sdk/dotnet/Pulumi.Spacelift.csproj": {
+      "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
+        "projectUniqueName": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift-gen/sdk/dotnet/Pulumi.Spacelift.csproj",
         "projectName": "Pulumi.Spacelift",
-        "projectPath": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
+        "projectPath": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift-gen/sdk/dotnet/Pulumi.Spacelift.csproj",
         "packagesPath": "/Users/jakub/.nuget/packages/",
-        "outputPath": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/obj/",
+        "outputPath": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift-gen/sdk/dotnet/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jakub/.nuget/NuGet/NuGet.Config"
