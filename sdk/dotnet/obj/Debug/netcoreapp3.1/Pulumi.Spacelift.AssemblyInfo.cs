@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("A Pulumi package for creating and managing Spacelift resources.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c2be157294d971519076706ba416e6c489f2410")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e9336df0b2f8a79cccf85312742301e920ba8f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pulumi.Spacelift")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pulumi.Spacelift")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

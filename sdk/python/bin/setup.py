@@ -32,7 +32,7 @@ def readme():
 
 
 setup(name='pulumi_spacelift',
-      version='1.1.0a1612959257+dirty',
+      version='1.0.0',
       description="A Pulumi package for creating and managing Spacelift resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
@@ -40,7 +40,7 @@ setup(name='pulumi_spacelift',
           'install': InstallPluginCommand,
       },
       keywords='pulumi spacelift',
-      url='https://pulumi.io',
+      url='https://spacelift.io',
       project_urls={
           'Repository': 'https://github.com/spacelift-io/pulumi-spacelift'
       },

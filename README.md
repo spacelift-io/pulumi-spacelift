@@ -20,7 +20,7 @@ or `yarn`:
 
 To use from Python, install using `pip`:
 
-    $ pip install pulumi_spacelift
+    $ pip install "git+https://github.com/spacelift-io/pulumi-spacelift#egg=pulumi_spacelift&subdirectory=sdk/python/bin"
 
 ### Go
 

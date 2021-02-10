@@ -40,7 +40,7 @@ setup(name='pulumi_spacelift',
           'install': InstallPluginCommand,
       },
       keywords='pulumi spacelift',
-      url='https://pulumi.io',
+      url='https://spacelift.io',
       project_urls={
           'Repository': 'https://github.com/spacelift-io/pulumi-spacelift'
       },
