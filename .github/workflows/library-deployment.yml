@@ -10,7 +10,7 @@ defaults:
     shell: bash
 
 jobs:
-  preprod-provider-deployment:
+  library-deployment:
     name: Build and upload provider
     runs-on: ubuntu-latest
     steps:
@@ -47,10 +47,10 @@ jobs:
           python-version: 3.7
       - name: Print version
         run: pulumictl get version
-      # - name: Build provider
-      #   run: make build_sdks
-      #   env:
-      #     PROVIDER_OS: linux
+      - name: Build provider
+        run: make build_sdks
+        env:
+          PROVIDER_OS: linux
       - name: Create .npmrc
         run: printf "@spacelift-io:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}\n" > sdk/nodejs/bin/.npmrc
       # - name: Publish npm package.
