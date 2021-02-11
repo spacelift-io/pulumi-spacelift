@@ -48,7 +48,7 @@ jobs:
       - name: Print version
         run: pulumictl get version
       - name: Build provider
-        run: make build_sdks
+        run: bash -c "make build_sdks"
         env:
           PROVIDER_OS: linux
       - name: Create .npmrc
