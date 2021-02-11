@@ -42,7 +42,7 @@ setup(name='pulumi_spacelift',
       keywords='pulumi spacelift',
       url='https://spacelift.io',
       project_urls={
-          'Repository': 'https://github.com/spacelift-io/pulumi-spacelift'
+          'Repository': 'git://github.com/spacelift-io/pulumi-spacelift.git'
       },
       license='Apache-2.0',
       packages=find_packages(),

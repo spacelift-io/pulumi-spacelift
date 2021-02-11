@@ -4,7 +4,7 @@ Version: 1.0.0
 Summary: A Pulumi package for creating and managing Spacelift resources.
 Home-page: https://spacelift.io
 License: Apache-2.0
-Project-URL: Repository, https://github.com/spacelift-io/pulumi-spacelift
+Project-URL: Repository, git://github.com/spacelift-io/pulumi-spacelift.git
 Description: # Spacelift Pulumi Provider
         
         WARNING: This provider is a work in progress.

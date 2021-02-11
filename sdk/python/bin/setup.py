@@ -20,7 +20,7 @@ class InstallPluginCommand(install):
                 It looks like `pulumi` is not installed on your system.
                 Please visit https://pulumi.com/ to install the Pulumi CLI.
                 You may try manually installing the plugin by running
-                `pulumi plugin install resource spacelift 1.0.0`
+                `pulumi plugin install resource spacelift 0.0.0`
                 """)
             else:
                 raise
@@ -42,7 +42,7 @@ setup(name='pulumi_spacelift',
       keywords='pulumi spacelift',
       url='https://spacelift.io',
       project_urls={
-          'Repository': 'https://github.com/spacelift-io/pulumi-spacelift'
+          'Repository': 'git://github.com/spacelift-io/pulumi-spacelift.git'
       },
       license='Apache-2.0',
       packages=find_packages(),

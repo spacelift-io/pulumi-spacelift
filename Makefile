@@ -10,6 +10,7 @@ VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 
 TFGEN           := pulumi-tfgen-${PACK}
 PROVIDER        := pulumi-resource-${PACK}
+VERSION_WITH_V  := "$(shell git describe --tags --abbrev=0)"
 VERSION         := "$(shell git describe --tags --abbrev=0 | sed 's/^v//g')"
 PROVIDER_OS     := ${PROVIDER_OS}
 
@@ -66,7 +67,7 @@ build_nodejs:: install_plugins tfgen # build the node sdk
         yarn install && \
         yarn run tsc && \
         cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
-    	sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
+    	sed -i.bak -e "s/\$${VERSION}/$(VERSION_WITH_V)/g" ./bin/package.json
 
 build_python:: install_plugins tfgen # build the python sdk
 	$(WORKING_DIR)/bin/$(TFGEN) python --overlays provider/overlays/python --out sdk/python/
