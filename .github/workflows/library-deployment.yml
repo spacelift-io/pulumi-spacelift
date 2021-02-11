@@ -56,4 +56,6 @@ jobs:
       - name: Build dotnet package
         run: make build_dotnet
       - name: Package dotnet
-        run: cd sdk/dotnet && dotnet pack --configuration Release /p:Version=$(pulumictl get version --language dotnet --repo ../../)
+        run: cd sdk/dotnet && dotnet pack --configuration Release /p:Version=$(git describe --tags --abbrev=0 | sed 's/^v//g')
+      - name: Package dotnet
+        run: dotnet nuget push "bin/Release/OctocatApp.$(git describe --tags --abbrev=0 | sed 's/^v//g').nupkg"  --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
