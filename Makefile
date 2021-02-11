@@ -92,7 +92,8 @@ build_dotnet:: install_plugins tfgen # build the dotnet sdk
 	$(WORKING_DIR)/bin/$(TFGEN) dotnet --overlays provider/overlays/dotnet --out sdk/dotnet/
 	cd sdk/dotnet/ && \
 		echo "${DOTNET_VERSION}" >version.txt && \
-        dotnet build /p:Version=${DOTNET_VERSION}
+        cp ../../Pulumi.Spacelift.csproj.template ./Pulumi.Spacelift.csproj && \
+        dotnet build --configuration Release /p:Version=${DOTNET_VERSION}
 
 build_go:: install_plugins tfgen # build the go sdk
 	$(WORKING_DIR)/bin/$(TFGEN) go --overlays provider/overlays/go --out sdk/go/
