@@ -47,10 +47,6 @@ jobs:
           python-version: 3.7
       - name: Print version
         run: pulumictl get version
-      - name: Build provider
-        run: bash -c "make build_sdks"
-        env:
-          PROVIDER_OS: linux
       - name: Create .npmrc
         run: printf "@spacelift-io:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}\n" > sdk/nodejs/bin/.npmrc
       # - name: Publish npm package.
