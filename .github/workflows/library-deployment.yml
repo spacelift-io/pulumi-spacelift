@@ -5,6 +5,10 @@ on:
     tags:
       - v*.*.*
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   preprod-provider-deployment:
     name: Build and upload provider
@@ -49,11 +53,7 @@ jobs:
       #     PROVIDER_OS: linux
       - name: Create .npmrc
         run: printf "@spacelift-io:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}\n" > sdk/nodejs/bin/.npmrc
-      # - name: Create .npmrc
-      #   run: printf "@spacelift-io:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}\n" > ~/.npmrc
-      #- name: Create .npmrc
-      #  run: echo "registry=https://npm.pkg.github.com/spacelift-io" > sdk/nodejs/bin/.npmrc
-      - name: Publish npm package.
-        run: cd sdk/nodejs/bin && npm publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Publish npm package.
+      #   run: cd sdk/nodejs/bin && npm publish
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
