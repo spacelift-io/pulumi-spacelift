@@ -60,7 +60,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:     "Apache-2.0",
 		Homepage:    "https://spacelift.io",
 		GitHubOrg:   "spacelift-io",
-		Repository:  "https://github.com/spacelift-io/pulumi-spacelift",
+		Repository:  "git://github.com/spacelift-io/pulumi-spacelift.git",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"api_key_endpoint": {
 				Default: &tfbridge.DefaultInfo{
