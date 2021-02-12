@@ -60,4 +60,4 @@ jobs:
       - name: Create NuGet config
         run: cp nuget.config.template sdk/dotnet/nuget.config
       - name: Publish dotnet package
-        run: dotnet nuget push "bin/Release/OctocatApp.$(git describe --tags --abbrev=0 | sed 's/^v//g').nupkg"  --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+        run: dotnet nuget push "bin/Release/OctocatApp.$(git describe --tags --abbrev=0 | sed 's/^v//g').nupkg"  --api-key ${{ secrets.GITHUB_TOKEN }} --source "https://nuget.pkg.github.com/spacelift-io/index.json"
