@@ -6,6 +6,11 @@ WARNING: This provider is a work in progress.
 
 This package is available in many languages in the standard packaging formats.
 
+In order to run a project using this package, you have to install the Spacelift provider binary
+```
+pulumi plugin install --reinstall --server https://downloads.spacelift.io/pulumi-plugins resource spacelift 0.0.0
+```
+
 ### Node.js (Java/TypeScript)
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
