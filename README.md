@@ -6,7 +6,7 @@ WARNING: This provider is a work in progress.
 
 This package is available in many languages in the standard packaging formats.
 
-In order to run a project using this package, you have to install the Spacelift provider binary
+In order to run a project locally using this package, you have to install the Spacelift provider binary. This is done automatically on Spacelift workers.
 ```
 pulumi plugin install --reinstall --server https://downloads.spacelift.io/pulumi-plugins resource spacelift 0.0.0
 ```
