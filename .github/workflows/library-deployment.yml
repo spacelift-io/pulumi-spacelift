@@ -49,10 +49,10 @@ jobs:
         run: pulumictl get version
       - name: Create .npmrc
         run: printf "@spacelift-io:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}\n" > sdk/nodejs/bin/.npmrc
-      # - name: Publish npm package.
-      #   run: cd sdk/nodejs/bin && npm publish
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish npm package.
+        run: cd sdk/nodejs/bin && npm publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build dotnet package
         run: make build_dotnet
       - name: Package dotnet
