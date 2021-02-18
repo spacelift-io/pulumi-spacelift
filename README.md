@@ -63,7 +63,7 @@ to install a specific version, v1.2.0 in this case.
 
 To use from .NET Core, install using
 ```
-dotnet add dotnet.csproj package Pulumi.Spacelift
+dotnet add *.csproj package Pulumi.Spacelift
 ```
 
 However, since we're hosting the packages on GitHub packages, you'll need to add a nuget.config file with the following contents:
