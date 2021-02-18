@@ -3,7 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import warnings
-import pulumi
+import pulumi as pulumilib
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
@@ -13,53 +13,53 @@ from ._inputs import *
 __all__ = ['Stack']
 
 
-class Stack(pulumi.CustomResource):
+class Stack(pulumilib.CustomResource):
     def __init__(__self__,
                  resource_name: str,
-                 opts: Optional[pulumi.ResourceOptions] = None,
-                 administrative: Optional[pulumi.Input[bool]] = None,
-                 autodeploy: Optional[pulumi.Input[bool]] = None,
-                 autoretry: Optional[pulumi.Input[bool]] = None,
-                 before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 branch: Optional[pulumi.Input[str]] = None,
-                 cloudformation: Optional[pulumi.Input[pulumi.InputType['StackCloudformationArgs']]] = None,
-                 description: Optional[pulumi.Input[str]] = None,
-                 gitlab: Optional[pulumi.Input[pulumi.InputType['StackGitlabArgs']]] = None,
-                 import_state: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 manage_state: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 project_root: Optional[pulumi.Input[str]] = None,
-                 pulumi: Optional[pulumi.Input[pulumi.InputType['StackPulumiArgs']]] = None,
-                 repository: Optional[pulumi.Input[str]] = None,
-                 runner_image: Optional[pulumi.Input[str]] = None,
-                 terraform_version: Optional[pulumi.Input[str]] = None,
-                 terraform_workspace: Optional[pulumi.Input[str]] = None,
-                 worker_pool_id: Optional[pulumi.Input[str]] = None,
+                 opts: Optional[pulumilib.ResourceOptions] = None,
+                 administrative: Optional[pulumilib.Input[bool]] = None,
+                 autodeploy: Optional[pulumilib.Input[bool]] = None,
+                 autoretry: Optional[pulumilib.Input[bool]] = None,
+                 before_inits: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+                 branch: Optional[pulumilib.Input[str]] = None,
+                 cloudformation: Optional[pulumilib.Input[pulumilib.InputType['StackCloudformationArgs']]] = None,
+                 description: Optional[pulumilib.Input[str]] = None,
+                 gitlab: Optional[pulumilib.Input[pulumilib.InputType['StackGitlabArgs']]] = None,
+                 import_state: Optional[pulumilib.Input[str]] = None,
+                 labels: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+                 manage_state: Optional[pulumilib.Input[bool]] = None,
+                 name: Optional[pulumilib.Input[str]] = None,
+                 project_root: Optional[pulumilib.Input[str]] = None,
+                 pulumi: Optional[pulumilib.Input[pulumilib.InputType['StackPulumiArgs']]] = None,
+                 repository: Optional[pulumilib.Input[str]] = None,
+                 runner_image: Optional[pulumilib.Input[str]] = None,
+                 terraform_version: Optional[pulumilib.Input[str]] = None,
+                 terraform_workspace: Optional[pulumilib.Input[str]] = None,
+                 worker_pool_id: Optional[pulumilib.Input[str]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
         """
         Create a Stack resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] administrative: Indicates whether this stack can manage others
-        :param pulumi.Input[bool] autodeploy: Indicates whether changes to this stack can be automatically deployed
-        :param pulumi.Input[bool] autoretry: Indicates whether obsolete proposed changes should automatically be retried
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_inits: List of before-init scripts
-        :param pulumi.Input[str] branch: GitHub branch to apply changes to
-        :param pulumi.Input[pulumi.InputType['StackCloudformationArgs']] cloudformation: CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
-        :param pulumi.Input[str] description: Free-form stack description for users
-        :param pulumi.Input[str] import_state: State file to upload when creating a new stack
-        :param pulumi.Input[bool] manage_state: Determines if Spacelift should manage state for this stack
-        :param pulumi.Input[str] name: Name of the stack - should be unique in one account
-        :param pulumi.Input[str] project_root: Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
-        :param pulumi.Input[pulumi.InputType['StackPulumiArgs']] pulumi: Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
-        :param pulumi.Input[str] repository: Name of the repository, without the owner part
-        :param pulumi.Input[str] runner_image: Name of the Docker image used to process Runs
-        :param pulumi.Input[str] terraform_version: Terraform version to use
-        :param pulumi.Input[str] terraform_workspace: Terraform workspace to select
-        :param pulumi.Input[str] worker_pool_id: ID of the worker pool to use
+        :param pulumilib.ResourceOptions opts: Options for the resource.
+        :param pulumilib.Input[bool] administrative: Indicates whether this stack can manage others
+        :param pulumilib.Input[bool] autodeploy: Indicates whether changes to this stack can be automatically deployed
+        :param pulumilib.Input[bool] autoretry: Indicates whether obsolete proposed changes should automatically be retried
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_inits: List of before-init scripts
+        :param pulumilib.Input[str] branch: GitHub branch to apply changes to
+        :param pulumilib.Input[pulumilib.InputType['StackCloudformationArgs']] cloudformation: CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
+        :param pulumilib.Input[str] description: Free-form stack description for users
+        :param pulumilib.Input[str] import_state: State file to upload when creating a new stack
+        :param pulumilib.Input[bool] manage_state: Determines if Spacelift should manage state for this stack
+        :param pulumilib.Input[str] name: Name of the stack - should be unique in one account
+        :param pulumilib.Input[str] project_root: Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+        :param pulumilib.Input[pulumilib.InputType['StackPulumiArgs']] pulumi: Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
+        :param pulumilib.Input[str] repository: Name of the repository, without the owner part
+        :param pulumilib.Input[str] runner_image: Name of the Docker image used to process Runs
+        :param pulumilib.Input[str] terraform_version: Terraform version to use
+        :param pulumilib.Input[str] terraform_workspace: Terraform workspace to select
+        :param pulumilib.Input[str] worker_pool_id: ID of the worker pool to use
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -68,8 +68,8 @@ class Stack(pulumi.CustomResource):
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
         if opts is None:
-            opts = pulumi.ResourceOptions()
-        if not isinstance(opts, pulumi.ResourceOptions):
+            opts = pulumilib.ResourceOptions()
+        if not isinstance(opts, pulumilib.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
@@ -112,55 +112,55 @@ class Stack(pulumi.CustomResource):
 
     @staticmethod
     def get(resource_name: str,
-            id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None,
-            administrative: Optional[pulumi.Input[bool]] = None,
-            autodeploy: Optional[pulumi.Input[bool]] = None,
-            autoretry: Optional[pulumi.Input[bool]] = None,
-            aws_assume_role_policy_statement: Optional[pulumi.Input[str]] = None,
-            before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            branch: Optional[pulumi.Input[str]] = None,
-            cloudformation: Optional[pulumi.Input[pulumi.InputType['StackCloudformationArgs']]] = None,
-            description: Optional[pulumi.Input[str]] = None,
-            gitlab: Optional[pulumi.Input[pulumi.InputType['StackGitlabArgs']]] = None,
-            import_state: Optional[pulumi.Input[str]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            manage_state: Optional[pulumi.Input[bool]] = None,
-            name: Optional[pulumi.Input[str]] = None,
-            project_root: Optional[pulumi.Input[str]] = None,
-            pulumi: Optional[pulumi.Input[pulumi.InputType['StackPulumiArgs']]] = None,
-            repository: Optional[pulumi.Input[str]] = None,
-            runner_image: Optional[pulumi.Input[str]] = None,
-            terraform_version: Optional[pulumi.Input[str]] = None,
-            terraform_workspace: Optional[pulumi.Input[str]] = None,
-            worker_pool_id: Optional[pulumi.Input[str]] = None) -> 'Stack':
+            id: pulumilib.Input[str],
+            opts: Optional[pulumilib.ResourceOptions] = None,
+            administrative: Optional[pulumilib.Input[bool]] = None,
+            autodeploy: Optional[pulumilib.Input[bool]] = None,
+            autoretry: Optional[pulumilib.Input[bool]] = None,
+            aws_assume_role_policy_statement: Optional[pulumilib.Input[str]] = None,
+            before_inits: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+            branch: Optional[pulumilib.Input[str]] = None,
+            cloudformation: Optional[pulumilib.Input[pulumilib.InputType['StackCloudformationArgs']]] = None,
+            description: Optional[pulumilib.Input[str]] = None,
+            gitlab: Optional[pulumilib.Input[pulumilib.InputType['StackGitlabArgs']]] = None,
+            import_state: Optional[pulumilib.Input[str]] = None,
+            labels: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+            manage_state: Optional[pulumilib.Input[bool]] = None,
+            name: Optional[pulumilib.Input[str]] = None,
+            project_root: Optional[pulumilib.Input[str]] = None,
+            pulumi: Optional[pulumilib.Input[pulumilib.InputType['StackPulumiArgs']]] = None,
+            repository: Optional[pulumilib.Input[str]] = None,
+            runner_image: Optional[pulumilib.Input[str]] = None,
+            terraform_version: Optional[pulumilib.Input[str]] = None,
+            terraform_workspace: Optional[pulumilib.Input[str]] = None,
+            worker_pool_id: Optional[pulumilib.Input[str]] = None) -> 'Stack':
         """
         Get an existing Stack resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
-        :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] administrative: Indicates whether this stack can manage others
-        :param pulumi.Input[bool] autodeploy: Indicates whether changes to this stack can be automatically deployed
-        :param pulumi.Input[bool] autoretry: Indicates whether obsolete proposed changes should automatically be retried
-        :param pulumi.Input[str] aws_assume_role_policy_statement: AWS IAM assume role policy statement setting up trust relationship
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_inits: List of before-init scripts
-        :param pulumi.Input[str] branch: GitHub branch to apply changes to
-        :param pulumi.Input[pulumi.InputType['StackCloudformationArgs']] cloudformation: CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
-        :param pulumi.Input[str] description: Free-form stack description for users
-        :param pulumi.Input[str] import_state: State file to upload when creating a new stack
-        :param pulumi.Input[bool] manage_state: Determines if Spacelift should manage state for this stack
-        :param pulumi.Input[str] name: Name of the stack - should be unique in one account
-        :param pulumi.Input[str] project_root: Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
-        :param pulumi.Input[pulumi.InputType['StackPulumiArgs']] pulumi: Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
-        :param pulumi.Input[str] repository: Name of the repository, without the owner part
-        :param pulumi.Input[str] runner_image: Name of the Docker image used to process Runs
-        :param pulumi.Input[str] terraform_version: Terraform version to use
-        :param pulumi.Input[str] terraform_workspace: Terraform workspace to select
-        :param pulumi.Input[str] worker_pool_id: ID of the worker pool to use
+        :param pulumilib.Input[str] id: The unique provider ID of the resource to lookup.
+        :param pulumilib.ResourceOptions opts: Options for the resource.
+        :param pulumilib.Input[bool] administrative: Indicates whether this stack can manage others
+        :param pulumilib.Input[bool] autodeploy: Indicates whether changes to this stack can be automatically deployed
+        :param pulumilib.Input[bool] autoretry: Indicates whether obsolete proposed changes should automatically be retried
+        :param pulumilib.Input[str] aws_assume_role_policy_statement: AWS IAM assume role policy statement setting up trust relationship
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_inits: List of before-init scripts
+        :param pulumilib.Input[str] branch: GitHub branch to apply changes to
+        :param pulumilib.Input[pulumilib.InputType['StackCloudformationArgs']] cloudformation: CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
+        :param pulumilib.Input[str] description: Free-form stack description for users
+        :param pulumilib.Input[str] import_state: State file to upload when creating a new stack
+        :param pulumilib.Input[bool] manage_state: Determines if Spacelift should manage state for this stack
+        :param pulumilib.Input[str] name: Name of the stack - should be unique in one account
+        :param pulumilib.Input[str] project_root: Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+        :param pulumilib.Input[pulumilib.InputType['StackPulumiArgs']] pulumi: Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
+        :param pulumilib.Input[str] repository: Name of the repository, without the owner part
+        :param pulumilib.Input[str] runner_image: Name of the Docker image used to process Runs
+        :param pulumilib.Input[str] terraform_version: Terraform version to use
+        :param pulumilib.Input[str] terraform_workspace: Terraform workspace to select
+        :param pulumilib.Input[str] worker_pool_id: ID of the worker pool to use
         """
-        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
+        opts = pulumilib.ResourceOptions.merge(opts, pulumilib.ResourceOptions(id=id))
 
         __props__ = dict()
 
@@ -187,158 +187,158 @@ class Stack(pulumi.CustomResource):
         return Stack(resource_name, opts=opts, __props__=__props__)
 
     @property
-    @pulumi.getter
-    def administrative(self) -> pulumi.Output[Optional[bool]]:
+    @pulumilib.getter
+    def administrative(self) -> pulumilib.Output[Optional[bool]]:
         """
         Indicates whether this stack can manage others
         """
-        return pulumi.get(self, "administrative")
+        return pulumilib.get(self, "administrative")
 
     @property
-    @pulumi.getter
-    def autodeploy(self) -> pulumi.Output[Optional[bool]]:
+    @pulumilib.getter
+    def autodeploy(self) -> pulumilib.Output[Optional[bool]]:
         """
         Indicates whether changes to this stack can be automatically deployed
         """
-        return pulumi.get(self, "autodeploy")
+        return pulumilib.get(self, "autodeploy")
 
     @property
-    @pulumi.getter
-    def autoretry(self) -> pulumi.Output[Optional[bool]]:
+    @pulumilib.getter
+    def autoretry(self) -> pulumilib.Output[Optional[bool]]:
         """
         Indicates whether obsolete proposed changes should automatically be retried
         """
-        return pulumi.get(self, "autoretry")
+        return pulumilib.get(self, "autoretry")
 
     @property
-    @pulumi.getter(name="awsAssumeRolePolicyStatement")
-    def aws_assume_role_policy_statement(self) -> pulumi.Output[str]:
+    @pulumilib.getter(name="awsAssumeRolePolicyStatement")
+    def aws_assume_role_policy_statement(self) -> pulumilib.Output[str]:
         """
         AWS IAM assume role policy statement setting up trust relationship
         """
-        return pulumi.get(self, "aws_assume_role_policy_statement")
+        return pulumilib.get(self, "aws_assume_role_policy_statement")
 
     @property
-    @pulumi.getter(name="beforeInits")
-    def before_inits(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    @pulumilib.getter(name="beforeInits")
+    def before_inits(self) -> pulumilib.Output[Optional[Sequence[str]]]:
         """
         List of before-init scripts
         """
-        return pulumi.get(self, "before_inits")
+        return pulumilib.get(self, "before_inits")
 
     @property
-    @pulumi.getter
-    def branch(self) -> pulumi.Output[str]:
+    @pulumilib.getter
+    def branch(self) -> pulumilib.Output[str]:
         """
         GitHub branch to apply changes to
         """
-        return pulumi.get(self, "branch")
+        return pulumilib.get(self, "branch")
 
     @property
-    @pulumi.getter
-    def cloudformation(self) -> pulumi.Output[Optional['outputs.StackCloudformation']]:
+    @pulumilib.getter
+    def cloudformation(self) -> pulumilib.Output[Optional['outputs.StackCloudformation']]:
         """
         CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
         """
-        return pulumi.get(self, "cloudformation")
+        return pulumilib.get(self, "cloudformation")
 
     @property
-    @pulumi.getter
-    def description(self) -> pulumi.Output[Optional[str]]:
+    @pulumilib.getter
+    def description(self) -> pulumilib.Output[Optional[str]]:
         """
         Free-form stack description for users
         """
-        return pulumi.get(self, "description")
+        return pulumilib.get(self, "description")
 
     @property
-    @pulumi.getter
-    def gitlab(self) -> pulumi.Output[Optional['outputs.StackGitlab']]:
-        return pulumi.get(self, "gitlab")
+    @pulumilib.getter
+    def gitlab(self) -> pulumilib.Output[Optional['outputs.StackGitlab']]:
+        return pulumilib.get(self, "gitlab")
 
     @property
-    @pulumi.getter(name="importState")
-    def import_state(self) -> pulumi.Output[Optional[str]]:
+    @pulumilib.getter(name="importState")
+    def import_state(self) -> pulumilib.Output[Optional[str]]:
         """
         State file to upload when creating a new stack
         """
-        return pulumi.get(self, "import_state")
+        return pulumilib.get(self, "import_state")
 
     @property
-    @pulumi.getter
-    def labels(self) -> pulumi.Output[Optional[Sequence[str]]]:
-        return pulumi.get(self, "labels")
+    @pulumilib.getter
+    def labels(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        return pulumilib.get(self, "labels")
 
     @property
-    @pulumi.getter(name="manageState")
-    def manage_state(self) -> pulumi.Output[Optional[bool]]:
+    @pulumilib.getter(name="manageState")
+    def manage_state(self) -> pulumilib.Output[Optional[bool]]:
         """
         Determines if Spacelift should manage state for this stack
         """
-        return pulumi.get(self, "manage_state")
+        return pulumilib.get(self, "manage_state")
 
     @property
-    @pulumi.getter
-    def name(self) -> pulumi.Output[str]:
+    @pulumilib.getter
+    def name(self) -> pulumilib.Output[str]:
         """
         Name of the stack - should be unique in one account
         """
-        return pulumi.get(self, "name")
+        return pulumilib.get(self, "name")
 
     @property
-    @pulumi.getter(name="projectRoot")
-    def project_root(self) -> pulumi.Output[Optional[str]]:
+    @pulumilib.getter(name="projectRoot")
+    def project_root(self) -> pulumilib.Output[Optional[str]]:
         """
         Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
         """
-        return pulumi.get(self, "project_root")
+        return pulumilib.get(self, "project_root")
 
     @property
-    @pulumi.getter
-    def pulumi(self) -> pulumi.Output[Optional['outputs.StackPulumi']]:
+    @pulumilib.getter
+    def pulumi(self) -> pulumilib.Output[Optional['outputs.StackPulumi']]:
         """
         Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         """
-        return pulumi.get(self, "pulumi")
+        return pulumilib.get(self, "pulumi")
 
     @property
-    @pulumi.getter
-    def repository(self) -> pulumi.Output[str]:
+    @pulumilib.getter
+    def repository(self) -> pulumilib.Output[str]:
         """
         Name of the repository, without the owner part
         """
-        return pulumi.get(self, "repository")
+        return pulumilib.get(self, "repository")
 
     @property
-    @pulumi.getter(name="runnerImage")
-    def runner_image(self) -> pulumi.Output[Optional[str]]:
+    @pulumilib.getter(name="runnerImage")
+    def runner_image(self) -> pulumilib.Output[Optional[str]]:
         """
         Name of the Docker image used to process Runs
         """
-        return pulumi.get(self, "runner_image")
+        return pulumilib.get(self, "runner_image")
 
     @property
-    @pulumi.getter(name="terraformVersion")
-    def terraform_version(self) -> pulumi.Output[Optional[str]]:
+    @pulumilib.getter(name="terraformVersion")
+    def terraform_version(self) -> pulumilib.Output[Optional[str]]:
         """
         Terraform version to use
         """
-        return pulumi.get(self, "terraform_version")
+        return pulumilib.get(self, "terraform_version")
 
     @property
-    @pulumi.getter(name="terraformWorkspace")
-    def terraform_workspace(self) -> pulumi.Output[Optional[str]]:
+    @pulumilib.getter(name="terraformWorkspace")
+    def terraform_workspace(self) -> pulumilib.Output[Optional[str]]:
         """
         Terraform workspace to select
         """
-        return pulumi.get(self, "terraform_workspace")
+        return pulumilib.get(self, "terraform_workspace")
 
     @property
-    @pulumi.getter(name="workerPoolId")
-    def worker_pool_id(self) -> pulumi.Output[Optional[str]]:
+    @pulumilib.getter(name="workerPoolId")
+    def worker_pool_id(self) -> pulumilib.Output[Optional[str]]:
         """
         ID of the worker pool to use
         """
-        return pulumi.get(self, "worker_pool_id")
+        return pulumilib.get(self, "worker_pool_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

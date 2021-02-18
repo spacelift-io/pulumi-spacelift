@@ -72,28 +72,28 @@ build_nodejs:: install_plugins tfgen # build the node sdk
 build_python:: install_plugins tfgen # build the python sdk
 	$(WORKING_DIR)/bin/$(TFGEN) python --overlays provider/overlays/python --out sdk/python/
 	if [[ "${OS}" == "Darwin" ]]; then \
-        sed -i '' -r "s/check_call\(\['pulumi', 'plugin', 'install', 'resource', 'spacelift', '[^']+']\)/check_call(['pulumi', 'plugin', 'install', '--server', 'https:\/\/downloads.spacelift.io\/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])/g" sdk/python/bin/setup.py; \
+        sed -i '' -r "s/check_call\(\['pulumi', 'plugin', 'install', 'resource', 'spacelift', '[^']+']\)/check_call(['pulumi', 'plugin', 'install', '--server', 'https:\/\/downloads.spacelift.io\/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])/g" sdk/python/setup.py; \
     fi
 	if [[ "${OS}" != "Darwin" ]]; then \
-        sed -i -r "s/check_call\(\['pulumi', 'plugin', 'install', 'resource', 'spacelift', '[^']+']\)/check_call(['pulumi', 'plugin', 'install', '--server', 'https:\/\/downloads.spacelift.io\/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])/g" sdk/python/bin/setup.py; \
+        sed -i -r "s/check_call\(\['pulumi', 'plugin', 'install', 'resource', 'spacelift', '[^']+']\)/check_call(['pulumi', 'plugin', 'install', '--server', 'https:\/\/downloads.spacelift.io\/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])/g" sdk/python/setup.py; \
     fi
 	if [[ "${OS}" == "Darwin" ]]; then \
-        sed -i '' -r "s/import pulumi$$/import pulumi as pulumilib/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/pulumi.CustomResource/pulumilib.CustomResource/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/pulumi.ResourceOptions/pulumilib.ResourceOptions/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/pulumi.Input/pulumilib.Input/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/pulumi.Output/pulumilib.Output/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/@pulumi.getter/@pulumilib.getter/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/pulumi.get/pulumilib.get/g" sdk/python/bin/pulumi_spacelift/stack.py; \
+        sed -i '' -r "s/import pulumi$$/import pulumi as pulumilib/g" sdk/python/pulumi_spacelift/stack.py && \
+        sed -i '' -r "s/pulumi.CustomResource/pulumilib.CustomResource/g" sdk/python/pulumi_spacelift/stack.py && \
+        sed -i '' -r "s/pulumi.ResourceOptions/pulumilib.ResourceOptions/g" sdk/python/pulumi_spacelift/stack.py && \
+        sed -i '' -r "s/pulumi.Input/pulumilib.Input/g" sdk/python/pulumi_spacelift/stack.py && \
+        sed -i '' -r "s/pulumi.Output/pulumilib.Output/g" sdk/python/pulumi_spacelift/stack.py && \
+        sed -i '' -r "s/@pulumi.getter/@pulumilib.getter/g" sdk/python/pulumi_spacelift/stack.py && \
+        sed -i '' -r "s/pulumi.get/pulumilib.get/g" sdk/python/pulumi_spacelift/stack.py; \
     fi
 	if [[ "${OS}" != "Darwin" ]]; then \
-        sed -i -r "s/import pulumi$$/import pulumi as pulumilib/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-		sed -i -r "s/pulumi.CustomResource/pulumilib.CustomResource/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-		sed -i -r "s/pulumi.ResourceOptions/pulumilib.ResourceOptions/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-		sed -i -r "s/pulumi.Input/pulumilib.Input/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-		sed -i -r "s/pulumi.Output/pulumilib.Output/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-		sed -i -r "s/@pulumi.getter/@pulumilib.getter/g" sdk/python/bin/pulumi_spacelift/stack.py && \
-		sed -i -r "s/pulumi.get/pulumilib.get/g" sdk/python/bin/pulumi_spacelift/stack.py; \
+        sed -i -r "s/import pulumi$$/import pulumi as pulumilib/g" sdk/python/pulumi_spacelift/stack.py && \
+		sed -i -r "s/pulumi.CustomResource/pulumilib.CustomResource/g" sdk/python/pulumi_spacelift/stack.py && \
+		sed -i -r "s/pulumi.ResourceOptions/pulumilib.ResourceOptions/g" sdk/python/pulumi_spacelift/stack.py && \
+		sed -i -r "s/pulumi.Input/pulumilib.Input/g" sdk/python/pulumi_spacelift/stack.py && \
+		sed -i -r "s/pulumi.Output/pulumilib.Output/g" sdk/python/pulumi_spacelift/stack.py && \
+		sed -i -r "s/@pulumi.getter/@pulumilib.getter/g" sdk/python/pulumi_spacelift/stack.py && \
+		sed -i -r "s/pulumi.get/pulumilib.get/g" sdk/python/pulumi_spacelift/stack.py; \
     fi
 	cd sdk/python/ && \
         cp ../../README.md . && \
