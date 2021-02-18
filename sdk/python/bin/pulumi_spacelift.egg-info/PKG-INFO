@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pulumi-spacelift
-Version: 1.0.0
+Version: 1.1.0
 Summary: A Pulumi package for creating and managing Spacelift resources.
 Home-page: https://spacelift.io
 License: Apache-2.0
@@ -12,6 +12,11 @@ Description: # Spacelift Pulumi Provider
         ## Installing
         
         This package is available in many languages in the standard packaging formats.
+        
+        In order to run a project locally using this package, you have to install the Spacelift provider binary. This is done automatically on Spacelift workers.
+        ```
+        pulumi plugin install --reinstall --server https://downloads.spacelift.io/pulumi-plugins resource spacelift 0.0.0
+        ```
         
         ### Node.js (Java/TypeScript)
         

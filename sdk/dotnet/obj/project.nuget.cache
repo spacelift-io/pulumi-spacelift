@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1ERLej9yfIZP28W+ZgyjQM8wLJuqsgcM4OL6S9pqrwOS+ADtmc0zecIPhvOa7nJ5vxiZmgfdUN1EDJi3TigKPg==",
+  "dgSpecHash": "TxzzyA8OCumr9UgALRiFbmVi5uo1svvz78L2GoAgOH+IdwPi/+Mof+1JsD7Q16t/YX3n65Jh8uWd06ZmiQAcqQ==",
   "success": true,
   "projectFilePath": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
   "expectedPackageFiles": [
@@ -15,7 +15,7 @@
     "/Users/jakub/.nuget/packages/microsoft.win32.primitives/4.3.0/microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "/Users/jakub/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
     "/Users/jakub/.nuget/packages/oneof/2.1.151/oneof.2.1.151.nupkg.sha512",
-    "/Users/jakub/.nuget/packages/pulumi/2.20.0/pulumi.2.20.0.nupkg.sha512",
+    "/Users/jakub/.nuget/packages/pulumi/2.21.0/pulumi.2.21.0.nupkg.sha512",
     "/Users/jakub/.nuget/packages/pulumi.protobuf/3.13.0/pulumi.protobuf.3.13.0.nupkg.sha512",
     "/Users/jakub/.nuget/packages/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/jakub/.nuget/packages/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
