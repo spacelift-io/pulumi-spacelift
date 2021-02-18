@@ -86,6 +86,7 @@ build_python:: install_plugins tfgen # build the python sdk
     fi
 	if [[ "${OS}" == "Darwin" ]]; then \
         sed -i '' -r "s/import pulumi$$/import pulumi as pulumilib/g" sdk/python/bin/pulumi_spacelift/stack.py && \
+        sed -i '' -r "s/pulumi.CustomResource/pulumilib.CustomResource/g" sdk/python/bin/pulumi_spacelift/stack.py && \
         sed -i '' -r "s/pulumi.ResourceOptions/pulumilib.ResourceOptions/g" sdk/python/bin/pulumi_spacelift/stack.py && \
         sed -i '' -r "s/pulumi.Input/pulumilib.Input/g" sdk/python/bin/pulumi_spacelift/stack.py && \
         sed -i '' -r "s/pulumi.Output/pulumilib.Output/g" sdk/python/bin/pulumi_spacelift/stack.py && \
@@ -94,6 +95,7 @@ build_python:: install_plugins tfgen # build the python sdk
     fi
 	if [[ "${OS}" != "Darwin" ]]; then \
         sed -i -r "s/import pulumi$$/import pulumi as pulumilib/g" sdk/python/bin/pulumi_spacelift/stack.py && \
+		sed -i -r "s/pulumi.CustomResource/pulumilib.CustomResource/g" sdk/python/bin/pulumi_spacelift/stack.py && \
 		sed -i -r "s/pulumi.ResourceOptions/pulumilib.ResourceOptions/g" sdk/python/bin/pulumi_spacelift/stack.py && \
 		sed -i -r "s/pulumi.Input/pulumilib.Input/g" sdk/python/bin/pulumi_spacelift/stack.py && \
 		sed -i -r "s/pulumi.Output/pulumilib.Output/g" sdk/python/bin/pulumi_spacelift/stack.py && \
