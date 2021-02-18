@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aFzkWTp1Luh7x4uwAIvMB9VqSt/S9nadT0duUZlke1Keqv/Frj3R7cR4eb99CaDcZX7xKJWbioqHOwMbM2x32w==",
+  "dgSpecHash": "2mR5+Hkl3Peoge70X4ksLB0s29pZe+UlpKxyCFN+DlfTH8D91pCtqvZxsgPq2FJiS2qCFuOmztMYNPOPdEO4pA==",
   "success": true,
   "projectFilePath": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
   "expectedPackageFiles": [
