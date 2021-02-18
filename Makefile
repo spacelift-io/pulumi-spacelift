@@ -71,13 +71,6 @@ build_nodejs:: install_plugins tfgen # build the node sdk
 
 build_python:: install_plugins tfgen # build the python sdk
 	$(WORKING_DIR)/bin/$(TFGEN) python --overlays provider/overlays/python --out sdk/python/
-	cd sdk/python/ && \
-        cp ../../README.md . && \
-        python3 setup.py clean --all 2>/dev/null && \
-        rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
-        sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" -e "s/\$${PLUGIN_VERSION}/0.0.0/g" ./bin/setup.py && \
-        rm ./bin/setup.py.bak && \
-        cd ./bin && python3 setup.py build sdist
 	if [[ "${OS}" == "Darwin" ]]; then \
         sed -i '' -r "s/check_call\(\['pulumi', 'plugin', 'install', 'resource', 'spacelift', '[^']+']\)/check_call(['pulumi', 'plugin', 'install', '--server', 'https:\/\/downloads.spacelift.io\/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])/g" sdk/python/bin/setup.py; \
     fi
@@ -102,6 +95,13 @@ build_python:: install_plugins tfgen # build the python sdk
 		sed -i -r "s/@pulumi.getter/@pulumilib.getter/g" sdk/python/bin/pulumi_spacelift/stack.py && \
 		sed -i -r "s/pulumi.get/pulumilib.get/g" sdk/python/bin/pulumi_spacelift/stack.py; \
     fi
+	cd sdk/python/ && \
+        cp ../../README.md . && \
+        python3 setup.py clean --all 2>/dev/null && \
+        rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
+        sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" -e "s/\$${PLUGIN_VERSION}/0.0.0/g" ./bin/setup.py && \
+        rm ./bin/setup.py.bak && \
+        cd ./bin && python3 setup.py build sdist
 
 build_dotnet:: install_plugins tfgen # build the dotnet sdk
 	$(WORKING_DIR)/bin/$(TFGEN) dotnet --overlays provider/overlays/dotnet --out sdk/dotnet/
