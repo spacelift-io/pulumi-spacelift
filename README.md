@@ -25,7 +25,7 @@ or `yarn`:
 yarn add @spacelift-io/pulumi-spacelift
 ```
 
-However, since we're hosting the packages on GitHub packages, you'll need to add an .npmrc file (in your project or user home directory) with the following contents:
+However, since we're hosting the packages on GitHub packages, you'll need to add an `.npmrc` file (in your project or user home directory) with the following contents:
 ```
 @spacelift-io:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
@@ -66,7 +66,7 @@ To use from .NET Core, install using
 dotnet add *.csproj package Pulumi.Spacelift
 ```
 
-However, since we're hosting the packages on GitHub packages, you'll need to add a nuget.config file with the following contents:
+However, since we're hosting the packages on GitHub packages, you'll need to add a `nuget.config` file with the following contents:
 ```xml
 <configuration>
     <packageSources>
