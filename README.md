@@ -15,23 +15,73 @@ pulumi plugin install --reinstall --server https://downloads.spacelift.io/pulumi
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
-    $ npm install @pulumi/spacelift
+```
+npm install @spacelift-io/pulumi-spacelift
+```
 
 or `yarn`:
 
-    $ yarn add @pulumi/spacelift
+```
+yarn add @spacelift-io/pulumi-spacelift
+```
+
+However, since we're hosting the packages on GitHub packages, you'll need to add an .npmrc file (in your project or user home directory) with the following contents:
+```
+@spacelift-io:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+where ${GITHUB_TOKEN} is a GitHub access token with the Read capability on GitHub packages.
+
+### Go
+
+To use from Go, use `go get` to grab the latest version of the library:
+
+```
+go get -u github.com/spacelift-io/pulumi-spacelift
+```
+
+The import paths will then start with `github.com/spacelift-io/pulumi-spacelift/sdk/go/`.
 
 ### Python
 
 To use from Python, install using `pip`:
 
-    $ pip install "git+https://github.com/spacelift-io/pulumi-spacelift#egg=pulumi_spacelift&subdirectory=sdk/python/bin"
+```
+pip install "git+https://github.com/spacelift-io/pulumi-spacelift#egg=pulumi_spacelift&subdirectory=sdk/python/bin"
+```
 
-### Go
+or:
 
-To use from Go, use `go get` to grab the latest version of the library
+```
+pip install "git+https://github.com/spacelift-io/pulumi-spacelift@v1.2.0#egg=pulumi_spacelift&subdirectory=sdk/python/bin"
+```
 
-    $ go get github.com/spacelift-io/pulumi-spacelift/sdk/go/...
+to install a specific version, v1.2.0 in this case.
+
+### .NET Core (C#/F#)
+
+To use from .NET Core, install using
+```
+dotnet add dotnet.csproj package Pulumi.Spacelift
+```
+
+However, since we're hosting the packages on GitHub packages, you'll need to add a nuget.config file with the following contents:
+```xml
+<configuration>
+    <packageSources>
+        <add key="github" value="https://nuget.pkg.github.com/spacelift-io/index.json" />
+    </packageSources>
+    <packageSourceCredentials>
+        <github>
+            <add key="Username" value="${GITHUB_USER}" />
+            <add key="ClearTextPassword" value="${GITHUB_TOKEN}" />
+        </github>
+    </packageSourceCredentials>
+</configuration>
+```
+
+where ${GITHUB_USER} and ${GITHUB_TOKEN} is respectively a GitHub username and access token with the Read capability on GitHub packages.
 
 ## Configuration
 
