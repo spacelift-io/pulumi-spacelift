@@ -95,7 +95,7 @@ class Stack(pulumi.CustomResource):
                 raise TypeError("Missing required property 'name'")
             __props__['name'] = name
             __props__['project_root'] = project_root
-            __props__['pulumi'] = pulumilib
+            __props__['pulumi'] = pulumi
             if repository is None and not opts.urn:
                 raise TypeError("Missing required property 'repository'")
             __props__['repository'] = repository
