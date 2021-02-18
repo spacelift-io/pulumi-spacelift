@@ -301,7 +301,7 @@ class Stack(pulumi.CustomResource):
         return pulumilib.get(self, "pulumi")
 
     @property
-    @pulumi.getter
+    @pulumilib.getter
     def repository(self) -> pulumilib.Output[str]:
         """
         Name of the repository, without the owner part
@@ -309,7 +309,7 @@ class Stack(pulumi.CustomResource):
         return pulumilib.get(self, "repository")
 
     @property
-    @pulumi.getter(name="runnerImage")
+    @pulumilib.getter(name="runnerImage")
     def runner_image(self) -> pulumilib.Output[Optional[str]]:
         """
         Name of the Docker image used to process Runs
@@ -317,7 +317,7 @@ class Stack(pulumi.CustomResource):
         return pulumilib.get(self, "runner_image")
 
     @property
-    @pulumi.getter(name="terraformVersion")
+    @pulumilib.getter(name="terraformVersion")
     def terraform_version(self) -> pulumilib.Output[Optional[str]]:
         """
         Terraform version to use
@@ -325,7 +325,7 @@ class Stack(pulumi.CustomResource):
         return pulumilib.get(self, "terraform_version")
 
     @property
-    @pulumi.getter(name="terraformWorkspace")
+    @pulumilib.getter(name="terraformWorkspace")
     def terraform_workspace(self) -> pulumilib.Output[Optional[str]]:
         """
         Terraform workspace to select
@@ -333,7 +333,7 @@ class Stack(pulumi.CustomResource):
         return pulumilib.get(self, "terraform_workspace")
 
     @property
-    @pulumi.getter(name="workerPoolId")
+    @pulumilib.getter(name="workerPoolId")
     def worker_pool_id(self) -> pulumilib.Output[Optional[str]]:
         """
         ID of the worker pool to use
