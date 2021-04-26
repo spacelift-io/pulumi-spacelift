@@ -21,23 +21,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Pulumi CLI
         uses: pulumi/action-install-pulumi-cli@v1.0.1
-#      - name: Setup Node
-#        uses: actions/setup-node@v1
-#        with:
-#          node-version: 13.x
-#          registry-url: https://registry.npmjs.org
-#      - name: Install yarn
-#        run: npm install --global yarn
-#      - name: Setup DotNet
-#        uses: actions/setup-dotnet@v1
-#        with:
-#          dotnet-version: 3.1.301
-#      - name: Setup DotNet ICU
-#        run: apt-get update && apt-get install -y icu-devtools
-#      - name: Setup Python
-#        uses: actions/setup-python@v2
-#        with:
-#          python-version: 3.7
       - name: Tag version
         run: git tag -d `git tag | grep -E '.'` && git tag v0.0.0
       - name: Print version
@@ -71,24 +54,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY }}
           DISTRIBUTION: ${{ secrets.PREPROD_DISTRIBUTION }}
           PATHS: "/*"
-#
-#      - name: Update deployment status (success)
-#        uses: chrnorm/deployment-status@releases/v1
-#        if: success() && github.ref == 'refs/heads/master'
-#        with:
-#          token: "${{ github.token }}"
-#          target_url: https://downloads.spacelift.dev/spacelift-vcs-agent
-#          state: "success"
-#          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-#
-#      - name: Update deployment status (failure)
-#        uses: chrnorm/deployment-status@releases/v1
-#        if: failure() && github.ref == 'refs/heads/master'
-#        with:
-#          token: "${{ github.token }}"
-#          target_url: https://downloads.spacelift.dev/spacelift-vcs-agent
-#          state: "failure"
-#          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
     strategy:
       matrix:
         provider_os:
