@@ -6,7 +6,7 @@ jobs:
   prod-provider-deployment:
     name: Build and upload provider
     runs-on: self-hosted
-    container: golang:1.16
+    container: golang:1.15
     steps:
       - name: Check out repository code
         uses: actions/checkout@master
