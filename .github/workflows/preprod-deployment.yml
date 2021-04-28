@@ -5,53 +5,61 @@ on: [push]
 jobs:
   preprod-provider-deployment:
     name: Build and upload provider
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    container: golang:1.16
     steps:
       - name: Check out repository code
         uses: actions/checkout@master
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.15.x
+
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.1.0
         with:
           repo: pulumi/pulumictl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Install Pulumi CLI
         uses: pulumi/action-install-pulumi-cli@v1.0.1
+
       - name: Tag version
         run: git tag -d `git tag | grep -E '.'` && git tag v0.0.0
+
       - name: Print version
         run: pulumictl get version
+
       - name: Build provider
         run: make provider
         env:
           PROVIDER_OS: ${{ matrix.provider_os }}
+
       - name: Create package directory
         run: mkdir package && mv bin/pulumi-resource-* package/ && ls -la package/
+
       - name: Create package
         run: cd package && tar -zcvf pulumi-resource-spacelift-v0.0.0-${{matrix.provider_os}}-amd64.tar.gz pulumi-resource-*
+
       - name: Create upload directory
         run: mkdir -p upload/pulumi-plugins && mv package/*.tar.gz upload/pulumi-plugins/
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1.5.8
+        with:
+          aws-region: eu-west-1
+          role-to-assume: ${{ secrets.PREPROD_AWS_ROLE_ARN }}
+          role-external-id: ${{ secrets.PREPROD_AWS_EXTERNAL_ID }}
+          role-duration-seconds: 900
+
       - name: Upload the provider binary to downloads.spacelift.dev
         uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311
         if: github.ref == 'refs/heads/future'
         env:
           SOURCE_DIR: upload/
-          AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
           AWS_S3_BUCKET: ${{ secrets.PREPROD_AWS_S3_BUCKET }}
-          AWS_REGION: ${{ secrets.PREPROD_AWS_REGION }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY}}
 
       - name: Invalidate downloads.spacelift.dev cache
         uses: chetan/invalidate-cloudfront-action@2d2d3f464dcae0bea80ceff79e89960bbac6a754
         if: github.ref == 'refs/heads/future'
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
-          AWS_REGION: ${{ secrets.PREPROD_AWS_REGION }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY }}
           DISTRIBUTION: ${{ secrets.PREPROD_DISTRIBUTION }}
           PATHS: "/*"
     strategy:
