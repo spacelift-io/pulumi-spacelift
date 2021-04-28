@@ -11,6 +11,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@master
 
+      - name: Remove Pulumi directory
+        run: rm -rf /github/home/.pulumi
+
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.1.0
         with:
