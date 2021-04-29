@@ -6,8 +6,14 @@ jobs:
   preprod-provider-deployment:
     name: Build and upload provider
     runs-on: self-hosted
-    container: golang:1.15
+    container: golang:1.15-alpine
     steps:
+      - name: Install build dependencies
+        run: |
+          apk add --no-cache alpine-sdk git python3 py3-pip
+          pip3 install --upgrade pip
+          pip3 install awscli
+
       - name: Check out repository code
         uses: actions/checkout@master
 
@@ -52,19 +58,28 @@ jobs:
           role-external-id: ${{ secrets.PREPROD_AWS_EXTERNAL_ID }}
           role-duration-seconds: 900
 
+      - name: Upload the provider binary to downloads.spacelift.dev (dry run)
+        if: github.ref != 'refs/heads/future'
+        run: >-
+          aws s3 sync
+          upload/ s3://${{ secrets.PREPROD_AWS_S3_BUCKET }}/
+          --dryrun
+          --no-progress
+
       - name: Upload the provider binary to downloads.spacelift.dev
-        uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311
         if: github.ref == 'refs/heads/future'
-        env:
-          SOURCE_DIR: upload/
-          AWS_S3_BUCKET: ${{ secrets.PREPROD_AWS_S3_BUCKET }}
+        run: >-
+          aws s3 sync
+          upload/ s3://${{ secrets.PREPROD_AWS_S3_BUCKET }}/
+          --no-progress
 
       - name: Invalidate downloads.spacelift.dev cache
-        uses: chetan/invalidate-cloudfront-action@2d2d3f464dcae0bea80ceff79e89960bbac6a754
         if: github.ref == 'refs/heads/future'
-        env:
-          DISTRIBUTION: ${{ secrets.PREPROD_DISTRIBUTION }}
-          PATHS: "/*"
+        run: >-
+          aws cloudfront create-invalidation
+          --distribution-id ${{ secrets.PREPROD_DISTRIBUTION }}
+          --paths "/*"
+
     strategy:
       matrix:
         provider_os:
