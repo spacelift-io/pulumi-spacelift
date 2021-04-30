@@ -5,7 +5,7 @@ on: [push]
 jobs:
   prod-provider-deployment:
     name: Build and upload provider
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     container: golang:1.15-alpine
     steps:
       - name: Install build dependencies
@@ -53,10 +53,9 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1.5.8
         with:
-          aws-region: eu-west-1
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          role-external-id: ${{ secrets.AWS_EXTERNAL_ID }}
-          role-duration-seconds: 900
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Upload the provider binary to downloads.spacelift.io (dry run)
         if: github.ref != 'refs/heads/main'
