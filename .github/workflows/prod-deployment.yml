@@ -1,11 +1,13 @@
 name: Prod deployment
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - main
 jobs:
   prod-provider-deployment:
     name: Build and upload provider
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     container: golang:1.15-alpine
     steps:
       - name: Install build dependencies
@@ -51,30 +53,19 @@ jobs:
         run: mkdir -p upload/pulumi-plugins && mv package/*.tar.gz upload/pulumi-plugins/
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1.5.8
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-region: eu-west-1
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          role-external-id: ${{ secrets.AWS_EXTERNAL_ID }}
+          aws-region: ${{ secrets.PREPROD_AWS_REGION }}
+          role-to-assume: ${{ secrets.PREPROD_AWS_ROLE_TO_ASSUME }}
           role-duration-seconds: 900
 
-      - name: Upload the provider binary to downloads.spacelift.io (dry run)
-        if: github.ref != 'refs/heads/main'
-        run: >-
-          aws s3 sync
-          upload/ s3://${{ secrets.AWS_S3_BUCKET }}/
-          --dryrun
-          --no-progress
-
       - name: Upload the provider binary to downloads.spacelift.io
-        if: github.ref == 'refs/heads/main'
         run: >-
           aws s3 sync
           upload/ s3://${{ secrets.AWS_S3_BUCKET }}/
           --no-progress
 
       - name: Invalidate downloads.spacelift.io cache
-        if: github.ref == 'refs/heads/main'
         run: >-
           aws cloudfront create-invalidation
           --distribution-id ${{ secrets.DISTRIBUTION }}
