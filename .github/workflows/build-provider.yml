@@ -1,0 +1,40 @@
+name: Build provider
+
+on: { push: { branches-ignore: [future, main] } }
+
+jobs:
+  build-provider:
+    name: Build provider
+    runs-on: ubuntu-latest
+    container: golang:1.15-alpine
+    steps:
+      - name: Install build dependencies
+        run: |
+          apk add --no-cache alpine-sdk git
+
+      - name: Check out repository code
+        uses: actions/checkout@master
+
+      - name: Remove Pulumi directory
+        run: rm -rf /github/home/.pulumi
+
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.1.0
+        with:
+          repo: pulumi/pulumictl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Pulumi CLI
+        uses: pulumi/action-install-pulumi-cli@v1.0.1
+
+      - name: Tag version
+        run: git tag -d `git tag | grep -E '.'` && git tag v0.0.0
+
+      - name: Print version
+        run: pulumictl get version
+
+      - name: Build provider
+        run: make provider
+        env:
+          PROVIDER_OS: ${{ matrix.provider_os }}
