@@ -1,7 +1,9 @@
 name: Prod deployment
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - main
 jobs:
   prod-provider-deployment:
     name: Build and upload provider
@@ -51,29 +53,19 @@ jobs:
         run: mkdir -p upload/pulumi-plugins && mv package/*.tar.gz upload/pulumi-plugins/
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1.5.8
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-region: ${{ secrets.AWS_REGION }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Upload the provider binary to downloads.spacelift.io (dry run)
-        if: github.ref != 'refs/heads/main'
-        run: >-
-          aws s3 sync
-          upload/ s3://${{ secrets.AWS_S3_BUCKET }}/
-          --dryrun
-          --no-progress
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-duration-seconds: 900
 
       - name: Upload the provider binary to downloads.spacelift.io
-        if: github.ref == 'refs/heads/main'
         run: >-
           aws s3 sync
           upload/ s3://${{ secrets.AWS_S3_BUCKET }}/
           --no-progress
 
       - name: Invalidate downloads.spacelift.io cache
-        if: github.ref == 'refs/heads/main'
         run: >-
           aws cloudfront create-invalidation
           --distribution-id ${{ secrets.DISTRIBUTION }}
