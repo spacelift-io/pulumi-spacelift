@@ -23,6 +23,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@master
 
+      - name: Treat repo as safe
+        run: git config --global --add safe.directory /__w/pulumi-spacelift/pulumi-spacelift
+
       - name: Remove Pulumi directory
         run: rm -rf /github/home/.pulumi
 
