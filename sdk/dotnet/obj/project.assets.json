@@ -5065,7 +5065,7 @@
     "/home/ubuntu/.nuget/packages/": {}
   },
   "project": {
-    "version": "1.2.2",
+    "version": "1.2.3",
     "restore": {
       "projectUniqueName": "/home/ubuntu/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
       "projectName": "Pulumi.Spacelift",
