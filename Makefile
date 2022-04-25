@@ -14,8 +14,6 @@ VERSION_WITH_V  := "$(shell git describe --tags --abbrev=0)"
 VERSION         := "$(shell git describe --tags --abbrev=0 | sed 's/^v//g')"
 PROVIDER_OS     := ${PROVIDER_OS}
 
-SHELL := /bin/bash
-
 TESTPARALLELISM := 4
 
 WORKING_DIR     := $(shell pwd)
