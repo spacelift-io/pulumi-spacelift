@@ -9,7 +9,7 @@ jobs:
   preprod-provider-deployment:
     name: Build and upload provider
     runs-on: ubuntu-latest
-    container: golang:1.15-alpine
+    container: golang:1.16-alpine
     permissions:
       id-token: write
       contents: read
