@@ -18,21 +18,41 @@ class Stack(pulumilib.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumilib.ResourceOptions] = None,
                  administrative: Optional[pulumilib.Input[bool]] = None,
+                 after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+                 after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+                 after_inits: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+                 after_performs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+                 after_plans: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  autodeploy: Optional[pulumilib.Input[bool]] = None,
                  autoretry: Optional[pulumilib.Input[bool]] = None,
+                 azure_devops: Optional[pulumilib.Input[pulumilib.InputType['StackAzureDevopsArgs']]] = None,
+                 before_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+                 before_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  before_inits: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+                 before_performs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+                 before_plans: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+                 bitbucket_cloud: Optional[pulumilib.Input[pulumilib.InputType['StackBitbucketCloudArgs']]] = None,
+                 bitbucket_datacenter: Optional[pulumilib.Input[pulumilib.InputType['StackBitbucketDatacenterArgs']]] = None,
                  branch: Optional[pulumilib.Input[str]] = None,
                  cloudformation: Optional[pulumilib.Input[pulumilib.InputType['StackCloudformationArgs']]] = None,
                  description: Optional[pulumilib.Input[str]] = None,
+                 enable_local_preview: Optional[pulumilib.Input[bool]] = None,
+                 github_action_deploy: Optional[pulumilib.Input[bool]] = None,
+                 github_enterprise: Optional[pulumilib.Input[pulumilib.InputType['StackGithubEnterpriseArgs']]] = None,
                  gitlab: Optional[pulumilib.Input[pulumilib.InputType['StackGitlabArgs']]] = None,
                  import_state: Optional[pulumilib.Input[str]] = None,
+                 import_state_file: Optional[pulumilib.Input[str]] = None,
+                 kubernetes: Optional[pulumilib.Input[pulumilib.InputType['StackKubernetesArgs']]] = None,
                  labels: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  manage_state: Optional[pulumilib.Input[bool]] = None,
                  name: Optional[pulumilib.Input[str]] = None,
                  project_root: Optional[pulumilib.Input[str]] = None,
+                 protect_from_deletion: Optional[pulumilib.Input[bool]] = None,
                  pulumi: Optional[pulumilib.Input[pulumilib.InputType['StackPulumiArgs']]] = None,
                  repository: Optional[pulumilib.Input[str]] = None,
                  runner_image: Optional[pulumilib.Input[str]] = None,
+                 showcase: Optional[pulumilib.Input[pulumilib.InputType['StackShowcaseArgs']]] = None,
+                 slug: Optional[pulumilib.Input[str]] = None,
                  terraform_version: Optional[pulumilib.Input[str]] = None,
                  terraform_workspace: Optional[pulumilib.Input[str]] = None,
                  worker_pool_id: Optional[pulumilib.Input[str]] = None,
@@ -40,23 +60,50 @@ class Stack(pulumilib.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a Stack resource with the given unique name, props, and options.
+        ## Import
+
+        Import is supported using the following syntax
+
+        ```sh
+         $ pulumi import spacelift:index/stack:Stack k8s_core $STACK_ID
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumilib.ResourceOptions opts: Options for the resource.
         :param pulumilib.Input[bool] administrative: Indicates whether this stack can manage others
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_applies: List of after-apply scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_destroys: List of after-destroy scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_inits: List of after-init scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_performs: List of after-perform scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_plans: List of after-plan scripts
         :param pulumilib.Input[bool] autodeploy: Indicates whether changes to this stack can be automatically deployed
         :param pulumilib.Input[bool] autoretry: Indicates whether obsolete proposed changes should automatically be retried
+        :param pulumilib.Input[pulumilib.InputType['StackAzureDevopsArgs']] azure_devops: Azure DevOps VCS settings
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_applies: List of before-apply scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_destroys: List of before-destroy scripts
         :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_inits: List of before-init scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_performs: List of before-perform scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_plans: List of before-plan scripts
+        :param pulumilib.Input[pulumilib.InputType['StackBitbucketCloudArgs']] bitbucket_cloud: Bitbucket Cloud VCS settings
+        :param pulumilib.Input[pulumilib.InputType['StackBitbucketDatacenterArgs']] bitbucket_datacenter: Bitbucket Datacenter VCS settings
         :param pulumilib.Input[str] branch: GitHub branch to apply changes to
         :param pulumilib.Input[pulumilib.InputType['StackCloudformationArgs']] cloudformation: CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
         :param pulumilib.Input[str] description: Free-form stack description for users
+        :param pulumilib.Input[bool] enable_local_preview: Indicates whether local preview runs can be triggered on this Stack
+        :param pulumilib.Input[bool] github_action_deploy: Indicates whether GitHub users can deploy from the Checks API
+        :param pulumilib.Input[pulumilib.InputType['StackGithubEnterpriseArgs']] github_enterprise: GitHub Enterprise (self-hosted) VCS settings
+        :param pulumilib.Input[pulumilib.InputType['StackGitlabArgs']] gitlab: GitLab VCS settings
         :param pulumilib.Input[str] import_state: State file to upload when creating a new stack
+        :param pulumilib.Input[str] import_state_file: Path to the state file to upload when creating a new stack
+        :param pulumilib.Input[pulumilib.InputType['StackKubernetesArgs']] kubernetes: Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
         :param pulumilib.Input[bool] manage_state: Determines if Spacelift should manage state for this stack
         :param pulumilib.Input[str] name: Name of the stack - should be unique in one account
         :param pulumilib.Input[str] project_root: Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+        :param pulumilib.Input[bool] protect_from_deletion: Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
         :param pulumilib.Input[pulumilib.InputType['StackPulumiArgs']] pulumi: Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         :param pulumilib.Input[str] repository: Name of the repository, without the owner part
         :param pulumilib.Input[str] runner_image: Name of the Docker image used to process Runs
+        :param pulumilib.Input[str] slug: Allows setting the custom ID (slug) for the stack
         :param pulumilib.Input[str] terraform_version: Terraform version to use
         :param pulumilib.Input[str] terraform_workspace: Terraform workspace to select
         :param pulumilib.Input[str] worker_pool_id: ID of the worker pool to use
@@ -79,27 +126,47 @@ class Stack(pulumilib.CustomResource):
             __props__ = dict()
 
             __props__['administrative'] = administrative
+            __props__['after_applies'] = after_applies
+            __props__['after_destroys'] = after_destroys
+            __props__['after_inits'] = after_inits
+            __props__['after_performs'] = after_performs
+            __props__['after_plans'] = after_plans
             __props__['autodeploy'] = autodeploy
             __props__['autoretry'] = autoretry
+            __props__['azure_devops'] = azure_devops
+            __props__['before_applies'] = before_applies
+            __props__['before_destroys'] = before_destroys
             __props__['before_inits'] = before_inits
+            __props__['before_performs'] = before_performs
+            __props__['before_plans'] = before_plans
+            __props__['bitbucket_cloud'] = bitbucket_cloud
+            __props__['bitbucket_datacenter'] = bitbucket_datacenter
             if branch is None and not opts.urn:
                 raise TypeError("Missing required property 'branch'")
             __props__['branch'] = branch
             __props__['cloudformation'] = cloudformation
             __props__['description'] = description
+            __props__['enable_local_preview'] = enable_local_preview
+            __props__['github_action_deploy'] = github_action_deploy
+            __props__['github_enterprise'] = github_enterprise
             __props__['gitlab'] = gitlab
             __props__['import_state'] = import_state
+            __props__['import_state_file'] = import_state_file
+            __props__['kubernetes'] = kubernetes
             __props__['labels'] = labels
             __props__['manage_state'] = manage_state
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__['name'] = name
             __props__['project_root'] = project_root
+            __props__['protect_from_deletion'] = protect_from_deletion
             __props__['pulumi'] = pulumi
             if repository is None and not opts.urn:
                 raise TypeError("Missing required property 'repository'")
             __props__['repository'] = repository
             __props__['runner_image'] = runner_image
+            __props__['showcase'] = showcase
+            __props__['slug'] = slug
             __props__['terraform_version'] = terraform_version
             __props__['terraform_workspace'] = terraform_workspace
             __props__['worker_pool_id'] = worker_pool_id
@@ -115,22 +182,42 @@ class Stack(pulumilib.CustomResource):
             id: pulumilib.Input[str],
             opts: Optional[pulumilib.ResourceOptions] = None,
             administrative: Optional[pulumilib.Input[bool]] = None,
+            after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+            after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+            after_inits: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+            after_performs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+            after_plans: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
             autodeploy: Optional[pulumilib.Input[bool]] = None,
             autoretry: Optional[pulumilib.Input[bool]] = None,
             aws_assume_role_policy_statement: Optional[pulumilib.Input[str]] = None,
+            azure_devops: Optional[pulumilib.Input[pulumilib.InputType['StackAzureDevopsArgs']]] = None,
+            before_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+            before_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
             before_inits: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+            before_performs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+            before_plans: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
+            bitbucket_cloud: Optional[pulumilib.Input[pulumilib.InputType['StackBitbucketCloudArgs']]] = None,
+            bitbucket_datacenter: Optional[pulumilib.Input[pulumilib.InputType['StackBitbucketDatacenterArgs']]] = None,
             branch: Optional[pulumilib.Input[str]] = None,
             cloudformation: Optional[pulumilib.Input[pulumilib.InputType['StackCloudformationArgs']]] = None,
             description: Optional[pulumilib.Input[str]] = None,
+            enable_local_preview: Optional[pulumilib.Input[bool]] = None,
+            github_action_deploy: Optional[pulumilib.Input[bool]] = None,
+            github_enterprise: Optional[pulumilib.Input[pulumilib.InputType['StackGithubEnterpriseArgs']]] = None,
             gitlab: Optional[pulumilib.Input[pulumilib.InputType['StackGitlabArgs']]] = None,
             import_state: Optional[pulumilib.Input[str]] = None,
+            import_state_file: Optional[pulumilib.Input[str]] = None,
+            kubernetes: Optional[pulumilib.Input[pulumilib.InputType['StackKubernetesArgs']]] = None,
             labels: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
             manage_state: Optional[pulumilib.Input[bool]] = None,
             name: Optional[pulumilib.Input[str]] = None,
             project_root: Optional[pulumilib.Input[str]] = None,
+            protect_from_deletion: Optional[pulumilib.Input[bool]] = None,
             pulumi: Optional[pulumilib.Input[pulumilib.InputType['StackPulumiArgs']]] = None,
             repository: Optional[pulumilib.Input[str]] = None,
             runner_image: Optional[pulumilib.Input[str]] = None,
+            showcase: Optional[pulumilib.Input[pulumilib.InputType['StackShowcaseArgs']]] = None,
+            slug: Optional[pulumilib.Input[str]] = None,
             terraform_version: Optional[pulumilib.Input[str]] = None,
             terraform_workspace: Optional[pulumilib.Input[str]] = None,
             worker_pool_id: Optional[pulumilib.Input[str]] = None) -> 'Stack':
@@ -142,20 +229,40 @@ class Stack(pulumilib.CustomResource):
         :param pulumilib.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumilib.ResourceOptions opts: Options for the resource.
         :param pulumilib.Input[bool] administrative: Indicates whether this stack can manage others
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_applies: List of after-apply scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_destroys: List of after-destroy scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_inits: List of after-init scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_performs: List of after-perform scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_plans: List of after-plan scripts
         :param pulumilib.Input[bool] autodeploy: Indicates whether changes to this stack can be automatically deployed
         :param pulumilib.Input[bool] autoretry: Indicates whether obsolete proposed changes should automatically be retried
         :param pulumilib.Input[str] aws_assume_role_policy_statement: AWS IAM assume role policy statement setting up trust relationship
+        :param pulumilib.Input[pulumilib.InputType['StackAzureDevopsArgs']] azure_devops: Azure DevOps VCS settings
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_applies: List of before-apply scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_destroys: List of before-destroy scripts
         :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_inits: List of before-init scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_performs: List of before-perform scripts
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] before_plans: List of before-plan scripts
+        :param pulumilib.Input[pulumilib.InputType['StackBitbucketCloudArgs']] bitbucket_cloud: Bitbucket Cloud VCS settings
+        :param pulumilib.Input[pulumilib.InputType['StackBitbucketDatacenterArgs']] bitbucket_datacenter: Bitbucket Datacenter VCS settings
         :param pulumilib.Input[str] branch: GitHub branch to apply changes to
         :param pulumilib.Input[pulumilib.InputType['StackCloudformationArgs']] cloudformation: CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
         :param pulumilib.Input[str] description: Free-form stack description for users
+        :param pulumilib.Input[bool] enable_local_preview: Indicates whether local preview runs can be triggered on this Stack
+        :param pulumilib.Input[bool] github_action_deploy: Indicates whether GitHub users can deploy from the Checks API
+        :param pulumilib.Input[pulumilib.InputType['StackGithubEnterpriseArgs']] github_enterprise: GitHub Enterprise (self-hosted) VCS settings
+        :param pulumilib.Input[pulumilib.InputType['StackGitlabArgs']] gitlab: GitLab VCS settings
         :param pulumilib.Input[str] import_state: State file to upload when creating a new stack
+        :param pulumilib.Input[str] import_state_file: Path to the state file to upload when creating a new stack
+        :param pulumilib.Input[pulumilib.InputType['StackKubernetesArgs']] kubernetes: Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
         :param pulumilib.Input[bool] manage_state: Determines if Spacelift should manage state for this stack
         :param pulumilib.Input[str] name: Name of the stack - should be unique in one account
         :param pulumilib.Input[str] project_root: Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+        :param pulumilib.Input[bool] protect_from_deletion: Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
         :param pulumilib.Input[pulumilib.InputType['StackPulumiArgs']] pulumi: Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         :param pulumilib.Input[str] repository: Name of the repository, without the owner part
         :param pulumilib.Input[str] runner_image: Name of the Docker image used to process Runs
+        :param pulumilib.Input[str] slug: Allows setting the custom ID (slug) for the stack
         :param pulumilib.Input[str] terraform_version: Terraform version to use
         :param pulumilib.Input[str] terraform_workspace: Terraform workspace to select
         :param pulumilib.Input[str] worker_pool_id: ID of the worker pool to use
@@ -165,22 +272,42 @@ class Stack(pulumilib.CustomResource):
         __props__ = dict()
 
         __props__["administrative"] = administrative
+        __props__["after_applies"] = after_applies
+        __props__["after_destroys"] = after_destroys
+        __props__["after_inits"] = after_inits
+        __props__["after_performs"] = after_performs
+        __props__["after_plans"] = after_plans
         __props__["autodeploy"] = autodeploy
         __props__["autoretry"] = autoretry
         __props__["aws_assume_role_policy_statement"] = aws_assume_role_policy_statement
+        __props__["azure_devops"] = azure_devops
+        __props__["before_applies"] = before_applies
+        __props__["before_destroys"] = before_destroys
         __props__["before_inits"] = before_inits
+        __props__["before_performs"] = before_performs
+        __props__["before_plans"] = before_plans
+        __props__["bitbucket_cloud"] = bitbucket_cloud
+        __props__["bitbucket_datacenter"] = bitbucket_datacenter
         __props__["branch"] = branch
         __props__["cloudformation"] = cloudformation
         __props__["description"] = description
+        __props__["enable_local_preview"] = enable_local_preview
+        __props__["github_action_deploy"] = github_action_deploy
+        __props__["github_enterprise"] = github_enterprise
         __props__["gitlab"] = gitlab
         __props__["import_state"] = import_state
+        __props__["import_state_file"] = import_state_file
+        __props__["kubernetes"] = kubernetes
         __props__["labels"] = labels
         __props__["manage_state"] = manage_state
         __props__["name"] = name
         __props__["project_root"] = project_root
+        __props__["protect_from_deletion"] = protect_from_deletion
         __props__["pulumi"] = pulumi
         __props__["repository"] = repository
         __props__["runner_image"] = runner_image
+        __props__["showcase"] = showcase
+        __props__["slug"] = slug
         __props__["terraform_version"] = terraform_version
         __props__["terraform_workspace"] = terraform_workspace
         __props__["worker_pool_id"] = worker_pool_id
@@ -193,6 +320,46 @@ class Stack(pulumilib.CustomResource):
         Indicates whether this stack can manage others
         """
         return pulumilib.get(self, "administrative")
+
+    @property
+    @pulumilib.getter(name="afterApplies")
+    def after_applies(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        """
+        List of after-apply scripts
+        """
+        return pulumilib.get(self, "after_applies")
+
+    @property
+    @pulumilib.getter(name="afterDestroys")
+    def after_destroys(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        """
+        List of after-destroy scripts
+        """
+        return pulumilib.get(self, "after_destroys")
+
+    @property
+    @pulumilib.getter(name="afterInits")
+    def after_inits(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        """
+        List of after-init scripts
+        """
+        return pulumilib.get(self, "after_inits")
+
+    @property
+    @pulumilib.getter(name="afterPerforms")
+    def after_performs(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        """
+        List of after-perform scripts
+        """
+        return pulumilib.get(self, "after_performs")
+
+    @property
+    @pulumilib.getter(name="afterPlans")
+    def after_plans(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        """
+        List of after-plan scripts
+        """
+        return pulumilib.get(self, "after_plans")
 
     @property
     @pulumilib.getter
@@ -219,12 +386,68 @@ class Stack(pulumilib.CustomResource):
         return pulumilib.get(self, "aws_assume_role_policy_statement")
 
     @property
+    @pulumilib.getter(name="azureDevops")
+    def azure_devops(self) -> pulumilib.Output[Optional['outputs.StackAzureDevops']]:
+        """
+        Azure DevOps VCS settings
+        """
+        return pulumilib.get(self, "azure_devops")
+
+    @property
+    @pulumilib.getter(name="beforeApplies")
+    def before_applies(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        """
+        List of before-apply scripts
+        """
+        return pulumilib.get(self, "before_applies")
+
+    @property
+    @pulumilib.getter(name="beforeDestroys")
+    def before_destroys(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        """
+        List of before-destroy scripts
+        """
+        return pulumilib.get(self, "before_destroys")
+
+    @property
     @pulumilib.getter(name="beforeInits")
     def before_inits(self) -> pulumilib.Output[Optional[Sequence[str]]]:
         """
         List of before-init scripts
         """
         return pulumilib.get(self, "before_inits")
+
+    @property
+    @pulumilib.getter(name="beforePerforms")
+    def before_performs(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        """
+        List of before-perform scripts
+        """
+        return pulumilib.get(self, "before_performs")
+
+    @property
+    @pulumilib.getter(name="beforePlans")
+    def before_plans(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        """
+        List of before-plan scripts
+        """
+        return pulumilib.get(self, "before_plans")
+
+    @property
+    @pulumilib.getter(name="bitbucketCloud")
+    def bitbucket_cloud(self) -> pulumilib.Output[Optional['outputs.StackBitbucketCloud']]:
+        """
+        Bitbucket Cloud VCS settings
+        """
+        return pulumilib.get(self, "bitbucket_cloud")
+
+    @property
+    @pulumilib.getter(name="bitbucketDatacenter")
+    def bitbucket_datacenter(self) -> pulumilib.Output[Optional['outputs.StackBitbucketDatacenter']]:
+        """
+        Bitbucket Datacenter VCS settings
+        """
+        return pulumilib.get(self, "bitbucket_datacenter")
 
     @property
     @pulumilib.getter
@@ -251,8 +474,35 @@ class Stack(pulumilib.CustomResource):
         return pulumilib.get(self, "description")
 
     @property
+    @pulumilib.getter(name="enableLocalPreview")
+    def enable_local_preview(self) -> pulumilib.Output[Optional[bool]]:
+        """
+        Indicates whether local preview runs can be triggered on this Stack
+        """
+        return pulumilib.get(self, "enable_local_preview")
+
+    @property
+    @pulumilib.getter(name="githubActionDeploy")
+    def github_action_deploy(self) -> pulumilib.Output[Optional[bool]]:
+        """
+        Indicates whether GitHub users can deploy from the Checks API
+        """
+        return pulumilib.get(self, "github_action_deploy")
+
+    @property
+    @pulumilib.getter(name="githubEnterprise")
+    def github_enterprise(self) -> pulumilib.Output[Optional['outputs.StackGithubEnterprise']]:
+        """
+        GitHub Enterprise (self-hosted) VCS settings
+        """
+        return pulumilib.get(self, "github_enterprise")
+
+    @property
     @pulumilib.getter
     def gitlab(self) -> pulumilib.Output[Optional['outputs.StackGitlab']]:
+        """
+        GitLab VCS settings
+        """
         return pulumilib.get(self, "gitlab")
 
     @property
@@ -262,6 +512,22 @@ class Stack(pulumilib.CustomResource):
         State file to upload when creating a new stack
         """
         return pulumilib.get(self, "import_state")
+
+    @property
+    @pulumilib.getter(name="importStateFile")
+    def import_state_file(self) -> pulumilib.Output[Optional[str]]:
+        """
+        Path to the state file to upload when creating a new stack
+        """
+        return pulumilib.get(self, "import_state_file")
+
+    @property
+    @pulumilib.getter
+    def kubernetes(self) -> pulumilib.Output[Optional['outputs.StackKubernetes']]:
+        """
+        Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+        """
+        return pulumilib.get(self, "kubernetes")
 
     @property
     @pulumilib.getter
@@ -293,6 +559,14 @@ class Stack(pulumilib.CustomResource):
         return pulumilib.get(self, "project_root")
 
     @property
+    @pulumilib.getter(name="protectFromDeletion")
+    def protect_from_deletion(self) -> pulumilib.Output[Optional[bool]]:
+        """
+        Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+        """
+        return pulumilib.get(self, "protect_from_deletion")
+
+    @property
     @pulumilib.getter
     def pulumi(self) -> pulumilib.Output[Optional['outputs.StackPulumi']]:
         """
@@ -315,6 +589,19 @@ class Stack(pulumilib.CustomResource):
         Name of the Docker image used to process Runs
         """
         return pulumilib.get(self, "runner_image")
+
+    @property
+    @pulumilib.getter
+    def showcase(self) -> pulumilib.Output[Optional['outputs.StackShowcase']]:
+        return pulumilib.get(self, "showcase")
+
+    @property
+    @pulumilib.getter
+    def slug(self) -> pulumilib.Output[Optional[str]]:
+        """
+        Allows setting the custom ID (slug) for the stack
+        """
+        return pulumilib.get(self, "slug")
 
     @property
     @pulumilib.getter(name="terraformVersion")

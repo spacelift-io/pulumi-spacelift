@@ -22,7 +22,18 @@ class GcpServiceAccount(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a GcpServiceAccount resource with the given unique name, props, and options.
+        ## Import
+
+        Import is supported using the following syntax
+
+        ```sh
+         $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core stack/$STACK_ID
+        ```
+
+        ```sh
+         $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core module/$MODULE_ID
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] module_id: ID of the module which uses GCP service account credentials

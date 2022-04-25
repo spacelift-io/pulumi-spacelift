@@ -11,6 +11,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// `WorkerPool` represents a worker pool assigned to the Spacelift account.
+//
+// ## Schema
+//
+// ### Required
+//
+// - **name** (String) name of the worker pool
+//
+// ### Optional
+//
+// - **csr** (String, Sensitive) certificate signing request in base64
+// - **description** (String) description of the worker pool
+// - **id** (String) The ID of this resource.
+// - **labels** (Set of String)
+//
+// ### Read-Only
+//
+// - **config** (String, Sensitive) credentials necessary to connect WorkerPool's workers to the control plane
+// - **private_key** (String, Sensitive) private key in base64
+//
+// ## Import
+//
+// Import is supported using the following syntax
+//
+// ```sh
+//  $ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID
+// ```
 type WorkerPool struct {
 	pulumi.CustomResourceState
 
@@ -19,7 +46,8 @@ type WorkerPool struct {
 	// certificate signing request in base64
 	Csr pulumi.StringOutput `pulumi:"csr"`
 	// description of the worker pool
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	Description pulumi.StringPtrOutput   `pulumi:"description"`
+	Labels      pulumi.StringArrayOutput `pulumi:"labels"`
 	// name of the worker pool
 	Name pulumi.StringOutput `pulumi:"name"`
 	// private key in base64
@@ -63,7 +91,8 @@ type workerPoolState struct {
 	// certificate signing request in base64
 	Csr *string `pulumi:"csr"`
 	// description of the worker pool
-	Description *string `pulumi:"description"`
+	Description *string  `pulumi:"description"`
+	Labels      []string `pulumi:"labels"`
 	// name of the worker pool
 	Name *string `pulumi:"name"`
 	// private key in base64
@@ -77,6 +106,7 @@ type WorkerPoolState struct {
 	Csr pulumi.StringPtrInput
 	// description of the worker pool
 	Description pulumi.StringPtrInput
+	Labels      pulumi.StringArrayInput
 	// name of the worker pool
 	Name pulumi.StringPtrInput
 	// private key in base64
@@ -91,7 +121,8 @@ type workerPoolArgs struct {
 	// certificate signing request in base64
 	Csr *string `pulumi:"csr"`
 	// description of the worker pool
-	Description *string `pulumi:"description"`
+	Description *string  `pulumi:"description"`
+	Labels      []string `pulumi:"labels"`
 	// name of the worker pool
 	Name string `pulumi:"name"`
 }
@@ -102,6 +133,7 @@ type WorkerPoolArgs struct {
 	Csr pulumi.StringPtrInput
 	// description of the worker pool
 	Description pulumi.StringPtrInput
+	Labels      pulumi.StringArrayInput
 	// name of the worker pool
 	Name pulumi.StringInput
 }

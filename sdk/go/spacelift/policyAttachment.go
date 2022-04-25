@@ -11,11 +11,30 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// `PolicyAttachment` represents a relationship between a policy (`Policy`) and a stack (`Stack`) or module (`Module`). Each policy can only be attached to a stack/module once. `LOGIN` policies are the exception because they apply globally and not to individual stacks/modules. An attempt to attach one will fail.
+//
+// ## Schema
+//
+// ### Required
+//
+// - **policy_id** (String) ID of the policy to attach
+//
+// ### Optional
+//
+// - **id** (String) The ID of this resource.
+// - **module_id** (String) ID of the module to attach the policy to
+// - **stack_id** (String) ID of the stack to attach the policy to
+//
+// ## Import
+//
+// Import is supported using the following syntax
+//
+// ```sh
+//  $ pulumi import spacelift:index/policyAttachment:PolicyAttachment no-weekend-deploys $POLICY_ID/$STACK_ID
+// ```
 type PolicyAttachment struct {
 	pulumi.CustomResourceState
 
-	// JSON-encoded custom input to be passed to the evaluated document at the "attachment" key
-	CustomInput pulumi.StringPtrOutput `pulumi:"customInput"`
 	// ID of the module to attach the policy to
 	ModuleId pulumi.StringPtrOutput `pulumi:"moduleId"`
 	// ID of the policy to attach
@@ -56,8 +75,6 @@ func GetPolicyAttachment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PolicyAttachment resources.
 type policyAttachmentState struct {
-	// JSON-encoded custom input to be passed to the evaluated document at the "attachment" key
-	CustomInput *string `pulumi:"customInput"`
 	// ID of the module to attach the policy to
 	ModuleId *string `pulumi:"moduleId"`
 	// ID of the policy to attach
@@ -67,8 +84,6 @@ type policyAttachmentState struct {
 }
 
 type PolicyAttachmentState struct {
-	// JSON-encoded custom input to be passed to the evaluated document at the "attachment" key
-	CustomInput pulumi.StringPtrInput
 	// ID of the module to attach the policy to
 	ModuleId pulumi.StringPtrInput
 	// ID of the policy to attach
@@ -82,8 +97,6 @@ func (PolicyAttachmentState) ElementType() reflect.Type {
 }
 
 type policyAttachmentArgs struct {
-	// JSON-encoded custom input to be passed to the evaluated document at the "attachment" key
-	CustomInput *string `pulumi:"customInput"`
 	// ID of the module to attach the policy to
 	ModuleId *string `pulumi:"moduleId"`
 	// ID of the policy to attach
@@ -94,8 +107,6 @@ type policyAttachmentArgs struct {
 
 // The set of arguments for constructing a PolicyAttachment resource.
 type PolicyAttachmentArgs struct {
-	// JSON-encoded custom input to be passed to the evaluated document at the "attachment" key
-	CustomInput pulumi.StringPtrInput
 	// ID of the module to attach the policy to
 	ModuleId pulumi.StringPtrInput
 	// ID of the policy to attach

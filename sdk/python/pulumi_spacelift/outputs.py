@@ -9,19 +9,144 @@ from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
+    'ModuleAzureDevops',
+    'ModuleBitbucketCloud',
+    'ModuleBitbucketDatacenter',
+    'ModuleGithubEnterprise',
     'ModuleGitlab',
+    'StackAzureDevops',
+    'StackBitbucketCloud',
+    'StackBitbucketDatacenter',
     'StackCloudformation',
+    'StackGithubEnterprise',
     'StackGitlab',
+    'StackKubernetes',
     'StackPulumi',
+    'StackShowcase',
+    'GetModuleAzureDevopResult',
+    'GetModuleBitbucketCloudResult',
+    'GetModuleBitbucketDatacenterResult',
+    'GetModuleGithubEnterpriseResult',
     'GetModuleGitlabResult',
+    'GetStackAzureDevopResult',
+    'GetStackBitbucketCloudResult',
+    'GetStackBitbucketDatacenterResult',
     'GetStackCloudformationResult',
+    'GetStackGithubEnterpriseResult',
     'GetStackGitlabResult',
+    'GetStackKuberneteResult',
     'GetStackPulumiResult',
+    'GetStackShowcaseResult',
     'GetWorkerPoolsWorkerPoolResult',
 ]
 
 @pulumi.output_type
+class ModuleAzureDevops(dict):
+    def __init__(__self__, *,
+                 project: str):
+        pulumi.set(__self__, "project", project)
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        return pulumi.get(self, "project")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ModuleBitbucketCloud(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ModuleBitbucketDatacenter(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ModuleGithubEnterprise(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
 class ModuleGitlab(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class StackAzureDevops(dict):
+    def __init__(__self__, *,
+                 project: str):
+        pulumi.set(__self__, "project", project)
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        return pulumi.get(self, "project")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class StackBitbucketCloud(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class StackBitbucketDatacenter(dict):
     def __init__(__self__, *,
                  namespace: str):
         pulumi.set(__self__, "namespace", namespace)
@@ -72,6 +197,21 @@ class StackCloudformation(dict):
 
 
 @pulumi.output_type
+class StackGithubEnterprise(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
 class StackGitlab(dict):
     def __init__(__self__, *,
                  namespace: str):
@@ -80,6 +220,22 @@ class StackGitlab(dict):
     @property
     @pulumi.getter
     def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class StackKubernetes(dict):
+    def __init__(__self__, *,
+                 namespace: Optional[str] = None):
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
         return pulumi.get(self, "namespace")
 
     def _translate_property(self, prop):
@@ -109,7 +265,106 @@ class StackPulumi(dict):
 
 
 @pulumi.output_type
+class StackShowcase(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class GetModuleAzureDevopResult(dict):
+    def __init__(__self__, *,
+                 project: str):
+        pulumi.set(__self__, "project", project)
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        return pulumi.get(self, "project")
+
+
+@pulumi.output_type
+class GetModuleBitbucketCloudResult(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+
+@pulumi.output_type
+class GetModuleBitbucketDatacenterResult(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+
+@pulumi.output_type
+class GetModuleGithubEnterpriseResult(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+
+@pulumi.output_type
 class GetModuleGitlabResult(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+
+@pulumi.output_type
+class GetStackAzureDevopResult(dict):
+    def __init__(__self__, *,
+                 project: str):
+        pulumi.set(__self__, "project", project)
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        return pulumi.get(self, "project")
+
+
+@pulumi.output_type
+class GetStackBitbucketCloudResult(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+
+@pulumi.output_type
+class GetStackBitbucketDatacenterResult(dict):
     def __init__(__self__, *,
                  namespace: str):
         pulumi.set(__self__, "namespace", namespace)
@@ -154,7 +409,31 @@ class GetStackCloudformationResult(dict):
 
 
 @pulumi.output_type
+class GetStackGithubEnterpriseResult(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+
+@pulumi.output_type
 class GetStackGitlabResult(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
+
+
+@pulumi.output_type
+class GetStackKuberneteResult(dict):
     def __init__(__self__, *,
                  namespace: str):
         pulumi.set(__self__, "namespace", namespace)
@@ -182,6 +461,18 @@ class GetStackPulumiResult(dict):
     @pulumi.getter(name="stackName")
     def stack_name(self) -> str:
         return pulumi.get(self, "stack_name")
+
+
+@pulumi.output_type
+class GetStackShowcaseResult(dict):
+    def __init__(__self__, *,
+                 namespace: str):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        return pulumi.get(self, "namespace")
 
 
 @pulumi.output_type

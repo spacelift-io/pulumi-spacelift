@@ -18,31 +18,58 @@ func LookupStack(ctx *pulumi.Context, args *LookupStackArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getStack.
 type LookupStackArgs struct {
-	StackId string `pulumi:"stackId"`
+	AfterApplies   []string `pulumi:"afterApplies"`
+	AfterDestroys  []string `pulumi:"afterDestroys"`
+	AfterInits     []string `pulumi:"afterInits"`
+	AfterPerforms  []string `pulumi:"afterPerforms"`
+	AfterPlans     []string `pulumi:"afterPlans"`
+	BeforeApplies  []string `pulumi:"beforeApplies"`
+	BeforeDestroys []string `pulumi:"beforeDestroys"`
+	BeforeInits    []string `pulumi:"beforeInits"`
+	BeforePerforms []string `pulumi:"beforePerforms"`
+	BeforePlans    []string `pulumi:"beforePlans"`
+	StackId        string   `pulumi:"stackId"`
 }
 
 // A collection of values returned by getStack.
 type LookupStackResult struct {
-	Administrative               bool                     `pulumi:"administrative"`
-	Autodeploy                   bool                     `pulumi:"autodeploy"`
-	Autoretry                    bool                     `pulumi:"autoretry"`
-	AwsAssumeRolePolicyStatement string                   `pulumi:"awsAssumeRolePolicyStatement"`
-	BeforeInits                  []string                 `pulumi:"beforeInits"`
-	Branch                       string                   `pulumi:"branch"`
-	Cloudformations              []GetStackCloudformation `pulumi:"cloudformations"`
-	Description                  string                   `pulumi:"description"`
-	Gitlabs                      []GetStackGitlab         `pulumi:"gitlabs"`
+	Administrative               bool                          `pulumi:"administrative"`
+	AfterApplies                 []string                      `pulumi:"afterApplies"`
+	AfterDestroys                []string                      `pulumi:"afterDestroys"`
+	AfterInits                   []string                      `pulumi:"afterInits"`
+	AfterPerforms                []string                      `pulumi:"afterPerforms"`
+	AfterPlans                   []string                      `pulumi:"afterPlans"`
+	Autodeploy                   bool                          `pulumi:"autodeploy"`
+	Autoretry                    bool                          `pulumi:"autoretry"`
+	AwsAssumeRolePolicyStatement string                        `pulumi:"awsAssumeRolePolicyStatement"`
+	AzureDevops                  []GetStackAzureDevop          `pulumi:"azureDevops"`
+	BeforeApplies                []string                      `pulumi:"beforeApplies"`
+	BeforeDestroys               []string                      `pulumi:"beforeDestroys"`
+	BeforeInits                  []string                      `pulumi:"beforeInits"`
+	BeforePerforms               []string                      `pulumi:"beforePerforms"`
+	BeforePlans                  []string                      `pulumi:"beforePlans"`
+	BitbucketClouds              []GetStackBitbucketCloud      `pulumi:"bitbucketClouds"`
+	BitbucketDatacenters         []GetStackBitbucketDatacenter `pulumi:"bitbucketDatacenters"`
+	Branch                       string                        `pulumi:"branch"`
+	Cloudformations              []GetStackCloudformation      `pulumi:"cloudformations"`
+	Description                  string                        `pulumi:"description"`
+	EnableLocalPreview           bool                          `pulumi:"enableLocalPreview"`
+	GithubEnterprises            []GetStackGithubEnterprise    `pulumi:"githubEnterprises"`
+	Gitlabs                      []GetStackGitlab              `pulumi:"gitlabs"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                 string           `pulumi:"id"`
-	Labels             []string         `pulumi:"labels"`
-	ManageState        bool             `pulumi:"manageState"`
-	Name               string           `pulumi:"name"`
-	ProjectRoot        string           `pulumi:"projectRoot"`
-	Pulumis            []GetStackPulumi `pulumi:"pulumis"`
-	Repository         string           `pulumi:"repository"`
-	RunnerImage        string           `pulumi:"runnerImage"`
-	StackId            string           `pulumi:"stackId"`
-	TerraformVersion   string           `pulumi:"terraformVersion"`
-	TerraformWorkspace string           `pulumi:"terraformWorkspace"`
-	WorkerPoolId       string           `pulumi:"workerPoolId"`
+	Id                  string              `pulumi:"id"`
+	Kubernetes          []GetStackKubernete `pulumi:"kubernetes"`
+	Labels              []string            `pulumi:"labels"`
+	ManageState         bool                `pulumi:"manageState"`
+	Name                string              `pulumi:"name"`
+	ProjectRoot         string              `pulumi:"projectRoot"`
+	ProtectFromDeletion bool                `pulumi:"protectFromDeletion"`
+	Pulumis             []GetStackPulumi    `pulumi:"pulumis"`
+	Repository          string              `pulumi:"repository"`
+	RunnerImage         string              `pulumi:"runnerImage"`
+	Showcases           []GetStackShowcase  `pulumi:"showcases"`
+	StackId             string              `pulumi:"stackId"`
+	TerraformVersion    string              `pulumi:"terraformVersion"`
+	TerraformWorkspace  string              `pulumi:"terraformWorkspace"`
+	WorkerPoolId        string              `pulumi:"workerPoolId"`
 }

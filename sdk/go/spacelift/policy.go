@@ -11,14 +11,39 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// `Policy` represents a Spacelift **policy** - a collection of customer-defined rules that are applied by Spacelift at one of the decision points within the application.
+//
+// ## Schema
+//
+// ### Required
+//
+// - **body** (String) Body of the policy
+// - **name** (String) Name of the policy - should be unique in one account
+// - **type** (String) Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
+//
+// ### Optional
+//
+// - **id** (String) The ID of this resource.
+// - **labels** (Set of String)
+//
+// ## Import
+//
+// Import is supported using the following syntax
+//
+// ```sh
+//  $ pulumi import spacelift:index/policy:Policy no-weekend-deploys $POLICY_ID
+// ```
 type Policy struct {
 	pulumi.CustomResourceState
 
 	// Body of the policy
-	Body pulumi.StringOutput `pulumi:"body"`
+	Body   pulumi.StringOutput      `pulumi:"body"`
+	Labels pulumi.StringArrayOutput `pulumi:"labels"`
 	// Name of the policy - should be unique in one account
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Body of the policy
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
+	// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
+	// `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -61,19 +86,25 @@ func GetPolicy(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Policy resources.
 type policyState struct {
 	// Body of the policy
-	Body *string `pulumi:"body"`
+	Body   *string  `pulumi:"body"`
+	Labels []string `pulumi:"labels"`
 	// Name of the policy - should be unique in one account
 	Name *string `pulumi:"name"`
-	// Body of the policy
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
+	// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
+	// `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type *string `pulumi:"type"`
 }
 
 type PolicyState struct {
 	// Body of the policy
-	Body pulumi.StringPtrInput
+	Body   pulumi.StringPtrInput
+	Labels pulumi.StringArrayInput
 	// Name of the policy - should be unique in one account
 	Name pulumi.StringPtrInput
-	// Body of the policy
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
+	// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
+	// `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type pulumi.StringPtrInput
 }
 
@@ -83,20 +114,26 @@ func (PolicyState) ElementType() reflect.Type {
 
 type policyArgs struct {
 	// Body of the policy
-	Body string `pulumi:"body"`
+	Body   string   `pulumi:"body"`
+	Labels []string `pulumi:"labels"`
 	// Name of the policy - should be unique in one account
 	Name string `pulumi:"name"`
-	// Body of the policy
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
+	// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
+	// `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a Policy resource.
 type PolicyArgs struct {
 	// Body of the policy
-	Body pulumi.StringInput
+	Body   pulumi.StringInput
+	Labels pulumi.StringArrayInput
 	// Name of the policy - should be unique in one account
 	Name pulumi.StringInput
-	// Body of the policy
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
+	// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
+	// `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type pulumi.StringInput
 }
 

@@ -20,10 +20,25 @@ class GetStackResult:
     """
     A collection of values returned by getStack.
     """
-    def __init__(__self__, administrative=None, autodeploy=None, autoretry=None, aws_assume_role_policy_statement=None, before_inits=None, branch=None, cloudformations=None, description=None, gitlabs=None, id=None, labels=None, manage_state=None, name=None, project_root=None, pulumis=None, repository=None, runner_image=None, stack_id=None, terraform_version=None, terraform_workspace=None, worker_pool_id=None):
+    def __init__(__self__, administrative=None, after_applies=None, after_destroys=None, after_inits=None, after_performs=None, after_plans=None, autodeploy=None, autoretry=None, aws_assume_role_policy_statement=None, azure_devops=None, before_applies=None, before_destroys=None, before_inits=None, before_performs=None, before_plans=None, bitbucket_clouds=None, bitbucket_datacenters=None, branch=None, cloudformations=None, description=None, enable_local_preview=None, github_enterprises=None, gitlabs=None, id=None, kubernetes=None, labels=None, manage_state=None, name=None, project_root=None, protect_from_deletion=None, pulumis=None, repository=None, runner_image=None, showcases=None, stack_id=None, terraform_version=None, terraform_workspace=None, worker_pool_id=None):
         if administrative and not isinstance(administrative, bool):
             raise TypeError("Expected argument 'administrative' to be a bool")
         pulumi.set(__self__, "administrative", administrative)
+        if after_applies and not isinstance(after_applies, list):
+            raise TypeError("Expected argument 'after_applies' to be a list")
+        pulumi.set(__self__, "after_applies", after_applies)
+        if after_destroys and not isinstance(after_destroys, list):
+            raise TypeError("Expected argument 'after_destroys' to be a list")
+        pulumi.set(__self__, "after_destroys", after_destroys)
+        if after_inits and not isinstance(after_inits, list):
+            raise TypeError("Expected argument 'after_inits' to be a list")
+        pulumi.set(__self__, "after_inits", after_inits)
+        if after_performs and not isinstance(after_performs, list):
+            raise TypeError("Expected argument 'after_performs' to be a list")
+        pulumi.set(__self__, "after_performs", after_performs)
+        if after_plans and not isinstance(after_plans, list):
+            raise TypeError("Expected argument 'after_plans' to be a list")
+        pulumi.set(__self__, "after_plans", after_plans)
         if autodeploy and not isinstance(autodeploy, bool):
             raise TypeError("Expected argument 'autodeploy' to be a bool")
         pulumi.set(__self__, "autodeploy", autodeploy)
@@ -33,9 +48,30 @@ class GetStackResult:
         if aws_assume_role_policy_statement and not isinstance(aws_assume_role_policy_statement, str):
             raise TypeError("Expected argument 'aws_assume_role_policy_statement' to be a str")
         pulumi.set(__self__, "aws_assume_role_policy_statement", aws_assume_role_policy_statement)
+        if azure_devops and not isinstance(azure_devops, list):
+            raise TypeError("Expected argument 'azure_devops' to be a list")
+        pulumi.set(__self__, "azure_devops", azure_devops)
+        if before_applies and not isinstance(before_applies, list):
+            raise TypeError("Expected argument 'before_applies' to be a list")
+        pulumi.set(__self__, "before_applies", before_applies)
+        if before_destroys and not isinstance(before_destroys, list):
+            raise TypeError("Expected argument 'before_destroys' to be a list")
+        pulumi.set(__self__, "before_destroys", before_destroys)
         if before_inits and not isinstance(before_inits, list):
             raise TypeError("Expected argument 'before_inits' to be a list")
         pulumi.set(__self__, "before_inits", before_inits)
+        if before_performs and not isinstance(before_performs, list):
+            raise TypeError("Expected argument 'before_performs' to be a list")
+        pulumi.set(__self__, "before_performs", before_performs)
+        if before_plans and not isinstance(before_plans, list):
+            raise TypeError("Expected argument 'before_plans' to be a list")
+        pulumi.set(__self__, "before_plans", before_plans)
+        if bitbucket_clouds and not isinstance(bitbucket_clouds, list):
+            raise TypeError("Expected argument 'bitbucket_clouds' to be a list")
+        pulumi.set(__self__, "bitbucket_clouds", bitbucket_clouds)
+        if bitbucket_datacenters and not isinstance(bitbucket_datacenters, list):
+            raise TypeError("Expected argument 'bitbucket_datacenters' to be a list")
+        pulumi.set(__self__, "bitbucket_datacenters", bitbucket_datacenters)
         if branch and not isinstance(branch, str):
             raise TypeError("Expected argument 'branch' to be a str")
         pulumi.set(__self__, "branch", branch)
@@ -45,12 +81,21 @@ class GetStackResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if enable_local_preview and not isinstance(enable_local_preview, bool):
+            raise TypeError("Expected argument 'enable_local_preview' to be a bool")
+        pulumi.set(__self__, "enable_local_preview", enable_local_preview)
+        if github_enterprises and not isinstance(github_enterprises, list):
+            raise TypeError("Expected argument 'github_enterprises' to be a list")
+        pulumi.set(__self__, "github_enterprises", github_enterprises)
         if gitlabs and not isinstance(gitlabs, list):
             raise TypeError("Expected argument 'gitlabs' to be a list")
         pulumi.set(__self__, "gitlabs", gitlabs)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if kubernetes and not isinstance(kubernetes, list):
+            raise TypeError("Expected argument 'kubernetes' to be a list")
+        pulumi.set(__self__, "kubernetes", kubernetes)
         if labels and not isinstance(labels, list):
             raise TypeError("Expected argument 'labels' to be a list")
         pulumi.set(__self__, "labels", labels)
@@ -63,6 +108,9 @@ class GetStackResult:
         if project_root and not isinstance(project_root, str):
             raise TypeError("Expected argument 'project_root' to be a str")
         pulumi.set(__self__, "project_root", project_root)
+        if protect_from_deletion and not isinstance(protect_from_deletion, bool):
+            raise TypeError("Expected argument 'protect_from_deletion' to be a bool")
+        pulumi.set(__self__, "protect_from_deletion", protect_from_deletion)
         if pulumis and not isinstance(pulumis, list):
             raise TypeError("Expected argument 'pulumis' to be a list")
         pulumi.set(__self__, "pulumis", pulumis)
@@ -72,6 +120,9 @@ class GetStackResult:
         if runner_image and not isinstance(runner_image, str):
             raise TypeError("Expected argument 'runner_image' to be a str")
         pulumi.set(__self__, "runner_image", runner_image)
+        if showcases and not isinstance(showcases, list):
+            raise TypeError("Expected argument 'showcases' to be a list")
+        pulumi.set(__self__, "showcases", showcases)
         if stack_id and not isinstance(stack_id, str):
             raise TypeError("Expected argument 'stack_id' to be a str")
         pulumi.set(__self__, "stack_id", stack_id)
@@ -91,6 +142,31 @@ class GetStackResult:
         return pulumi.get(self, "administrative")
 
     @property
+    @pulumi.getter(name="afterApplies")
+    def after_applies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "after_applies")
+
+    @property
+    @pulumi.getter(name="afterDestroys")
+    def after_destroys(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "after_destroys")
+
+    @property
+    @pulumi.getter(name="afterInits")
+    def after_inits(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "after_inits")
+
+    @property
+    @pulumi.getter(name="afterPerforms")
+    def after_performs(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "after_performs")
+
+    @property
+    @pulumi.getter(name="afterPlans")
+    def after_plans(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "after_plans")
+
+    @property
     @pulumi.getter
     def autodeploy(self) -> bool:
         return pulumi.get(self, "autodeploy")
@@ -106,9 +182,44 @@ class GetStackResult:
         return pulumi.get(self, "aws_assume_role_policy_statement")
 
     @property
+    @pulumi.getter(name="azureDevops")
+    def azure_devops(self) -> Sequence['outputs.GetStackAzureDevopResult']:
+        return pulumi.get(self, "azure_devops")
+
+    @property
+    @pulumi.getter(name="beforeApplies")
+    def before_applies(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "before_applies")
+
+    @property
+    @pulumi.getter(name="beforeDestroys")
+    def before_destroys(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "before_destroys")
+
+    @property
     @pulumi.getter(name="beforeInits")
-    def before_inits(self) -> Sequence[str]:
+    def before_inits(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "before_inits")
+
+    @property
+    @pulumi.getter(name="beforePerforms")
+    def before_performs(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "before_performs")
+
+    @property
+    @pulumi.getter(name="beforePlans")
+    def before_plans(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "before_plans")
+
+    @property
+    @pulumi.getter(name="bitbucketClouds")
+    def bitbucket_clouds(self) -> Sequence['outputs.GetStackBitbucketCloudResult']:
+        return pulumi.get(self, "bitbucket_clouds")
+
+    @property
+    @pulumi.getter(name="bitbucketDatacenters")
+    def bitbucket_datacenters(self) -> Sequence['outputs.GetStackBitbucketDatacenterResult']:
+        return pulumi.get(self, "bitbucket_datacenters")
 
     @property
     @pulumi.getter
@@ -126,6 +237,16 @@ class GetStackResult:
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="enableLocalPreview")
+    def enable_local_preview(self) -> bool:
+        return pulumi.get(self, "enable_local_preview")
+
+    @property
+    @pulumi.getter(name="githubEnterprises")
+    def github_enterprises(self) -> Sequence['outputs.GetStackGithubEnterpriseResult']:
+        return pulumi.get(self, "github_enterprises")
+
+    @property
     @pulumi.getter
     def gitlabs(self) -> Sequence['outputs.GetStackGitlabResult']:
         return pulumi.get(self, "gitlabs")
@@ -137,6 +258,11 @@ class GetStackResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def kubernetes(self) -> Sequence['outputs.GetStackKuberneteResult']:
+        return pulumi.get(self, "kubernetes")
 
     @property
     @pulumi.getter
@@ -159,6 +285,11 @@ class GetStackResult:
         return pulumi.get(self, "project_root")
 
     @property
+    @pulumi.getter(name="protectFromDeletion")
+    def protect_from_deletion(self) -> bool:
+        return pulumi.get(self, "protect_from_deletion")
+
+    @property
     @pulumi.getter
     def pulumis(self) -> Sequence['outputs.GetStackPulumiResult']:
         return pulumi.get(self, "pulumis")
@@ -172,6 +303,11 @@ class GetStackResult:
     @pulumi.getter(name="runnerImage")
     def runner_image(self) -> str:
         return pulumi.get(self, "runner_image")
+
+    @property
+    @pulumi.getter
+    def showcases(self) -> Sequence['outputs.GetStackShowcaseResult']:
+        return pulumi.get(self, "showcases")
 
     @property
     @pulumi.getter(name="stackId")
@@ -201,34 +337,71 @@ class AwaitableGetStackResult(GetStackResult):
             yield self
         return GetStackResult(
             administrative=self.administrative,
+            after_applies=self.after_applies,
+            after_destroys=self.after_destroys,
+            after_inits=self.after_inits,
+            after_performs=self.after_performs,
+            after_plans=self.after_plans,
             autodeploy=self.autodeploy,
             autoretry=self.autoretry,
             aws_assume_role_policy_statement=self.aws_assume_role_policy_statement,
+            azure_devops=self.azure_devops,
+            before_applies=self.before_applies,
+            before_destroys=self.before_destroys,
             before_inits=self.before_inits,
+            before_performs=self.before_performs,
+            before_plans=self.before_plans,
+            bitbucket_clouds=self.bitbucket_clouds,
+            bitbucket_datacenters=self.bitbucket_datacenters,
             branch=self.branch,
             cloudformations=self.cloudformations,
             description=self.description,
+            enable_local_preview=self.enable_local_preview,
+            github_enterprises=self.github_enterprises,
             gitlabs=self.gitlabs,
             id=self.id,
+            kubernetes=self.kubernetes,
             labels=self.labels,
             manage_state=self.manage_state,
             name=self.name,
             project_root=self.project_root,
+            protect_from_deletion=self.protect_from_deletion,
             pulumis=self.pulumis,
             repository=self.repository,
             runner_image=self.runner_image,
+            showcases=self.showcases,
             stack_id=self.stack_id,
             terraform_version=self.terraform_version,
             terraform_workspace=self.terraform_workspace,
             worker_pool_id=self.worker_pool_id)
 
 
-def get_stack(stack_id: Optional[str] = None,
+def get_stack(after_applies: Optional[Sequence[str]] = None,
+              after_destroys: Optional[Sequence[str]] = None,
+              after_inits: Optional[Sequence[str]] = None,
+              after_performs: Optional[Sequence[str]] = None,
+              after_plans: Optional[Sequence[str]] = None,
+              before_applies: Optional[Sequence[str]] = None,
+              before_destroys: Optional[Sequence[str]] = None,
+              before_inits: Optional[Sequence[str]] = None,
+              before_performs: Optional[Sequence[str]] = None,
+              before_plans: Optional[Sequence[str]] = None,
+              stack_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStackResult:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
+    __args__['afterApplies'] = after_applies
+    __args__['afterDestroys'] = after_destroys
+    __args__['afterInits'] = after_inits
+    __args__['afterPerforms'] = after_performs
+    __args__['afterPlans'] = after_plans
+    __args__['beforeApplies'] = before_applies
+    __args__['beforeDestroys'] = before_destroys
+    __args__['beforeInits'] = before_inits
+    __args__['beforePerforms'] = before_performs
+    __args__['beforePlans'] = before_plans
     __args__['stackId'] = stack_id
     if opts is None:
         opts = pulumi.InvokeOptions()
@@ -238,22 +411,39 @@ def get_stack(stack_id: Optional[str] = None,
 
     return AwaitableGetStackResult(
         administrative=__ret__.administrative,
+        after_applies=__ret__.after_applies,
+        after_destroys=__ret__.after_destroys,
+        after_inits=__ret__.after_inits,
+        after_performs=__ret__.after_performs,
+        after_plans=__ret__.after_plans,
         autodeploy=__ret__.autodeploy,
         autoretry=__ret__.autoretry,
         aws_assume_role_policy_statement=__ret__.aws_assume_role_policy_statement,
+        azure_devops=__ret__.azure_devops,
+        before_applies=__ret__.before_applies,
+        before_destroys=__ret__.before_destroys,
         before_inits=__ret__.before_inits,
+        before_performs=__ret__.before_performs,
+        before_plans=__ret__.before_plans,
+        bitbucket_clouds=__ret__.bitbucket_clouds,
+        bitbucket_datacenters=__ret__.bitbucket_datacenters,
         branch=__ret__.branch,
         cloudformations=__ret__.cloudformations,
         description=__ret__.description,
+        enable_local_preview=__ret__.enable_local_preview,
+        github_enterprises=__ret__.github_enterprises,
         gitlabs=__ret__.gitlabs,
         id=__ret__.id,
+        kubernetes=__ret__.kubernetes,
         labels=__ret__.labels,
         manage_state=__ret__.manage_state,
         name=__ret__.name,
         project_root=__ret__.project_root,
+        protect_from_deletion=__ret__.protect_from_deletion,
         pulumis=__ret__.pulumis,
         repository=__ret__.repository,
         runner_image=__ret__.runner_image,
+        showcases=__ret__.showcases,
         stack_id=__ret__.stack_id,
         terraform_version=__ret__.terraform_version,
         terraform_workspace=__ret__.terraform_workspace,

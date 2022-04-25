@@ -9,6 +9,35 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Spacelift
 {
+    /// <summary>
+    /// `spacelift.WorkerPool` represents a worker pool assigned to the Spacelift account.
+    /// 
+    /// ## Schema
+    /// 
+    /// ### Required
+    /// 
+    /// - **name** (String) name of the worker pool
+    /// 
+    /// ### Optional
+    /// 
+    /// - **csr** (String, Sensitive) certificate signing request in base64
+    /// - **description** (String) description of the worker pool
+    /// - **id** (String) The ID of this resource.
+    /// - **labels** (Set of String)
+    /// 
+    /// ### Read-Only
+    /// 
+    /// - **config** (String, Sensitive) credentials necessary to connect WorkerPool's workers to the control plane
+    /// - **private_key** (String, Sensitive) private key in base64
+    /// 
+    /// ## Import
+    /// 
+    /// Import is supported using the following syntax
+    /// 
+    /// ```sh
+    ///  $ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID
+    /// ```
+    /// </summary>
     [SpaceliftResourceType("spacelift:index/workerPool:WorkerPool")]
     public partial class WorkerPool : Pulumi.CustomResource
     {
@@ -29,6 +58,9 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        [Output("labels")]
+        public Output<ImmutableArray<string>> Labels { get; private set; } = null!;
 
         /// <summary>
         /// name of the worker pool
@@ -100,6 +132,14 @@ namespace Pulumi.Spacelift
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("labels")]
+        private InputList<string>? _labels;
+        public InputList<string> Labels
+        {
+            get => _labels ?? (_labels = new InputList<string>());
+            set => _labels = value;
+        }
+
         /// <summary>
         /// name of the worker pool
         /// </summary>
@@ -130,6 +170,14 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("labels")]
+        private InputList<string>? _labels;
+        public InputList<string> Labels
+        {
+            get => _labels ?? (_labels = new InputList<string>());
+            set => _labels = value;
+        }
 
         /// <summary>
         /// name of the worker pool

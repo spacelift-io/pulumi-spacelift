@@ -6,14 +6,18 @@
 from .aws_role import *
 from .context import *
 from .context_attachment import *
+from .drift_detection import *
 from .environment_variable import *
 from .gcp_service_account import *
 from .get_aws_role import *
+from .get_azure_dev_ops_integration import *
 from .get_context import *
 from .get_context_attachment import *
 from .get_current_stack import *
+from .get_drift_detection import *
 from .get_environment_variable import *
 from .get_gcp_service_account import *
+from .get_git_hub_enterprise_integration import *
 from .get_ips import *
 from .get_module import *
 from .get_mounted_file import *
@@ -21,6 +25,7 @@ from .get_policy import *
 from .get_stack import *
 from .get_stack_aws_role import *
 from .get_stack_gcp_service_account import *
+from .get_vcs_agent_pool import *
 from .get_webhook import *
 from .get_worker_pool import *
 from .get_worker_pools import *
@@ -31,7 +36,9 @@ from .policy_attachment import *
 from .provider import *
 from .stack import *
 from .stack_aws_role import *
+from .stack_destructor import *
 from .stack_gcp_service_account import *
+from .vcs_agent_pool import *
 from .webhook import *
 from .worker_pool import *
 from ._inputs import *
@@ -60,6 +67,8 @@ def _register_module():
                 return Context(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "spacelift:index/contextAttachment:ContextAttachment":
                 return ContextAttachment(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "spacelift:index/driftDetection:DriftDetection":
+                return DriftDetection(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "spacelift:index/environmentVariable:EnvironmentVariable":
                 return EnvironmentVariable(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "spacelift:index/gcpServiceAccount:GcpServiceAccount":
@@ -76,8 +85,12 @@ def _register_module():
                 return Stack(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "spacelift:index/stackAwsRole:StackAwsRole":
                 return StackAwsRole(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "spacelift:index/stackDestructor:StackDestructor":
+                return StackDestructor(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "spacelift:index/stackGcpServiceAccount:StackGcpServiceAccount":
                 return StackGcpServiceAccount(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "spacelift:index/vCSAgentPool:VCSAgentPool":
+                return VCSAgentPool(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "spacelift:index/webhook:Webhook":
                 return Webhook(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "spacelift:index/workerPool:WorkerPool":
@@ -90,6 +103,7 @@ def _register_module():
     pulumi.runtime.register_resource_module("spacelift", "index/awsRole", _module_instance)
     pulumi.runtime.register_resource_module("spacelift", "index/context", _module_instance)
     pulumi.runtime.register_resource_module("spacelift", "index/contextAttachment", _module_instance)
+    pulumi.runtime.register_resource_module("spacelift", "index/driftDetection", _module_instance)
     pulumi.runtime.register_resource_module("spacelift", "index/environmentVariable", _module_instance)
     pulumi.runtime.register_resource_module("spacelift", "index/gcpServiceAccount", _module_instance)
     pulumi.runtime.register_resource_module("spacelift", "index/module", _module_instance)
@@ -98,7 +112,9 @@ def _register_module():
     pulumi.runtime.register_resource_module("spacelift", "index/policyAttachment", _module_instance)
     pulumi.runtime.register_resource_module("spacelift", "index/stack", _module_instance)
     pulumi.runtime.register_resource_module("spacelift", "index/stackAwsRole", _module_instance)
+    pulumi.runtime.register_resource_module("spacelift", "index/stackDestructor", _module_instance)
     pulumi.runtime.register_resource_module("spacelift", "index/stackGcpServiceAccount", _module_instance)
+    pulumi.runtime.register_resource_module("spacelift", "index/vCSAgentPool", _module_instance)
     pulumi.runtime.register_resource_module("spacelift", "index/webhook", _module_instance)
     pulumi.runtime.register_resource_module("spacelift", "index/workerPool", _module_instance)
 

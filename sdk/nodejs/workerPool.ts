@@ -4,6 +4,35 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * `spacelift.WorkerPool` represents a worker pool assigned to the Spacelift account.
+ *
+ * ## Schema
+ *
+ * ### Required
+ *
+ * - **name** (String) name of the worker pool
+ *
+ * ### Optional
+ *
+ * - **csr** (String, Sensitive) certificate signing request in base64
+ * - **description** (String) description of the worker pool
+ * - **id** (String) The ID of this resource.
+ * - **labels** (Set of String)
+ *
+ * ### Read-Only
+ *
+ * - **config** (String, Sensitive) credentials necessary to connect WorkerPool's workers to the control plane
+ * - **private_key** (String, Sensitive) private key in base64
+ *
+ * ## Import
+ *
+ * Import is supported using the following syntax
+ *
+ * ```sh
+ *  $ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID
+ * ```
+ */
 export class WorkerPool extends pulumi.CustomResource {
     /**
      * Get an existing WorkerPool resource's state with the given name, ID, and optional extra
@@ -44,6 +73,7 @@ export class WorkerPool extends pulumi.CustomResource {
      * description of the worker pool
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    public readonly labels!: pulumi.Output<string[] | undefined>;
     /**
      * name of the worker pool
      */
@@ -68,6 +98,7 @@ export class WorkerPool extends pulumi.CustomResource {
             inputs["config"] = state ? state.config : undefined;
             inputs["csr"] = state ? state.csr : undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["labels"] = state ? state.labels : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["privateKey"] = state ? state.privateKey : undefined;
         } else {
@@ -77,6 +108,7 @@ export class WorkerPool extends pulumi.CustomResource {
             }
             inputs["csr"] = args ? args.csr : undefined;
             inputs["description"] = args ? args.description : undefined;
+            inputs["labels"] = args ? args.labels : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["config"] = undefined /*out*/;
             inputs["privateKey"] = undefined /*out*/;
@@ -108,6 +140,7 @@ export interface WorkerPoolState {
      * description of the worker pool
      */
     readonly description?: pulumi.Input<string>;
+    readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * name of the worker pool
      */
@@ -130,6 +163,7 @@ export interface WorkerPoolArgs {
      * description of the worker pool
      */
     readonly description?: pulumi.Input<string>;
+    readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * name of the worker pool
      */

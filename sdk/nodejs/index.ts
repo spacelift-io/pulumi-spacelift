@@ -8,14 +8,18 @@ import * as utilities from "./utilities";
 export * from "./awsRole";
 export * from "./context";
 export * from "./contextAttachment";
+export * from "./driftDetection";
 export * from "./environmentVariable";
 export * from "./gcpServiceAccount";
 export * from "./getAwsRole";
+export * from "./getAzureDevOpsIntegration";
 export * from "./getContext";
 export * from "./getContextAttachment";
 export * from "./getCurrentStack";
+export * from "./getDriftDetection";
 export * from "./getEnvironmentVariable";
 export * from "./getGcpServiceAccount";
+export * from "./getGitHubEnterpriseIntegration";
 export * from "./getIps";
 export * from "./getModule";
 export * from "./getMountedFile";
@@ -23,6 +27,7 @@ export * from "./getPolicy";
 export * from "./getStack";
 export * from "./getStackAwsRole";
 export * from "./getStackGcpServiceAccount";
+export * from "./getVCSAgentPool";
 export * from "./getWebhook";
 export * from "./getWorkerPool";
 export * from "./getWorkerPools";
@@ -33,7 +38,9 @@ export * from "./policyAttachment";
 export * from "./provider";
 export * from "./stack";
 export * from "./stackAwsRole";
+export * from "./stackDestructor";
 export * from "./stackGcpServiceAccount";
+export * from "./vcsagentPool";
 export * from "./webhook";
 export * from "./workerPool";
 
@@ -50,6 +57,7 @@ export {
 import { AwsRole } from "./awsRole";
 import { Context } from "./context";
 import { ContextAttachment } from "./contextAttachment";
+import { DriftDetection } from "./driftDetection";
 import { EnvironmentVariable } from "./environmentVariable";
 import { GcpServiceAccount } from "./gcpServiceAccount";
 import { Module } from "./module";
@@ -58,7 +66,9 @@ import { Policy } from "./policy";
 import { PolicyAttachment } from "./policyAttachment";
 import { Stack } from "./stack";
 import { StackAwsRole } from "./stackAwsRole";
+import { StackDestructor } from "./stackDestructor";
 import { StackGcpServiceAccount } from "./stackGcpServiceAccount";
+import { VCSAgentPool } from "./vcsagentPool";
 import { Webhook } from "./webhook";
 import { WorkerPool } from "./workerPool";
 
@@ -72,6 +82,8 @@ const _module = {
                 return new Context(name, <any>undefined, { urn })
             case "spacelift:index/contextAttachment:ContextAttachment":
                 return new ContextAttachment(name, <any>undefined, { urn })
+            case "spacelift:index/driftDetection:DriftDetection":
+                return new DriftDetection(name, <any>undefined, { urn })
             case "spacelift:index/environmentVariable:EnvironmentVariable":
                 return new EnvironmentVariable(name, <any>undefined, { urn })
             case "spacelift:index/gcpServiceAccount:GcpServiceAccount":
@@ -88,8 +100,12 @@ const _module = {
                 return new Stack(name, <any>undefined, { urn })
             case "spacelift:index/stackAwsRole:StackAwsRole":
                 return new StackAwsRole(name, <any>undefined, { urn })
+            case "spacelift:index/stackDestructor:StackDestructor":
+                return new StackDestructor(name, <any>undefined, { urn })
             case "spacelift:index/stackGcpServiceAccount:StackGcpServiceAccount":
                 return new StackGcpServiceAccount(name, <any>undefined, { urn })
+            case "spacelift:index/vCSAgentPool:VCSAgentPool":
+                return new VCSAgentPool(name, <any>undefined, { urn })
             case "spacelift:index/webhook:Webhook":
                 return new Webhook(name, <any>undefined, { urn })
             case "spacelift:index/workerPool:WorkerPool":
@@ -102,6 +118,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("spacelift", "index/awsRole", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/context", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/contextAttachment", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/driftDetection", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/environmentVariable", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/gcpServiceAccount", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/module", _module)
@@ -110,7 +127,9 @@ pulumi.runtime.registerResourceModule("spacelift", "index/policy", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/policyAttachment", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stack", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stackAwsRole", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/stackDestructor", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stackGcpServiceAccount", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/vCSAgentPool", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/webhook", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/workerPool", _module)
 

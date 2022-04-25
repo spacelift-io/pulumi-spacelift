@@ -1,5 +1,14 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
+/**
+ * ## Import
+ *
+ * Import is supported using the following syntax
+ *
+ * ```sh
+ *  $ pulumi import spacelift:index/module:Module k8s-module $MODULE_ID
+ * ```
+ */
 export declare class Module extends pulumi.CustomResource {
     /**
      * Get an existing Module resource's state with the given name, ID, and optional extra
@@ -25,6 +34,18 @@ export declare class Module extends pulumi.CustomResource {
      */
     readonly awsAssumeRolePolicyStatement: pulumi.Output<string>;
     /**
+     * Azure DevOps VCS settings
+     */
+    readonly azureDevops: pulumi.Output<outputs.ModuleAzureDevops | undefined>;
+    /**
+     * Bitbucket Cloud VCS settings
+     */
+    readonly bitbucketCloud: pulumi.Output<outputs.ModuleBitbucketCloud | undefined>;
+    /**
+     * Bitbucket Datacenter VCS settings
+     */
+    readonly bitbucketDatacenter: pulumi.Output<outputs.ModuleBitbucketDatacenter | undefined>;
+    /**
      * GitHub branch to apply changes to
      */
     readonly branch: pulumi.Output<string>;
@@ -32,8 +53,29 @@ export declare class Module extends pulumi.CustomResource {
      * Free-form module description for users
      */
     readonly description: pulumi.Output<string | undefined>;
+    /**
+     * GitHub Enterprise (self-hosted) VCS settings
+     */
+    readonly githubEnterprise: pulumi.Output<outputs.ModuleGithubEnterprise | undefined>;
+    /**
+     * GitLab VCS settings
+     */
     readonly gitlab: pulumi.Output<outputs.ModuleGitlab | undefined>;
     readonly labels: pulumi.Output<string[] | undefined>;
+    /**
+     * The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+     * convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+     * provide it here.
+     */
+    readonly name: pulumi.Output<string>;
+    /**
+     * Project root is the optional directory relative to the repository root containing the module source code.
+     */
+    readonly projectRoot: pulumi.Output<string | undefined>;
+    /**
+     * Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+     */
+    readonly protectFromDeletion: pulumi.Output<boolean | undefined>;
     /**
      * Name of the repository, without the owner part
      */
@@ -42,6 +84,12 @@ export declare class Module extends pulumi.CustomResource {
      * List of the accounts (subdomains) which should have access to the Module
      */
     readonly sharedAccounts: pulumi.Output<string[] | undefined>;
+    /**
+     * The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+     * naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+     * can provide the provider name here.
+     */
+    readonly terraformProvider: pulumi.Output<string>;
     /**
      * ID of the worker pool to use
      */
@@ -68,6 +116,18 @@ export interface ModuleState {
      */
     readonly awsAssumeRolePolicyStatement?: pulumi.Input<string>;
     /**
+     * Azure DevOps VCS settings
+     */
+    readonly azureDevops?: pulumi.Input<inputs.ModuleAzureDevops>;
+    /**
+     * Bitbucket Cloud VCS settings
+     */
+    readonly bitbucketCloud?: pulumi.Input<inputs.ModuleBitbucketCloud>;
+    /**
+     * Bitbucket Datacenter VCS settings
+     */
+    readonly bitbucketDatacenter?: pulumi.Input<inputs.ModuleBitbucketDatacenter>;
+    /**
      * GitHub branch to apply changes to
      */
     readonly branch?: pulumi.Input<string>;
@@ -75,8 +135,29 @@ export interface ModuleState {
      * Free-form module description for users
      */
     readonly description?: pulumi.Input<string>;
+    /**
+     * GitHub Enterprise (self-hosted) VCS settings
+     */
+    readonly githubEnterprise?: pulumi.Input<inputs.ModuleGithubEnterprise>;
+    /**
+     * GitLab VCS settings
+     */
     readonly gitlab?: pulumi.Input<inputs.ModuleGitlab>;
     readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+     * convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+     * provide it here.
+     */
+    readonly name?: pulumi.Input<string>;
+    /**
+     * Project root is the optional directory relative to the repository root containing the module source code.
+     */
+    readonly projectRoot?: pulumi.Input<string>;
+    /**
+     * Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+     */
+    readonly protectFromDeletion?: pulumi.Input<boolean>;
     /**
      * Name of the repository, without the owner part
      */
@@ -85,6 +166,12 @@ export interface ModuleState {
      * List of the accounts (subdomains) which should have access to the Module
      */
     readonly sharedAccounts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+     * naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+     * can provide the provider name here.
+     */
+    readonly terraformProvider?: pulumi.Input<string>;
     /**
      * ID of the worker pool to use
      */
@@ -99,6 +186,18 @@ export interface ModuleArgs {
      */
     readonly administrative?: pulumi.Input<boolean>;
     /**
+     * Azure DevOps VCS settings
+     */
+    readonly azureDevops?: pulumi.Input<inputs.ModuleAzureDevops>;
+    /**
+     * Bitbucket Cloud VCS settings
+     */
+    readonly bitbucketCloud?: pulumi.Input<inputs.ModuleBitbucketCloud>;
+    /**
+     * Bitbucket Datacenter VCS settings
+     */
+    readonly bitbucketDatacenter?: pulumi.Input<inputs.ModuleBitbucketDatacenter>;
+    /**
      * GitHub branch to apply changes to
      */
     readonly branch: pulumi.Input<string>;
@@ -106,8 +205,29 @@ export interface ModuleArgs {
      * Free-form module description for users
      */
     readonly description?: pulumi.Input<string>;
+    /**
+     * GitHub Enterprise (self-hosted) VCS settings
+     */
+    readonly githubEnterprise?: pulumi.Input<inputs.ModuleGithubEnterprise>;
+    /**
+     * GitLab VCS settings
+     */
     readonly gitlab?: pulumi.Input<inputs.ModuleGitlab>;
     readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+     * convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+     * provide it here.
+     */
+    readonly name?: pulumi.Input<string>;
+    /**
+     * Project root is the optional directory relative to the repository root containing the module source code.
+     */
+    readonly projectRoot?: pulumi.Input<string>;
+    /**
+     * Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+     */
+    readonly protectFromDeletion?: pulumi.Input<boolean>;
     /**
      * Name of the repository, without the owner part
      */
@@ -116,6 +236,12 @@ export interface ModuleArgs {
      * List of the accounts (subdomains) which should have access to the Module
      */
     readonly sharedAccounts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+     * naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+     * can provide the provider name here.
+     */
+    readonly terraformProvider?: pulumi.Input<string>;
     /**
      * ID of the worker pool to use
      */

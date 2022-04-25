@@ -20,19 +20,31 @@ class GetModuleResult:
     """
     A collection of values returned by getModule.
     """
-    def __init__(__self__, administrative=None, aws_assume_role_policy_statement=None, branch=None, description=None, gitlabs=None, id=None, labels=None, module_id=None, repository=None, shared_accounts=None, worker_pool_id=None):
+    def __init__(__self__, administrative=None, aws_assume_role_policy_statement=None, azure_devops=None, bitbucket_clouds=None, bitbucket_datacenters=None, branch=None, description=None, github_enterprises=None, gitlabs=None, id=None, labels=None, module_id=None, name=None, project_root=None, protect_from_deletion=None, repository=None, shared_accounts=None, terraform_provider=None, worker_pool_id=None):
         if administrative and not isinstance(administrative, bool):
             raise TypeError("Expected argument 'administrative' to be a bool")
         pulumi.set(__self__, "administrative", administrative)
         if aws_assume_role_policy_statement and not isinstance(aws_assume_role_policy_statement, str):
             raise TypeError("Expected argument 'aws_assume_role_policy_statement' to be a str")
         pulumi.set(__self__, "aws_assume_role_policy_statement", aws_assume_role_policy_statement)
+        if azure_devops and not isinstance(azure_devops, list):
+            raise TypeError("Expected argument 'azure_devops' to be a list")
+        pulumi.set(__self__, "azure_devops", azure_devops)
+        if bitbucket_clouds and not isinstance(bitbucket_clouds, list):
+            raise TypeError("Expected argument 'bitbucket_clouds' to be a list")
+        pulumi.set(__self__, "bitbucket_clouds", bitbucket_clouds)
+        if bitbucket_datacenters and not isinstance(bitbucket_datacenters, list):
+            raise TypeError("Expected argument 'bitbucket_datacenters' to be a list")
+        pulumi.set(__self__, "bitbucket_datacenters", bitbucket_datacenters)
         if branch and not isinstance(branch, str):
             raise TypeError("Expected argument 'branch' to be a str")
         pulumi.set(__self__, "branch", branch)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if github_enterprises and not isinstance(github_enterprises, list):
+            raise TypeError("Expected argument 'github_enterprises' to be a list")
+        pulumi.set(__self__, "github_enterprises", github_enterprises)
         if gitlabs and not isinstance(gitlabs, list):
             raise TypeError("Expected argument 'gitlabs' to be a list")
         pulumi.set(__self__, "gitlabs", gitlabs)
@@ -45,12 +57,24 @@ class GetModuleResult:
         if module_id and not isinstance(module_id, str):
             raise TypeError("Expected argument 'module_id' to be a str")
         pulumi.set(__self__, "module_id", module_id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if project_root and not isinstance(project_root, str):
+            raise TypeError("Expected argument 'project_root' to be a str")
+        pulumi.set(__self__, "project_root", project_root)
+        if protect_from_deletion and not isinstance(protect_from_deletion, bool):
+            raise TypeError("Expected argument 'protect_from_deletion' to be a bool")
+        pulumi.set(__self__, "protect_from_deletion", protect_from_deletion)
         if repository and not isinstance(repository, str):
             raise TypeError("Expected argument 'repository' to be a str")
         pulumi.set(__self__, "repository", repository)
         if shared_accounts and not isinstance(shared_accounts, list):
             raise TypeError("Expected argument 'shared_accounts' to be a list")
         pulumi.set(__self__, "shared_accounts", shared_accounts)
+        if terraform_provider and not isinstance(terraform_provider, str):
+            raise TypeError("Expected argument 'terraform_provider' to be a str")
+        pulumi.set(__self__, "terraform_provider", terraform_provider)
         if worker_pool_id and not isinstance(worker_pool_id, str):
             raise TypeError("Expected argument 'worker_pool_id' to be a str")
         pulumi.set(__self__, "worker_pool_id", worker_pool_id)
@@ -66,6 +90,21 @@ class GetModuleResult:
         return pulumi.get(self, "aws_assume_role_policy_statement")
 
     @property
+    @pulumi.getter(name="azureDevops")
+    def azure_devops(self) -> Sequence['outputs.GetModuleAzureDevopResult']:
+        return pulumi.get(self, "azure_devops")
+
+    @property
+    @pulumi.getter(name="bitbucketClouds")
+    def bitbucket_clouds(self) -> Sequence['outputs.GetModuleBitbucketCloudResult']:
+        return pulumi.get(self, "bitbucket_clouds")
+
+    @property
+    @pulumi.getter(name="bitbucketDatacenters")
+    def bitbucket_datacenters(self) -> Sequence['outputs.GetModuleBitbucketDatacenterResult']:
+        return pulumi.get(self, "bitbucket_datacenters")
+
+    @property
     @pulumi.getter
     def branch(self) -> str:
         return pulumi.get(self, "branch")
@@ -74,6 +113,11 @@ class GetModuleResult:
     @pulumi.getter
     def description(self) -> str:
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="githubEnterprises")
+    def github_enterprises(self) -> Sequence['outputs.GetModuleGithubEnterpriseResult']:
+        return pulumi.get(self, "github_enterprises")
 
     @property
     @pulumi.getter
@@ -100,6 +144,21 @@ class GetModuleResult:
 
     @property
     @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectRoot")
+    def project_root(self) -> str:
+        return pulumi.get(self, "project_root")
+
+    @property
+    @pulumi.getter(name="protectFromDeletion")
+    def protect_from_deletion(self) -> bool:
+        return pulumi.get(self, "protect_from_deletion")
+
+    @property
+    @pulumi.getter
     def repository(self) -> str:
         return pulumi.get(self, "repository")
 
@@ -107,6 +166,11 @@ class GetModuleResult:
     @pulumi.getter(name="sharedAccounts")
     def shared_accounts(self) -> Sequence[str]:
         return pulumi.get(self, "shared_accounts")
+
+    @property
+    @pulumi.getter(name="terraformProvider")
+    def terraform_provider(self) -> str:
+        return pulumi.get(self, "terraform_provider")
 
     @property
     @pulumi.getter(name="workerPoolId")
@@ -122,14 +186,22 @@ class AwaitableGetModuleResult(GetModuleResult):
         return GetModuleResult(
             administrative=self.administrative,
             aws_assume_role_policy_statement=self.aws_assume_role_policy_statement,
+            azure_devops=self.azure_devops,
+            bitbucket_clouds=self.bitbucket_clouds,
+            bitbucket_datacenters=self.bitbucket_datacenters,
             branch=self.branch,
             description=self.description,
+            github_enterprises=self.github_enterprises,
             gitlabs=self.gitlabs,
             id=self.id,
             labels=self.labels,
             module_id=self.module_id,
+            name=self.name,
+            project_root=self.project_root,
+            protect_from_deletion=self.protect_from_deletion,
             repository=self.repository,
             shared_accounts=self.shared_accounts,
+            terraform_provider=self.terraform_provider,
             worker_pool_id=self.worker_pool_id)
 
 
@@ -149,12 +221,20 @@ def get_module(module_id: Optional[str] = None,
     return AwaitableGetModuleResult(
         administrative=__ret__.administrative,
         aws_assume_role_policy_statement=__ret__.aws_assume_role_policy_statement,
+        azure_devops=__ret__.azure_devops,
+        bitbucket_clouds=__ret__.bitbucket_clouds,
+        bitbucket_datacenters=__ret__.bitbucket_datacenters,
         branch=__ret__.branch,
         description=__ret__.description,
+        github_enterprises=__ret__.github_enterprises,
         gitlabs=__ret__.gitlabs,
         id=__ret__.id,
         labels=__ret__.labels,
         module_id=__ret__.module_id,
+        name=__ret__.name,
+        project_root=__ret__.project_root,
+        protect_from_deletion=__ret__.protect_from_deletion,
         repository=__ret__.repository,
         shared_accounts=__ret__.shared_accounts,
+        terraform_provider=__ret__.terraform_provider,
         worker_pool_id=__ret__.worker_pool_id)

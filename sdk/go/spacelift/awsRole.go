@@ -11,9 +11,44 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// `AwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.
+//
+// If you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).
+//
+// Note: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and Run ID as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).
+//
+// ## Schema
+//
+// ### Required
+//
+// - **role_arn** (String) ARN of the AWS IAM role to attach
+//
+// ### Optional
+//
+// - **external_id** (String) Custom external ID (works only for private workers).
+// - **generate_credentials_in_worker** (Boolean) Generate AWS credentials in the private worker
+// - **id** (String) The ID of this resource.
+// - **module_id** (String) ID of the module which assumes the AWS IAM role
+// - **stack_id** (String) ID of the stack which assumes the AWS IAM role
+//
+// ## Import
+//
+// Import is supported using the following syntax
+//
+// ```sh
+//  $ pulumi import spacelift:index/awsRole:AwsRole k8s-core stack/$STACK_ID
+// ```
+//
+// ```sh
+//  $ pulumi import spacelift:index/awsRole:AwsRole k8s-core module/$MODULE_ID
+// ```
 type AwsRole struct {
 	pulumi.CustomResourceState
 
+	// Custom external ID (works only for private workers).
+	ExternalId pulumi.StringPtrOutput `pulumi:"externalId"`
+	// Generate AWS credentials in the private worker
+	GenerateCredentialsInWorker pulumi.BoolPtrOutput `pulumi:"generateCredentialsInWorker"`
 	// ID of the module which assumes the AWS IAM role
 	ModuleId pulumi.StringPtrOutput `pulumi:"moduleId"`
 	// ARN of the AWS IAM role to attach
@@ -54,6 +89,10 @@ func GetAwsRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AwsRole resources.
 type awsRoleState struct {
+	// Custom external ID (works only for private workers).
+	ExternalId *string `pulumi:"externalId"`
+	// Generate AWS credentials in the private worker
+	GenerateCredentialsInWorker *bool `pulumi:"generateCredentialsInWorker"`
 	// ID of the module which assumes the AWS IAM role
 	ModuleId *string `pulumi:"moduleId"`
 	// ARN of the AWS IAM role to attach
@@ -63,6 +102,10 @@ type awsRoleState struct {
 }
 
 type AwsRoleState struct {
+	// Custom external ID (works only for private workers).
+	ExternalId pulumi.StringPtrInput
+	// Generate AWS credentials in the private worker
+	GenerateCredentialsInWorker pulumi.BoolPtrInput
 	// ID of the module which assumes the AWS IAM role
 	ModuleId pulumi.StringPtrInput
 	// ARN of the AWS IAM role to attach
@@ -76,6 +119,10 @@ func (AwsRoleState) ElementType() reflect.Type {
 }
 
 type awsRoleArgs struct {
+	// Custom external ID (works only for private workers).
+	ExternalId *string `pulumi:"externalId"`
+	// Generate AWS credentials in the private worker
+	GenerateCredentialsInWorker *bool `pulumi:"generateCredentialsInWorker"`
 	// ID of the module which assumes the AWS IAM role
 	ModuleId *string `pulumi:"moduleId"`
 	// ARN of the AWS IAM role to attach
@@ -86,6 +133,10 @@ type awsRoleArgs struct {
 
 // The set of arguments for constructing a AwsRole resource.
 type AwsRoleArgs struct {
+	// Custom external ID (works only for private workers).
+	ExternalId pulumi.StringPtrInput
+	// Generate AWS credentials in the private worker
+	GenerateCredentialsInWorker pulumi.BoolPtrInput
 	// ID of the module which assumes the AWS IAM role
 	ModuleId pulumi.StringPtrInput
 	// ARN of the AWS IAM role to attach

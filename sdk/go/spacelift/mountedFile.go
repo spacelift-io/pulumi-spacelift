@@ -11,6 +11,42 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// `MountedFile` represents a file mounted in each Run's workspace that is part of a configuration of a context (`Context`), stack (`Stack`) or a module (`Module`). In principle, it's very similar to an environment variable (`EnvironmentVariable`) except that the value is written to the filesystem rather than passed to the environment.
+//
+// ## Schema
+//
+// ### Required
+//
+// - **content** (String, Sensitive) Content of the mounted file encoded using Base-64
+// - **relative_path** (String) Relative path to the mounted file, without the /mnt/workspace/ prefix
+//
+// ### Optional
+//
+// - **context_id** (String) ID of the context on which the mounted file is defined
+// - **id** (String) The ID of this resource.
+// - **module_id** (String) ID of the module on which the mounted file is defined
+// - **stack_id** (String) ID of the stack on which the mounted file is defined
+// - **write_only** (Boolean) Indicates whether the content can be read back outside a Run
+//
+// ### Read-Only
+//
+// - **checksum** (String) SHA-256 checksum of the value
+//
+// ## Import
+//
+// Import is supported using the following syntax
+//
+// ```sh
+//  $ pulumi import spacelift:index/mountedFile:MountedFile ireland-kubeconfig context/$CONTEXT_ID/$MOUNTED_FILE_ID
+// ```
+//
+// ```sh
+//  $ pulumi import spacelift:index/mountedFile:MountedFile module-kubeconfig module/$MODULE_ID/$MOUNTED_FILE_ID
+// ```
+//
+// ```sh
+//  $ pulumi import spacelift:index/mountedFile:MountedFile core-kubeconfig stack/$STACK_ID/$MOUNTED_FILE_ID
+// ```
 type MountedFile struct {
 	pulumi.CustomResourceState
 

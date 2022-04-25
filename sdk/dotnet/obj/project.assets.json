@@ -178,7 +178,7 @@
           "lib/netstandard1.3/OneOf.dll": {}
         }
       },
-      "Pulumi/2.21.0": {
+      "Pulumi/2.25.2": {
         "type": "package",
         "dependencies": {
           "Grpc": "2.34.0",
@@ -1688,17 +1688,17 @@
         "oneof.nuspec"
       ]
     },
-    "Pulumi/2.21.0": {
-      "sha512": "LuQeyG2DhSYmN0rMmjrFGzhIslP3i5U2UXHszzShZX7Ghdw/u1qdGsXB7HEjyfuWSGVh0KCsVomtmComdIoC3A==",
+    "Pulumi/2.25.2": {
+      "sha512": "TI8Y/oCfivRZjJY4C/xskHeT9Pd6wDlLmuZ/EK3MUqFWKdqs6YCZs7zlgdfFPMoZ/ofYNOKk45NKqYO0Utn36A==",
       "type": "package",
-      "path": "pulumi/2.21.0",
+      "path": "pulumi/2.25.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netcoreapp3.1/Pulumi.dll",
         "lib/netcoreapp3.1/Pulumi.pdb",
         "lib/netcoreapp3.1/Pulumi.xml",
-        "pulumi.2.21.0.nupkg.sha512",
+        "pulumi.2.25.2.nupkg.sha512",
         "pulumi.nuspec",
         "pulumi_logo_64x64.png"
       ]
@@ -5062,19 +5062,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/jakub/.nuget/packages/": {}
+    "/home/ubuntu/.nuget/packages/": {}
   },
   "project": {
     "version": "1.2.2",
     "restore": {
-      "projectUniqueName": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
+      "projectUniqueName": "/home/ubuntu/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
       "projectName": "Pulumi.Spacelift",
-      "projectPath": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
-      "packagesPath": "/Users/jakub/.nuget/packages/",
-      "outputPath": "/Users/jakub/Projects/Go/src/github.com/spacelift-io/pulumi-spacelift/sdk/dotnet/obj/",
+      "projectPath": "/home/ubuntu/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
+      "packagesPath": "/home/ubuntu/.nuget/packages/",
+      "outputPath": "/home/ubuntu/pulumi-spacelift/sdk/dotnet/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jakub/.nuget/NuGet/NuGet.Config"
+        "/home/ubuntu/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -5137,7 +5137,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/5.0.103/libexec/sdk/5.0.103/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/162/sdk/6.0.202/RuntimeIdentifierGraph.json"
       }
     }
   }

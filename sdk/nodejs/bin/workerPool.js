@@ -4,6 +4,35 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const pulumi = require("@pulumi/pulumi");
 const utilities = require("./utilities");
+/**
+ * `spacelift.WorkerPool` represents a worker pool assigned to the Spacelift account.
+ *
+ * ## Schema
+ *
+ * ### Required
+ *
+ * - **name** (String) name of the worker pool
+ *
+ * ### Optional
+ *
+ * - **csr** (String, Sensitive) certificate signing request in base64
+ * - **description** (String) description of the worker pool
+ * - **id** (String) The ID of this resource.
+ * - **labels** (Set of String)
+ *
+ * ### Read-Only
+ *
+ * - **config** (String, Sensitive) credentials necessary to connect WorkerPool's workers to the control plane
+ * - **private_key** (String, Sensitive) private key in base64
+ *
+ * ## Import
+ *
+ * Import is supported using the following syntax
+ *
+ * ```sh
+ *  $ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID
+ * ```
+ */
 class WorkerPool extends pulumi.CustomResource {
     constructor(name, argsOrState, opts) {
         let inputs = {};
@@ -12,6 +41,7 @@ class WorkerPool extends pulumi.CustomResource {
             inputs["config"] = state ? state.config : undefined;
             inputs["csr"] = state ? state.csr : undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["labels"] = state ? state.labels : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["privateKey"] = state ? state.privateKey : undefined;
         }
@@ -22,6 +52,7 @@ class WorkerPool extends pulumi.CustomResource {
             }
             inputs["csr"] = args ? args.csr : undefined;
             inputs["description"] = args ? args.description : undefined;
+            inputs["labels"] = args ? args.labels : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["config"] = undefined /*out*/;
             inputs["privateKey"] = undefined /*out*/;

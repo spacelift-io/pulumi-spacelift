@@ -26,6 +26,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r, err = NewContext(ctx, name, nil, pulumi.URN_(urn))
 	case "spacelift:index/contextAttachment:ContextAttachment":
 		r, err = NewContextAttachment(ctx, name, nil, pulumi.URN_(urn))
+	case "spacelift:index/driftDetection:DriftDetection":
+		r, err = NewDriftDetection(ctx, name, nil, pulumi.URN_(urn))
 	case "spacelift:index/environmentVariable:EnvironmentVariable":
 		r, err = NewEnvironmentVariable(ctx, name, nil, pulumi.URN_(urn))
 	case "spacelift:index/gcpServiceAccount:GcpServiceAccount":
@@ -42,8 +44,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r, err = NewStack(ctx, name, nil, pulumi.URN_(urn))
 	case "spacelift:index/stackAwsRole:StackAwsRole":
 		r, err = NewStackAwsRole(ctx, name, nil, pulumi.URN_(urn))
+	case "spacelift:index/stackDestructor:StackDestructor":
+		r, err = NewStackDestructor(ctx, name, nil, pulumi.URN_(urn))
 	case "spacelift:index/stackGcpServiceAccount:StackGcpServiceAccount":
 		r, err = NewStackGcpServiceAccount(ctx, name, nil, pulumi.URN_(urn))
+	case "spacelift:index/vCSAgentPool:VCSAgentPool":
+		r, err = NewVCSAgentPool(ctx, name, nil, pulumi.URN_(urn))
 	case "spacelift:index/webhook:Webhook":
 		r, err = NewWebhook(ctx, name, nil, pulumi.URN_(urn))
 	case "spacelift:index/workerPool:WorkerPool":
@@ -93,6 +99,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"spacelift",
+		"index/driftDetection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
 		"index/environmentVariable",
 		&module{version},
 	)
@@ -133,7 +144,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"spacelift",
+		"index/stackDestructor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
 		"index/stackGcpServiceAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/vCSAgentPool",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -9,6 +9,19 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Spacelift
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Import is supported using the following syntax
+    /// 
+    /// ```sh
+    ///  $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core stack/$STACK_ID
+    /// ```
+    /// 
+    /// ```sh
+    ///  $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core module/$MODULE_ID
+    /// ```
+    /// </summary>
     [SpaceliftResourceType("spacelift:index/gcpServiceAccount:GcpServiceAccount")]
     public partial class GcpServiceAccount : Pulumi.CustomResource
     {

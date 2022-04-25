@@ -17,12 +17,40 @@ class WorkerPool(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  csr: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
         """
-        Create a WorkerPool resource with the given unique name, props, and options.
+        `WorkerPool` represents a worker pool assigned to the Spacelift account.
+
+        ## Schema
+
+        ### Required
+
+        - **name** (String) name of the worker pool
+
+        ### Optional
+
+        - **csr** (String, Sensitive) certificate signing request in base64
+        - **description** (String) description of the worker pool
+        - **id** (String) The ID of this resource.
+        - **labels** (Set of String)
+
+        ### Read-Only
+
+        - **config** (String, Sensitive) credentials necessary to connect WorkerPool's workers to the control plane
+        - **private_key** (String, Sensitive) private key in base64
+
+        ## Import
+
+        Import is supported using the following syntax
+
+        ```sh
+         $ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] csr: certificate signing request in base64
@@ -48,6 +76,7 @@ class WorkerPool(pulumi.CustomResource):
 
             __props__['csr'] = csr
             __props__['description'] = description
+            __props__['labels'] = labels
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__['name'] = name
@@ -66,6 +95,7 @@ class WorkerPool(pulumi.CustomResource):
             config: Optional[pulumi.Input[str]] = None,
             csr: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None) -> 'WorkerPool':
         """
@@ -88,6 +118,7 @@ class WorkerPool(pulumi.CustomResource):
         __props__["config"] = config
         __props__["csr"] = csr
         __props__["description"] = description
+        __props__["labels"] = labels
         __props__["name"] = name
         __props__["private_key"] = private_key
         return WorkerPool(resource_name, opts=opts, __props__=__props__)
@@ -115,6 +146,11 @@ class WorkerPool(pulumi.CustomResource):
         description of the worker pool
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter

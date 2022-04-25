@@ -11,41 +11,88 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Import is supported using the following syntax
+//
+// ```sh
+//  $ pulumi import spacelift:index/stack:Stack k8s_core $STACK_ID
+// ```
 type Stack struct {
 	pulumi.CustomResourceState
 
 	// Indicates whether this stack can manage others
 	Administrative pulumi.BoolPtrOutput `pulumi:"administrative"`
+	// List of after-apply scripts
+	AfterApplies pulumi.StringArrayOutput `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys pulumi.StringArrayOutput `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits pulumi.StringArrayOutput `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms pulumi.StringArrayOutput `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans pulumi.StringArrayOutput `pulumi:"afterPlans"`
 	// Indicates whether changes to this stack can be automatically deployed
 	Autodeploy pulumi.BoolPtrOutput `pulumi:"autodeploy"`
 	// Indicates whether obsolete proposed changes should automatically be retried
 	Autoretry pulumi.BoolPtrOutput `pulumi:"autoretry"`
 	// AWS IAM assume role policy statement setting up trust relationship
 	AwsAssumeRolePolicyStatement pulumi.StringOutput `pulumi:"awsAssumeRolePolicyStatement"`
+	// Azure DevOps VCS settings
+	AzureDevops StackAzureDevopsPtrOutput `pulumi:"azureDevops"`
+	// List of before-apply scripts
+	BeforeApplies pulumi.StringArrayOutput `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys pulumi.StringArrayOutput `pulumi:"beforeDestroys"`
 	// List of before-init scripts
 	BeforeInits pulumi.StringArrayOutput `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms pulumi.StringArrayOutput `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans pulumi.StringArrayOutput `pulumi:"beforePlans"`
+	// Bitbucket Cloud VCS settings
+	BitbucketCloud StackBitbucketCloudPtrOutput `pulumi:"bitbucketCloud"`
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenter StackBitbucketDatacenterPtrOutput `pulumi:"bitbucketDatacenter"`
 	// GitHub branch to apply changes to
 	Branch pulumi.StringOutput `pulumi:"branch"`
 	// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
 	Cloudformation StackCloudformationPtrOutput `pulumi:"cloudformation"`
 	// Free-form stack description for users
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Gitlab      StackGitlabPtrOutput   `pulumi:"gitlab"`
+	// Indicates whether local preview runs can be triggered on this Stack
+	EnableLocalPreview pulumi.BoolPtrOutput `pulumi:"enableLocalPreview"`
+	// Indicates whether GitHub users can deploy from the Checks API
+	GithubActionDeploy pulumi.BoolPtrOutput `pulumi:"githubActionDeploy"`
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprise StackGithubEnterprisePtrOutput `pulumi:"githubEnterprise"`
+	// GitLab VCS settings
+	Gitlab StackGitlabPtrOutput `pulumi:"gitlab"`
 	// State file to upload when creating a new stack
-	ImportState pulumi.StringPtrOutput   `pulumi:"importState"`
-	Labels      pulumi.StringArrayOutput `pulumi:"labels"`
+	ImportState pulumi.StringPtrOutput `pulumi:"importState"`
+	// Path to the state file to upload when creating a new stack
+	ImportStateFile pulumi.StringPtrOutput `pulumi:"importStateFile"`
+	// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+	Kubernetes StackKubernetesPtrOutput `pulumi:"kubernetes"`
+	Labels     pulumi.StringArrayOutput `pulumi:"labels"`
 	// Determines if Spacelift should manage state for this stack
 	ManageState pulumi.BoolPtrOutput `pulumi:"manageState"`
 	// Name of the stack - should be unique in one account
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
 	ProjectRoot pulumi.StringPtrOutput `pulumi:"projectRoot"`
+	// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+	ProtectFromDeletion pulumi.BoolPtrOutput `pulumi:"protectFromDeletion"`
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumi StackPulumiPtrOutput `pulumi:"pulumi"`
 	// Name of the repository, without the owner part
 	Repository pulumi.StringOutput `pulumi:"repository"`
 	// Name of the Docker image used to process Runs
 	RunnerImage pulumi.StringPtrOutput `pulumi:"runnerImage"`
+	Showcase    StackShowcasePtrOutput `pulumi:"showcase"`
+	// Allows setting the custom ID (slug) for the stack
+	Slug pulumi.StringPtrOutput `pulumi:"slug"`
 	// Terraform version to use
 	TerraformVersion pulumi.StringPtrOutput `pulumi:"terraformVersion"`
 	// Terraform workspace to select
@@ -94,36 +141,76 @@ func GetStack(ctx *pulumi.Context,
 type stackState struct {
 	// Indicates whether this stack can manage others
 	Administrative *bool `pulumi:"administrative"`
+	// List of after-apply scripts
+	AfterApplies []string `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys []string `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits []string `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms []string `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans []string `pulumi:"afterPlans"`
 	// Indicates whether changes to this stack can be automatically deployed
 	Autodeploy *bool `pulumi:"autodeploy"`
 	// Indicates whether obsolete proposed changes should automatically be retried
 	Autoretry *bool `pulumi:"autoretry"`
 	// AWS IAM assume role policy statement setting up trust relationship
 	AwsAssumeRolePolicyStatement *string `pulumi:"awsAssumeRolePolicyStatement"`
+	// Azure DevOps VCS settings
+	AzureDevops *StackAzureDevops `pulumi:"azureDevops"`
+	// List of before-apply scripts
+	BeforeApplies []string `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys []string `pulumi:"beforeDestroys"`
 	// List of before-init scripts
 	BeforeInits []string `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms []string `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans []string `pulumi:"beforePlans"`
+	// Bitbucket Cloud VCS settings
+	BitbucketCloud *StackBitbucketCloud `pulumi:"bitbucketCloud"`
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenter *StackBitbucketDatacenter `pulumi:"bitbucketDatacenter"`
 	// GitHub branch to apply changes to
 	Branch *string `pulumi:"branch"`
 	// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
 	Cloudformation *StackCloudformation `pulumi:"cloudformation"`
 	// Free-form stack description for users
-	Description *string      `pulumi:"description"`
-	Gitlab      *StackGitlab `pulumi:"gitlab"`
+	Description *string `pulumi:"description"`
+	// Indicates whether local preview runs can be triggered on this Stack
+	EnableLocalPreview *bool `pulumi:"enableLocalPreview"`
+	// Indicates whether GitHub users can deploy from the Checks API
+	GithubActionDeploy *bool `pulumi:"githubActionDeploy"`
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprise *StackGithubEnterprise `pulumi:"githubEnterprise"`
+	// GitLab VCS settings
+	Gitlab *StackGitlab `pulumi:"gitlab"`
 	// State file to upload when creating a new stack
-	ImportState *string  `pulumi:"importState"`
-	Labels      []string `pulumi:"labels"`
+	ImportState *string `pulumi:"importState"`
+	// Path to the state file to upload when creating a new stack
+	ImportStateFile *string `pulumi:"importStateFile"`
+	// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+	Kubernetes *StackKubernetes `pulumi:"kubernetes"`
+	Labels     []string         `pulumi:"labels"`
 	// Determines if Spacelift should manage state for this stack
 	ManageState *bool `pulumi:"manageState"`
 	// Name of the stack - should be unique in one account
 	Name *string `pulumi:"name"`
 	// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
 	ProjectRoot *string `pulumi:"projectRoot"`
+	// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+	ProtectFromDeletion *bool `pulumi:"protectFromDeletion"`
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumi *StackPulumi `pulumi:"pulumi"`
 	// Name of the repository, without the owner part
 	Repository *string `pulumi:"repository"`
 	// Name of the Docker image used to process Runs
-	RunnerImage *string `pulumi:"runnerImage"`
+	RunnerImage *string        `pulumi:"runnerImage"`
+	Showcase    *StackShowcase `pulumi:"showcase"`
+	// Allows setting the custom ID (slug) for the stack
+	Slug *string `pulumi:"slug"`
 	// Terraform version to use
 	TerraformVersion *string `pulumi:"terraformVersion"`
 	// Terraform workspace to select
@@ -135,36 +222,76 @@ type stackState struct {
 type StackState struct {
 	// Indicates whether this stack can manage others
 	Administrative pulumi.BoolPtrInput
+	// List of after-apply scripts
+	AfterApplies pulumi.StringArrayInput
+	// List of after-destroy scripts
+	AfterDestroys pulumi.StringArrayInput
+	// List of after-init scripts
+	AfterInits pulumi.StringArrayInput
+	// List of after-perform scripts
+	AfterPerforms pulumi.StringArrayInput
+	// List of after-plan scripts
+	AfterPlans pulumi.StringArrayInput
 	// Indicates whether changes to this stack can be automatically deployed
 	Autodeploy pulumi.BoolPtrInput
 	// Indicates whether obsolete proposed changes should automatically be retried
 	Autoretry pulumi.BoolPtrInput
 	// AWS IAM assume role policy statement setting up trust relationship
 	AwsAssumeRolePolicyStatement pulumi.StringPtrInput
+	// Azure DevOps VCS settings
+	AzureDevops StackAzureDevopsPtrInput
+	// List of before-apply scripts
+	BeforeApplies pulumi.StringArrayInput
+	// List of before-destroy scripts
+	BeforeDestroys pulumi.StringArrayInput
 	// List of before-init scripts
 	BeforeInits pulumi.StringArrayInput
+	// List of before-perform scripts
+	BeforePerforms pulumi.StringArrayInput
+	// List of before-plan scripts
+	BeforePlans pulumi.StringArrayInput
+	// Bitbucket Cloud VCS settings
+	BitbucketCloud StackBitbucketCloudPtrInput
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenter StackBitbucketDatacenterPtrInput
 	// GitHub branch to apply changes to
 	Branch pulumi.StringPtrInput
 	// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
 	Cloudformation StackCloudformationPtrInput
 	// Free-form stack description for users
 	Description pulumi.StringPtrInput
-	Gitlab      StackGitlabPtrInput
+	// Indicates whether local preview runs can be triggered on this Stack
+	EnableLocalPreview pulumi.BoolPtrInput
+	// Indicates whether GitHub users can deploy from the Checks API
+	GithubActionDeploy pulumi.BoolPtrInput
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprise StackGithubEnterprisePtrInput
+	// GitLab VCS settings
+	Gitlab StackGitlabPtrInput
 	// State file to upload when creating a new stack
 	ImportState pulumi.StringPtrInput
-	Labels      pulumi.StringArrayInput
+	// Path to the state file to upload when creating a new stack
+	ImportStateFile pulumi.StringPtrInput
+	// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+	Kubernetes StackKubernetesPtrInput
+	Labels     pulumi.StringArrayInput
 	// Determines if Spacelift should manage state for this stack
 	ManageState pulumi.BoolPtrInput
 	// Name of the stack - should be unique in one account
 	Name pulumi.StringPtrInput
 	// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
 	ProjectRoot pulumi.StringPtrInput
+	// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+	ProtectFromDeletion pulumi.BoolPtrInput
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumi StackPulumiPtrInput
 	// Name of the repository, without the owner part
 	Repository pulumi.StringPtrInput
 	// Name of the Docker image used to process Runs
 	RunnerImage pulumi.StringPtrInput
+	Showcase    StackShowcasePtrInput
+	// Allows setting the custom ID (slug) for the stack
+	Slug pulumi.StringPtrInput
 	// Terraform version to use
 	TerraformVersion pulumi.StringPtrInput
 	// Terraform workspace to select
@@ -180,34 +307,74 @@ func (StackState) ElementType() reflect.Type {
 type stackArgs struct {
 	// Indicates whether this stack can manage others
 	Administrative *bool `pulumi:"administrative"`
+	// List of after-apply scripts
+	AfterApplies []string `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys []string `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits []string `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms []string `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans []string `pulumi:"afterPlans"`
 	// Indicates whether changes to this stack can be automatically deployed
 	Autodeploy *bool `pulumi:"autodeploy"`
 	// Indicates whether obsolete proposed changes should automatically be retried
 	Autoretry *bool `pulumi:"autoretry"`
+	// Azure DevOps VCS settings
+	AzureDevops *StackAzureDevops `pulumi:"azureDevops"`
+	// List of before-apply scripts
+	BeforeApplies []string `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys []string `pulumi:"beforeDestroys"`
 	// List of before-init scripts
 	BeforeInits []string `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms []string `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans []string `pulumi:"beforePlans"`
+	// Bitbucket Cloud VCS settings
+	BitbucketCloud *StackBitbucketCloud `pulumi:"bitbucketCloud"`
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenter *StackBitbucketDatacenter `pulumi:"bitbucketDatacenter"`
 	// GitHub branch to apply changes to
 	Branch string `pulumi:"branch"`
 	// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
 	Cloudformation *StackCloudformation `pulumi:"cloudformation"`
 	// Free-form stack description for users
-	Description *string      `pulumi:"description"`
-	Gitlab      *StackGitlab `pulumi:"gitlab"`
+	Description *string `pulumi:"description"`
+	// Indicates whether local preview runs can be triggered on this Stack
+	EnableLocalPreview *bool `pulumi:"enableLocalPreview"`
+	// Indicates whether GitHub users can deploy from the Checks API
+	GithubActionDeploy *bool `pulumi:"githubActionDeploy"`
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprise *StackGithubEnterprise `pulumi:"githubEnterprise"`
+	// GitLab VCS settings
+	Gitlab *StackGitlab `pulumi:"gitlab"`
 	// State file to upload when creating a new stack
-	ImportState *string  `pulumi:"importState"`
-	Labels      []string `pulumi:"labels"`
+	ImportState *string `pulumi:"importState"`
+	// Path to the state file to upload when creating a new stack
+	ImportStateFile *string `pulumi:"importStateFile"`
+	// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+	Kubernetes *StackKubernetes `pulumi:"kubernetes"`
+	Labels     []string         `pulumi:"labels"`
 	// Determines if Spacelift should manage state for this stack
 	ManageState *bool `pulumi:"manageState"`
 	// Name of the stack - should be unique in one account
 	Name string `pulumi:"name"`
 	// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
 	ProjectRoot *string `pulumi:"projectRoot"`
+	// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+	ProtectFromDeletion *bool `pulumi:"protectFromDeletion"`
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumi *StackPulumi `pulumi:"pulumi"`
 	// Name of the repository, without the owner part
 	Repository string `pulumi:"repository"`
 	// Name of the Docker image used to process Runs
-	RunnerImage *string `pulumi:"runnerImage"`
+	RunnerImage *string        `pulumi:"runnerImage"`
+	Showcase    *StackShowcase `pulumi:"showcase"`
+	// Allows setting the custom ID (slug) for the stack
+	Slug *string `pulumi:"slug"`
 	// Terraform version to use
 	TerraformVersion *string `pulumi:"terraformVersion"`
 	// Terraform workspace to select
@@ -220,34 +387,74 @@ type stackArgs struct {
 type StackArgs struct {
 	// Indicates whether this stack can manage others
 	Administrative pulumi.BoolPtrInput
+	// List of after-apply scripts
+	AfterApplies pulumi.StringArrayInput
+	// List of after-destroy scripts
+	AfterDestroys pulumi.StringArrayInput
+	// List of after-init scripts
+	AfterInits pulumi.StringArrayInput
+	// List of after-perform scripts
+	AfterPerforms pulumi.StringArrayInput
+	// List of after-plan scripts
+	AfterPlans pulumi.StringArrayInput
 	// Indicates whether changes to this stack can be automatically deployed
 	Autodeploy pulumi.BoolPtrInput
 	// Indicates whether obsolete proposed changes should automatically be retried
 	Autoretry pulumi.BoolPtrInput
+	// Azure DevOps VCS settings
+	AzureDevops StackAzureDevopsPtrInput
+	// List of before-apply scripts
+	BeforeApplies pulumi.StringArrayInput
+	// List of before-destroy scripts
+	BeforeDestroys pulumi.StringArrayInput
 	// List of before-init scripts
 	BeforeInits pulumi.StringArrayInput
+	// List of before-perform scripts
+	BeforePerforms pulumi.StringArrayInput
+	// List of before-plan scripts
+	BeforePlans pulumi.StringArrayInput
+	// Bitbucket Cloud VCS settings
+	BitbucketCloud StackBitbucketCloudPtrInput
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenter StackBitbucketDatacenterPtrInput
 	// GitHub branch to apply changes to
 	Branch pulumi.StringInput
 	// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
 	Cloudformation StackCloudformationPtrInput
 	// Free-form stack description for users
 	Description pulumi.StringPtrInput
-	Gitlab      StackGitlabPtrInput
+	// Indicates whether local preview runs can be triggered on this Stack
+	EnableLocalPreview pulumi.BoolPtrInput
+	// Indicates whether GitHub users can deploy from the Checks API
+	GithubActionDeploy pulumi.BoolPtrInput
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprise StackGithubEnterprisePtrInput
+	// GitLab VCS settings
+	Gitlab StackGitlabPtrInput
 	// State file to upload when creating a new stack
 	ImportState pulumi.StringPtrInput
-	Labels      pulumi.StringArrayInput
+	// Path to the state file to upload when creating a new stack
+	ImportStateFile pulumi.StringPtrInput
+	// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+	Kubernetes StackKubernetesPtrInput
+	Labels     pulumi.StringArrayInput
 	// Determines if Spacelift should manage state for this stack
 	ManageState pulumi.BoolPtrInput
 	// Name of the stack - should be unique in one account
 	Name pulumi.StringInput
 	// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
 	ProjectRoot pulumi.StringPtrInput
+	// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+	ProtectFromDeletion pulumi.BoolPtrInput
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumi StackPulumiPtrInput
 	// Name of the repository, without the owner part
 	Repository pulumi.StringInput
 	// Name of the Docker image used to process Runs
 	RunnerImage pulumi.StringPtrInput
+	Showcase    StackShowcasePtrInput
+	// Allows setting the custom ID (slug) for the stack
+	Slug pulumi.StringPtrInput
 	// Terraform version to use
 	TerraformVersion pulumi.StringPtrInput
 	// Terraform workspace to select

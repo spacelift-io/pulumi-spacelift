@@ -23,16 +23,24 @@ type LookupModuleArgs struct {
 
 // A collection of values returned by getModule.
 type LookupModuleResult struct {
-	Administrative               bool              `pulumi:"administrative"`
-	AwsAssumeRolePolicyStatement string            `pulumi:"awsAssumeRolePolicyStatement"`
-	Branch                       string            `pulumi:"branch"`
-	Description                  string            `pulumi:"description"`
-	Gitlabs                      []GetModuleGitlab `pulumi:"gitlabs"`
+	Administrative               bool                           `pulumi:"administrative"`
+	AwsAssumeRolePolicyStatement string                         `pulumi:"awsAssumeRolePolicyStatement"`
+	AzureDevops                  []GetModuleAzureDevop          `pulumi:"azureDevops"`
+	BitbucketClouds              []GetModuleBitbucketCloud      `pulumi:"bitbucketClouds"`
+	BitbucketDatacenters         []GetModuleBitbucketDatacenter `pulumi:"bitbucketDatacenters"`
+	Branch                       string                         `pulumi:"branch"`
+	Description                  string                         `pulumi:"description"`
+	GithubEnterprises            []GetModuleGithubEnterprise    `pulumi:"githubEnterprises"`
+	Gitlabs                      []GetModuleGitlab              `pulumi:"gitlabs"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string   `pulumi:"id"`
-	Labels         []string `pulumi:"labels"`
-	ModuleId       string   `pulumi:"moduleId"`
-	Repository     string   `pulumi:"repository"`
-	SharedAccounts []string `pulumi:"sharedAccounts"`
-	WorkerPoolId   string   `pulumi:"workerPoolId"`
+	Id                  string   `pulumi:"id"`
+	Labels              []string `pulumi:"labels"`
+	ModuleId            string   `pulumi:"moduleId"`
+	Name                string   `pulumi:"name"`
+	ProjectRoot         string   `pulumi:"projectRoot"`
+	ProtectFromDeletion bool     `pulumi:"protectFromDeletion"`
+	Repository          string   `pulumi:"repository"`
+	SharedAccounts      []string `pulumi:"sharedAccounts"`
+	TerraformProvider   string   `pulumi:"terraformProvider"`
+	WorkerPoolId        string   `pulumi:"workerPoolId"`
 }

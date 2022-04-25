@@ -18,6 +18,86 @@ namespace Pulumi.Spacelift
 
     public sealed class GetStackArgs : Pulumi.InvokeArgs
     {
+        [Input("afterApplies")]
+        private List<string>? _afterApplies;
+        public List<string> AfterApplies
+        {
+            get => _afterApplies ?? (_afterApplies = new List<string>());
+            set => _afterApplies = value;
+        }
+
+        [Input("afterDestroys")]
+        private List<string>? _afterDestroys;
+        public List<string> AfterDestroys
+        {
+            get => _afterDestroys ?? (_afterDestroys = new List<string>());
+            set => _afterDestroys = value;
+        }
+
+        [Input("afterInits")]
+        private List<string>? _afterInits;
+        public List<string> AfterInits
+        {
+            get => _afterInits ?? (_afterInits = new List<string>());
+            set => _afterInits = value;
+        }
+
+        [Input("afterPerforms")]
+        private List<string>? _afterPerforms;
+        public List<string> AfterPerforms
+        {
+            get => _afterPerforms ?? (_afterPerforms = new List<string>());
+            set => _afterPerforms = value;
+        }
+
+        [Input("afterPlans")]
+        private List<string>? _afterPlans;
+        public List<string> AfterPlans
+        {
+            get => _afterPlans ?? (_afterPlans = new List<string>());
+            set => _afterPlans = value;
+        }
+
+        [Input("beforeApplies")]
+        private List<string>? _beforeApplies;
+        public List<string> BeforeApplies
+        {
+            get => _beforeApplies ?? (_beforeApplies = new List<string>());
+            set => _beforeApplies = value;
+        }
+
+        [Input("beforeDestroys")]
+        private List<string>? _beforeDestroys;
+        public List<string> BeforeDestroys
+        {
+            get => _beforeDestroys ?? (_beforeDestroys = new List<string>());
+            set => _beforeDestroys = value;
+        }
+
+        [Input("beforeInits")]
+        private List<string>? _beforeInits;
+        public List<string> BeforeInits
+        {
+            get => _beforeInits ?? (_beforeInits = new List<string>());
+            set => _beforeInits = value;
+        }
+
+        [Input("beforePerforms")]
+        private List<string>? _beforePerforms;
+        public List<string> BeforePerforms
+        {
+            get => _beforePerforms ?? (_beforePerforms = new List<string>());
+            set => _beforePerforms = value;
+        }
+
+        [Input("beforePlans")]
+        private List<string>? _beforePlans;
+        public List<string> BeforePlans
+        {
+            get => _beforePlans ?? (_beforePlans = new List<string>());
+            set => _beforePlans = value;
+        }
+
         [Input("stackId", required: true)]
         public string StackId { get; set; } = null!;
 
@@ -31,25 +111,42 @@ namespace Pulumi.Spacelift
     public sealed class GetStackResult
     {
         public readonly bool Administrative;
+        public readonly ImmutableArray<string> AfterApplies;
+        public readonly ImmutableArray<string> AfterDestroys;
+        public readonly ImmutableArray<string> AfterInits;
+        public readonly ImmutableArray<string> AfterPerforms;
+        public readonly ImmutableArray<string> AfterPlans;
         public readonly bool Autodeploy;
         public readonly bool Autoretry;
         public readonly string AwsAssumeRolePolicyStatement;
+        public readonly ImmutableArray<Outputs.GetStackAzureDevopResult> AzureDevops;
+        public readonly ImmutableArray<string> BeforeApplies;
+        public readonly ImmutableArray<string> BeforeDestroys;
         public readonly ImmutableArray<string> BeforeInits;
+        public readonly ImmutableArray<string> BeforePerforms;
+        public readonly ImmutableArray<string> BeforePlans;
+        public readonly ImmutableArray<Outputs.GetStackBitbucketCloudResult> BitbucketClouds;
+        public readonly ImmutableArray<Outputs.GetStackBitbucketDatacenterResult> BitbucketDatacenters;
         public readonly string Branch;
         public readonly ImmutableArray<Outputs.GetStackCloudformationResult> Cloudformations;
         public readonly string Description;
+        public readonly bool EnableLocalPreview;
+        public readonly ImmutableArray<Outputs.GetStackGithubEnterpriseResult> GithubEnterprises;
         public readonly ImmutableArray<Outputs.GetStackGitlabResult> Gitlabs;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly ImmutableArray<Outputs.GetStackKuberneteResult> Kubernetes;
         public readonly ImmutableArray<string> Labels;
         public readonly bool ManageState;
         public readonly string Name;
         public readonly string ProjectRoot;
+        public readonly bool ProtectFromDeletion;
         public readonly ImmutableArray<Outputs.GetStackPulumiResult> Pulumis;
         public readonly string Repository;
         public readonly string RunnerImage;
+        public readonly ImmutableArray<Outputs.GetStackShowcaseResult> Showcases;
         public readonly string StackId;
         public readonly string TerraformVersion;
         public readonly string TerraformWorkspace;
@@ -59,13 +156,37 @@ namespace Pulumi.Spacelift
         private GetStackResult(
             bool administrative,
 
+            ImmutableArray<string> afterApplies,
+
+            ImmutableArray<string> afterDestroys,
+
+            ImmutableArray<string> afterInits,
+
+            ImmutableArray<string> afterPerforms,
+
+            ImmutableArray<string> afterPlans,
+
             bool autodeploy,
 
             bool autoretry,
 
             string awsAssumeRolePolicyStatement,
 
+            ImmutableArray<Outputs.GetStackAzureDevopResult> azureDevops,
+
+            ImmutableArray<string> beforeApplies,
+
+            ImmutableArray<string> beforeDestroys,
+
             ImmutableArray<string> beforeInits,
+
+            ImmutableArray<string> beforePerforms,
+
+            ImmutableArray<string> beforePlans,
+
+            ImmutableArray<Outputs.GetStackBitbucketCloudResult> bitbucketClouds,
+
+            ImmutableArray<Outputs.GetStackBitbucketDatacenterResult> bitbucketDatacenters,
 
             string branch,
 
@@ -73,9 +194,15 @@ namespace Pulumi.Spacelift
 
             string description,
 
+            bool enableLocalPreview,
+
+            ImmutableArray<Outputs.GetStackGithubEnterpriseResult> githubEnterprises,
+
             ImmutableArray<Outputs.GetStackGitlabResult> gitlabs,
 
             string id,
+
+            ImmutableArray<Outputs.GetStackKuberneteResult> kubernetes,
 
             ImmutableArray<string> labels,
 
@@ -85,11 +212,15 @@ namespace Pulumi.Spacelift
 
             string projectRoot,
 
+            bool protectFromDeletion,
+
             ImmutableArray<Outputs.GetStackPulumiResult> pulumis,
 
             string repository,
 
             string runnerImage,
+
+            ImmutableArray<Outputs.GetStackShowcaseResult> showcases,
 
             string stackId,
 
@@ -100,22 +231,39 @@ namespace Pulumi.Spacelift
             string workerPoolId)
         {
             Administrative = administrative;
+            AfterApplies = afterApplies;
+            AfterDestroys = afterDestroys;
+            AfterInits = afterInits;
+            AfterPerforms = afterPerforms;
+            AfterPlans = afterPlans;
             Autodeploy = autodeploy;
             Autoretry = autoretry;
             AwsAssumeRolePolicyStatement = awsAssumeRolePolicyStatement;
+            AzureDevops = azureDevops;
+            BeforeApplies = beforeApplies;
+            BeforeDestroys = beforeDestroys;
             BeforeInits = beforeInits;
+            BeforePerforms = beforePerforms;
+            BeforePlans = beforePlans;
+            BitbucketClouds = bitbucketClouds;
+            BitbucketDatacenters = bitbucketDatacenters;
             Branch = branch;
             Cloudformations = cloudformations;
             Description = description;
+            EnableLocalPreview = enableLocalPreview;
+            GithubEnterprises = githubEnterprises;
             Gitlabs = gitlabs;
             Id = id;
+            Kubernetes = kubernetes;
             Labels = labels;
             ManageState = manageState;
             Name = name;
             ProjectRoot = projectRoot;
+            ProtectFromDeletion = protectFromDeletion;
             Pulumis = pulumis;
             Repository = repository;
             RunnerImage = runnerImage;
+            Showcases = showcases;
             StackId = stackId;
             TerraformVersion = terraformVersion;
             TerraformWorkspace = terraformWorkspace;

@@ -9,14 +9,136 @@ from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
+    'ModuleAzureDevopsArgs',
+    'ModuleBitbucketCloudArgs',
+    'ModuleBitbucketDatacenterArgs',
+    'ModuleGithubEnterpriseArgs',
     'ModuleGitlabArgs',
+    'StackAzureDevopsArgs',
+    'StackBitbucketCloudArgs',
+    'StackBitbucketDatacenterArgs',
     'StackCloudformationArgs',
+    'StackGithubEnterpriseArgs',
     'StackGitlabArgs',
+    'StackKubernetesArgs',
     'StackPulumiArgs',
+    'StackShowcaseArgs',
 ]
 
 @pulumi.input_type
+class ModuleAzureDevopsArgs:
+    def __init__(__self__, *,
+                 project: pulumi.Input[str]):
+        pulumi.set(__self__, "project", project)
+
+    @property
+    @pulumi.getter
+    def project(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "project")
+
+    @project.setter
+    def project(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project", value)
+
+
+@pulumi.input_type
+class ModuleBitbucketCloudArgs:
+    def __init__(__self__, *,
+                 namespace: pulumi.Input[str]):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ModuleBitbucketDatacenterArgs:
+    def __init__(__self__, *,
+                 namespace: pulumi.Input[str]):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ModuleGithubEnterpriseArgs:
+    def __init__(__self__, *,
+                 namespace: pulumi.Input[str]):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
 class ModuleGitlabArgs:
+    def __init__(__self__, *,
+                 namespace: pulumi.Input[str]):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class StackAzureDevopsArgs:
+    def __init__(__self__, *,
+                 project: pulumi.Input[str]):
+        pulumi.set(__self__, "project", project)
+
+    @property
+    @pulumi.getter
+    def project(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "project")
+
+    @project.setter
+    def project(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project", value)
+
+
+@pulumi.input_type
+class StackBitbucketCloudArgs:
+    def __init__(__self__, *,
+                 namespace: pulumi.Input[str]):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class StackBitbucketDatacenterArgs:
     def __init__(__self__, *,
                  namespace: pulumi.Input[str]):
         pulumi.set(__self__, "namespace", namespace)
@@ -81,6 +203,22 @@ class StackCloudformationArgs:
 
 
 @pulumi.input_type
+class StackGithubEnterpriseArgs:
+    def __init__(__self__, *,
+                 namespace: pulumi.Input[str]):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
 class StackGitlabArgs:
     def __init__(__self__, *,
                  namespace: pulumi.Input[str]):
@@ -93,6 +231,23 @@ class StackGitlabArgs:
 
     @namespace.setter
     def namespace(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class StackKubernetesArgs:
+    def __init__(__self__, *,
+                 namespace: Optional[pulumi.Input[str]] = None):
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
 
 
@@ -121,5 +276,21 @@ class StackPulumiArgs:
     @stack_name.setter
     def stack_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "stack_name", value)
+
+
+@pulumi.input_type
+class StackShowcaseArgs:
+    def __init__(__self__, *,
+                 namespace: pulumi.Input[str]):
+        pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace", value)
 
 

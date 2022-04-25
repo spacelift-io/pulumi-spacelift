@@ -7,6 +7,7 @@ require (
 	cloud.google.com/go/storage v1.13.0 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/aws/aws-sdk-go v1.37.6 // indirect
+	github.com/blang/semver v3.5.1+incompatible
 	github.com/fatih/color v1.10.0 // indirect
 	github.com/go-git/go-git/v5 v5.2.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
@@ -16,7 +17,6 @@ require (
 	github.com/hashicorp/go-uuid v1.0.2 // indirect
 	github.com/hashicorp/hcl/v2 v2.8.2 // indirect
 	github.com/hashicorp/terraform-exec v0.13.0 // indirect
-	github.com/hashicorp/terraform-plugin-sdk/v2 v2.4.2 // indirect
 	github.com/hashicorp/yamux v0.0.0-20200609203250-aecfd211c9ce // indirect
 	github.com/imdario/mergo v0.3.11 // indirect
 	github.com/kevinburke/ssh_config v0.0.0-20201106050909-4977a11b4351 // indirect
@@ -26,11 +26,11 @@ require (
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/oklog/run v1.1.0 // indirect
+	github.com/pkg/errors v0.9.1
 	github.com/pulumi/pulumi-terraform-bridge/v2 v2.18.1
-	github.com/pulumi/pulumi/pkg/v2 v2.18.0
 	github.com/pulumi/pulumi/sdk/v2 v2.18.0
 	github.com/shurcooL/graphql v0.0.0-20200928012149-18c5c3165e3a // indirect
-	github.com/spacelift-io/terraform-provider-spacelift v0.0.0-20210127123709-467e79ec4b0f
+	github.com/spacelift-io/terraform-provider-spacelift v0.1.13
 	github.com/ulikunitz/xz v0.5.10 // indirect
 	github.com/xanzy/ssh-agent v0.3.0 // indirect
 	github.com/zclconf/go-cty v1.7.1 // indirect
@@ -42,3 +42,5 @@ require (
 )
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20201218231525-9cca98608a5e
+
+replace github.com/shurcooL/graphql => github.com/marcinwyszynski/graphql v0.0.0-20210505073322-ed22d920d37d

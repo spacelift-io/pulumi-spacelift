@@ -15,6 +15,8 @@ class StackAwsRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
+                 generate_credentials_in_worker: Optional[pulumi.Input[bool]] = None,
                  module_id: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
@@ -22,9 +24,32 @@ class StackAwsRole(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a StackAwsRole resource with the given unique name, props, and options.
+        > **Note:** `StackAwsRole` is deprecated. Please use `AwsRole` instead. The functionality is identical.
+
+        `StackAwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.
+
+        If you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).
+
+        Note: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and Run ID as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).
+
+        ## Schema
+
+        ### Required
+
+        - **role_arn** (String) ARN of the AWS IAM role to attach
+
+        ### Optional
+
+        - **external_id** (String) Custom external ID (works only for private workers).
+        - **generate_credentials_in_worker** (Boolean) Generate AWS credentials in the private worker
+        - **id** (String) The ID of this resource.
+        - **module_id** (String) ID of the module which assumes the AWS IAM role
+        - **stack_id** (String) ID of the stack which assumes the AWS IAM role
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] external_id: Custom external ID (works only for private workers).
+        :param pulumi.Input[bool] generate_credentials_in_worker: Generate AWS credentials in the private worker
         :param pulumi.Input[str] module_id: ID of the module which assumes the AWS IAM role
         :param pulumi.Input[str] role_arn: ARN of the AWS IAM role to attach
         :param pulumi.Input[str] stack_id: ID of the stack which assumes the AWS IAM role
@@ -46,6 +71,8 @@ class StackAwsRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['external_id'] = external_id
+            __props__['generate_credentials_in_worker'] = generate_credentials_in_worker
             __props__['module_id'] = module_id
             if role_arn is None and not opts.urn:
                 raise TypeError("Missing required property 'role_arn'")
@@ -61,6 +88,8 @@ class StackAwsRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            external_id: Optional[pulumi.Input[str]] = None,
+            generate_credentials_in_worker: Optional[pulumi.Input[bool]] = None,
             module_id: Optional[pulumi.Input[str]] = None,
             role_arn: Optional[pulumi.Input[str]] = None,
             stack_id: Optional[pulumi.Input[str]] = None) -> 'StackAwsRole':
@@ -71,6 +100,8 @@ class StackAwsRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] external_id: Custom external ID (works only for private workers).
+        :param pulumi.Input[bool] generate_credentials_in_worker: Generate AWS credentials in the private worker
         :param pulumi.Input[str] module_id: ID of the module which assumes the AWS IAM role
         :param pulumi.Input[str] role_arn: ARN of the AWS IAM role to attach
         :param pulumi.Input[str] stack_id: ID of the stack which assumes the AWS IAM role
@@ -79,10 +110,28 @@ class StackAwsRole(pulumi.CustomResource):
 
         __props__ = dict()
 
+        __props__["external_id"] = external_id
+        __props__["generate_credentials_in_worker"] = generate_credentials_in_worker
         __props__["module_id"] = module_id
         __props__["role_arn"] = role_arn
         __props__["stack_id"] = stack_id
         return StackAwsRole(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Custom external ID (works only for private workers).
+        """
+        return pulumi.get(self, "external_id")
+
+    @property
+    @pulumi.getter(name="generateCredentialsInWorker")
+    def generate_credentials_in_worker(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Generate AWS credentials in the private worker
+        """
+        return pulumi.get(self, "generate_credentials_in_worker")
 
     @property
     @pulumi.getter(name="moduleId")

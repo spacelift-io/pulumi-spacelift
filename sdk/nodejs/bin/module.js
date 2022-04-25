@@ -4,6 +4,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const pulumi = require("@pulumi/pulumi");
 const utilities = require("./utilities");
+/**
+ * ## Import
+ *
+ * Import is supported using the following syntax
+ *
+ * ```sh
+ *  $ pulumi import spacelift:index/module:Module k8s-module $MODULE_ID
+ * ```
+ */
 class Module extends pulumi.CustomResource {
     constructor(name, argsOrState, opts) {
         let inputs = {};
@@ -11,12 +20,20 @@ class Module extends pulumi.CustomResource {
             const state = argsOrState;
             inputs["administrative"] = state ? state.administrative : undefined;
             inputs["awsAssumeRolePolicyStatement"] = state ? state.awsAssumeRolePolicyStatement : undefined;
+            inputs["azureDevops"] = state ? state.azureDevops : undefined;
+            inputs["bitbucketCloud"] = state ? state.bitbucketCloud : undefined;
+            inputs["bitbucketDatacenter"] = state ? state.bitbucketDatacenter : undefined;
             inputs["branch"] = state ? state.branch : undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["githubEnterprise"] = state ? state.githubEnterprise : undefined;
             inputs["gitlab"] = state ? state.gitlab : undefined;
             inputs["labels"] = state ? state.labels : undefined;
+            inputs["name"] = state ? state.name : undefined;
+            inputs["projectRoot"] = state ? state.projectRoot : undefined;
+            inputs["protectFromDeletion"] = state ? state.protectFromDeletion : undefined;
             inputs["repository"] = state ? state.repository : undefined;
             inputs["sharedAccounts"] = state ? state.sharedAccounts : undefined;
+            inputs["terraformProvider"] = state ? state.terraformProvider : undefined;
             inputs["workerPoolId"] = state ? state.workerPoolId : undefined;
         }
         else {
@@ -28,12 +45,20 @@ class Module extends pulumi.CustomResource {
                 throw new Error("Missing required property 'repository'");
             }
             inputs["administrative"] = args ? args.administrative : undefined;
+            inputs["azureDevops"] = args ? args.azureDevops : undefined;
+            inputs["bitbucketCloud"] = args ? args.bitbucketCloud : undefined;
+            inputs["bitbucketDatacenter"] = args ? args.bitbucketDatacenter : undefined;
             inputs["branch"] = args ? args.branch : undefined;
             inputs["description"] = args ? args.description : undefined;
+            inputs["githubEnterprise"] = args ? args.githubEnterprise : undefined;
             inputs["gitlab"] = args ? args.gitlab : undefined;
             inputs["labels"] = args ? args.labels : undefined;
+            inputs["name"] = args ? args.name : undefined;
+            inputs["projectRoot"] = args ? args.projectRoot : undefined;
+            inputs["protectFromDeletion"] = args ? args.protectFromDeletion : undefined;
             inputs["repository"] = args ? args.repository : undefined;
             inputs["sharedAccounts"] = args ? args.sharedAccounts : undefined;
+            inputs["terraformProvider"] = args ? args.terraformProvider : undefined;
             inputs["workerPoolId"] = args ? args.workerPoolId : undefined;
             inputs["awsAssumeRolePolicyStatement"] = undefined /*out*/;
         }

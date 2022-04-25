@@ -32,8 +32,12 @@ namespace Pulumi.Spacelift
     {
         public readonly bool Administrative;
         public readonly string AwsAssumeRolePolicyStatement;
+        public readonly ImmutableArray<Outputs.GetModuleAzureDevopResult> AzureDevops;
+        public readonly ImmutableArray<Outputs.GetModuleBitbucketCloudResult> BitbucketClouds;
+        public readonly ImmutableArray<Outputs.GetModuleBitbucketDatacenterResult> BitbucketDatacenters;
         public readonly string Branch;
         public readonly string Description;
+        public readonly ImmutableArray<Outputs.GetModuleGithubEnterpriseResult> GithubEnterprises;
         public readonly ImmutableArray<Outputs.GetModuleGitlabResult> Gitlabs;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -41,8 +45,12 @@ namespace Pulumi.Spacelift
         public readonly string Id;
         public readonly ImmutableArray<string> Labels;
         public readonly string ModuleId;
+        public readonly string Name;
+        public readonly string ProjectRoot;
+        public readonly bool ProtectFromDeletion;
         public readonly string Repository;
         public readonly ImmutableArray<string> SharedAccounts;
+        public readonly string TerraformProvider;
         public readonly string WorkerPoolId;
 
         [OutputConstructor]
@@ -51,9 +59,17 @@ namespace Pulumi.Spacelift
 
             string awsAssumeRolePolicyStatement,
 
+            ImmutableArray<Outputs.GetModuleAzureDevopResult> azureDevops,
+
+            ImmutableArray<Outputs.GetModuleBitbucketCloudResult> bitbucketClouds,
+
+            ImmutableArray<Outputs.GetModuleBitbucketDatacenterResult> bitbucketDatacenters,
+
             string branch,
 
             string description,
+
+            ImmutableArray<Outputs.GetModuleGithubEnterpriseResult> githubEnterprises,
 
             ImmutableArray<Outputs.GetModuleGitlabResult> gitlabs,
 
@@ -63,22 +79,38 @@ namespace Pulumi.Spacelift
 
             string moduleId,
 
+            string name,
+
+            string projectRoot,
+
+            bool protectFromDeletion,
+
             string repository,
 
             ImmutableArray<string> sharedAccounts,
+
+            string terraformProvider,
 
             string workerPoolId)
         {
             Administrative = administrative;
             AwsAssumeRolePolicyStatement = awsAssumeRolePolicyStatement;
+            AzureDevops = azureDevops;
+            BitbucketClouds = bitbucketClouds;
+            BitbucketDatacenters = bitbucketDatacenters;
             Branch = branch;
             Description = description;
+            GithubEnterprises = githubEnterprises;
             Gitlabs = gitlabs;
             Id = id;
             Labels = labels;
             ModuleId = moduleId;
+            Name = name;
+            ProjectRoot = projectRoot;
+            ProtectFromDeletion = protectFromDeletion;
             Repository = repository;
             SharedAccounts = sharedAccounts;
+            TerraformProvider = terraformProvider;
             WorkerPoolId = workerPoolId;
         }
     }

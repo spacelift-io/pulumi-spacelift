@@ -12,6 +12,16 @@ function getStack(args, opts) {
         opts.version = utilities.getVersion();
     }
     return pulumi.runtime.invoke("spacelift:index/getStack:getStack", {
+        "afterApplies": args.afterApplies,
+        "afterDestroys": args.afterDestroys,
+        "afterInits": args.afterInits,
+        "afterPerforms": args.afterPerforms,
+        "afterPlans": args.afterPlans,
+        "beforeApplies": args.beforeApplies,
+        "beforeDestroys": args.beforeDestroys,
+        "beforeInits": args.beforeInits,
+        "beforePerforms": args.beforePerforms,
+        "beforePlans": args.beforePlans,
         "stackId": args.stackId,
     }, opts);
 }

@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Spacelift
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Import is supported using the following syntax
+    /// 
+    /// ```sh
+    ///  $ pulumi import spacelift:index/stack:Stack k8s_core $STACK_ID
+    /// ```
+    /// </summary>
     [SpaceliftResourceType("spacelift:index/stack:Stack")]
     public partial class Stack : Pulumi.CustomResource
     {
@@ -17,6 +26,36 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Output("administrative")]
         public Output<bool?> Administrative { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
+        [Output("afterApplies")]
+        public Output<ImmutableArray<string>> AfterApplies { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
+        [Output("afterDestroys")]
+        public Output<ImmutableArray<string>> AfterDestroys { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
+        [Output("afterInits")]
+        public Output<ImmutableArray<string>> AfterInits { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
+        [Output("afterPerforms")]
+        public Output<ImmutableArray<string>> AfterPerforms { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
+        [Output("afterPlans")]
+        public Output<ImmutableArray<string>> AfterPlans { get; private set; } = null!;
 
         /// <summary>
         /// Indicates whether changes to this stack can be automatically deployed
@@ -37,10 +76,52 @@ namespace Pulumi.Spacelift
         public Output<string> AwsAssumeRolePolicyStatement { get; private set; } = null!;
 
         /// <summary>
+        /// Azure DevOps VCS settings
+        /// </summary>
+        [Output("azureDevops")]
+        public Output<Outputs.StackAzureDevops?> AzureDevops { get; private set; } = null!;
+
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
+        [Output("beforeApplies")]
+        public Output<ImmutableArray<string>> BeforeApplies { get; private set; } = null!;
+
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
+        [Output("beforeDestroys")]
+        public Output<ImmutableArray<string>> BeforeDestroys { get; private set; } = null!;
+
+        /// <summary>
         /// List of before-init scripts
         /// </summary>
         [Output("beforeInits")]
         public Output<ImmutableArray<string>> BeforeInits { get; private set; } = null!;
+
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
+        [Output("beforePerforms")]
+        public Output<ImmutableArray<string>> BeforePerforms { get; private set; } = null!;
+
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
+        [Output("beforePlans")]
+        public Output<ImmutableArray<string>> BeforePlans { get; private set; } = null!;
+
+        /// <summary>
+        /// Bitbucket Cloud VCS settings
+        /// </summary>
+        [Output("bitbucketCloud")]
+        public Output<Outputs.StackBitbucketCloud?> BitbucketCloud { get; private set; } = null!;
+
+        /// <summary>
+        /// Bitbucket Datacenter VCS settings
+        /// </summary>
+        [Output("bitbucketDatacenter")]
+        public Output<Outputs.StackBitbucketDatacenter?> BitbucketDatacenter { get; private set; } = null!;
 
         /// <summary>
         /// GitHub branch to apply changes to
@@ -60,6 +141,27 @@ namespace Pulumi.Spacelift
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Indicates whether local preview runs can be triggered on this Stack
+        /// </summary>
+        [Output("enableLocalPreview")]
+        public Output<bool?> EnableLocalPreview { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether GitHub users can deploy from the Checks API
+        /// </summary>
+        [Output("githubActionDeploy")]
+        public Output<bool?> GithubActionDeploy { get; private set; } = null!;
+
+        /// <summary>
+        /// GitHub Enterprise (self-hosted) VCS settings
+        /// </summary>
+        [Output("githubEnterprise")]
+        public Output<Outputs.StackGithubEnterprise?> GithubEnterprise { get; private set; } = null!;
+
+        /// <summary>
+        /// GitLab VCS settings
+        /// </summary>
         [Output("gitlab")]
         public Output<Outputs.StackGitlab?> Gitlab { get; private set; } = null!;
 
@@ -68,6 +170,18 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Output("importState")]
         public Output<string?> ImportState { get; private set; } = null!;
+
+        /// <summary>
+        /// Path to the state file to upload when creating a new stack
+        /// </summary>
+        [Output("importStateFile")]
+        public Output<string?> ImportStateFile { get; private set; } = null!;
+
+        /// <summary>
+        /// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+        /// </summary>
+        [Output("kubernetes")]
+        public Output<Outputs.StackKubernetes?> Kubernetes { get; private set; } = null!;
 
         [Output("labels")]
         public Output<ImmutableArray<string>> Labels { get; private set; } = null!;
@@ -91,6 +205,12 @@ namespace Pulumi.Spacelift
         public Output<string?> ProjectRoot { get; private set; } = null!;
 
         /// <summary>
+        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+        /// </summary>
+        [Output("protectFromDeletion")]
+        public Output<bool?> ProtectFromDeletion { get; private set; } = null!;
+
+        /// <summary>
         /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         /// </summary>
         [Output("pulumi")]
@@ -107,6 +227,15 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Output("runnerImage")]
         public Output<string?> RunnerImage { get; private set; } = null!;
+
+        [Output("showcase")]
+        public Output<Outputs.StackShowcase?> Showcase { get; private set; } = null!;
+
+        /// <summary>
+        /// Allows setting the custom ID (slug) for the stack
+        /// </summary>
+        [Output("slug")]
+        public Output<string?> Slug { get; private set; } = null!;
 
         /// <summary>
         /// Terraform version to use
@@ -178,6 +307,66 @@ namespace Pulumi.Spacelift
         [Input("administrative")]
         public Input<bool>? Administrative { get; set; }
 
+        [Input("afterApplies")]
+        private InputList<string>? _afterApplies;
+
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
+        public InputList<string> AfterApplies
+        {
+            get => _afterApplies ?? (_afterApplies = new InputList<string>());
+            set => _afterApplies = value;
+        }
+
+        [Input("afterDestroys")]
+        private InputList<string>? _afterDestroys;
+
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
+        public InputList<string> AfterDestroys
+        {
+            get => _afterDestroys ?? (_afterDestroys = new InputList<string>());
+            set => _afterDestroys = value;
+        }
+
+        [Input("afterInits")]
+        private InputList<string>? _afterInits;
+
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
+        public InputList<string> AfterInits
+        {
+            get => _afterInits ?? (_afterInits = new InputList<string>());
+            set => _afterInits = value;
+        }
+
+        [Input("afterPerforms")]
+        private InputList<string>? _afterPerforms;
+
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
+        public InputList<string> AfterPerforms
+        {
+            get => _afterPerforms ?? (_afterPerforms = new InputList<string>());
+            set => _afterPerforms = value;
+        }
+
+        [Input("afterPlans")]
+        private InputList<string>? _afterPlans;
+
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
+        public InputList<string> AfterPlans
+        {
+            get => _afterPlans ?? (_afterPlans = new InputList<string>());
+            set => _afterPlans = value;
+        }
+
         /// <summary>
         /// Indicates whether changes to this stack can be automatically deployed
         /// </summary>
@@ -190,6 +379,36 @@ namespace Pulumi.Spacelift
         [Input("autoretry")]
         public Input<bool>? Autoretry { get; set; }
 
+        /// <summary>
+        /// Azure DevOps VCS settings
+        /// </summary>
+        [Input("azureDevops")]
+        public Input<Inputs.StackAzureDevopsArgs>? AzureDevops { get; set; }
+
+        [Input("beforeApplies")]
+        private InputList<string>? _beforeApplies;
+
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
+        public InputList<string> BeforeApplies
+        {
+            get => _beforeApplies ?? (_beforeApplies = new InputList<string>());
+            set => _beforeApplies = value;
+        }
+
+        [Input("beforeDestroys")]
+        private InputList<string>? _beforeDestroys;
+
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
+        public InputList<string> BeforeDestroys
+        {
+            get => _beforeDestroys ?? (_beforeDestroys = new InputList<string>());
+            set => _beforeDestroys = value;
+        }
+
         [Input("beforeInits")]
         private InputList<string>? _beforeInits;
 
@@ -201,6 +420,42 @@ namespace Pulumi.Spacelift
             get => _beforeInits ?? (_beforeInits = new InputList<string>());
             set => _beforeInits = value;
         }
+
+        [Input("beforePerforms")]
+        private InputList<string>? _beforePerforms;
+
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
+        public InputList<string> BeforePerforms
+        {
+            get => _beforePerforms ?? (_beforePerforms = new InputList<string>());
+            set => _beforePerforms = value;
+        }
+
+        [Input("beforePlans")]
+        private InputList<string>? _beforePlans;
+
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
+        public InputList<string> BeforePlans
+        {
+            get => _beforePlans ?? (_beforePlans = new InputList<string>());
+            set => _beforePlans = value;
+        }
+
+        /// <summary>
+        /// Bitbucket Cloud VCS settings
+        /// </summary>
+        [Input("bitbucketCloud")]
+        public Input<Inputs.StackBitbucketCloudArgs>? BitbucketCloud { get; set; }
+
+        /// <summary>
+        /// Bitbucket Datacenter VCS settings
+        /// </summary>
+        [Input("bitbucketDatacenter")]
+        public Input<Inputs.StackBitbucketDatacenterArgs>? BitbucketDatacenter { get; set; }
 
         /// <summary>
         /// GitHub branch to apply changes to
@@ -220,6 +475,27 @@ namespace Pulumi.Spacelift
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Indicates whether local preview runs can be triggered on this Stack
+        /// </summary>
+        [Input("enableLocalPreview")]
+        public Input<bool>? EnableLocalPreview { get; set; }
+
+        /// <summary>
+        /// Indicates whether GitHub users can deploy from the Checks API
+        /// </summary>
+        [Input("githubActionDeploy")]
+        public Input<bool>? GithubActionDeploy { get; set; }
+
+        /// <summary>
+        /// GitHub Enterprise (self-hosted) VCS settings
+        /// </summary>
+        [Input("githubEnterprise")]
+        public Input<Inputs.StackGithubEnterpriseArgs>? GithubEnterprise { get; set; }
+
+        /// <summary>
+        /// GitLab VCS settings
+        /// </summary>
         [Input("gitlab")]
         public Input<Inputs.StackGitlabArgs>? Gitlab { get; set; }
 
@@ -228,6 +504,18 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Input("importState")]
         public Input<string>? ImportState { get; set; }
+
+        /// <summary>
+        /// Path to the state file to upload when creating a new stack
+        /// </summary>
+        [Input("importStateFile")]
+        public Input<string>? ImportStateFile { get; set; }
+
+        /// <summary>
+        /// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+        /// </summary>
+        [Input("kubernetes")]
+        public Input<Inputs.StackKubernetesArgs>? Kubernetes { get; set; }
 
         [Input("labels")]
         private InputList<string>? _labels;
@@ -256,6 +544,12 @@ namespace Pulumi.Spacelift
         public Input<string>? ProjectRoot { get; set; }
 
         /// <summary>
+        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+        /// </summary>
+        [Input("protectFromDeletion")]
+        public Input<bool>? ProtectFromDeletion { get; set; }
+
+        /// <summary>
         /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         /// </summary>
         [Input("pulumi")]
@@ -272,6 +566,15 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Input("runnerImage")]
         public Input<string>? RunnerImage { get; set; }
+
+        [Input("showcase")]
+        public Input<Inputs.StackShowcaseArgs>? Showcase { get; set; }
+
+        /// <summary>
+        /// Allows setting the custom ID (slug) for the stack
+        /// </summary>
+        [Input("slug")]
+        public Input<string>? Slug { get; set; }
 
         /// <summary>
         /// Terraform version to use
@@ -304,6 +607,66 @@ namespace Pulumi.Spacelift
         [Input("administrative")]
         public Input<bool>? Administrative { get; set; }
 
+        [Input("afterApplies")]
+        private InputList<string>? _afterApplies;
+
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
+        public InputList<string> AfterApplies
+        {
+            get => _afterApplies ?? (_afterApplies = new InputList<string>());
+            set => _afterApplies = value;
+        }
+
+        [Input("afterDestroys")]
+        private InputList<string>? _afterDestroys;
+
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
+        public InputList<string> AfterDestroys
+        {
+            get => _afterDestroys ?? (_afterDestroys = new InputList<string>());
+            set => _afterDestroys = value;
+        }
+
+        [Input("afterInits")]
+        private InputList<string>? _afterInits;
+
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
+        public InputList<string> AfterInits
+        {
+            get => _afterInits ?? (_afterInits = new InputList<string>());
+            set => _afterInits = value;
+        }
+
+        [Input("afterPerforms")]
+        private InputList<string>? _afterPerforms;
+
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
+        public InputList<string> AfterPerforms
+        {
+            get => _afterPerforms ?? (_afterPerforms = new InputList<string>());
+            set => _afterPerforms = value;
+        }
+
+        [Input("afterPlans")]
+        private InputList<string>? _afterPlans;
+
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
+        public InputList<string> AfterPlans
+        {
+            get => _afterPlans ?? (_afterPlans = new InputList<string>());
+            set => _afterPlans = value;
+        }
+
         /// <summary>
         /// Indicates whether changes to this stack can be automatically deployed
         /// </summary>
@@ -322,6 +685,36 @@ namespace Pulumi.Spacelift
         [Input("awsAssumeRolePolicyStatement")]
         public Input<string>? AwsAssumeRolePolicyStatement { get; set; }
 
+        /// <summary>
+        /// Azure DevOps VCS settings
+        /// </summary>
+        [Input("azureDevops")]
+        public Input<Inputs.StackAzureDevopsGetArgs>? AzureDevops { get; set; }
+
+        [Input("beforeApplies")]
+        private InputList<string>? _beforeApplies;
+
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
+        public InputList<string> BeforeApplies
+        {
+            get => _beforeApplies ?? (_beforeApplies = new InputList<string>());
+            set => _beforeApplies = value;
+        }
+
+        [Input("beforeDestroys")]
+        private InputList<string>? _beforeDestroys;
+
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
+        public InputList<string> BeforeDestroys
+        {
+            get => _beforeDestroys ?? (_beforeDestroys = new InputList<string>());
+            set => _beforeDestroys = value;
+        }
+
         [Input("beforeInits")]
         private InputList<string>? _beforeInits;
 
@@ -333,6 +726,42 @@ namespace Pulumi.Spacelift
             get => _beforeInits ?? (_beforeInits = new InputList<string>());
             set => _beforeInits = value;
         }
+
+        [Input("beforePerforms")]
+        private InputList<string>? _beforePerforms;
+
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
+        public InputList<string> BeforePerforms
+        {
+            get => _beforePerforms ?? (_beforePerforms = new InputList<string>());
+            set => _beforePerforms = value;
+        }
+
+        [Input("beforePlans")]
+        private InputList<string>? _beforePlans;
+
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
+        public InputList<string> BeforePlans
+        {
+            get => _beforePlans ?? (_beforePlans = new InputList<string>());
+            set => _beforePlans = value;
+        }
+
+        /// <summary>
+        /// Bitbucket Cloud VCS settings
+        /// </summary>
+        [Input("bitbucketCloud")]
+        public Input<Inputs.StackBitbucketCloudGetArgs>? BitbucketCloud { get; set; }
+
+        /// <summary>
+        /// Bitbucket Datacenter VCS settings
+        /// </summary>
+        [Input("bitbucketDatacenter")]
+        public Input<Inputs.StackBitbucketDatacenterGetArgs>? BitbucketDatacenter { get; set; }
 
         /// <summary>
         /// GitHub branch to apply changes to
@@ -352,6 +781,27 @@ namespace Pulumi.Spacelift
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Indicates whether local preview runs can be triggered on this Stack
+        /// </summary>
+        [Input("enableLocalPreview")]
+        public Input<bool>? EnableLocalPreview { get; set; }
+
+        /// <summary>
+        /// Indicates whether GitHub users can deploy from the Checks API
+        /// </summary>
+        [Input("githubActionDeploy")]
+        public Input<bool>? GithubActionDeploy { get; set; }
+
+        /// <summary>
+        /// GitHub Enterprise (self-hosted) VCS settings
+        /// </summary>
+        [Input("githubEnterprise")]
+        public Input<Inputs.StackGithubEnterpriseGetArgs>? GithubEnterprise { get; set; }
+
+        /// <summary>
+        /// GitLab VCS settings
+        /// </summary>
         [Input("gitlab")]
         public Input<Inputs.StackGitlabGetArgs>? Gitlab { get; set; }
 
@@ -360,6 +810,18 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Input("importState")]
         public Input<string>? ImportState { get; set; }
+
+        /// <summary>
+        /// Path to the state file to upload when creating a new stack
+        /// </summary>
+        [Input("importStateFile")]
+        public Input<string>? ImportStateFile { get; set; }
+
+        /// <summary>
+        /// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+        /// </summary>
+        [Input("kubernetes")]
+        public Input<Inputs.StackKubernetesGetArgs>? Kubernetes { get; set; }
 
         [Input("labels")]
         private InputList<string>? _labels;
@@ -388,6 +850,12 @@ namespace Pulumi.Spacelift
         public Input<string>? ProjectRoot { get; set; }
 
         /// <summary>
+        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+        /// </summary>
+        [Input("protectFromDeletion")]
+        public Input<bool>? ProtectFromDeletion { get; set; }
+
+        /// <summary>
         /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         /// </summary>
         [Input("pulumi")]
@@ -404,6 +872,15 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Input("runnerImage")]
         public Input<string>? RunnerImage { get; set; }
+
+        [Input("showcase")]
+        public Input<Inputs.StackShowcaseGetArgs>? Showcase { get; set; }
+
+        /// <summary>
+        /// Allows setting the custom ID (slug) for the stack
+        /// </summary>
+        [Input("slug")]
+        public Input<string>? Slug { get; set; }
 
         /// <summary>
         /// Terraform version to use

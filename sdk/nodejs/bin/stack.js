@@ -4,28 +4,57 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const pulumi = require("@pulumi/pulumi");
 const utilities = require("./utilities");
+/**
+ * ## Import
+ *
+ * Import is supported using the following syntax
+ *
+ * ```sh
+ *  $ pulumi import spacelift:index/stack:Stack k8s_core $STACK_ID
+ * ```
+ */
 class Stack extends pulumi.CustomResource {
     constructor(name, argsOrState, opts) {
         let inputs = {};
         if (opts && opts.id) {
             const state = argsOrState;
             inputs["administrative"] = state ? state.administrative : undefined;
+            inputs["afterApplies"] = state ? state.afterApplies : undefined;
+            inputs["afterDestroys"] = state ? state.afterDestroys : undefined;
+            inputs["afterInits"] = state ? state.afterInits : undefined;
+            inputs["afterPerforms"] = state ? state.afterPerforms : undefined;
+            inputs["afterPlans"] = state ? state.afterPlans : undefined;
             inputs["autodeploy"] = state ? state.autodeploy : undefined;
             inputs["autoretry"] = state ? state.autoretry : undefined;
             inputs["awsAssumeRolePolicyStatement"] = state ? state.awsAssumeRolePolicyStatement : undefined;
+            inputs["azureDevops"] = state ? state.azureDevops : undefined;
+            inputs["beforeApplies"] = state ? state.beforeApplies : undefined;
+            inputs["beforeDestroys"] = state ? state.beforeDestroys : undefined;
             inputs["beforeInits"] = state ? state.beforeInits : undefined;
+            inputs["beforePerforms"] = state ? state.beforePerforms : undefined;
+            inputs["beforePlans"] = state ? state.beforePlans : undefined;
+            inputs["bitbucketCloud"] = state ? state.bitbucketCloud : undefined;
+            inputs["bitbucketDatacenter"] = state ? state.bitbucketDatacenter : undefined;
             inputs["branch"] = state ? state.branch : undefined;
             inputs["cloudformation"] = state ? state.cloudformation : undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["enableLocalPreview"] = state ? state.enableLocalPreview : undefined;
+            inputs["githubActionDeploy"] = state ? state.githubActionDeploy : undefined;
+            inputs["githubEnterprise"] = state ? state.githubEnterprise : undefined;
             inputs["gitlab"] = state ? state.gitlab : undefined;
             inputs["importState"] = state ? state.importState : undefined;
+            inputs["importStateFile"] = state ? state.importStateFile : undefined;
+            inputs["kubernetes"] = state ? state.kubernetes : undefined;
             inputs["labels"] = state ? state.labels : undefined;
             inputs["manageState"] = state ? state.manageState : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["projectRoot"] = state ? state.projectRoot : undefined;
+            inputs["protectFromDeletion"] = state ? state.protectFromDeletion : undefined;
             inputs["pulumi"] = state ? state.pulumi : undefined;
             inputs["repository"] = state ? state.repository : undefined;
             inputs["runnerImage"] = state ? state.runnerImage : undefined;
+            inputs["showcase"] = state ? state.showcase : undefined;
+            inputs["slug"] = state ? state.slug : undefined;
             inputs["terraformVersion"] = state ? state.terraformVersion : undefined;
             inputs["terraformWorkspace"] = state ? state.terraformWorkspace : undefined;
             inputs["workerPoolId"] = state ? state.workerPoolId : undefined;
@@ -42,21 +71,41 @@ class Stack extends pulumi.CustomResource {
                 throw new Error("Missing required property 'repository'");
             }
             inputs["administrative"] = args ? args.administrative : undefined;
+            inputs["afterApplies"] = args ? args.afterApplies : undefined;
+            inputs["afterDestroys"] = args ? args.afterDestroys : undefined;
+            inputs["afterInits"] = args ? args.afterInits : undefined;
+            inputs["afterPerforms"] = args ? args.afterPerforms : undefined;
+            inputs["afterPlans"] = args ? args.afterPlans : undefined;
             inputs["autodeploy"] = args ? args.autodeploy : undefined;
             inputs["autoretry"] = args ? args.autoretry : undefined;
+            inputs["azureDevops"] = args ? args.azureDevops : undefined;
+            inputs["beforeApplies"] = args ? args.beforeApplies : undefined;
+            inputs["beforeDestroys"] = args ? args.beforeDestroys : undefined;
             inputs["beforeInits"] = args ? args.beforeInits : undefined;
+            inputs["beforePerforms"] = args ? args.beforePerforms : undefined;
+            inputs["beforePlans"] = args ? args.beforePlans : undefined;
+            inputs["bitbucketCloud"] = args ? args.bitbucketCloud : undefined;
+            inputs["bitbucketDatacenter"] = args ? args.bitbucketDatacenter : undefined;
             inputs["branch"] = args ? args.branch : undefined;
             inputs["cloudformation"] = args ? args.cloudformation : undefined;
             inputs["description"] = args ? args.description : undefined;
+            inputs["enableLocalPreview"] = args ? args.enableLocalPreview : undefined;
+            inputs["githubActionDeploy"] = args ? args.githubActionDeploy : undefined;
+            inputs["githubEnterprise"] = args ? args.githubEnterprise : undefined;
             inputs["gitlab"] = args ? args.gitlab : undefined;
             inputs["importState"] = args ? args.importState : undefined;
+            inputs["importStateFile"] = args ? args.importStateFile : undefined;
+            inputs["kubernetes"] = args ? args.kubernetes : undefined;
             inputs["labels"] = args ? args.labels : undefined;
             inputs["manageState"] = args ? args.manageState : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["projectRoot"] = args ? args.projectRoot : undefined;
+            inputs["protectFromDeletion"] = args ? args.protectFromDeletion : undefined;
             inputs["pulumi"] = args ? args.pulumi : undefined;
             inputs["repository"] = args ? args.repository : undefined;
             inputs["runnerImage"] = args ? args.runnerImage : undefined;
+            inputs["showcase"] = args ? args.showcase : undefined;
+            inputs["slug"] = args ? args.slug : undefined;
             inputs["terraformVersion"] = args ? args.terraformVersion : undefined;
             inputs["terraformWorkspace"] = args ? args.terraformWorkspace : undefined;
             inputs["workerPoolId"] = args ? args.workerPoolId : undefined;

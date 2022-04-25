@@ -52,10 +52,10 @@ pip install "git+https://github.com/spacelift-io/pulumi-spacelift#egg=pulumi_spa
 or:
 
 ```
-pip install "git+https://github.com/spacelift-io/pulumi-spacelift@v1.2.0#egg=pulumi_spacelift&subdirectory=sdk/python/bin"
+pip install "git+https://github.com/spacelift-io/pulumi-spacelift@v1.2.2#egg=pulumi_spacelift&subdirectory=sdk/python/bin"
 ```
 
-to install a specific version, v1.2.0 in this case.
+to install a specific version, v1.2.2 in this case.
 
 ### .NET Core (C#/F#)
 

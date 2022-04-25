@@ -1,4 +1,33 @@
 import * as pulumi from "@pulumi/pulumi";
+/**
+ * `spacelift.WorkerPool` represents a worker pool assigned to the Spacelift account.
+ *
+ * ## Schema
+ *
+ * ### Required
+ *
+ * - **name** (String) name of the worker pool
+ *
+ * ### Optional
+ *
+ * - **csr** (String, Sensitive) certificate signing request in base64
+ * - **description** (String) description of the worker pool
+ * - **id** (String) The ID of this resource.
+ * - **labels** (Set of String)
+ *
+ * ### Read-Only
+ *
+ * - **config** (String, Sensitive) credentials necessary to connect WorkerPool's workers to the control plane
+ * - **private_key** (String, Sensitive) private key in base64
+ *
+ * ## Import
+ *
+ * Import is supported using the following syntax
+ *
+ * ```sh
+ *  $ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID
+ * ```
+ */
 export declare class WorkerPool extends pulumi.CustomResource {
     /**
      * Get an existing WorkerPool resource's state with the given name, ID, and optional extra
@@ -27,6 +56,7 @@ export declare class WorkerPool extends pulumi.CustomResource {
      * description of the worker pool
      */
     readonly description: pulumi.Output<string | undefined>;
+    readonly labels: pulumi.Output<string[] | undefined>;
     /**
      * name of the worker pool
      */
@@ -60,6 +90,7 @@ export interface WorkerPoolState {
      * description of the worker pool
      */
     readonly description?: pulumi.Input<string>;
+    readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * name of the worker pool
      */
@@ -81,6 +112,7 @@ export interface WorkerPoolArgs {
      * description of the worker pool
      */
     readonly description?: pulumi.Input<string>;
+    readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * name of the worker pool
      */

@@ -11,14 +11,18 @@ const utilities = require("./utilities");
 __export(require("./awsRole"));
 __export(require("./context"));
 __export(require("./contextAttachment"));
+__export(require("./driftDetection"));
 __export(require("./environmentVariable"));
 __export(require("./gcpServiceAccount"));
 __export(require("./getAwsRole"));
+__export(require("./getAzureDevOpsIntegration"));
 __export(require("./getContext"));
 __export(require("./getContextAttachment"));
 __export(require("./getCurrentStack"));
+__export(require("./getDriftDetection"));
 __export(require("./getEnvironmentVariable"));
 __export(require("./getGcpServiceAccount"));
+__export(require("./getGitHubEnterpriseIntegration"));
 __export(require("./getIps"));
 __export(require("./getModule"));
 __export(require("./getMountedFile"));
@@ -26,6 +30,7 @@ __export(require("./getPolicy"));
 __export(require("./getStack"));
 __export(require("./getStackAwsRole"));
 __export(require("./getStackGcpServiceAccount"));
+__export(require("./getVCSAgentPool"));
 __export(require("./getWebhook"));
 __export(require("./getWorkerPool"));
 __export(require("./getWorkerPools"));
@@ -36,7 +41,9 @@ __export(require("./policyAttachment"));
 __export(require("./provider"));
 __export(require("./stack"));
 __export(require("./stackAwsRole"));
+__export(require("./stackDestructor"));
 __export(require("./stackGcpServiceAccount"));
+__export(require("./vcsagentPool"));
 __export(require("./webhook"));
 __export(require("./workerPool"));
 // Export sub-modules:
@@ -48,6 +55,7 @@ exports.types = types;
 const awsRole_1 = require("./awsRole");
 const context_1 = require("./context");
 const contextAttachment_1 = require("./contextAttachment");
+const driftDetection_1 = require("./driftDetection");
 const environmentVariable_1 = require("./environmentVariable");
 const gcpServiceAccount_1 = require("./gcpServiceAccount");
 const module_1 = require("./module");
@@ -56,7 +64,9 @@ const policy_1 = require("./policy");
 const policyAttachment_1 = require("./policyAttachment");
 const stack_1 = require("./stack");
 const stackAwsRole_1 = require("./stackAwsRole");
+const stackDestructor_1 = require("./stackDestructor");
 const stackGcpServiceAccount_1 = require("./stackGcpServiceAccount");
+const vcsagentPool_1 = require("./vcsagentPool");
 const webhook_1 = require("./webhook");
 const workerPool_1 = require("./workerPool");
 const _module = {
@@ -69,6 +79,8 @@ const _module = {
                 return new context_1.Context(name, undefined, { urn });
             case "spacelift:index/contextAttachment:ContextAttachment":
                 return new contextAttachment_1.ContextAttachment(name, undefined, { urn });
+            case "spacelift:index/driftDetection:DriftDetection":
+                return new driftDetection_1.DriftDetection(name, undefined, { urn });
             case "spacelift:index/environmentVariable:EnvironmentVariable":
                 return new environmentVariable_1.EnvironmentVariable(name, undefined, { urn });
             case "spacelift:index/gcpServiceAccount:GcpServiceAccount":
@@ -85,8 +97,12 @@ const _module = {
                 return new stack_1.Stack(name, undefined, { urn });
             case "spacelift:index/stackAwsRole:StackAwsRole":
                 return new stackAwsRole_1.StackAwsRole(name, undefined, { urn });
+            case "spacelift:index/stackDestructor:StackDestructor":
+                return new stackDestructor_1.StackDestructor(name, undefined, { urn });
             case "spacelift:index/stackGcpServiceAccount:StackGcpServiceAccount":
                 return new stackGcpServiceAccount_1.StackGcpServiceAccount(name, undefined, { urn });
+            case "spacelift:index/vCSAgentPool:VCSAgentPool":
+                return new vcsagentPool_1.VCSAgentPool(name, undefined, { urn });
             case "spacelift:index/webhook:Webhook":
                 return new webhook_1.Webhook(name, undefined, { urn });
             case "spacelift:index/workerPool:WorkerPool":
@@ -99,6 +115,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("spacelift", "index/awsRole", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/context", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/contextAttachment", _module);
+pulumi.runtime.registerResourceModule("spacelift", "index/driftDetection", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/environmentVariable", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/gcpServiceAccount", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/module", _module);
@@ -107,7 +124,9 @@ pulumi.runtime.registerResourceModule("spacelift", "index/policy", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/policyAttachment", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/stack", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/stackAwsRole", _module);
+pulumi.runtime.registerResourceModule("spacelift", "index/stackDestructor", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/stackGcpServiceAccount", _module);
+pulumi.runtime.registerResourceModule("spacelift", "index/vCSAgentPool", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/webhook", _module);
 pulumi.runtime.registerResourceModule("spacelift", "index/workerPool", _module);
 const provider_1 = require("./provider");

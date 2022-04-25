@@ -11,6 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Import is supported using the following syntax
+//
+// ```sh
+//  $ pulumi import spacelift:index/module:Module k8s-module $MODULE_ID
+// ```
 type Module struct {
 	pulumi.CustomResourceState
 
@@ -18,16 +25,37 @@ type Module struct {
 	Administrative pulumi.BoolPtrOutput `pulumi:"administrative"`
 	// AWS IAM assume role policy statement setting up trust relationship
 	AwsAssumeRolePolicyStatement pulumi.StringOutput `pulumi:"awsAssumeRolePolicyStatement"`
+	// Azure DevOps VCS settings
+	AzureDevops ModuleAzureDevopsPtrOutput `pulumi:"azureDevops"`
+	// Bitbucket Cloud VCS settings
+	BitbucketCloud ModuleBitbucketCloudPtrOutput `pulumi:"bitbucketCloud"`
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenter ModuleBitbucketDatacenterPtrOutput `pulumi:"bitbucketDatacenter"`
 	// GitHub branch to apply changes to
 	Branch pulumi.StringOutput `pulumi:"branch"`
 	// Free-form module description for users
-	Description pulumi.StringPtrOutput   `pulumi:"description"`
-	Gitlab      ModuleGitlabPtrOutput    `pulumi:"gitlab"`
-	Labels      pulumi.StringArrayOutput `pulumi:"labels"`
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprise ModuleGithubEnterprisePtrOutput `pulumi:"githubEnterprise"`
+	// GitLab VCS settings
+	Gitlab ModuleGitlabPtrOutput    `pulumi:"gitlab"`
+	Labels pulumi.StringArrayOutput `pulumi:"labels"`
+	// The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+	// convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+	// provide it here.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Project root is the optional directory relative to the repository root containing the module source code.
+	ProjectRoot pulumi.StringPtrOutput `pulumi:"projectRoot"`
+	// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+	ProtectFromDeletion pulumi.BoolPtrOutput `pulumi:"protectFromDeletion"`
 	// Name of the repository, without the owner part
 	Repository pulumi.StringOutput `pulumi:"repository"`
 	// List of the accounts (subdomains) which should have access to the Module
 	SharedAccounts pulumi.StringArrayOutput `pulumi:"sharedAccounts"`
+	// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+	// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+	// can provide the provider name here.
+	TerraformProvider pulumi.StringOutput `pulumi:"terraformProvider"`
 	// ID of the worker pool to use
 	WorkerPoolId pulumi.StringPtrOutput `pulumi:"workerPoolId"`
 }
@@ -71,16 +99,37 @@ type moduleState struct {
 	Administrative *bool `pulumi:"administrative"`
 	// AWS IAM assume role policy statement setting up trust relationship
 	AwsAssumeRolePolicyStatement *string `pulumi:"awsAssumeRolePolicyStatement"`
+	// Azure DevOps VCS settings
+	AzureDevops *ModuleAzureDevops `pulumi:"azureDevops"`
+	// Bitbucket Cloud VCS settings
+	BitbucketCloud *ModuleBitbucketCloud `pulumi:"bitbucketCloud"`
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenter *ModuleBitbucketDatacenter `pulumi:"bitbucketDatacenter"`
 	// GitHub branch to apply changes to
 	Branch *string `pulumi:"branch"`
 	// Free-form module description for users
-	Description *string       `pulumi:"description"`
-	Gitlab      *ModuleGitlab `pulumi:"gitlab"`
-	Labels      []string      `pulumi:"labels"`
+	Description *string `pulumi:"description"`
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprise *ModuleGithubEnterprise `pulumi:"githubEnterprise"`
+	// GitLab VCS settings
+	Gitlab *ModuleGitlab `pulumi:"gitlab"`
+	Labels []string      `pulumi:"labels"`
+	// The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+	// convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+	// provide it here.
+	Name *string `pulumi:"name"`
+	// Project root is the optional directory relative to the repository root containing the module source code.
+	ProjectRoot *string `pulumi:"projectRoot"`
+	// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+	ProtectFromDeletion *bool `pulumi:"protectFromDeletion"`
 	// Name of the repository, without the owner part
 	Repository *string `pulumi:"repository"`
 	// List of the accounts (subdomains) which should have access to the Module
 	SharedAccounts []string `pulumi:"sharedAccounts"`
+	// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+	// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+	// can provide the provider name here.
+	TerraformProvider *string `pulumi:"terraformProvider"`
 	// ID of the worker pool to use
 	WorkerPoolId *string `pulumi:"workerPoolId"`
 }
@@ -90,16 +139,37 @@ type ModuleState struct {
 	Administrative pulumi.BoolPtrInput
 	// AWS IAM assume role policy statement setting up trust relationship
 	AwsAssumeRolePolicyStatement pulumi.StringPtrInput
+	// Azure DevOps VCS settings
+	AzureDevops ModuleAzureDevopsPtrInput
+	// Bitbucket Cloud VCS settings
+	BitbucketCloud ModuleBitbucketCloudPtrInput
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenter ModuleBitbucketDatacenterPtrInput
 	// GitHub branch to apply changes to
 	Branch pulumi.StringPtrInput
 	// Free-form module description for users
 	Description pulumi.StringPtrInput
-	Gitlab      ModuleGitlabPtrInput
-	Labels      pulumi.StringArrayInput
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprise ModuleGithubEnterprisePtrInput
+	// GitLab VCS settings
+	Gitlab ModuleGitlabPtrInput
+	Labels pulumi.StringArrayInput
+	// The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+	// convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+	// provide it here.
+	Name pulumi.StringPtrInput
+	// Project root is the optional directory relative to the repository root containing the module source code.
+	ProjectRoot pulumi.StringPtrInput
+	// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+	ProtectFromDeletion pulumi.BoolPtrInput
 	// Name of the repository, without the owner part
 	Repository pulumi.StringPtrInput
 	// List of the accounts (subdomains) which should have access to the Module
 	SharedAccounts pulumi.StringArrayInput
+	// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+	// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+	// can provide the provider name here.
+	TerraformProvider pulumi.StringPtrInput
 	// ID of the worker pool to use
 	WorkerPoolId pulumi.StringPtrInput
 }
@@ -111,16 +181,37 @@ func (ModuleState) ElementType() reflect.Type {
 type moduleArgs struct {
 	// Indicates whether this module can manage others
 	Administrative *bool `pulumi:"administrative"`
+	// Azure DevOps VCS settings
+	AzureDevops *ModuleAzureDevops `pulumi:"azureDevops"`
+	// Bitbucket Cloud VCS settings
+	BitbucketCloud *ModuleBitbucketCloud `pulumi:"bitbucketCloud"`
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenter *ModuleBitbucketDatacenter `pulumi:"bitbucketDatacenter"`
 	// GitHub branch to apply changes to
 	Branch string `pulumi:"branch"`
 	// Free-form module description for users
-	Description *string       `pulumi:"description"`
-	Gitlab      *ModuleGitlab `pulumi:"gitlab"`
-	Labels      []string      `pulumi:"labels"`
+	Description *string `pulumi:"description"`
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprise *ModuleGithubEnterprise `pulumi:"githubEnterprise"`
+	// GitLab VCS settings
+	Gitlab *ModuleGitlab `pulumi:"gitlab"`
+	Labels []string      `pulumi:"labels"`
+	// The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+	// convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+	// provide it here.
+	Name *string `pulumi:"name"`
+	// Project root is the optional directory relative to the repository root containing the module source code.
+	ProjectRoot *string `pulumi:"projectRoot"`
+	// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+	ProtectFromDeletion *bool `pulumi:"protectFromDeletion"`
 	// Name of the repository, without the owner part
 	Repository string `pulumi:"repository"`
 	// List of the accounts (subdomains) which should have access to the Module
 	SharedAccounts []string `pulumi:"sharedAccounts"`
+	// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+	// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+	// can provide the provider name here.
+	TerraformProvider *string `pulumi:"terraformProvider"`
 	// ID of the worker pool to use
 	WorkerPoolId *string `pulumi:"workerPoolId"`
 }
@@ -129,16 +220,37 @@ type moduleArgs struct {
 type ModuleArgs struct {
 	// Indicates whether this module can manage others
 	Administrative pulumi.BoolPtrInput
+	// Azure DevOps VCS settings
+	AzureDevops ModuleAzureDevopsPtrInput
+	// Bitbucket Cloud VCS settings
+	BitbucketCloud ModuleBitbucketCloudPtrInput
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenter ModuleBitbucketDatacenterPtrInput
 	// GitHub branch to apply changes to
 	Branch pulumi.StringInput
 	// Free-form module description for users
 	Description pulumi.StringPtrInput
-	Gitlab      ModuleGitlabPtrInput
-	Labels      pulumi.StringArrayInput
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprise ModuleGithubEnterprisePtrInput
+	// GitLab VCS settings
+	Gitlab ModuleGitlabPtrInput
+	Labels pulumi.StringArrayInput
+	// The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+	// convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+	// provide it here.
+	Name pulumi.StringPtrInput
+	// Project root is the optional directory relative to the repository root containing the module source code.
+	ProjectRoot pulumi.StringPtrInput
+	// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+	ProtectFromDeletion pulumi.BoolPtrInput
 	// Name of the repository, without the owner part
 	Repository pulumi.StringInput
 	// List of the accounts (subdomains) which should have access to the Module
 	SharedAccounts pulumi.StringArrayInput
+	// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+	// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+	// can provide the provider name here.
+	TerraformProvider pulumi.StringPtrInput
 	// ID of the worker pool to use
 	WorkerPoolId pulumi.StringPtrInput
 }

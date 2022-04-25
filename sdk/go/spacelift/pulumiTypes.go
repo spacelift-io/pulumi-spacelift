@@ -10,6 +10,510 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+type ModuleAzureDevops struct {
+	Project string `pulumi:"project"`
+}
+
+// ModuleAzureDevopsInput is an input type that accepts ModuleAzureDevopsArgs and ModuleAzureDevopsOutput values.
+// You can construct a concrete instance of `ModuleAzureDevopsInput` via:
+//
+//          ModuleAzureDevopsArgs{...}
+type ModuleAzureDevopsInput interface {
+	pulumi.Input
+
+	ToModuleAzureDevopsOutput() ModuleAzureDevopsOutput
+	ToModuleAzureDevopsOutputWithContext(context.Context) ModuleAzureDevopsOutput
+}
+
+type ModuleAzureDevopsArgs struct {
+	Project pulumi.StringInput `pulumi:"project"`
+}
+
+func (ModuleAzureDevopsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModuleAzureDevops)(nil)).Elem()
+}
+
+func (i ModuleAzureDevopsArgs) ToModuleAzureDevopsOutput() ModuleAzureDevopsOutput {
+	return i.ToModuleAzureDevopsOutputWithContext(context.Background())
+}
+
+func (i ModuleAzureDevopsArgs) ToModuleAzureDevopsOutputWithContext(ctx context.Context) ModuleAzureDevopsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleAzureDevopsOutput)
+}
+
+func (i ModuleAzureDevopsArgs) ToModuleAzureDevopsPtrOutput() ModuleAzureDevopsPtrOutput {
+	return i.ToModuleAzureDevopsPtrOutputWithContext(context.Background())
+}
+
+func (i ModuleAzureDevopsArgs) ToModuleAzureDevopsPtrOutputWithContext(ctx context.Context) ModuleAzureDevopsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleAzureDevopsOutput).ToModuleAzureDevopsPtrOutputWithContext(ctx)
+}
+
+// ModuleAzureDevopsPtrInput is an input type that accepts ModuleAzureDevopsArgs, ModuleAzureDevopsPtr and ModuleAzureDevopsPtrOutput values.
+// You can construct a concrete instance of `ModuleAzureDevopsPtrInput` via:
+//
+//          ModuleAzureDevopsArgs{...}
+//
+//  or:
+//
+//          nil
+type ModuleAzureDevopsPtrInput interface {
+	pulumi.Input
+
+	ToModuleAzureDevopsPtrOutput() ModuleAzureDevopsPtrOutput
+	ToModuleAzureDevopsPtrOutputWithContext(context.Context) ModuleAzureDevopsPtrOutput
+}
+
+type moduleAzureDevopsPtrType ModuleAzureDevopsArgs
+
+func ModuleAzureDevopsPtr(v *ModuleAzureDevopsArgs) ModuleAzureDevopsPtrInput {
+	return (*moduleAzureDevopsPtrType)(v)
+}
+
+func (*moduleAzureDevopsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ModuleAzureDevops)(nil)).Elem()
+}
+
+func (i *moduleAzureDevopsPtrType) ToModuleAzureDevopsPtrOutput() ModuleAzureDevopsPtrOutput {
+	return i.ToModuleAzureDevopsPtrOutputWithContext(context.Background())
+}
+
+func (i *moduleAzureDevopsPtrType) ToModuleAzureDevopsPtrOutputWithContext(ctx context.Context) ModuleAzureDevopsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleAzureDevopsPtrOutput)
+}
+
+type ModuleAzureDevopsOutput struct{ *pulumi.OutputState }
+
+func (ModuleAzureDevopsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModuleAzureDevops)(nil)).Elem()
+}
+
+func (o ModuleAzureDevopsOutput) ToModuleAzureDevopsOutput() ModuleAzureDevopsOutput {
+	return o
+}
+
+func (o ModuleAzureDevopsOutput) ToModuleAzureDevopsOutputWithContext(ctx context.Context) ModuleAzureDevopsOutput {
+	return o
+}
+
+func (o ModuleAzureDevopsOutput) ToModuleAzureDevopsPtrOutput() ModuleAzureDevopsPtrOutput {
+	return o.ToModuleAzureDevopsPtrOutputWithContext(context.Background())
+}
+
+func (o ModuleAzureDevopsOutput) ToModuleAzureDevopsPtrOutputWithContext(ctx context.Context) ModuleAzureDevopsPtrOutput {
+	return o.ApplyT(func(v ModuleAzureDevops) *ModuleAzureDevops {
+		return &v
+	}).(ModuleAzureDevopsPtrOutput)
+}
+func (o ModuleAzureDevopsOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v ModuleAzureDevops) string { return v.Project }).(pulumi.StringOutput)
+}
+
+type ModuleAzureDevopsPtrOutput struct{ *pulumi.OutputState }
+
+func (ModuleAzureDevopsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ModuleAzureDevops)(nil)).Elem()
+}
+
+func (o ModuleAzureDevopsPtrOutput) ToModuleAzureDevopsPtrOutput() ModuleAzureDevopsPtrOutput {
+	return o
+}
+
+func (o ModuleAzureDevopsPtrOutput) ToModuleAzureDevopsPtrOutputWithContext(ctx context.Context) ModuleAzureDevopsPtrOutput {
+	return o
+}
+
+func (o ModuleAzureDevopsPtrOutput) Elem() ModuleAzureDevopsOutput {
+	return o.ApplyT(func(v *ModuleAzureDevops) ModuleAzureDevops { return *v }).(ModuleAzureDevopsOutput)
+}
+
+func (o ModuleAzureDevopsPtrOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ModuleAzureDevops) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Project
+	}).(pulumi.StringPtrOutput)
+}
+
+type ModuleBitbucketCloud struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// ModuleBitbucketCloudInput is an input type that accepts ModuleBitbucketCloudArgs and ModuleBitbucketCloudOutput values.
+// You can construct a concrete instance of `ModuleBitbucketCloudInput` via:
+//
+//          ModuleBitbucketCloudArgs{...}
+type ModuleBitbucketCloudInput interface {
+	pulumi.Input
+
+	ToModuleBitbucketCloudOutput() ModuleBitbucketCloudOutput
+	ToModuleBitbucketCloudOutputWithContext(context.Context) ModuleBitbucketCloudOutput
+}
+
+type ModuleBitbucketCloudArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (ModuleBitbucketCloudArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModuleBitbucketCloud)(nil)).Elem()
+}
+
+func (i ModuleBitbucketCloudArgs) ToModuleBitbucketCloudOutput() ModuleBitbucketCloudOutput {
+	return i.ToModuleBitbucketCloudOutputWithContext(context.Background())
+}
+
+func (i ModuleBitbucketCloudArgs) ToModuleBitbucketCloudOutputWithContext(ctx context.Context) ModuleBitbucketCloudOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketCloudOutput)
+}
+
+func (i ModuleBitbucketCloudArgs) ToModuleBitbucketCloudPtrOutput() ModuleBitbucketCloudPtrOutput {
+	return i.ToModuleBitbucketCloudPtrOutputWithContext(context.Background())
+}
+
+func (i ModuleBitbucketCloudArgs) ToModuleBitbucketCloudPtrOutputWithContext(ctx context.Context) ModuleBitbucketCloudPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketCloudOutput).ToModuleBitbucketCloudPtrOutputWithContext(ctx)
+}
+
+// ModuleBitbucketCloudPtrInput is an input type that accepts ModuleBitbucketCloudArgs, ModuleBitbucketCloudPtr and ModuleBitbucketCloudPtrOutput values.
+// You can construct a concrete instance of `ModuleBitbucketCloudPtrInput` via:
+//
+//          ModuleBitbucketCloudArgs{...}
+//
+//  or:
+//
+//          nil
+type ModuleBitbucketCloudPtrInput interface {
+	pulumi.Input
+
+	ToModuleBitbucketCloudPtrOutput() ModuleBitbucketCloudPtrOutput
+	ToModuleBitbucketCloudPtrOutputWithContext(context.Context) ModuleBitbucketCloudPtrOutput
+}
+
+type moduleBitbucketCloudPtrType ModuleBitbucketCloudArgs
+
+func ModuleBitbucketCloudPtr(v *ModuleBitbucketCloudArgs) ModuleBitbucketCloudPtrInput {
+	return (*moduleBitbucketCloudPtrType)(v)
+}
+
+func (*moduleBitbucketCloudPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ModuleBitbucketCloud)(nil)).Elem()
+}
+
+func (i *moduleBitbucketCloudPtrType) ToModuleBitbucketCloudPtrOutput() ModuleBitbucketCloudPtrOutput {
+	return i.ToModuleBitbucketCloudPtrOutputWithContext(context.Background())
+}
+
+func (i *moduleBitbucketCloudPtrType) ToModuleBitbucketCloudPtrOutputWithContext(ctx context.Context) ModuleBitbucketCloudPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketCloudPtrOutput)
+}
+
+type ModuleBitbucketCloudOutput struct{ *pulumi.OutputState }
+
+func (ModuleBitbucketCloudOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModuleBitbucketCloud)(nil)).Elem()
+}
+
+func (o ModuleBitbucketCloudOutput) ToModuleBitbucketCloudOutput() ModuleBitbucketCloudOutput {
+	return o
+}
+
+func (o ModuleBitbucketCloudOutput) ToModuleBitbucketCloudOutputWithContext(ctx context.Context) ModuleBitbucketCloudOutput {
+	return o
+}
+
+func (o ModuleBitbucketCloudOutput) ToModuleBitbucketCloudPtrOutput() ModuleBitbucketCloudPtrOutput {
+	return o.ToModuleBitbucketCloudPtrOutputWithContext(context.Background())
+}
+
+func (o ModuleBitbucketCloudOutput) ToModuleBitbucketCloudPtrOutputWithContext(ctx context.Context) ModuleBitbucketCloudPtrOutput {
+	return o.ApplyT(func(v ModuleBitbucketCloud) *ModuleBitbucketCloud {
+		return &v
+	}).(ModuleBitbucketCloudPtrOutput)
+}
+func (o ModuleBitbucketCloudOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v ModuleBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type ModuleBitbucketCloudPtrOutput struct{ *pulumi.OutputState }
+
+func (ModuleBitbucketCloudPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ModuleBitbucketCloud)(nil)).Elem()
+}
+
+func (o ModuleBitbucketCloudPtrOutput) ToModuleBitbucketCloudPtrOutput() ModuleBitbucketCloudPtrOutput {
+	return o
+}
+
+func (o ModuleBitbucketCloudPtrOutput) ToModuleBitbucketCloudPtrOutputWithContext(ctx context.Context) ModuleBitbucketCloudPtrOutput {
+	return o
+}
+
+func (o ModuleBitbucketCloudPtrOutput) Elem() ModuleBitbucketCloudOutput {
+	return o.ApplyT(func(v *ModuleBitbucketCloud) ModuleBitbucketCloud { return *v }).(ModuleBitbucketCloudOutput)
+}
+
+func (o ModuleBitbucketCloudPtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ModuleBitbucketCloud) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
+type ModuleBitbucketDatacenter struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// ModuleBitbucketDatacenterInput is an input type that accepts ModuleBitbucketDatacenterArgs and ModuleBitbucketDatacenterOutput values.
+// You can construct a concrete instance of `ModuleBitbucketDatacenterInput` via:
+//
+//          ModuleBitbucketDatacenterArgs{...}
+type ModuleBitbucketDatacenterInput interface {
+	pulumi.Input
+
+	ToModuleBitbucketDatacenterOutput() ModuleBitbucketDatacenterOutput
+	ToModuleBitbucketDatacenterOutputWithContext(context.Context) ModuleBitbucketDatacenterOutput
+}
+
+type ModuleBitbucketDatacenterArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (ModuleBitbucketDatacenterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModuleBitbucketDatacenter)(nil)).Elem()
+}
+
+func (i ModuleBitbucketDatacenterArgs) ToModuleBitbucketDatacenterOutput() ModuleBitbucketDatacenterOutput {
+	return i.ToModuleBitbucketDatacenterOutputWithContext(context.Background())
+}
+
+func (i ModuleBitbucketDatacenterArgs) ToModuleBitbucketDatacenterOutputWithContext(ctx context.Context) ModuleBitbucketDatacenterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketDatacenterOutput)
+}
+
+func (i ModuleBitbucketDatacenterArgs) ToModuleBitbucketDatacenterPtrOutput() ModuleBitbucketDatacenterPtrOutput {
+	return i.ToModuleBitbucketDatacenterPtrOutputWithContext(context.Background())
+}
+
+func (i ModuleBitbucketDatacenterArgs) ToModuleBitbucketDatacenterPtrOutputWithContext(ctx context.Context) ModuleBitbucketDatacenterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketDatacenterOutput).ToModuleBitbucketDatacenterPtrOutputWithContext(ctx)
+}
+
+// ModuleBitbucketDatacenterPtrInput is an input type that accepts ModuleBitbucketDatacenterArgs, ModuleBitbucketDatacenterPtr and ModuleBitbucketDatacenterPtrOutput values.
+// You can construct a concrete instance of `ModuleBitbucketDatacenterPtrInput` via:
+//
+//          ModuleBitbucketDatacenterArgs{...}
+//
+//  or:
+//
+//          nil
+type ModuleBitbucketDatacenterPtrInput interface {
+	pulumi.Input
+
+	ToModuleBitbucketDatacenterPtrOutput() ModuleBitbucketDatacenterPtrOutput
+	ToModuleBitbucketDatacenterPtrOutputWithContext(context.Context) ModuleBitbucketDatacenterPtrOutput
+}
+
+type moduleBitbucketDatacenterPtrType ModuleBitbucketDatacenterArgs
+
+func ModuleBitbucketDatacenterPtr(v *ModuleBitbucketDatacenterArgs) ModuleBitbucketDatacenterPtrInput {
+	return (*moduleBitbucketDatacenterPtrType)(v)
+}
+
+func (*moduleBitbucketDatacenterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ModuleBitbucketDatacenter)(nil)).Elem()
+}
+
+func (i *moduleBitbucketDatacenterPtrType) ToModuleBitbucketDatacenterPtrOutput() ModuleBitbucketDatacenterPtrOutput {
+	return i.ToModuleBitbucketDatacenterPtrOutputWithContext(context.Background())
+}
+
+func (i *moduleBitbucketDatacenterPtrType) ToModuleBitbucketDatacenterPtrOutputWithContext(ctx context.Context) ModuleBitbucketDatacenterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketDatacenterPtrOutput)
+}
+
+type ModuleBitbucketDatacenterOutput struct{ *pulumi.OutputState }
+
+func (ModuleBitbucketDatacenterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModuleBitbucketDatacenter)(nil)).Elem()
+}
+
+func (o ModuleBitbucketDatacenterOutput) ToModuleBitbucketDatacenterOutput() ModuleBitbucketDatacenterOutput {
+	return o
+}
+
+func (o ModuleBitbucketDatacenterOutput) ToModuleBitbucketDatacenterOutputWithContext(ctx context.Context) ModuleBitbucketDatacenterOutput {
+	return o
+}
+
+func (o ModuleBitbucketDatacenterOutput) ToModuleBitbucketDatacenterPtrOutput() ModuleBitbucketDatacenterPtrOutput {
+	return o.ToModuleBitbucketDatacenterPtrOutputWithContext(context.Background())
+}
+
+func (o ModuleBitbucketDatacenterOutput) ToModuleBitbucketDatacenterPtrOutputWithContext(ctx context.Context) ModuleBitbucketDatacenterPtrOutput {
+	return o.ApplyT(func(v ModuleBitbucketDatacenter) *ModuleBitbucketDatacenter {
+		return &v
+	}).(ModuleBitbucketDatacenterPtrOutput)
+}
+func (o ModuleBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v ModuleBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type ModuleBitbucketDatacenterPtrOutput struct{ *pulumi.OutputState }
+
+func (ModuleBitbucketDatacenterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ModuleBitbucketDatacenter)(nil)).Elem()
+}
+
+func (o ModuleBitbucketDatacenterPtrOutput) ToModuleBitbucketDatacenterPtrOutput() ModuleBitbucketDatacenterPtrOutput {
+	return o
+}
+
+func (o ModuleBitbucketDatacenterPtrOutput) ToModuleBitbucketDatacenterPtrOutputWithContext(ctx context.Context) ModuleBitbucketDatacenterPtrOutput {
+	return o
+}
+
+func (o ModuleBitbucketDatacenterPtrOutput) Elem() ModuleBitbucketDatacenterOutput {
+	return o.ApplyT(func(v *ModuleBitbucketDatacenter) ModuleBitbucketDatacenter { return *v }).(ModuleBitbucketDatacenterOutput)
+}
+
+func (o ModuleBitbucketDatacenterPtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ModuleBitbucketDatacenter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
+type ModuleGithubEnterprise struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// ModuleGithubEnterpriseInput is an input type that accepts ModuleGithubEnterpriseArgs and ModuleGithubEnterpriseOutput values.
+// You can construct a concrete instance of `ModuleGithubEnterpriseInput` via:
+//
+//          ModuleGithubEnterpriseArgs{...}
+type ModuleGithubEnterpriseInput interface {
+	pulumi.Input
+
+	ToModuleGithubEnterpriseOutput() ModuleGithubEnterpriseOutput
+	ToModuleGithubEnterpriseOutputWithContext(context.Context) ModuleGithubEnterpriseOutput
+}
+
+type ModuleGithubEnterpriseArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (ModuleGithubEnterpriseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModuleGithubEnterprise)(nil)).Elem()
+}
+
+func (i ModuleGithubEnterpriseArgs) ToModuleGithubEnterpriseOutput() ModuleGithubEnterpriseOutput {
+	return i.ToModuleGithubEnterpriseOutputWithContext(context.Background())
+}
+
+func (i ModuleGithubEnterpriseArgs) ToModuleGithubEnterpriseOutputWithContext(ctx context.Context) ModuleGithubEnterpriseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleGithubEnterpriseOutput)
+}
+
+func (i ModuleGithubEnterpriseArgs) ToModuleGithubEnterprisePtrOutput() ModuleGithubEnterprisePtrOutput {
+	return i.ToModuleGithubEnterprisePtrOutputWithContext(context.Background())
+}
+
+func (i ModuleGithubEnterpriseArgs) ToModuleGithubEnterprisePtrOutputWithContext(ctx context.Context) ModuleGithubEnterprisePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleGithubEnterpriseOutput).ToModuleGithubEnterprisePtrOutputWithContext(ctx)
+}
+
+// ModuleGithubEnterprisePtrInput is an input type that accepts ModuleGithubEnterpriseArgs, ModuleGithubEnterprisePtr and ModuleGithubEnterprisePtrOutput values.
+// You can construct a concrete instance of `ModuleGithubEnterprisePtrInput` via:
+//
+//          ModuleGithubEnterpriseArgs{...}
+//
+//  or:
+//
+//          nil
+type ModuleGithubEnterprisePtrInput interface {
+	pulumi.Input
+
+	ToModuleGithubEnterprisePtrOutput() ModuleGithubEnterprisePtrOutput
+	ToModuleGithubEnterprisePtrOutputWithContext(context.Context) ModuleGithubEnterprisePtrOutput
+}
+
+type moduleGithubEnterprisePtrType ModuleGithubEnterpriseArgs
+
+func ModuleGithubEnterprisePtr(v *ModuleGithubEnterpriseArgs) ModuleGithubEnterprisePtrInput {
+	return (*moduleGithubEnterprisePtrType)(v)
+}
+
+func (*moduleGithubEnterprisePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ModuleGithubEnterprise)(nil)).Elem()
+}
+
+func (i *moduleGithubEnterprisePtrType) ToModuleGithubEnterprisePtrOutput() ModuleGithubEnterprisePtrOutput {
+	return i.ToModuleGithubEnterprisePtrOutputWithContext(context.Background())
+}
+
+func (i *moduleGithubEnterprisePtrType) ToModuleGithubEnterprisePtrOutputWithContext(ctx context.Context) ModuleGithubEnterprisePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModuleGithubEnterprisePtrOutput)
+}
+
+type ModuleGithubEnterpriseOutput struct{ *pulumi.OutputState }
+
+func (ModuleGithubEnterpriseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModuleGithubEnterprise)(nil)).Elem()
+}
+
+func (o ModuleGithubEnterpriseOutput) ToModuleGithubEnterpriseOutput() ModuleGithubEnterpriseOutput {
+	return o
+}
+
+func (o ModuleGithubEnterpriseOutput) ToModuleGithubEnterpriseOutputWithContext(ctx context.Context) ModuleGithubEnterpriseOutput {
+	return o
+}
+
+func (o ModuleGithubEnterpriseOutput) ToModuleGithubEnterprisePtrOutput() ModuleGithubEnterprisePtrOutput {
+	return o.ToModuleGithubEnterprisePtrOutputWithContext(context.Background())
+}
+
+func (o ModuleGithubEnterpriseOutput) ToModuleGithubEnterprisePtrOutputWithContext(ctx context.Context) ModuleGithubEnterprisePtrOutput {
+	return o.ApplyT(func(v ModuleGithubEnterprise) *ModuleGithubEnterprise {
+		return &v
+	}).(ModuleGithubEnterprisePtrOutput)
+}
+func (o ModuleGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v ModuleGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type ModuleGithubEnterprisePtrOutput struct{ *pulumi.OutputState }
+
+func (ModuleGithubEnterprisePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ModuleGithubEnterprise)(nil)).Elem()
+}
+
+func (o ModuleGithubEnterprisePtrOutput) ToModuleGithubEnterprisePtrOutput() ModuleGithubEnterprisePtrOutput {
+	return o
+}
+
+func (o ModuleGithubEnterprisePtrOutput) ToModuleGithubEnterprisePtrOutputWithContext(ctx context.Context) ModuleGithubEnterprisePtrOutput {
+	return o
+}
+
+func (o ModuleGithubEnterprisePtrOutput) Elem() ModuleGithubEnterpriseOutput {
+	return o.ApplyT(func(v *ModuleGithubEnterprise) ModuleGithubEnterprise { return *v }).(ModuleGithubEnterpriseOutput)
+}
+
+func (o ModuleGithubEnterprisePtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ModuleGithubEnterprise) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
 type ModuleGitlab struct {
 	Namespace string `pulumi:"namespace"`
 }
@@ -129,6 +633,384 @@ func (o ModuleGitlabPtrOutput) Elem() ModuleGitlabOutput {
 
 func (o ModuleGitlabPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ModuleGitlab) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
+type StackAzureDevops struct {
+	Project string `pulumi:"project"`
+}
+
+// StackAzureDevopsInput is an input type that accepts StackAzureDevopsArgs and StackAzureDevopsOutput values.
+// You can construct a concrete instance of `StackAzureDevopsInput` via:
+//
+//          StackAzureDevopsArgs{...}
+type StackAzureDevopsInput interface {
+	pulumi.Input
+
+	ToStackAzureDevopsOutput() StackAzureDevopsOutput
+	ToStackAzureDevopsOutputWithContext(context.Context) StackAzureDevopsOutput
+}
+
+type StackAzureDevopsArgs struct {
+	Project pulumi.StringInput `pulumi:"project"`
+}
+
+func (StackAzureDevopsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackAzureDevops)(nil)).Elem()
+}
+
+func (i StackAzureDevopsArgs) ToStackAzureDevopsOutput() StackAzureDevopsOutput {
+	return i.ToStackAzureDevopsOutputWithContext(context.Background())
+}
+
+func (i StackAzureDevopsArgs) ToStackAzureDevopsOutputWithContext(ctx context.Context) StackAzureDevopsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackAzureDevopsOutput)
+}
+
+func (i StackAzureDevopsArgs) ToStackAzureDevopsPtrOutput() StackAzureDevopsPtrOutput {
+	return i.ToStackAzureDevopsPtrOutputWithContext(context.Background())
+}
+
+func (i StackAzureDevopsArgs) ToStackAzureDevopsPtrOutputWithContext(ctx context.Context) StackAzureDevopsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackAzureDevopsOutput).ToStackAzureDevopsPtrOutputWithContext(ctx)
+}
+
+// StackAzureDevopsPtrInput is an input type that accepts StackAzureDevopsArgs, StackAzureDevopsPtr and StackAzureDevopsPtrOutput values.
+// You can construct a concrete instance of `StackAzureDevopsPtrInput` via:
+//
+//          StackAzureDevopsArgs{...}
+//
+//  or:
+//
+//          nil
+type StackAzureDevopsPtrInput interface {
+	pulumi.Input
+
+	ToStackAzureDevopsPtrOutput() StackAzureDevopsPtrOutput
+	ToStackAzureDevopsPtrOutputWithContext(context.Context) StackAzureDevopsPtrOutput
+}
+
+type stackAzureDevopsPtrType StackAzureDevopsArgs
+
+func StackAzureDevopsPtr(v *StackAzureDevopsArgs) StackAzureDevopsPtrInput {
+	return (*stackAzureDevopsPtrType)(v)
+}
+
+func (*stackAzureDevopsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackAzureDevops)(nil)).Elem()
+}
+
+func (i *stackAzureDevopsPtrType) ToStackAzureDevopsPtrOutput() StackAzureDevopsPtrOutput {
+	return i.ToStackAzureDevopsPtrOutputWithContext(context.Background())
+}
+
+func (i *stackAzureDevopsPtrType) ToStackAzureDevopsPtrOutputWithContext(ctx context.Context) StackAzureDevopsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackAzureDevopsPtrOutput)
+}
+
+type StackAzureDevopsOutput struct{ *pulumi.OutputState }
+
+func (StackAzureDevopsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackAzureDevops)(nil)).Elem()
+}
+
+func (o StackAzureDevopsOutput) ToStackAzureDevopsOutput() StackAzureDevopsOutput {
+	return o
+}
+
+func (o StackAzureDevopsOutput) ToStackAzureDevopsOutputWithContext(ctx context.Context) StackAzureDevopsOutput {
+	return o
+}
+
+func (o StackAzureDevopsOutput) ToStackAzureDevopsPtrOutput() StackAzureDevopsPtrOutput {
+	return o.ToStackAzureDevopsPtrOutputWithContext(context.Background())
+}
+
+func (o StackAzureDevopsOutput) ToStackAzureDevopsPtrOutputWithContext(ctx context.Context) StackAzureDevopsPtrOutput {
+	return o.ApplyT(func(v StackAzureDevops) *StackAzureDevops {
+		return &v
+	}).(StackAzureDevopsPtrOutput)
+}
+func (o StackAzureDevopsOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v StackAzureDevops) string { return v.Project }).(pulumi.StringOutput)
+}
+
+type StackAzureDevopsPtrOutput struct{ *pulumi.OutputState }
+
+func (StackAzureDevopsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackAzureDevops)(nil)).Elem()
+}
+
+func (o StackAzureDevopsPtrOutput) ToStackAzureDevopsPtrOutput() StackAzureDevopsPtrOutput {
+	return o
+}
+
+func (o StackAzureDevopsPtrOutput) ToStackAzureDevopsPtrOutputWithContext(ctx context.Context) StackAzureDevopsPtrOutput {
+	return o
+}
+
+func (o StackAzureDevopsPtrOutput) Elem() StackAzureDevopsOutput {
+	return o.ApplyT(func(v *StackAzureDevops) StackAzureDevops { return *v }).(StackAzureDevopsOutput)
+}
+
+func (o StackAzureDevopsPtrOutput) Project() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackAzureDevops) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Project
+	}).(pulumi.StringPtrOutput)
+}
+
+type StackBitbucketCloud struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// StackBitbucketCloudInput is an input type that accepts StackBitbucketCloudArgs and StackBitbucketCloudOutput values.
+// You can construct a concrete instance of `StackBitbucketCloudInput` via:
+//
+//          StackBitbucketCloudArgs{...}
+type StackBitbucketCloudInput interface {
+	pulumi.Input
+
+	ToStackBitbucketCloudOutput() StackBitbucketCloudOutput
+	ToStackBitbucketCloudOutputWithContext(context.Context) StackBitbucketCloudOutput
+}
+
+type StackBitbucketCloudArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (StackBitbucketCloudArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackBitbucketCloud)(nil)).Elem()
+}
+
+func (i StackBitbucketCloudArgs) ToStackBitbucketCloudOutput() StackBitbucketCloudOutput {
+	return i.ToStackBitbucketCloudOutputWithContext(context.Background())
+}
+
+func (i StackBitbucketCloudArgs) ToStackBitbucketCloudOutputWithContext(ctx context.Context) StackBitbucketCloudOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketCloudOutput)
+}
+
+func (i StackBitbucketCloudArgs) ToStackBitbucketCloudPtrOutput() StackBitbucketCloudPtrOutput {
+	return i.ToStackBitbucketCloudPtrOutputWithContext(context.Background())
+}
+
+func (i StackBitbucketCloudArgs) ToStackBitbucketCloudPtrOutputWithContext(ctx context.Context) StackBitbucketCloudPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketCloudOutput).ToStackBitbucketCloudPtrOutputWithContext(ctx)
+}
+
+// StackBitbucketCloudPtrInput is an input type that accepts StackBitbucketCloudArgs, StackBitbucketCloudPtr and StackBitbucketCloudPtrOutput values.
+// You can construct a concrete instance of `StackBitbucketCloudPtrInput` via:
+//
+//          StackBitbucketCloudArgs{...}
+//
+//  or:
+//
+//          nil
+type StackBitbucketCloudPtrInput interface {
+	pulumi.Input
+
+	ToStackBitbucketCloudPtrOutput() StackBitbucketCloudPtrOutput
+	ToStackBitbucketCloudPtrOutputWithContext(context.Context) StackBitbucketCloudPtrOutput
+}
+
+type stackBitbucketCloudPtrType StackBitbucketCloudArgs
+
+func StackBitbucketCloudPtr(v *StackBitbucketCloudArgs) StackBitbucketCloudPtrInput {
+	return (*stackBitbucketCloudPtrType)(v)
+}
+
+func (*stackBitbucketCloudPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackBitbucketCloud)(nil)).Elem()
+}
+
+func (i *stackBitbucketCloudPtrType) ToStackBitbucketCloudPtrOutput() StackBitbucketCloudPtrOutput {
+	return i.ToStackBitbucketCloudPtrOutputWithContext(context.Background())
+}
+
+func (i *stackBitbucketCloudPtrType) ToStackBitbucketCloudPtrOutputWithContext(ctx context.Context) StackBitbucketCloudPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketCloudPtrOutput)
+}
+
+type StackBitbucketCloudOutput struct{ *pulumi.OutputState }
+
+func (StackBitbucketCloudOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackBitbucketCloud)(nil)).Elem()
+}
+
+func (o StackBitbucketCloudOutput) ToStackBitbucketCloudOutput() StackBitbucketCloudOutput {
+	return o
+}
+
+func (o StackBitbucketCloudOutput) ToStackBitbucketCloudOutputWithContext(ctx context.Context) StackBitbucketCloudOutput {
+	return o
+}
+
+func (o StackBitbucketCloudOutput) ToStackBitbucketCloudPtrOutput() StackBitbucketCloudPtrOutput {
+	return o.ToStackBitbucketCloudPtrOutputWithContext(context.Background())
+}
+
+func (o StackBitbucketCloudOutput) ToStackBitbucketCloudPtrOutputWithContext(ctx context.Context) StackBitbucketCloudPtrOutput {
+	return o.ApplyT(func(v StackBitbucketCloud) *StackBitbucketCloud {
+		return &v
+	}).(StackBitbucketCloudPtrOutput)
+}
+func (o StackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v StackBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type StackBitbucketCloudPtrOutput struct{ *pulumi.OutputState }
+
+func (StackBitbucketCloudPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackBitbucketCloud)(nil)).Elem()
+}
+
+func (o StackBitbucketCloudPtrOutput) ToStackBitbucketCloudPtrOutput() StackBitbucketCloudPtrOutput {
+	return o
+}
+
+func (o StackBitbucketCloudPtrOutput) ToStackBitbucketCloudPtrOutputWithContext(ctx context.Context) StackBitbucketCloudPtrOutput {
+	return o
+}
+
+func (o StackBitbucketCloudPtrOutput) Elem() StackBitbucketCloudOutput {
+	return o.ApplyT(func(v *StackBitbucketCloud) StackBitbucketCloud { return *v }).(StackBitbucketCloudOutput)
+}
+
+func (o StackBitbucketCloudPtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackBitbucketCloud) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
+type StackBitbucketDatacenter struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// StackBitbucketDatacenterInput is an input type that accepts StackBitbucketDatacenterArgs and StackBitbucketDatacenterOutput values.
+// You can construct a concrete instance of `StackBitbucketDatacenterInput` via:
+//
+//          StackBitbucketDatacenterArgs{...}
+type StackBitbucketDatacenterInput interface {
+	pulumi.Input
+
+	ToStackBitbucketDatacenterOutput() StackBitbucketDatacenterOutput
+	ToStackBitbucketDatacenterOutputWithContext(context.Context) StackBitbucketDatacenterOutput
+}
+
+type StackBitbucketDatacenterArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (StackBitbucketDatacenterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (i StackBitbucketDatacenterArgs) ToStackBitbucketDatacenterOutput() StackBitbucketDatacenterOutput {
+	return i.ToStackBitbucketDatacenterOutputWithContext(context.Background())
+}
+
+func (i StackBitbucketDatacenterArgs) ToStackBitbucketDatacenterOutputWithContext(ctx context.Context) StackBitbucketDatacenterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketDatacenterOutput)
+}
+
+func (i StackBitbucketDatacenterArgs) ToStackBitbucketDatacenterPtrOutput() StackBitbucketDatacenterPtrOutput {
+	return i.ToStackBitbucketDatacenterPtrOutputWithContext(context.Background())
+}
+
+func (i StackBitbucketDatacenterArgs) ToStackBitbucketDatacenterPtrOutputWithContext(ctx context.Context) StackBitbucketDatacenterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketDatacenterOutput).ToStackBitbucketDatacenterPtrOutputWithContext(ctx)
+}
+
+// StackBitbucketDatacenterPtrInput is an input type that accepts StackBitbucketDatacenterArgs, StackBitbucketDatacenterPtr and StackBitbucketDatacenterPtrOutput values.
+// You can construct a concrete instance of `StackBitbucketDatacenterPtrInput` via:
+//
+//          StackBitbucketDatacenterArgs{...}
+//
+//  or:
+//
+//          nil
+type StackBitbucketDatacenterPtrInput interface {
+	pulumi.Input
+
+	ToStackBitbucketDatacenterPtrOutput() StackBitbucketDatacenterPtrOutput
+	ToStackBitbucketDatacenterPtrOutputWithContext(context.Context) StackBitbucketDatacenterPtrOutput
+}
+
+type stackBitbucketDatacenterPtrType StackBitbucketDatacenterArgs
+
+func StackBitbucketDatacenterPtr(v *StackBitbucketDatacenterArgs) StackBitbucketDatacenterPtrInput {
+	return (*stackBitbucketDatacenterPtrType)(v)
+}
+
+func (*stackBitbucketDatacenterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (i *stackBitbucketDatacenterPtrType) ToStackBitbucketDatacenterPtrOutput() StackBitbucketDatacenterPtrOutput {
+	return i.ToStackBitbucketDatacenterPtrOutputWithContext(context.Background())
+}
+
+func (i *stackBitbucketDatacenterPtrType) ToStackBitbucketDatacenterPtrOutputWithContext(ctx context.Context) StackBitbucketDatacenterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketDatacenterPtrOutput)
+}
+
+type StackBitbucketDatacenterOutput struct{ *pulumi.OutputState }
+
+func (StackBitbucketDatacenterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (o StackBitbucketDatacenterOutput) ToStackBitbucketDatacenterOutput() StackBitbucketDatacenterOutput {
+	return o
+}
+
+func (o StackBitbucketDatacenterOutput) ToStackBitbucketDatacenterOutputWithContext(ctx context.Context) StackBitbucketDatacenterOutput {
+	return o
+}
+
+func (o StackBitbucketDatacenterOutput) ToStackBitbucketDatacenterPtrOutput() StackBitbucketDatacenterPtrOutput {
+	return o.ToStackBitbucketDatacenterPtrOutputWithContext(context.Background())
+}
+
+func (o StackBitbucketDatacenterOutput) ToStackBitbucketDatacenterPtrOutputWithContext(ctx context.Context) StackBitbucketDatacenterPtrOutput {
+	return o.ApplyT(func(v StackBitbucketDatacenter) *StackBitbucketDatacenter {
+		return &v
+	}).(StackBitbucketDatacenterPtrOutput)
+}
+func (o StackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v StackBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type StackBitbucketDatacenterPtrOutput struct{ *pulumi.OutputState }
+
+func (StackBitbucketDatacenterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (o StackBitbucketDatacenterPtrOutput) ToStackBitbucketDatacenterPtrOutput() StackBitbucketDatacenterPtrOutput {
+	return o
+}
+
+func (o StackBitbucketDatacenterPtrOutput) ToStackBitbucketDatacenterPtrOutputWithContext(ctx context.Context) StackBitbucketDatacenterPtrOutput {
+	return o
+}
+
+func (o StackBitbucketDatacenterPtrOutput) Elem() StackBitbucketDatacenterOutput {
+	return o.ApplyT(func(v *StackBitbucketDatacenter) StackBitbucketDatacenter { return *v }).(StackBitbucketDatacenterOutput)
+}
+
+func (o StackBitbucketDatacenterPtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackBitbucketDatacenter) *string {
 		if v == nil {
 			return nil
 		}
@@ -307,6 +1189,132 @@ func (o StackCloudformationPtrOutput) TemplateBucket() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type StackGithubEnterprise struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// StackGithubEnterpriseInput is an input type that accepts StackGithubEnterpriseArgs and StackGithubEnterpriseOutput values.
+// You can construct a concrete instance of `StackGithubEnterpriseInput` via:
+//
+//          StackGithubEnterpriseArgs{...}
+type StackGithubEnterpriseInput interface {
+	pulumi.Input
+
+	ToStackGithubEnterpriseOutput() StackGithubEnterpriseOutput
+	ToStackGithubEnterpriseOutputWithContext(context.Context) StackGithubEnterpriseOutput
+}
+
+type StackGithubEnterpriseArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (StackGithubEnterpriseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackGithubEnterprise)(nil)).Elem()
+}
+
+func (i StackGithubEnterpriseArgs) ToStackGithubEnterpriseOutput() StackGithubEnterpriseOutput {
+	return i.ToStackGithubEnterpriseOutputWithContext(context.Background())
+}
+
+func (i StackGithubEnterpriseArgs) ToStackGithubEnterpriseOutputWithContext(ctx context.Context) StackGithubEnterpriseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackGithubEnterpriseOutput)
+}
+
+func (i StackGithubEnterpriseArgs) ToStackGithubEnterprisePtrOutput() StackGithubEnterprisePtrOutput {
+	return i.ToStackGithubEnterprisePtrOutputWithContext(context.Background())
+}
+
+func (i StackGithubEnterpriseArgs) ToStackGithubEnterprisePtrOutputWithContext(ctx context.Context) StackGithubEnterprisePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackGithubEnterpriseOutput).ToStackGithubEnterprisePtrOutputWithContext(ctx)
+}
+
+// StackGithubEnterprisePtrInput is an input type that accepts StackGithubEnterpriseArgs, StackGithubEnterprisePtr and StackGithubEnterprisePtrOutput values.
+// You can construct a concrete instance of `StackGithubEnterprisePtrInput` via:
+//
+//          StackGithubEnterpriseArgs{...}
+//
+//  or:
+//
+//          nil
+type StackGithubEnterprisePtrInput interface {
+	pulumi.Input
+
+	ToStackGithubEnterprisePtrOutput() StackGithubEnterprisePtrOutput
+	ToStackGithubEnterprisePtrOutputWithContext(context.Context) StackGithubEnterprisePtrOutput
+}
+
+type stackGithubEnterprisePtrType StackGithubEnterpriseArgs
+
+func StackGithubEnterprisePtr(v *StackGithubEnterpriseArgs) StackGithubEnterprisePtrInput {
+	return (*stackGithubEnterprisePtrType)(v)
+}
+
+func (*stackGithubEnterprisePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackGithubEnterprise)(nil)).Elem()
+}
+
+func (i *stackGithubEnterprisePtrType) ToStackGithubEnterprisePtrOutput() StackGithubEnterprisePtrOutput {
+	return i.ToStackGithubEnterprisePtrOutputWithContext(context.Background())
+}
+
+func (i *stackGithubEnterprisePtrType) ToStackGithubEnterprisePtrOutputWithContext(ctx context.Context) StackGithubEnterprisePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackGithubEnterprisePtrOutput)
+}
+
+type StackGithubEnterpriseOutput struct{ *pulumi.OutputState }
+
+func (StackGithubEnterpriseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackGithubEnterprise)(nil)).Elem()
+}
+
+func (o StackGithubEnterpriseOutput) ToStackGithubEnterpriseOutput() StackGithubEnterpriseOutput {
+	return o
+}
+
+func (o StackGithubEnterpriseOutput) ToStackGithubEnterpriseOutputWithContext(ctx context.Context) StackGithubEnterpriseOutput {
+	return o
+}
+
+func (o StackGithubEnterpriseOutput) ToStackGithubEnterprisePtrOutput() StackGithubEnterprisePtrOutput {
+	return o.ToStackGithubEnterprisePtrOutputWithContext(context.Background())
+}
+
+func (o StackGithubEnterpriseOutput) ToStackGithubEnterprisePtrOutputWithContext(ctx context.Context) StackGithubEnterprisePtrOutput {
+	return o.ApplyT(func(v StackGithubEnterprise) *StackGithubEnterprise {
+		return &v
+	}).(StackGithubEnterprisePtrOutput)
+}
+func (o StackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v StackGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type StackGithubEnterprisePtrOutput struct{ *pulumi.OutputState }
+
+func (StackGithubEnterprisePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackGithubEnterprise)(nil)).Elem()
+}
+
+func (o StackGithubEnterprisePtrOutput) ToStackGithubEnterprisePtrOutput() StackGithubEnterprisePtrOutput {
+	return o
+}
+
+func (o StackGithubEnterprisePtrOutput) ToStackGithubEnterprisePtrOutputWithContext(ctx context.Context) StackGithubEnterprisePtrOutput {
+	return o
+}
+
+func (o StackGithubEnterprisePtrOutput) Elem() StackGithubEnterpriseOutput {
+	return o.ApplyT(func(v *StackGithubEnterprise) StackGithubEnterprise { return *v }).(StackGithubEnterpriseOutput)
+}
+
+func (o StackGithubEnterprisePtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackGithubEnterprise) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
 type StackGitlab struct {
 	Namespace string `pulumi:"namespace"`
 }
@@ -430,6 +1438,132 @@ func (o StackGitlabPtrOutput) Namespace() pulumi.StringPtrOutput {
 			return nil
 		}
 		return &v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
+type StackKubernetes struct {
+	Namespace *string `pulumi:"namespace"`
+}
+
+// StackKubernetesInput is an input type that accepts StackKubernetesArgs and StackKubernetesOutput values.
+// You can construct a concrete instance of `StackKubernetesInput` via:
+//
+//          StackKubernetesArgs{...}
+type StackKubernetesInput interface {
+	pulumi.Input
+
+	ToStackKubernetesOutput() StackKubernetesOutput
+	ToStackKubernetesOutputWithContext(context.Context) StackKubernetesOutput
+}
+
+type StackKubernetesArgs struct {
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+}
+
+func (StackKubernetesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackKubernetes)(nil)).Elem()
+}
+
+func (i StackKubernetesArgs) ToStackKubernetesOutput() StackKubernetesOutput {
+	return i.ToStackKubernetesOutputWithContext(context.Background())
+}
+
+func (i StackKubernetesArgs) ToStackKubernetesOutputWithContext(ctx context.Context) StackKubernetesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackKubernetesOutput)
+}
+
+func (i StackKubernetesArgs) ToStackKubernetesPtrOutput() StackKubernetesPtrOutput {
+	return i.ToStackKubernetesPtrOutputWithContext(context.Background())
+}
+
+func (i StackKubernetesArgs) ToStackKubernetesPtrOutputWithContext(ctx context.Context) StackKubernetesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackKubernetesOutput).ToStackKubernetesPtrOutputWithContext(ctx)
+}
+
+// StackKubernetesPtrInput is an input type that accepts StackKubernetesArgs, StackKubernetesPtr and StackKubernetesPtrOutput values.
+// You can construct a concrete instance of `StackKubernetesPtrInput` via:
+//
+//          StackKubernetesArgs{...}
+//
+//  or:
+//
+//          nil
+type StackKubernetesPtrInput interface {
+	pulumi.Input
+
+	ToStackKubernetesPtrOutput() StackKubernetesPtrOutput
+	ToStackKubernetesPtrOutputWithContext(context.Context) StackKubernetesPtrOutput
+}
+
+type stackKubernetesPtrType StackKubernetesArgs
+
+func StackKubernetesPtr(v *StackKubernetesArgs) StackKubernetesPtrInput {
+	return (*stackKubernetesPtrType)(v)
+}
+
+func (*stackKubernetesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackKubernetes)(nil)).Elem()
+}
+
+func (i *stackKubernetesPtrType) ToStackKubernetesPtrOutput() StackKubernetesPtrOutput {
+	return i.ToStackKubernetesPtrOutputWithContext(context.Background())
+}
+
+func (i *stackKubernetesPtrType) ToStackKubernetesPtrOutputWithContext(ctx context.Context) StackKubernetesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackKubernetesPtrOutput)
+}
+
+type StackKubernetesOutput struct{ *pulumi.OutputState }
+
+func (StackKubernetesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackKubernetes)(nil)).Elem()
+}
+
+func (o StackKubernetesOutput) ToStackKubernetesOutput() StackKubernetesOutput {
+	return o
+}
+
+func (o StackKubernetesOutput) ToStackKubernetesOutputWithContext(ctx context.Context) StackKubernetesOutput {
+	return o
+}
+
+func (o StackKubernetesOutput) ToStackKubernetesPtrOutput() StackKubernetesPtrOutput {
+	return o.ToStackKubernetesPtrOutputWithContext(context.Background())
+}
+
+func (o StackKubernetesOutput) ToStackKubernetesPtrOutputWithContext(ctx context.Context) StackKubernetesPtrOutput {
+	return o.ApplyT(func(v StackKubernetes) *StackKubernetes {
+		return &v
+	}).(StackKubernetesPtrOutput)
+}
+func (o StackKubernetesOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackKubernetes) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+type StackKubernetesPtrOutput struct{ *pulumi.OutputState }
+
+func (StackKubernetesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackKubernetes)(nil)).Elem()
+}
+
+func (o StackKubernetesPtrOutput) ToStackKubernetesPtrOutput() StackKubernetesPtrOutput {
+	return o
+}
+
+func (o StackKubernetesPtrOutput) ToStackKubernetesPtrOutputWithContext(ctx context.Context) StackKubernetesPtrOutput {
+	return o
+}
+
+func (o StackKubernetesPtrOutput) Elem() StackKubernetesOutput {
+	return o.ApplyT(func(v *StackKubernetes) StackKubernetes { return *v }).(StackKubernetesOutput)
+}
+
+func (o StackKubernetesPtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackKubernetes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Namespace
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -574,6 +1708,508 @@ func (o StackPulumiPtrOutput) StackName() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type StackShowcase struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// StackShowcaseInput is an input type that accepts StackShowcaseArgs and StackShowcaseOutput values.
+// You can construct a concrete instance of `StackShowcaseInput` via:
+//
+//          StackShowcaseArgs{...}
+type StackShowcaseInput interface {
+	pulumi.Input
+
+	ToStackShowcaseOutput() StackShowcaseOutput
+	ToStackShowcaseOutputWithContext(context.Context) StackShowcaseOutput
+}
+
+type StackShowcaseArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (StackShowcaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackShowcase)(nil)).Elem()
+}
+
+func (i StackShowcaseArgs) ToStackShowcaseOutput() StackShowcaseOutput {
+	return i.ToStackShowcaseOutputWithContext(context.Background())
+}
+
+func (i StackShowcaseArgs) ToStackShowcaseOutputWithContext(ctx context.Context) StackShowcaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackShowcaseOutput)
+}
+
+func (i StackShowcaseArgs) ToStackShowcasePtrOutput() StackShowcasePtrOutput {
+	return i.ToStackShowcasePtrOutputWithContext(context.Background())
+}
+
+func (i StackShowcaseArgs) ToStackShowcasePtrOutputWithContext(ctx context.Context) StackShowcasePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackShowcaseOutput).ToStackShowcasePtrOutputWithContext(ctx)
+}
+
+// StackShowcasePtrInput is an input type that accepts StackShowcaseArgs, StackShowcasePtr and StackShowcasePtrOutput values.
+// You can construct a concrete instance of `StackShowcasePtrInput` via:
+//
+//          StackShowcaseArgs{...}
+//
+//  or:
+//
+//          nil
+type StackShowcasePtrInput interface {
+	pulumi.Input
+
+	ToStackShowcasePtrOutput() StackShowcasePtrOutput
+	ToStackShowcasePtrOutputWithContext(context.Context) StackShowcasePtrOutput
+}
+
+type stackShowcasePtrType StackShowcaseArgs
+
+func StackShowcasePtr(v *StackShowcaseArgs) StackShowcasePtrInput {
+	return (*stackShowcasePtrType)(v)
+}
+
+func (*stackShowcasePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackShowcase)(nil)).Elem()
+}
+
+func (i *stackShowcasePtrType) ToStackShowcasePtrOutput() StackShowcasePtrOutput {
+	return i.ToStackShowcasePtrOutputWithContext(context.Background())
+}
+
+func (i *stackShowcasePtrType) ToStackShowcasePtrOutputWithContext(ctx context.Context) StackShowcasePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackShowcasePtrOutput)
+}
+
+type StackShowcaseOutput struct{ *pulumi.OutputState }
+
+func (StackShowcaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackShowcase)(nil)).Elem()
+}
+
+func (o StackShowcaseOutput) ToStackShowcaseOutput() StackShowcaseOutput {
+	return o
+}
+
+func (o StackShowcaseOutput) ToStackShowcaseOutputWithContext(ctx context.Context) StackShowcaseOutput {
+	return o
+}
+
+func (o StackShowcaseOutput) ToStackShowcasePtrOutput() StackShowcasePtrOutput {
+	return o.ToStackShowcasePtrOutputWithContext(context.Background())
+}
+
+func (o StackShowcaseOutput) ToStackShowcasePtrOutputWithContext(ctx context.Context) StackShowcasePtrOutput {
+	return o.ApplyT(func(v StackShowcase) *StackShowcase {
+		return &v
+	}).(StackShowcasePtrOutput)
+}
+func (o StackShowcaseOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v StackShowcase) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type StackShowcasePtrOutput struct{ *pulumi.OutputState }
+
+func (StackShowcasePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackShowcase)(nil)).Elem()
+}
+
+func (o StackShowcasePtrOutput) ToStackShowcasePtrOutput() StackShowcasePtrOutput {
+	return o
+}
+
+func (o StackShowcasePtrOutput) ToStackShowcasePtrOutputWithContext(ctx context.Context) StackShowcasePtrOutput {
+	return o
+}
+
+func (o StackShowcasePtrOutput) Elem() StackShowcaseOutput {
+	return o.ApplyT(func(v *StackShowcase) StackShowcase { return *v }).(StackShowcaseOutput)
+}
+
+func (o StackShowcasePtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackShowcase) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
+type GetModuleAzureDevop struct {
+	Project string `pulumi:"project"`
+}
+
+// GetModuleAzureDevopInput is an input type that accepts GetModuleAzureDevopArgs and GetModuleAzureDevopOutput values.
+// You can construct a concrete instance of `GetModuleAzureDevopInput` via:
+//
+//          GetModuleAzureDevopArgs{...}
+type GetModuleAzureDevopInput interface {
+	pulumi.Input
+
+	ToGetModuleAzureDevopOutput() GetModuleAzureDevopOutput
+	ToGetModuleAzureDevopOutputWithContext(context.Context) GetModuleAzureDevopOutput
+}
+
+type GetModuleAzureDevopArgs struct {
+	Project pulumi.StringInput `pulumi:"project"`
+}
+
+func (GetModuleAzureDevopArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModuleAzureDevop)(nil)).Elem()
+}
+
+func (i GetModuleAzureDevopArgs) ToGetModuleAzureDevopOutput() GetModuleAzureDevopOutput {
+	return i.ToGetModuleAzureDevopOutputWithContext(context.Background())
+}
+
+func (i GetModuleAzureDevopArgs) ToGetModuleAzureDevopOutputWithContext(ctx context.Context) GetModuleAzureDevopOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModuleAzureDevopOutput)
+}
+
+// GetModuleAzureDevopArrayInput is an input type that accepts GetModuleAzureDevopArray and GetModuleAzureDevopArrayOutput values.
+// You can construct a concrete instance of `GetModuleAzureDevopArrayInput` via:
+//
+//          GetModuleAzureDevopArray{ GetModuleAzureDevopArgs{...} }
+type GetModuleAzureDevopArrayInput interface {
+	pulumi.Input
+
+	ToGetModuleAzureDevopArrayOutput() GetModuleAzureDevopArrayOutput
+	ToGetModuleAzureDevopArrayOutputWithContext(context.Context) GetModuleAzureDevopArrayOutput
+}
+
+type GetModuleAzureDevopArray []GetModuleAzureDevopInput
+
+func (GetModuleAzureDevopArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModuleAzureDevop)(nil)).Elem()
+}
+
+func (i GetModuleAzureDevopArray) ToGetModuleAzureDevopArrayOutput() GetModuleAzureDevopArrayOutput {
+	return i.ToGetModuleAzureDevopArrayOutputWithContext(context.Background())
+}
+
+func (i GetModuleAzureDevopArray) ToGetModuleAzureDevopArrayOutputWithContext(ctx context.Context) GetModuleAzureDevopArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModuleAzureDevopArrayOutput)
+}
+
+type GetModuleAzureDevopOutput struct{ *pulumi.OutputState }
+
+func (GetModuleAzureDevopOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModuleAzureDevop)(nil)).Elem()
+}
+
+func (o GetModuleAzureDevopOutput) ToGetModuleAzureDevopOutput() GetModuleAzureDevopOutput {
+	return o
+}
+
+func (o GetModuleAzureDevopOutput) ToGetModuleAzureDevopOutputWithContext(ctx context.Context) GetModuleAzureDevopOutput {
+	return o
+}
+
+func (o GetModuleAzureDevopOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetModuleAzureDevop) string { return v.Project }).(pulumi.StringOutput)
+}
+
+type GetModuleAzureDevopArrayOutput struct{ *pulumi.OutputState }
+
+func (GetModuleAzureDevopArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModuleAzureDevop)(nil)).Elem()
+}
+
+func (o GetModuleAzureDevopArrayOutput) ToGetModuleAzureDevopArrayOutput() GetModuleAzureDevopArrayOutput {
+	return o
+}
+
+func (o GetModuleAzureDevopArrayOutput) ToGetModuleAzureDevopArrayOutputWithContext(ctx context.Context) GetModuleAzureDevopArrayOutput {
+	return o
+}
+
+func (o GetModuleAzureDevopArrayOutput) Index(i pulumi.IntInput) GetModuleAzureDevopOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleAzureDevop {
+		return vs[0].([]GetModuleAzureDevop)[vs[1].(int)]
+	}).(GetModuleAzureDevopOutput)
+}
+
+type GetModuleBitbucketCloud struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetModuleBitbucketCloudInput is an input type that accepts GetModuleBitbucketCloudArgs and GetModuleBitbucketCloudOutput values.
+// You can construct a concrete instance of `GetModuleBitbucketCloudInput` via:
+//
+//          GetModuleBitbucketCloudArgs{...}
+type GetModuleBitbucketCloudInput interface {
+	pulumi.Input
+
+	ToGetModuleBitbucketCloudOutput() GetModuleBitbucketCloudOutput
+	ToGetModuleBitbucketCloudOutputWithContext(context.Context) GetModuleBitbucketCloudOutput
+}
+
+type GetModuleBitbucketCloudArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetModuleBitbucketCloudArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModuleBitbucketCloud)(nil)).Elem()
+}
+
+func (i GetModuleBitbucketCloudArgs) ToGetModuleBitbucketCloudOutput() GetModuleBitbucketCloudOutput {
+	return i.ToGetModuleBitbucketCloudOutputWithContext(context.Background())
+}
+
+func (i GetModuleBitbucketCloudArgs) ToGetModuleBitbucketCloudOutputWithContext(ctx context.Context) GetModuleBitbucketCloudOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketCloudOutput)
+}
+
+// GetModuleBitbucketCloudArrayInput is an input type that accepts GetModuleBitbucketCloudArray and GetModuleBitbucketCloudArrayOutput values.
+// You can construct a concrete instance of `GetModuleBitbucketCloudArrayInput` via:
+//
+//          GetModuleBitbucketCloudArray{ GetModuleBitbucketCloudArgs{...} }
+type GetModuleBitbucketCloudArrayInput interface {
+	pulumi.Input
+
+	ToGetModuleBitbucketCloudArrayOutput() GetModuleBitbucketCloudArrayOutput
+	ToGetModuleBitbucketCloudArrayOutputWithContext(context.Context) GetModuleBitbucketCloudArrayOutput
+}
+
+type GetModuleBitbucketCloudArray []GetModuleBitbucketCloudInput
+
+func (GetModuleBitbucketCloudArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModuleBitbucketCloud)(nil)).Elem()
+}
+
+func (i GetModuleBitbucketCloudArray) ToGetModuleBitbucketCloudArrayOutput() GetModuleBitbucketCloudArrayOutput {
+	return i.ToGetModuleBitbucketCloudArrayOutputWithContext(context.Background())
+}
+
+func (i GetModuleBitbucketCloudArray) ToGetModuleBitbucketCloudArrayOutputWithContext(ctx context.Context) GetModuleBitbucketCloudArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketCloudArrayOutput)
+}
+
+type GetModuleBitbucketCloudOutput struct{ *pulumi.OutputState }
+
+func (GetModuleBitbucketCloudOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModuleBitbucketCloud)(nil)).Elem()
+}
+
+func (o GetModuleBitbucketCloudOutput) ToGetModuleBitbucketCloudOutput() GetModuleBitbucketCloudOutput {
+	return o
+}
+
+func (o GetModuleBitbucketCloudOutput) ToGetModuleBitbucketCloudOutputWithContext(ctx context.Context) GetModuleBitbucketCloudOutput {
+	return o
+}
+
+func (o GetModuleBitbucketCloudOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetModuleBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetModuleBitbucketCloudArrayOutput struct{ *pulumi.OutputState }
+
+func (GetModuleBitbucketCloudArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModuleBitbucketCloud)(nil)).Elem()
+}
+
+func (o GetModuleBitbucketCloudArrayOutput) ToGetModuleBitbucketCloudArrayOutput() GetModuleBitbucketCloudArrayOutput {
+	return o
+}
+
+func (o GetModuleBitbucketCloudArrayOutput) ToGetModuleBitbucketCloudArrayOutputWithContext(ctx context.Context) GetModuleBitbucketCloudArrayOutput {
+	return o
+}
+
+func (o GetModuleBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetModuleBitbucketCloudOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleBitbucketCloud {
+		return vs[0].([]GetModuleBitbucketCloud)[vs[1].(int)]
+	}).(GetModuleBitbucketCloudOutput)
+}
+
+type GetModuleBitbucketDatacenter struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetModuleBitbucketDatacenterInput is an input type that accepts GetModuleBitbucketDatacenterArgs and GetModuleBitbucketDatacenterOutput values.
+// You can construct a concrete instance of `GetModuleBitbucketDatacenterInput` via:
+//
+//          GetModuleBitbucketDatacenterArgs{...}
+type GetModuleBitbucketDatacenterInput interface {
+	pulumi.Input
+
+	ToGetModuleBitbucketDatacenterOutput() GetModuleBitbucketDatacenterOutput
+	ToGetModuleBitbucketDatacenterOutputWithContext(context.Context) GetModuleBitbucketDatacenterOutput
+}
+
+type GetModuleBitbucketDatacenterArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetModuleBitbucketDatacenterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModuleBitbucketDatacenter)(nil)).Elem()
+}
+
+func (i GetModuleBitbucketDatacenterArgs) ToGetModuleBitbucketDatacenterOutput() GetModuleBitbucketDatacenterOutput {
+	return i.ToGetModuleBitbucketDatacenterOutputWithContext(context.Background())
+}
+
+func (i GetModuleBitbucketDatacenterArgs) ToGetModuleBitbucketDatacenterOutputWithContext(ctx context.Context) GetModuleBitbucketDatacenterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketDatacenterOutput)
+}
+
+// GetModuleBitbucketDatacenterArrayInput is an input type that accepts GetModuleBitbucketDatacenterArray and GetModuleBitbucketDatacenterArrayOutput values.
+// You can construct a concrete instance of `GetModuleBitbucketDatacenterArrayInput` via:
+//
+//          GetModuleBitbucketDatacenterArray{ GetModuleBitbucketDatacenterArgs{...} }
+type GetModuleBitbucketDatacenterArrayInput interface {
+	pulumi.Input
+
+	ToGetModuleBitbucketDatacenterArrayOutput() GetModuleBitbucketDatacenterArrayOutput
+	ToGetModuleBitbucketDatacenterArrayOutputWithContext(context.Context) GetModuleBitbucketDatacenterArrayOutput
+}
+
+type GetModuleBitbucketDatacenterArray []GetModuleBitbucketDatacenterInput
+
+func (GetModuleBitbucketDatacenterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModuleBitbucketDatacenter)(nil)).Elem()
+}
+
+func (i GetModuleBitbucketDatacenterArray) ToGetModuleBitbucketDatacenterArrayOutput() GetModuleBitbucketDatacenterArrayOutput {
+	return i.ToGetModuleBitbucketDatacenterArrayOutputWithContext(context.Background())
+}
+
+func (i GetModuleBitbucketDatacenterArray) ToGetModuleBitbucketDatacenterArrayOutputWithContext(ctx context.Context) GetModuleBitbucketDatacenterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketDatacenterArrayOutput)
+}
+
+type GetModuleBitbucketDatacenterOutput struct{ *pulumi.OutputState }
+
+func (GetModuleBitbucketDatacenterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModuleBitbucketDatacenter)(nil)).Elem()
+}
+
+func (o GetModuleBitbucketDatacenterOutput) ToGetModuleBitbucketDatacenterOutput() GetModuleBitbucketDatacenterOutput {
+	return o
+}
+
+func (o GetModuleBitbucketDatacenterOutput) ToGetModuleBitbucketDatacenterOutputWithContext(ctx context.Context) GetModuleBitbucketDatacenterOutput {
+	return o
+}
+
+func (o GetModuleBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetModuleBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetModuleBitbucketDatacenterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetModuleBitbucketDatacenterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModuleBitbucketDatacenter)(nil)).Elem()
+}
+
+func (o GetModuleBitbucketDatacenterArrayOutput) ToGetModuleBitbucketDatacenterArrayOutput() GetModuleBitbucketDatacenterArrayOutput {
+	return o
+}
+
+func (o GetModuleBitbucketDatacenterArrayOutput) ToGetModuleBitbucketDatacenterArrayOutputWithContext(ctx context.Context) GetModuleBitbucketDatacenterArrayOutput {
+	return o
+}
+
+func (o GetModuleBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetModuleBitbucketDatacenterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleBitbucketDatacenter {
+		return vs[0].([]GetModuleBitbucketDatacenter)[vs[1].(int)]
+	}).(GetModuleBitbucketDatacenterOutput)
+}
+
+type GetModuleGithubEnterprise struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetModuleGithubEnterpriseInput is an input type that accepts GetModuleGithubEnterpriseArgs and GetModuleGithubEnterpriseOutput values.
+// You can construct a concrete instance of `GetModuleGithubEnterpriseInput` via:
+//
+//          GetModuleGithubEnterpriseArgs{...}
+type GetModuleGithubEnterpriseInput interface {
+	pulumi.Input
+
+	ToGetModuleGithubEnterpriseOutput() GetModuleGithubEnterpriseOutput
+	ToGetModuleGithubEnterpriseOutputWithContext(context.Context) GetModuleGithubEnterpriseOutput
+}
+
+type GetModuleGithubEnterpriseArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetModuleGithubEnterpriseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModuleGithubEnterprise)(nil)).Elem()
+}
+
+func (i GetModuleGithubEnterpriseArgs) ToGetModuleGithubEnterpriseOutput() GetModuleGithubEnterpriseOutput {
+	return i.ToGetModuleGithubEnterpriseOutputWithContext(context.Background())
+}
+
+func (i GetModuleGithubEnterpriseArgs) ToGetModuleGithubEnterpriseOutputWithContext(ctx context.Context) GetModuleGithubEnterpriseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModuleGithubEnterpriseOutput)
+}
+
+// GetModuleGithubEnterpriseArrayInput is an input type that accepts GetModuleGithubEnterpriseArray and GetModuleGithubEnterpriseArrayOutput values.
+// You can construct a concrete instance of `GetModuleGithubEnterpriseArrayInput` via:
+//
+//          GetModuleGithubEnterpriseArray{ GetModuleGithubEnterpriseArgs{...} }
+type GetModuleGithubEnterpriseArrayInput interface {
+	pulumi.Input
+
+	ToGetModuleGithubEnterpriseArrayOutput() GetModuleGithubEnterpriseArrayOutput
+	ToGetModuleGithubEnterpriseArrayOutputWithContext(context.Context) GetModuleGithubEnterpriseArrayOutput
+}
+
+type GetModuleGithubEnterpriseArray []GetModuleGithubEnterpriseInput
+
+func (GetModuleGithubEnterpriseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModuleGithubEnterprise)(nil)).Elem()
+}
+
+func (i GetModuleGithubEnterpriseArray) ToGetModuleGithubEnterpriseArrayOutput() GetModuleGithubEnterpriseArrayOutput {
+	return i.ToGetModuleGithubEnterpriseArrayOutputWithContext(context.Background())
+}
+
+func (i GetModuleGithubEnterpriseArray) ToGetModuleGithubEnterpriseArrayOutputWithContext(ctx context.Context) GetModuleGithubEnterpriseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModuleGithubEnterpriseArrayOutput)
+}
+
+type GetModuleGithubEnterpriseOutput struct{ *pulumi.OutputState }
+
+func (GetModuleGithubEnterpriseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModuleGithubEnterprise)(nil)).Elem()
+}
+
+func (o GetModuleGithubEnterpriseOutput) ToGetModuleGithubEnterpriseOutput() GetModuleGithubEnterpriseOutput {
+	return o
+}
+
+func (o GetModuleGithubEnterpriseOutput) ToGetModuleGithubEnterpriseOutputWithContext(ctx context.Context) GetModuleGithubEnterpriseOutput {
+	return o
+}
+
+func (o GetModuleGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetModuleGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetModuleGithubEnterpriseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetModuleGithubEnterpriseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModuleGithubEnterprise)(nil)).Elem()
+}
+
+func (o GetModuleGithubEnterpriseArrayOutput) ToGetModuleGithubEnterpriseArrayOutput() GetModuleGithubEnterpriseArrayOutput {
+	return o
+}
+
+func (o GetModuleGithubEnterpriseArrayOutput) ToGetModuleGithubEnterpriseArrayOutputWithContext(ctx context.Context) GetModuleGithubEnterpriseArrayOutput {
+	return o
+}
+
+func (o GetModuleGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetModuleGithubEnterpriseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleGithubEnterprise {
+		return vs[0].([]GetModuleGithubEnterprise)[vs[1].(int)]
+	}).(GetModuleGithubEnterpriseOutput)
+}
+
 type GetModuleGitlab struct {
 	Namespace string `pulumi:"namespace"`
 }
@@ -666,6 +2302,288 @@ func (o GetModuleGitlabArrayOutput) Index(i pulumi.IntInput) GetModuleGitlabOutp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleGitlab {
 		return vs[0].([]GetModuleGitlab)[vs[1].(int)]
 	}).(GetModuleGitlabOutput)
+}
+
+type GetStackAzureDevop struct {
+	Project string `pulumi:"project"`
+}
+
+// GetStackAzureDevopInput is an input type that accepts GetStackAzureDevopArgs and GetStackAzureDevopOutput values.
+// You can construct a concrete instance of `GetStackAzureDevopInput` via:
+//
+//          GetStackAzureDevopArgs{...}
+type GetStackAzureDevopInput interface {
+	pulumi.Input
+
+	ToGetStackAzureDevopOutput() GetStackAzureDevopOutput
+	ToGetStackAzureDevopOutputWithContext(context.Context) GetStackAzureDevopOutput
+}
+
+type GetStackAzureDevopArgs struct {
+	Project pulumi.StringInput `pulumi:"project"`
+}
+
+func (GetStackAzureDevopArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackAzureDevop)(nil)).Elem()
+}
+
+func (i GetStackAzureDevopArgs) ToGetStackAzureDevopOutput() GetStackAzureDevopOutput {
+	return i.ToGetStackAzureDevopOutputWithContext(context.Background())
+}
+
+func (i GetStackAzureDevopArgs) ToGetStackAzureDevopOutputWithContext(ctx context.Context) GetStackAzureDevopOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackAzureDevopOutput)
+}
+
+// GetStackAzureDevopArrayInput is an input type that accepts GetStackAzureDevopArray and GetStackAzureDevopArrayOutput values.
+// You can construct a concrete instance of `GetStackAzureDevopArrayInput` via:
+//
+//          GetStackAzureDevopArray{ GetStackAzureDevopArgs{...} }
+type GetStackAzureDevopArrayInput interface {
+	pulumi.Input
+
+	ToGetStackAzureDevopArrayOutput() GetStackAzureDevopArrayOutput
+	ToGetStackAzureDevopArrayOutputWithContext(context.Context) GetStackAzureDevopArrayOutput
+}
+
+type GetStackAzureDevopArray []GetStackAzureDevopInput
+
+func (GetStackAzureDevopArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackAzureDevop)(nil)).Elem()
+}
+
+func (i GetStackAzureDevopArray) ToGetStackAzureDevopArrayOutput() GetStackAzureDevopArrayOutput {
+	return i.ToGetStackAzureDevopArrayOutputWithContext(context.Background())
+}
+
+func (i GetStackAzureDevopArray) ToGetStackAzureDevopArrayOutputWithContext(ctx context.Context) GetStackAzureDevopArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackAzureDevopArrayOutput)
+}
+
+type GetStackAzureDevopOutput struct{ *pulumi.OutputState }
+
+func (GetStackAzureDevopOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackAzureDevop)(nil)).Elem()
+}
+
+func (o GetStackAzureDevopOutput) ToGetStackAzureDevopOutput() GetStackAzureDevopOutput {
+	return o
+}
+
+func (o GetStackAzureDevopOutput) ToGetStackAzureDevopOutputWithContext(ctx context.Context) GetStackAzureDevopOutput {
+	return o
+}
+
+func (o GetStackAzureDevopOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackAzureDevop) string { return v.Project }).(pulumi.StringOutput)
+}
+
+type GetStackAzureDevopArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStackAzureDevopArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackAzureDevop)(nil)).Elem()
+}
+
+func (o GetStackAzureDevopArrayOutput) ToGetStackAzureDevopArrayOutput() GetStackAzureDevopArrayOutput {
+	return o
+}
+
+func (o GetStackAzureDevopArrayOutput) ToGetStackAzureDevopArrayOutputWithContext(ctx context.Context) GetStackAzureDevopArrayOutput {
+	return o
+}
+
+func (o GetStackAzureDevopArrayOutput) Index(i pulumi.IntInput) GetStackAzureDevopOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackAzureDevop {
+		return vs[0].([]GetStackAzureDevop)[vs[1].(int)]
+	}).(GetStackAzureDevopOutput)
+}
+
+type GetStackBitbucketCloud struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetStackBitbucketCloudInput is an input type that accepts GetStackBitbucketCloudArgs and GetStackBitbucketCloudOutput values.
+// You can construct a concrete instance of `GetStackBitbucketCloudInput` via:
+//
+//          GetStackBitbucketCloudArgs{...}
+type GetStackBitbucketCloudInput interface {
+	pulumi.Input
+
+	ToGetStackBitbucketCloudOutput() GetStackBitbucketCloudOutput
+	ToGetStackBitbucketCloudOutputWithContext(context.Context) GetStackBitbucketCloudOutput
+}
+
+type GetStackBitbucketCloudArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStackBitbucketCloudArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackBitbucketCloud)(nil)).Elem()
+}
+
+func (i GetStackBitbucketCloudArgs) ToGetStackBitbucketCloudOutput() GetStackBitbucketCloudOutput {
+	return i.ToGetStackBitbucketCloudOutputWithContext(context.Background())
+}
+
+func (i GetStackBitbucketCloudArgs) ToGetStackBitbucketCloudOutputWithContext(ctx context.Context) GetStackBitbucketCloudOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketCloudOutput)
+}
+
+// GetStackBitbucketCloudArrayInput is an input type that accepts GetStackBitbucketCloudArray and GetStackBitbucketCloudArrayOutput values.
+// You can construct a concrete instance of `GetStackBitbucketCloudArrayInput` via:
+//
+//          GetStackBitbucketCloudArray{ GetStackBitbucketCloudArgs{...} }
+type GetStackBitbucketCloudArrayInput interface {
+	pulumi.Input
+
+	ToGetStackBitbucketCloudArrayOutput() GetStackBitbucketCloudArrayOutput
+	ToGetStackBitbucketCloudArrayOutputWithContext(context.Context) GetStackBitbucketCloudArrayOutput
+}
+
+type GetStackBitbucketCloudArray []GetStackBitbucketCloudInput
+
+func (GetStackBitbucketCloudArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackBitbucketCloud)(nil)).Elem()
+}
+
+func (i GetStackBitbucketCloudArray) ToGetStackBitbucketCloudArrayOutput() GetStackBitbucketCloudArrayOutput {
+	return i.ToGetStackBitbucketCloudArrayOutputWithContext(context.Background())
+}
+
+func (i GetStackBitbucketCloudArray) ToGetStackBitbucketCloudArrayOutputWithContext(ctx context.Context) GetStackBitbucketCloudArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketCloudArrayOutput)
+}
+
+type GetStackBitbucketCloudOutput struct{ *pulumi.OutputState }
+
+func (GetStackBitbucketCloudOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackBitbucketCloud)(nil)).Elem()
+}
+
+func (o GetStackBitbucketCloudOutput) ToGetStackBitbucketCloudOutput() GetStackBitbucketCloudOutput {
+	return o
+}
+
+func (o GetStackBitbucketCloudOutput) ToGetStackBitbucketCloudOutputWithContext(ctx context.Context) GetStackBitbucketCloudOutput {
+	return o
+}
+
+func (o GetStackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStackBitbucketCloudArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStackBitbucketCloudArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackBitbucketCloud)(nil)).Elem()
+}
+
+func (o GetStackBitbucketCloudArrayOutput) ToGetStackBitbucketCloudArrayOutput() GetStackBitbucketCloudArrayOutput {
+	return o
+}
+
+func (o GetStackBitbucketCloudArrayOutput) ToGetStackBitbucketCloudArrayOutputWithContext(ctx context.Context) GetStackBitbucketCloudArrayOutput {
+	return o
+}
+
+func (o GetStackBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetStackBitbucketCloudOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackBitbucketCloud {
+		return vs[0].([]GetStackBitbucketCloud)[vs[1].(int)]
+	}).(GetStackBitbucketCloudOutput)
+}
+
+type GetStackBitbucketDatacenter struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetStackBitbucketDatacenterInput is an input type that accepts GetStackBitbucketDatacenterArgs and GetStackBitbucketDatacenterOutput values.
+// You can construct a concrete instance of `GetStackBitbucketDatacenterInput` via:
+//
+//          GetStackBitbucketDatacenterArgs{...}
+type GetStackBitbucketDatacenterInput interface {
+	pulumi.Input
+
+	ToGetStackBitbucketDatacenterOutput() GetStackBitbucketDatacenterOutput
+	ToGetStackBitbucketDatacenterOutputWithContext(context.Context) GetStackBitbucketDatacenterOutput
+}
+
+type GetStackBitbucketDatacenterArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStackBitbucketDatacenterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (i GetStackBitbucketDatacenterArgs) ToGetStackBitbucketDatacenterOutput() GetStackBitbucketDatacenterOutput {
+	return i.ToGetStackBitbucketDatacenterOutputWithContext(context.Background())
+}
+
+func (i GetStackBitbucketDatacenterArgs) ToGetStackBitbucketDatacenterOutputWithContext(ctx context.Context) GetStackBitbucketDatacenterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketDatacenterOutput)
+}
+
+// GetStackBitbucketDatacenterArrayInput is an input type that accepts GetStackBitbucketDatacenterArray and GetStackBitbucketDatacenterArrayOutput values.
+// You can construct a concrete instance of `GetStackBitbucketDatacenterArrayInput` via:
+//
+//          GetStackBitbucketDatacenterArray{ GetStackBitbucketDatacenterArgs{...} }
+type GetStackBitbucketDatacenterArrayInput interface {
+	pulumi.Input
+
+	ToGetStackBitbucketDatacenterArrayOutput() GetStackBitbucketDatacenterArrayOutput
+	ToGetStackBitbucketDatacenterArrayOutputWithContext(context.Context) GetStackBitbucketDatacenterArrayOutput
+}
+
+type GetStackBitbucketDatacenterArray []GetStackBitbucketDatacenterInput
+
+func (GetStackBitbucketDatacenterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (i GetStackBitbucketDatacenterArray) ToGetStackBitbucketDatacenterArrayOutput() GetStackBitbucketDatacenterArrayOutput {
+	return i.ToGetStackBitbucketDatacenterArrayOutputWithContext(context.Background())
+}
+
+func (i GetStackBitbucketDatacenterArray) ToGetStackBitbucketDatacenterArrayOutputWithContext(ctx context.Context) GetStackBitbucketDatacenterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketDatacenterArrayOutput)
+}
+
+type GetStackBitbucketDatacenterOutput struct{ *pulumi.OutputState }
+
+func (GetStackBitbucketDatacenterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (o GetStackBitbucketDatacenterOutput) ToGetStackBitbucketDatacenterOutput() GetStackBitbucketDatacenterOutput {
+	return o
+}
+
+func (o GetStackBitbucketDatacenterOutput) ToGetStackBitbucketDatacenterOutputWithContext(ctx context.Context) GetStackBitbucketDatacenterOutput {
+	return o
+}
+
+func (o GetStackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStackBitbucketDatacenterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStackBitbucketDatacenterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (o GetStackBitbucketDatacenterArrayOutput) ToGetStackBitbucketDatacenterArrayOutput() GetStackBitbucketDatacenterArrayOutput {
+	return o
+}
+
+func (o GetStackBitbucketDatacenterArrayOutput) ToGetStackBitbucketDatacenterArrayOutputWithContext(ctx context.Context) GetStackBitbucketDatacenterArrayOutput {
+	return o
+}
+
+func (o GetStackBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetStackBitbucketDatacenterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackBitbucketDatacenter {
+		return vs[0].([]GetStackBitbucketDatacenter)[vs[1].(int)]
+	}).(GetStackBitbucketDatacenterOutput)
 }
 
 type GetStackCloudformation struct {
@@ -780,6 +2698,100 @@ func (o GetStackCloudformationArrayOutput) Index(i pulumi.IntInput) GetStackClou
 	}).(GetStackCloudformationOutput)
 }
 
+type GetStackGithubEnterprise struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetStackGithubEnterpriseInput is an input type that accepts GetStackGithubEnterpriseArgs and GetStackGithubEnterpriseOutput values.
+// You can construct a concrete instance of `GetStackGithubEnterpriseInput` via:
+//
+//          GetStackGithubEnterpriseArgs{...}
+type GetStackGithubEnterpriseInput interface {
+	pulumi.Input
+
+	ToGetStackGithubEnterpriseOutput() GetStackGithubEnterpriseOutput
+	ToGetStackGithubEnterpriseOutputWithContext(context.Context) GetStackGithubEnterpriseOutput
+}
+
+type GetStackGithubEnterpriseArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStackGithubEnterpriseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackGithubEnterprise)(nil)).Elem()
+}
+
+func (i GetStackGithubEnterpriseArgs) ToGetStackGithubEnterpriseOutput() GetStackGithubEnterpriseOutput {
+	return i.ToGetStackGithubEnterpriseOutputWithContext(context.Background())
+}
+
+func (i GetStackGithubEnterpriseArgs) ToGetStackGithubEnterpriseOutputWithContext(ctx context.Context) GetStackGithubEnterpriseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackGithubEnterpriseOutput)
+}
+
+// GetStackGithubEnterpriseArrayInput is an input type that accepts GetStackGithubEnterpriseArray and GetStackGithubEnterpriseArrayOutput values.
+// You can construct a concrete instance of `GetStackGithubEnterpriseArrayInput` via:
+//
+//          GetStackGithubEnterpriseArray{ GetStackGithubEnterpriseArgs{...} }
+type GetStackGithubEnterpriseArrayInput interface {
+	pulumi.Input
+
+	ToGetStackGithubEnterpriseArrayOutput() GetStackGithubEnterpriseArrayOutput
+	ToGetStackGithubEnterpriseArrayOutputWithContext(context.Context) GetStackGithubEnterpriseArrayOutput
+}
+
+type GetStackGithubEnterpriseArray []GetStackGithubEnterpriseInput
+
+func (GetStackGithubEnterpriseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackGithubEnterprise)(nil)).Elem()
+}
+
+func (i GetStackGithubEnterpriseArray) ToGetStackGithubEnterpriseArrayOutput() GetStackGithubEnterpriseArrayOutput {
+	return i.ToGetStackGithubEnterpriseArrayOutputWithContext(context.Background())
+}
+
+func (i GetStackGithubEnterpriseArray) ToGetStackGithubEnterpriseArrayOutputWithContext(ctx context.Context) GetStackGithubEnterpriseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackGithubEnterpriseArrayOutput)
+}
+
+type GetStackGithubEnterpriseOutput struct{ *pulumi.OutputState }
+
+func (GetStackGithubEnterpriseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackGithubEnterprise)(nil)).Elem()
+}
+
+func (o GetStackGithubEnterpriseOutput) ToGetStackGithubEnterpriseOutput() GetStackGithubEnterpriseOutput {
+	return o
+}
+
+func (o GetStackGithubEnterpriseOutput) ToGetStackGithubEnterpriseOutputWithContext(ctx context.Context) GetStackGithubEnterpriseOutput {
+	return o
+}
+
+func (o GetStackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStackGithubEnterpriseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStackGithubEnterpriseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackGithubEnterprise)(nil)).Elem()
+}
+
+func (o GetStackGithubEnterpriseArrayOutput) ToGetStackGithubEnterpriseArrayOutput() GetStackGithubEnterpriseArrayOutput {
+	return o
+}
+
+func (o GetStackGithubEnterpriseArrayOutput) ToGetStackGithubEnterpriseArrayOutputWithContext(ctx context.Context) GetStackGithubEnterpriseArrayOutput {
+	return o
+}
+
+func (o GetStackGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetStackGithubEnterpriseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackGithubEnterprise {
+		return vs[0].([]GetStackGithubEnterprise)[vs[1].(int)]
+	}).(GetStackGithubEnterpriseOutput)
+}
+
 type GetStackGitlab struct {
 	Namespace string `pulumi:"namespace"`
 }
@@ -872,6 +2884,100 @@ func (o GetStackGitlabArrayOutput) Index(i pulumi.IntInput) GetStackGitlabOutput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackGitlab {
 		return vs[0].([]GetStackGitlab)[vs[1].(int)]
 	}).(GetStackGitlabOutput)
+}
+
+type GetStackKubernete struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetStackKuberneteInput is an input type that accepts GetStackKuberneteArgs and GetStackKuberneteOutput values.
+// You can construct a concrete instance of `GetStackKuberneteInput` via:
+//
+//          GetStackKuberneteArgs{...}
+type GetStackKuberneteInput interface {
+	pulumi.Input
+
+	ToGetStackKuberneteOutput() GetStackKuberneteOutput
+	ToGetStackKuberneteOutputWithContext(context.Context) GetStackKuberneteOutput
+}
+
+type GetStackKuberneteArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStackKuberneteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackKubernete)(nil)).Elem()
+}
+
+func (i GetStackKuberneteArgs) ToGetStackKuberneteOutput() GetStackKuberneteOutput {
+	return i.ToGetStackKuberneteOutputWithContext(context.Background())
+}
+
+func (i GetStackKuberneteArgs) ToGetStackKuberneteOutputWithContext(ctx context.Context) GetStackKuberneteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackKuberneteOutput)
+}
+
+// GetStackKuberneteArrayInput is an input type that accepts GetStackKuberneteArray and GetStackKuberneteArrayOutput values.
+// You can construct a concrete instance of `GetStackKuberneteArrayInput` via:
+//
+//          GetStackKuberneteArray{ GetStackKuberneteArgs{...} }
+type GetStackKuberneteArrayInput interface {
+	pulumi.Input
+
+	ToGetStackKuberneteArrayOutput() GetStackKuberneteArrayOutput
+	ToGetStackKuberneteArrayOutputWithContext(context.Context) GetStackKuberneteArrayOutput
+}
+
+type GetStackKuberneteArray []GetStackKuberneteInput
+
+func (GetStackKuberneteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackKubernete)(nil)).Elem()
+}
+
+func (i GetStackKuberneteArray) ToGetStackKuberneteArrayOutput() GetStackKuberneteArrayOutput {
+	return i.ToGetStackKuberneteArrayOutputWithContext(context.Background())
+}
+
+func (i GetStackKuberneteArray) ToGetStackKuberneteArrayOutputWithContext(ctx context.Context) GetStackKuberneteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackKuberneteArrayOutput)
+}
+
+type GetStackKuberneteOutput struct{ *pulumi.OutputState }
+
+func (GetStackKuberneteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackKubernete)(nil)).Elem()
+}
+
+func (o GetStackKuberneteOutput) ToGetStackKuberneteOutput() GetStackKuberneteOutput {
+	return o
+}
+
+func (o GetStackKuberneteOutput) ToGetStackKuberneteOutputWithContext(ctx context.Context) GetStackKuberneteOutput {
+	return o
+}
+
+func (o GetStackKuberneteOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackKubernete) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStackKuberneteArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStackKuberneteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackKubernete)(nil)).Elem()
+}
+
+func (o GetStackKuberneteArrayOutput) ToGetStackKuberneteArrayOutput() GetStackKuberneteArrayOutput {
+	return o
+}
+
+func (o GetStackKuberneteArrayOutput) ToGetStackKuberneteArrayOutputWithContext(ctx context.Context) GetStackKuberneteArrayOutput {
+	return o
+}
+
+func (o GetStackKuberneteArrayOutput) Index(i pulumi.IntInput) GetStackKuberneteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackKubernete {
+		return vs[0].([]GetStackKubernete)[vs[1].(int)]
+	}).(GetStackKuberneteOutput)
 }
 
 type GetStackPulumi struct {
@@ -972,6 +3078,100 @@ func (o GetStackPulumiArrayOutput) Index(i pulumi.IntInput) GetStackPulumiOutput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackPulumi {
 		return vs[0].([]GetStackPulumi)[vs[1].(int)]
 	}).(GetStackPulumiOutput)
+}
+
+type GetStackShowcase struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetStackShowcaseInput is an input type that accepts GetStackShowcaseArgs and GetStackShowcaseOutput values.
+// You can construct a concrete instance of `GetStackShowcaseInput` via:
+//
+//          GetStackShowcaseArgs{...}
+type GetStackShowcaseInput interface {
+	pulumi.Input
+
+	ToGetStackShowcaseOutput() GetStackShowcaseOutput
+	ToGetStackShowcaseOutputWithContext(context.Context) GetStackShowcaseOutput
+}
+
+type GetStackShowcaseArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStackShowcaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackShowcase)(nil)).Elem()
+}
+
+func (i GetStackShowcaseArgs) ToGetStackShowcaseOutput() GetStackShowcaseOutput {
+	return i.ToGetStackShowcaseOutputWithContext(context.Background())
+}
+
+func (i GetStackShowcaseArgs) ToGetStackShowcaseOutputWithContext(ctx context.Context) GetStackShowcaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackShowcaseOutput)
+}
+
+// GetStackShowcaseArrayInput is an input type that accepts GetStackShowcaseArray and GetStackShowcaseArrayOutput values.
+// You can construct a concrete instance of `GetStackShowcaseArrayInput` via:
+//
+//          GetStackShowcaseArray{ GetStackShowcaseArgs{...} }
+type GetStackShowcaseArrayInput interface {
+	pulumi.Input
+
+	ToGetStackShowcaseArrayOutput() GetStackShowcaseArrayOutput
+	ToGetStackShowcaseArrayOutputWithContext(context.Context) GetStackShowcaseArrayOutput
+}
+
+type GetStackShowcaseArray []GetStackShowcaseInput
+
+func (GetStackShowcaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackShowcase)(nil)).Elem()
+}
+
+func (i GetStackShowcaseArray) ToGetStackShowcaseArrayOutput() GetStackShowcaseArrayOutput {
+	return i.ToGetStackShowcaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetStackShowcaseArray) ToGetStackShowcaseArrayOutputWithContext(ctx context.Context) GetStackShowcaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackShowcaseArrayOutput)
+}
+
+type GetStackShowcaseOutput struct{ *pulumi.OutputState }
+
+func (GetStackShowcaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackShowcase)(nil)).Elem()
+}
+
+func (o GetStackShowcaseOutput) ToGetStackShowcaseOutput() GetStackShowcaseOutput {
+	return o
+}
+
+func (o GetStackShowcaseOutput) ToGetStackShowcaseOutputWithContext(ctx context.Context) GetStackShowcaseOutput {
+	return o
+}
+
+func (o GetStackShowcaseOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackShowcase) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStackShowcaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStackShowcaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackShowcase)(nil)).Elem()
+}
+
+func (o GetStackShowcaseArrayOutput) ToGetStackShowcaseArrayOutput() GetStackShowcaseArrayOutput {
+	return o
+}
+
+func (o GetStackShowcaseArrayOutput) ToGetStackShowcaseArrayOutputWithContext(ctx context.Context) GetStackShowcaseArrayOutput {
+	return o
+}
+
+func (o GetStackShowcaseArrayOutput) Index(i pulumi.IntInput) GetStackShowcaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackShowcase {
+		return vs[0].([]GetStackShowcase)[vs[1].(int)]
+	}).(GetStackShowcaseOutput)
 }
 
 type GetWorkerPoolsWorkerPool struct {
@@ -1087,22 +3287,62 @@ func (o GetWorkerPoolsWorkerPoolArrayOutput) Index(i pulumi.IntInput) GetWorkerP
 }
 
 func init() {
+	pulumi.RegisterOutputType(ModuleAzureDevopsOutput{})
+	pulumi.RegisterOutputType(ModuleAzureDevopsPtrOutput{})
+	pulumi.RegisterOutputType(ModuleBitbucketCloudOutput{})
+	pulumi.RegisterOutputType(ModuleBitbucketCloudPtrOutput{})
+	pulumi.RegisterOutputType(ModuleBitbucketDatacenterOutput{})
+	pulumi.RegisterOutputType(ModuleBitbucketDatacenterPtrOutput{})
+	pulumi.RegisterOutputType(ModuleGithubEnterpriseOutput{})
+	pulumi.RegisterOutputType(ModuleGithubEnterprisePtrOutput{})
 	pulumi.RegisterOutputType(ModuleGitlabOutput{})
 	pulumi.RegisterOutputType(ModuleGitlabPtrOutput{})
+	pulumi.RegisterOutputType(StackAzureDevopsOutput{})
+	pulumi.RegisterOutputType(StackAzureDevopsPtrOutput{})
+	pulumi.RegisterOutputType(StackBitbucketCloudOutput{})
+	pulumi.RegisterOutputType(StackBitbucketCloudPtrOutput{})
+	pulumi.RegisterOutputType(StackBitbucketDatacenterOutput{})
+	pulumi.RegisterOutputType(StackBitbucketDatacenterPtrOutput{})
 	pulumi.RegisterOutputType(StackCloudformationOutput{})
 	pulumi.RegisterOutputType(StackCloudformationPtrOutput{})
+	pulumi.RegisterOutputType(StackGithubEnterpriseOutput{})
+	pulumi.RegisterOutputType(StackGithubEnterprisePtrOutput{})
 	pulumi.RegisterOutputType(StackGitlabOutput{})
 	pulumi.RegisterOutputType(StackGitlabPtrOutput{})
+	pulumi.RegisterOutputType(StackKubernetesOutput{})
+	pulumi.RegisterOutputType(StackKubernetesPtrOutput{})
 	pulumi.RegisterOutputType(StackPulumiOutput{})
 	pulumi.RegisterOutputType(StackPulumiPtrOutput{})
+	pulumi.RegisterOutputType(StackShowcaseOutput{})
+	pulumi.RegisterOutputType(StackShowcasePtrOutput{})
+	pulumi.RegisterOutputType(GetModuleAzureDevopOutput{})
+	pulumi.RegisterOutputType(GetModuleAzureDevopArrayOutput{})
+	pulumi.RegisterOutputType(GetModuleBitbucketCloudOutput{})
+	pulumi.RegisterOutputType(GetModuleBitbucketCloudArrayOutput{})
+	pulumi.RegisterOutputType(GetModuleBitbucketDatacenterOutput{})
+	pulumi.RegisterOutputType(GetModuleBitbucketDatacenterArrayOutput{})
+	pulumi.RegisterOutputType(GetModuleGithubEnterpriseOutput{})
+	pulumi.RegisterOutputType(GetModuleGithubEnterpriseArrayOutput{})
 	pulumi.RegisterOutputType(GetModuleGitlabOutput{})
 	pulumi.RegisterOutputType(GetModuleGitlabArrayOutput{})
+	pulumi.RegisterOutputType(GetStackAzureDevopOutput{})
+	pulumi.RegisterOutputType(GetStackAzureDevopArrayOutput{})
+	pulumi.RegisterOutputType(GetStackBitbucketCloudOutput{})
+	pulumi.RegisterOutputType(GetStackBitbucketCloudArrayOutput{})
+	pulumi.RegisterOutputType(GetStackBitbucketDatacenterOutput{})
+	pulumi.RegisterOutputType(GetStackBitbucketDatacenterArrayOutput{})
 	pulumi.RegisterOutputType(GetStackCloudformationOutput{})
 	pulumi.RegisterOutputType(GetStackCloudformationArrayOutput{})
+	pulumi.RegisterOutputType(GetStackGithubEnterpriseOutput{})
+	pulumi.RegisterOutputType(GetStackGithubEnterpriseArrayOutput{})
 	pulumi.RegisterOutputType(GetStackGitlabOutput{})
 	pulumi.RegisterOutputType(GetStackGitlabArrayOutput{})
+	pulumi.RegisterOutputType(GetStackKuberneteOutput{})
+	pulumi.RegisterOutputType(GetStackKuberneteArrayOutput{})
 	pulumi.RegisterOutputType(GetStackPulumiOutput{})
 	pulumi.RegisterOutputType(GetStackPulumiArrayOutput{})
+	pulumi.RegisterOutputType(GetStackShowcaseOutput{})
+	pulumi.RegisterOutputType(GetStackShowcaseArrayOutput{})
 	pulumi.RegisterOutputType(GetWorkerPoolsWorkerPoolOutput{})
 	pulumi.RegisterOutputType(GetWorkerPoolsWorkerPoolArrayOutput{})
 }

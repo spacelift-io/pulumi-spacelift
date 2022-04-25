@@ -7,14 +7,18 @@ pulumi_spacelift/_utilities.py
 pulumi_spacelift/aws_role.py
 pulumi_spacelift/context.py
 pulumi_spacelift/context_attachment.py
+pulumi_spacelift/drift_detection.py
 pulumi_spacelift/environment_variable.py
 pulumi_spacelift/gcp_service_account.py
 pulumi_spacelift/get_aws_role.py
+pulumi_spacelift/get_azure_dev_ops_integration.py
 pulumi_spacelift/get_context.py
 pulumi_spacelift/get_context_attachment.py
 pulumi_spacelift/get_current_stack.py
+pulumi_spacelift/get_drift_detection.py
 pulumi_spacelift/get_environment_variable.py
 pulumi_spacelift/get_gcp_service_account.py
+pulumi_spacelift/get_git_hub_enterprise_integration.py
 pulumi_spacelift/get_ips.py
 pulumi_spacelift/get_module.py
 pulumi_spacelift/get_mounted_file.py
@@ -22,6 +26,7 @@ pulumi_spacelift/get_policy.py
 pulumi_spacelift/get_stack.py
 pulumi_spacelift/get_stack_aws_role.py
 pulumi_spacelift/get_stack_gcp_service_account.py
+pulumi_spacelift/get_vcs_agent_pool.py
 pulumi_spacelift/get_webhook.py
 pulumi_spacelift/get_worker_pool.py
 pulumi_spacelift/get_worker_pools.py
@@ -34,7 +39,9 @@ pulumi_spacelift/provider.py
 pulumi_spacelift/py.typed
 pulumi_spacelift/stack.py
 pulumi_spacelift/stack_aws_role.py
+pulumi_spacelift/stack_destructor.py
 pulumi_spacelift/stack_gcp_service_account.py
+pulumi_spacelift/vcs_agent_pool.py
 pulumi_spacelift/webhook.py
 pulumi_spacelift/worker_pool.py
 pulumi_spacelift.egg-info/PKG-INFO

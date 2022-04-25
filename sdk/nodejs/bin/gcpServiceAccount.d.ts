@@ -1,4 +1,17 @@
 import * as pulumi from "@pulumi/pulumi";
+/**
+ * ## Import
+ *
+ * Import is supported using the following syntax
+ *
+ * ```sh
+ *  $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core stack/$STACK_ID
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core module/$MODULE_ID
+ * ```
+ */
 export declare class GcpServiceAccount extends pulumi.CustomResource {
     /**
      * Get an existing GcpServiceAccount resource's state with the given name, ID, and optional extra

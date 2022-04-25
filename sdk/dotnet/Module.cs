@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Spacelift
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Import is supported using the following syntax
+    /// 
+    /// ```sh
+    ///  $ pulumi import spacelift:index/module:Module k8s-module $MODULE_ID
+    /// ```
+    /// </summary>
     [SpaceliftResourceType("spacelift:index/module:Module")]
     public partial class Module : Pulumi.CustomResource
     {
@@ -25,6 +34,24 @@ namespace Pulumi.Spacelift
         public Output<string> AwsAssumeRolePolicyStatement { get; private set; } = null!;
 
         /// <summary>
+        /// Azure DevOps VCS settings
+        /// </summary>
+        [Output("azureDevops")]
+        public Output<Outputs.ModuleAzureDevops?> AzureDevops { get; private set; } = null!;
+
+        /// <summary>
+        /// Bitbucket Cloud VCS settings
+        /// </summary>
+        [Output("bitbucketCloud")]
+        public Output<Outputs.ModuleBitbucketCloud?> BitbucketCloud { get; private set; } = null!;
+
+        /// <summary>
+        /// Bitbucket Datacenter VCS settings
+        /// </summary>
+        [Output("bitbucketDatacenter")]
+        public Output<Outputs.ModuleBitbucketDatacenter?> BitbucketDatacenter { get; private set; } = null!;
+
+        /// <summary>
         /// GitHub branch to apply changes to
         /// </summary>
         [Output("branch")]
@@ -36,11 +63,40 @@ namespace Pulumi.Spacelift
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// GitHub Enterprise (self-hosted) VCS settings
+        /// </summary>
+        [Output("githubEnterprise")]
+        public Output<Outputs.ModuleGithubEnterprise?> GithubEnterprise { get; private set; } = null!;
+
+        /// <summary>
+        /// GitLab VCS settings
+        /// </summary>
         [Output("gitlab")]
         public Output<Outputs.ModuleGitlab?> Gitlab { get; private set; } = null!;
 
         [Output("labels")]
         public Output<ImmutableArray<string>> Labels { get; private set; } = null!;
+
+        /// <summary>
+        /// The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+        /// convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+        /// provide it here.
+        /// </summary>
+        [Output("name")]
+        public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Project root is the optional directory relative to the repository root containing the module source code.
+        /// </summary>
+        [Output("projectRoot")]
+        public Output<string?> ProjectRoot { get; private set; } = null!;
+
+        /// <summary>
+        /// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+        /// </summary>
+        [Output("protectFromDeletion")]
+        public Output<bool?> ProtectFromDeletion { get; private set; } = null!;
 
         /// <summary>
         /// Name of the repository, without the owner part
@@ -53,6 +109,14 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Output("sharedAccounts")]
         public Output<ImmutableArray<string>> SharedAccounts { get; private set; } = null!;
+
+        /// <summary>
+        /// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+        /// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+        /// can provide the provider name here.
+        /// </summary>
+        [Output("terraformProvider")]
+        public Output<string> TerraformProvider { get; private set; } = null!;
 
         /// <summary>
         /// ID of the worker pool to use
@@ -113,6 +177,24 @@ namespace Pulumi.Spacelift
         public Input<bool>? Administrative { get; set; }
 
         /// <summary>
+        /// Azure DevOps VCS settings
+        /// </summary>
+        [Input("azureDevops")]
+        public Input<Inputs.ModuleAzureDevopsArgs>? AzureDevops { get; set; }
+
+        /// <summary>
+        /// Bitbucket Cloud VCS settings
+        /// </summary>
+        [Input("bitbucketCloud")]
+        public Input<Inputs.ModuleBitbucketCloudArgs>? BitbucketCloud { get; set; }
+
+        /// <summary>
+        /// Bitbucket Datacenter VCS settings
+        /// </summary>
+        [Input("bitbucketDatacenter")]
+        public Input<Inputs.ModuleBitbucketDatacenterArgs>? BitbucketDatacenter { get; set; }
+
+        /// <summary>
         /// GitHub branch to apply changes to
         /// </summary>
         [Input("branch", required: true)]
@@ -124,6 +206,15 @@ namespace Pulumi.Spacelift
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// GitHub Enterprise (self-hosted) VCS settings
+        /// </summary>
+        [Input("githubEnterprise")]
+        public Input<Inputs.ModuleGithubEnterpriseArgs>? GithubEnterprise { get; set; }
+
+        /// <summary>
+        /// GitLab VCS settings
+        /// </summary>
         [Input("gitlab")]
         public Input<Inputs.ModuleGitlabArgs>? Gitlab { get; set; }
 
@@ -134,6 +225,26 @@ namespace Pulumi.Spacelift
             get => _labels ?? (_labels = new InputList<string>());
             set => _labels = value;
         }
+
+        /// <summary>
+        /// The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+        /// convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+        /// provide it here.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Project root is the optional directory relative to the repository root containing the module source code.
+        /// </summary>
+        [Input("projectRoot")]
+        public Input<string>? ProjectRoot { get; set; }
+
+        /// <summary>
+        /// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+        /// </summary>
+        [Input("protectFromDeletion")]
+        public Input<bool>? ProtectFromDeletion { get; set; }
 
         /// <summary>
         /// Name of the repository, without the owner part
@@ -152,6 +263,14 @@ namespace Pulumi.Spacelift
             get => _sharedAccounts ?? (_sharedAccounts = new InputList<string>());
             set => _sharedAccounts = value;
         }
+
+        /// <summary>
+        /// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+        /// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+        /// can provide the provider name here.
+        /// </summary>
+        [Input("terraformProvider")]
+        public Input<string>? TerraformProvider { get; set; }
 
         /// <summary>
         /// ID of the worker pool to use
@@ -179,6 +298,24 @@ namespace Pulumi.Spacelift
         public Input<string>? AwsAssumeRolePolicyStatement { get; set; }
 
         /// <summary>
+        /// Azure DevOps VCS settings
+        /// </summary>
+        [Input("azureDevops")]
+        public Input<Inputs.ModuleAzureDevopsGetArgs>? AzureDevops { get; set; }
+
+        /// <summary>
+        /// Bitbucket Cloud VCS settings
+        /// </summary>
+        [Input("bitbucketCloud")]
+        public Input<Inputs.ModuleBitbucketCloudGetArgs>? BitbucketCloud { get; set; }
+
+        /// <summary>
+        /// Bitbucket Datacenter VCS settings
+        /// </summary>
+        [Input("bitbucketDatacenter")]
+        public Input<Inputs.ModuleBitbucketDatacenterGetArgs>? BitbucketDatacenter { get; set; }
+
+        /// <summary>
         /// GitHub branch to apply changes to
         /// </summary>
         [Input("branch")]
@@ -190,6 +327,15 @@ namespace Pulumi.Spacelift
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// GitHub Enterprise (self-hosted) VCS settings
+        /// </summary>
+        [Input("githubEnterprise")]
+        public Input<Inputs.ModuleGithubEnterpriseGetArgs>? GithubEnterprise { get; set; }
+
+        /// <summary>
+        /// GitLab VCS settings
+        /// </summary>
         [Input("gitlab")]
         public Input<Inputs.ModuleGitlabGetArgs>? Gitlab { get; set; }
 
@@ -200,6 +346,26 @@ namespace Pulumi.Spacelift
             get => _labels ?? (_labels = new InputList<string>());
             set => _labels = value;
         }
+
+        /// <summary>
+        /// The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
+        /// convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
+        /// provide it here.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Project root is the optional directory relative to the repository root containing the module source code.
+        /// </summary>
+        [Input("projectRoot")]
+        public Input<string>? ProjectRoot { get; set; }
+
+        /// <summary>
+        /// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+        /// </summary>
+        [Input("protectFromDeletion")]
+        public Input<bool>? ProtectFromDeletion { get; set; }
 
         /// <summary>
         /// Name of the repository, without the owner part
@@ -218,6 +384,14 @@ namespace Pulumi.Spacelift
             get => _sharedAccounts ?? (_sharedAccounts = new InputList<string>());
             set => _sharedAccounts = value;
         }
+
+        /// <summary>
+        /// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
+        /// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
+        /// can provide the provider name here.
+        /// </summary>
+        [Input("terraformProvider")]
+        public Input<string>? TerraformProvider { get; set; }
 
         /// <summary>
         /// ID of the worker pool to use

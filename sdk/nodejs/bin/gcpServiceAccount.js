@@ -4,6 +4,19 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const pulumi = require("@pulumi/pulumi");
 const utilities = require("./utilities");
+/**
+ * ## Import
+ *
+ * Import is supported using the following syntax
+ *
+ * ```sh
+ *  $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core stack/$STACK_ID
+ * ```
+ *
+ * ```sh
+ *  $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core module/$MODULE_ID
+ * ```
+ */
 class GcpServiceAccount extends pulumi.CustomResource {
     constructor(name, argsOrState, opts) {
         let inputs = {};

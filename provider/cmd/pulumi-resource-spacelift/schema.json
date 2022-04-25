@@ -55,7 +55,119 @@
         }
     },
     "types": {
+        "spacelift:index/ModuleAzureDevops:ModuleAzureDevops": {
+            "properties": {
+                "project": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "project"
+            ]
+        },
+        "spacelift:index/ModuleBitbucketCloud:ModuleBitbucketCloud": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ]
+        },
+        "spacelift:index/ModuleBitbucketDatacenter:ModuleBitbucketDatacenter": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ]
+        },
+        "spacelift:index/ModuleGithubEnterprise:ModuleGithubEnterprise": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ]
+        },
         "spacelift:index/ModuleGitlab:ModuleGitlab": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ]
+        },
+        "spacelift:index/StackAzureDevops:StackAzureDevops": {
+            "properties": {
+                "project": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "project"
+            ]
+        },
+        "spacelift:index/StackBitbucketCloud:StackBitbucketCloud": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ]
+        },
+        "spacelift:index/StackBitbucketDatacenter:StackBitbucketDatacenter": {
             "properties": {
                 "namespace": {
                     "type": "string",
@@ -114,6 +226,22 @@
                 "templateBucket"
             ]
         },
+        "spacelift:index/StackGithubEnterprise:StackGithubEnterprise": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ]
+        },
         "spacelift:index/StackGitlab:StackGitlab": {
             "properties": {
                 "namespace": {
@@ -129,6 +257,19 @@
             "required": [
                 "namespace"
             ]
+        },
+        "spacelift:index/StackKubernetes:StackKubernetes": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
         },
         "spacelift:index/StackPulumi:StackPulumi": {
             "properties": {
@@ -155,7 +296,170 @@
                 "stackName"
             ]
         },
+        "spacelift:index/StackShowcase:StackShowcase": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ]
+        },
+        "spacelift:index/getModuleAzureDevop:getModuleAzureDevop": {
+            "properties": {
+                "project": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "project"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "spacelift:index/getModuleBitbucketCloud:getModuleBitbucketCloud": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "spacelift:index/getModuleBitbucketDatacenter:getModuleBitbucketDatacenter": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "spacelift:index/getModuleGithubEnterprise:getModuleGithubEnterprise": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "spacelift:index/getModuleGitlab:getModuleGitlab": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "spacelift:index/getStackAzureDevop:getStackAzureDevop": {
+            "properties": {
+                "project": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "project"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "spacelift:index/getStackBitbucketCloud:getStackBitbucketCloud": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "spacelift:index/getStackBitbucketDatacenter:getStackBitbucketDatacenter": {
             "properties": {
                 "namespace": {
                     "type": "string",
@@ -224,7 +528,49 @@
                 }
             }
         },
+        "spacelift:index/getStackGithubEnterprise:getStackGithubEnterprise": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "spacelift:index/getStackGitlab:getStackGitlab": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "spacelift:index/getStackKubernete:getStackKubernete": {
             "properties": {
                 "namespace": {
                     "type": "string",
@@ -268,6 +614,27 @@
             "required": [
                 "loginUrl",
                 "stackName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "spacelift:index/getStackShowcase:getStackShowcase": {
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "namespace"
             ],
             "language": {
                 "nodejs": {
@@ -369,7 +736,16 @@
     },
     "resources": {
         "spacelift:index/awsRole:AwsRole": {
+            "description": "`spacelift.AwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.\n\nIf you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).\n\nNote: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and Run ID as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).\n\n## Schema\n\n### Required\n\n- **role_arn** (String) ARN of the AWS IAM role to attach\n\n### Optional\n\n- **external_id** (String) Custom external ID (works only for private workers).\n- **generate_credentials_in_worker** (Boolean) Generate AWS credentials in the private worker\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module which assumes the AWS IAM role\n- **stack_id** (String) ID of the stack which assumes the AWS IAM role\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/awsRole:AwsRole k8s-core stack/$STACK_ID\n```\n\n\n\n```sh\n $ pulumi import spacelift:index/awsRole:AwsRole k8s-core module/$MODULE_ID\n```\n\n ",
             "properties": {
+                "externalId": {
+                    "type": "string",
+                    "description": "Custom external ID (works only for private workers).\n"
+                },
+                "generateCredentialsInWorker": {
+                    "type": "boolean",
+                    "description": "Generate AWS credentials in the private worker\n"
+                },
                 "moduleId": {
                     "type": "string",
                     "description": "ID of the module which assumes the AWS IAM role\n"
@@ -387,6 +763,14 @@
                 "roleArn"
             ],
             "inputProperties": {
+                "externalId": {
+                    "type": "string",
+                    "description": "Custom external ID (works only for private workers).\n"
+                },
+                "generateCredentialsInWorker": {
+                    "type": "boolean",
+                    "description": "Generate AWS credentials in the private worker\n"
+                },
                 "moduleId": {
                     "type": "string",
                     "description": "ID of the module which assumes the AWS IAM role\n"
@@ -406,6 +790,14 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AwsRole resources.\n",
                 "properties": {
+                    "externalId": {
+                        "type": "string",
+                        "description": "Custom external ID (works only for private workers).\n"
+                    },
+                    "generateCredentialsInWorker": {
+                        "type": "boolean",
+                        "description": "Generate AWS credentials in the private worker\n"
+                    },
                     "moduleId": {
                         "type": "string",
                         "description": "ID of the module which assumes the AWS IAM role\n"
@@ -423,10 +815,17 @@
             }
         },
         "spacelift:index/context:Context": {
+            "description": "`spacelift.Context` represents a Spacelift **context** - a collection of configuration elements (either environment variables or mounted files) that can be administratively attached to multiple stacks (`spacelift.Stack`) or modules (`spacelift.Module`) using a context attachment (`spacelift.ContextAttachment`)`\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst prod_k8s_ie = new spacelift.Context(\"prod-k8s-ie\", {\n    description: \"Configuration details for the compute cluster in 🇮🇪\",\n    name: \"Production cluster (Ireland)\",\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nprod_k8s_ie = spacelift.Context(\"prod-k8s-ie\",\n    description=\"Configuration details for the compute cluster in 🇮🇪\",\n    name=\"Production cluster (Ireland)\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var prod_k8s_ie = new Spacelift.Context(\"prod-k8s-ie\", new Spacelift.ContextArgs\n        {\n            Description = \"Configuration details for the compute cluster in 🇮🇪\",\n            Name = \"Production cluster (Ireland)\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewContext(ctx, \"prod_k8s_ie\", \u0026spacelift.ContextArgs{\n\t\t\tDescription: pulumi.String(\"Configuration details for the compute cluster in 🇮🇪\"),\n\t\t\tName:        pulumi.String(\"Production cluster (Ireland)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **name** (String) Name of the context - should be unique in one account\n\n### Optional\n\n- **description** (String) Free-form context description for users\n- **id** (String) The ID of this resource.\n- **labels** (Set of String)\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/context:Context prod-k8s-ie $CONTEXT_ID\n```\n\n ",
             "properties": {
                 "description": {
                     "type": "string",
                     "description": "Free-form context description for users\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "name": {
                     "type": "string",
@@ -440,6 +839,12 @@
                 "description": {
                     "type": "string",
                     "description": "Free-form context description for users\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "name": {
                     "type": "string",
@@ -456,6 +861,12 @@
                         "type": "string",
                         "description": "Free-form context description for users\n"
                     },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "name": {
                         "type": "string",
                         "description": "Name of the context - should be unique in one account\n"
@@ -465,6 +876,7 @@
             }
         },
         "spacelift:index/contextAttachment:ContextAttachment": {
+            "description": "`spacelift.ContextAttachment` represents a Spacelift attachment of a single context to a single stack or module, with a predefined priority.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\n// For a module\nconst attachment = new spacelift.ContextAttachment(\"attachment\", {\n    contextId: \"prod-k8s-ie\",\n    moduleId: \"k8s-module\",\n    priority: 0,\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\n# For a module\nattachment = spacelift.ContextAttachment(\"attachment\",\n    context_id=\"prod-k8s-ie\",\n    module_id=\"k8s-module\",\n    priority=0)\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // For a module\n        var attachment = new Spacelift.ContextAttachment(\"attachment\", new Spacelift.ContextAttachmentArgs\n        {\n            ContextId = \"prod-k8s-ie\",\n            ModuleId = \"k8s-module\",\n            Priority = 0,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewContextAttachment(ctx, \"attachment\", \u0026spacelift.ContextAttachmentArgs{\n\t\t\tContextId: pulumi.String(\"prod-k8s-ie\"),\n\t\t\tModuleId:  pulumi.String(\"k8s-module\"),\n\t\t\tPriority:  pulumi.Int(0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **context_id** (String) ID of the context to attach\n\n### Optional\n\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module to attach the context to\n- **priority** (Number) Priority of the context attachment, used in case of conflicts\n- **stack_id** (String) ID of the stack to attach the context to\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/contextAttachment:ContextAttachment test_stack $CONTEXT_ID/$STACK_ID\n```\n\n ",
             "properties": {
                 "contextId": {
                     "type": "string",
@@ -530,7 +942,74 @@
                 "type": "object"
             }
         },
+        "spacelift:index/driftDetection:DriftDetection": {
+            "description": "`spacelift.DriftDetection` represents a Drift Detection configuration for a Stack. It will trigger a proposed run on the given schedule, which you can listen for using run state webhooks. If reconcile is true, then a tracked run will be triggered when drift is detected.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst core_infra_production = new spacelift.Stack(\"core-infra-production\", {\n    name: \"Core Infrastructure (production)\",\n    branch: \"master\",\n    repository: \"core-infra\",\n});\nconst core_infra_production_drift_detection = new spacelift.DriftDetection(\"core-infra-production-drift-detection\", {\n    reconcile: true,\n    stackId: core_infra_production.id,\n    schedules: [\"*/15 * * * *\"],\n});\n// Every 15 minutes\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\ncore_infra_production = spacelift.Stack(\"core-infra-production\",\n    name=\"Core Infrastructure (production)\",\n    branch=\"master\",\n    repository=\"core-infra\")\ncore_infra_production_drift_detection = spacelift.DriftDetection(\"core-infra-production-drift-detection\",\n    reconcile=True,\n    stack_id=core_infra_production.id,\n    schedules=[\"*/15 * * * *\"])\n# Every 15 minutes\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var core_infra_production = new Spacelift.Stack(\"core-infra-production\", new Spacelift.StackArgs\n        {\n            Name = \"Core Infrastructure (production)\",\n            Branch = \"master\",\n            Repository = \"core-infra\",\n        });\n        var core_infra_production_drift_detection = new Spacelift.DriftDetection(\"core-infra-production-drift-detection\", new Spacelift.DriftDetectionArgs\n        {\n            Reconcile = true,\n            StackId = core_infra_production.Id,\n            Schedules = \n            {\n                \"*/15 * * * *\",\n            },\n        });\n        // Every 15 minutes\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewStack(ctx, \"core_infra_production\", \u0026spacelift.StackArgs{\n\t\t\tName:       pulumi.String(\"Core Infrastructure (production)\"),\n\t\t\tBranch:     pulumi.String(\"master\"),\n\t\t\tRepository: pulumi.String(\"core-infra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewDriftDetection(ctx, \"core_infra_production_drift_detection\", \u0026spacelift.DriftDetectionArgs{\n\t\t\tReconcile: pulumi.Bool(true),\n\t\t\tStackId:   core_infra_production.ID(),\n\t\t\tSchedules: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"*/15 * * * *\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **schedule** (List of String) List of cron schedule expressions based on which drift detection should be triggered.\n- **stack_id** (String) ID of the stack for which to set up drift detection\n\n### Optional\n\n- **id** (String) The ID of this resource.\n- **reconcile** (Boolean) Whether a tracked run should be triggered when drift is detected.\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/driftDetection:DriftDetection core-infra-production-drift-detection stack/$STACK_ID\n```\n\n\n\n```sh\n $ pulumi import spacelift:index/driftDetection:DriftDetection core-infra-production-drift-detection module/$MODULE_ID\n```\n\n ",
+            "properties": {
+                "reconcile": {
+                    "type": "boolean",
+                    "description": "Whether a tracked run should be triggered when drift is detected.\n"
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of cron schedule expressions based on which drift detection should be triggered.\n"
+                },
+                "stackId": {
+                    "type": "string",
+                    "description": "ID of the stack for which to set up drift detection\n"
+                }
+            },
+            "required": [
+                "schedules",
+                "stackId"
+            ],
+            "inputProperties": {
+                "reconcile": {
+                    "type": "boolean",
+                    "description": "Whether a tracked run should be triggered when drift is detected.\n"
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of cron schedule expressions based on which drift detection should be triggered.\n"
+                },
+                "stackId": {
+                    "type": "string",
+                    "description": "ID of the stack for which to set up drift detection\n"
+                }
+            },
+            "requiredInputs": [
+                "schedules",
+                "stackId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DriftDetection resources.\n",
+                "properties": {
+                    "reconcile": {
+                        "type": "boolean",
+                        "description": "Whether a tracked run should be triggered when drift is detected.\n"
+                    },
+                    "schedules": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of cron schedule expressions based on which drift detection should be triggered.\n"
+                    },
+                    "stackId": {
+                        "type": "string",
+                        "description": "ID of the stack for which to set up drift detection\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "spacelift:index/environmentVariable:EnvironmentVariable": {
+            "description": "`spacelift.EnvironmentVariable` defines an environment variable on the context (`spacelift.Context`), stack (`spacelift.Stack`) or a module (`spacelift.Module`), thereby allowing to pass and share various secrets and configuration with Spacelift stacks.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\n// For a context\nconst ireland_kubeconfig = new spacelift.EnvironmentVariable(\"ireland-kubeconfig\", {\n    contextId: \"prod-k8s-ie\",\n    name: \"KUBECONFIG\",\n    value: \"/project/spacelift/kubeconfig\",\n    writeOnly: false,\n});\n// For a module\nconst module_kubeconfig = new spacelift.EnvironmentVariable(\"module-kubeconfig\", {\n    moduleId: \"k8s-module\",\n    name: \"KUBECONFIG\",\n    value: \"/project/spacelift/kubeconfig\",\n    writeOnly: false,\n});\n// For a stack\nconst core_kubeconfig = new spacelift.EnvironmentVariable(\"core-kubeconfig\", {\n    name: \"KUBECONFIG\",\n    stackId: \"k8s-core\",\n    value: \"/project/spacelift/kubeconfig\",\n    writeOnly: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\n# For a context\nireland_kubeconfig = spacelift.EnvironmentVariable(\"ireland-kubeconfig\",\n    context_id=\"prod-k8s-ie\",\n    name=\"KUBECONFIG\",\n    value=\"/project/spacelift/kubeconfig\",\n    write_only=False)\n# For a module\nmodule_kubeconfig = spacelift.EnvironmentVariable(\"module-kubeconfig\",\n    module_id=\"k8s-module\",\n    name=\"KUBECONFIG\",\n    value=\"/project/spacelift/kubeconfig\",\n    write_only=False)\n# For a stack\ncore_kubeconfig = spacelift.EnvironmentVariable(\"core-kubeconfig\",\n    name=\"KUBECONFIG\",\n    stack_id=\"k8s-core\",\n    value=\"/project/spacelift/kubeconfig\",\n    write_only=False)\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // For a context\n        var ireland_kubeconfig = new Spacelift.EnvironmentVariable(\"ireland-kubeconfig\", new Spacelift.EnvironmentVariableArgs\n        {\n            ContextId = \"prod-k8s-ie\",\n            Name = \"KUBECONFIG\",\n            Value = \"/project/spacelift/kubeconfig\",\n            WriteOnly = false,\n        });\n        // For a module\n        var module_kubeconfig = new Spacelift.EnvironmentVariable(\"module-kubeconfig\", new Spacelift.EnvironmentVariableArgs\n        {\n            ModuleId = \"k8s-module\",\n            Name = \"KUBECONFIG\",\n            Value = \"/project/spacelift/kubeconfig\",\n            WriteOnly = false,\n        });\n        // For a stack\n        var core_kubeconfig = new Spacelift.EnvironmentVariable(\"core-kubeconfig\", new Spacelift.EnvironmentVariableArgs\n        {\n            Name = \"KUBECONFIG\",\n            StackId = \"k8s-core\",\n            Value = \"/project/spacelift/kubeconfig\",\n            WriteOnly = false,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewEnvironmentVariable(ctx, \"ireland_kubeconfig\", \u0026spacelift.EnvironmentVariableArgs{\n\t\t\tContextId: pulumi.String(\"prod-k8s-ie\"),\n\t\t\tName:      pulumi.String(\"KUBECONFIG\"),\n\t\t\tValue:     pulumi.String(\"/project/spacelift/kubeconfig\"),\n\t\t\tWriteOnly: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewEnvironmentVariable(ctx, \"module_kubeconfig\", \u0026spacelift.EnvironmentVariableArgs{\n\t\t\tModuleId:  pulumi.String(\"k8s-module\"),\n\t\t\tName:      pulumi.String(\"KUBECONFIG\"),\n\t\t\tValue:     pulumi.String(\"/project/spacelift/kubeconfig\"),\n\t\t\tWriteOnly: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewEnvironmentVariable(ctx, \"core_kubeconfig\", \u0026spacelift.EnvironmentVariableArgs{\n\t\t\tName:      pulumi.String(\"KUBECONFIG\"),\n\t\t\tStackId:   pulumi.String(\"k8s-core\"),\n\t\t\tValue:     pulumi.String(\"/project/spacelift/kubeconfig\"),\n\t\t\tWriteOnly: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **name** (String) Name of the environment variable\n- **value** (String, Sensitive) Value of the environment variable\n\n### Optional\n\n- **context_id** (String) ID of the context on which the environment variable is defined\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module on which the environment variable is defined\n- **stack_id** (String) ID of the stack on which the environment variable is defined\n- **write_only** (Boolean) Indicates whether the value can be read back outside a Run\n\n### Read-Only\n\n- **checksum** (String) SHA-256 checksum of the value\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/environmentVariable:EnvironmentVariable ireland-kubeconfig context/$CONTEXT_ID/$ENVIRONMENT_VARIABLE_NAME\n```\n\n\n\n```sh\n $ pulumi import spacelift:index/environmentVariable:EnvironmentVariable module-kubeconfig module/$MODULE_ID/$ENVIRONMENT_VARIABLE_NAME\n```\n\n\n\n```sh\n $ pulumi import spacelift:index/environmentVariable:EnvironmentVariable core-kubeconfig stack/$STACK_ID/$ENVIRONMENT_VARIABLE_NAME\n```\n\n ",
             "properties": {
                 "checksum": {
                     "type": "string",
@@ -632,6 +1111,7 @@
             }
         },
         "spacelift:index/gcpServiceAccount:GcpServiceAccount": {
+            "description": "\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core stack/$STACK_ID\n```\n\n\n\n```sh\n $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core module/$MODULE_ID\n```\n\n ",
             "properties": {
                 "moduleId": {
                     "type": "string",
@@ -704,6 +1184,7 @@
             }
         },
         "spacelift:index/module:Module": {
+            "description": "\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/module:Module k8s-module $MODULE_ID\n```\n\n ",
             "properties": {
                 "administrative": {
                     "type": "boolean",
@@ -713,6 +1194,18 @@
                     "type": "string",
                     "description": "AWS IAM assume role policy statement setting up trust relationship\n"
                 },
+                "azureDevops": {
+                    "$ref": "#/types/spacelift:index/ModuleAzureDevops:ModuleAzureDevops",
+                    "description": "Azure DevOps VCS settings\n"
+                },
+                "bitbucketCloud": {
+                    "$ref": "#/types/spacelift:index/ModuleBitbucketCloud:ModuleBitbucketCloud",
+                    "description": "Bitbucket Cloud VCS settings\n"
+                },
+                "bitbucketDatacenter": {
+                    "$ref": "#/types/spacelift:index/ModuleBitbucketDatacenter:ModuleBitbucketDatacenter",
+                    "description": "Bitbucket Datacenter VCS settings\n"
+                },
                 "branch": {
                     "type": "string",
                     "description": "GitHub branch to apply changes to\n"
@@ -721,14 +1214,31 @@
                     "type": "string",
                     "description": "Free-form module description for users\n"
                 },
+                "githubEnterprise": {
+                    "$ref": "#/types/spacelift:index/ModuleGithubEnterprise:ModuleGithubEnterprise",
+                    "description": "GitHub Enterprise (self-hosted) VCS settings\n"
+                },
                 "gitlab": {
-                    "$ref": "#/types/spacelift:index/ModuleGitlab:ModuleGitlab"
+                    "$ref": "#/types/spacelift:index/ModuleGitlab:ModuleGitlab",
+                    "description": "GitLab VCS settings\n"
                 },
                 "labels": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming\nconvention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can\nprovide it here.\n"
+                },
+                "projectRoot": {
+                    "type": "string",
+                    "description": "Project root is the optional directory relative to the repository root containing the module source code.\n"
+                },
+                "protectFromDeletion": {
+                    "type": "boolean",
+                    "description": "Protect this module from accidental deletion. If set, attempts to delete this module will fail.\n"
                 },
                 "repository": {
                     "type": "string",
@@ -740,6 +1250,10 @@
                         "type": "string"
                     },
                     "description": "List of the accounts (subdomains) which should have access to the Module\n"
+                },
+                "terraformProvider": {
+                    "type": "string",
+                    "description": "The module provider will by default be inferred from the repository name if it follows the terraform-provider-name\nnaming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you\ncan provide the provider name here.\n"
                 },
                 "workerPoolId": {
                     "type": "string",
@@ -749,12 +1263,26 @@
             "required": [
                 "awsAssumeRolePolicyStatement",
                 "branch",
-                "repository"
+                "name",
+                "repository",
+                "terraformProvider"
             ],
             "inputProperties": {
                 "administrative": {
                     "type": "boolean",
                     "description": "Indicates whether this module can manage others\n"
+                },
+                "azureDevops": {
+                    "$ref": "#/types/spacelift:index/ModuleAzureDevops:ModuleAzureDevops",
+                    "description": "Azure DevOps VCS settings\n"
+                },
+                "bitbucketCloud": {
+                    "$ref": "#/types/spacelift:index/ModuleBitbucketCloud:ModuleBitbucketCloud",
+                    "description": "Bitbucket Cloud VCS settings\n"
+                },
+                "bitbucketDatacenter": {
+                    "$ref": "#/types/spacelift:index/ModuleBitbucketDatacenter:ModuleBitbucketDatacenter",
+                    "description": "Bitbucket Datacenter VCS settings\n"
                 },
                 "branch": {
                     "type": "string",
@@ -764,14 +1292,31 @@
                     "type": "string",
                     "description": "Free-form module description for users\n"
                 },
+                "githubEnterprise": {
+                    "$ref": "#/types/spacelift:index/ModuleGithubEnterprise:ModuleGithubEnterprise",
+                    "description": "GitHub Enterprise (self-hosted) VCS settings\n"
+                },
                 "gitlab": {
-                    "$ref": "#/types/spacelift:index/ModuleGitlab:ModuleGitlab"
+                    "$ref": "#/types/spacelift:index/ModuleGitlab:ModuleGitlab",
+                    "description": "GitLab VCS settings\n"
                 },
                 "labels": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming\nconvention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can\nprovide it here.\n"
+                },
+                "projectRoot": {
+                    "type": "string",
+                    "description": "Project root is the optional directory relative to the repository root containing the module source code.\n"
+                },
+                "protectFromDeletion": {
+                    "type": "boolean",
+                    "description": "Protect this module from accidental deletion. If set, attempts to delete this module will fail.\n"
                 },
                 "repository": {
                     "type": "string",
@@ -783,6 +1328,10 @@
                         "type": "string"
                     },
                     "description": "List of the accounts (subdomains) which should have access to the Module\n"
+                },
+                "terraformProvider": {
+                    "type": "string",
+                    "description": "The module provider will by default be inferred from the repository name if it follows the terraform-provider-name\nnaming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you\ncan provide the provider name here.\n"
                 },
                 "workerPoolId": {
                     "type": "string",
@@ -804,6 +1353,18 @@
                         "type": "string",
                         "description": "AWS IAM assume role policy statement setting up trust relationship\n"
                     },
+                    "azureDevops": {
+                        "$ref": "#/types/spacelift:index/ModuleAzureDevops:ModuleAzureDevops",
+                        "description": "Azure DevOps VCS settings\n"
+                    },
+                    "bitbucketCloud": {
+                        "$ref": "#/types/spacelift:index/ModuleBitbucketCloud:ModuleBitbucketCloud",
+                        "description": "Bitbucket Cloud VCS settings\n"
+                    },
+                    "bitbucketDatacenter": {
+                        "$ref": "#/types/spacelift:index/ModuleBitbucketDatacenter:ModuleBitbucketDatacenter",
+                        "description": "Bitbucket Datacenter VCS settings\n"
+                    },
                     "branch": {
                         "type": "string",
                         "description": "GitHub branch to apply changes to\n"
@@ -812,14 +1373,31 @@
                         "type": "string",
                         "description": "Free-form module description for users\n"
                     },
+                    "githubEnterprise": {
+                        "$ref": "#/types/spacelift:index/ModuleGithubEnterprise:ModuleGithubEnterprise",
+                        "description": "GitHub Enterprise (self-hosted) VCS settings\n"
+                    },
                     "gitlab": {
-                        "$ref": "#/types/spacelift:index/ModuleGitlab:ModuleGitlab"
+                        "$ref": "#/types/spacelift:index/ModuleGitlab:ModuleGitlab",
+                        "description": "GitLab VCS settings\n"
                     },
                     "labels": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         }
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming\nconvention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can\nprovide it here.\n"
+                    },
+                    "projectRoot": {
+                        "type": "string",
+                        "description": "Project root is the optional directory relative to the repository root containing the module source code.\n"
+                    },
+                    "protectFromDeletion": {
+                        "type": "boolean",
+                        "description": "Protect this module from accidental deletion. If set, attempts to delete this module will fail.\n"
                     },
                     "repository": {
                         "type": "string",
@@ -832,6 +1410,10 @@
                         },
                         "description": "List of the accounts (subdomains) which should have access to the Module\n"
                     },
+                    "terraformProvider": {
+                        "type": "string",
+                        "description": "The module provider will by default be inferred from the repository name if it follows the terraform-provider-name\nnaming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you\ncan provide the provider name here.\n"
+                    },
                     "workerPoolId": {
                         "type": "string",
                         "description": "ID of the worker pool to use\n"
@@ -841,6 +1423,7 @@
             }
         },
         "spacelift:index/mountedFile:MountedFile": {
+            "description": "`spacelift.MountedFile` represents a file mounted in each Run's workspace that is part of a configuration of a context (`spacelift.Context`), stack (`spacelift.Stack`) or a module (`spacelift.Module`). In principle, it's very similar to an environment variable (`spacelift.EnvironmentVariable`) except that the value is written to the filesystem rather than passed to the environment.\n\n## Schema\n\n### Required\n\n- **content** (String, Sensitive) Content of the mounted file encoded using Base-64\n- **relative_path** (String) Relative path to the mounted file, without the /mnt/workspace/ prefix\n\n### Optional\n\n- **context_id** (String) ID of the context on which the mounted file is defined\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module on which the mounted file is defined\n- **stack_id** (String) ID of the stack on which the mounted file is defined\n- **write_only** (Boolean) Indicates whether the content can be read back outside a Run\n\n### Read-Only\n\n- **checksum** (String) SHA-256 checksum of the value\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/mountedFile:MountedFile ireland-kubeconfig context/$CONTEXT_ID/$MOUNTED_FILE_ID\n```\n\n\n\n```sh\n $ pulumi import spacelift:index/mountedFile:MountedFile module-kubeconfig module/$MODULE_ID/$MOUNTED_FILE_ID\n```\n\n\n\n```sh\n $ pulumi import spacelift:index/mountedFile:MountedFile core-kubeconfig stack/$STACK_ID/$MOUNTED_FILE_ID\n```\n\n ",
             "properties": {
                 "checksum": {
                     "type": "string",
@@ -942,10 +1525,17 @@
             }
         },
         "spacelift:index/policy:Policy": {
+            "description": "`spacelift.Policy` represents a Spacelift **policy** - a collection of customer-defined rules that are applied by Spacelift at one of the decision points within the application.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\nimport * from \"fs\";\n\nconst no_weekend_deploysPolicy = new spacelift.Policy(\"no-weekend-deploysPolicy\", {\n    name: \"Let's not deploy any changes over the weekend\",\n    body: fs.readFileSync(`${path.module}/policies/no-weekend-deploys.rego`),\n    type: \"PLAN\",\n});\nconst core_infra_production = new spacelift.Stack(\"core-infra-production\", {\n    name: \"Core Infrastructure (production)\",\n    branch: \"master\",\n    repository: \"core-infra\",\n});\nconst no_weekend_deploysPolicyAttachment = new spacelift.PolicyAttachment(\"no-weekend-deploysPolicyAttachment\", {\n    policyId: no_weekend_deploysPolicy.id,\n    stackId: core_infra_production.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nno_weekend_deploys_policy = spacelift.Policy(\"no-weekend-deploysPolicy\",\n    name=\"Let's not deploy any changes over the weekend\",\n    body=(lambda path: open(path).read())(f\"{path['module']}/policies/no-weekend-deploys.rego\"),\n    type=\"PLAN\")\ncore_infra_production = spacelift.Stack(\"core-infra-production\",\n    name=\"Core Infrastructure (production)\",\n    branch=\"master\",\n    repository=\"core-infra\")\nno_weekend_deploys_policy_attachment = spacelift.PolicyAttachment(\"no-weekend-deploysPolicyAttachment\",\n    policy_id=no_weekend_deploys_policy.id,\n    stack_id=core_infra_production.id)\n```\n```csharp\nusing System.IO;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var no_weekend_deploysPolicy = new Spacelift.Policy(\"no-weekend-deploysPolicy\", new Spacelift.PolicyArgs\n        {\n            Name = \"Let's not deploy any changes over the weekend\",\n            Body = File.ReadAllText($\"{path.Module}/policies/no-weekend-deploys.rego\"),\n            Type = \"PLAN\",\n        });\n        var core_infra_production = new Spacelift.Stack(\"core-infra-production\", new Spacelift.StackArgs\n        {\n            Name = \"Core Infrastructure (production)\",\n            Branch = \"master\",\n            Repository = \"core-infra\",\n        });\n        var no_weekend_deploysPolicyAttachment = new Spacelift.PolicyAttachment(\"no-weekend-deploysPolicyAttachment\", new Spacelift.PolicyAttachmentArgs\n        {\n            PolicyId = no_weekend_deploysPolicy.Id,\n            StackId = core_infra_production.Id,\n        });\n    }\n\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **body** (String) Body of the policy\n- **name** (String) Name of the policy - should be unique in one account\n- **type** (String) Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).\n\n### Optional\n\n- **id** (String) The ID of this resource.\n- **labels** (Set of String)\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/policy:Policy no-weekend-deploys $POLICY_ID\n```\n\n ",
             "properties": {
                 "body": {
                     "type": "string",
                     "description": "Body of the policy\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "name": {
                     "type": "string",
@@ -953,7 +1543,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Body of the policy\n"
+                    "description": "Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and\n`TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and\n`TERRAFORM_PLAN` (use `PLAN` instead).\n"
                 }
             },
             "required": [
@@ -966,13 +1556,19 @@
                     "type": "string",
                     "description": "Body of the policy\n"
                 },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "name": {
                     "type": "string",
                     "description": "Name of the policy - should be unique in one account\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Body of the policy\n"
+                    "description": "Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and\n`TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and\n`TERRAFORM_PLAN` (use `PLAN` instead).\n"
                 }
             },
             "requiredInputs": [
@@ -987,24 +1583,27 @@
                         "type": "string",
                         "description": "Body of the policy\n"
                     },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "name": {
                         "type": "string",
                         "description": "Name of the policy - should be unique in one account\n"
                     },
                     "type": {
                         "type": "string",
-                        "description": "Body of the policy\n"
+                        "description": "Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and\n`TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and\n`TERRAFORM_PLAN` (use `PLAN` instead).\n"
                     }
                 },
                 "type": "object"
             }
         },
         "spacelift:index/policyAttachment:PolicyAttachment": {
+            "description": "`spacelift.PolicyAttachment` represents a relationship between a policy (`spacelift.Policy`) and a stack (`spacelift.Stack`) or module (`spacelift.Module`). Each policy can only be attached to a stack/module once. `LOGIN` policies are the exception because they apply globally and not to individual stacks/modules. An attempt to attach one will fail.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\nimport * from \"fs\";\n\nconst no_weekend_deploysPolicy = new spacelift.Policy(\"no-weekend-deploysPolicy\", {\n    name: \"Let's not deploy any changes over the weekend\",\n    body: fs.readFileSync(\"policies/no-weekend-deploys.rego\"),\n    type: \"PLAN\",\n});\nconst core_infra_production = new spacelift.Stack(\"core-infra-production\", {\n    name: \"Core Infrastructure (production)\",\n    branch: \"master\",\n    repository: \"core-infra\",\n});\nconst no_weekend_deploysPolicyAttachment = new spacelift.PolicyAttachment(\"no-weekend-deploysPolicyAttachment\", {\n    policyId: no_weekend_deploysPolicy.id,\n    stackId: core_infra_production.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nno_weekend_deploys_policy = spacelift.Policy(\"no-weekend-deploysPolicy\",\n    name=\"Let's not deploy any changes over the weekend\",\n    body=(lambda path: open(path).read())(\"policies/no-weekend-deploys.rego\"),\n    type=\"PLAN\")\ncore_infra_production = spacelift.Stack(\"core-infra-production\",\n    name=\"Core Infrastructure (production)\",\n    branch=\"master\",\n    repository=\"core-infra\")\nno_weekend_deploys_policy_attachment = spacelift.PolicyAttachment(\"no-weekend-deploysPolicyAttachment\",\n    policy_id=no_weekend_deploys_policy.id,\n    stack_id=core_infra_production.id)\n```\n```csharp\nusing System.IO;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var no_weekend_deploysPolicy = new Spacelift.Policy(\"no-weekend-deploysPolicy\", new Spacelift.PolicyArgs\n        {\n            Name = \"Let's not deploy any changes over the weekend\",\n            Body = File.ReadAllText(\"policies/no-weekend-deploys.rego\"),\n            Type = \"PLAN\",\n        });\n        var core_infra_production = new Spacelift.Stack(\"core-infra-production\", new Spacelift.StackArgs\n        {\n            Name = \"Core Infrastructure (production)\",\n            Branch = \"master\",\n            Repository = \"core-infra\",\n        });\n        var no_weekend_deploysPolicyAttachment = new Spacelift.PolicyAttachment(\"no-weekend-deploysPolicyAttachment\", new Spacelift.PolicyAttachmentArgs\n        {\n            PolicyId = no_weekend_deploysPolicy.Id,\n            StackId = core_infra_production.Id,\n        });\n    }\n\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **policy_id** (String) ID of the policy to attach\n\n### Optional\n\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module to attach the policy to\n- **stack_id** (String) ID of the stack to attach the policy to\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/policyAttachment:PolicyAttachment no-weekend-deploys $POLICY_ID/$STACK_ID\n```\n\n ",
             "properties": {
-                "customInput": {
-                    "type": "string",
-                    "description": "JSON-encoded custom input to be passed to the evaluated document at the \"attachment\" key\n"
-                },
                 "moduleId": {
                     "type": "string",
                     "description": "ID of the module to attach the policy to\n"
@@ -1022,10 +1621,6 @@
                 "policyId"
             ],
             "inputProperties": {
-                "customInput": {
-                    "type": "string",
-                    "description": "JSON-encoded custom input to be passed to the evaluated document at the \"attachment\" key\n"
-                },
                 "moduleId": {
                     "type": "string",
                     "description": "ID of the module to attach the policy to\n"
@@ -1045,10 +1640,6 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering PolicyAttachment resources.\n",
                 "properties": {
-                    "customInput": {
-                        "type": "string",
-                        "description": "JSON-encoded custom input to be passed to the evaluated document at the \"attachment\" key\n"
-                    },
                     "moduleId": {
                         "type": "string",
                         "description": "ID of the module to attach the policy to\n"
@@ -1066,10 +1657,46 @@
             }
         },
         "spacelift:index/stack:Stack": {
+            "description": "\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/stack:Stack k8s_core $STACK_ID\n```\n\n ",
             "properties": {
                 "administrative": {
                     "type": "boolean",
                     "description": "Indicates whether this stack can manage others\n"
+                },
+                "afterApplies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-apply scripts\n"
+                },
+                "afterDestroys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-destroy scripts\n"
+                },
+                "afterInits": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-init scripts\n"
+                },
+                "afterPerforms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-perform scripts\n"
+                },
+                "afterPlans": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-plan scripts\n"
                 },
                 "autodeploy": {
                     "type": "boolean",
@@ -1083,12 +1710,52 @@
                     "type": "string",
                     "description": "AWS IAM assume role policy statement setting up trust relationship\n"
                 },
+                "azureDevops": {
+                    "$ref": "#/types/spacelift:index/StackAzureDevops:StackAzureDevops",
+                    "description": "Azure DevOps VCS settings\n"
+                },
+                "beforeApplies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-apply scripts\n"
+                },
+                "beforeDestroys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-destroy scripts\n"
+                },
                 "beforeInits": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
                     "description": "List of before-init scripts\n"
+                },
+                "beforePerforms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-perform scripts\n"
+                },
+                "beforePlans": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-plan scripts\n"
+                },
+                "bitbucketCloud": {
+                    "$ref": "#/types/spacelift:index/StackBitbucketCloud:StackBitbucketCloud",
+                    "description": "Bitbucket Cloud VCS settings\n"
+                },
+                "bitbucketDatacenter": {
+                    "$ref": "#/types/spacelift:index/StackBitbucketDatacenter:StackBitbucketDatacenter",
+                    "description": "Bitbucket Datacenter VCS settings\n"
                 },
                 "branch": {
                     "type": "string",
@@ -1102,12 +1769,33 @@
                     "type": "string",
                     "description": "Free-form stack description for users\n"
                 },
+                "enableLocalPreview": {
+                    "type": "boolean",
+                    "description": "Indicates whether local preview runs can be triggered on this Stack\n"
+                },
+                "githubActionDeploy": {
+                    "type": "boolean",
+                    "description": "Indicates whether GitHub users can deploy from the Checks API\n"
+                },
+                "githubEnterprise": {
+                    "$ref": "#/types/spacelift:index/StackGithubEnterprise:StackGithubEnterprise",
+                    "description": "GitHub Enterprise (self-hosted) VCS settings\n"
+                },
                 "gitlab": {
-                    "$ref": "#/types/spacelift:index/StackGitlab:StackGitlab"
+                    "$ref": "#/types/spacelift:index/StackGitlab:StackGitlab",
+                    "description": "GitLab VCS settings\n"
                 },
                 "importState": {
                     "type": "string",
                     "description": "State file to upload when creating a new stack\n"
+                },
+                "importStateFile": {
+                    "type": "string",
+                    "description": "Path to the state file to upload when creating a new stack\n"
+                },
+                "kubernetes": {
+                    "$ref": "#/types/spacelift:index/StackKubernetes:StackKubernetes",
+                    "description": "Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.\n"
                 },
                 "labels": {
                     "type": "array",
@@ -1127,6 +1815,10 @@
                     "type": "string",
                     "description": "Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.\n"
                 },
+                "protectFromDeletion": {
+                    "type": "boolean",
+                    "description": "Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.\n"
+                },
                 "pulumi": {
                     "$ref": "#/types/spacelift:index/StackPulumi:StackPulumi",
                     "description": "Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.\n"
@@ -1138,6 +1830,13 @@
                 "runnerImage": {
                     "type": "string",
                     "description": "Name of the Docker image used to process Runs\n"
+                },
+                "showcase": {
+                    "$ref": "#/types/spacelift:index/StackShowcase:StackShowcase"
+                },
+                "slug": {
+                    "type": "string",
+                    "description": "Allows setting the custom ID (slug) for the stack\n"
                 },
                 "terraformVersion": {
                     "type": "string",
@@ -1163,6 +1862,41 @@
                     "type": "boolean",
                     "description": "Indicates whether this stack can manage others\n"
                 },
+                "afterApplies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-apply scripts\n"
+                },
+                "afterDestroys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-destroy scripts\n"
+                },
+                "afterInits": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-init scripts\n"
+                },
+                "afterPerforms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-perform scripts\n"
+                },
+                "afterPlans": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-plan scripts\n"
+                },
                 "autodeploy": {
                     "type": "boolean",
                     "description": "Indicates whether changes to this stack can be automatically deployed\n"
@@ -1171,12 +1905,52 @@
                     "type": "boolean",
                     "description": "Indicates whether obsolete proposed changes should automatically be retried\n"
                 },
+                "azureDevops": {
+                    "$ref": "#/types/spacelift:index/StackAzureDevops:StackAzureDevops",
+                    "description": "Azure DevOps VCS settings\n"
+                },
+                "beforeApplies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-apply scripts\n"
+                },
+                "beforeDestroys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-destroy scripts\n"
+                },
                 "beforeInits": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
                     "description": "List of before-init scripts\n"
+                },
+                "beforePerforms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-perform scripts\n"
+                },
+                "beforePlans": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-plan scripts\n"
+                },
+                "bitbucketCloud": {
+                    "$ref": "#/types/spacelift:index/StackBitbucketCloud:StackBitbucketCloud",
+                    "description": "Bitbucket Cloud VCS settings\n"
+                },
+                "bitbucketDatacenter": {
+                    "$ref": "#/types/spacelift:index/StackBitbucketDatacenter:StackBitbucketDatacenter",
+                    "description": "Bitbucket Datacenter VCS settings\n"
                 },
                 "branch": {
                     "type": "string",
@@ -1190,12 +1964,33 @@
                     "type": "string",
                     "description": "Free-form stack description for users\n"
                 },
+                "enableLocalPreview": {
+                    "type": "boolean",
+                    "description": "Indicates whether local preview runs can be triggered on this Stack\n"
+                },
+                "githubActionDeploy": {
+                    "type": "boolean",
+                    "description": "Indicates whether GitHub users can deploy from the Checks API\n"
+                },
+                "githubEnterprise": {
+                    "$ref": "#/types/spacelift:index/StackGithubEnterprise:StackGithubEnterprise",
+                    "description": "GitHub Enterprise (self-hosted) VCS settings\n"
+                },
                 "gitlab": {
-                    "$ref": "#/types/spacelift:index/StackGitlab:StackGitlab"
+                    "$ref": "#/types/spacelift:index/StackGitlab:StackGitlab",
+                    "description": "GitLab VCS settings\n"
                 },
                 "importState": {
                     "type": "string",
                     "description": "State file to upload when creating a new stack\n"
+                },
+                "importStateFile": {
+                    "type": "string",
+                    "description": "Path to the state file to upload when creating a new stack\n"
+                },
+                "kubernetes": {
+                    "$ref": "#/types/spacelift:index/StackKubernetes:StackKubernetes",
+                    "description": "Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.\n"
                 },
                 "labels": {
                     "type": "array",
@@ -1215,6 +2010,10 @@
                     "type": "string",
                     "description": "Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.\n"
                 },
+                "protectFromDeletion": {
+                    "type": "boolean",
+                    "description": "Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.\n"
+                },
                 "pulumi": {
                     "$ref": "#/types/spacelift:index/StackPulumi:StackPulumi",
                     "description": "Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.\n"
@@ -1226,6 +2025,13 @@
                 "runnerImage": {
                     "type": "string",
                     "description": "Name of the Docker image used to process Runs\n"
+                },
+                "showcase": {
+                    "$ref": "#/types/spacelift:index/StackShowcase:StackShowcase"
+                },
+                "slug": {
+                    "type": "string",
+                    "description": "Allows setting the custom ID (slug) for the stack\n"
                 },
                 "terraformVersion": {
                     "type": "string",
@@ -1252,6 +2058,41 @@
                         "type": "boolean",
                         "description": "Indicates whether this stack can manage others\n"
                     },
+                    "afterApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-apply scripts\n"
+                    },
+                    "afterDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-destroy scripts\n"
+                    },
+                    "afterInits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-init scripts\n"
+                    },
+                    "afterPerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-perform scripts\n"
+                    },
+                    "afterPlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-plan scripts\n"
+                    },
                     "autodeploy": {
                         "type": "boolean",
                         "description": "Indicates whether changes to this stack can be automatically deployed\n"
@@ -1264,12 +2105,52 @@
                         "type": "string",
                         "description": "AWS IAM assume role policy statement setting up trust relationship\n"
                     },
+                    "azureDevops": {
+                        "$ref": "#/types/spacelift:index/StackAzureDevops:StackAzureDevops",
+                        "description": "Azure DevOps VCS settings\n"
+                    },
+                    "beforeApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-apply scripts\n"
+                    },
+                    "beforeDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-destroy scripts\n"
+                    },
                     "beforeInits": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
                         "description": "List of before-init scripts\n"
+                    },
+                    "beforePerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-perform scripts\n"
+                    },
+                    "beforePlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-plan scripts\n"
+                    },
+                    "bitbucketCloud": {
+                        "$ref": "#/types/spacelift:index/StackBitbucketCloud:StackBitbucketCloud",
+                        "description": "Bitbucket Cloud VCS settings\n"
+                    },
+                    "bitbucketDatacenter": {
+                        "$ref": "#/types/spacelift:index/StackBitbucketDatacenter:StackBitbucketDatacenter",
+                        "description": "Bitbucket Datacenter VCS settings\n"
                     },
                     "branch": {
                         "type": "string",
@@ -1283,12 +2164,33 @@
                         "type": "string",
                         "description": "Free-form stack description for users\n"
                     },
+                    "enableLocalPreview": {
+                        "type": "boolean",
+                        "description": "Indicates whether local preview runs can be triggered on this Stack\n"
+                    },
+                    "githubActionDeploy": {
+                        "type": "boolean",
+                        "description": "Indicates whether GitHub users can deploy from the Checks API\n"
+                    },
+                    "githubEnterprise": {
+                        "$ref": "#/types/spacelift:index/StackGithubEnterprise:StackGithubEnterprise",
+                        "description": "GitHub Enterprise (self-hosted) VCS settings\n"
+                    },
                     "gitlab": {
-                        "$ref": "#/types/spacelift:index/StackGitlab:StackGitlab"
+                        "$ref": "#/types/spacelift:index/StackGitlab:StackGitlab",
+                        "description": "GitLab VCS settings\n"
                     },
                     "importState": {
                         "type": "string",
                         "description": "State file to upload when creating a new stack\n"
+                    },
+                    "importStateFile": {
+                        "type": "string",
+                        "description": "Path to the state file to upload when creating a new stack\n"
+                    },
+                    "kubernetes": {
+                        "$ref": "#/types/spacelift:index/StackKubernetes:StackKubernetes",
+                        "description": "Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.\n"
                     },
                     "labels": {
                         "type": "array",
@@ -1308,6 +2210,10 @@
                         "type": "string",
                         "description": "Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.\n"
                     },
+                    "protectFromDeletion": {
+                        "type": "boolean",
+                        "description": "Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.\n"
+                    },
                     "pulumi": {
                         "$ref": "#/types/spacelift:index/StackPulumi:StackPulumi",
                         "description": "Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.\n"
@@ -1319,6 +2225,13 @@
                     "runnerImage": {
                         "type": "string",
                         "description": "Name of the Docker image used to process Runs\n"
+                    },
+                    "showcase": {
+                        "$ref": "#/types/spacelift:index/StackShowcase:StackShowcase"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "description": "Allows setting the custom ID (slug) for the stack\n"
                     },
                     "terraformVersion": {
                         "type": "string",
@@ -1337,7 +2250,16 @@
             }
         },
         "spacelift:index/stackAwsRole:StackAwsRole": {
+            "description": "\u003e **Note:** `spacelift.StackAwsRole` is deprecated. Please use `spacelift.AwsRole` instead. The functionality is identical.\n\n`spacelift.StackAwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.\n\nIf you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).\n\nNote: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and Run ID as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).\n\n## Schema\n\n### Required\n\n- **role_arn** (String) ARN of the AWS IAM role to attach\n\n### Optional\n\n- **external_id** (String) Custom external ID (works only for private workers).\n- **generate_credentials_in_worker** (Boolean) Generate AWS credentials in the private worker\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module which assumes the AWS IAM role\n- **stack_id** (String) ID of the stack which assumes the AWS IAM role\n",
             "properties": {
+                "externalId": {
+                    "type": "string",
+                    "description": "Custom external ID (works only for private workers).\n"
+                },
+                "generateCredentialsInWorker": {
+                    "type": "boolean",
+                    "description": "Generate AWS credentials in the private worker\n"
+                },
                 "moduleId": {
                     "type": "string",
                     "description": "ID of the module which assumes the AWS IAM role\n"
@@ -1355,6 +2277,14 @@
                 "roleArn"
             ],
             "inputProperties": {
+                "externalId": {
+                    "type": "string",
+                    "description": "Custom external ID (works only for private workers).\n"
+                },
+                "generateCredentialsInWorker": {
+                    "type": "boolean",
+                    "description": "Generate AWS credentials in the private worker\n"
+                },
                 "moduleId": {
                     "type": "string",
                     "description": "ID of the module which assumes the AWS IAM role\n"
@@ -1374,6 +2304,14 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering StackAwsRole resources.\n",
                 "properties": {
+                    "externalId": {
+                        "type": "string",
+                        "description": "Custom external ID (works only for private workers).\n"
+                    },
+                    "generateCredentialsInWorker": {
+                        "type": "boolean",
+                        "description": "Generate AWS credentials in the private worker\n"
+                    },
                     "moduleId": {
                         "type": "string",
                         "description": "ID of the module which assumes the AWS IAM role\n"
@@ -1385,6 +2323,49 @@
                     "stackId": {
                         "type": "string",
                         "description": "ID of the stack which assumes the AWS IAM role\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "spacelift:index/stackDestructor:StackDestructor": {
+            "description": "`spacelift.StackDestructor` is used to destroy the resources of a Stack before deleting it. `depends_on` should be used to make sure that all necessery resources (environment variables, roles, integrations, etc.) are still in place when the destruction run is executed. **Note:** Destroying this resource will delete the resources in the stack. If this resource needs to be deleted and the resources in the stacks are to be preserved, ensure that the `deactivated` attribute is set to `true`.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst k8s_coreStack = new spacelift.Stack(\"k8s-coreStack\", {});\n// ...\nconst credentials = new spacelift.EnvironmentVariable(\"credentials\", {});\n// ...\nconst k8s_coreStackDestructor = new spacelift.StackDestructor(\"k8s-coreStackDestructor\", {stackId: k8s_coreStack.id}, {\n    dependsOn: [credentials],\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nk8s_core_stack = spacelift.Stack(\"k8s-coreStack\")\n# ...\ncredentials = spacelift.EnvironmentVariable(\"credentials\")\n# ...\nk8s_core_stack_destructor = spacelift.StackDestructor(\"k8s-coreStackDestructor\", stack_id=k8s_core_stack.id,\nopts=pulumi.ResourceOptions(depends_on=[credentials]))\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var k8s_coreStack = new Spacelift.Stack(\"k8s-coreStack\", new Spacelift.StackArgs\n        {\n        });\n        // ...\n        var credentials = new Spacelift.EnvironmentVariable(\"credentials\", new Spacelift.EnvironmentVariableArgs\n        {\n        });\n        // ...\n        var k8s_coreStackDestructor = new Spacelift.StackDestructor(\"k8s-coreStackDestructor\", new Spacelift.StackDestructorArgs\n        {\n            StackId = k8s_coreStack.Id,\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                credentials,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewStack(ctx, \"k8s_coreStack\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tcredentials, err := spacelift.NewEnvironmentVariable(ctx, \"credentials\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStackDestructor(ctx, \"k8s_coreStackDestructor\", \u0026spacelift.StackDestructorArgs{\n\t\t\tStackId: k8s_coreStack.ID(),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tcredentials,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **stack_id** (String) ID of the stack to delete and destroy on destruction\n\n### Optional\n\n- **deactivated** (Boolean) If set to true, destruction won't delete the stack\n- **id** (String) The ID of this resource.\n- **timeouts** (Block, Optional) (see below for nested schema)\n\n\u003ca id=\"nestedblock--timeouts\"\u003e\u003c/a\u003e\n### Nested Schema for `timeouts`\n\nOptional:\n\n- **delete** (String)\n",
+            "properties": {
+                "deactivated": {
+                    "type": "boolean",
+                    "description": "If set to true, destruction won't delete the stack\n"
+                },
+                "stackId": {
+                    "type": "string",
+                    "description": "ID of the stack to delete and destroy on destruction\n"
+                }
+            },
+            "required": [
+                "stackId"
+            ],
+            "inputProperties": {
+                "deactivated": {
+                    "type": "boolean",
+                    "description": "If set to true, destruction won't delete the stack\n"
+                },
+                "stackId": {
+                    "type": "string",
+                    "description": "ID of the stack to delete and destroy on destruction\n"
+                }
+            },
+            "requiredInputs": [
+                "stackId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering StackDestructor resources.\n",
+                "properties": {
+                    "deactivated": {
+                        "type": "boolean",
+                        "description": "If set to true, destruction won't delete the stack\n"
+                    },
+                    "stackId": {
+                        "type": "string",
+                        "description": "ID of the stack to delete and destroy on destruction\n"
                     }
                 },
                 "type": "object"
@@ -1462,7 +2443,60 @@
                 "type": "object"
             }
         },
+        "spacelift:index/vCSAgentPool:VCSAgentPool": {
+            "description": "`spacelift.VCSAgentPool` represents a Spacelift **VCS agent pool** - a logical group of proxies allowing Spacelift to access private VCS installations\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst ghe = new spacelift.VCSAgentPool(\"ghe\", {\n    description: \"VCS agent pool for our internal GitHub Enterpris\",\n    name: \"ghe\",\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nghe = spacelift.VCSAgentPool(\"ghe\",\n    description=\"VCS agent pool for our internal GitHub Enterpris\",\n    name=\"ghe\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var ghe = new Spacelift.VCSAgentPool(\"ghe\", new Spacelift.VCSAgentPoolArgs\n        {\n            Description = \"VCS agent pool for our internal GitHub Enterpris\",\n            Name = \"ghe\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewVCSAgentPool(ctx, \"ghe\", \u0026spacelift.VCSAgentPoolArgs{\n\t\t\tDescription: pulumi.String(\"VCS agent pool for our internal GitHub Enterpris\"),\n\t\t\tName:        pulumi.String(\"ghe\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **name** (String) Name of the VCS agent pool, must be unique within an account\n\n### Optional\n\n- **description** (String) Free-form VCS agent pool description for users\n- **id** (String) The ID of this resource.\n\n### Read-Only\n\n- **config** (String, Sensitive) VCS agent pool configuration, encoded using base64\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/vCSAgentPool:VCSAgentPool ghe $VCS_AGENT_POOL_ID\n```\n\n ",
+            "properties": {
+                "config": {
+                    "type": "string",
+                    "description": "VCS agent pool configuration, encoded using base64\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Free-form VCS agent pool description for users\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the VCS agent pool, must be unique within an account\n"
+                }
+            },
+            "required": [
+                "config",
+                "name"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Free-form VCS agent pool description for users\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the VCS agent pool, must be unique within an account\n"
+                }
+            },
+            "requiredInputs": [
+                "name"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering VCSAgentPool resources.\n",
+                "properties": {
+                    "config": {
+                        "type": "string",
+                        "description": "VCS agent pool configuration, encoded using base64\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Free-form VCS agent pool description for users\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the VCS agent pool, must be unique within an account\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "spacelift:index/webhook:Webhook": {
+            "description": "`spacelift.Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst webhook = new spacelift.Webhook(\"webhook\", {\n    endpoint: \"https://example.com/webhooks\",\n    stackId: \"k8s-core\",\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nwebhook = spacelift.Webhook(\"webhook\",\n    endpoint=\"https://example.com/webhooks\",\n    stack_id=\"k8s-core\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var webhook = new Spacelift.Webhook(\"webhook\", new Spacelift.WebhookArgs\n        {\n            Endpoint = \"https://example.com/webhooks\",\n            StackId = \"k8s-core\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewWebhook(ctx, \"webhook\", \u0026spacelift.WebhookArgs{\n\t\t\tEndpoint: pulumi.String(\"https://example.com/webhooks\"),\n\t\t\tStackId:  pulumi.String(\"k8s-core\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **endpoint** (String) endpoint to send the POST request to\n\n### Optional\n\n- **enabled** (Boolean) enables or disables sending webhooks\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module which triggers the webhooks\n- **secret** (String, Sensitive) secret used to sign each POST request so you're able to verify that the request comes from us\n- **stack_id** (String) ID of the stack which triggers the webhooks\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/webhook:Webhook webhook stack/$STACK_ID/$WEBHOOK_ID\n```\n\n ",
             "properties": {
                 "enabled": {
                     "type": "boolean",
@@ -1541,6 +2575,7 @@
             }
         },
         "spacelift:index/workerPool:WorkerPool": {
+            "description": "`spacelift.WorkerPool` represents a worker pool assigned to the Spacelift account.\n\n## Schema\n\n### Required\n\n- **name** (String) name of the worker pool\n\n### Optional\n\n- **csr** (String, Sensitive) certificate signing request in base64\n- **description** (String) description of the worker pool\n- **id** (String) The ID of this resource.\n- **labels** (Set of String)\n\n### Read-Only\n\n- **config** (String, Sensitive) credentials necessary to connect WorkerPool's workers to the control plane\n- **private_key** (String, Sensitive) private key in base64\n\n\n## Import\n\nImport is supported using the following syntax\n\n```sh\n $ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID\n```\n\n ",
             "properties": {
                 "config": {
                     "type": "string",
@@ -1553,6 +2588,12 @@
                 "description": {
                     "type": "string",
                     "description": "description of the worker pool\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "name": {
                     "type": "string",
@@ -1578,6 +2619,12 @@
                     "type": "string",
                     "description": "description of the worker pool\n"
                 },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "name": {
                     "type": "string",
                     "description": "name of the worker pool\n"
@@ -1601,6 +2648,12 @@
                         "type": "string",
                         "description": "description of the worker pool\n"
                     },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "name": {
                         "type": "string",
                         "description": "name of the worker pool\n"
@@ -1616,6 +2669,7 @@
     },
     "functions": {
         "spacelift:index/getAwsRole:getAwsRole": {
+            "description": "`spacelift.AwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.\n\nIf you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).\n\nNote: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and Run ID as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\n// With a module\nconst k8s_module = pulumi.output(spacelift.getAwsRole({\n    moduleId: \"k8s-module\",\n}, { async: true }));\n// With a stack\nconst k8s_core = pulumi.output(spacelift.getAwsRole({\n    stackId: \"k8s-core\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nk8s_module = spacelift.get_aws_role(module_id=\"k8s-module\")\nk8s_core = spacelift.get_aws_role(stack_id=\"k8s-core\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var k8s_module = Output.Create(Spacelift.GetAwsRole.InvokeAsync(new Spacelift.GetAwsRoleArgs\n        {\n            ModuleId = \"k8s-module\",\n        }));\n        var k8s_core = Output.Create(Spacelift.GetAwsRole.InvokeAsync(new Spacelift.GetAwsRoleArgs\n        {\n            StackId = \"k8s-core\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"k8s-module\"\n\t\t_, err := spacelift.LookupAwsRole(ctx, \u0026spacelift.LookupAwsRoleArgs{\n\t\t\tModuleId: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topt1 := \"k8s-core\"\n\t\t_, err = spacelift.LookupAwsRole(ctx, \u0026spacelift.LookupAwsRoleArgs{\n\t\t\tStackId: \u0026opt1,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Optional\n\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module which assumes the AWS IAM role\n- **stack_id** (String) ID of the stack which assumes the AWS IAM role\n\n### Read-Only\n\n- **external_id** (String) Custom external ID (works only for private workers).\n- **generate_credentials_in_worker** (Boolean) Generate AWS credentials in the private worker\n- **role_arn** (String) ARN of the AWS IAM role to attach\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getAwsRole.\n",
                 "properties": {
@@ -1631,6 +2685,12 @@
             "outputs": {
                 "description": "A collection of values returned by getAwsRole.\n",
                 "properties": {
+                    "externalId": {
+                        "type": "string"
+                    },
+                    "generateCredentialsInWorker": {
+                        "type": "boolean"
+                    },
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
@@ -1647,12 +2707,39 @@
                 },
                 "type": "object",
                 "required": [
+                    "externalId",
+                    "generateCredentialsInWorker",
                     "roleArn",
                     "id"
                 ]
             }
         },
+        "spacelift:index/getAzureDevOpsIntegration:getAzureDevOpsIntegration": {
+            "description": "`spacelift.getAzureDevOpsIntegration` returns details about Azure DevOps integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst azureDevopsIntegration = pulumi.output(spacelift.getAzureDevOpsIntegration({ async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nazure_devops_integration = spacelift.get_azure_dev_ops_integration()\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var azureDevopsIntegration = Output.Create(Spacelift.GetAzureDevOpsIntegration.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetAzureDevOpsIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Optional\n\n- **id** (String) The ID of this resource.\n\n### Read-Only\n\n- **organization_url** (String) Azure DevOps integration organization url\n- **webhook_password** (String) Azure DevOps integration webhook password\n",
+            "outputs": {
+                "description": "A collection of values returned by getAzureDevOpsIntegration.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "organizationUrl": {
+                        "type": "string"
+                    },
+                    "webhookPassword": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "organizationUrl",
+                    "webhookPassword",
+                    "id"
+                ]
+            }
+        },
         "spacelift:index/getContext:getContext": {
+            "description": "`spacelift.Context` represents a Spacelift **context** - a collection of configuration elements (either environment variables or mounted files) that can be administratively attached to multiple stacks (`spacelift.Stack`) or modules (`spacelift.Module`) using a context attachment (`spacelift.ContextAttachment`)`\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst prod_k8s_ie = pulumi.output(spacelift.getContext({\n    contextId: \"prod-k8s-ie\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nprod_k8s_ie = spacelift.get_context(context_id=\"prod-k8s-ie\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var prod_k8s_ie = Output.Create(Spacelift.GetContext.InvokeAsync(new Spacelift.GetContextArgs\n        {\n            ContextId = \"prod-k8s-ie\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.LookupContext(ctx, \u0026spacelift.LookupContextArgs{\n\t\t\tContextId: \"prod-k8s-ie\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **context_id** (String) immutable ID (slug) of the context\n\n### Optional\n\n- **id** (String) The ID of this resource.\n\n### Read-Only\n\n- **description** (String) free-form context description for users\n- **labels** (Set of String)\n- **name** (String) name of the context\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getContext.\n",
                 "properties": {
@@ -1678,6 +2765,12 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "name": {
                         "type": "string"
                     }
@@ -1686,12 +2779,14 @@
                 "required": [
                     "contextId",
                     "description",
+                    "labels",
                     "name",
                     "id"
                 ]
             }
         },
         "spacelift:index/getContextAttachment:getContextAttachment": {
+            "description": "`spacelift.ContextAttachment` represents a Spacelift attachment of a single context to a single stack or module, with a predefined priority.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\n// With a stack.\nconst apps_k8s_ie = pulumi.output(spacelift.getContextAttachment({\n    contextId: \"prod-k8s-ie\",\n    stackId: \"apps-cluster\",\n}, { async: true }));\n// With a module.\nconst kafka_k8s_ie = pulumi.output(spacelift.getContextAttachment({\n    contextId: \"prod-k8s-ie\",\n    moduleId: \"terraform-aws-kafka\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\napps_k8s_ie = spacelift.get_context_attachment(context_id=\"prod-k8s-ie\",\n    stack_id=\"apps-cluster\")\nkafka_k8s_ie = spacelift.get_context_attachment(context_id=\"prod-k8s-ie\",\n    module_id=\"terraform-aws-kafka\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var apps_k8s_ie = Output.Create(Spacelift.GetContextAttachment.InvokeAsync(new Spacelift.GetContextAttachmentArgs\n        {\n            ContextId = \"prod-k8s-ie\",\n            StackId = \"apps-cluster\",\n        }));\n        var kafka_k8s_ie = Output.Create(Spacelift.GetContextAttachment.InvokeAsync(new Spacelift.GetContextAttachmentArgs\n        {\n            ContextId = \"prod-k8s-ie\",\n            ModuleId = \"terraform-aws-kafka\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"apps-cluster\"\n\t\t_, err := spacelift.LookupContextAttachment(ctx, \u0026spacelift.LookupContextAttachmentArgs{\n\t\t\tContextId: \"prod-k8s-ie\",\n\t\t\tStackId:   \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topt1 := \"terraform-aws-kafka\"\n\t\t_, err = spacelift.LookupContextAttachment(ctx, \u0026spacelift.LookupContextAttachmentArgs{\n\t\t\tContextId: \"prod-k8s-ie\",\n\t\t\tModuleId:  \u0026opt1,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **context_id** (String) ID of the attached context\n\n### Optional\n\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the attached module\n- **stack_id** (String) ID of the attached stack\n\n### Read-Only\n\n- **priority** (Number) priority of the context attachment, used in case of conflicts\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getContextAttachment.\n",
                 "properties": {
@@ -1739,6 +2834,7 @@
             }
         },
         "spacelift:index/getCurrentStack:getCurrentStack": {
+            "description": "`spacelift.getCurrentStack` is a data source that provides information about the current administrative stack if the run is executed within Spacelift by a stack or module. This allows clever tricks like attaching contexts or policies to the stack that manages them.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst this = spacelift.getCurrentStack({});\nconst core_kubeconfig = new spacelift.EnvironmentVariable(\"core-kubeconfig\", {\n    stackId: _this.then(_this =\u003e _this.id),\n    name: \"CHUNKY\",\n    value: \"bacon\",\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nthis = spacelift.get_current_stack()\ncore_kubeconfig = spacelift.EnvironmentVariable(\"core-kubeconfig\",\n    stack_id=this.id,\n    name=\"CHUNKY\",\n    value=\"bacon\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @this = Output.Create(Spacelift.GetCurrentStack.InvokeAsync());\n        var core_kubeconfig = new Spacelift.EnvironmentVariable(\"core-kubeconfig\", new Spacelift.EnvironmentVariableArgs\n        {\n            StackId = @this.Apply(@this =\u003e @this.Id),\n            Name = \"CHUNKY\",\n            Value = \"bacon\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tthis, err := spacelift.GetCurrentStack(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewEnvironmentVariable(ctx, \"core_kubeconfig\", \u0026spacelift.EnvironmentVariableArgs{\n\t\t\tStackId: pulumi.String(this.Id),\n\t\t\tName:    pulumi.String(\"CHUNKY\"),\n\t\t\tValue:   pulumi.String(\"bacon\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Optional\n\n- **id** (String) The ID of this resource.\n",
             "outputs": {
                 "description": "A collection of values returned by getCurrentStack.\n",
                 "properties": {
@@ -1753,7 +2849,51 @@
                 ]
             }
         },
+        "spacelift:index/getDriftDetection:getDriftDetection": {
+            "description": "`spacelift.DriftDetection` represents a Drift Detection configuration for a Stack. It will trigger a proposed run on the given schedule, which you can listen for using run state webhooks. If reconcile is true, then a tracked run will be triggered when drift is detected.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst core_infra_production_drift_detection = pulumi.output(spacelift.getDriftDetection({\n    stackId: \"core-infra-production\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\ncore_infra_production_drift_detection = spacelift.get_drift_detection(stack_id=\"core-infra-production\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var core_infra_production_drift_detection = Output.Create(Spacelift.GetDriftDetection.InvokeAsync(new Spacelift.GetDriftDetectionArgs\n        {\n            StackId = \"core-infra-production\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.LookupDriftDetection(ctx, \u0026spacelift.LookupDriftDetectionArgs{\n\t\t\tStackId: \"core-infra-production\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **stack_id** (String) ID of the stack for which to set up drift detection\n\n### Optional\n\n- **id** (String) The ID of this resource.\n\n### Read-Only\n\n- **reconcile** (Boolean) Whether a tracked run should be triggered when drift is detected.\n- **schedule** (List of String) List of cron schedule expressions based on which drift detection should be triggered.\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDriftDetection.\n",
+                "properties": {
+                    "stackId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "stackId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDriftDetection.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "reconcile": {
+                        "type": "boolean"
+                    },
+                    "schedules": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "stackId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "reconcile",
+                    "schedules",
+                    "stackId",
+                    "id"
+                ]
+            }
+        },
         "spacelift:index/getEnvironmentVariable:getEnvironmentVariable": {
+            "description": "`spacelift.EnvironmentVariable` defines an environment variable on the context (`spacelift.Context`), stack (`spacelift.Stack`) or a module (`spacelift.Module`), thereby allowing to pass and share various secrets and configuration with Spacelift stacks.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\n// For a context\nconst ireland_kubeconfig = pulumi.output(spacelift.getEnvironmentVariable({\n    contextId: \"prod-k8s-ie\",\n    name: \"KUBECONFIG\",\n}, { async: true }));\n// For a module\nconst module_kubeconfig = pulumi.output(spacelift.getEnvironmentVariable({\n    moduleId: \"k8s-module\",\n    name: \"KUBECONFIG\",\n}, { async: true }));\n// For a stack\nconst core_kubeconfig = pulumi.output(spacelift.getEnvironmentVariable({\n    name: \"KUBECONFIG\",\n    stackId: \"k8s-core\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nireland_kubeconfig = spacelift.get_environment_variable(context_id=\"prod-k8s-ie\",\n    name=\"KUBECONFIG\")\nmodule_kubeconfig = spacelift.get_environment_variable(module_id=\"k8s-module\",\n    name=\"KUBECONFIG\")\ncore_kubeconfig = spacelift.get_environment_variable(name=\"KUBECONFIG\",\n    stack_id=\"k8s-core\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var ireland_kubeconfig = Output.Create(Spacelift.GetEnvironmentVariable.InvokeAsync(new Spacelift.GetEnvironmentVariableArgs\n        {\n            ContextId = \"prod-k8s-ie\",\n            Name = \"KUBECONFIG\",\n        }));\n        var module_kubeconfig = Output.Create(Spacelift.GetEnvironmentVariable.InvokeAsync(new Spacelift.GetEnvironmentVariableArgs\n        {\n            ModuleId = \"k8s-module\",\n            Name = \"KUBECONFIG\",\n        }));\n        var core_kubeconfig = Output.Create(Spacelift.GetEnvironmentVariable.InvokeAsync(new Spacelift.GetEnvironmentVariableArgs\n        {\n            Name = \"KUBECONFIG\",\n            StackId = \"k8s-core\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"prod-k8s-ie\"\n\t\t_, err := spacelift.LookupEnvironmentVariable(ctx, \u0026spacelift.LookupEnvironmentVariableArgs{\n\t\t\tContextId: \u0026opt0,\n\t\t\tName:      \"KUBECONFIG\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topt1 := \"k8s-module\"\n\t\t_, err = spacelift.LookupEnvironmentVariable(ctx, \u0026spacelift.LookupEnvironmentVariableArgs{\n\t\t\tModuleId: \u0026opt1,\n\t\t\tName:     \"KUBECONFIG\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topt2 := \"k8s-core\"\n\t\t_, err = spacelift.LookupEnvironmentVariable(ctx, \u0026spacelift.LookupEnvironmentVariableArgs{\n\t\t\tName:    \"KUBECONFIG\",\n\t\t\tStackId: \u0026opt2,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **name** (String) name of the environment variable\n\n### Optional\n\n- **context_id** (String) ID of the context on which the environment variable is defined\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module on which the environment variable is defined\n- **stack_id** (String) ID of the stack on which the environment variable is defined\n\n### Read-Only\n\n- **checksum** (String) SHA-256 checksum of the value\n- **value** (String, Sensitive) value of the environment variable\n- **write_only** (Boolean) indicates whether the value can be read back outside a Run\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getEnvironmentVariable.\n",
                 "properties": {
@@ -1858,7 +2998,36 @@
                 ]
             }
         },
+        "spacelift:index/getGitHubEnterpriseIntegration:getGitHubEnterpriseIntegration": {
+            "description": "`spacelift.getGitHubEnterpriseIntegration` returns details about Github Enterprise integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst githubEnterpriseIntegration = pulumi.output(spacelift.getGitHubEnterpriseIntegration({ async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\ngithub_enterprise_integration = spacelift.get_git_hub_enterprise_integration()\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var githubEnterpriseIntegration = Output.Create(Spacelift.GetGitHubEnterpriseIntegration.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetGitHubEnterpriseIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Optional\n\n- **id** (String) The ID of this resource.\n\n### Read-Only\n\n- **api_host** (String) Github integration api host\n- **app_id** (String) Github integration app id\n- **webhook_secret** (String) Github integration webhook secret\n",
+            "outputs": {
+                "description": "A collection of values returned by getGitHubEnterpriseIntegration.\n",
+                "properties": {
+                    "apiHost": {
+                        "type": "string"
+                    },
+                    "appId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "webhookSecret": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "apiHost",
+                    "appId",
+                    "webhookSecret",
+                    "id"
+                ]
+            }
+        },
         "spacelift:index/getIps:getIps": {
+            "description": "`spacelift.getIps` returns the list of Spacelift's outgoing IP addresses, which you can use to whitelist connections coming from the Spacelift's \"mothership\".\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst ips = pulumi.output(spacelift.getIps({ async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nips = spacelift.get_ips()\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var ips = Output.Create(Spacelift.GetIps.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetIps(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Optional\n\n- **id** (String) The ID of this resource.\n\n### Read-Only\n\n- **ips** (Set of String) the list of spacelift.io outgoing IP addresses\n",
             "outputs": {
                 "description": "A collection of values returned by getIps.\n",
                 "properties": {
@@ -1902,11 +3071,35 @@
                     "awsAssumeRolePolicyStatement": {
                         "type": "string"
                     },
+                    "azureDevops": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/spacelift:index/getModuleAzureDevop:getModuleAzureDevop"
+                        }
+                    },
+                    "bitbucketClouds": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/spacelift:index/getModuleBitbucketCloud:getModuleBitbucketCloud"
+                        }
+                    },
+                    "bitbucketDatacenters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/spacelift:index/getModuleBitbucketDatacenter:getModuleBitbucketDatacenter"
+                        }
+                    },
                     "branch": {
                         "type": "string"
                     },
                     "description": {
                         "type": "string"
+                    },
+                    "githubEnterprises": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/spacelift:index/getModuleGithubEnterprise:getModuleGithubEnterprise"
+                        }
                     },
                     "gitlabs": {
                         "type": "array",
@@ -1927,6 +3120,15 @@
                     "moduleId": {
                         "type": "string"
                     },
+                    "name": {
+                        "type": "string"
+                    },
+                    "projectRoot": {
+                        "type": "string"
+                    },
+                    "protectFromDeletion": {
+                        "type": "boolean"
+                    },
                     "repository": {
                         "type": "string"
                     },
@@ -1936,6 +3138,9 @@
                             "type": "string"
                         }
                     },
+                    "terraformProvider": {
+                        "type": "string"
+                    },
                     "workerPoolId": {
                         "type": "string"
                     }
@@ -1944,19 +3149,28 @@
                 "required": [
                     "administrative",
                     "awsAssumeRolePolicyStatement",
+                    "azureDevops",
+                    "bitbucketClouds",
+                    "bitbucketDatacenters",
                     "branch",
                     "description",
+                    "githubEnterprises",
                     "gitlabs",
                     "labels",
                     "moduleId",
+                    "name",
+                    "projectRoot",
+                    "protectFromDeletion",
                     "repository",
                     "sharedAccounts",
+                    "terraformProvider",
                     "workerPoolId",
                     "id"
                 ]
             }
         },
         "spacelift:index/getMountedFile:getMountedFile": {
+            "description": "`spacelift.MountedFile` represents a file mounted in each Run's workspace that is part of a configuration of a context (`spacelift.Context`), stack (`spacelift.Stack`) or a module (`spacelift.Module`). In principle, it's very similar to an environment variable (`spacelift.EnvironmentVariable`) except that the value is written to the filesystem rather than passed to the environment.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\n// For a context\nconst ireland_kubeconfig = pulumi.output(spacelift.getMountedFile({\n    contextId: \"prod-k8s-ie\",\n    relativePath: \"kubeconfig\",\n}, { async: true }));\n// For a module\nconst module_kubeconfig = pulumi.output(spacelift.getMountedFile({\n    moduleId: \"k8s-module\",\n    relativePath: \"kubeconfig\",\n}, { async: true }));\n// For a stack\nconst core_kubeconfig = pulumi.output(spacelift.getMountedFile({\n    relativePath: \"kubeconfig\",\n    stackId: \"k8s-core\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nireland_kubeconfig = spacelift.get_mounted_file(context_id=\"prod-k8s-ie\",\n    relative_path=\"kubeconfig\")\nmodule_kubeconfig = spacelift.get_mounted_file(module_id=\"k8s-module\",\n    relative_path=\"kubeconfig\")\ncore_kubeconfig = spacelift.get_mounted_file(relative_path=\"kubeconfig\",\n    stack_id=\"k8s-core\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var ireland_kubeconfig = Output.Create(Spacelift.GetMountedFile.InvokeAsync(new Spacelift.GetMountedFileArgs\n        {\n            ContextId = \"prod-k8s-ie\",\n            RelativePath = \"kubeconfig\",\n        }));\n        var module_kubeconfig = Output.Create(Spacelift.GetMountedFile.InvokeAsync(new Spacelift.GetMountedFileArgs\n        {\n            ModuleId = \"k8s-module\",\n            RelativePath = \"kubeconfig\",\n        }));\n        var core_kubeconfig = Output.Create(Spacelift.GetMountedFile.InvokeAsync(new Spacelift.GetMountedFileArgs\n        {\n            RelativePath = \"kubeconfig\",\n            StackId = \"k8s-core\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"prod-k8s-ie\"\n\t\t_, err := spacelift.LookupMountedFile(ctx, \u0026spacelift.LookupMountedFileArgs{\n\t\t\tContextId:    \u0026opt0,\n\t\t\tRelativePath: \"kubeconfig\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topt1 := \"k8s-module\"\n\t\t_, err = spacelift.LookupMountedFile(ctx, \u0026spacelift.LookupMountedFileArgs{\n\t\t\tModuleId:     \u0026opt1,\n\t\t\tRelativePath: \"kubeconfig\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topt2 := \"k8s-core\"\n\t\t_, err = spacelift.LookupMountedFile(ctx, \u0026spacelift.LookupMountedFileArgs{\n\t\t\tRelativePath: \"kubeconfig\",\n\t\t\tStackId:      \u0026opt2,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **relative_path** (String) relative path to the mounted file\n\n### Optional\n\n- **context_id** (String) ID of the context where the mounted file is stored\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module where the mounted file is stored\n- **stack_id** (String) ID of the stack where the mounted file is stored\n\n### Read-Only\n\n- **checksum** (String) SHA-256 checksum of the value\n- **content** (String, Sensitive) content of the mounted file encoded using Base-64\n- **write_only** (Boolean) indicates whether the value can be read back outside a Run\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getMountedFile.\n",
                 "properties": {
@@ -2018,6 +3232,7 @@
             }
         },
         "spacelift:index/getPolicy:getPolicy": {
+            "description": "`spacelift.Policy` represents a Spacelift **policy** - a collection of customer-defined rules that are applied by Spacelift at one of the decision points within the application.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst policy = spacelift.getPolicy({\n    policyId: spacelift_policy.policy.id,\n});\nexport const policyBody = policy.then(policy =\u003e policy.body);\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\npolicy = spacelift.get_policy(policy_id=spacelift_policy[\"policy\"][\"id\"])\npulumi.export(\"policyBody\", policy.body)\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var policy = Output.Create(Spacelift.GetPolicy.InvokeAsync(new Spacelift.GetPolicyArgs\n        {\n            PolicyId = spacelift_policy.Policy.Id,\n        }));\n        this.PolicyBody = policy.Apply(policy =\u003e policy.Body);\n    }\n\n    [Output(\"policyBody\")]\n    public Output\u003cstring\u003e PolicyBody { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpolicy, err := spacelift.LookupPolicy(ctx, \u0026spacelift.LookupPolicyArgs{\n\t\t\tPolicyId: spacelift_policy.Policy.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"policyBody\", policy.Body)\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **policy_id** (String) immutable ID (slug) of the policy\n\n### Optional\n\n- **id** (String) The ID of this resource.\n\n### Read-Only\n\n- **body** (String) body of the policy\n- **labels** (Set of String)\n- **name** (String) name of the policy\n- **type** (String) type of the policy\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getPolicy.\n",
                 "properties": {
@@ -2040,6 +3255,12 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -2053,6 +3274,7 @@
                 "type": "object",
                 "required": [
                     "body",
+                    "labels",
                     "name",
                     "policyId",
                     "type",
@@ -2064,6 +3286,66 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getStack.\n",
                 "properties": {
+                    "afterApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "afterDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "afterInits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "afterPerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "afterPlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "beforeApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "beforeDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "beforeInits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "beforePerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "beforePlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "stackId": {
                         "type": "string"
                     }
@@ -2079,6 +3361,36 @@
                     "administrative": {
                         "type": "boolean"
                     },
+                    "afterApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "afterDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "afterInits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "afterPerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "afterPlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "autodeploy": {
                         "type": "boolean"
                     },
@@ -2088,10 +3400,52 @@
                     "awsAssumeRolePolicyStatement": {
                         "type": "string"
                     },
+                    "azureDevops": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/spacelift:index/getStackAzureDevop:getStackAzureDevop"
+                        }
+                    },
+                    "beforeApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "beforeDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "beforeInits": {
                         "type": "array",
                         "items": {
                             "type": "string"
+                        }
+                    },
+                    "beforePerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "beforePlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "bitbucketClouds": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/spacelift:index/getStackBitbucketCloud:getStackBitbucketCloud"
+                        }
+                    },
+                    "bitbucketDatacenters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/spacelift:index/getStackBitbucketDatacenter:getStackBitbucketDatacenter"
                         }
                     },
                     "branch": {
@@ -2106,6 +3460,15 @@
                     "description": {
                         "type": "string"
                     },
+                    "enableLocalPreview": {
+                        "type": "boolean"
+                    },
+                    "githubEnterprises": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/spacelift:index/getStackGithubEnterprise:getStackGithubEnterprise"
+                        }
+                    },
                     "gitlabs": {
                         "type": "array",
                         "items": {
@@ -2115,6 +3478,12 @@
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "kubernetes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/spacelift:index/getStackKubernete:getStackKubernete"
+                        }
                     },
                     "labels": {
                         "type": "array",
@@ -2131,6 +3500,9 @@
                     "projectRoot": {
                         "type": "string"
                     },
+                    "protectFromDeletion": {
+                        "type": "boolean"
+                    },
                     "pulumis": {
                         "type": "array",
                         "items": {
@@ -2142,6 +3514,12 @@
                     },
                     "runnerImage": {
                         "type": "string"
+                    },
+                    "showcases": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/spacelift:index/getStackShowcase:getStackShowcase"
+                        }
                     },
                     "stackId": {
                         "type": "string"
@@ -2162,18 +3540,25 @@
                     "autodeploy",
                     "autoretry",
                     "awsAssumeRolePolicyStatement",
-                    "beforeInits",
+                    "azureDevops",
+                    "bitbucketClouds",
+                    "bitbucketDatacenters",
                     "branch",
                     "cloudformations",
                     "description",
+                    "enableLocalPreview",
+                    "githubEnterprises",
                     "gitlabs",
+                    "kubernetes",
                     "labels",
                     "manageState",
                     "name",
                     "projectRoot",
+                    "protectFromDeletion",
                     "pulumis",
                     "repository",
                     "runnerImage",
+                    "showcases",
                     "stackId",
                     "terraformVersion",
                     "terraformWorkspace",
@@ -2183,6 +3568,7 @@
             }
         },
         "spacelift:index/getStackAwsRole:getStackAwsRole": {
+            "description": "\u003e **Note:** `spacelift.StackAwsRole` is deprecated. Please use `spacelift.AwsRole` instead. The functionality is identical.\n\n`spacelift.StackAwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.\n\nIf you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).\n\nNote: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and Run ID as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\n// For a Module\nconst k8s_module = pulumi.output(spacelift.getStackAwsRole({\n    moduleId: \"k8s-module\",\n}, { async: true }));\n// For a Stack\nconst k8s_core = pulumi.output(spacelift.getStackAwsRole({\n    stackId: \"k8s-core\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nk8s_module = spacelift.get_stack_aws_role(module_id=\"k8s-module\")\nk8s_core = spacelift.get_stack_aws_role(stack_id=\"k8s-core\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var k8s_module = Output.Create(Spacelift.GetStackAwsRole.InvokeAsync(new Spacelift.GetStackAwsRoleArgs\n        {\n            ModuleId = \"k8s-module\",\n        }));\n        var k8s_core = Output.Create(Spacelift.GetStackAwsRole.InvokeAsync(new Spacelift.GetStackAwsRoleArgs\n        {\n            StackId = \"k8s-core\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"k8s-module\"\n\t\t_, err := spacelift.LookupStackAwsRole(ctx, \u0026spacelift.LookupStackAwsRoleArgs{\n\t\t\tModuleId: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\topt1 := \"k8s-core\"\n\t\t_, err = spacelift.LookupStackAwsRole(ctx, \u0026spacelift.LookupStackAwsRoleArgs{\n\t\t\tStackId: \u0026opt1,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Optional\n\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the module which assumes the AWS IAM role\n- **stack_id** (String) ID of the stack which assumes the AWS IAM role\n\n### Read-Only\n\n- **external_id** (String) Custom external ID (works only for private workers).\n- **generate_credentials_in_worker** (Boolean) Generate AWS credentials in the private worker\n- **role_arn** (String) ARN of the AWS IAM role to attach\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getStackAwsRole.\n",
                 "properties": {
@@ -2198,6 +3584,12 @@
             "outputs": {
                 "description": "A collection of values returned by getStackAwsRole.\n",
                 "properties": {
+                    "externalId": {
+                        "type": "string"
+                    },
+                    "generateCredentialsInWorker": {
+                        "type": "boolean"
+                    },
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
@@ -2214,6 +3606,8 @@
                 },
                 "type": "object",
                 "required": [
+                    "externalId",
+                    "generateCredentialsInWorker",
                     "roleArn",
                     "id"
                 ]
@@ -2263,7 +3657,48 @@
                 ]
             }
         },
+        "spacelift:index/getVCSAgentPool:getVCSAgentPool": {
+            "description": "`spacelift.VCSAgentPool` represents a Spacelift **VCS agent pool** - a logical group of proxies allowing Spacelift to access private VCS installations\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst ghe = pulumi.output(spacelift.getContext({\n    vcsAgentPoolId: \"01FMQWT1P8BKRZF364SWVF9XYG\",\n}, { async: true }));\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **vcs_agent_pool_id** (String) ID of the VCS agent pool to retrieve\n\n### Optional\n\n- **id** (String) The ID of this resource.\n\n### Read-Only\n\n- **description** (String) Free-form VCS agent pool description for users\n- **name** (String) Name of the VCS agent pool\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getVCSAgentPool.\n",
+                "properties": {
+                    "vcsAgentPoolId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "vcsAgentPoolId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVCSAgentPool.\n",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "vcsAgentPoolId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "name",
+                    "vcsAgentPoolId",
+                    "id"
+                ]
+            }
+        },
         "spacelift:index/getWebhook:getWebhook": {
+            "description": "`spacelift.Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst webhook = spacelift.getWebhook({\n    webhookId: spacelift_webhook.webhook.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nwebhook = spacelift.get_webhook(webhook_id=spacelift_webhook[\"webhook\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var webhook = Output.Create(Spacelift.GetWebhook.InvokeAsync(new Spacelift.GetWebhookArgs\n        {\n            WebhookId = spacelift_webhook.Webhook.Id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.LookupWebhook(ctx, \u0026spacelift.LookupWebhookArgs{\n\t\t\tWebhookId: spacelift_webhook.Webhook.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **webhook_id** (String) ID of the webhook\n\n### Optional\n\n- **id** (String) The ID of this resource.\n- **module_id** (String) ID of the stack which triggers the webhooks\n- **stack_id** (String) ID of the stack which triggers the webhooks\n\n### Read-Only\n\n- **enabled** (Boolean) enables or disables sending webhooks\n- **endpoint** (String) endpoint to send the POST request to\n- **secret** (String) secret used to sign each POST request so you're able to verify that the request comes from us\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getWebhook.\n",
                 "properties": {
@@ -2319,6 +3754,7 @@
             }
         },
         "spacelift:index/getWorkerPool:getWorkerPool": {
+            "description": "`spacelift.WorkerPool` represents a worker pool assigned to the Spacelift account.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst k8s_core = pulumi.output(spacelift.getWorkerPool({\n    workerPoolId: \"k8s-core\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nk8s_core = spacelift.get_worker_pool(worker_pool_id=\"k8s-core\")\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var k8s_core = Output.Create(Spacelift.GetWorkerPool.InvokeAsync(new Spacelift.GetWorkerPoolArgs\n        {\n            WorkerPoolId = \"k8s-core\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.LookupWorkerPool(ctx, \u0026spacelift.LookupWorkerPoolArgs{\n\t\t\tWorkerPoolId: \"k8s-core\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Required\n\n- **worker_pool_id** (String) ID of the worker pool\n\n### Optional\n\n- **id** (String) The ID of this resource.\n\n### Read-Only\n\n- **config** (String, Sensitive) credentials necessary to connect WorkerPool's workers to the control plane\n- **description** (String) description of the worker pool\n- **labels** (Set of String)\n- **name** (String) name of the worker pool\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getWorkerPool.\n",
                 "properties": {
@@ -2344,6 +3780,12 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -2355,6 +3797,7 @@
                 "required": [
                     "config",
                     "description",
+                    "labels",
                     "name",
                     "workerPoolId",
                     "id"
@@ -2362,6 +3805,7 @@
             }
         },
         "spacelift:index/getWorkerPools:getWorkerPools": {
+            "description": "`spacelift.getWorkerPools` represents the worker pools assigned to the Spacelift account.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst worker_pools = pulumi.output(spacelift.getWorkerPools({ async: true }));\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nworker_pools = spacelift.get_worker_pools()\n```\n```csharp\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var worker_pools = Output.Create(Spacelift.GetWorkerPools.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n\t\"github.com/spacelift-io/spacelift-spacelift/sdk/go/spacelift/\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetWorkerPools(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003c!-- schema generated by tfplugindocs --\u003e\n{{% /example %}}\n{{% /examples %}}\n## Schema\n\n### Optional\n\n- **id** (String) The ID of this resource.\n\n### Read-Only\n\n- **worker_pools** (List of Object) (see below for nested schema)\n\n\u003ca id=\"nestedatt--worker_pools\"\u003e\u003c/a\u003e\n### Nested Schema for `worker_pools`\n\nRead-Only:\n\n- **config** (String)\n- **description** (String)\n- **name** (String)\n- **worker_pool_id** (String)\n",
             "outputs": {
                 "description": "A collection of values returned by getWorkerPools.\n",
                 "properties": {

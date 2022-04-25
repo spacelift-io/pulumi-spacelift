@@ -9,9 +9,44 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Spacelift
 {
+    /// <summary>
+    /// &gt; **Note:** `spacelift.StackAwsRole` is deprecated. Please use `spacelift.AwsRole` instead. The functionality is identical.
+    /// 
+    /// `spacelift.StackAwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.
+    /// 
+    /// If you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).
+    /// 
+    /// Note: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and Run ID as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).
+    /// 
+    /// ## Schema
+    /// 
+    /// ### Required
+    /// 
+    /// - **role_arn** (String) ARN of the AWS IAM role to attach
+    /// 
+    /// ### Optional
+    /// 
+    /// - **external_id** (String) Custom external ID (works only for private workers).
+    /// - **generate_credentials_in_worker** (Boolean) Generate AWS credentials in the private worker
+    /// - **id** (String) The ID of this resource.
+    /// - **module_id** (String) ID of the module which assumes the AWS IAM role
+    /// - **stack_id** (String) ID of the stack which assumes the AWS IAM role
+    /// </summary>
     [SpaceliftResourceType("spacelift:index/stackAwsRole:StackAwsRole")]
     public partial class StackAwsRole : Pulumi.CustomResource
     {
+        /// <summary>
+        /// Custom external ID (works only for private workers).
+        /// </summary>
+        [Output("externalId")]
+        public Output<string?> ExternalId { get; private set; } = null!;
+
+        /// <summary>
+        /// Generate AWS credentials in the private worker
+        /// </summary>
+        [Output("generateCredentialsInWorker")]
+        public Output<bool?> GenerateCredentialsInWorker { get; private set; } = null!;
+
         /// <summary>
         /// ID of the module which assumes the AWS IAM role
         /// </summary>
@@ -77,6 +112,18 @@ namespace Pulumi.Spacelift
     public sealed class StackAwsRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Custom external ID (works only for private workers).
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
+
+        /// <summary>
+        /// Generate AWS credentials in the private worker
+        /// </summary>
+        [Input("generateCredentialsInWorker")]
+        public Input<bool>? GenerateCredentialsInWorker { get; set; }
+
+        /// <summary>
         /// ID of the module which assumes the AWS IAM role
         /// </summary>
         [Input("moduleId")]
@@ -101,6 +148,18 @@ namespace Pulumi.Spacelift
 
     public sealed class StackAwsRoleState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Custom external ID (works only for private workers).
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
+
+        /// <summary>
+        /// Generate AWS credentials in the private worker
+        /// </summary>
+        [Input("generateCredentialsInWorker")]
+        public Input<bool>? GenerateCredentialsInWorker { get; set; }
+
         /// <summary>
         /// ID of the module which assumes the AWS IAM role
         /// </summary>
