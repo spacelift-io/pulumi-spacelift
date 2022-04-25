@@ -29,7 +29,6 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/pulumi/pulumi-terraform-bridge/v2 v2.18.1
 	github.com/pulumi/pulumi/sdk/v2 v2.18.0
-	github.com/shurcooL/graphql v0.0.0-20200928012149-18c5c3165e3a // indirect
 	github.com/spacelift-io/terraform-provider-spacelift v0.1.13
 	github.com/ulikunitz/xz v0.5.10 // indirect
 	github.com/xanzy/ssh-agent v0.3.0 // indirect
