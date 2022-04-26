@@ -14,6 +14,8 @@ jobs:
     name: Build and upload provider
     runs-on: ubuntu-latest
     steps:
+      - name: Install dependencies
+        run: sudo apt update && sudo apt install -y bash
       - name: Check out repository code
         uses: actions/checkout@master
       - name: Treat repo as safe
