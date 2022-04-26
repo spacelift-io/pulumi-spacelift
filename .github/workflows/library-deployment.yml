@@ -50,7 +50,7 @@ jobs:
       - name: Print version
         run: pulumictl get version
       - name: Publish npm package.
-        run: cd sdk/nodejs/bin && npm publish
+        run: cd sdk/nodejs/bin && npm publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Build dotnet package
