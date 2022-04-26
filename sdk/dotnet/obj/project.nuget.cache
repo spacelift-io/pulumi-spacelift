@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LExiBeLUDxor+kIIpppVspdNI7PKc6126vP8MUVGsc5k7l7cmk+iyzznYajtvZtOBLvFcfJzzYlJW9lHra0S1Q==",
+  "dgSpecHash": "mOHiYHpKHt7k3dCd8UE2HzhO/Ew4+umQ4DJZwkwwK0WQvD/sHB510RbPsDUhwMftmqF5vjokE3nYvZ3xcAzj3w==",
   "success": true,
   "projectFilePath": "/home/ubuntu/pulumi-spacelift/sdk/dotnet/Pulumi.Spacelift.csproj",
   "expectedPackageFiles": [
