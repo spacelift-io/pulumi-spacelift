@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pulumi-spacelift
-Version: 1.2.6
+Version: 1.2.7
 Summary: A Pulumi package for creating and managing Spacelift resources.
 Home-page: https://spacelift.io
 License: Apache-2.0

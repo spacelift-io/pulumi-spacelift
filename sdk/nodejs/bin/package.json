@@ -1,6 +1,6 @@
 {
     "name": "@spacelift-io/pulumi-spacelift",
-    "version": "v1.2.6",
+    "version": "v1.2.7",
     "description": "A Pulumi package for creating and managing Spacelift resources.",
     "keywords": [
         "pulumi",
