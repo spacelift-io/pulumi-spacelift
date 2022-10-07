@@ -10,9 +10,40 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift
 {
     /// <summary>
-    /// ## Import
+    /// ## Example Usage
     /// 
-    /// Import is supported using the following syntax
+    /// ```csharp
+    /// using Pulumi;
+    /// using Spacelift = Pulumi.Spacelift;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Explicit module name and provider:
+    ///         var k8s_module = new Spacelift.Module("k8s-module", new Spacelift.ModuleArgs
+    ///         {
+    ///             Administrative = true,
+    ///             Branch = "master",
+    ///             Description = "Infra terraform module",
+    ///             Repository = "terraform-super-module",
+    ///             TerraformProvider = "aws",
+    ///         });
+    ///         // Unspecified module name and provider (repository naming scheme terraform-${provider}-${name})
+    ///         var example_module = new Spacelift.Module("example-module", new Spacelift.ModuleArgs
+    ///         {
+    ///             Administrative = true,
+    ///             Branch = "master",
+    ///             Description = "Example terraform module",
+    ///             ProjectRoot = "example",
+    ///             Repository = "terraform-aws-example",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ## Import
     /// 
     /// ```sh
     ///  $ pulumi import spacelift:index/module:Module k8s-module $MODULE_ID
@@ -22,7 +53,7 @@ namespace Pulumi.Spacelift
     public partial class Module : Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates whether this module can manage others
+        /// Indicates whether this module can manage others. Defaults to `false`.
         /// </summary>
         [Output("administrative")]
         public Output<bool?> Administrative { get; private set; } = null!;
@@ -93,7 +124,7 @@ namespace Pulumi.Spacelift
         public Output<string?> ProjectRoot { get; private set; } = null!;
 
         /// <summary>
-        /// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+        /// Protect this module from accidental deletion. If set, attempts to delete this module will fail. Defaults to `false`.
         /// </summary>
         [Output("protectFromDeletion")]
         public Output<bool?> ProtectFromDeletion { get; private set; } = null!;
@@ -109,6 +140,12 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Output("sharedAccounts")]
         public Output<ImmutableArray<string>> SharedAccounts { get; private set; } = null!;
+
+        /// <summary>
+        /// ID (slug) of the space the module is in
+        /// </summary>
+        [Output("spaceId")]
+        public Output<string> SpaceId { get; private set; } = null!;
 
         /// <summary>
         /// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
@@ -147,6 +184,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -171,7 +209,7 @@ namespace Pulumi.Spacelift
     public sealed class ModuleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates whether this module can manage others
+        /// Indicates whether this module can manage others. Defaults to `false`.
         /// </summary>
         [Input("administrative")]
         public Input<bool>? Administrative { get; set; }
@@ -241,7 +279,7 @@ namespace Pulumi.Spacelift
         public Input<string>? ProjectRoot { get; set; }
 
         /// <summary>
-        /// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+        /// Protect this module from accidental deletion. If set, attempts to delete this module will fail. Defaults to `false`.
         /// </summary>
         [Input("protectFromDeletion")]
         public Input<bool>? ProtectFromDeletion { get; set; }
@@ -265,6 +303,12 @@ namespace Pulumi.Spacelift
         }
 
         /// <summary>
+        /// ID (slug) of the space the module is in
+        /// </summary>
+        [Input("spaceId")]
+        public Input<string>? SpaceId { get; set; }
+
+        /// <summary>
         /// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
         /// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
         /// can provide the provider name here.
@@ -286,7 +330,7 @@ namespace Pulumi.Spacelift
     public sealed class ModuleState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates whether this module can manage others
+        /// Indicates whether this module can manage others. Defaults to `false`.
         /// </summary>
         [Input("administrative")]
         public Input<bool>? Administrative { get; set; }
@@ -362,7 +406,7 @@ namespace Pulumi.Spacelift
         public Input<string>? ProjectRoot { get; set; }
 
         /// <summary>
-        /// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+        /// Protect this module from accidental deletion. If set, attempts to delete this module will fail. Defaults to `false`.
         /// </summary>
         [Input("protectFromDeletion")]
         public Input<bool>? ProtectFromDeletion { get; set; }
@@ -384,6 +428,12 @@ namespace Pulumi.Spacelift
             get => _sharedAccounts ?? (_sharedAccounts = new InputList<string>());
             set => _sharedAccounts = value;
         }
+
+        /// <summary>
+        /// ID (slug) of the space the module is in
+        /// </summary>
+        [Input("spaceId")]
+        public Input<string>? SpaceId { get; set; }
 
         /// <summary>
         /// The module provider will by default be inferred from the repository name if it follows the terraform-provider-name

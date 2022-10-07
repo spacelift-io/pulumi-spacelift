@@ -5,14 +5,24 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const k8s_module = pulumi.output(spacelift.getModule({
+ *     moduleId: "k8s-module",
+ * }));
+ * ```
+ */
 export function getModule(args: GetModuleArgs, opts?: pulumi.InvokeOptions): Promise<GetModuleResult> {
     if (!opts) {
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("spacelift:index/getModule:getModule", {
         "moduleId": args.moduleId,
     }, opts);
@@ -22,7 +32,7 @@ export function getModule(args: GetModuleArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getModule.
  */
 export interface GetModuleArgs {
-    readonly moduleId: string;
+    moduleId: string;
 }
 
 /**
@@ -49,6 +59,18 @@ export interface GetModuleResult {
     readonly protectFromDeletion: boolean;
     readonly repository: string;
     readonly sharedAccounts: string[];
+    readonly spaceId: string;
     readonly terraformProvider: string;
     readonly workerPoolId: string;
+}
+
+export function getModuleOutput(args: GetModuleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetModuleResult> {
+    return pulumi.output(args).apply(a => getModule(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getModule.
+ */
+export interface GetModuleOutputArgs {
+    moduleId: pulumi.Input<string>;
 }

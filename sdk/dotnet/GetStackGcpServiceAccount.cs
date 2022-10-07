@@ -11,8 +11,67 @@ namespace Pulumi.Spacelift
 {
     public static class GetStackGcpServiceAccount
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var k8s_module = Output.Create(Spacelift.GetStackGcpServiceAccount.InvokeAsync(new Spacelift.GetStackGcpServiceAccountArgs
+        ///         {
+        ///             ModuleId = "k8s-module",
+        ///         }));
+        ///         var k8s_core = Output.Create(Spacelift.GetStackGcpServiceAccount.InvokeAsync(new Spacelift.GetStackGcpServiceAccountArgs
+        ///         {
+        ///             StackId = "k8s-core",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetStackGcpServiceAccountResult> InvokeAsync(GetStackGcpServiceAccountArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetStackGcpServiceAccountResult>("spacelift:index/getStackGcpServiceAccount:getStackGcpServiceAccount", args ?? new GetStackGcpServiceAccountArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetStackGcpServiceAccountResult>("spacelift:index/getStackGcpServiceAccount:getStackGcpServiceAccount", args ?? new GetStackGcpServiceAccountArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var k8s_module = Output.Create(Spacelift.GetStackGcpServiceAccount.InvokeAsync(new Spacelift.GetStackGcpServiceAccountArgs
+        ///         {
+        ///             ModuleId = "k8s-module",
+        ///         }));
+        ///         var k8s_core = Output.Create(Spacelift.GetStackGcpServiceAccount.InvokeAsync(new Spacelift.GetStackGcpServiceAccountArgs
+        ///         {
+        ///             StackId = "k8s-core",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetStackGcpServiceAccountResult> Invoke(GetStackGcpServiceAccountInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetStackGcpServiceAccountResult>("spacelift:index/getStackGcpServiceAccount:getStackGcpServiceAccount", args ?? new GetStackGcpServiceAccountInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -25,6 +84,19 @@ namespace Pulumi.Spacelift
         public string? StackId { get; set; }
 
         public GetStackGcpServiceAccountArgs()
+        {
+        }
+    }
+
+    public sealed class GetStackGcpServiceAccountInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("moduleId")]
+        public Input<string>? ModuleId { get; set; }
+
+        [Input("stackId")]
+        public Input<string>? StackId { get; set; }
+
+        public GetStackGcpServiceAccountInvokeArgs()
         {
         }
     }

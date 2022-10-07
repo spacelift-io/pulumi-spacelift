@@ -11,21 +11,7 @@ import * as utilities from "./utilities";
  *
  * If you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).
  *
- * Note: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and Run ID as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).
- *
- * ## Schema
- *
- * ### Required
- *
- * - **role_arn** (String) ARN of the AWS IAM role to attach
- *
- * ### Optional
- *
- * - **external_id** (String) Custom external ID (works only for private workers).
- * - **generate_credentials_in_worker** (Boolean) Generate AWS credentials in the private worker
- * - **id** (String) The ID of this resource.
- * - **module_id** (String) ID of the module which assumes the AWS IAM role
- * - **stack_id** (String) ID of the stack which assumes the AWS IAM role
+ * Note: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).
  */
 export class StackAwsRole extends pulumi.CustomResource {
     /**
@@ -56,11 +42,15 @@ export class StackAwsRole extends pulumi.CustomResource {
     }
 
     /**
+     * AWS IAM role session duration in seconds
+     */
+    public readonly durationSeconds!: pulumi.Output<number>;
+    /**
      * Custom external ID (works only for private workers).
      */
     public readonly externalId!: pulumi.Output<string | undefined>;
     /**
-     * Generate AWS credentials in the private worker
+     * Generate AWS credentials in the private worker. Defaults to `false`.
      */
     public readonly generateCredentialsInWorker!: pulumi.Output<boolean | undefined>;
     /**
@@ -85,33 +75,30 @@ export class StackAwsRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: StackAwsRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: StackAwsRoleArgs | StackAwsRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as StackAwsRoleState | undefined;
-            inputs["externalId"] = state ? state.externalId : undefined;
-            inputs["generateCredentialsInWorker"] = state ? state.generateCredentialsInWorker : undefined;
-            inputs["moduleId"] = state ? state.moduleId : undefined;
-            inputs["roleArn"] = state ? state.roleArn : undefined;
-            inputs["stackId"] = state ? state.stackId : undefined;
+            resourceInputs["durationSeconds"] = state ? state.durationSeconds : undefined;
+            resourceInputs["externalId"] = state ? state.externalId : undefined;
+            resourceInputs["generateCredentialsInWorker"] = state ? state.generateCredentialsInWorker : undefined;
+            resourceInputs["moduleId"] = state ? state.moduleId : undefined;
+            resourceInputs["roleArn"] = state ? state.roleArn : undefined;
+            resourceInputs["stackId"] = state ? state.stackId : undefined;
         } else {
             const args = argsOrState as StackAwsRoleArgs | undefined;
-            if ((!args || args.roleArn === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.roleArn === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleArn'");
             }
-            inputs["externalId"] = args ? args.externalId : undefined;
-            inputs["generateCredentialsInWorker"] = args ? args.generateCredentialsInWorker : undefined;
-            inputs["moduleId"] = args ? args.moduleId : undefined;
-            inputs["roleArn"] = args ? args.roleArn : undefined;
-            inputs["stackId"] = args ? args.stackId : undefined;
+            resourceInputs["durationSeconds"] = args ? args.durationSeconds : undefined;
+            resourceInputs["externalId"] = args ? args.externalId : undefined;
+            resourceInputs["generateCredentialsInWorker"] = args ? args.generateCredentialsInWorker : undefined;
+            resourceInputs["moduleId"] = args ? args.moduleId : undefined;
+            resourceInputs["roleArn"] = args ? args.roleArn : undefined;
+            resourceInputs["stackId"] = args ? args.stackId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
-        super(StackAwsRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(StackAwsRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -120,25 +107,29 @@ export class StackAwsRole extends pulumi.CustomResource {
  */
 export interface StackAwsRoleState {
     /**
+     * AWS IAM role session duration in seconds
+     */
+    durationSeconds?: pulumi.Input<number>;
+    /**
      * Custom external ID (works only for private workers).
      */
-    readonly externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string>;
     /**
-     * Generate AWS credentials in the private worker
+     * Generate AWS credentials in the private worker. Defaults to `false`.
      */
-    readonly generateCredentialsInWorker?: pulumi.Input<boolean>;
+    generateCredentialsInWorker?: pulumi.Input<boolean>;
     /**
      * ID of the module which assumes the AWS IAM role
      */
-    readonly moduleId?: pulumi.Input<string>;
+    moduleId?: pulumi.Input<string>;
     /**
      * ARN of the AWS IAM role to attach
      */
-    readonly roleArn?: pulumi.Input<string>;
+    roleArn?: pulumi.Input<string>;
     /**
      * ID of the stack which assumes the AWS IAM role
      */
-    readonly stackId?: pulumi.Input<string>;
+    stackId?: pulumi.Input<string>;
 }
 
 /**
@@ -146,23 +137,27 @@ export interface StackAwsRoleState {
  */
 export interface StackAwsRoleArgs {
     /**
+     * AWS IAM role session duration in seconds
+     */
+    durationSeconds?: pulumi.Input<number>;
+    /**
      * Custom external ID (works only for private workers).
      */
-    readonly externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string>;
     /**
-     * Generate AWS credentials in the private worker
+     * Generate AWS credentials in the private worker. Defaults to `false`.
      */
-    readonly generateCredentialsInWorker?: pulumi.Input<boolean>;
+    generateCredentialsInWorker?: pulumi.Input<boolean>;
     /**
      * ID of the module which assumes the AWS IAM role
      */
-    readonly moduleId?: pulumi.Input<string>;
+    moduleId?: pulumi.Input<string>;
     /**
      * ARN of the AWS IAM role to attach
      */
-    readonly roleArn: pulumi.Input<string>;
+    roleArn: pulumi.Input<string>;
     /**
      * ID of the stack which assumes the AWS IAM role
      */
-    readonly stackId?: pulumi.Input<string>;
+    stackId?: pulumi.Input<string>;
 }

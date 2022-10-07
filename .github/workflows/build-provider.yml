@@ -6,7 +6,7 @@ jobs:
   build-provider:
     name: Build provider
     runs-on: ubuntu-latest
-    container: golang:1.16-alpine
+    container: golang:1.19-alpine
     steps:
       - name: Install build dependencies
         run: |

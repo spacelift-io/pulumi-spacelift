@@ -16,6 +16,7 @@ namespace Pulumi.Spacelift.Outputs
         public readonly string Config;
         public readonly string Description;
         public readonly string Name;
+        public readonly string SpaceId;
         public readonly string WorkerPoolId;
 
         [OutputConstructor]
@@ -26,11 +27,14 @@ namespace Pulumi.Spacelift.Outputs
 
             string name,
 
+            string spaceId,
+
             string workerPoolId)
         {
             Config = config;
             Description = description;
             Name = name;
+            SpaceId = spaceId;
             WorkerPoolId = workerPoolId;
         }
     }

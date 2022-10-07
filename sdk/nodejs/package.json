@@ -4,21 +4,28 @@
     "description": "A Pulumi package for creating and managing Spacelift resources.",
     "keywords": [
         "pulumi",
-        "spacelift"
+        "spacelift",
+        "category/cloud",
+        "category/infrastructure"
     ],
     "homepage": "https://spacelift.io",
-    "repository": "git://github.com/spacelift-io/pulumi-spacelift.git",
+    "repository": "https://github.com/spacelift-io/pulumi-spacelift",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "install": "node scripts/install-pulumi-plugin.js resource spacelift ${VERSION}"
     },
     "dependencies": {
-        "@pulumi/pulumi": "^2.15.0"
+        "@pulumi/pulumi": "^3.0.0"
     },
     "devDependencies": {
-        "@types/node": "^8.0.25"
+        "@types/mime": "^2.0.0",
+        "@types/node": "^10.0.0",
+        "typescript": "^4.3.5"
     },
     "pulumi": {
-        "resource": true
+        "resource": true,
+        "name": "spacelift",
+        "server": "https://github.com/spacelift-io/pulumi-spacelift/releases"
     }
 }

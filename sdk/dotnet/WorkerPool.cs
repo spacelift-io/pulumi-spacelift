@@ -12,27 +12,33 @@ namespace Pulumi.Spacelift
     /// <summary>
     /// `spacelift.WorkerPool` represents a worker pool assigned to the Spacelift account.
     /// 
-    /// ## Schema
+    /// ## Example Usage
     /// 
-    /// ### Required
+    /// ```csharp
+    /// using System;
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// - **name** (String) name of the worker pool
+    /// class MyStack : Stack
+    /// {
+    /// 	private static string ReadFileBase64(string path) {
+    /// 		return Convert.ToBase64String(Encoding.UTF8.GetBytes(File.ReadAllText(path)))
+    /// 	}
     /// 
-    /// ### Optional
+    ///     public MyStack()
+    ///     {
+    ///         var k8s_core = new Spacelift.WorkerPool("k8s-core", new Spacelift.WorkerPoolArgs
+    ///         {
+    ///             Csr = ReadFileBase64("/path/to/csr"),
+    ///             Description = "Used for all type jobs",
+    ///         });
+    ///     }
     /// 
-    /// - **csr** (String, Sensitive) certificate signing request in base64
-    /// - **description** (String) description of the worker pool
-    /// - **id** (String) The ID of this resource.
-    /// - **labels** (Set of String)
-    /// 
-    /// ### Read-Only
-    /// 
-    /// - **config** (String, Sensitive) credentials necessary to connect WorkerPool's workers to the control plane
-    /// - **private_key** (String, Sensitive) private key in base64
+    /// }
+    /// ```
     /// 
     /// ## Import
-    /// 
-    /// Import is supported using the following syntax
     /// 
     /// ```sh
     ///  $ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID
@@ -74,6 +80,12 @@ namespace Pulumi.Spacelift
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
 
+        /// <summary>
+        /// ID (slug) of the space the worker pool is in
+        /// </summary>
+        [Output("spaceId")]
+        public Output<string> SpaceId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a WorkerPool resource with the given unique name, arguments, and options.
@@ -82,7 +94,7 @@ namespace Pulumi.Spacelift
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public WorkerPool(string name, WorkerPoolArgs args, CustomResourceOptions? options = null)
+        public WorkerPool(string name, WorkerPoolArgs? args = null, CustomResourceOptions? options = null)
             : base("spacelift:index/workerPool:WorkerPool", name, args ?? new WorkerPoolArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -97,6 +109,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -143,8 +156,14 @@ namespace Pulumi.Spacelift
         /// <summary>
         /// name of the worker pool
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// ID (slug) of the space the worker pool is in
+        /// </summary>
+        [Input("spaceId")]
+        public Input<string>? SpaceId { get; set; }
 
         public WorkerPoolArgs()
         {
@@ -190,6 +209,12 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Input("privateKey")]
         public Input<string>? PrivateKey { get; set; }
+
+        /// <summary>
+        /// ID (slug) of the space the worker pool is in
+        /// </summary>
+        [Input("spaceId")]
+        public Input<string>? SpaceId { get; set; }
 
         public WorkerPoolState()
         {

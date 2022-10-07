@@ -6,9 +6,130 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * ## Import
+ * `spacelift.Stack` combines source code and configuration to create a runtime environment where resources are managed. In this way it's similar to a stack in AWS CloudFormation, or a project on generic CI/CD platforms.
  *
- * Import is supported using the following syntax
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * // Terraform stack using github.com as VCS
+ * const k8s_cluster = new spacelift.Stack("k8s-cluster", {
+ *     administrative: true,
+ *     autodeploy: true,
+ *     branch: "master",
+ *     description: "Provisions a Kubernetes cluster",
+ *     projectRoot: "cluster",
+ *     repository: "core-infra",
+ *     terraformVersion: "0.12.6",
+ * });
+ * // Terraform stack using Bitbucket Cloud as VCS
+ * const k8s_cluster_bitbucket_cloud = new spacelift.Stack("k8s-cluster-bitbucket-cloud", {
+ *     administrative: true,
+ *     autodeploy: true,
+ *     bitbucketCloud: {
+ *         namespace: "SPACELIFT", // The Bitbucket project containing the repository
+ *     },
+ *     branch: "master",
+ *     description: "Provisions a Kubernetes cluster",
+ *     projectRoot: "cluster",
+ *     repository: "core-infra",
+ *     terraformVersion: "0.12.6",
+ * });
+ * // Terraform stack using Bitbucket Data Center as VCS
+ * const k8s_cluster_bitbucket_datacenter = new spacelift.Stack("k8s-cluster-bitbucket-datacenter", {
+ *     administrative: true,
+ *     autodeploy: true,
+ *     bitbucketDatacenter: {
+ *         namespace: "SPACELIFT", // The Bitbucket project containing the repository
+ *     },
+ *     branch: "master",
+ *     description: "Provisions a Kubernetes cluster",
+ *     projectRoot: "cluster",
+ *     repository: "core-infra",
+ *     terraformVersion: "0.12.6",
+ * });
+ * // Terraform stack using GitHub Enterprise as VCS
+ * const k8s_cluster_github_enterprise = new spacelift.Stack("k8s-cluster-github-enterprise", {
+ *     administrative: true,
+ *     autodeploy: true,
+ *     branch: "master",
+ *     description: "Provisions a Kubernetes cluster",
+ *     githubEnterprise: {
+ *         namespace: "spacelift", // The GitHub organization / user the repository belongs to
+ *     },
+ *     projectRoot: "cluster",
+ *     repository: "core-infra",
+ *     terraformVersion: "0.12.6",
+ * });
+ * // Terraform stack using GitLab as VCS
+ * const k8s_cluster_gitlab = new spacelift.Stack("k8s-cluster-gitlab", {
+ *     administrative: true,
+ *     autodeploy: true,
+ *     branch: "master",
+ *     description: "Provisions a Kubernetes cluster",
+ *     gitlab: {
+ *         namespace: "spacelift", // The GitLab namespace containing the repository
+ *     },
+ *     projectRoot: "cluster",
+ *     repository: "core-infra",
+ *     terraformVersion: "0.12.6",
+ * });
+ * // CloudFormation stack using github.com as VCS
+ * const k8s_cluster_cloudformation = new spacelift.Stack("k8s-cluster-cloudformation", {
+ *     autodeploy: true,
+ *     branch: "master",
+ *     cloudformation: {
+ *         entryTemplateFile: "main.yaml",
+ *         region: "eu-central-1",
+ *         stackName: "k8s-cluster",
+ *         templateBucket: "s3://bucket",
+ *     },
+ *     description: "Provisions a Kubernetes cluster",
+ *     projectRoot: "cluster",
+ *     repository: "core-infra",
+ * });
+ * // Pulumi stack using github.com as VCS
+ * const k8s_cluster_pulumi = new spacelift.Stack("k8s-cluster-pulumi", {
+ *     autodeploy: true,
+ *     branch: "master",
+ *     description: "Provisions a Kubernetes cluster",
+ *     projectRoot: "cluster",
+ *     pulumi: {
+ *         loginUrl: "s3://pulumi-state-bucket",
+ *         stackName: "kubernetes-core-services",
+ *     },
+ *     repository: "core-infra",
+ *     runnerImage: "public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest",
+ * });
+ * // Kubernetes stack using github.com as VCS
+ * const k8s_core_kubernetes = new spacelift.Stack("k8s-core-kubernetes", {
+ *     autodeploy: true,
+ *     // You can use hooks to authenticate with your cluster
+ *     beforeInits: ["aws eks update-kubeconfig --region us-east-2 --name k8s-cluster"],
+ *     branch: "master",
+ *     description: "Shared cluster services (Datadog, Istio etc.)",
+ *     kubernetes: {
+ *         namespace: "core",
+ *     },
+ *     projectRoot: "core-services",
+ *     repository: "core-infra",
+ * });
+ * // Ansible stack using github.com as VCS
+ * const ansible_stack = new spacelift.Stack("ansible-stack", {
+ *     ansible: {
+ *         playbook: "main.yml",
+ *     },
+ *     autodeploy: true,
+ *     branch: "master",
+ *     description: "Provisioning EC2 machines",
+ *     repository: "ansible-playbooks",
+ *     runnerImage: "public.ecr.aws/spacelift/runner-ansible:latest",
+ * });
+ * ```
+ *
+ * ## Import
  *
  * ```sh
  *  $ pulumi import spacelift:index/stack:Stack k8s_core $STACK_ID
@@ -43,7 +164,7 @@ export class Stack extends pulumi.CustomResource {
     }
 
     /**
-     * Indicates whether this stack can manage others
+     * Indicates whether this stack can manage others. Defaults to `false`.
      */
     public readonly administrative!: pulumi.Output<boolean | undefined>;
     /**
@@ -67,11 +188,15 @@ export class Stack extends pulumi.CustomResource {
      */
     public readonly afterPlans!: pulumi.Output<string[] | undefined>;
     /**
-     * Indicates whether changes to this stack can be automatically deployed
+     * Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+     */
+    public readonly ansible!: pulumi.Output<outputs.StackAnsible | undefined>;
+    /**
+     * Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
      */
     public readonly autodeploy!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates whether obsolete proposed changes should automatically be retried
+     * Indicates whether obsolete proposed changes should automatically be retried. Defaults to `false`.
      */
     public readonly autoretry!: pulumi.Output<boolean | undefined>;
     /**
@@ -123,11 +248,11 @@ export class Stack extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Indicates whether local preview runs can be triggered on this Stack
+     * Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
      */
     public readonly enableLocalPreview!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates whether GitHub users can deploy from the Checks API
+     * Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
      */
     public readonly githubActionDeploy!: pulumi.Output<boolean | undefined>;
     /**
@@ -152,7 +277,7 @@ export class Stack extends pulumi.CustomResource {
     public readonly kubernetes!: pulumi.Output<outputs.StackKubernetes | undefined>;
     public readonly labels!: pulumi.Output<string[] | undefined>;
     /**
-     * Determines if Spacelift should manage state for this stack
+     * Determines if Spacelift should manage state for this stack. Defaults to `true`.
      */
     public readonly manageState!: pulumi.Output<boolean | undefined>;
     /**
@@ -164,7 +289,7 @@ export class Stack extends pulumi.CustomResource {
      */
     public readonly projectRoot!: pulumi.Output<string | undefined>;
     /**
-     * Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+     * Protect this stack from accidental deletion. If set, attempts to delete this stack will fail. Defaults to `false`.
      */
     public readonly protectFromDeletion!: pulumi.Output<boolean | undefined>;
     /**
@@ -183,7 +308,11 @@ export class Stack extends pulumi.CustomResource {
     /**
      * Allows setting the custom ID (slug) for the stack
      */
-    public readonly slug!: pulumi.Output<string | undefined>;
+    public readonly slug!: pulumi.Output<string>;
+    /**
+     * ID (slug) of the space the stack is in
+     */
+    public readonly spaceId!: pulumi.Output<string>;
     /**
      * Terraform version to use
      */
@@ -206,109 +335,105 @@ export class Stack extends pulumi.CustomResource {
      */
     constructor(name: string, args: StackArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: StackArgs | StackState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as StackState | undefined;
-            inputs["administrative"] = state ? state.administrative : undefined;
-            inputs["afterApplies"] = state ? state.afterApplies : undefined;
-            inputs["afterDestroys"] = state ? state.afterDestroys : undefined;
-            inputs["afterInits"] = state ? state.afterInits : undefined;
-            inputs["afterPerforms"] = state ? state.afterPerforms : undefined;
-            inputs["afterPlans"] = state ? state.afterPlans : undefined;
-            inputs["autodeploy"] = state ? state.autodeploy : undefined;
-            inputs["autoretry"] = state ? state.autoretry : undefined;
-            inputs["awsAssumeRolePolicyStatement"] = state ? state.awsAssumeRolePolicyStatement : undefined;
-            inputs["azureDevops"] = state ? state.azureDevops : undefined;
-            inputs["beforeApplies"] = state ? state.beforeApplies : undefined;
-            inputs["beforeDestroys"] = state ? state.beforeDestroys : undefined;
-            inputs["beforeInits"] = state ? state.beforeInits : undefined;
-            inputs["beforePerforms"] = state ? state.beforePerforms : undefined;
-            inputs["beforePlans"] = state ? state.beforePlans : undefined;
-            inputs["bitbucketCloud"] = state ? state.bitbucketCloud : undefined;
-            inputs["bitbucketDatacenter"] = state ? state.bitbucketDatacenter : undefined;
-            inputs["branch"] = state ? state.branch : undefined;
-            inputs["cloudformation"] = state ? state.cloudformation : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["enableLocalPreview"] = state ? state.enableLocalPreview : undefined;
-            inputs["githubActionDeploy"] = state ? state.githubActionDeploy : undefined;
-            inputs["githubEnterprise"] = state ? state.githubEnterprise : undefined;
-            inputs["gitlab"] = state ? state.gitlab : undefined;
-            inputs["importState"] = state ? state.importState : undefined;
-            inputs["importStateFile"] = state ? state.importStateFile : undefined;
-            inputs["kubernetes"] = state ? state.kubernetes : undefined;
-            inputs["labels"] = state ? state.labels : undefined;
-            inputs["manageState"] = state ? state.manageState : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["projectRoot"] = state ? state.projectRoot : undefined;
-            inputs["protectFromDeletion"] = state ? state.protectFromDeletion : undefined;
-            inputs["pulumi"] = state ? state.pulumi : undefined;
-            inputs["repository"] = state ? state.repository : undefined;
-            inputs["runnerImage"] = state ? state.runnerImage : undefined;
-            inputs["showcase"] = state ? state.showcase : undefined;
-            inputs["slug"] = state ? state.slug : undefined;
-            inputs["terraformVersion"] = state ? state.terraformVersion : undefined;
-            inputs["terraformWorkspace"] = state ? state.terraformWorkspace : undefined;
-            inputs["workerPoolId"] = state ? state.workerPoolId : undefined;
+            resourceInputs["administrative"] = state ? state.administrative : undefined;
+            resourceInputs["afterApplies"] = state ? state.afterApplies : undefined;
+            resourceInputs["afterDestroys"] = state ? state.afterDestroys : undefined;
+            resourceInputs["afterInits"] = state ? state.afterInits : undefined;
+            resourceInputs["afterPerforms"] = state ? state.afterPerforms : undefined;
+            resourceInputs["afterPlans"] = state ? state.afterPlans : undefined;
+            resourceInputs["ansible"] = state ? state.ansible : undefined;
+            resourceInputs["autodeploy"] = state ? state.autodeploy : undefined;
+            resourceInputs["autoretry"] = state ? state.autoretry : undefined;
+            resourceInputs["awsAssumeRolePolicyStatement"] = state ? state.awsAssumeRolePolicyStatement : undefined;
+            resourceInputs["azureDevops"] = state ? state.azureDevops : undefined;
+            resourceInputs["beforeApplies"] = state ? state.beforeApplies : undefined;
+            resourceInputs["beforeDestroys"] = state ? state.beforeDestroys : undefined;
+            resourceInputs["beforeInits"] = state ? state.beforeInits : undefined;
+            resourceInputs["beforePerforms"] = state ? state.beforePerforms : undefined;
+            resourceInputs["beforePlans"] = state ? state.beforePlans : undefined;
+            resourceInputs["bitbucketCloud"] = state ? state.bitbucketCloud : undefined;
+            resourceInputs["bitbucketDatacenter"] = state ? state.bitbucketDatacenter : undefined;
+            resourceInputs["branch"] = state ? state.branch : undefined;
+            resourceInputs["cloudformation"] = state ? state.cloudformation : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["enableLocalPreview"] = state ? state.enableLocalPreview : undefined;
+            resourceInputs["githubActionDeploy"] = state ? state.githubActionDeploy : undefined;
+            resourceInputs["githubEnterprise"] = state ? state.githubEnterprise : undefined;
+            resourceInputs["gitlab"] = state ? state.gitlab : undefined;
+            resourceInputs["importState"] = state ? state.importState : undefined;
+            resourceInputs["importStateFile"] = state ? state.importStateFile : undefined;
+            resourceInputs["kubernetes"] = state ? state.kubernetes : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
+            resourceInputs["manageState"] = state ? state.manageState : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["projectRoot"] = state ? state.projectRoot : undefined;
+            resourceInputs["protectFromDeletion"] = state ? state.protectFromDeletion : undefined;
+            resourceInputs["pulumi"] = state ? state.pulumi : undefined;
+            resourceInputs["repository"] = state ? state.repository : undefined;
+            resourceInputs["runnerImage"] = state ? state.runnerImage : undefined;
+            resourceInputs["showcase"] = state ? state.showcase : undefined;
+            resourceInputs["slug"] = state ? state.slug : undefined;
+            resourceInputs["spaceId"] = state ? state.spaceId : undefined;
+            resourceInputs["terraformVersion"] = state ? state.terraformVersion : undefined;
+            resourceInputs["terraformWorkspace"] = state ? state.terraformWorkspace : undefined;
+            resourceInputs["workerPoolId"] = state ? state.workerPoolId : undefined;
         } else {
             const args = argsOrState as StackArgs | undefined;
-            if ((!args || args.branch === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.branch === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'branch'");
             }
-            if ((!args || args.name === undefined) && !(opts && opts.urn)) {
-                throw new Error("Missing required property 'name'");
-            }
-            if ((!args || args.repository === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.repository === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'repository'");
             }
-            inputs["administrative"] = args ? args.administrative : undefined;
-            inputs["afterApplies"] = args ? args.afterApplies : undefined;
-            inputs["afterDestroys"] = args ? args.afterDestroys : undefined;
-            inputs["afterInits"] = args ? args.afterInits : undefined;
-            inputs["afterPerforms"] = args ? args.afterPerforms : undefined;
-            inputs["afterPlans"] = args ? args.afterPlans : undefined;
-            inputs["autodeploy"] = args ? args.autodeploy : undefined;
-            inputs["autoretry"] = args ? args.autoretry : undefined;
-            inputs["azureDevops"] = args ? args.azureDevops : undefined;
-            inputs["beforeApplies"] = args ? args.beforeApplies : undefined;
-            inputs["beforeDestroys"] = args ? args.beforeDestroys : undefined;
-            inputs["beforeInits"] = args ? args.beforeInits : undefined;
-            inputs["beforePerforms"] = args ? args.beforePerforms : undefined;
-            inputs["beforePlans"] = args ? args.beforePlans : undefined;
-            inputs["bitbucketCloud"] = args ? args.bitbucketCloud : undefined;
-            inputs["bitbucketDatacenter"] = args ? args.bitbucketDatacenter : undefined;
-            inputs["branch"] = args ? args.branch : undefined;
-            inputs["cloudformation"] = args ? args.cloudformation : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["enableLocalPreview"] = args ? args.enableLocalPreview : undefined;
-            inputs["githubActionDeploy"] = args ? args.githubActionDeploy : undefined;
-            inputs["githubEnterprise"] = args ? args.githubEnterprise : undefined;
-            inputs["gitlab"] = args ? args.gitlab : undefined;
-            inputs["importState"] = args ? args.importState : undefined;
-            inputs["importStateFile"] = args ? args.importStateFile : undefined;
-            inputs["kubernetes"] = args ? args.kubernetes : undefined;
-            inputs["labels"] = args ? args.labels : undefined;
-            inputs["manageState"] = args ? args.manageState : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["projectRoot"] = args ? args.projectRoot : undefined;
-            inputs["protectFromDeletion"] = args ? args.protectFromDeletion : undefined;
-            inputs["pulumi"] = args ? args.pulumi : undefined;
-            inputs["repository"] = args ? args.repository : undefined;
-            inputs["runnerImage"] = args ? args.runnerImage : undefined;
-            inputs["showcase"] = args ? args.showcase : undefined;
-            inputs["slug"] = args ? args.slug : undefined;
-            inputs["terraformVersion"] = args ? args.terraformVersion : undefined;
-            inputs["terraformWorkspace"] = args ? args.terraformWorkspace : undefined;
-            inputs["workerPoolId"] = args ? args.workerPoolId : undefined;
-            inputs["awsAssumeRolePolicyStatement"] = undefined /*out*/;
+            resourceInputs["administrative"] = args ? args.administrative : undefined;
+            resourceInputs["afterApplies"] = args ? args.afterApplies : undefined;
+            resourceInputs["afterDestroys"] = args ? args.afterDestroys : undefined;
+            resourceInputs["afterInits"] = args ? args.afterInits : undefined;
+            resourceInputs["afterPerforms"] = args ? args.afterPerforms : undefined;
+            resourceInputs["afterPlans"] = args ? args.afterPlans : undefined;
+            resourceInputs["ansible"] = args ? args.ansible : undefined;
+            resourceInputs["autodeploy"] = args ? args.autodeploy : undefined;
+            resourceInputs["autoretry"] = args ? args.autoretry : undefined;
+            resourceInputs["azureDevops"] = args ? args.azureDevops : undefined;
+            resourceInputs["beforeApplies"] = args ? args.beforeApplies : undefined;
+            resourceInputs["beforeDestroys"] = args ? args.beforeDestroys : undefined;
+            resourceInputs["beforeInits"] = args ? args.beforeInits : undefined;
+            resourceInputs["beforePerforms"] = args ? args.beforePerforms : undefined;
+            resourceInputs["beforePlans"] = args ? args.beforePlans : undefined;
+            resourceInputs["bitbucketCloud"] = args ? args.bitbucketCloud : undefined;
+            resourceInputs["bitbucketDatacenter"] = args ? args.bitbucketDatacenter : undefined;
+            resourceInputs["branch"] = args ? args.branch : undefined;
+            resourceInputs["cloudformation"] = args ? args.cloudformation : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["enableLocalPreview"] = args ? args.enableLocalPreview : undefined;
+            resourceInputs["githubActionDeploy"] = args ? args.githubActionDeploy : undefined;
+            resourceInputs["githubEnterprise"] = args ? args.githubEnterprise : undefined;
+            resourceInputs["gitlab"] = args ? args.gitlab : undefined;
+            resourceInputs["importState"] = args ? args.importState : undefined;
+            resourceInputs["importStateFile"] = args ? args.importStateFile : undefined;
+            resourceInputs["kubernetes"] = args ? args.kubernetes : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
+            resourceInputs["manageState"] = args ? args.manageState : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectRoot"] = args ? args.projectRoot : undefined;
+            resourceInputs["protectFromDeletion"] = args ? args.protectFromDeletion : undefined;
+            resourceInputs["pulumi"] = args ? args.pulumi : undefined;
+            resourceInputs["repository"] = args ? args.repository : undefined;
+            resourceInputs["runnerImage"] = args ? args.runnerImage : undefined;
+            resourceInputs["showcase"] = args ? args.showcase : undefined;
+            resourceInputs["slug"] = args ? args.slug : undefined;
+            resourceInputs["spaceId"] = args ? args.spaceId : undefined;
+            resourceInputs["terraformVersion"] = args ? args.terraformVersion : undefined;
+            resourceInputs["terraformWorkspace"] = args ? args.terraformWorkspace : undefined;
+            resourceInputs["workerPoolId"] = args ? args.workerPoolId : undefined;
+            resourceInputs["awsAssumeRolePolicyStatement"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
-        super(Stack.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Stack.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -317,159 +442,167 @@ export class Stack extends pulumi.CustomResource {
  */
 export interface StackState {
     /**
-     * Indicates whether this stack can manage others
+     * Indicates whether this stack can manage others. Defaults to `false`.
      */
-    readonly administrative?: pulumi.Input<boolean>;
+    administrative?: pulumi.Input<boolean>;
     /**
      * List of after-apply scripts
      */
-    readonly afterApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    afterApplies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of after-destroy scripts
      */
-    readonly afterDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    afterDestroys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of after-init scripts
      */
-    readonly afterInits?: pulumi.Input<pulumi.Input<string>[]>;
+    afterInits?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of after-perform scripts
      */
-    readonly afterPerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    afterPerforms?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of after-plan scripts
      */
-    readonly afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
+    afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Indicates whether changes to this stack can be automatically deployed
+     * Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
      */
-    readonly autodeploy?: pulumi.Input<boolean>;
+    ansible?: pulumi.Input<inputs.StackAnsible>;
     /**
-     * Indicates whether obsolete proposed changes should automatically be retried
+     * Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
      */
-    readonly autoretry?: pulumi.Input<boolean>;
+    autodeploy?: pulumi.Input<boolean>;
+    /**
+     * Indicates whether obsolete proposed changes should automatically be retried. Defaults to `false`.
+     */
+    autoretry?: pulumi.Input<boolean>;
     /**
      * AWS IAM assume role policy statement setting up trust relationship
      */
-    readonly awsAssumeRolePolicyStatement?: pulumi.Input<string>;
+    awsAssumeRolePolicyStatement?: pulumi.Input<string>;
     /**
      * Azure DevOps VCS settings
      */
-    readonly azureDevops?: pulumi.Input<inputs.StackAzureDevops>;
+    azureDevops?: pulumi.Input<inputs.StackAzureDevops>;
     /**
      * List of before-apply scripts
      */
-    readonly beforeApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    beforeApplies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of before-destroy scripts
      */
-    readonly beforeDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    beforeDestroys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of before-init scripts
      */
-    readonly beforeInits?: pulumi.Input<pulumi.Input<string>[]>;
+    beforeInits?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of before-perform scripts
      */
-    readonly beforePerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    beforePerforms?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of before-plan scripts
      */
-    readonly beforePlans?: pulumi.Input<pulumi.Input<string>[]>;
+    beforePlans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Bitbucket Cloud VCS settings
      */
-    readonly bitbucketCloud?: pulumi.Input<inputs.StackBitbucketCloud>;
+    bitbucketCloud?: pulumi.Input<inputs.StackBitbucketCloud>;
     /**
      * Bitbucket Datacenter VCS settings
      */
-    readonly bitbucketDatacenter?: pulumi.Input<inputs.StackBitbucketDatacenter>;
+    bitbucketDatacenter?: pulumi.Input<inputs.StackBitbucketDatacenter>;
     /**
      * GitHub branch to apply changes to
      */
-    readonly branch?: pulumi.Input<string>;
+    branch?: pulumi.Input<string>;
     /**
      * CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
      */
-    readonly cloudformation?: pulumi.Input<inputs.StackCloudformation>;
+    cloudformation?: pulumi.Input<inputs.StackCloudformation>;
     /**
      * Free-form stack description for users
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
-     * Indicates whether local preview runs can be triggered on this Stack
+     * Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
      */
-    readonly enableLocalPreview?: pulumi.Input<boolean>;
+    enableLocalPreview?: pulumi.Input<boolean>;
     /**
-     * Indicates whether GitHub users can deploy from the Checks API
+     * Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
      */
-    readonly githubActionDeploy?: pulumi.Input<boolean>;
+    githubActionDeploy?: pulumi.Input<boolean>;
     /**
      * GitHub Enterprise (self-hosted) VCS settings
      */
-    readonly githubEnterprise?: pulumi.Input<inputs.StackGithubEnterprise>;
+    githubEnterprise?: pulumi.Input<inputs.StackGithubEnterprise>;
     /**
      * GitLab VCS settings
      */
-    readonly gitlab?: pulumi.Input<inputs.StackGitlab>;
+    gitlab?: pulumi.Input<inputs.StackGitlab>;
     /**
      * State file to upload when creating a new stack
      */
-    readonly importState?: pulumi.Input<string>;
+    importState?: pulumi.Input<string>;
     /**
      * Path to the state file to upload when creating a new stack
      */
-    readonly importStateFile?: pulumi.Input<string>;
+    importStateFile?: pulumi.Input<string>;
     /**
      * Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
      */
-    readonly kubernetes?: pulumi.Input<inputs.StackKubernetes>;
-    readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
+    kubernetes?: pulumi.Input<inputs.StackKubernetes>;
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Determines if Spacelift should manage state for this stack
+     * Determines if Spacelift should manage state for this stack. Defaults to `true`.
      */
-    readonly manageState?: pulumi.Input<boolean>;
+    manageState?: pulumi.Input<boolean>;
     /**
      * Name of the stack - should be unique in one account
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
      */
-    readonly projectRoot?: pulumi.Input<string>;
+    projectRoot?: pulumi.Input<string>;
     /**
-     * Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+     * Protect this stack from accidental deletion. If set, attempts to delete this stack will fail. Defaults to `false`.
      */
-    readonly protectFromDeletion?: pulumi.Input<boolean>;
+    protectFromDeletion?: pulumi.Input<boolean>;
     /**
      * Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
      */
-    readonly pulumi?: pulumi.Input<inputs.StackPulumi>;
+    pulumi?: pulumi.Input<inputs.StackPulumi>;
     /**
      * Name of the repository, without the owner part
      */
-    readonly repository?: pulumi.Input<string>;
+    repository?: pulumi.Input<string>;
     /**
      * Name of the Docker image used to process Runs
      */
-    readonly runnerImage?: pulumi.Input<string>;
-    readonly showcase?: pulumi.Input<inputs.StackShowcase>;
+    runnerImage?: pulumi.Input<string>;
+    showcase?: pulumi.Input<inputs.StackShowcase>;
     /**
      * Allows setting the custom ID (slug) for the stack
      */
-    readonly slug?: pulumi.Input<string>;
+    slug?: pulumi.Input<string>;
+    /**
+     * ID (slug) of the space the stack is in
+     */
+    spaceId?: pulumi.Input<string>;
     /**
      * Terraform version to use
      */
-    readonly terraformVersion?: pulumi.Input<string>;
+    terraformVersion?: pulumi.Input<string>;
     /**
      * Terraform workspace to select
      */
-    readonly terraformWorkspace?: pulumi.Input<string>;
+    terraformWorkspace?: pulumi.Input<string>;
     /**
      * ID of the worker pool to use
      */
-    readonly workerPoolId?: pulumi.Input<string>;
+    workerPoolId?: pulumi.Input<string>;
 }
 
 /**
@@ -477,153 +610,161 @@ export interface StackState {
  */
 export interface StackArgs {
     /**
-     * Indicates whether this stack can manage others
+     * Indicates whether this stack can manage others. Defaults to `false`.
      */
-    readonly administrative?: pulumi.Input<boolean>;
+    administrative?: pulumi.Input<boolean>;
     /**
      * List of after-apply scripts
      */
-    readonly afterApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    afterApplies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of after-destroy scripts
      */
-    readonly afterDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    afterDestroys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of after-init scripts
      */
-    readonly afterInits?: pulumi.Input<pulumi.Input<string>[]>;
+    afterInits?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of after-perform scripts
      */
-    readonly afterPerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    afterPerforms?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of after-plan scripts
      */
-    readonly afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
+    afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Indicates whether changes to this stack can be automatically deployed
+     * Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
      */
-    readonly autodeploy?: pulumi.Input<boolean>;
+    ansible?: pulumi.Input<inputs.StackAnsible>;
     /**
-     * Indicates whether obsolete proposed changes should automatically be retried
+     * Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
      */
-    readonly autoretry?: pulumi.Input<boolean>;
+    autodeploy?: pulumi.Input<boolean>;
+    /**
+     * Indicates whether obsolete proposed changes should automatically be retried. Defaults to `false`.
+     */
+    autoretry?: pulumi.Input<boolean>;
     /**
      * Azure DevOps VCS settings
      */
-    readonly azureDevops?: pulumi.Input<inputs.StackAzureDevops>;
+    azureDevops?: pulumi.Input<inputs.StackAzureDevops>;
     /**
      * List of before-apply scripts
      */
-    readonly beforeApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    beforeApplies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of before-destroy scripts
      */
-    readonly beforeDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    beforeDestroys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of before-init scripts
      */
-    readonly beforeInits?: pulumi.Input<pulumi.Input<string>[]>;
+    beforeInits?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of before-perform scripts
      */
-    readonly beforePerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    beforePerforms?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of before-plan scripts
      */
-    readonly beforePlans?: pulumi.Input<pulumi.Input<string>[]>;
+    beforePlans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Bitbucket Cloud VCS settings
      */
-    readonly bitbucketCloud?: pulumi.Input<inputs.StackBitbucketCloud>;
+    bitbucketCloud?: pulumi.Input<inputs.StackBitbucketCloud>;
     /**
      * Bitbucket Datacenter VCS settings
      */
-    readonly bitbucketDatacenter?: pulumi.Input<inputs.StackBitbucketDatacenter>;
+    bitbucketDatacenter?: pulumi.Input<inputs.StackBitbucketDatacenter>;
     /**
      * GitHub branch to apply changes to
      */
-    readonly branch: pulumi.Input<string>;
+    branch: pulumi.Input<string>;
     /**
      * CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
      */
-    readonly cloudformation?: pulumi.Input<inputs.StackCloudformation>;
+    cloudformation?: pulumi.Input<inputs.StackCloudformation>;
     /**
      * Free-form stack description for users
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
-     * Indicates whether local preview runs can be triggered on this Stack
+     * Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
      */
-    readonly enableLocalPreview?: pulumi.Input<boolean>;
+    enableLocalPreview?: pulumi.Input<boolean>;
     /**
-     * Indicates whether GitHub users can deploy from the Checks API
+     * Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
      */
-    readonly githubActionDeploy?: pulumi.Input<boolean>;
+    githubActionDeploy?: pulumi.Input<boolean>;
     /**
      * GitHub Enterprise (self-hosted) VCS settings
      */
-    readonly githubEnterprise?: pulumi.Input<inputs.StackGithubEnterprise>;
+    githubEnterprise?: pulumi.Input<inputs.StackGithubEnterprise>;
     /**
      * GitLab VCS settings
      */
-    readonly gitlab?: pulumi.Input<inputs.StackGitlab>;
+    gitlab?: pulumi.Input<inputs.StackGitlab>;
     /**
      * State file to upload when creating a new stack
      */
-    readonly importState?: pulumi.Input<string>;
+    importState?: pulumi.Input<string>;
     /**
      * Path to the state file to upload when creating a new stack
      */
-    readonly importStateFile?: pulumi.Input<string>;
+    importStateFile?: pulumi.Input<string>;
     /**
      * Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
      */
-    readonly kubernetes?: pulumi.Input<inputs.StackKubernetes>;
-    readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
+    kubernetes?: pulumi.Input<inputs.StackKubernetes>;
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Determines if Spacelift should manage state for this stack
+     * Determines if Spacelift should manage state for this stack. Defaults to `true`.
      */
-    readonly manageState?: pulumi.Input<boolean>;
+    manageState?: pulumi.Input<boolean>;
     /**
      * Name of the stack - should be unique in one account
      */
-    readonly name: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
      */
-    readonly projectRoot?: pulumi.Input<string>;
+    projectRoot?: pulumi.Input<string>;
     /**
-     * Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+     * Protect this stack from accidental deletion. If set, attempts to delete this stack will fail. Defaults to `false`.
      */
-    readonly protectFromDeletion?: pulumi.Input<boolean>;
+    protectFromDeletion?: pulumi.Input<boolean>;
     /**
      * Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
      */
-    readonly pulumi?: pulumi.Input<inputs.StackPulumi>;
+    pulumi?: pulumi.Input<inputs.StackPulumi>;
     /**
      * Name of the repository, without the owner part
      */
-    readonly repository: pulumi.Input<string>;
+    repository: pulumi.Input<string>;
     /**
      * Name of the Docker image used to process Runs
      */
-    readonly runnerImage?: pulumi.Input<string>;
-    readonly showcase?: pulumi.Input<inputs.StackShowcase>;
+    runnerImage?: pulumi.Input<string>;
+    showcase?: pulumi.Input<inputs.StackShowcase>;
     /**
      * Allows setting the custom ID (slug) for the stack
      */
-    readonly slug?: pulumi.Input<string>;
+    slug?: pulumi.Input<string>;
+    /**
+     * ID (slug) of the space the stack is in
+     */
+    spaceId?: pulumi.Input<string>;
     /**
      * Terraform version to use
      */
-    readonly terraformVersion?: pulumi.Input<string>;
+    terraformVersion?: pulumi.Input<string>;
     /**
      * Terraform workspace to select
      */
-    readonly terraformWorkspace?: pulumi.Input<string>;
+    terraformWorkspace?: pulumi.Input<string>;
     /**
      * ID of the worker pool to use
      */
-    readonly workerPoolId?: pulumi.Input<string>;
+    workerPoolId?: pulumi.Input<string>;
 }

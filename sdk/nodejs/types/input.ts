@@ -24,6 +24,10 @@ export interface ModuleGitlab {
     namespace: pulumi.Input<string>;
 }
 
+export interface StackAnsible {
+    playbook: pulumi.Input<string>;
+}
+
 export interface StackAzureDevops {
     project: pulumi.Input<string>;
 }
@@ -63,3 +67,4 @@ export interface StackPulumi {
 export interface StackShowcase {
     namespace: pulumi.Input<string>;
 }
+
