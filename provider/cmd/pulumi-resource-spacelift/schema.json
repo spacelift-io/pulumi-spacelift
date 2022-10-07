@@ -12,7 +12,8 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`spacelift` Terraform Provider](https://github.com/spacelift-io/terraform-provider-spacelift).",
     "repository": "git://github.com/spacelift-io/pulumi-spacelift.git",
-    "pluginDownloadURL": "https://github.com/spacelift-io/pulumi-spacelift/releases",
+    "logoUrl": "https://spaceliftio.wpcomstaging.com/wp-content/uploads/2022/10/TypographyFalse-ColorDark-TypeHorizontal.png",
+    "pluginDownloadURL": "https://downloads.spacelift.io/pulumi-plugins",
     "publisher": "spacelift-io",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"

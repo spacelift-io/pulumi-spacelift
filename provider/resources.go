@@ -50,13 +50,8 @@ func Provider() tfbridge.ProviderInfo {
 		Name:        "spacelift",
 		DisplayName: "Spacelift",
 		Publisher:   "spacelift-io",
-		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
-		// if this package is published there.
-		//
-		// You may host a logo on a domain you control or add an SVG logo for your package
-		// in your repository and use the raw content URL for that file as your logo URL.
 		// TODO: Add logo URL here
-		LogoURL:           "",
+		LogoURL:           "https://spaceliftio.wpcomstaging.com/wp-content/uploads/2022/10/TypographyFalse-ColorDark-TypeHorizontal.png",
 		PluginDownloadURL: "https://downloads.spacelift.io/pulumi-plugins",
 		Description:       "A Pulumi package for creating and managing Spacelift resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
