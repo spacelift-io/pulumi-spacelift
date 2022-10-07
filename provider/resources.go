@@ -46,26 +46,18 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:    p,
-		Name: "spacelift",
-		// DisplayName is a way to be able to change the casing of the provider
-		// name when being displayed on the Pulumi registry
+		P:           p,
+		Name:        "spacelift",
 		DisplayName: "Spacelift",
-		// The default publisher for all packages is Pulumi.
-		// Change this to your personal name (or a company name) that you
-		// would like to be shown in the Pulumi Registry if this package is published
-		// there.
-		Publisher: "spacelift-io",
+		Publisher:   "spacelift-io",
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
 		// You may host a logo on a domain you control or add an SVG logo for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "",
-		// PluginDownloadURL is an optional URL used to download the Provider
-		// for use in Pulumi programs
-		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "https://github.com/spacelift-io/pulumi-spacelift/releases",
+		// TODO: Add logo URL here
+		LogoURL:           "",
+		PluginDownloadURL: "https://downloads.spacelift.io/pulumi-plugins",
 		Description:       "A Pulumi package for creating and managing Spacelift resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -74,9 +66,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:    "Apache-2.0",
 		Homepage:   "https://spacelift.io",
 		Repository: "git://github.com/spacelift-io/pulumi-spacelift.git",
-		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
-		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg: "spacelift-io",
+		GitHubOrg:  "spacelift-io",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"api_key_endpoint": {
 				Default: &tfbridge.DefaultInfo{
