@@ -14,6 +14,8 @@ jobs:
     name: Build and upload provider
     runs-on: ubuntu-latest
     steps:
+      - name: Install dependencies
+        run: sudo apt update && sudo apt install -y bash
       - name: Check out repository code
         uses: actions/checkout@master
       - name: Treat repo as safe
@@ -49,6 +51,8 @@ jobs:
           python-version: 3.7
       - name: Print version
         run: pulumictl get version
+      - name: Set NPM auth token
+        run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
       - name: Publish npm package.
         run: cd sdk/nodejs/bin && npm publish --access public
         env:

@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Install build dependencies
         run: |
-          apk add --no-cache alpine-sdk git
+          apk add --no-cache alpine-sdk git bash
 
       - name: Check out repository code
         uses: actions/checkout@master

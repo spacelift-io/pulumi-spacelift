@@ -23,14 +23,6 @@ or `yarn`:
 yarn add @spacelift-io/pulumi-spacelift
 ```
 
-However, since we're hosting the packages on GitHub packages, you'll need to add an `.npmrc` file (in your project or user home directory) with the following contents:
-```
-@spacelift-io:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
-```
-
-where ${GITHUB_TOKEN} is a GitHub access token with the Read capability on GitHub packages.
-
 ### Go
 
 To use from Go, use `go get` to grab the latest version of the library:

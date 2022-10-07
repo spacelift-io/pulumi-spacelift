@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pulumi-spacelift
-Version: 1.2.4
+Version: 1.2.7
 Summary: A Pulumi package for creating and managing Spacelift resources.
 Home-page: https://spacelift.io
 License: Apache-2.0
@@ -29,14 +29,6 @@ Description: # Spacelift Pulumi Provider
         ```
         yarn add @spacelift-io/pulumi-spacelift
         ```
-        
-        However, since we're hosting the packages on GitHub packages, you'll need to add an `.npmrc` file (in your project or user home directory) with the following contents:
-        ```
-        @spacelift-io:registry=https://npm.pkg.github.com
-        //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
-        ```
-        
-        where ${GITHUB_TOKEN} is a GitHub access token with the Read capability on GitHub packages.
         
         ### Go
         
