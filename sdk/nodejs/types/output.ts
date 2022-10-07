@@ -24,6 +24,18 @@ export interface GetModuleGitlab {
     namespace: string;
 }
 
+export interface GetPoliciesPolicy {
+    id: string;
+    labels: string[];
+    name: string;
+    spaceId: string;
+    type: string;
+}
+
+export interface GetStackAnsible {
+    playbook: string;
+}
+
 export interface GetStackAzureDevop {
     project: string;
 }
@@ -64,10 +76,17 @@ export interface GetStackShowcase {
     namespace: string;
 }
 
+export interface GetVcsAgentPoolsVcsAgentPool {
+    description: string;
+    name: string;
+    vcsAgentPoolId: string;
+}
+
 export interface GetWorkerPoolsWorkerPool {
     config: string;
     description: string;
     name: string;
+    spaceId: string;
     workerPoolId: string;
 }
 
@@ -89,6 +108,10 @@ export interface ModuleGithubEnterprise {
 
 export interface ModuleGitlab {
     namespace: string;
+}
+
+export interface StackAnsible {
+    playbook: string;
 }
 
 export interface StackAzureDevops {

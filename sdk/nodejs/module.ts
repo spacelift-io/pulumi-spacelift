@@ -6,9 +6,31 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * ## Import
+ * ## Example Usage
  *
- * Import is supported using the following syntax
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * // Explicit module name and provider:
+ * const k8s_module = new spacelift.Module("k8s-module", {
+ *     administrative: true,
+ *     branch: "master",
+ *     description: "Infra terraform module",
+ *     repository: "terraform-super-module",
+ *     terraformProvider: "aws",
+ * });
+ * // Unspecified module name and provider (repository naming scheme terraform-${provider}-${name})
+ * const example_module = new spacelift.Module("example-module", {
+ *     administrative: true,
+ *     branch: "master",
+ *     description: "Example terraform module",
+ *     projectRoot: "example",
+ *     repository: "terraform-aws-example",
+ * });
+ * ```
+ *
+ * ## Import
  *
  * ```sh
  *  $ pulumi import spacelift:index/module:Module k8s-module $MODULE_ID
@@ -43,7 +65,7 @@ export class Module extends pulumi.CustomResource {
     }
 
     /**
-     * Indicates whether this module can manage others
+     * Indicates whether this module can manage others. Defaults to `false`.
      */
     public readonly administrative!: pulumi.Output<boolean | undefined>;
     /**
@@ -90,7 +112,7 @@ export class Module extends pulumi.CustomResource {
      */
     public readonly projectRoot!: pulumi.Output<string | undefined>;
     /**
-     * Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+     * Protect this module from accidental deletion. If set, attempts to delete this module will fail. Defaults to `false`.
      */
     public readonly protectFromDeletion!: pulumi.Output<boolean | undefined>;
     /**
@@ -101,6 +123,10 @@ export class Module extends pulumi.CustomResource {
      * List of the accounts (subdomains) which should have access to the Module
      */
     public readonly sharedAccounts!: pulumi.Output<string[] | undefined>;
+    /**
+     * ID (slug) of the space the module is in
+     */
+    public readonly spaceId!: pulumi.Output<string>;
     /**
      * The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
      * naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
@@ -121,60 +147,57 @@ export class Module extends pulumi.CustomResource {
      */
     constructor(name: string, args: ModuleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ModuleArgs | ModuleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ModuleState | undefined;
-            inputs["administrative"] = state ? state.administrative : undefined;
-            inputs["awsAssumeRolePolicyStatement"] = state ? state.awsAssumeRolePolicyStatement : undefined;
-            inputs["azureDevops"] = state ? state.azureDevops : undefined;
-            inputs["bitbucketCloud"] = state ? state.bitbucketCloud : undefined;
-            inputs["bitbucketDatacenter"] = state ? state.bitbucketDatacenter : undefined;
-            inputs["branch"] = state ? state.branch : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["githubEnterprise"] = state ? state.githubEnterprise : undefined;
-            inputs["gitlab"] = state ? state.gitlab : undefined;
-            inputs["labels"] = state ? state.labels : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["projectRoot"] = state ? state.projectRoot : undefined;
-            inputs["protectFromDeletion"] = state ? state.protectFromDeletion : undefined;
-            inputs["repository"] = state ? state.repository : undefined;
-            inputs["sharedAccounts"] = state ? state.sharedAccounts : undefined;
-            inputs["terraformProvider"] = state ? state.terraformProvider : undefined;
-            inputs["workerPoolId"] = state ? state.workerPoolId : undefined;
+            resourceInputs["administrative"] = state ? state.administrative : undefined;
+            resourceInputs["awsAssumeRolePolicyStatement"] = state ? state.awsAssumeRolePolicyStatement : undefined;
+            resourceInputs["azureDevops"] = state ? state.azureDevops : undefined;
+            resourceInputs["bitbucketCloud"] = state ? state.bitbucketCloud : undefined;
+            resourceInputs["bitbucketDatacenter"] = state ? state.bitbucketDatacenter : undefined;
+            resourceInputs["branch"] = state ? state.branch : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["githubEnterprise"] = state ? state.githubEnterprise : undefined;
+            resourceInputs["gitlab"] = state ? state.gitlab : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["projectRoot"] = state ? state.projectRoot : undefined;
+            resourceInputs["protectFromDeletion"] = state ? state.protectFromDeletion : undefined;
+            resourceInputs["repository"] = state ? state.repository : undefined;
+            resourceInputs["sharedAccounts"] = state ? state.sharedAccounts : undefined;
+            resourceInputs["spaceId"] = state ? state.spaceId : undefined;
+            resourceInputs["terraformProvider"] = state ? state.terraformProvider : undefined;
+            resourceInputs["workerPoolId"] = state ? state.workerPoolId : undefined;
         } else {
             const args = argsOrState as ModuleArgs | undefined;
-            if ((!args || args.branch === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.branch === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'branch'");
             }
-            if ((!args || args.repository === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.repository === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'repository'");
             }
-            inputs["administrative"] = args ? args.administrative : undefined;
-            inputs["azureDevops"] = args ? args.azureDevops : undefined;
-            inputs["bitbucketCloud"] = args ? args.bitbucketCloud : undefined;
-            inputs["bitbucketDatacenter"] = args ? args.bitbucketDatacenter : undefined;
-            inputs["branch"] = args ? args.branch : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["githubEnterprise"] = args ? args.githubEnterprise : undefined;
-            inputs["gitlab"] = args ? args.gitlab : undefined;
-            inputs["labels"] = args ? args.labels : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["projectRoot"] = args ? args.projectRoot : undefined;
-            inputs["protectFromDeletion"] = args ? args.protectFromDeletion : undefined;
-            inputs["repository"] = args ? args.repository : undefined;
-            inputs["sharedAccounts"] = args ? args.sharedAccounts : undefined;
-            inputs["terraformProvider"] = args ? args.terraformProvider : undefined;
-            inputs["workerPoolId"] = args ? args.workerPoolId : undefined;
-            inputs["awsAssumeRolePolicyStatement"] = undefined /*out*/;
+            resourceInputs["administrative"] = args ? args.administrative : undefined;
+            resourceInputs["azureDevops"] = args ? args.azureDevops : undefined;
+            resourceInputs["bitbucketCloud"] = args ? args.bitbucketCloud : undefined;
+            resourceInputs["bitbucketDatacenter"] = args ? args.bitbucketDatacenter : undefined;
+            resourceInputs["branch"] = args ? args.branch : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["githubEnterprise"] = args ? args.githubEnterprise : undefined;
+            resourceInputs["gitlab"] = args ? args.gitlab : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectRoot"] = args ? args.projectRoot : undefined;
+            resourceInputs["protectFromDeletion"] = args ? args.protectFromDeletion : undefined;
+            resourceInputs["repository"] = args ? args.repository : undefined;
+            resourceInputs["sharedAccounts"] = args ? args.sharedAccounts : undefined;
+            resourceInputs["spaceId"] = args ? args.spaceId : undefined;
+            resourceInputs["terraformProvider"] = args ? args.terraformProvider : undefined;
+            resourceInputs["workerPoolId"] = args ? args.workerPoolId : undefined;
+            resourceInputs["awsAssumeRolePolicyStatement"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
-        super(Module.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Module.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -183,74 +206,78 @@ export class Module extends pulumi.CustomResource {
  */
 export interface ModuleState {
     /**
-     * Indicates whether this module can manage others
+     * Indicates whether this module can manage others. Defaults to `false`.
      */
-    readonly administrative?: pulumi.Input<boolean>;
+    administrative?: pulumi.Input<boolean>;
     /**
      * AWS IAM assume role policy statement setting up trust relationship
      */
-    readonly awsAssumeRolePolicyStatement?: pulumi.Input<string>;
+    awsAssumeRolePolicyStatement?: pulumi.Input<string>;
     /**
      * Azure DevOps VCS settings
      */
-    readonly azureDevops?: pulumi.Input<inputs.ModuleAzureDevops>;
+    azureDevops?: pulumi.Input<inputs.ModuleAzureDevops>;
     /**
      * Bitbucket Cloud VCS settings
      */
-    readonly bitbucketCloud?: pulumi.Input<inputs.ModuleBitbucketCloud>;
+    bitbucketCloud?: pulumi.Input<inputs.ModuleBitbucketCloud>;
     /**
      * Bitbucket Datacenter VCS settings
      */
-    readonly bitbucketDatacenter?: pulumi.Input<inputs.ModuleBitbucketDatacenter>;
+    bitbucketDatacenter?: pulumi.Input<inputs.ModuleBitbucketDatacenter>;
     /**
      * GitHub branch to apply changes to
      */
-    readonly branch?: pulumi.Input<string>;
+    branch?: pulumi.Input<string>;
     /**
      * Free-form module description for users
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * GitHub Enterprise (self-hosted) VCS settings
      */
-    readonly githubEnterprise?: pulumi.Input<inputs.ModuleGithubEnterprise>;
+    githubEnterprise?: pulumi.Input<inputs.ModuleGithubEnterprise>;
     /**
      * GitLab VCS settings
      */
-    readonly gitlab?: pulumi.Input<inputs.ModuleGitlab>;
-    readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
+    gitlab?: pulumi.Input<inputs.ModuleGitlab>;
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
      * convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
      * provide it here.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Project root is the optional directory relative to the repository root containing the module source code.
      */
-    readonly projectRoot?: pulumi.Input<string>;
+    projectRoot?: pulumi.Input<string>;
     /**
-     * Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+     * Protect this module from accidental deletion. If set, attempts to delete this module will fail. Defaults to `false`.
      */
-    readonly protectFromDeletion?: pulumi.Input<boolean>;
+    protectFromDeletion?: pulumi.Input<boolean>;
     /**
      * Name of the repository, without the owner part
      */
-    readonly repository?: pulumi.Input<string>;
+    repository?: pulumi.Input<string>;
     /**
      * List of the accounts (subdomains) which should have access to the Module
      */
-    readonly sharedAccounts?: pulumi.Input<pulumi.Input<string>[]>;
+    sharedAccounts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID (slug) of the space the module is in
+     */
+    spaceId?: pulumi.Input<string>;
     /**
      * The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
      * naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
      * can provide the provider name here.
      */
-    readonly terraformProvider?: pulumi.Input<string>;
+    terraformProvider?: pulumi.Input<string>;
     /**
      * ID of the worker pool to use
      */
-    readonly workerPoolId?: pulumi.Input<string>;
+    workerPoolId?: pulumi.Input<string>;
 }
 
 /**
@@ -258,68 +285,72 @@ export interface ModuleState {
  */
 export interface ModuleArgs {
     /**
-     * Indicates whether this module can manage others
+     * Indicates whether this module can manage others. Defaults to `false`.
      */
-    readonly administrative?: pulumi.Input<boolean>;
+    administrative?: pulumi.Input<boolean>;
     /**
      * Azure DevOps VCS settings
      */
-    readonly azureDevops?: pulumi.Input<inputs.ModuleAzureDevops>;
+    azureDevops?: pulumi.Input<inputs.ModuleAzureDevops>;
     /**
      * Bitbucket Cloud VCS settings
      */
-    readonly bitbucketCloud?: pulumi.Input<inputs.ModuleBitbucketCloud>;
+    bitbucketCloud?: pulumi.Input<inputs.ModuleBitbucketCloud>;
     /**
      * Bitbucket Datacenter VCS settings
      */
-    readonly bitbucketDatacenter?: pulumi.Input<inputs.ModuleBitbucketDatacenter>;
+    bitbucketDatacenter?: pulumi.Input<inputs.ModuleBitbucketDatacenter>;
     /**
      * GitHub branch to apply changes to
      */
-    readonly branch: pulumi.Input<string>;
+    branch: pulumi.Input<string>;
     /**
      * Free-form module description for users
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * GitHub Enterprise (self-hosted) VCS settings
      */
-    readonly githubEnterprise?: pulumi.Input<inputs.ModuleGithubEnterprise>;
+    githubEnterprise?: pulumi.Input<inputs.ModuleGithubEnterprise>;
     /**
      * GitLab VCS settings
      */
-    readonly gitlab?: pulumi.Input<inputs.ModuleGitlab>;
-    readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
+    gitlab?: pulumi.Input<inputs.ModuleGitlab>;
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The module name will by default be inferred from the repository name if it follows the terraform-provider-name naming
      * convention. However, if the repository doesn't follow this convention, or you want to give it a custom name, you can
      * provide it here.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Project root is the optional directory relative to the repository root containing the module source code.
      */
-    readonly projectRoot?: pulumi.Input<string>;
+    projectRoot?: pulumi.Input<string>;
     /**
-     * Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+     * Protect this module from accidental deletion. If set, attempts to delete this module will fail. Defaults to `false`.
      */
-    readonly protectFromDeletion?: pulumi.Input<boolean>;
+    protectFromDeletion?: pulumi.Input<boolean>;
     /**
      * Name of the repository, without the owner part
      */
-    readonly repository: pulumi.Input<string>;
+    repository: pulumi.Input<string>;
     /**
      * List of the accounts (subdomains) which should have access to the Module
      */
-    readonly sharedAccounts?: pulumi.Input<pulumi.Input<string>[]>;
+    sharedAccounts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID (slug) of the space the module is in
+     */
+    spaceId?: pulumi.Input<string>;
     /**
      * The module provider will by default be inferred from the repository name if it follows the terraform-provider-name
      * naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
      * can provide the provider name here.
      */
-    readonly terraformProvider?: pulumi.Input<string>;
+    terraformProvider?: pulumi.Input<string>;
     /**
      * ID of the worker pool to use
      */
-    readonly workerPoolId?: pulumi.Input<string>;
+    workerPoolId?: pulumi.Input<string>;
 }

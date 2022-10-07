@@ -2,18 +2,32 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * // For a Module
+ * const k8s_module = pulumi.output(spacelift.getGcpServiceAccount({
+ *     moduleId: "k8s-module",
+ * }));
+ * // For a Stack
+ * const k8s_core = pulumi.output(spacelift.getGcpServiceAccount({
+ *     stackId: "k8s-core",
+ * }));
+ * ```
+ */
 export function getGcpServiceAccount(args?: GetGcpServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetGcpServiceAccountResult> {
     args = args || {};
     if (!opts) {
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("spacelift:index/getGcpServiceAccount:getGcpServiceAccount", {
         "moduleId": args.moduleId,
         "stackId": args.stackId,
@@ -24,8 +38,8 @@ export function getGcpServiceAccount(args?: GetGcpServiceAccountArgs, opts?: pul
  * A collection of arguments for invoking getGcpServiceAccount.
  */
 export interface GetGcpServiceAccountArgs {
-    readonly moduleId?: string;
-    readonly stackId?: string;
+    moduleId?: string;
+    stackId?: string;
 }
 
 /**
@@ -40,4 +54,16 @@ export interface GetGcpServiceAccountResult {
     readonly serviceAccountEmail: string;
     readonly stackId?: string;
     readonly tokenScopes: string[];
+}
+
+export function getGcpServiceAccountOutput(args?: GetGcpServiceAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGcpServiceAccountResult> {
+    return pulumi.output(args).apply(a => getGcpServiceAccount(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getGcpServiceAccount.
+ */
+export interface GetGcpServiceAccountOutputArgs {
+    moduleId?: pulumi.Input<string>;
+    stackId?: pulumi.Input<string>;
 }

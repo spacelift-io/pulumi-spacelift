@@ -1,3 +1,4 @@
 package version
 
-var Version string = "1.0.0"
+// Version is initialized by the Go linker to contain the semver of this build.
+var Version string

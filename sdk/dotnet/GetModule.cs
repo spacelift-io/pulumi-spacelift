@@ -11,8 +11,59 @@ namespace Pulumi.Spacelift
 {
     public static class GetModule
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var k8s_module = Output.Create(Spacelift.GetModule.InvokeAsync(new Spacelift.GetModuleArgs
+        ///         {
+        ///             ModuleId = "k8s-module",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetModuleResult> InvokeAsync(GetModuleArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetModuleResult>("spacelift:index/getModule:getModule", args ?? new GetModuleArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetModuleResult>("spacelift:index/getModule:getModule", args ?? new GetModuleArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var k8s_module = Output.Create(Spacelift.GetModule.InvokeAsync(new Spacelift.GetModuleArgs
+        ///         {
+        ///             ModuleId = "k8s-module",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetModuleResult> Invoke(GetModuleInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetModuleResult>("spacelift:index/getModule:getModule", args ?? new GetModuleInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -22,6 +73,16 @@ namespace Pulumi.Spacelift
         public string ModuleId { get; set; } = null!;
 
         public GetModuleArgs()
+        {
+        }
+    }
+
+    public sealed class GetModuleInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("moduleId", required: true)]
+        public Input<string> ModuleId { get; set; } = null!;
+
+        public GetModuleInvokeArgs()
         {
         }
     }
@@ -50,6 +111,7 @@ namespace Pulumi.Spacelift
         public readonly bool ProtectFromDeletion;
         public readonly string Repository;
         public readonly ImmutableArray<string> SharedAccounts;
+        public readonly string SpaceId;
         public readonly string TerraformProvider;
         public readonly string WorkerPoolId;
 
@@ -89,6 +151,8 @@ namespace Pulumi.Spacelift
 
             ImmutableArray<string> sharedAccounts,
 
+            string spaceId,
+
             string terraformProvider,
 
             string workerPoolId)
@@ -110,6 +174,7 @@ namespace Pulumi.Spacelift
             ProtectFromDeletion = protectFromDeletion;
             Repository = repository;
             SharedAccounts = sharedAccounts;
+            SpaceId = spaceId;
             TerraformProvider = terraformProvider;
             WorkerPoolId = workerPoolId;
         }

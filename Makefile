@@ -1,5 +1,6 @@
-PROJECT_NAME := pulumi-spacelift Package
+PROJECT_NAME := spacelift Package
 
+SHELL            := /bin/bash
 PACK             := spacelift
 ORG              := spacelift-io
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
@@ -10,11 +11,7 @@ VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 
 TFGEN           := pulumi-tfgen-${PACK}
 PROVIDER        := pulumi-resource-${PACK}
-VERSION_WITH_V  := "$(shell git describe --tags --abbrev=0)"
-VERSION         := "$(shell git describe --tags --abbrev=0 | sed 's/^v//g')"
-PROVIDER_OS     := ${PROVIDER_OS}
-
-SHELL := /bin/bash
+VERSION         := $(shell pulumictl get version)
 
 TESTPARALLELISM := 4
 
@@ -32,16 +29,13 @@ prepare::
 	mv "provider/cmd/pulumi-resource-x${EMPTY_TO_AVOID_SED}yz" provider/cmd/pulumi-resource-${NAME}
 
 	if [[ "${OS}" != "Darwin" ]]; then \
-		sed -i 's,github.com/pulumi/pulumi-xyz,${REPOSITORY},g' provider/go.mod; \
+		sed -i 's,github.com/pulumi/pulumi-spacelift,${REPOSITORY},g' provider/go.mod; \
 		find ./ ! -path './.git/*' -type f -exec sed -i 's/[x]yz/${NAME}/g' {} \; &> /dev/null; \
 	fi
 
 	# In MacOS the -i parameter needs an empty string to execute in place.
 	if [[ "${OS}" == "Darwin" ]]; then \
-		sed -i '' 's,github.com/pulumi/pulumi-xyz,${REPOSITORY},g' provider/go.mod; \
-		find ./ ! -path './.git/*' -type f -exec sed -i '' 's/[x]yz/${NAME}/g' {} \; &> /dev/null; \
-
-		sed -i '' 's,github.com/pulumi/pulumi-xyz,${REPOSITORY},g' provider/resources.go; \
+		sed -i '' 's,github.com/pulumi/pulumi-spacelift,${REPOSITORY},g' provider/go.mod; \
 		find ./ ! -path './.git/*' -type f -exec sed -i '' 's/[x]yz/${NAME}/g' {} \; &> /dev/null; \
 	fi
 
@@ -54,63 +48,43 @@ build:: install_plugins provider build_sdks install_sdks
 only_build:: build
 
 tfgen:: install_plugins
-	(cd provider && go build -a -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
+	(cd provider && go build -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
 	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
 	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
 
 provider:: tfgen install_plugins # build the provider binary
-	(cd provider && CGO_ENABLED=0 GOOS=$(PROVIDER_OS) go build -a -tags netgo -o $(WORKING_DIR)/bin/ -ldflags "-s -w -extldflags '-static' -X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+	(cd provider && go build -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
 
 build_sdks:: install_plugins provider build_nodejs build_python build_go build_dotnet # build all the sdks
 
+build_nodejs:: VERSION := $(shell pulumictl get version --language javascript)
 build_nodejs:: install_plugins tfgen # build the node sdk
 	$(WORKING_DIR)/bin/$(TFGEN) nodejs --overlays provider/overlays/nodejs --out sdk/nodejs/
 	cd sdk/nodejs/ && \
         yarn install && \
         yarn run tsc && \
+		cp -R scripts/ bin && \
         cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
-    	sed -i.bak -e "s/\$${VERSION}/$(VERSION_WITH_V)/g" ./bin/package.json
+		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
 
+build_python:: PYPI_VERSION := $(shell pulumictl get version --language python)
 build_python:: install_plugins tfgen # build the python sdk
 	$(WORKING_DIR)/bin/$(TFGEN) python --overlays provider/overlays/python --out sdk/python/
-	if [[ "${OS}" == "Darwin" ]]; then \
-        sed -i '' -r "s/check_call\(\['pulumi', 'plugin', 'install', 'resource', 'spacelift', '[^']+']\)/check_call(['pulumi', 'plugin', 'install', '--server', 'https:\/\/downloads.spacelift.io\/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])/g" sdk/python/setup.py; \
-    fi
-	if [[ "${OS}" != "Darwin" ]]; then \
-        sed -i -r "s/check_call\(\['pulumi', 'plugin', 'install', 'resource', 'spacelift', '[^']+']\)/check_call(['pulumi', 'plugin', 'install', '--server', 'https:\/\/downloads.spacelift.io\/pulumi-plugins', 'resource', 'spacelift', '0.0.0'])/g" sdk/python/setup.py; \
-    fi
-	if [[ "${OS}" == "Darwin" ]]; then \
-        sed -i '' -r "s/import pulumi$$/import pulumi as pulumilib/g" sdk/python/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/pulumi.CustomResource/pulumilib.CustomResource/g" sdk/python/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/pulumi.ResourceOptions/pulumilib.ResourceOptions/g" sdk/python/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/pulumi.Input/pulumilib.Input/g" sdk/python/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/pulumi.Output/pulumilib.Output/g" sdk/python/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/@pulumi.getter/@pulumilib.getter/g" sdk/python/pulumi_spacelift/stack.py && \
-        sed -i '' -r "s/pulumi.get/pulumilib.get/g" sdk/python/pulumi_spacelift/stack.py; \
-    fi
-	if [[ "${OS}" != "Darwin" ]]; then \
-        sed -i -r "s/import pulumi$$/import pulumi as pulumilib/g" sdk/python/pulumi_spacelift/stack.py && \
-		sed -i -r "s/pulumi.CustomResource/pulumilib.CustomResource/g" sdk/python/pulumi_spacelift/stack.py && \
-		sed -i -r "s/pulumi.ResourceOptions/pulumilib.ResourceOptions/g" sdk/python/pulumi_spacelift/stack.py && \
-		sed -i -r "s/pulumi.Input/pulumilib.Input/g" sdk/python/pulumi_spacelift/stack.py && \
-		sed -i -r "s/pulumi.Output/pulumilib.Output/g" sdk/python/pulumi_spacelift/stack.py && \
-		sed -i -r "s/@pulumi.getter/@pulumilib.getter/g" sdk/python/pulumi_spacelift/stack.py && \
-		sed -i -r "s/pulumi.get/pulumilib.get/g" sdk/python/pulumi_spacelift/stack.py; \
-    fi
 	cd sdk/python/ && \
         cp ../../README.md . && \
         python3 setup.py clean --all 2>/dev/null && \
         rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
-        sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" -e "s/\$${PLUGIN_VERSION}/0.0.0/g" ./bin/setup.py && \
+        sed -i.bak -e 's/^VERSION = .*/VERSION = "$(PYPI_VERSION)"/g' -e 's/^PLUGIN_VERSION = .*/PLUGIN_VERSION = "$(VERSION)"/g' ./bin/setup.py && \
         rm ./bin/setup.py.bak && \
         cd ./bin && python3 setup.py build sdist
 
+build_dotnet:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
 build_dotnet:: install_plugins tfgen # build the dotnet sdk
+	pulumictl get version --language dotnet
 	$(WORKING_DIR)/bin/$(TFGEN) dotnet --overlays provider/overlays/dotnet --out sdk/dotnet/
 	cd sdk/dotnet/ && \
-		echo "$(VERSION)" >version.txt && \
-        cp ../../Pulumi.Spacelift.csproj.template ./Pulumi.Spacelift.csproj && \
-        dotnet build --configuration Release /p:Version=$(VERSION)
+		echo "${DOTNET_VERSION}" >version.txt && \
+        dotnet build /p:Version=${DOTNET_VERSION}
 
 build_go:: install_plugins tfgen # build the go sdk
 	$(WORKING_DIR)/bin/$(TFGEN) go --overlays provider/overlays/go --out sdk/go/
@@ -124,15 +98,15 @@ cleanup:: # cleans up the temporary directory
 
 help::
 	@grep '^[^.#]\+:\s\+.*#' Makefile | \
- 	sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "\033[93m"`\1`printf "\033[0m"`	\3 [\2]/" | \
- 	expand -t20
+	sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "\033[93m"`\1`printf "\033[0m"`	\3 [\2]/" | \
+	expand -t20
 
 clean::
 	rm -rf sdk/{dotnet,nodejs,go,python}
 
 install_plugins::
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource random 2.2.0
+	pulumi plugin install resource random 4.3.1
 
 install_dotnet_sdk::
 	mkdir -p $(WORKING_DIR)/nuget
@@ -149,3 +123,4 @@ install_sdks:: install_dotnet_sdk install_python_sdk install_nodejs_sdk
 
 test::
 	cd examples && go test -v -tags=all -parallel ${TESTPARALLELISM} -timeout 2h
+

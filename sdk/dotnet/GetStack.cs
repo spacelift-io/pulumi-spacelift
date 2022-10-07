@@ -11,8 +11,63 @@ namespace Pulumi.Spacelift
 {
     public static class GetStack
     {
+        /// <summary>
+        /// `spacelift.Stack` combines source code and configuration to create a runtime environment where resources are managed. In this way it's similar to a stack in AWS CloudFormation, or a project on generic CI/CD platforms.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var k8s_core = Output.Create(Spacelift.GetStack.InvokeAsync(new Spacelift.GetStackArgs
+        ///         {
+        ///             StackId = "k8s-core",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetStackResult> InvokeAsync(GetStackArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetStackResult>("spacelift:index/getStack:getStack", args ?? new GetStackArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetStackResult>("spacelift:index/getStack:getStack", args ?? new GetStackArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// `spacelift.Stack` combines source code and configuration to create a runtime environment where resources are managed. In this way it's similar to a stack in AWS CloudFormation, or a project on generic CI/CD platforms.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var k8s_core = Output.Create(Spacelift.GetStack.InvokeAsync(new Spacelift.GetStackArgs
+        ///         {
+        ///             StackId = "k8s-core",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetStackResult> Invoke(GetStackInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetStackResult>("spacelift:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -106,6 +161,96 @@ namespace Pulumi.Spacelift
         }
     }
 
+    public sealed class GetStackInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("afterApplies")]
+        private InputList<string>? _afterApplies;
+        public InputList<string> AfterApplies
+        {
+            get => _afterApplies ?? (_afterApplies = new InputList<string>());
+            set => _afterApplies = value;
+        }
+
+        [Input("afterDestroys")]
+        private InputList<string>? _afterDestroys;
+        public InputList<string> AfterDestroys
+        {
+            get => _afterDestroys ?? (_afterDestroys = new InputList<string>());
+            set => _afterDestroys = value;
+        }
+
+        [Input("afterInits")]
+        private InputList<string>? _afterInits;
+        public InputList<string> AfterInits
+        {
+            get => _afterInits ?? (_afterInits = new InputList<string>());
+            set => _afterInits = value;
+        }
+
+        [Input("afterPerforms")]
+        private InputList<string>? _afterPerforms;
+        public InputList<string> AfterPerforms
+        {
+            get => _afterPerforms ?? (_afterPerforms = new InputList<string>());
+            set => _afterPerforms = value;
+        }
+
+        [Input("afterPlans")]
+        private InputList<string>? _afterPlans;
+        public InputList<string> AfterPlans
+        {
+            get => _afterPlans ?? (_afterPlans = new InputList<string>());
+            set => _afterPlans = value;
+        }
+
+        [Input("beforeApplies")]
+        private InputList<string>? _beforeApplies;
+        public InputList<string> BeforeApplies
+        {
+            get => _beforeApplies ?? (_beforeApplies = new InputList<string>());
+            set => _beforeApplies = value;
+        }
+
+        [Input("beforeDestroys")]
+        private InputList<string>? _beforeDestroys;
+        public InputList<string> BeforeDestroys
+        {
+            get => _beforeDestroys ?? (_beforeDestroys = new InputList<string>());
+            set => _beforeDestroys = value;
+        }
+
+        [Input("beforeInits")]
+        private InputList<string>? _beforeInits;
+        public InputList<string> BeforeInits
+        {
+            get => _beforeInits ?? (_beforeInits = new InputList<string>());
+            set => _beforeInits = value;
+        }
+
+        [Input("beforePerforms")]
+        private InputList<string>? _beforePerforms;
+        public InputList<string> BeforePerforms
+        {
+            get => _beforePerforms ?? (_beforePerforms = new InputList<string>());
+            set => _beforePerforms = value;
+        }
+
+        [Input("beforePlans")]
+        private InputList<string>? _beforePlans;
+        public InputList<string> BeforePlans
+        {
+            get => _beforePlans ?? (_beforePlans = new InputList<string>());
+            set => _beforePlans = value;
+        }
+
+        [Input("stackId", required: true)]
+        public Input<string> StackId { get; set; } = null!;
+
+        public GetStackInvokeArgs()
+        {
+        }
+    }
+
 
     [OutputType]
     public sealed class GetStackResult
@@ -116,6 +261,7 @@ namespace Pulumi.Spacelift
         public readonly ImmutableArray<string> AfterInits;
         public readonly ImmutableArray<string> AfterPerforms;
         public readonly ImmutableArray<string> AfterPlans;
+        public readonly ImmutableArray<Outputs.GetStackAnsibleResult> Ansibles;
         public readonly bool Autodeploy;
         public readonly bool Autoretry;
         public readonly string AwsAssumeRolePolicyStatement;
@@ -147,6 +293,7 @@ namespace Pulumi.Spacelift
         public readonly string Repository;
         public readonly string RunnerImage;
         public readonly ImmutableArray<Outputs.GetStackShowcaseResult> Showcases;
+        public readonly string SpaceId;
         public readonly string StackId;
         public readonly string TerraformVersion;
         public readonly string TerraformWorkspace;
@@ -165,6 +312,8 @@ namespace Pulumi.Spacelift
             ImmutableArray<string> afterPerforms,
 
             ImmutableArray<string> afterPlans,
+
+            ImmutableArray<Outputs.GetStackAnsibleResult> ansibles,
 
             bool autodeploy,
 
@@ -222,6 +371,8 @@ namespace Pulumi.Spacelift
 
             ImmutableArray<Outputs.GetStackShowcaseResult> showcases,
 
+            string spaceId,
+
             string stackId,
 
             string terraformVersion,
@@ -236,6 +387,7 @@ namespace Pulumi.Spacelift
             AfterInits = afterInits;
             AfterPerforms = afterPerforms;
             AfterPlans = afterPlans;
+            Ansibles = ansibles;
             Autodeploy = autodeploy;
             Autoretry = autoretry;
             AwsAssumeRolePolicyStatement = awsAssumeRolePolicyStatement;
@@ -264,6 +416,7 @@ namespace Pulumi.Spacelift
             Repository = repository;
             RunnerImage = runnerImage;
             Showcases = showcases;
+            SpaceId = spaceId;
             StackId = stackId;
             TerraformVersion = terraformVersion;
             TerraformWorkspace = terraformWorkspace;

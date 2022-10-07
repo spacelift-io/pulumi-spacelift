@@ -16,25 +16,17 @@ namespace Pulumi.Spacelift
     /// 
     /// If you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).
     /// 
-    /// Note: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and Run ID as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).
-    /// 
-    /// ## Schema
-    /// 
-    /// ### Required
-    /// 
-    /// - **role_arn** (String) ARN of the AWS IAM role to attach
-    /// 
-    /// ### Optional
-    /// 
-    /// - **external_id** (String) Custom external ID (works only for private workers).
-    /// - **generate_credentials_in_worker** (Boolean) Generate AWS credentials in the private worker
-    /// - **id** (String) The ID of this resource.
-    /// - **module_id** (String) ID of the module which assumes the AWS IAM role
-    /// - **stack_id** (String) ID of the stack which assumes the AWS IAM role
+    /// Note: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).
     /// </summary>
     [SpaceliftResourceType("spacelift:index/stackAwsRole:StackAwsRole")]
     public partial class StackAwsRole : Pulumi.CustomResource
     {
+        /// <summary>
+        /// AWS IAM role session duration in seconds
+        /// </summary>
+        [Output("durationSeconds")]
+        public Output<int> DurationSeconds { get; private set; } = null!;
+
         /// <summary>
         /// Custom external ID (works only for private workers).
         /// </summary>
@@ -42,7 +34,7 @@ namespace Pulumi.Spacelift
         public Output<string?> ExternalId { get; private set; } = null!;
 
         /// <summary>
-        /// Generate AWS credentials in the private worker
+        /// Generate AWS credentials in the private worker. Defaults to `false`.
         /// </summary>
         [Output("generateCredentialsInWorker")]
         public Output<bool?> GenerateCredentialsInWorker { get; private set; } = null!;
@@ -88,6 +80,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -112,13 +105,19 @@ namespace Pulumi.Spacelift
     public sealed class StackAwsRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// AWS IAM role session duration in seconds
+        /// </summary>
+        [Input("durationSeconds")]
+        public Input<int>? DurationSeconds { get; set; }
+
+        /// <summary>
         /// Custom external ID (works only for private workers).
         /// </summary>
         [Input("externalId")]
         public Input<string>? ExternalId { get; set; }
 
         /// <summary>
-        /// Generate AWS credentials in the private worker
+        /// Generate AWS credentials in the private worker. Defaults to `false`.
         /// </summary>
         [Input("generateCredentialsInWorker")]
         public Input<bool>? GenerateCredentialsInWorker { get; set; }
@@ -149,13 +148,19 @@ namespace Pulumi.Spacelift
     public sealed class StackAwsRoleState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// AWS IAM role session duration in seconds
+        /// </summary>
+        [Input("durationSeconds")]
+        public Input<int>? DurationSeconds { get; set; }
+
+        /// <summary>
         /// Custom external ID (works only for private workers).
         /// </summary>
         [Input("externalId")]
         public Input<string>? ExternalId { get; set; }
 
         /// <summary>
-        /// Generate AWS credentials in the private worker
+        /// Generate AWS credentials in the private worker. Defaults to `false`.
         /// </summary>
         [Input("generateCredentialsInWorker")]
         public Input<bool>? GenerateCredentialsInWorker { get; set; }

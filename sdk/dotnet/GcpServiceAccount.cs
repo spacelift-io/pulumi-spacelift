@@ -12,8 +12,6 @@ namespace Pulumi.Spacelift
     /// <summary>
     /// ## Import
     /// 
-    /// Import is supported using the following syntax
-    /// 
     /// ```sh
     ///  $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core stack/$STACK_ID
     /// ```
@@ -72,6 +70,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

@@ -10,9 +10,156 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift
 {
     /// <summary>
-    /// ## Import
+    /// `spacelift.Stack` combines source code and configuration to create a runtime environment where resources are managed. In this way it's similar to a stack in AWS CloudFormation, or a project on generic CI/CD platforms.
     /// 
-    /// Import is supported using the following syntax
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Spacelift = Pulumi.Spacelift;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Terraform stack using github.com as VCS
+    ///         var k8s_cluster = new Spacelift.Stack("k8s-cluster", new Spacelift.StackArgs
+    ///         {
+    ///             Administrative = true,
+    ///             Autodeploy = true,
+    ///             Branch = "master",
+    ///             Description = "Provisions a Kubernetes cluster",
+    ///             ProjectRoot = "cluster",
+    ///             Repository = "core-infra",
+    ///             TerraformVersion = "0.12.6",
+    ///         });
+    ///         // Terraform stack using Bitbucket Cloud as VCS
+    ///         var k8s_cluster_bitbucket_cloud = new Spacelift.Stack("k8s-cluster-bitbucket-cloud", new Spacelift.StackArgs
+    ///         {
+    ///             Administrative = true,
+    ///             Autodeploy = true,
+    ///             BitbucketCloud = new Spacelift.Inputs.StackBitbucketCloudArgs
+    ///             {
+    ///                 Namespace = "SPACELIFT",
+    ///             },
+    ///             Branch = "master",
+    ///             Description = "Provisions a Kubernetes cluster",
+    ///             ProjectRoot = "cluster",
+    ///             Repository = "core-infra",
+    ///             TerraformVersion = "0.12.6",
+    ///         });
+    ///         // Terraform stack using Bitbucket Data Center as VCS
+    ///         var k8s_cluster_bitbucket_datacenter = new Spacelift.Stack("k8s-cluster-bitbucket-datacenter", new Spacelift.StackArgs
+    ///         {
+    ///             Administrative = true,
+    ///             Autodeploy = true,
+    ///             BitbucketDatacenter = new Spacelift.Inputs.StackBitbucketDatacenterArgs
+    ///             {
+    ///                 Namespace = "SPACELIFT",
+    ///             },
+    ///             Branch = "master",
+    ///             Description = "Provisions a Kubernetes cluster",
+    ///             ProjectRoot = "cluster",
+    ///             Repository = "core-infra",
+    ///             TerraformVersion = "0.12.6",
+    ///         });
+    ///         // Terraform stack using GitHub Enterprise as VCS
+    ///         var k8s_cluster_github_enterprise = new Spacelift.Stack("k8s-cluster-github-enterprise", new Spacelift.StackArgs
+    ///         {
+    ///             Administrative = true,
+    ///             Autodeploy = true,
+    ///             Branch = "master",
+    ///             Description = "Provisions a Kubernetes cluster",
+    ///             GithubEnterprise = new Spacelift.Inputs.StackGithubEnterpriseArgs
+    ///             {
+    ///                 Namespace = "spacelift",
+    ///             },
+    ///             ProjectRoot = "cluster",
+    ///             Repository = "core-infra",
+    ///             TerraformVersion = "0.12.6",
+    ///         });
+    ///         // Terraform stack using GitLab as VCS
+    ///         var k8s_cluster_gitlab = new Spacelift.Stack("k8s-cluster-gitlab", new Spacelift.StackArgs
+    ///         {
+    ///             Administrative = true,
+    ///             Autodeploy = true,
+    ///             Branch = "master",
+    ///             Description = "Provisions a Kubernetes cluster",
+    ///             Gitlab = new Spacelift.Inputs.StackGitlabArgs
+    ///             {
+    ///                 Namespace = "spacelift",
+    ///             },
+    ///             ProjectRoot = "cluster",
+    ///             Repository = "core-infra",
+    ///             TerraformVersion = "0.12.6",
+    ///         });
+    ///         // CloudFormation stack using github.com as VCS
+    ///         var k8s_cluster_cloudformation = new Spacelift.Stack("k8s-cluster-cloudformation", new Spacelift.StackArgs
+    ///         {
+    ///             Autodeploy = true,
+    ///             Branch = "master",
+    ///             Cloudformation = new Spacelift.Inputs.StackCloudformationArgs
+    ///             {
+    ///                 EntryTemplateFile = "main.yaml",
+    ///                 Region = "eu-central-1",
+    ///                 StackName = "k8s-cluster",
+    ///                 TemplateBucket = "s3://bucket",
+    ///             },
+    ///             Description = "Provisions a Kubernetes cluster",
+    ///             ProjectRoot = "cluster",
+    ///             Repository = "core-infra",
+    ///         });
+    ///         // Pulumi stack using github.com as VCS
+    ///         var k8s_cluster_pulumi = new Spacelift.Stack("k8s-cluster-pulumi", new Spacelift.StackArgs
+    ///         {
+    ///             Autodeploy = true,
+    ///             Branch = "master",
+    ///             Description = "Provisions a Kubernetes cluster",
+    ///             ProjectRoot = "cluster",
+    ///             CSHARPPULUMI = new Spacelift.Inputs.StackPulumiArgs
+    ///             {
+    ///                 LoginUrl = "s3://pulumi-state-bucket",
+    ///                 StackName = "kubernetes-core-services",
+    ///             },
+    ///             Repository = "core-infra",
+    ///             RunnerImage = "public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest",
+    ///         });
+    ///         // Kubernetes stack using github.com as VCS
+    ///         var k8s_core_kubernetes = new Spacelift.Stack("k8s-core-kubernetes", new Spacelift.StackArgs
+    ///         {
+    ///             Autodeploy = true,
+    ///             BeforeInits = 
+    ///             {
+    ///                 "aws eks update-kubeconfig --region us-east-2 --name k8s-cluster",
+    ///             },
+    ///             Branch = "master",
+    ///             Description = "Shared cluster services (Datadog, Istio etc.)",
+    ///             Kubernetes = new Spacelift.Inputs.StackKubernetesArgs
+    ///             {
+    ///                 Namespace = "core",
+    ///             },
+    ///             ProjectRoot = "core-services",
+    ///             Repository = "core-infra",
+    ///         });
+    ///         // Ansible stack using github.com as VCS
+    ///         var ansible_stack = new Spacelift.Stack("ansible-stack", new Spacelift.StackArgs
+    ///         {
+    ///             Ansible = new Spacelift.Inputs.StackAnsibleArgs
+    ///             {
+    ///                 Playbook = "main.yml",
+    ///             },
+    ///             Autodeploy = true,
+    ///             Branch = "master",
+    ///             Description = "Provisioning EC2 machines",
+    ///             Repository = "ansible-playbooks",
+    ///             RunnerImage = "public.ecr.aws/spacelift/runner-ansible:latest",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ## Import
     /// 
     /// ```sh
     ///  $ pulumi import spacelift:index/stack:Stack k8s_core $STACK_ID
@@ -22,7 +169,7 @@ namespace Pulumi.Spacelift
     public partial class Stack : Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates whether this stack can manage others
+        /// Indicates whether this stack can manage others. Defaults to `false`.
         /// </summary>
         [Output("administrative")]
         public Output<bool?> Administrative { get; private set; } = null!;
@@ -58,13 +205,19 @@ namespace Pulumi.Spacelift
         public Output<ImmutableArray<string>> AfterPlans { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether changes to this stack can be automatically deployed
+        /// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+        /// </summary>
+        [Output("ansible")]
+        public Output<Outputs.StackAnsible?> Ansible { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
         /// </summary>
         [Output("autodeploy")]
         public Output<bool?> Autodeploy { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether obsolete proposed changes should automatically be retried
+        /// Indicates whether obsolete proposed changes should automatically be retried. Defaults to `false`.
         /// </summary>
         [Output("autoretry")]
         public Output<bool?> Autoretry { get; private set; } = null!;
@@ -142,13 +295,13 @@ namespace Pulumi.Spacelift
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether local preview runs can be triggered on this Stack
+        /// Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
         /// </summary>
         [Output("enableLocalPreview")]
         public Output<bool?> EnableLocalPreview { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether GitHub users can deploy from the Checks API
+        /// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
         /// </summary>
         [Output("githubActionDeploy")]
         public Output<bool?> GithubActionDeploy { get; private set; } = null!;
@@ -187,7 +340,7 @@ namespace Pulumi.Spacelift
         public Output<ImmutableArray<string>> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// Determines if Spacelift should manage state for this stack
+        /// Determines if Spacelift should manage state for this stack. Defaults to `true`.
         /// </summary>
         [Output("manageState")]
         public Output<bool?> ManageState { get; private set; } = null!;
@@ -205,7 +358,7 @@ namespace Pulumi.Spacelift
         public Output<string?> ProjectRoot { get; private set; } = null!;
 
         /// <summary>
-        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail. Defaults to `false`.
         /// </summary>
         [Output("protectFromDeletion")]
         public Output<bool?> ProtectFromDeletion { get; private set; } = null!;
@@ -214,7 +367,7 @@ namespace Pulumi.Spacelift
         /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         /// </summary>
         [Output("pulumi")]
-        public Output<Outputs.StackPulumi?> Pulumi { get; private set; } = null!;
+        public Output<Outputs.StackPulumi?> CSHARPPULUMI { get; private set; } = null!;
 
         /// <summary>
         /// Name of the repository, without the owner part
@@ -235,7 +388,13 @@ namespace Pulumi.Spacelift
         /// Allows setting the custom ID (slug) for the stack
         /// </summary>
         [Output("slug")]
-        public Output<string?> Slug { get; private set; } = null!;
+        public Output<string> Slug { get; private set; } = null!;
+
+        /// <summary>
+        /// ID (slug) of the space the stack is in
+        /// </summary>
+        [Output("spaceId")]
+        public Output<string> SpaceId { get; private set; } = null!;
 
         /// <summary>
         /// Terraform version to use
@@ -278,6 +437,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -302,7 +462,7 @@ namespace Pulumi.Spacelift
     public sealed class StackArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates whether this stack can manage others
+        /// Indicates whether this stack can manage others. Defaults to `false`.
         /// </summary>
         [Input("administrative")]
         public Input<bool>? Administrative { get; set; }
@@ -368,13 +528,19 @@ namespace Pulumi.Spacelift
         }
 
         /// <summary>
-        /// Indicates whether changes to this stack can be automatically deployed
+        /// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+        /// </summary>
+        [Input("ansible")]
+        public Input<Inputs.StackAnsibleArgs>? Ansible { get; set; }
+
+        /// <summary>
+        /// Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
         /// </summary>
         [Input("autodeploy")]
         public Input<bool>? Autodeploy { get; set; }
 
         /// <summary>
-        /// Indicates whether obsolete proposed changes should automatically be retried
+        /// Indicates whether obsolete proposed changes should automatically be retried. Defaults to `false`.
         /// </summary>
         [Input("autoretry")]
         public Input<bool>? Autoretry { get; set; }
@@ -476,13 +642,13 @@ namespace Pulumi.Spacelift
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Indicates whether local preview runs can be triggered on this Stack
+        /// Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
         /// </summary>
         [Input("enableLocalPreview")]
         public Input<bool>? EnableLocalPreview { get; set; }
 
         /// <summary>
-        /// Indicates whether GitHub users can deploy from the Checks API
+        /// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
         /// </summary>
         [Input("githubActionDeploy")]
         public Input<bool>? GithubActionDeploy { get; set; }
@@ -526,7 +692,7 @@ namespace Pulumi.Spacelift
         }
 
         /// <summary>
-        /// Determines if Spacelift should manage state for this stack
+        /// Determines if Spacelift should manage state for this stack. Defaults to `true`.
         /// </summary>
         [Input("manageState")]
         public Input<bool>? ManageState { get; set; }
@@ -534,8 +700,8 @@ namespace Pulumi.Spacelift
         /// <summary>
         /// Name of the stack - should be unique in one account
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
         /// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
@@ -544,7 +710,7 @@ namespace Pulumi.Spacelift
         public Input<string>? ProjectRoot { get; set; }
 
         /// <summary>
-        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail. Defaults to `false`.
         /// </summary>
         [Input("protectFromDeletion")]
         public Input<bool>? ProtectFromDeletion { get; set; }
@@ -553,7 +719,7 @@ namespace Pulumi.Spacelift
         /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         /// </summary>
         [Input("pulumi")]
-        public Input<Inputs.StackPulumiArgs>? Pulumi { get; set; }
+        public Input<Inputs.StackPulumiArgs>? CSHARPPULUMI { get; set; }
 
         /// <summary>
         /// Name of the repository, without the owner part
@@ -575,6 +741,12 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
+
+        /// <summary>
+        /// ID (slug) of the space the stack is in
+        /// </summary>
+        [Input("spaceId")]
+        public Input<string>? SpaceId { get; set; }
 
         /// <summary>
         /// Terraform version to use
@@ -602,7 +774,7 @@ namespace Pulumi.Spacelift
     public sealed class StackState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates whether this stack can manage others
+        /// Indicates whether this stack can manage others. Defaults to `false`.
         /// </summary>
         [Input("administrative")]
         public Input<bool>? Administrative { get; set; }
@@ -668,13 +840,19 @@ namespace Pulumi.Spacelift
         }
 
         /// <summary>
-        /// Indicates whether changes to this stack can be automatically deployed
+        /// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+        /// </summary>
+        [Input("ansible")]
+        public Input<Inputs.StackAnsibleGetArgs>? Ansible { get; set; }
+
+        /// <summary>
+        /// Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
         /// </summary>
         [Input("autodeploy")]
         public Input<bool>? Autodeploy { get; set; }
 
         /// <summary>
-        /// Indicates whether obsolete proposed changes should automatically be retried
+        /// Indicates whether obsolete proposed changes should automatically be retried. Defaults to `false`.
         /// </summary>
         [Input("autoretry")]
         public Input<bool>? Autoretry { get; set; }
@@ -782,13 +960,13 @@ namespace Pulumi.Spacelift
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Indicates whether local preview runs can be triggered on this Stack
+        /// Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
         /// </summary>
         [Input("enableLocalPreview")]
         public Input<bool>? EnableLocalPreview { get; set; }
 
         /// <summary>
-        /// Indicates whether GitHub users can deploy from the Checks API
+        /// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
         /// </summary>
         [Input("githubActionDeploy")]
         public Input<bool>? GithubActionDeploy { get; set; }
@@ -832,7 +1010,7 @@ namespace Pulumi.Spacelift
         }
 
         /// <summary>
-        /// Determines if Spacelift should manage state for this stack
+        /// Determines if Spacelift should manage state for this stack. Defaults to `true`.
         /// </summary>
         [Input("manageState")]
         public Input<bool>? ManageState { get; set; }
@@ -850,7 +1028,7 @@ namespace Pulumi.Spacelift
         public Input<string>? ProjectRoot { get; set; }
 
         /// <summary>
-        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail. Defaults to `false`.
         /// </summary>
         [Input("protectFromDeletion")]
         public Input<bool>? ProtectFromDeletion { get; set; }
@@ -859,7 +1037,7 @@ namespace Pulumi.Spacelift
         /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         /// </summary>
         [Input("pulumi")]
-        public Input<Inputs.StackPulumiGetArgs>? Pulumi { get; set; }
+        public Input<Inputs.StackPulumiGetArgs>? CSHARPPULUMI { get; set; }
 
         /// <summary>
         /// Name of the repository, without the owner part
@@ -881,6 +1059,12 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Input("slug")]
         public Input<string>? Slug { get; set; }
+
+        /// <summary>
+        /// ID (slug) of the space the stack is in
+        /// </summary>
+        [Input("spaceId")]
+        public Input<string>? SpaceId { get; set; }
 
         /// <summary>
         /// Terraform version to use
