@@ -33,6 +33,9 @@ export function getContext(args: GetContextArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getContext.
  */
 export interface GetContextArgs {
+    /**
+     * immutable ID (slug) of the context
+     */
     contextId: string;
 }
 
@@ -40,14 +43,26 @@ export interface GetContextArgs {
  * A collection of values returned by getContext.
  */
 export interface GetContextResult {
+    /**
+     * immutable ID (slug) of the context
+     */
     readonly contextId: string;
+    /**
+     * free-form context description for users
+     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly labels: string[];
+    /**
+     * name of the context
+     */
     readonly name: string;
+    /**
+     * ID (slug) of the space the context is in
+     */
     readonly spaceId: string;
 }
 
@@ -59,5 +74,8 @@ export function getContextOutput(args: GetContextOutputArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getContext.
  */
 export interface GetContextOutputArgs {
+    /**
+     * immutable ID (slug) of the context
+     */
     contextId: pulumi.Input<string>;
 }

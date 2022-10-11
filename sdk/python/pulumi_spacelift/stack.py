@@ -4,7 +4,7 @@
 
 import copy
 import warnings
-import pulumi as pulumilib
+import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
@@ -54,6 +54,7 @@ class StackArgs:
                  showcase: Optional[pulumilib.Input['StackShowcaseArgs']] = None,
                  slug: Optional[pulumilib.Input[str]] = None,
                  space_id: Optional[pulumilib.Input[str]] = None,
+                 terraform_smart_sanitization: Optional[pulumilib.Input[bool]] = None,
                  terraform_version: Optional[pulumilib.Input[str]] = None,
                  terraform_workspace: Optional[pulumilib.Input[str]] = None,
                  worker_pool_id: Optional[pulumilib.Input[str]] = None):
@@ -95,6 +96,9 @@ class StackArgs:
         :param pulumilib.Input[str] runner_image: Name of the Docker image used to process Runs
         :param pulumilib.Input[str] slug: Allows setting the custom ID (slug) for the stack
         :param pulumilib.Input[str] space_id: ID (slug) of the space the stack is in
+        :param pulumilib.Input[bool] terraform_smart_sanitization: Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+               and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+               Defaults to `false`.
         :param pulumilib.Input[str] terraform_version: Terraform version to use
         :param pulumilib.Input[str] terraform_workspace: Terraform workspace to select
         :param pulumilib.Input[str] worker_pool_id: ID of the worker pool to use
@@ -173,6 +177,8 @@ class StackArgs:
             pulumilib.set(__self__, "slug", slug)
         if space_id is not None:
             pulumilib.set(__self__, "space_id", space_id)
+        if terraform_smart_sanitization is not None:
+            pulumilib.set(__self__, "terraform_smart_sanitization", terraform_smart_sanitization)
         if terraform_version is not None:
             pulumilib.set(__self__, "terraform_version", terraform_version)
         if terraform_workspace is not None:
@@ -581,7 +587,7 @@ class StackArgs:
         """
         return pulumilib.get(self, "pulumi")
 
-    @pulumi.setter
+    @pulumilib.setter
     def pulumi(self, value: Optional[pulumilib.Input['StackPulumiArgs']]):
         pulumilib.set(self, "pulumi", value)
 
@@ -629,6 +635,20 @@ class StackArgs:
     @space_id.setter
     def space_id(self, value: Optional[pulumilib.Input[str]]):
         pulumilib.set(self, "space_id", value)
+
+    @property
+    @pulumilib.getter(name="terraformSmartSanitization")
+    def terraform_smart_sanitization(self) -> Optional[pulumilib.Input[bool]]:
+        """
+        Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+        and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+        Defaults to `false`.
+        """
+        return pulumilib.get(self, "terraform_smart_sanitization")
+
+    @terraform_smart_sanitization.setter
+    def terraform_smart_sanitization(self, value: Optional[pulumilib.Input[bool]]):
+        pulumilib.set(self, "terraform_smart_sanitization", value)
 
     @property
     @pulumilib.getter(name="terraformVersion")
@@ -709,6 +729,7 @@ class _StackState:
                  showcase: Optional[pulumilib.Input['StackShowcaseArgs']] = None,
                  slug: Optional[pulumilib.Input[str]] = None,
                  space_id: Optional[pulumilib.Input[str]] = None,
+                 terraform_smart_sanitization: Optional[pulumilib.Input[bool]] = None,
                  terraform_version: Optional[pulumilib.Input[str]] = None,
                  terraform_workspace: Optional[pulumilib.Input[str]] = None,
                  worker_pool_id: Optional[pulumilib.Input[str]] = None):
@@ -751,6 +772,9 @@ class _StackState:
         :param pulumilib.Input[str] runner_image: Name of the Docker image used to process Runs
         :param pulumilib.Input[str] slug: Allows setting the custom ID (slug) for the stack
         :param pulumilib.Input[str] space_id: ID (slug) of the space the stack is in
+        :param pulumilib.Input[bool] terraform_smart_sanitization: Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+               and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+               Defaults to `false`.
         :param pulumilib.Input[str] terraform_version: Terraform version to use
         :param pulumilib.Input[str] terraform_workspace: Terraform workspace to select
         :param pulumilib.Input[str] worker_pool_id: ID of the worker pool to use
@@ -833,6 +857,8 @@ class _StackState:
             pulumilib.set(__self__, "slug", slug)
         if space_id is not None:
             pulumilib.set(__self__, "space_id", space_id)
+        if terraform_smart_sanitization is not None:
+            pulumilib.set(__self__, "terraform_smart_sanitization", terraform_smart_sanitization)
         if terraform_version is not None:
             pulumilib.set(__self__, "terraform_version", terraform_version)
         if terraform_workspace is not None:
@@ -1241,7 +1267,7 @@ class _StackState:
         """
         return pulumilib.get(self, "pulumi")
 
-    @pulumi.setter
+    @pulumilib.setter
     def pulumi(self, value: Optional[pulumilib.Input['StackPulumiArgs']]):
         pulumilib.set(self, "pulumi", value)
 
@@ -1301,6 +1327,20 @@ class _StackState:
     @space_id.setter
     def space_id(self, value: Optional[pulumilib.Input[str]]):
         pulumilib.set(self, "space_id", value)
+
+    @property
+    @pulumilib.getter(name="terraformSmartSanitization")
+    def terraform_smart_sanitization(self) -> Optional[pulumilib.Input[bool]]:
+        """
+        Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+        and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+        Defaults to `false`.
+        """
+        return pulumilib.get(self, "terraform_smart_sanitization")
+
+    @terraform_smart_sanitization.setter
+    def terraform_smart_sanitization(self, value: Optional[pulumilib.Input[bool]]):
+        pulumilib.set(self, "terraform_smart_sanitization", value)
 
     @property
     @pulumilib.getter(name="terraformVersion")
@@ -1382,6 +1422,7 @@ class Stack(pulumilib.CustomResource):
                  showcase: Optional[pulumilib.Input[pulumilib.InputType['StackShowcaseArgs']]] = None,
                  slug: Optional[pulumilib.Input[str]] = None,
                  space_id: Optional[pulumilib.Input[str]] = None,
+                 terraform_smart_sanitization: Optional[pulumilib.Input[bool]] = None,
                  terraform_version: Optional[pulumilib.Input[str]] = None,
                  terraform_workspace: Optional[pulumilib.Input[str]] = None,
                  worker_pool_id: Optional[pulumilib.Input[str]] = None,
@@ -1395,15 +1436,6 @@ class Stack(pulumilib.CustomResource):
         import pulumi
         import pulumi_spacelift as spacelift
 
-        # Terraform stack using github.com as VCS
-        k8s_cluster = spacelift.Stack("k8s-cluster",
-            administrative=True,
-            autodeploy=True,
-            branch="master",
-            description="Provisions a Kubernetes cluster",
-            project_root="cluster",
-            repository="core-infra",
-            terraform_version="0.12.6")
         # Terraform stack using Bitbucket Cloud as VCS
         k8s_cluster_bitbucket_cloud = spacelift.Stack("k8s-cluster-bitbucket-cloud",
             administrative=True,
@@ -1452,6 +1484,16 @@ class Stack(pulumilib.CustomResource):
             project_root="cluster",
             repository="core-infra",
             terraform_version="0.12.6")
+        # Terraform stack using github.com as VCS and enabling smart sanitization
+        k8s_cluster = spacelift.Stack("k8s-cluster",
+            administrative=True,
+            autodeploy=True,
+            branch="master",
+            description="Provisions a Kubernetes cluster",
+            project_root="cluster",
+            repository="core-infra",
+            terraform_smart_sanitization=True,
+            terraform_version="1.2.6")
         # CloudFormation stack using github.com as VCS
         k8s_cluster_cloudformation = spacelift.Stack("k8s-cluster-cloudformation",
             autodeploy=True,
@@ -1544,6 +1586,9 @@ class Stack(pulumilib.CustomResource):
         :param pulumilib.Input[str] runner_image: Name of the Docker image used to process Runs
         :param pulumilib.Input[str] slug: Allows setting the custom ID (slug) for the stack
         :param pulumilib.Input[str] space_id: ID (slug) of the space the stack is in
+        :param pulumilib.Input[bool] terraform_smart_sanitization: Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+               and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+               Defaults to `false`.
         :param pulumilib.Input[str] terraform_version: Terraform version to use
         :param pulumilib.Input[str] terraform_workspace: Terraform workspace to select
         :param pulumilib.Input[str] worker_pool_id: ID of the worker pool to use
@@ -1563,15 +1608,6 @@ class Stack(pulumilib.CustomResource):
         import pulumi
         import pulumi_spacelift as spacelift
 
-        # Terraform stack using github.com as VCS
-        k8s_cluster = spacelift.Stack("k8s-cluster",
-            administrative=True,
-            autodeploy=True,
-            branch="master",
-            description="Provisions a Kubernetes cluster",
-            project_root="cluster",
-            repository="core-infra",
-            terraform_version="0.12.6")
         # Terraform stack using Bitbucket Cloud as VCS
         k8s_cluster_bitbucket_cloud = spacelift.Stack("k8s-cluster-bitbucket-cloud",
             administrative=True,
@@ -1620,6 +1656,16 @@ class Stack(pulumilib.CustomResource):
             project_root="cluster",
             repository="core-infra",
             terraform_version="0.12.6")
+        # Terraform stack using github.com as VCS and enabling smart sanitization
+        k8s_cluster = spacelift.Stack("k8s-cluster",
+            administrative=True,
+            autodeploy=True,
+            branch="master",
+            description="Provisions a Kubernetes cluster",
+            project_root="cluster",
+            repository="core-infra",
+            terraform_smart_sanitization=True,
+            terraform_version="1.2.6")
         # CloudFormation stack using github.com as VCS
         k8s_cluster_cloudformation = spacelift.Stack("k8s-cluster-cloudformation",
             autodeploy=True,
@@ -1727,6 +1773,7 @@ class Stack(pulumilib.CustomResource):
                  showcase: Optional[pulumilib.Input[pulumilib.InputType['StackShowcaseArgs']]] = None,
                  slug: Optional[pulumilib.Input[str]] = None,
                  space_id: Optional[pulumilib.Input[str]] = None,
+                 terraform_smart_sanitization: Optional[pulumilib.Input[bool]] = None,
                  terraform_version: Optional[pulumilib.Input[str]] = None,
                  terraform_workspace: Optional[pulumilib.Input[str]] = None,
                  worker_pool_id: Optional[pulumilib.Input[str]] = None,
@@ -1781,6 +1828,7 @@ class Stack(pulumilib.CustomResource):
             __props__.__dict__["showcase"] = showcase
             __props__.__dict__["slug"] = slug
             __props__.__dict__["space_id"] = space_id
+            __props__.__dict__["terraform_smart_sanitization"] = terraform_smart_sanitization
             __props__.__dict__["terraform_version"] = terraform_version
             __props__.__dict__["terraform_workspace"] = terraform_workspace
             __props__.__dict__["worker_pool_id"] = worker_pool_id
@@ -1834,6 +1882,7 @@ class Stack(pulumilib.CustomResource):
             showcase: Optional[pulumilib.Input[pulumilib.InputType['StackShowcaseArgs']]] = None,
             slug: Optional[pulumilib.Input[str]] = None,
             space_id: Optional[pulumilib.Input[str]] = None,
+            terraform_smart_sanitization: Optional[pulumilib.Input[bool]] = None,
             terraform_version: Optional[pulumilib.Input[str]] = None,
             terraform_workspace: Optional[pulumilib.Input[str]] = None,
             worker_pool_id: Optional[pulumilib.Input[str]] = None) -> 'Stack':
@@ -1881,6 +1930,9 @@ class Stack(pulumilib.CustomResource):
         :param pulumilib.Input[str] runner_image: Name of the Docker image used to process Runs
         :param pulumilib.Input[str] slug: Allows setting the custom ID (slug) for the stack
         :param pulumilib.Input[str] space_id: ID (slug) of the space the stack is in
+        :param pulumilib.Input[bool] terraform_smart_sanitization: Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+               and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+               Defaults to `false`.
         :param pulumilib.Input[str] terraform_version: Terraform version to use
         :param pulumilib.Input[str] terraform_workspace: Terraform workspace to select
         :param pulumilib.Input[str] worker_pool_id: ID of the worker pool to use
@@ -1928,6 +1980,7 @@ class Stack(pulumilib.CustomResource):
         __props__.__dict__["showcase"] = showcase
         __props__.__dict__["slug"] = slug
         __props__.__dict__["space_id"] = space_id
+        __props__.__dict__["terraform_smart_sanitization"] = terraform_smart_sanitization
         __props__.__dict__["terraform_version"] = terraform_version
         __props__.__dict__["terraform_workspace"] = terraform_workspace
         __props__.__dict__["worker_pool_id"] = worker_pool_id
@@ -2238,6 +2291,16 @@ class Stack(pulumilib.CustomResource):
         ID (slug) of the space the stack is in
         """
         return pulumilib.get(self, "space_id")
+
+    @property
+    @pulumilib.getter(name="terraformSmartSanitization")
+    def terraform_smart_sanitization(self) -> pulumilib.Output[Optional[bool]]:
+        """
+        Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+        and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+        Defaults to `false`.
+        """
+        return pulumilib.get(self, "terraform_smart_sanitization")
 
     @property
     @pulumilib.getter(name="terraformVersion")

@@ -5,13 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `spacelift.StackDestructor` is used to destroy the resources of a Stack before deleting it. `dependsOn` should be used to make sure that all necessery resources (environment variables, roles, integrations, etc.) are still in place when the destruction run is executed. **Note:** Destroying this resource will delete the resources in the stack. If this resource needs to be deleted and the resources in the stacks are to be preserved, ensure that the `deactivated` attribute is set to `true`.
+ * `spacelift.StackDestructor` is used to destroy the resources of a Stack before deleting it. `dependsOn` should be used to make sure that all necessary resources (environment variables, roles, integrations, etc.) are still in place when the destruction run is executed. **Note:** Destroying this resource will delete the resources in the stack. If this resource needs to be deleted and the resources in the stacks are to be preserved, ensure that the `deactivated` attribute is set to `true`.
  *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_spacelift from "@spacelift-io/pulumi-spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * const k8s_coreStack = new spacelift.Stack("k8s-coreStack", {});
  * // ...

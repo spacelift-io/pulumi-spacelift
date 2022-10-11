@@ -30,11 +30,20 @@ export function getAccount(opts?: pulumi.InvokeOptions): Promise<GetAccountResul
  * A collection of values returned by getAccount.
  */
 export interface GetAccountResult {
+    /**
+     * the ID of the AWS account used by Spacelift for role assumption
+     */
     readonly awsAccountId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * name of the account
+     */
     readonly name: string;
+    /**
+     * account billing tier
+     */
     readonly tier: string;
 }

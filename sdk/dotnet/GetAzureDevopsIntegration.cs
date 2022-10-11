@@ -19,23 +19,21 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var azureDevopsIntegration = Output.Create(Spacelift.GetAzureDevopsIntegration.InvokeAsync());
-        ///     }
+        ///     var azureDevopsIntegration = Spacelift.GetAzureDevopsIntegration.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAzureDevopsIntegrationResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAzureDevopsIntegrationResult>("spacelift:index/getAzureDevopsIntegration:getAzureDevopsIntegration", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAzureDevopsIntegrationResult>("spacelift:index/getAzureDevopsIntegration:getAzureDevopsIntegration", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
@@ -46,7 +44,13 @@ namespace Pulumi.Spacelift
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Azure DevOps integration organization url
+        /// </summary>
         public readonly string OrganizationUrl;
+        /// <summary>
+        /// Azure DevOps integration webhook password
+        /// </summary>
         public readonly string WebhookPassword;
 
         [OutputConstructor]

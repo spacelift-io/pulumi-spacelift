@@ -8,8 +8,21 @@ import * as utilities from "./utilities";
  * `spacelift.AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
  *
  * Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * // Lookup an integration by its name:
+ * const example = pulumi.output(spacelift.getAwsIntegration({
+ *     name: "Production",
+ * }));
+ * ```
  */
-export function getAwsIntegration(args: GetAwsIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetAwsIntegrationResult> {
+export function getAwsIntegration(args?: GetAwsIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetAwsIntegrationResult> {
+    args = args || {};
     if (!opts) {
         opts = {}
     }
@@ -17,6 +30,7 @@ export function getAwsIntegration(args: GetAwsIntegrationArgs, opts?: pulumi.Inv
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("spacelift:index/getAwsIntegration:getAwsIntegration", {
         "integrationId": args.integrationId,
+        "name": args.name,
     }, opts);
 }
 
@@ -24,28 +38,56 @@ export function getAwsIntegration(args: GetAwsIntegrationArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getAwsIntegration.
  */
 export interface GetAwsIntegrationArgs {
-    integrationId: string;
+    /**
+     * Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+     */
+    integrationId?: string;
+    /**
+     * Name of the AWS integration. Either `integrationId` or `name` must be specified.
+     */
+    name?: string;
 }
 
 /**
  * A collection of values returned by getAwsIntegration.
  */
 export interface GetAwsIntegrationResult {
+    /**
+     * Duration in seconds for which the assumed role credentials should be valid
+     */
     readonly durationSeconds: number;
+    /**
+     * Custom external ID (works only for private workers).
+     */
     readonly externalId: string;
+    /**
+     * Generate AWS credentials in the private worker
+     */
     readonly generateCredentialsInWorker: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+     */
     readonly integrationId: string;
     readonly labels: string[];
+    /**
+     * Name of the AWS integration. Either `integrationId` or `name` must be specified.
+     */
     readonly name: string;
+    /**
+     * ARN of the AWS IAM role to attach
+     */
     readonly roleArn: string;
+    /**
+     * ID (slug) of the space the integration is in
+     */
     readonly spaceId: string;
 }
 
-export function getAwsIntegrationOutput(args: GetAwsIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAwsIntegrationResult> {
+export function getAwsIntegrationOutput(args?: GetAwsIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAwsIntegrationResult> {
     return pulumi.output(args).apply(a => getAwsIntegration(a, opts))
 }
 
@@ -53,5 +95,12 @@ export function getAwsIntegrationOutput(args: GetAwsIntegrationOutputArgs, opts?
  * A collection of arguments for invoking getAwsIntegration.
  */
 export interface GetAwsIntegrationOutputArgs {
-    integrationId: pulumi.Input<string>;
+    /**
+     * Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+     */
+    integrationId?: pulumi.Input<string>;
+    /**
+     * Name of the AWS integration. Either `integrationId` or `name` must be specified.
+     */
+    name?: pulumi.Input<string>;
 }

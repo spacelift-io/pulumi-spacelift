@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_spacelift from "@spacelift-io/pulumi-spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * const core_infra_production = new spacelift.Stack("core-infra-production", {
  *     branch: "master",

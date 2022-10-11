@@ -10,13 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift.Inputs
 {
 
-    public sealed class ModuleAzureDevopsGetArgs : Pulumi.ResourceArgs
+    public sealed class ModuleAzureDevopsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the Azure DevOps project
+        /// </summary>
         [Input("project", required: true)]
         public Input<string> Project { get; set; } = null!;
 
         public ModuleAzureDevopsGetArgs()
         {
         }
+        public static new ModuleAzureDevopsGetArgs Empty => new ModuleAzureDevopsGetArgs();
     }
 }

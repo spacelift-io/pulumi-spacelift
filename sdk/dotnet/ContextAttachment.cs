@@ -15,23 +15,21 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // For a module
+    ///     var attachment = new Spacelift.ContextAttachment("attachment", new()
     ///     {
-    ///         // For a module
-    ///         var attachment = new Spacelift.ContextAttachment("attachment", new Spacelift.ContextAttachmentArgs
-    ///         {
-    ///             ContextId = "prod-k8s-ie",
-    ///             ModuleId = "k8s-module",
-    ///             Priority = 0,
-    ///         });
-    ///     }
+    ///         ContextId = "prod-k8s-ie",
+    ///         ModuleId = "k8s-module",
+    ///         Priority = 0,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +39,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/contextAttachment:ContextAttachment")]
-    public partial class ContextAttachment : Pulumi.CustomResource
+    public partial class ContextAttachment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// ID of the context to attach
@@ -56,9 +54,7 @@ namespace Pulumi.Spacelift
         public Output<string?> ModuleId { get; private set; } = null!;
 
         /// <summary>
-        /// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-        /// values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-        /// and multiple contexts define the same value. Defaults to `0`.
+        /// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
         /// </summary>
         [Output("priority")]
         public Output<int?> Priority { get; private set; } = null!;
@@ -92,7 +88,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -114,7 +110,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class ContextAttachmentArgs : Pulumi.ResourceArgs
+    public sealed class ContextAttachmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the context to attach
@@ -129,9 +125,7 @@ namespace Pulumi.Spacelift
         public Input<string>? ModuleId { get; set; }
 
         /// <summary>
-        /// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-        /// values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-        /// and multiple contexts define the same value. Defaults to `0`.
+        /// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -145,9 +139,10 @@ namespace Pulumi.Spacelift
         public ContextAttachmentArgs()
         {
         }
+        public static new ContextAttachmentArgs Empty => new ContextAttachmentArgs();
     }
 
-    public sealed class ContextAttachmentState : Pulumi.ResourceArgs
+    public sealed class ContextAttachmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the context to attach
@@ -162,9 +157,7 @@ namespace Pulumi.Spacelift
         public Input<string>? ModuleId { get; set; }
 
         /// <summary>
-        /// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-        /// values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-        /// and multiple contexts define the same value. Defaults to `0`.
+        /// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -178,5 +171,6 @@ namespace Pulumi.Spacelift
         public ContextAttachmentState()
         {
         }
+        public static new ContextAttachmentState Empty => new ContextAttachmentState();
     }
 }

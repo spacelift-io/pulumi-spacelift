@@ -25,7 +25,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := spacelift.NewVcsAgentPool(ctx, "ghe", &spacelift.VcsAgentPoolArgs{
-// 			Description: pulumi.String("VCS agent pool for our internal GitHub Enterpris"),
+// 			Description: pulumi.String("VCS agent pool for our internal GitHub Enterprise"),
 // 		})
 // 		if err != nil {
 // 			return err

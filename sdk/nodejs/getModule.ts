@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -32,6 +33,9 @@ export function getModule(args: GetModuleArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getModule.
  */
 export interface GetModuleArgs {
+    /**
+     * ID (slug) of the module
+     */
     moduleId: string;
 }
 
@@ -39,28 +43,76 @@ export interface GetModuleArgs {
  * A collection of values returned by getModule.
  */
 export interface GetModuleResult {
+    /**
+     * indicates whether this module can administer others
+     */
     readonly administrative: boolean;
+    /**
+     * AWS IAM assume role policy statement setting up trust relationship
+     */
     readonly awsAssumeRolePolicyStatement: string;
+    /**
+     * Azure DevOps VCS settings
+     */
     readonly azureDevops: outputs.GetModuleAzureDevop[];
+    /**
+     * Bitbucket Cloud VCS settings
+     */
     readonly bitbucketClouds: outputs.GetModuleBitbucketCloud[];
+    /**
+     * Bitbucket Datacenter VCS settings
+     */
     readonly bitbucketDatacenters: outputs.GetModuleBitbucketDatacenter[];
+    /**
+     * GitHub branch to apply changes to
+     */
     readonly branch: string;
+    /**
+     * free-form module description for human users (supports Markdown)
+     */
     readonly description: string;
+    /**
+     * GitHub Enterprise (self-hosted) VCS settings
+     */
     readonly githubEnterprises: outputs.GetModuleGithubEnterprise[];
+    /**
+     * GitLab VCS settings
+     */
     readonly gitlabs: outputs.GetModuleGitlab[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly labels: string[];
+    /**
+     * ID (slug) of the module
+     */
     readonly moduleId: string;
     readonly name: string;
+    /**
+     * Project root is the optional directory relative to the repository root containing the module source code.
+     */
     readonly projectRoot: string;
+    /**
+     * Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+     */
     readonly protectFromDeletion: boolean;
+    /**
+     * Name of the repository, without the owner part
+     */
     readonly repository: string;
+    /**
+     * List of the accounts (subdomains) which should have access to the Module
+     */
     readonly sharedAccounts: string[];
+    /**
+     * ID (slug) of the space the module is in
+     */
     readonly spaceId: string;
     readonly terraformProvider: string;
+    /**
+     * ID of the worker pool to use
+     */
     readonly workerPoolId: string;
 }
 
@@ -72,5 +124,8 @@ export function getModuleOutput(args: GetModuleOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getModule.
  */
 export interface GetModuleOutputArgs {
+    /**
+     * ID (slug) of the module
+     */
     moduleId: pulumi.Input<string>;
 }

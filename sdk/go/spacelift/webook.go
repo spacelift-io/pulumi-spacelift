@@ -51,8 +51,7 @@ type Webook struct {
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// ID of the module which triggers the webhooks
 	ModuleId pulumi.StringPtrOutput `pulumi:"moduleId"`
-	// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-	// value.
+	// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
 	Secret pulumi.StringPtrOutput `pulumi:"secret"`
 	// ID of the stack which triggers the webhooks
 	StackId pulumi.StringPtrOutput `pulumi:"stackId"`
@@ -97,8 +96,7 @@ type webookState struct {
 	Endpoint *string `pulumi:"endpoint"`
 	// ID of the module which triggers the webhooks
 	ModuleId *string `pulumi:"moduleId"`
-	// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-	// value.
+	// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
 	Secret *string `pulumi:"secret"`
 	// ID of the stack which triggers the webhooks
 	StackId *string `pulumi:"stackId"`
@@ -111,8 +109,7 @@ type WebookState struct {
 	Endpoint pulumi.StringPtrInput
 	// ID of the module which triggers the webhooks
 	ModuleId pulumi.StringPtrInput
-	// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-	// value.
+	// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
 	Secret pulumi.StringPtrInput
 	// ID of the stack which triggers the webhooks
 	StackId pulumi.StringPtrInput
@@ -129,8 +126,7 @@ type webookArgs struct {
 	Endpoint string `pulumi:"endpoint"`
 	// ID of the module which triggers the webhooks
 	ModuleId *string `pulumi:"moduleId"`
-	// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-	// value.
+	// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
 	Secret *string `pulumi:"secret"`
 	// ID of the stack which triggers the webhooks
 	StackId *string `pulumi:"stackId"`
@@ -144,8 +140,7 @@ type WebookArgs struct {
 	Endpoint pulumi.StringInput
 	// ID of the module which triggers the webhooks
 	ModuleId pulumi.StringPtrInput
-	// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-	// value.
+	// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
 	Secret pulumi.StringPtrInput
 	// ID of the stack which triggers the webhooks
 	StackId pulumi.StringPtrInput
@@ -253,8 +248,7 @@ func (o WebookOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Webook) pulumi.StringPtrOutput { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
-// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-// value.
+// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
 func (o WebookOutput) Secret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Webook) pulumi.StringPtrOutput { return v.Secret }).(pulumi.StringPtrOutput)
 }

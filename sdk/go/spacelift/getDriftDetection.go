@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -47,17 +46,22 @@ func LookupDriftDetection(ctx *pulumi.Context, args *LookupDriftDetectionArgs, o
 
 // A collection of arguments for invoking getDriftDetection.
 type LookupDriftDetectionArgs struct {
+	// ID of the stack for which to set up drift detection
 	StackId string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getDriftDetection.
 type LookupDriftDetectionResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id        string   `pulumi:"id"`
-	Reconcile bool     `pulumi:"reconcile"`
+	Id string `pulumi:"id"`
+	// Whether a tracked run should be triggered when drift is detected.
+	Reconcile bool `pulumi:"reconcile"`
+	// List of cron schedule expressions based on which drift detection should be triggered.
 	Schedules []string `pulumi:"schedules"`
-	StackId   string   `pulumi:"stackId"`
-	Timezone  string   `pulumi:"timezone"`
+	// ID of the stack for which to set up drift detection
+	StackId string `pulumi:"stackId"`
+	// Timezone in which the schedule is expressed
+	Timezone string `pulumi:"timezone"`
 }
 
 func LookupDriftDetectionOutput(ctx *pulumi.Context, args LookupDriftDetectionOutputArgs, opts ...pulumi.InvokeOption) LookupDriftDetectionResultOutput {
@@ -75,6 +79,7 @@ func LookupDriftDetectionOutput(ctx *pulumi.Context, args LookupDriftDetectionOu
 
 // A collection of arguments for invoking getDriftDetection.
 type LookupDriftDetectionOutputArgs struct {
+	// ID of the stack for which to set up drift detection
 	StackId pulumi.StringInput `pulumi:"stackId"`
 }
 
@@ -102,18 +107,22 @@ func (o LookupDriftDetectionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDriftDetectionResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Whether a tracked run should be triggered when drift is detected.
 func (o LookupDriftDetectionResultOutput) Reconcile() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupDriftDetectionResult) bool { return v.Reconcile }).(pulumi.BoolOutput)
 }
 
+// List of cron schedule expressions based on which drift detection should be triggered.
 func (o LookupDriftDetectionResultOutput) Schedules() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupDriftDetectionResult) []string { return v.Schedules }).(pulumi.StringArrayOutput)
 }
 
+// ID of the stack for which to set up drift detection
 func (o LookupDriftDetectionResultOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDriftDetectionResult) string { return v.StackId }).(pulumi.StringOutput)
 }
 
+// Timezone in which the schedule is expressed
 func (o LookupDriftDetectionResultOutput) Timezone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDriftDetectionResult) string { return v.Timezone }).(pulumi.StringOutput)
 }

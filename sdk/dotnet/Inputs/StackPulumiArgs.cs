@@ -10,16 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift.Inputs
 {
 
-    public sealed class StackPulumiArgs : Pulumi.ResourceArgs
+    public sealed class StackPulumiArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// State backend to log into on Run initialize.
+        /// </summary>
         [Input("loginUrl", required: true)]
         public Input<string> LoginUrl { get; set; } = null!;
 
+        /// <summary>
+        /// Pulumi stack name to use with the state backend.
+        /// </summary>
         [Input("stackName", required: true)]
         public Input<string> StackName { get; set; } = null!;
 
         public StackPulumiArgs()
         {
         }
+        public static new StackPulumiArgs Empty => new StackPulumiArgs();
     }
 }

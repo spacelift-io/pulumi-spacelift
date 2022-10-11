@@ -17,30 +17,29 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var k8s_module = Spacelift.GetStackGcpServiceAccount.Invoke(new()
         ///     {
-        ///         var k8s_module = Output.Create(Spacelift.GetStackGcpServiceAccount.InvokeAsync(new Spacelift.GetStackGcpServiceAccountArgs
-        ///         {
-        ///             ModuleId = "k8s-module",
-        ///         }));
-        ///         var k8s_core = Output.Create(Spacelift.GetStackGcpServiceAccount.InvokeAsync(new Spacelift.GetStackGcpServiceAccountArgs
-        ///         {
-        ///             StackId = "k8s-core",
-        ///         }));
-        ///     }
+        ///         ModuleId = "k8s-module",
+        ///     });
         /// 
-        /// }
+        ///     var k8s_core = Spacelift.GetStackGcpServiceAccount.Invoke(new()
+        ///     {
+        ///         StackId = "k8s-core",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetStackGcpServiceAccountResult> InvokeAsync(GetStackGcpServiceAccountArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetStackGcpServiceAccountResult>("spacelift:index/getStackGcpServiceAccount:getStackGcpServiceAccount", args ?? new GetStackGcpServiceAccountArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetStackGcpServiceAccountResult>("spacelift:index/getStackGcpServiceAccount:getStackGcpServiceAccount", args ?? new GetStackGcpServiceAccountArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -48,57 +47,70 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var k8s_module = Spacelift.GetStackGcpServiceAccount.Invoke(new()
         ///     {
-        ///         var k8s_module = Output.Create(Spacelift.GetStackGcpServiceAccount.InvokeAsync(new Spacelift.GetStackGcpServiceAccountArgs
-        ///         {
-        ///             ModuleId = "k8s-module",
-        ///         }));
-        ///         var k8s_core = Output.Create(Spacelift.GetStackGcpServiceAccount.InvokeAsync(new Spacelift.GetStackGcpServiceAccountArgs
-        ///         {
-        ///             StackId = "k8s-core",
-        ///         }));
-        ///     }
+        ///         ModuleId = "k8s-module",
+        ///     });
         /// 
-        /// }
+        ///     var k8s_core = Spacelift.GetStackGcpServiceAccount.Invoke(new()
+        ///     {
+        ///         StackId = "k8s-core",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetStackGcpServiceAccountResult> Invoke(GetStackGcpServiceAccountInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetStackGcpServiceAccountResult>("spacelift:index/getStackGcpServiceAccount:getStackGcpServiceAccount", args ?? new GetStackGcpServiceAccountInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetStackGcpServiceAccountResult>("spacelift:index/getStackGcpServiceAccount:getStackGcpServiceAccount", args ?? new GetStackGcpServiceAccountInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetStackGcpServiceAccountArgs : Pulumi.InvokeArgs
+    public sealed class GetStackGcpServiceAccountArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
         [Input("moduleId")]
         public string? ModuleId { get; set; }
 
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
         [Input("stackId")]
         public string? StackId { get; set; }
 
         public GetStackGcpServiceAccountArgs()
         {
         }
+        public static new GetStackGcpServiceAccountArgs Empty => new GetStackGcpServiceAccountArgs();
     }
 
-    public sealed class GetStackGcpServiceAccountInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetStackGcpServiceAccountInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
         [Input("moduleId")]
         public Input<string>? ModuleId { get; set; }
 
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 
         public GetStackGcpServiceAccountInvokeArgs()
         {
         }
+        public static new GetStackGcpServiceAccountInvokeArgs Empty => new GetStackGcpServiceAccountInvokeArgs();
     }
 
 
@@ -109,9 +121,21 @@ namespace Pulumi.Spacelift
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
         public readonly string? ModuleId;
+        /// <summary>
+        /// email address of the GCP service account dedicated for this stack
+        /// </summary>
         public readonly string ServiceAccountEmail;
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
         public readonly string? StackId;
+        /// <summary>
+        /// list of Google API scopes
+        /// </summary>
         public readonly ImmutableArray<string> TokenScopes;
 
         [OutputConstructor]

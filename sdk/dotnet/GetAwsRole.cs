@@ -23,30 +23,29 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var k8s_module = Spacelift.GetAwsRole.Invoke(new()
         ///     {
-        ///         var k8s_module = Output.Create(Spacelift.GetAwsRole.InvokeAsync(new Spacelift.GetAwsRoleArgs
-        ///         {
-        ///             ModuleId = "k8s-module",
-        ///         }));
-        ///         var k8s_core = Output.Create(Spacelift.GetAwsRole.InvokeAsync(new Spacelift.GetAwsRoleArgs
-        ///         {
-        ///             StackId = "k8s-core",
-        ///         }));
-        ///     }
+        ///         ModuleId = "k8s-module",
+        ///     });
         /// 
-        /// }
+        ///     var k8s_core = Spacelift.GetAwsRole.Invoke(new()
+        ///     {
+        ///         StackId = "k8s-core",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAwsRoleResult> InvokeAsync(GetAwsRoleArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAwsRoleResult>("spacelift:index/getAwsRole:getAwsRole", args ?? new GetAwsRoleArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAwsRoleResult>("spacelift:index/getAwsRole:getAwsRole", args ?? new GetAwsRoleArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.AwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.
@@ -60,72 +59,103 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var k8s_module = Spacelift.GetAwsRole.Invoke(new()
         ///     {
-        ///         var k8s_module = Output.Create(Spacelift.GetAwsRole.InvokeAsync(new Spacelift.GetAwsRoleArgs
-        ///         {
-        ///             ModuleId = "k8s-module",
-        ///         }));
-        ///         var k8s_core = Output.Create(Spacelift.GetAwsRole.InvokeAsync(new Spacelift.GetAwsRoleArgs
-        ///         {
-        ///             StackId = "k8s-core",
-        ///         }));
-        ///     }
+        ///         ModuleId = "k8s-module",
+        ///     });
         /// 
-        /// }
+        ///     var k8s_core = Spacelift.GetAwsRole.Invoke(new()
+        ///     {
+        ///         StackId = "k8s-core",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAwsRoleResult> Invoke(GetAwsRoleInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAwsRoleResult>("spacelift:index/getAwsRole:getAwsRole", args ?? new GetAwsRoleInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAwsRoleResult>("spacelift:index/getAwsRole:getAwsRole", args ?? new GetAwsRoleInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAwsRoleArgs : Pulumi.InvokeArgs
+    public sealed class GetAwsRoleArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the module which assumes the AWS IAM role
+        /// </summary>
         [Input("moduleId")]
         public string? ModuleId { get; set; }
 
+        /// <summary>
+        /// ID of the stack which assumes the AWS IAM role
+        /// </summary>
         [Input("stackId")]
         public string? StackId { get; set; }
 
         public GetAwsRoleArgs()
         {
         }
+        public static new GetAwsRoleArgs Empty => new GetAwsRoleArgs();
     }
 
-    public sealed class GetAwsRoleInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAwsRoleInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the module which assumes the AWS IAM role
+        /// </summary>
         [Input("moduleId")]
         public Input<string>? ModuleId { get; set; }
 
+        /// <summary>
+        /// ID of the stack which assumes the AWS IAM role
+        /// </summary>
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 
         public GetAwsRoleInvokeArgs()
         {
         }
+        public static new GetAwsRoleInvokeArgs Empty => new GetAwsRoleInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetAwsRoleResult
     {
+        /// <summary>
+        /// AWS IAM role session duration in seconds
+        /// </summary>
         public readonly int DurationSeconds;
+        /// <summary>
+        /// Custom external ID (works only for private workers).
+        /// </summary>
         public readonly string ExternalId;
+        /// <summary>
+        /// Generate AWS credentials in the private worker
+        /// </summary>
         public readonly bool GenerateCredentialsInWorker;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// ID of the module which assumes the AWS IAM role
+        /// </summary>
         public readonly string? ModuleId;
+        /// <summary>
+        /// ARN of the AWS IAM role to attach
+        /// </summary>
         public readonly string RoleArn;
+        /// <summary>
+        /// ID of the stack which assumes the AWS IAM role
+        /// </summary>
         public readonly string? StackId;
 
         [OutputConstructor]

@@ -30,11 +30,20 @@ export function getGithubEnterpriseIntegration(opts?: pulumi.InvokeOptions): Pro
  * A collection of values returned by getGithubEnterpriseIntegration.
  */
 export interface GetGithubEnterpriseIntegrationResult {
+    /**
+     * Github integration api host
+     */
     readonly apiHost: string;
+    /**
+     * Github integration app id
+     */
     readonly appId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Github integration webhook secret
+     */
     readonly webhookSecret: string;
 }

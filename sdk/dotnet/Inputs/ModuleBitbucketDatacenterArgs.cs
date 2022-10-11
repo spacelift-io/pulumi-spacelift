@@ -10,13 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift.Inputs
 {
 
-    public sealed class ModuleBitbucketDatacenterArgs : Pulumi.ResourceArgs
+    public sealed class ModuleBitbucketDatacenterArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The Bitbucket project containing the repository
+        /// </summary>
         [Input("namespace", required: true)]
         public Input<string> Namespace { get; set; } = null!;
 
         public ModuleBitbucketDatacenterArgs()
         {
         }
+        public static new ModuleBitbucketDatacenterArgs Empty => new ModuleBitbucketDatacenterArgs();
     }
 }

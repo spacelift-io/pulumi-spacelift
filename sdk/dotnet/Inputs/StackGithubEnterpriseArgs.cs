@@ -10,13 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift.Inputs
 {
 
-    public sealed class StackGithubEnterpriseArgs : Pulumi.ResourceArgs
+    public sealed class StackGithubEnterpriseArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The GitHub organization / user the repository belongs to
+        /// </summary>
         [Input("namespace", required: true)]
         public Input<string> Namespace { get; set; } = null!;
 
         public StackGithubEnterpriseArgs()
         {
         }
+        public static new StackGithubEnterpriseArgs Empty => new StackGithubEnterpriseArgs();
     }
 }

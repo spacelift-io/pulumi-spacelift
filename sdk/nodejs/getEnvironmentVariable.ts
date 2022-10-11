@@ -48,9 +48,21 @@ export function getEnvironmentVariable(args: GetEnvironmentVariableArgs, opts?: 
  * A collection of arguments for invoking getEnvironmentVariable.
  */
 export interface GetEnvironmentVariableArgs {
+    /**
+     * ID of the context on which the environment variable is defined
+     */
     contextId?: string;
+    /**
+     * ID of the module on which the environment variable is defined
+     */
     moduleId?: string;
+    /**
+     * name of the environment variable
+     */
     name: string;
+    /**
+     * ID of the stack on which the environment variable is defined
+     */
     stackId?: string;
 }
 
@@ -58,16 +70,37 @@ export interface GetEnvironmentVariableArgs {
  * A collection of values returned by getEnvironmentVariable.
  */
 export interface GetEnvironmentVariableResult {
+    /**
+     * SHA-256 checksum of the value
+     */
     readonly checksum: string;
+    /**
+     * ID of the context on which the environment variable is defined
+     */
     readonly contextId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * ID of the module on which the environment variable is defined
+     */
     readonly moduleId?: string;
+    /**
+     * name of the environment variable
+     */
     readonly name: string;
+    /**
+     * ID of the stack on which the environment variable is defined
+     */
     readonly stackId?: string;
+    /**
+     * value of the environment variable
+     */
     readonly value: string;
+    /**
+     * indicates whether the value can be read back outside a Run
+     */
     readonly writeOnly: boolean;
 }
 
@@ -79,8 +112,20 @@ export function getEnvironmentVariableOutput(args: GetEnvironmentVariableOutputA
  * A collection of arguments for invoking getEnvironmentVariable.
  */
 export interface GetEnvironmentVariableOutputArgs {
+    /**
+     * ID of the context on which the environment variable is defined
+     */
     contextId?: pulumi.Input<string>;
+    /**
+     * ID of the module on which the environment variable is defined
+     */
     moduleId?: pulumi.Input<string>;
+    /**
+     * name of the environment variable
+     */
     name: pulumi.Input<string>;
+    /**
+     * ID of the stack on which the environment variable is defined
+     */
     stackId?: pulumi.Input<string>;
 }

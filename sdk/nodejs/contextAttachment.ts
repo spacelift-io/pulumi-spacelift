@@ -64,9 +64,7 @@ export class ContextAttachment extends pulumi.CustomResource {
      */
     public readonly moduleId!: pulumi.Output<string | undefined>;
     /**
-     * Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-     * values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-     * and multiple contexts define the same value. Defaults to `0`.
+     * Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
      */
     public readonly priority!: pulumi.Output<number | undefined>;
     /**
@@ -119,9 +117,7 @@ export interface ContextAttachmentState {
      */
     moduleId?: pulumi.Input<string>;
     /**
-     * Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-     * values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-     * and multiple contexts define the same value. Defaults to `0`.
+     * Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
      */
     priority?: pulumi.Input<number>;
     /**
@@ -143,9 +139,7 @@ export interface ContextAttachmentArgs {
      */
     moduleId?: pulumi.Input<string>;
     /**
-     * Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-     * values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-     * and multiple contexts define the same value. Defaults to `0`.
+     * Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
      */
     priority?: pulumi.Input<number>;
     /**

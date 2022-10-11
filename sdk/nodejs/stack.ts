@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -14,16 +15,6 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * // Terraform stack using github.com as VCS
- * const k8s_cluster = new spacelift.Stack("k8s-cluster", {
- *     administrative: true,
- *     autodeploy: true,
- *     branch: "master",
- *     description: "Provisions a Kubernetes cluster",
- *     projectRoot: "cluster",
- *     repository: "core-infra",
- *     terraformVersion: "0.12.6",
- * });
  * // Terraform stack using Bitbucket Cloud as VCS
  * const k8s_cluster_bitbucket_cloud = new spacelift.Stack("k8s-cluster-bitbucket-cloud", {
  *     administrative: true,
@@ -75,6 +66,17 @@ import * as utilities from "./utilities";
  *     projectRoot: "cluster",
  *     repository: "core-infra",
  *     terraformVersion: "0.12.6",
+ * });
+ * // Terraform stack using github.com as VCS and enabling smart sanitization
+ * const k8s_cluster = new spacelift.Stack("k8s-cluster", {
+ *     administrative: true,
+ *     autodeploy: true,
+ *     branch: "master",
+ *     description: "Provisions a Kubernetes cluster",
+ *     projectRoot: "cluster",
+ *     repository: "core-infra",
+ *     terraformSmartSanitization: true,
+ *     terraformVersion: "1.2.6",
  * });
  * // CloudFormation stack using github.com as VCS
  * const k8s_cluster_cloudformation = new spacelift.Stack("k8s-cluster-cloudformation", {
@@ -314,6 +316,12 @@ export class Stack extends pulumi.CustomResource {
      */
     public readonly spaceId!: pulumi.Output<string>;
     /**
+     * Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+     * and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+     * Defaults to `false`.
+     */
+    public readonly terraformSmartSanitization!: pulumi.Output<boolean | undefined>;
+    /**
      * Terraform version to use
      */
     public readonly terraformVersion!: pulumi.Output<string | undefined>;
@@ -378,6 +386,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["showcase"] = state ? state.showcase : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
             resourceInputs["spaceId"] = state ? state.spaceId : undefined;
+            resourceInputs["terraformSmartSanitization"] = state ? state.terraformSmartSanitization : undefined;
             resourceInputs["terraformVersion"] = state ? state.terraformVersion : undefined;
             resourceInputs["terraformWorkspace"] = state ? state.terraformWorkspace : undefined;
             resourceInputs["workerPoolId"] = state ? state.workerPoolId : undefined;
@@ -427,6 +436,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["showcase"] = args ? args.showcase : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["spaceId"] = args ? args.spaceId : undefined;
+            resourceInputs["terraformSmartSanitization"] = args ? args.terraformSmartSanitization : undefined;
             resourceInputs["terraformVersion"] = args ? args.terraformVersion : undefined;
             resourceInputs["terraformWorkspace"] = args ? args.terraformWorkspace : undefined;
             resourceInputs["workerPoolId"] = args ? args.workerPoolId : undefined;
@@ -592,6 +602,12 @@ export interface StackState {
      */
     spaceId?: pulumi.Input<string>;
     /**
+     * Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+     * and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+     * Defaults to `false`.
+     */
+    terraformSmartSanitization?: pulumi.Input<boolean>;
+    /**
      * Terraform version to use
      */
     terraformVersion?: pulumi.Input<string>;
@@ -755,6 +771,12 @@ export interface StackArgs {
      * ID (slug) of the space the stack is in
      */
     spaceId?: pulumi.Input<string>;
+    /**
+     * Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+     * and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+     * Defaults to `false`.
+     */
+    terraformSmartSanitization?: pulumi.Input<boolean>;
     /**
      * Terraform version to use
      */

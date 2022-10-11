@@ -19,26 +19,24 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var k8s_core = Spacelift.GetWorkerPool.Invoke(new()
         ///     {
-        ///         var k8s_core = Output.Create(Spacelift.GetWorkerPool.InvokeAsync(new Spacelift.GetWorkerPoolArgs
-        ///         {
-        ///             WorkerPoolId = "k8s-core",
-        ///         }));
-        ///     }
+        ///         WorkerPoolId = "k8s-core",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetWorkerPoolResult> InvokeAsync(GetWorkerPoolArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetWorkerPoolResult>("spacelift:index/getWorkerPool:getWorkerPool", args ?? new GetWorkerPoolArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetWorkerPoolResult>("spacelift:index/getWorkerPool:getWorkerPool", args ?? new GetWorkerPoolArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.WorkerPool` represents a worker pool assigned to the Spacelift account.
@@ -48,62 +46,83 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var k8s_core = Spacelift.GetWorkerPool.Invoke(new()
         ///     {
-        ///         var k8s_core = Output.Create(Spacelift.GetWorkerPool.InvokeAsync(new Spacelift.GetWorkerPoolArgs
-        ///         {
-        ///             WorkerPoolId = "k8s-core",
-        ///         }));
-        ///     }
+        ///         WorkerPoolId = "k8s-core",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetWorkerPoolResult> Invoke(GetWorkerPoolInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetWorkerPoolResult>("spacelift:index/getWorkerPool:getWorkerPool", args ?? new GetWorkerPoolInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetWorkerPoolResult>("spacelift:index/getWorkerPool:getWorkerPool", args ?? new GetWorkerPoolInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetWorkerPoolArgs : Pulumi.InvokeArgs
+    public sealed class GetWorkerPoolArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the worker pool
+        /// </summary>
         [Input("workerPoolId", required: true)]
         public string WorkerPoolId { get; set; } = null!;
 
         public GetWorkerPoolArgs()
         {
         }
+        public static new GetWorkerPoolArgs Empty => new GetWorkerPoolArgs();
     }
 
-    public sealed class GetWorkerPoolInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetWorkerPoolInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the worker pool
+        /// </summary>
         [Input("workerPoolId", required: true)]
         public Input<string> WorkerPoolId { get; set; } = null!;
 
         public GetWorkerPoolInvokeArgs()
         {
         }
+        public static new GetWorkerPoolInvokeArgs Empty => new GetWorkerPoolInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetWorkerPoolResult
     {
+        /// <summary>
+        /// credentials necessary to connect WorkerPool's workers to the control plane
+        /// </summary>
         public readonly string Config;
+        /// <summary>
+        /// description of the worker pool
+        /// </summary>
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// name of the worker pool
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID (slug) of the space the worker pool is in
+        /// </summary>
         public readonly string SpaceId;
+        /// <summary>
+        /// ID of the worker pool
+        /// </summary>
         public readonly string WorkerPoolId;
 
         [OutputConstructor]

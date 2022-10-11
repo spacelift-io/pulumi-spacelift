@@ -13,34 +13,33 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // Explicit module name and provider:
+    ///     var k8s_module = new Spacelift.Module("k8s-module", new()
     ///     {
-    ///         // Explicit module name and provider:
-    ///         var k8s_module = new Spacelift.Module("k8s-module", new Spacelift.ModuleArgs
-    ///         {
-    ///             Administrative = true,
-    ///             Branch = "master",
-    ///             Description = "Infra terraform module",
-    ///             Repository = "terraform-super-module",
-    ///             TerraformProvider = "aws",
-    ///         });
-    ///         // Unspecified module name and provider (repository naming scheme terraform-${provider}-${name})
-    ///         var example_module = new Spacelift.Module("example-module", new Spacelift.ModuleArgs
-    ///         {
-    ///             Administrative = true,
-    ///             Branch = "master",
-    ///             Description = "Example terraform module",
-    ///             ProjectRoot = "example",
-    ///             Repository = "terraform-aws-example",
-    ///         });
-    ///     }
+    ///         Administrative = true,
+    ///         Branch = "master",
+    ///         Description = "Infra terraform module",
+    ///         Repository = "terraform-super-module",
+    ///         TerraformProvider = "aws",
+    ///     });
     /// 
-    /// }
+    ///     // Unspecified module name and provider (repository naming scheme terraform-${provider}-${name})
+    ///     var example_module = new Spacelift.Module("example-module", new()
+    ///     {
+    ///         Administrative = true,
+    ///         Branch = "master",
+    ///         Description = "Example terraform module",
+    ///         ProjectRoot = "example",
+    ///         Repository = "terraform-aws-example",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +49,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/module:Module")]
-    public partial class Module : Pulumi.CustomResource
+    public partial class Module : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates whether this module can manage others. Defaults to `false`.
@@ -184,7 +183,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -206,7 +205,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class ModuleArgs : Pulumi.ResourceArgs
+    public sealed class ModuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates whether this module can manage others. Defaults to `false`.
@@ -325,9 +324,10 @@ namespace Pulumi.Spacelift
         public ModuleArgs()
         {
         }
+        public static new ModuleArgs Empty => new ModuleArgs();
     }
 
-    public sealed class ModuleState : Pulumi.ResourceArgs
+    public sealed class ModuleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates whether this module can manage others. Defaults to `false`.
@@ -452,5 +452,6 @@ namespace Pulumi.Spacelift
         public ModuleState()
         {
         }
+        public static new ModuleState Empty => new ModuleState();
     }
 }

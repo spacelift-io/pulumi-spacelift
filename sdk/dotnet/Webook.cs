@@ -15,21 +15,19 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var webhook = new Spacelift.Webook("webhook", new()
     ///     {
-    ///         var webhook = new Spacelift.Webook("webhook", new Spacelift.WebookArgs
-    ///         {
-    ///             Endpoint = "https://example.com/webhooks",
-    ///             StackId = "k8s-core",
-    ///         });
-    ///     }
+    ///         Endpoint = "https://example.com/webhooks",
+    ///         StackId = "k8s-core",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -39,7 +37,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/webook:Webook")]
-    public partial class Webook : Pulumi.CustomResource
+    public partial class Webook : global::Pulumi.CustomResource
     {
         /// <summary>
         /// enables or disables sending webhooks. Defaults to `true`.
@@ -60,8 +58,7 @@ namespace Pulumi.Spacelift
         public Output<string?> ModuleId { get; private set; } = null!;
 
         /// <summary>
-        /// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-        /// value.
+        /// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
         /// </summary>
         [Output("secret")]
         public Output<string?> Secret { get; private set; } = null!;
@@ -95,7 +92,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -117,7 +114,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class WebookArgs : Pulumi.ResourceArgs
+    public sealed class WebookArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// enables or disables sending webhooks. Defaults to `true`.
@@ -138,8 +135,7 @@ namespace Pulumi.Spacelift
         public Input<string>? ModuleId { get; set; }
 
         /// <summary>
-        /// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-        /// value.
+        /// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
         /// </summary>
         [Input("secret")]
         public Input<string>? Secret { get; set; }
@@ -153,9 +149,10 @@ namespace Pulumi.Spacelift
         public WebookArgs()
         {
         }
+        public static new WebookArgs Empty => new WebookArgs();
     }
 
-    public sealed class WebookState : Pulumi.ResourceArgs
+    public sealed class WebookState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// enables or disables sending webhooks. Defaults to `true`.
@@ -176,8 +173,7 @@ namespace Pulumi.Spacelift
         public Input<string>? ModuleId { get; set; }
 
         /// <summary>
-        /// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-        /// value.
+        /// secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
         /// </summary>
         [Input("secret")]
         public Input<string>? Secret { get; set; }
@@ -191,5 +187,6 @@ namespace Pulumi.Spacelift
         public WebookState()
         {
         }
+        public static new WebookState Empty => new WebookState();
     }
 }

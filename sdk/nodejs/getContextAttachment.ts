@@ -42,8 +42,17 @@ export function getContextAttachment(args: GetContextAttachmentArgs, opts?: pulu
  * A collection of arguments for invoking getContextAttachment.
  */
 export interface GetContextAttachmentArgs {
+    /**
+     * ID of the attached context
+     */
     contextId: string;
+    /**
+     * ID of the attached module
+     */
     moduleId?: string;
+    /**
+     * ID of the attached stack
+     */
     stackId?: string;
 }
 
@@ -51,13 +60,25 @@ export interface GetContextAttachmentArgs {
  * A collection of values returned by getContextAttachment.
  */
 export interface GetContextAttachmentResult {
+    /**
+     * ID of the attached context
+     */
     readonly contextId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * ID of the attached module
+     */
     readonly moduleId?: string;
+    /**
+     * Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value.
+     */
     readonly priority: number;
+    /**
+     * ID of the attached stack
+     */
     readonly stackId?: string;
 }
 
@@ -69,7 +90,16 @@ export function getContextAttachmentOutput(args: GetContextAttachmentOutputArgs,
  * A collection of arguments for invoking getContextAttachment.
  */
 export interface GetContextAttachmentOutputArgs {
+    /**
+     * ID of the attached context
+     */
     contextId: pulumi.Input<string>;
+    /**
+     * ID of the attached module
+     */
     moduleId?: pulumi.Input<string>;
+    /**
+     * ID of the attached stack
+     */
     stackId?: pulumi.Input<string>;
 }

@@ -48,9 +48,21 @@ export function getMountedfile(args: GetMountedfileArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getMountedfile.
  */
 export interface GetMountedfileArgs {
+    /**
+     * ID of the context where the mounted file is stored
+     */
     contextId?: string;
+    /**
+     * ID of the module where the mounted file is stored
+     */
     moduleId?: string;
+    /**
+     * relative path to the mounted file
+     */
     relativePath: string;
+    /**
+     * ID of the stack where the mounted file is stored
+     */
     stackId?: string;
 }
 
@@ -58,16 +70,37 @@ export interface GetMountedfileArgs {
  * A collection of values returned by getMountedfile.
  */
 export interface GetMountedfileResult {
+    /**
+     * SHA-256 checksum of the value
+     */
     readonly checksum: string;
+    /**
+     * content of the mounted file encoded using Base-64
+     */
     readonly content: string;
+    /**
+     * ID of the context where the mounted file is stored
+     */
     readonly contextId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * ID of the module where the mounted file is stored
+     */
     readonly moduleId?: string;
+    /**
+     * relative path to the mounted file
+     */
     readonly relativePath: string;
+    /**
+     * ID of the stack where the mounted file is stored
+     */
     readonly stackId?: string;
+    /**
+     * indicates whether the value can be read back outside a Run
+     */
     readonly writeOnly: boolean;
 }
 
@@ -79,8 +112,20 @@ export function getMountedfileOutput(args: GetMountedfileOutputArgs, opts?: pulu
  * A collection of arguments for invoking getMountedfile.
  */
 export interface GetMountedfileOutputArgs {
+    /**
+     * ID of the context where the mounted file is stored
+     */
     contextId?: pulumi.Input<string>;
+    /**
+     * ID of the module where the mounted file is stored
+     */
     moduleId?: pulumi.Input<string>;
+    /**
+     * relative path to the mounted file
+     */
     relativePath: pulumi.Input<string>;
+    /**
+     * ID of the stack where the mounted file is stored
+     */
     stackId?: pulumi.Input<string>;
 }

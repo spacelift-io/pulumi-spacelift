@@ -70,8 +70,7 @@ type AzureIntegrationAttachment struct {
 	Read pulumi.BoolPtrOutput `pulumi:"read"`
 	// ID of the stack to attach the integration to
 	StackId pulumi.StringPtrOutput `pulumi:"stackId"`
-	// Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-	// level.
+	// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
 	SubscriptionId pulumi.StringPtrOutput `pulumi:"subscriptionId"`
 	// Indicates whether this attachment is used for write operations. Defaults to `true`.
 	Write pulumi.BoolPtrOutput `pulumi:"write"`
@@ -120,8 +119,7 @@ type azureIntegrationAttachmentState struct {
 	Read *bool `pulumi:"read"`
 	// ID of the stack to attach the integration to
 	StackId *string `pulumi:"stackId"`
-	// Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-	// level.
+	// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
 	SubscriptionId *string `pulumi:"subscriptionId"`
 	// Indicates whether this attachment is used for write operations. Defaults to `true`.
 	Write *bool `pulumi:"write"`
@@ -138,8 +136,7 @@ type AzureIntegrationAttachmentState struct {
 	Read pulumi.BoolPtrInput
 	// ID of the stack to attach the integration to
 	StackId pulumi.StringPtrInput
-	// Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-	// level.
+	// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
 	SubscriptionId pulumi.StringPtrInput
 	// Indicates whether this attachment is used for write operations. Defaults to `true`.
 	Write pulumi.BoolPtrInput
@@ -158,8 +155,7 @@ type azureIntegrationAttachmentArgs struct {
 	Read *bool `pulumi:"read"`
 	// ID of the stack to attach the integration to
 	StackId *string `pulumi:"stackId"`
-	// Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-	// level.
+	// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
 	SubscriptionId *string `pulumi:"subscriptionId"`
 	// Indicates whether this attachment is used for write operations. Defaults to `true`.
 	Write *bool `pulumi:"write"`
@@ -175,8 +171,7 @@ type AzureIntegrationAttachmentArgs struct {
 	Read pulumi.BoolPtrInput
 	// ID of the stack to attach the integration to
 	StackId pulumi.StringPtrInput
-	// Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-	// level.
+	// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
 	SubscriptionId pulumi.StringPtrInput
 	// Indicates whether this attachment is used for write operations. Defaults to `true`.
 	Write pulumi.BoolPtrInput
@@ -294,8 +289,7 @@ func (o AzureIntegrationAttachmentOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AzureIntegrationAttachment) pulumi.StringPtrOutput { return v.StackId }).(pulumi.StringPtrOutput)
 }
 
-// Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-// level.
+// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
 func (o AzureIntegrationAttachmentOutput) SubscriptionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AzureIntegrationAttachment) pulumi.StringPtrOutput { return v.SubscriptionId }).(pulumi.StringPtrOutput)
 }

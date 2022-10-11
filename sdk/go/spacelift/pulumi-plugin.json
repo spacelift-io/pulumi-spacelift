@@ -1,5 +1,5 @@
 {
   "resource": true,
   "name": "spacelift",
-  "server": "https://github.com/spacelift-io/pulumi-spacelift/releases"
+  "server": "https://downloads.spacelift.io/pulumi-plugins"
 }

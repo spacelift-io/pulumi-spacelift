@@ -15,20 +15,18 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var ghe = new Spacelift.VcsAgentPool("ghe", new()
     ///     {
-    ///         var ghe = new Spacelift.VcsAgentPool("ghe", new Spacelift.VcsAgentPoolArgs
-    ///         {
-    ///             Description = "VCS agent pool for our internal GitHub Enterpris",
-    ///         });
-    ///     }
+    ///         Description = "VCS agent pool for our internal GitHub Enterprise",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -38,7 +36,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/vcsAgentPool:VcsAgentPool")]
-    public partial class VcsAgentPool : Pulumi.CustomResource
+    public partial class VcsAgentPool : global::Pulumi.CustomResource
     {
         /// <summary>
         /// VCS agent pool configuration, encoded using base64
@@ -81,7 +79,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -103,7 +101,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class VcsAgentPoolArgs : Pulumi.ResourceArgs
+    public sealed class VcsAgentPoolArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Free-form VCS agent pool description for users
@@ -120,9 +118,10 @@ namespace Pulumi.Spacelift
         public VcsAgentPoolArgs()
         {
         }
+        public static new VcsAgentPoolArgs Empty => new VcsAgentPoolArgs();
     }
 
-    public sealed class VcsAgentPoolState : Pulumi.ResourceArgs
+    public sealed class VcsAgentPoolState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// VCS agent pool configuration, encoded using base64
@@ -145,5 +144,6 @@ namespace Pulumi.Spacelift
         public VcsAgentPoolState()
         {
         }
+        public static new VcsAgentPoolState Empty => new VcsAgentPoolState();
     }
 }

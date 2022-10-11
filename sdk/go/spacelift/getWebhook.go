@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -47,21 +46,30 @@ func GetWebhook(ctx *pulumi.Context, args *GetWebhookArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getWebhook.
 type GetWebhookArgs struct {
-	ModuleId  *string `pulumi:"moduleId"`
-	StackId   *string `pulumi:"stackId"`
-	WebhookId string  `pulumi:"webhookId"`
+	// ID of the stack which triggers the webhooks
+	ModuleId *string `pulumi:"moduleId"`
+	// ID of the stack which triggers the webhooks
+	StackId *string `pulumi:"stackId"`
+	// ID of the webhook
+	WebhookId string `pulumi:"webhookId"`
 }
 
 // A collection of values returned by getWebhook.
 type GetWebhookResult struct {
-	Enabled  bool   `pulumi:"enabled"`
+	// enables or disables sending webhooks
+	Enabled bool `pulumi:"enabled"`
+	// endpoint to send the POST request to
 	Endpoint string `pulumi:"endpoint"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string  `pulumi:"id"`
-	ModuleId  *string `pulumi:"moduleId"`
-	Secret    string  `pulumi:"secret"`
-	StackId   *string `pulumi:"stackId"`
-	WebhookId string  `pulumi:"webhookId"`
+	Id string `pulumi:"id"`
+	// ID of the stack which triggers the webhooks
+	ModuleId *string `pulumi:"moduleId"`
+	// secret used to sign each POST request so you're able to verify that the request comes from us
+	Secret string `pulumi:"secret"`
+	// ID of the stack which triggers the webhooks
+	StackId *string `pulumi:"stackId"`
+	// ID of the webhook
+	WebhookId string `pulumi:"webhookId"`
 }
 
 func GetWebhookOutput(ctx *pulumi.Context, args GetWebhookOutputArgs, opts ...pulumi.InvokeOption) GetWebhookResultOutput {
@@ -79,9 +87,12 @@ func GetWebhookOutput(ctx *pulumi.Context, args GetWebhookOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getWebhook.
 type GetWebhookOutputArgs struct {
-	ModuleId  pulumi.StringPtrInput `pulumi:"moduleId"`
-	StackId   pulumi.StringPtrInput `pulumi:"stackId"`
-	WebhookId pulumi.StringInput    `pulumi:"webhookId"`
+	// ID of the stack which triggers the webhooks
+	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
+	// ID of the stack which triggers the webhooks
+	StackId pulumi.StringPtrInput `pulumi:"stackId"`
+	// ID of the webhook
+	WebhookId pulumi.StringInput `pulumi:"webhookId"`
 }
 
 func (GetWebhookOutputArgs) ElementType() reflect.Type {
@@ -103,10 +114,12 @@ func (o GetWebhookResultOutput) ToGetWebhookResultOutputWithContext(ctx context.
 	return o
 }
 
+// enables or disables sending webhooks
 func (o GetWebhookResultOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetWebhookResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+// endpoint to send the POST request to
 func (o GetWebhookResultOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhookResult) string { return v.Endpoint }).(pulumi.StringOutput)
 }
@@ -116,18 +129,22 @@ func (o GetWebhookResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhookResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// ID of the stack which triggers the webhooks
 func (o GetWebhookResultOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetWebhookResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
+// secret used to sign each POST request so you're able to verify that the request comes from us
 func (o GetWebhookResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhookResult) string { return v.Secret }).(pulumi.StringOutput)
 }
 
+// ID of the stack which triggers the webhooks
 func (o GetWebhookResultOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetWebhookResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }
 
+// ID of the webhook
 func (o GetWebhookResultOutput) WebhookId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhookResult) string { return v.WebhookId }).(pulumi.StringOutput)
 }

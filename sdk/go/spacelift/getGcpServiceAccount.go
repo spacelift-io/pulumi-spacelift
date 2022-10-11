@@ -16,7 +16,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -51,18 +50,24 @@ func LookupGcpServiceAccount(ctx *pulumi.Context, args *LookupGcpServiceAccountA
 
 // A collection of arguments for invoking getGcpServiceAccount.
 type LookupGcpServiceAccountArgs struct {
+	// ID of the stack which uses GCP service account credentials
 	ModuleId *string `pulumi:"moduleId"`
-	StackId  *string `pulumi:"stackId"`
+	// ID of the stack which uses GCP service account credentials
+	StackId *string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getGcpServiceAccount.
 type LookupGcpServiceAccountResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id                  string   `pulumi:"id"`
-	ModuleId            *string  `pulumi:"moduleId"`
-	ServiceAccountEmail string   `pulumi:"serviceAccountEmail"`
-	StackId             *string  `pulumi:"stackId"`
-	TokenScopes         []string `pulumi:"tokenScopes"`
+	Id string `pulumi:"id"`
+	// ID of the stack which uses GCP service account credentials
+	ModuleId *string `pulumi:"moduleId"`
+	// email address of the GCP service account dedicated for this stack
+	ServiceAccountEmail string `pulumi:"serviceAccountEmail"`
+	// ID of the stack which uses GCP service account credentials
+	StackId *string `pulumi:"stackId"`
+	// list of Google API scopes
+	TokenScopes []string `pulumi:"tokenScopes"`
 }
 
 func LookupGcpServiceAccountOutput(ctx *pulumi.Context, args LookupGcpServiceAccountOutputArgs, opts ...pulumi.InvokeOption) LookupGcpServiceAccountResultOutput {
@@ -80,8 +85,10 @@ func LookupGcpServiceAccountOutput(ctx *pulumi.Context, args LookupGcpServiceAcc
 
 // A collection of arguments for invoking getGcpServiceAccount.
 type LookupGcpServiceAccountOutputArgs struct {
+	// ID of the stack which uses GCP service account credentials
 	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
-	StackId  pulumi.StringPtrInput `pulumi:"stackId"`
+	// ID of the stack which uses GCP service account credentials
+	StackId pulumi.StringPtrInput `pulumi:"stackId"`
 }
 
 func (LookupGcpServiceAccountOutputArgs) ElementType() reflect.Type {
@@ -108,18 +115,22 @@ func (o LookupGcpServiceAccountResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGcpServiceAccountResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// ID of the stack which uses GCP service account credentials
 func (o LookupGcpServiceAccountResultOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupGcpServiceAccountResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
+// email address of the GCP service account dedicated for this stack
 func (o LookupGcpServiceAccountResultOutput) ServiceAccountEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGcpServiceAccountResult) string { return v.ServiceAccountEmail }).(pulumi.StringOutput)
 }
 
+// ID of the stack which uses GCP service account credentials
 func (o LookupGcpServiceAccountResultOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupGcpServiceAccountResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }
 
+// list of Google API scopes
 func (o LookupGcpServiceAccountResultOutput) TokenScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupGcpServiceAccountResult) []string { return v.TokenScopes }).(pulumi.StringArrayOutput)
 }

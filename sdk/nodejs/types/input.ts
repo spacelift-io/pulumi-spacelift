@@ -2,65 +2,120 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface ModuleAzureDevops {
+    /**
+     * The name of the Azure DevOps project
+     */
     project: pulumi.Input<string>;
 }
 
 export interface ModuleBitbucketCloud {
+    /**
+     * The Bitbucket project containing the repository
+     */
     namespace: pulumi.Input<string>;
 }
 
 export interface ModuleBitbucketDatacenter {
+    /**
+     * The Bitbucket project containing the repository
+     */
     namespace: pulumi.Input<string>;
 }
 
 export interface ModuleGithubEnterprise {
+    /**
+     * The GitHub organization / user the repository belongs to
+     */
     namespace: pulumi.Input<string>;
 }
 
 export interface ModuleGitlab {
+    /**
+     * The GitLab namespace containing the repository
+     */
     namespace: pulumi.Input<string>;
 }
 
 export interface StackAnsible {
+    /**
+     * The playbook Ansible should run.
+     */
     playbook: pulumi.Input<string>;
 }
 
 export interface StackAzureDevops {
+    /**
+     * The name of the Azure DevOps project
+     */
     project: pulumi.Input<string>;
 }
 
 export interface StackBitbucketCloud {
+    /**
+     * The Bitbucket project containing the repository
+     */
     namespace: pulumi.Input<string>;
 }
 
 export interface StackBitbucketDatacenter {
+    /**
+     * The Bitbucket project containing the repository
+     */
     namespace: pulumi.Input<string>;
 }
 
 export interface StackCloudformation {
+    /**
+     * Template file `cloudformation package` will be called on
+     */
     entryTemplateFile: pulumi.Input<string>;
+    /**
+     * AWS region to use
+     */
     region: pulumi.Input<string>;
+    /**
+     * CloudFormation stack name
+     */
     stackName: pulumi.Input<string>;
+    /**
+     * S3 bucket to save CloudFormation templates to
+     */
     templateBucket: pulumi.Input<string>;
 }
 
 export interface StackGithubEnterprise {
+    /**
+     * The GitHub organization / user the repository belongs to
+     */
     namespace: pulumi.Input<string>;
 }
 
 export interface StackGitlab {
+    /**
+     * The GitLab namespace containing the repository
+     */
     namespace: pulumi.Input<string>;
 }
 
 export interface StackKubernetes {
+    /**
+     * Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
+     */
     namespace?: pulumi.Input<string>;
 }
 
 export interface StackPulumi {
+    /**
+     * State backend to log into on Run initialize.
+     */
     loginUrl: pulumi.Input<string>;
+    /**
+     * Pulumi stack name to use with the state backend.
+     */
     stackName: pulumi.Input<string>;
 }
 

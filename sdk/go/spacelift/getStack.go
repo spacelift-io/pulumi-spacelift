@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -47,62 +46,110 @@ func LookupStack(ctx *pulumi.Context, args *LookupStackArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getStack.
 type LookupStackArgs struct {
-	AfterApplies   []string `pulumi:"afterApplies"`
-	AfterDestroys  []string `pulumi:"afterDestroys"`
-	AfterInits     []string `pulumi:"afterInits"`
-	AfterPerforms  []string `pulumi:"afterPerforms"`
-	AfterPlans     []string `pulumi:"afterPlans"`
-	BeforeApplies  []string `pulumi:"beforeApplies"`
+	// List of after-apply scripts
+	AfterApplies []string `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys []string `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits []string `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms []string `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans []string `pulumi:"afterPlans"`
+	// List of before-apply scripts
+	BeforeApplies []string `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
 	BeforeDestroys []string `pulumi:"beforeDestroys"`
-	BeforeInits    []string `pulumi:"beforeInits"`
+	// List of before-init scripts
+	BeforeInits []string `pulumi:"beforeInits"`
+	// List of before-perform scripts
 	BeforePerforms []string `pulumi:"beforePerforms"`
-	BeforePlans    []string `pulumi:"beforePlans"`
-	StackId        string   `pulumi:"stackId"`
+	// List of before-plan scripts
+	BeforePlans []string `pulumi:"beforePlans"`
+	// ID (slug) of the stack
+	StackId string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getStack.
 type LookupStackResult struct {
-	Administrative               bool                          `pulumi:"administrative"`
-	AfterApplies                 []string                      `pulumi:"afterApplies"`
-	AfterDestroys                []string                      `pulumi:"afterDestroys"`
-	AfterInits                   []string                      `pulumi:"afterInits"`
-	AfterPerforms                []string                      `pulumi:"afterPerforms"`
-	AfterPlans                   []string                      `pulumi:"afterPlans"`
-	Ansibles                     []GetStackAnsible             `pulumi:"ansibles"`
-	Autodeploy                   bool                          `pulumi:"autodeploy"`
-	Autoretry                    bool                          `pulumi:"autoretry"`
-	AwsAssumeRolePolicyStatement string                        `pulumi:"awsAssumeRolePolicyStatement"`
-	AzureDevops                  []GetStackAzureDevop          `pulumi:"azureDevops"`
-	BeforeApplies                []string                      `pulumi:"beforeApplies"`
-	BeforeDestroys               []string                      `pulumi:"beforeDestroys"`
-	BeforeInits                  []string                      `pulumi:"beforeInits"`
-	BeforePerforms               []string                      `pulumi:"beforePerforms"`
-	BeforePlans                  []string                      `pulumi:"beforePlans"`
-	BitbucketClouds              []GetStackBitbucketCloud      `pulumi:"bitbucketClouds"`
-	BitbucketDatacenters         []GetStackBitbucketDatacenter `pulumi:"bitbucketDatacenters"`
-	Branch                       string                        `pulumi:"branch"`
-	Cloudformations              []GetStackCloudformation      `pulumi:"cloudformations"`
-	Description                  string                        `pulumi:"description"`
-	EnableLocalPreview           bool                          `pulumi:"enableLocalPreview"`
-	GithubEnterprises            []GetStackGithubEnterprise    `pulumi:"githubEnterprises"`
-	Gitlabs                      []GetStackGitlab              `pulumi:"gitlabs"`
+	// indicates whether this stack can administer others
+	Administrative bool `pulumi:"administrative"`
+	// List of after-apply scripts
+	AfterApplies []string `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys []string `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits []string `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms []string `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans []string `pulumi:"afterPlans"`
+	// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+	Ansibles []GetStackAnsible `pulumi:"ansibles"`
+	// indicates whether changes to this stack can be automatically deployed
+	Autodeploy bool `pulumi:"autodeploy"`
+	// indicates whether obsolete proposed changes should automatically be retried
+	Autoretry bool `pulumi:"autoretry"`
+	// AWS IAM assume role policy statement setting up trust relationship
+	AwsAssumeRolePolicyStatement string `pulumi:"awsAssumeRolePolicyStatement"`
+	// Azure DevOps VCS settings
+	AzureDevops []GetStackAzureDevop `pulumi:"azureDevops"`
+	// List of before-apply scripts
+	BeforeApplies []string `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys []string `pulumi:"beforeDestroys"`
+	// List of before-init scripts
+	BeforeInits []string `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms []string `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans []string `pulumi:"beforePlans"`
+	// Bitbucket Cloud VCS settings
+	BitbucketClouds []GetStackBitbucketCloud `pulumi:"bitbucketClouds"`
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenters []GetStackBitbucketDatacenter `pulumi:"bitbucketDatacenters"`
+	// Repository branch to treat as the default 'main' branch
+	Branch string `pulumi:"branch"`
+	// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
+	Cloudformations []GetStackCloudformation `pulumi:"cloudformations"`
+	// free-form stack description for users
+	Description string `pulumi:"description"`
+	// Indicates whether local preview runs can be triggered on this Stack.
+	EnableLocalPreview bool `pulumi:"enableLocalPreview"`
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprises []GetStackGithubEnterprise `pulumi:"githubEnterprises"`
+	// GitLab VCS settings
+	Gitlabs []GetStackGitlab `pulumi:"gitlabs"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                  string              `pulumi:"id"`
-	Kubernetes          []GetStackKubernete `pulumi:"kubernetes"`
-	Labels              []string            `pulumi:"labels"`
-	ManageState         bool                `pulumi:"manageState"`
-	Name                string              `pulumi:"name"`
-	ProjectRoot         string              `pulumi:"projectRoot"`
-	ProtectFromDeletion bool                `pulumi:"protectFromDeletion"`
-	Pulumis             []GetStackPulumi    `pulumi:"pulumis"`
-	Repository          string              `pulumi:"repository"`
-	RunnerImage         string              `pulumi:"runnerImage"`
-	Showcases           []GetStackShowcase  `pulumi:"showcases"`
-	SpaceId             string              `pulumi:"spaceId"`
-	StackId             string              `pulumi:"stackId"`
-	TerraformVersion    string              `pulumi:"terraformVersion"`
-	TerraformWorkspace  string              `pulumi:"terraformWorkspace"`
-	WorkerPoolId        string              `pulumi:"workerPoolId"`
+	Id string `pulumi:"id"`
+	// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+	Kubernetes []GetStackKubernete `pulumi:"kubernetes"`
+	Labels     []string            `pulumi:"labels"`
+	// Determines if Spacelift should manage state for this stack
+	ManageState bool `pulumi:"manageState"`
+	// Name of the stack - should be unique in one account
+	Name string `pulumi:"name"`
+	// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+	ProjectRoot string `pulumi:"projectRoot"`
+	// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+	ProtectFromDeletion bool `pulumi:"protectFromDeletion"`
+	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
+	Pulumis []GetStackPulumi `pulumi:"pulumis"`
+	// Name of the repository, without the owner part
+	Repository string `pulumi:"repository"`
+	// Name of the Docker image used to process Runs
+	RunnerImage string `pulumi:"runnerImage"`
+	// Showcase-related attributes
+	Showcases []GetStackShowcase `pulumi:"showcases"`
+	// ID (slug) of the space the stack is in
+	SpaceId string `pulumi:"spaceId"`
+	// ID (slug) of the stack
+	StackId                    string `pulumi:"stackId"`
+	TerraformSmartSanitization bool   `pulumi:"terraformSmartSanitization"`
+	TerraformVersion           string `pulumi:"terraformVersion"`
+	TerraformWorkspace         string `pulumi:"terraformWorkspace"`
+	// ID of the worker pool to use
+	WorkerPoolId string `pulumi:"workerPoolId"`
 }
 
 func LookupStackOutput(ctx *pulumi.Context, args LookupStackOutputArgs, opts ...pulumi.InvokeOption) LookupStackResultOutput {
@@ -120,17 +167,28 @@ func LookupStackOutput(ctx *pulumi.Context, args LookupStackOutputArgs, opts ...
 
 // A collection of arguments for invoking getStack.
 type LookupStackOutputArgs struct {
-	AfterApplies   pulumi.StringArrayInput `pulumi:"afterApplies"`
-	AfterDestroys  pulumi.StringArrayInput `pulumi:"afterDestroys"`
-	AfterInits     pulumi.StringArrayInput `pulumi:"afterInits"`
-	AfterPerforms  pulumi.StringArrayInput `pulumi:"afterPerforms"`
-	AfterPlans     pulumi.StringArrayInput `pulumi:"afterPlans"`
-	BeforeApplies  pulumi.StringArrayInput `pulumi:"beforeApplies"`
+	// List of after-apply scripts
+	AfterApplies pulumi.StringArrayInput `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys pulumi.StringArrayInput `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits pulumi.StringArrayInput `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms pulumi.StringArrayInput `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans pulumi.StringArrayInput `pulumi:"afterPlans"`
+	// List of before-apply scripts
+	BeforeApplies pulumi.StringArrayInput `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
 	BeforeDestroys pulumi.StringArrayInput `pulumi:"beforeDestroys"`
-	BeforeInits    pulumi.StringArrayInput `pulumi:"beforeInits"`
+	// List of before-init scripts
+	BeforeInits pulumi.StringArrayInput `pulumi:"beforeInits"`
+	// List of before-perform scripts
 	BeforePerforms pulumi.StringArrayInput `pulumi:"beforePerforms"`
-	BeforePlans    pulumi.StringArrayInput `pulumi:"beforePlans"`
-	StackId        pulumi.StringInput      `pulumi:"stackId"`
+	// List of before-plan scripts
+	BeforePlans pulumi.StringArrayInput `pulumi:"beforePlans"`
+	// ID (slug) of the stack
+	StackId pulumi.StringInput `pulumi:"stackId"`
 }
 
 func (LookupStackOutputArgs) ElementType() reflect.Type {
@@ -152,98 +210,122 @@ func (o LookupStackResultOutput) ToLookupStackResultOutputWithContext(ctx contex
 	return o
 }
 
+// indicates whether this stack can administer others
 func (o LookupStackResultOutput) Administrative() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupStackResult) bool { return v.Administrative }).(pulumi.BoolOutput)
 }
 
+// List of after-apply scripts
 func (o LookupStackResultOutput) AfterApplies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.AfterApplies }).(pulumi.StringArrayOutput)
 }
 
+// List of after-destroy scripts
 func (o LookupStackResultOutput) AfterDestroys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.AfterDestroys }).(pulumi.StringArrayOutput)
 }
 
+// List of after-init scripts
 func (o LookupStackResultOutput) AfterInits() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.AfterInits }).(pulumi.StringArrayOutput)
 }
 
+// List of after-perform scripts
 func (o LookupStackResultOutput) AfterPerforms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.AfterPerforms }).(pulumi.StringArrayOutput)
 }
 
+// List of after-plan scripts
 func (o LookupStackResultOutput) AfterPlans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.AfterPlans }).(pulumi.StringArrayOutput)
 }
 
+// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
 func (o LookupStackResultOutput) Ansibles() GetStackAnsibleArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackAnsible { return v.Ansibles }).(GetStackAnsibleArrayOutput)
 }
 
+// indicates whether changes to this stack can be automatically deployed
 func (o LookupStackResultOutput) Autodeploy() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupStackResult) bool { return v.Autodeploy }).(pulumi.BoolOutput)
 }
 
+// indicates whether obsolete proposed changes should automatically be retried
 func (o LookupStackResultOutput) Autoretry() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupStackResult) bool { return v.Autoretry }).(pulumi.BoolOutput)
 }
 
+// AWS IAM assume role policy statement setting up trust relationship
 func (o LookupStackResultOutput) AwsAssumeRolePolicyStatement() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.AwsAssumeRolePolicyStatement }).(pulumi.StringOutput)
 }
 
+// Azure DevOps VCS settings
 func (o LookupStackResultOutput) AzureDevops() GetStackAzureDevopArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackAzureDevop { return v.AzureDevops }).(GetStackAzureDevopArrayOutput)
 }
 
+// List of before-apply scripts
 func (o LookupStackResultOutput) BeforeApplies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.BeforeApplies }).(pulumi.StringArrayOutput)
 }
 
+// List of before-destroy scripts
 func (o LookupStackResultOutput) BeforeDestroys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.BeforeDestroys }).(pulumi.StringArrayOutput)
 }
 
+// List of before-init scripts
 func (o LookupStackResultOutput) BeforeInits() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.BeforeInits }).(pulumi.StringArrayOutput)
 }
 
+// List of before-perform scripts
 func (o LookupStackResultOutput) BeforePerforms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.BeforePerforms }).(pulumi.StringArrayOutput)
 }
 
+// List of before-plan scripts
 func (o LookupStackResultOutput) BeforePlans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.BeforePlans }).(pulumi.StringArrayOutput)
 }
 
+// Bitbucket Cloud VCS settings
 func (o LookupStackResultOutput) BitbucketClouds() GetStackBitbucketCloudArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackBitbucketCloud { return v.BitbucketClouds }).(GetStackBitbucketCloudArrayOutput)
 }
 
+// Bitbucket Datacenter VCS settings
 func (o LookupStackResultOutput) BitbucketDatacenters() GetStackBitbucketDatacenterArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackBitbucketDatacenter { return v.BitbucketDatacenters }).(GetStackBitbucketDatacenterArrayOutput)
 }
 
+// Repository branch to treat as the default 'main' branch
 func (o LookupStackResultOutput) Branch() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Branch }).(pulumi.StringOutput)
 }
 
+// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
 func (o LookupStackResultOutput) Cloudformations() GetStackCloudformationArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackCloudformation { return v.Cloudformations }).(GetStackCloudformationArrayOutput)
 }
 
+// free-form stack description for users
 func (o LookupStackResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Indicates whether local preview runs can be triggered on this Stack.
 func (o LookupStackResultOutput) EnableLocalPreview() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupStackResult) bool { return v.EnableLocalPreview }).(pulumi.BoolOutput)
 }
 
+// GitHub Enterprise (self-hosted) VCS settings
 func (o LookupStackResultOutput) GithubEnterprises() GetStackGithubEnterpriseArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackGithubEnterprise { return v.GithubEnterprises }).(GetStackGithubEnterpriseArrayOutput)
 }
 
+// GitLab VCS settings
 func (o LookupStackResultOutput) Gitlabs() GetStackGitlabArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackGitlab { return v.Gitlabs }).(GetStackGitlabArrayOutput)
 }
@@ -253,6 +335,7 @@ func (o LookupStackResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
 func (o LookupStackResultOutput) Kubernetes() GetStackKuberneteArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackKubernete { return v.Kubernetes }).(GetStackKuberneteArrayOutput)
 }
@@ -261,44 +344,58 @@ func (o LookupStackResultOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// Determines if Spacelift should manage state for this stack
 func (o LookupStackResultOutput) ManageState() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupStackResult) bool { return v.ManageState }).(pulumi.BoolOutput)
 }
 
+// Name of the stack - should be unique in one account
 func (o LookupStackResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
 func (o LookupStackResultOutput) ProjectRoot() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.ProjectRoot }).(pulumi.StringOutput)
 }
 
+// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
 func (o LookupStackResultOutput) ProtectFromDeletion() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupStackResult) bool { return v.ProtectFromDeletion }).(pulumi.BoolOutput)
 }
 
+// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 func (o LookupStackResultOutput) Pulumis() GetStackPulumiArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackPulumi { return v.Pulumis }).(GetStackPulumiArrayOutput)
 }
 
+// Name of the repository, without the owner part
 func (o LookupStackResultOutput) Repository() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Repository }).(pulumi.StringOutput)
 }
 
+// Name of the Docker image used to process Runs
 func (o LookupStackResultOutput) RunnerImage() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.RunnerImage }).(pulumi.StringOutput)
 }
 
+// Showcase-related attributes
 func (o LookupStackResultOutput) Showcases() GetStackShowcaseArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackShowcase { return v.Showcases }).(GetStackShowcaseArrayOutput)
 }
 
+// ID (slug) of the space the stack is in
 func (o LookupStackResultOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the stack
 func (o LookupStackResultOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.StackId }).(pulumi.StringOutput)
+}
+
+func (o LookupStackResultOutput) TerraformSmartSanitization() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupStackResult) bool { return v.TerraformSmartSanitization }).(pulumi.BoolOutput)
 }
 
 func (o LookupStackResultOutput) TerraformVersion() pulumi.StringOutput {
@@ -309,6 +406,7 @@ func (o LookupStackResultOutput) TerraformWorkspace() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.TerraformWorkspace }).(pulumi.StringOutput)
 }
 
+// ID of the worker pool to use
 func (o LookupStackResultOutput) WorkerPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.WorkerPoolId }).(pulumi.StringOutput)
 }

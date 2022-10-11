@@ -4,6 +4,37 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
+ *
+ * const k8s_coreStack = new spacelift.Stack("k8s-coreStack", {
+ *     branch: "master",
+ *     repository: "core-infra",
+ * });
+ * const k8s_coreStackGcpServiceAccount = new spacelift.StackGcpServiceAccount("k8s-coreStackGcpServiceAccount", {
+ *     stackId: k8s_coreStack.id,
+ *     tokenScopes: [
+ *         "https://www.googleapis.com/auth/compute",
+ *         "https://www.googleapis.com/auth/cloud-platform",
+ *         "https://www.googleapis.com/auth/devstorage.full_control",
+ *     ],
+ * });
+ * const k8s_coreProject = new gcp.organizations.Project("k8s-coreProject", {
+ *     projectId: "unicorn-k8s-core",
+ *     orgId: _var.gcp_organization_id,
+ * });
+ * const k8s_coreIAMMember = new gcp.projects.IAMMember("k8s-coreIAMMember", {
+ *     project: k8s_coreProject.id,
+ *     role: "roles/owner",
+ *     member: pulumi.interpolate`serviceAccount:${k8s_coreStackGcpServiceAccount.serviceAccountEmail}`,
+ * });
+ * ```
+ */
 export class StackGcpServiceAccount extends pulumi.CustomResource {
     /**
      * Get an existing StackGcpServiceAccount resource's state with the given name, ID, and optional extra

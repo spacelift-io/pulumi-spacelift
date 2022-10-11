@@ -77,9 +77,7 @@ type Policy struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ID (slug) of the space the policy is in
 	SpaceId pulumi.StringOutput `pulumi:"spaceId"`
-	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
-	// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
-	// `TERRAFORM_PLAN` (use `PLAN` instead).
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -126,9 +124,7 @@ type policyState struct {
 	Name *string `pulumi:"name"`
 	// ID (slug) of the space the policy is in
 	SpaceId *string `pulumi:"spaceId"`
-	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
-	// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
-	// `TERRAFORM_PLAN` (use `PLAN` instead).
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type *string `pulumi:"type"`
 }
 
@@ -140,9 +136,7 @@ type PolicyState struct {
 	Name pulumi.StringPtrInput
 	// ID (slug) of the space the policy is in
 	SpaceId pulumi.StringPtrInput
-	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
-	// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
-	// `TERRAFORM_PLAN` (use `PLAN` instead).
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type pulumi.StringPtrInput
 }
 
@@ -158,9 +152,7 @@ type policyArgs struct {
 	Name *string `pulumi:"name"`
 	// ID (slug) of the space the policy is in
 	SpaceId *string `pulumi:"spaceId"`
-	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
-	// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
-	// `TERRAFORM_PLAN` (use `PLAN` instead).
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type string `pulumi:"type"`
 }
 
@@ -173,9 +165,7 @@ type PolicyArgs struct {
 	Name pulumi.StringPtrInput
 	// ID (slug) of the space the policy is in
 	SpaceId pulumi.StringPtrInput
-	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
-	// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
-	// `TERRAFORM_PLAN` (use `PLAN` instead).
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type pulumi.StringInput
 }
 
@@ -285,9 +275,7 @@ func (o PolicyOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.SpaceId }).(pulumi.StringOutput)
 }
 
-// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
-// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
-// `TERRAFORM_PLAN` (use `PLAN` instead).
+// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 func (o PolicyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift
 {
     /// <summary>
-    /// **Note:** This resource is experimental. Please continue to use `spacelift.AwsRole`.
-    /// 
     /// `spacelift.AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
     /// 
     /// Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-$suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
@@ -23,7 +21,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/awsIntegration:AwsIntegration")]
-    public partial class AwsIntegration : Pulumi.CustomResource
+    public partial class AwsIntegration : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Duration in seconds for which the assumed role credentials should be valid. Defaults to `900`.
@@ -90,7 +88,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -112,7 +110,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class AwsIntegrationArgs : Pulumi.ResourceArgs
+    public sealed class AwsIntegrationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Duration in seconds for which the assumed role credentials should be valid. Defaults to `900`.
@@ -165,9 +163,10 @@ namespace Pulumi.Spacelift
         public AwsIntegrationArgs()
         {
         }
+        public static new AwsIntegrationArgs Empty => new AwsIntegrationArgs();
     }
 
-    public sealed class AwsIntegrationState : Pulumi.ResourceArgs
+    public sealed class AwsIntegrationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Duration in seconds for which the assumed role credentials should be valid. Defaults to `900`.
@@ -220,5 +219,6 @@ namespace Pulumi.Spacelift
         public AwsIntegrationState()
         {
         }
+        public static new AwsIntegrationState Empty => new AwsIntegrationState();
     }
 }

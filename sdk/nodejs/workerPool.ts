@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
- * import * as pulumi_spacelift from "@spacelift-io/pulumi-spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * const k8s_core = new spacelift.WorkerPool("k8s-core", {
  *     csr: Buffer.from(fs.readFileSync("/path/to/csr"), 'binary').toString('base64'),

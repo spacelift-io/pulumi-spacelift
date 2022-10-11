@@ -66,8 +66,7 @@ export class Webook extends pulumi.CustomResource {
      */
     public readonly moduleId!: pulumi.Output<string | undefined>;
     /**
-     * secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-     * value.
+     * secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
      */
     public readonly secret!: pulumi.Output<string | undefined>;
     /**
@@ -126,8 +125,7 @@ export interface WebookState {
      */
     moduleId?: pulumi.Input<string>;
     /**
-     * secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-     * value.
+     * secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
      */
     secret?: pulumi.Input<string>;
     /**
@@ -153,8 +151,7 @@ export interface WebookArgs {
      */
     moduleId?: pulumi.Input<string>;
     /**
-     * secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty
-     * value.
+     * secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
      */
     secret?: pulumi.Input<string>;
     /**

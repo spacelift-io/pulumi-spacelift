@@ -50,9 +50,7 @@ type ContextAttachment struct {
 	ContextId pulumi.StringOutput `pulumi:"contextId"`
 	// ID of the module to attach the context to
 	ModuleId pulumi.StringPtrOutput `pulumi:"moduleId"`
-	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-	// values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-	// and multiple contexts define the same value. Defaults to `0`.
+	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// ID of the stack to attach the context to
 	StackId pulumi.StringPtrOutput `pulumi:"stackId"`
@@ -95,9 +93,7 @@ type contextAttachmentState struct {
 	ContextId *string `pulumi:"contextId"`
 	// ID of the module to attach the context to
 	ModuleId *string `pulumi:"moduleId"`
-	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-	// values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-	// and multiple contexts define the same value. Defaults to `0`.
+	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
 	Priority *int `pulumi:"priority"`
 	// ID of the stack to attach the context to
 	StackId *string `pulumi:"stackId"`
@@ -108,9 +104,7 @@ type ContextAttachmentState struct {
 	ContextId pulumi.StringPtrInput
 	// ID of the module to attach the context to
 	ModuleId pulumi.StringPtrInput
-	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-	// values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-	// and multiple contexts define the same value. Defaults to `0`.
+	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
 	Priority pulumi.IntPtrInput
 	// ID of the stack to attach the context to
 	StackId pulumi.StringPtrInput
@@ -125,9 +119,7 @@ type contextAttachmentArgs struct {
 	ContextId string `pulumi:"contextId"`
 	// ID of the module to attach the context to
 	ModuleId *string `pulumi:"moduleId"`
-	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-	// values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-	// and multiple contexts define the same value. Defaults to `0`.
+	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
 	Priority *int `pulumi:"priority"`
 	// ID of the stack to attach the context to
 	StackId *string `pulumi:"stackId"`
@@ -139,9 +131,7 @@ type ContextAttachmentArgs struct {
 	ContextId pulumi.StringInput
 	// ID of the module to attach the context to
 	ModuleId pulumi.StringPtrInput
-	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-	// values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-	// and multiple contexts define the same value. Defaults to `0`.
+	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
 	Priority pulumi.IntPtrInput
 	// ID of the stack to attach the context to
 	StackId pulumi.StringPtrInput
@@ -244,9 +234,7 @@ func (o ContextAttachmentOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContextAttachment) pulumi.StringPtrOutput { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
-// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though
-// values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict
-// and multiple contexts define the same value. Defaults to `0`.
+// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
 func (o ContextAttachmentOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ContextAttachment) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
 }

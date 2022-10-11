@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -48,19 +47,25 @@ func LookupPolicy(ctx *pulumi.Context, args *LookupPolicyArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getPolicy.
 type LookupPolicyArgs struct {
+	// immutable ID (slug) of the policy
 	PolicyId string `pulumi:"policyId"`
 }
 
 // A collection of values returned by getPolicy.
 type LookupPolicyResult struct {
+	// body of the policy
 	Body string `pulumi:"body"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string   `pulumi:"id"`
-	Labels   []string `pulumi:"labels"`
-	Name     string   `pulumi:"name"`
-	PolicyId string   `pulumi:"policyId"`
-	SpaceId  string   `pulumi:"spaceId"`
-	Type     string   `pulumi:"type"`
+	Id     string   `pulumi:"id"`
+	Labels []string `pulumi:"labels"`
+	// name of the policy
+	Name string `pulumi:"name"`
+	// immutable ID (slug) of the policy
+	PolicyId string `pulumi:"policyId"`
+	// ID (slug) of the space the policy is in
+	SpaceId string `pulumi:"spaceId"`
+	// type of the policy
+	Type string `pulumi:"type"`
 }
 
 func LookupPolicyOutput(ctx *pulumi.Context, args LookupPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupPolicyResultOutput {
@@ -78,6 +83,7 @@ func LookupPolicyOutput(ctx *pulumi.Context, args LookupPolicyOutputArgs, opts .
 
 // A collection of arguments for invoking getPolicy.
 type LookupPolicyOutputArgs struct {
+	// immutable ID (slug) of the policy
 	PolicyId pulumi.StringInput `pulumi:"policyId"`
 }
 
@@ -100,6 +106,7 @@ func (o LookupPolicyResultOutput) ToLookupPolicyResultOutputWithContext(ctx cont
 	return o
 }
 
+// body of the policy
 func (o LookupPolicyResultOutput) Body() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.Body }).(pulumi.StringOutput)
 }
@@ -113,18 +120,22 @@ func (o LookupPolicyResultOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupPolicyResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// name of the policy
 func (o LookupPolicyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// immutable ID (slug) of the policy
 func (o LookupPolicyResultOutput) PolicyId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.PolicyId }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the space the policy is in
 func (o LookupPolicyResultOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
+// type of the policy
 func (o LookupPolicyResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.Type }).(pulumi.StringOutput)
 }

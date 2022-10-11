@@ -19,26 +19,24 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var k8s_core = Spacelift.GetStack.Invoke(new()
         ///     {
-        ///         var k8s_core = Output.Create(Spacelift.GetStack.InvokeAsync(new Spacelift.GetStackArgs
-        ///         {
-        ///             StackId = "k8s-core",
-        ///         }));
-        ///     }
+        ///         StackId = "k8s-core",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetStackResult> InvokeAsync(GetStackArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetStackResult>("spacelift:index/getStack:getStack", args ?? new GetStackArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetStackResult>("spacelift:index/getStack:getStack", args ?? new GetStackArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.Stack` combines source code and configuration to create a runtime environment where resources are managed. In this way it's similar to a stack in AWS CloudFormation, or a project on generic CI/CD platforms.
@@ -48,33 +46,35 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var k8s_core = Spacelift.GetStack.Invoke(new()
         ///     {
-        ///         var k8s_core = Output.Create(Spacelift.GetStack.InvokeAsync(new Spacelift.GetStackArgs
-        ///         {
-        ///             StackId = "k8s-core",
-        ///         }));
-        ///     }
+        ///         StackId = "k8s-core",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetStackResult> Invoke(GetStackInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetStackResult>("spacelift:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetStackResult>("spacelift:index/getStack:getStack", args ?? new GetStackInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetStackArgs : Pulumi.InvokeArgs
+    public sealed class GetStackArgs : global::Pulumi.InvokeArgs
     {
         [Input("afterApplies")]
         private List<string>? _afterApplies;
+
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
         public List<string> AfterApplies
         {
             get => _afterApplies ?? (_afterApplies = new List<string>());
@@ -83,6 +83,10 @@ namespace Pulumi.Spacelift
 
         [Input("afterDestroys")]
         private List<string>? _afterDestroys;
+
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
         public List<string> AfterDestroys
         {
             get => _afterDestroys ?? (_afterDestroys = new List<string>());
@@ -91,6 +95,10 @@ namespace Pulumi.Spacelift
 
         [Input("afterInits")]
         private List<string>? _afterInits;
+
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
         public List<string> AfterInits
         {
             get => _afterInits ?? (_afterInits = new List<string>());
@@ -99,6 +107,10 @@ namespace Pulumi.Spacelift
 
         [Input("afterPerforms")]
         private List<string>? _afterPerforms;
+
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
         public List<string> AfterPerforms
         {
             get => _afterPerforms ?? (_afterPerforms = new List<string>());
@@ -107,6 +119,10 @@ namespace Pulumi.Spacelift
 
         [Input("afterPlans")]
         private List<string>? _afterPlans;
+
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
         public List<string> AfterPlans
         {
             get => _afterPlans ?? (_afterPlans = new List<string>());
@@ -115,6 +131,10 @@ namespace Pulumi.Spacelift
 
         [Input("beforeApplies")]
         private List<string>? _beforeApplies;
+
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
         public List<string> BeforeApplies
         {
             get => _beforeApplies ?? (_beforeApplies = new List<string>());
@@ -123,6 +143,10 @@ namespace Pulumi.Spacelift
 
         [Input("beforeDestroys")]
         private List<string>? _beforeDestroys;
+
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
         public List<string> BeforeDestroys
         {
             get => _beforeDestroys ?? (_beforeDestroys = new List<string>());
@@ -131,6 +155,10 @@ namespace Pulumi.Spacelift
 
         [Input("beforeInits")]
         private List<string>? _beforeInits;
+
+        /// <summary>
+        /// List of before-init scripts
+        /// </summary>
         public List<string> BeforeInits
         {
             get => _beforeInits ?? (_beforeInits = new List<string>());
@@ -139,6 +167,10 @@ namespace Pulumi.Spacelift
 
         [Input("beforePerforms")]
         private List<string>? _beforePerforms;
+
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
         public List<string> BeforePerforms
         {
             get => _beforePerforms ?? (_beforePerforms = new List<string>());
@@ -147,24 +179,36 @@ namespace Pulumi.Spacelift
 
         [Input("beforePlans")]
         private List<string>? _beforePlans;
+
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
         public List<string> BeforePlans
         {
             get => _beforePlans ?? (_beforePlans = new List<string>());
             set => _beforePlans = value;
         }
 
+        /// <summary>
+        /// ID (slug) of the stack
+        /// </summary>
         [Input("stackId", required: true)]
         public string StackId { get; set; } = null!;
 
         public GetStackArgs()
         {
         }
+        public static new GetStackArgs Empty => new GetStackArgs();
     }
 
-    public sealed class GetStackInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetStackInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("afterApplies")]
         private InputList<string>? _afterApplies;
+
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
         public InputList<string> AfterApplies
         {
             get => _afterApplies ?? (_afterApplies = new InputList<string>());
@@ -173,6 +217,10 @@ namespace Pulumi.Spacelift
 
         [Input("afterDestroys")]
         private InputList<string>? _afterDestroys;
+
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
         public InputList<string> AfterDestroys
         {
             get => _afterDestroys ?? (_afterDestroys = new InputList<string>());
@@ -181,6 +229,10 @@ namespace Pulumi.Spacelift
 
         [Input("afterInits")]
         private InputList<string>? _afterInits;
+
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
         public InputList<string> AfterInits
         {
             get => _afterInits ?? (_afterInits = new InputList<string>());
@@ -189,6 +241,10 @@ namespace Pulumi.Spacelift
 
         [Input("afterPerforms")]
         private InputList<string>? _afterPerforms;
+
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
         public InputList<string> AfterPerforms
         {
             get => _afterPerforms ?? (_afterPerforms = new InputList<string>());
@@ -197,6 +253,10 @@ namespace Pulumi.Spacelift
 
         [Input("afterPlans")]
         private InputList<string>? _afterPlans;
+
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
         public InputList<string> AfterPlans
         {
             get => _afterPlans ?? (_afterPlans = new InputList<string>());
@@ -205,6 +265,10 @@ namespace Pulumi.Spacelift
 
         [Input("beforeApplies")]
         private InputList<string>? _beforeApplies;
+
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
         public InputList<string> BeforeApplies
         {
             get => _beforeApplies ?? (_beforeApplies = new InputList<string>());
@@ -213,6 +277,10 @@ namespace Pulumi.Spacelift
 
         [Input("beforeDestroys")]
         private InputList<string>? _beforeDestroys;
+
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
         public InputList<string> BeforeDestroys
         {
             get => _beforeDestroys ?? (_beforeDestroys = new InputList<string>());
@@ -221,6 +289,10 @@ namespace Pulumi.Spacelift
 
         [Input("beforeInits")]
         private InputList<string>? _beforeInits;
+
+        /// <summary>
+        /// List of before-init scripts
+        /// </summary>
         public InputList<string> BeforeInits
         {
             get => _beforeInits ?? (_beforeInits = new InputList<string>());
@@ -229,6 +301,10 @@ namespace Pulumi.Spacelift
 
         [Input("beforePerforms")]
         private InputList<string>? _beforePerforms;
+
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
         public InputList<string> BeforePerforms
         {
             get => _beforePerforms ?? (_beforePerforms = new InputList<string>());
@@ -237,66 +313,183 @@ namespace Pulumi.Spacelift
 
         [Input("beforePlans")]
         private InputList<string>? _beforePlans;
+
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
         public InputList<string> BeforePlans
         {
             get => _beforePlans ?? (_beforePlans = new InputList<string>());
             set => _beforePlans = value;
         }
 
+        /// <summary>
+        /// ID (slug) of the stack
+        /// </summary>
         [Input("stackId", required: true)]
         public Input<string> StackId { get; set; } = null!;
 
         public GetStackInvokeArgs()
         {
         }
+        public static new GetStackInvokeArgs Empty => new GetStackInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetStackResult
     {
+        /// <summary>
+        /// indicates whether this stack can administer others
+        /// </summary>
         public readonly bool Administrative;
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterApplies;
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterDestroys;
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterInits;
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterPerforms;
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterPlans;
+        /// <summary>
+        /// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStackAnsibleResult> Ansibles;
+        /// <summary>
+        /// indicates whether changes to this stack can be automatically deployed
+        /// </summary>
         public readonly bool Autodeploy;
+        /// <summary>
+        /// indicates whether obsolete proposed changes should automatically be retried
+        /// </summary>
         public readonly bool Autoretry;
+        /// <summary>
+        /// AWS IAM assume role policy statement setting up trust relationship
+        /// </summary>
         public readonly string AwsAssumeRolePolicyStatement;
+        /// <summary>
+        /// Azure DevOps VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStackAzureDevopResult> AzureDevops;
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
         public readonly ImmutableArray<string> BeforeApplies;
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
         public readonly ImmutableArray<string> BeforeDestroys;
+        /// <summary>
+        /// List of before-init scripts
+        /// </summary>
         public readonly ImmutableArray<string> BeforeInits;
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
         public readonly ImmutableArray<string> BeforePerforms;
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
         public readonly ImmutableArray<string> BeforePlans;
+        /// <summary>
+        /// Bitbucket Cloud VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStackBitbucketCloudResult> BitbucketClouds;
+        /// <summary>
+        /// Bitbucket Datacenter VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStackBitbucketDatacenterResult> BitbucketDatacenters;
+        /// <summary>
+        /// Repository branch to treat as the default 'main' branch
+        /// </summary>
         public readonly string Branch;
+        /// <summary>
+        /// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStackCloudformationResult> Cloudformations;
+        /// <summary>
+        /// free-form stack description for users
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Indicates whether local preview runs can be triggered on this Stack.
+        /// </summary>
         public readonly bool EnableLocalPreview;
+        /// <summary>
+        /// GitHub Enterprise (self-hosted) VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStackGithubEnterpriseResult> GithubEnterprises;
+        /// <summary>
+        /// GitLab VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStackGitlabResult> Gitlabs;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStackKuberneteResult> Kubernetes;
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// Determines if Spacelift should manage state for this stack
+        /// </summary>
         public readonly bool ManageState;
+        /// <summary>
+        /// Name of the stack - should be unique in one account
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+        /// </summary>
         public readonly string ProjectRoot;
+        /// <summary>
+        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+        /// </summary>
         public readonly bool ProtectFromDeletion;
+        /// <summary>
+        /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStackPulumiResult> Pulumis;
+        /// <summary>
+        /// Name of the repository, without the owner part
+        /// </summary>
         public readonly string Repository;
+        /// <summary>
+        /// Name of the Docker image used to process Runs
+        /// </summary>
         public readonly string RunnerImage;
+        /// <summary>
+        /// Showcase-related attributes
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStackShowcaseResult> Showcases;
+        /// <summary>
+        /// ID (slug) of the space the stack is in
+        /// </summary>
         public readonly string SpaceId;
+        /// <summary>
+        /// ID (slug) of the stack
+        /// </summary>
         public readonly string StackId;
+        public readonly bool TerraformSmartSanitization;
         public readonly string TerraformVersion;
         public readonly string TerraformWorkspace;
+        /// <summary>
+        /// ID of the worker pool to use
+        /// </summary>
         public readonly string WorkerPoolId;
 
         [OutputConstructor]
@@ -375,6 +568,8 @@ namespace Pulumi.Spacelift
 
             string stackId,
 
+            bool terraformSmartSanitization,
+
             string terraformVersion,
 
             string terraformWorkspace,
@@ -418,6 +613,7 @@ namespace Pulumi.Spacelift
             Showcases = showcases;
             SpaceId = spaceId;
             StackId = stackId;
+            TerraformSmartSanitization = terraformSmartSanitization;
             TerraformVersion = terraformVersion;
             TerraformWorkspace = terraformWorkspace;
             WorkerPoolId = workerPoolId;

@@ -6,7 +6,6 @@ Home-page: https://spacelift.io
 License: Apache-2.0
 Project-URL: Repository, git://github.com/spacelift-io/pulumi-spacelift.git
 Keywords: pulumi spacelift category/cloud category/infrastructure
-Platform: UNKNOWN
 Description-Content-Type: text/markdown
 
 # Terraform Bridge Provider Boilerplate
@@ -345,5 +344,3 @@ In this section, we'll add the necessary configuration to work with GitHub Actio
     1. Under "Settings", set the Package Status to "public".
 
 Now you are ready to use the provider, cut releases, and have some well-deserved :ice_cream:!
-
-

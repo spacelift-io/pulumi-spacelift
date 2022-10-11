@@ -42,6 +42,7 @@ func GetIPs(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetIPsResult, er
 // A collection of values returned by getIPs.
 type GetIPsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id  string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// the list of spacelift.io outgoing IP addresses
 	Ips []string `pulumi:"ips"`
 }

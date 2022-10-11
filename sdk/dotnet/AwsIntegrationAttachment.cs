@@ -10,51 +10,48 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift
 {
     /// <summary>
-    /// **Note:** This resource is experimental. Please continue to use `spacelift.AwsRole`.
-    /// 
     /// `spacelift.AwsIntegrationAttachment` represents the attachment between a reusable AWS integration and a single stack or module.
     /// 
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // For a stack
+    ///     var thisAwsIntegrationAttachment = new Spacelift.AwsIntegrationAttachment("thisAwsIntegrationAttachment", new()
     ///     {
-    ///         // For a stack
-    ///         var thisAwsIntegrationAttachment = new Spacelift.AwsIntegrationAttachment("thisAwsIntegrationAttachment", new Spacelift.AwsIntegrationAttachmentArgs
+    ///         IntegrationId = spacelift_aws_integration.This.Id,
+    ///         StackId = "my-stack-id",
+    ///         Read = true,
+    ///         Write = true,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             IntegrationId = spacelift_aws_integration.This.Id,
-    ///             StackId = "my-stack-id",
-    ///             Read = true,
-    ///             Write = true,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 aws_iam_role.This,
-    ///             },
-    ///         });
-    ///         // For a module
-    ///         var thisIndex_awsIntegrationAttachmentAwsIntegrationAttachment = new Spacelift.AwsIntegrationAttachment("thisIndex/awsIntegrationAttachmentAwsIntegrationAttachment", new Spacelift.AwsIntegrationAttachmentArgs
-    ///         {
-    ///             IntegrationId = spacelift_aws_integration.This.Id,
-    ///             ModuleId = "my-module-id",
-    ///             Read = true,
-    ///             Write = true,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 aws_iam_role.This,
-    ///             },
-    ///         });
-    ///     }
+    ///             aws_iam_role.This,
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     // For a module
+    ///     var thisIndex_awsIntegrationAttachmentAwsIntegrationAttachment = new Spacelift.AwsIntegrationAttachment("thisIndex/awsIntegrationAttachmentAwsIntegrationAttachment", new()
+    ///     {
+    ///         IntegrationId = spacelift_aws_integration.This.Id,
+    ///         ModuleId = "my-module-id",
+    ///         Read = true,
+    ///         Write = true,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             aws_iam_role.This,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -64,7 +61,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/awsIntegrationAttachment:AwsIntegrationAttachment")]
-    public partial class AwsIntegrationAttachment : Pulumi.CustomResource
+    public partial class AwsIntegrationAttachment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Internal ID of the attachment entity
@@ -125,7 +122,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -147,7 +144,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class AwsIntegrationAttachmentArgs : Pulumi.ResourceArgs
+    public sealed class AwsIntegrationAttachmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the integration to attach
@@ -182,9 +179,10 @@ namespace Pulumi.Spacelift
         public AwsIntegrationAttachmentArgs()
         {
         }
+        public static new AwsIntegrationAttachmentArgs Empty => new AwsIntegrationAttachmentArgs();
     }
 
-    public sealed class AwsIntegrationAttachmentState : Pulumi.ResourceArgs
+    public sealed class AwsIntegrationAttachmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Internal ID of the attachment entity
@@ -225,5 +223,6 @@ namespace Pulumi.Spacelift
         public AwsIntegrationAttachmentState()
         {
         }
+        public static new AwsIntegrationAttachmentState Empty => new AwsIntegrationAttachmentState();
     }
 }

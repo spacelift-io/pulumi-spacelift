@@ -10,13 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift.Inputs
 {
 
-    public sealed class StackGitlabArgs : Pulumi.ResourceArgs
+    public sealed class StackGitlabArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The GitLab namespace containing the repository
+        /// </summary>
         [Input("namespace", required: true)]
         public Input<string> Namespace { get; set; } = null!;
 
         public StackGitlabArgs()
         {
         }
+        public static new StackGitlabArgs Empty => new StackGitlabArgs();
     }
 }

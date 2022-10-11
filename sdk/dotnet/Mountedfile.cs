@@ -16,42 +16,42 @@ namespace Pulumi.Spacelift
     /// 
     /// ```csharp
     /// using System;
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
-    /// {
     /// 	private static string ReadFileBase64(string path) {
     /// 		return Convert.ToBase64String(Encoding.UTF8.GetBytes(File.ReadAllText(path)))
     /// 	}
     /// 
-    ///     public MyStack()
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // For a context
+    ///     var ireland_kubeconfig = new Spacelift.Mountedfile("ireland-kubeconfig", new()
     ///     {
-    ///         // For a context
-    ///         var ireland_kubeconfig = new Spacelift.Mountedfile("ireland-kubeconfig", new Spacelift.MountedfileArgs
-    ///         {
-    ///             ContextId = "prod-k8s-ie",
-    ///             RelativePath = "kubeconfig",
-    ///             Content = ReadFileBase64($"{path.Module}/kubeconfig.json"),
-    ///         });
-    ///         // For a module
-    ///         var module_kubeconfig = new Spacelift.Mountedfile("module-kubeconfig", new Spacelift.MountedfileArgs
-    ///         {
-    ///             ModuleId = "k8s-module",
-    ///             RelativePath = "kubeconfig",
-    ///             Content = ReadFileBase64($"{path.Module}/kubeconfig.json"),
-    ///         });
-    ///         // For a stack
-    ///         var core_kubeconfig = new Spacelift.Mountedfile("core-kubeconfig", new Spacelift.MountedfileArgs
-    ///         {
-    ///             StackId = "k8s-core",
-    ///             RelativePath = "kubeconfig",
-    ///             Content = ReadFileBase64($"{path.Module}/kubeconfig.json"),
-    ///         });
-    ///     }
+    ///         ContextId = "prod-k8s-ie",
+    ///         RelativePath = "kubeconfig",
+    ///         Content = ReadFileBase64($"{path.Module}/kubeconfig.json"),
+    ///     });
     /// 
-    /// }
+    ///     // For a module
+    ///     var module_kubeconfig = new Spacelift.Mountedfile("module-kubeconfig", new()
+    ///     {
+    ///         ModuleId = "k8s-module",
+    ///         RelativePath = "kubeconfig",
+    ///         Content = ReadFileBase64($"{path.Module}/kubeconfig.json"),
+    ///     });
+    /// 
+    ///     // For a stack
+    ///     var core_kubeconfig = new Spacelift.Mountedfile("core-kubeconfig", new()
+    ///     {
+    ///         StackId = "k8s-core",
+    ///         RelativePath = "kubeconfig",
+    ///         Content = ReadFileBase64($"{path.Module}/kubeconfig.json"),
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -69,7 +69,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/mountedfile:Mountedfile")]
-    public partial class Mountedfile : Pulumi.CustomResource
+    public partial class Mountedfile : global::Pulumi.CustomResource
     {
         /// <summary>
         /// SHA-256 checksum of the value
@@ -136,7 +136,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -158,7 +158,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class MountedfileArgs : Pulumi.ResourceArgs
+    public sealed class MountedfileArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Content of the mounted file encoded using Base-64
@@ -199,9 +199,10 @@ namespace Pulumi.Spacelift
         public MountedfileArgs()
         {
         }
+        public static new MountedfileArgs Empty => new MountedfileArgs();
     }
 
-    public sealed class MountedfileState : Pulumi.ResourceArgs
+    public sealed class MountedfileState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// SHA-256 checksum of the value
@@ -248,5 +249,6 @@ namespace Pulumi.Spacelift
         public MountedfileState()
         {
         }
+        public static new MountedfileState Empty => new MountedfileState();
     }
 }

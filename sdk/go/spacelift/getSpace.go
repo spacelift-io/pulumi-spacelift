@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -48,18 +47,24 @@ func LookupSpace(ctx *pulumi.Context, args *LookupSpaceArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getSpace.
 type LookupSpaceArgs struct {
+	// immutable ID (slug) of the space
 	SpaceId string `pulumi:"spaceId"`
 }
 
 // A collection of values returned by getSpace.
 type LookupSpaceResult struct {
+	// free-form space description for users
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id              string `pulumi:"id"`
-	InheritEntities bool   `pulumi:"inheritEntities"`
-	Name            string `pulumi:"name"`
-	ParentSpaceId   string `pulumi:"parentSpaceId"`
-	SpaceId         string `pulumi:"spaceId"`
+	Id string `pulumi:"id"`
+	// indication whether access to this space inherits read access to entities from the parent space
+	InheritEntities bool `pulumi:"inheritEntities"`
+	// name of the space
+	Name string `pulumi:"name"`
+	// immutable ID (slug) of parent space
+	ParentSpaceId string `pulumi:"parentSpaceId"`
+	// immutable ID (slug) of the space
+	SpaceId string `pulumi:"spaceId"`
 }
 
 func LookupSpaceOutput(ctx *pulumi.Context, args LookupSpaceOutputArgs, opts ...pulumi.InvokeOption) LookupSpaceResultOutput {
@@ -77,6 +82,7 @@ func LookupSpaceOutput(ctx *pulumi.Context, args LookupSpaceOutputArgs, opts ...
 
 // A collection of arguments for invoking getSpace.
 type LookupSpaceOutputArgs struct {
+	// immutable ID (slug) of the space
 	SpaceId pulumi.StringInput `pulumi:"spaceId"`
 }
 
@@ -99,6 +105,7 @@ func (o LookupSpaceResultOutput) ToLookupSpaceResultOutputWithContext(ctx contex
 	return o
 }
 
+// free-form space description for users
 func (o LookupSpaceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSpaceResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -108,18 +115,22 @@ func (o LookupSpaceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSpaceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// indication whether access to this space inherits read access to entities from the parent space
 func (o LookupSpaceResultOutput) InheritEntities() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupSpaceResult) bool { return v.InheritEntities }).(pulumi.BoolOutput)
 }
 
+// name of the space
 func (o LookupSpaceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSpaceResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// immutable ID (slug) of parent space
 func (o LookupSpaceResultOutput) ParentSpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSpaceResult) string { return v.ParentSpaceId }).(pulumi.StringOutput)
 }
 
+// immutable ID (slug) of the space
 func (o LookupSpaceResultOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSpaceResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }

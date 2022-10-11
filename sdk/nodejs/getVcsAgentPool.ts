@@ -33,6 +33,9 @@ export function getVcsAgentPool(args: GetVcsAgentPoolArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getVcsAgentPool.
  */
 export interface GetVcsAgentPoolArgs {
+    /**
+     * ID of the VCS agent pool to retrieve
+     */
     vcsAgentPoolId: string;
 }
 
@@ -40,12 +43,21 @@ export interface GetVcsAgentPoolArgs {
  * A collection of values returned by getVcsAgentPool.
  */
 export interface GetVcsAgentPoolResult {
+    /**
+     * Free-form VCS agent pool description for users
+     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Name of the VCS agent pool
+     */
     readonly name: string;
+    /**
+     * ID of the VCS agent pool to retrieve
+     */
     readonly vcsAgentPoolId: string;
 }
 
@@ -57,5 +69,8 @@ export function getVcsAgentPoolOutput(args: GetVcsAgentPoolOutputArgs, opts?: pu
  * A collection of arguments for invoking getVcsAgentPool.
  */
 export interface GetVcsAgentPoolOutputArgs {
+    /**
+     * ID of the VCS agent pool to retrieve
+     */
     vcsAgentPoolId: pulumi.Input<string>;
 }

@@ -19,29 +19,28 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var policy = Spacelift.GetPolicy.Invoke(new()
         ///     {
-        ///         var policy = Output.Create(Spacelift.GetPolicy.InvokeAsync(new Spacelift.GetPolicyArgs
-        ///         {
-        ///             PolicyId = spacelift_policy.Policy.Id,
-        ///         }));
-        ///         this.PolicyBody = policy.Apply(policy =&gt; policy.Body);
-        ///     }
+        ///         PolicyId = spacelift_policy.Policy.Id,
+        ///     });
         /// 
-        ///     [Output("policyBody")]
-        ///     public Output&lt;string&gt; PolicyBody { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["policyBody"] = policy.Apply(getPolicyResult =&gt; getPolicyResult.Body),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPolicyResult> InvokeAsync(GetPolicyArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPolicyResult>("spacelift:index/getPolicy:getPolicy", args ?? new GetPolicyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPolicyResult>("spacelift:index/getPolicy:getPolicy", args ?? new GetPolicyArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.Policy` represents a Spacelift **policy** - a collection of customer-defined rules that are applied by Spacelift at one of the decision points within the application.
@@ -51,65 +50,87 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var policy = Spacelift.GetPolicy.Invoke(new()
         ///     {
-        ///         var policy = Output.Create(Spacelift.GetPolicy.InvokeAsync(new Spacelift.GetPolicyArgs
-        ///         {
-        ///             PolicyId = spacelift_policy.Policy.Id,
-        ///         }));
-        ///         this.PolicyBody = policy.Apply(policy =&gt; policy.Body);
-        ///     }
+        ///         PolicyId = spacelift_policy.Policy.Id,
+        ///     });
         /// 
-        ///     [Output("policyBody")]
-        ///     public Output&lt;string&gt; PolicyBody { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["policyBody"] = policy.Apply(getPolicyResult =&gt; getPolicyResult.Body),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPolicyResult> Invoke(GetPolicyInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPolicyResult>("spacelift:index/getPolicy:getPolicy", args ?? new GetPolicyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetPolicyResult>("spacelift:index/getPolicy:getPolicy", args ?? new GetPolicyInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetPolicyArgs : Pulumi.InvokeArgs
+    public sealed class GetPolicyArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// immutable ID (slug) of the policy
+        /// </summary>
         [Input("policyId", required: true)]
         public string PolicyId { get; set; } = null!;
 
         public GetPolicyArgs()
         {
         }
+        public static new GetPolicyArgs Empty => new GetPolicyArgs();
     }
 
-    public sealed class GetPolicyInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetPolicyInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// immutable ID (slug) of the policy
+        /// </summary>
         [Input("policyId", required: true)]
         public Input<string> PolicyId { get; set; } = null!;
 
         public GetPolicyInvokeArgs()
         {
         }
+        public static new GetPolicyInvokeArgs Empty => new GetPolicyInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetPolicyResult
     {
+        /// <summary>
+        /// body of the policy
+        /// </summary>
         public readonly string Body;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// name of the policy
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// immutable ID (slug) of the policy
+        /// </summary>
         public readonly string PolicyId;
+        /// <summary>
+        /// ID (slug) of the space the policy is in
+        /// </summary>
         public readonly string SpaceId;
+        /// <summary>
+        /// type of the policy
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

@@ -46,10 +46,25 @@ export function getAwsIntegrationAttachmentExternalId(args: GetAwsIntegrationAtt
  * A collection of arguments for invoking getAwsIntegrationAttachmentExternalId.
  */
 export interface GetAwsIntegrationAttachmentExternalIdArgs {
+    /**
+     * immutable ID (slug) of the AWS integration
+     */
     integrationId: string;
+    /**
+     * immutable ID (slug) of the module
+     */
     moduleId?: string;
+    /**
+     * whether the integration will be used for read operations
+     */
     read?: boolean;
+    /**
+     * immutable ID (slug) of the stack
+     */
     stackId?: string;
+    /**
+     * whether the integration will be used for write operations
+     */
     write?: boolean;
 }
 
@@ -57,16 +72,37 @@ export interface GetAwsIntegrationAttachmentExternalIdArgs {
  * A collection of values returned by getAwsIntegrationAttachmentExternalId.
  */
 export interface GetAwsIntegrationAttachmentExternalIdResult {
+    /**
+     * An assume role policy statement that can be attached to your role to allow Spacelift to assume it
+     */
     readonly assumeRolePolicyStatement: string;
+    /**
+     * The external ID that will be used during role assumption
+     */
     readonly externalId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * immutable ID (slug) of the AWS integration
+     */
     readonly integrationId: string;
+    /**
+     * immutable ID (slug) of the module
+     */
     readonly moduleId?: string;
+    /**
+     * whether the integration will be used for read operations
+     */
     readonly read?: boolean;
+    /**
+     * immutable ID (slug) of the stack
+     */
     readonly stackId?: string;
+    /**
+     * whether the integration will be used for write operations
+     */
     readonly write?: boolean;
 }
 
@@ -78,9 +114,24 @@ export function getAwsIntegrationAttachmentExternalIdOutput(args: GetAwsIntegrat
  * A collection of arguments for invoking getAwsIntegrationAttachmentExternalId.
  */
 export interface GetAwsIntegrationAttachmentExternalIdOutputArgs {
+    /**
+     * immutable ID (slug) of the AWS integration
+     */
     integrationId: pulumi.Input<string>;
+    /**
+     * immutable ID (slug) of the module
+     */
     moduleId?: pulumi.Input<string>;
+    /**
+     * whether the integration will be used for read operations
+     */
     read?: pulumi.Input<boolean>;
+    /**
+     * immutable ID (slug) of the stack
+     */
     stackId?: pulumi.Input<string>;
+    /**
+     * whether the integration will be used for write operations
+     */
     write?: pulumi.Input<boolean>;
 }

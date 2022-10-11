@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -59,24 +58,36 @@ func GetAwsIntegrationAttachmentExternalId(ctx *pulumi.Context, args *GetAwsInte
 
 // A collection of arguments for invoking getAwsIntegrationAttachmentExternalId.
 type GetAwsIntegrationAttachmentExternalIdArgs struct {
-	IntegrationId string  `pulumi:"integrationId"`
-	ModuleId      *string `pulumi:"moduleId"`
-	Read          *bool   `pulumi:"read"`
-	StackId       *string `pulumi:"stackId"`
-	Write         *bool   `pulumi:"write"`
+	// immutable ID (slug) of the AWS integration
+	IntegrationId string `pulumi:"integrationId"`
+	// immutable ID (slug) of the module
+	ModuleId *string `pulumi:"moduleId"`
+	// whether the integration will be used for read operations
+	Read *bool `pulumi:"read"`
+	// immutable ID (slug) of the stack
+	StackId *string `pulumi:"stackId"`
+	// whether the integration will be used for write operations
+	Write *bool `pulumi:"write"`
 }
 
 // A collection of values returned by getAwsIntegrationAttachmentExternalId.
 type GetAwsIntegrationAttachmentExternalIdResult struct {
+	// An assume role policy statement that can be attached to your role to allow Spacelift to assume it
 	AssumeRolePolicyStatement string `pulumi:"assumeRolePolicyStatement"`
-	ExternalId                string `pulumi:"externalId"`
+	// The external ID that will be used during role assumption
+	ExternalId string `pulumi:"externalId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id            string  `pulumi:"id"`
-	IntegrationId string  `pulumi:"integrationId"`
-	ModuleId      *string `pulumi:"moduleId"`
-	Read          *bool   `pulumi:"read"`
-	StackId       *string `pulumi:"stackId"`
-	Write         *bool   `pulumi:"write"`
+	Id string `pulumi:"id"`
+	// immutable ID (slug) of the AWS integration
+	IntegrationId string `pulumi:"integrationId"`
+	// immutable ID (slug) of the module
+	ModuleId *string `pulumi:"moduleId"`
+	// whether the integration will be used for read operations
+	Read *bool `pulumi:"read"`
+	// immutable ID (slug) of the stack
+	StackId *string `pulumi:"stackId"`
+	// whether the integration will be used for write operations
+	Write *bool `pulumi:"write"`
 }
 
 func GetAwsIntegrationAttachmentExternalIdOutput(ctx *pulumi.Context, args GetAwsIntegrationAttachmentExternalIdOutputArgs, opts ...pulumi.InvokeOption) GetAwsIntegrationAttachmentExternalIdResultOutput {
@@ -94,11 +105,16 @@ func GetAwsIntegrationAttachmentExternalIdOutput(ctx *pulumi.Context, args GetAw
 
 // A collection of arguments for invoking getAwsIntegrationAttachmentExternalId.
 type GetAwsIntegrationAttachmentExternalIdOutputArgs struct {
-	IntegrationId pulumi.StringInput    `pulumi:"integrationId"`
-	ModuleId      pulumi.StringPtrInput `pulumi:"moduleId"`
-	Read          pulumi.BoolPtrInput   `pulumi:"read"`
-	StackId       pulumi.StringPtrInput `pulumi:"stackId"`
-	Write         pulumi.BoolPtrInput   `pulumi:"write"`
+	// immutable ID (slug) of the AWS integration
+	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
+	// immutable ID (slug) of the module
+	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
+	// whether the integration will be used for read operations
+	Read pulumi.BoolPtrInput `pulumi:"read"`
+	// immutable ID (slug) of the stack
+	StackId pulumi.StringPtrInput `pulumi:"stackId"`
+	// whether the integration will be used for write operations
+	Write pulumi.BoolPtrInput `pulumi:"write"`
 }
 
 func (GetAwsIntegrationAttachmentExternalIdOutputArgs) ElementType() reflect.Type {
@@ -120,10 +136,12 @@ func (o GetAwsIntegrationAttachmentExternalIdResultOutput) ToGetAwsIntegrationAt
 	return o
 }
 
+// An assume role policy statement that can be attached to your role to allow Spacelift to assume it
 func (o GetAwsIntegrationAttachmentExternalIdResultOutput) AssumeRolePolicyStatement() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsIntegrationAttachmentExternalIdResult) string { return v.AssumeRolePolicyStatement }).(pulumi.StringOutput)
 }
 
+// The external ID that will be used during role assumption
 func (o GetAwsIntegrationAttachmentExternalIdResultOutput) ExternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsIntegrationAttachmentExternalIdResult) string { return v.ExternalId }).(pulumi.StringOutput)
 }
@@ -133,22 +151,27 @@ func (o GetAwsIntegrationAttachmentExternalIdResultOutput) Id() pulumi.StringOut
 	return o.ApplyT(func(v GetAwsIntegrationAttachmentExternalIdResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// immutable ID (slug) of the AWS integration
 func (o GetAwsIntegrationAttachmentExternalIdResultOutput) IntegrationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsIntegrationAttachmentExternalIdResult) string { return v.IntegrationId }).(pulumi.StringOutput)
 }
 
+// immutable ID (slug) of the module
 func (o GetAwsIntegrationAttachmentExternalIdResultOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAwsIntegrationAttachmentExternalIdResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
+// whether the integration will be used for read operations
 func (o GetAwsIntegrationAttachmentExternalIdResultOutput) Read() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetAwsIntegrationAttachmentExternalIdResult) *bool { return v.Read }).(pulumi.BoolPtrOutput)
 }
 
+// immutable ID (slug) of the stack
 func (o GetAwsIntegrationAttachmentExternalIdResultOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAwsIntegrationAttachmentExternalIdResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }
 
+// whether the integration will be used for write operations
 func (o GetAwsIntegrationAttachmentExternalIdResultOutput) Write() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetAwsIntegrationAttachmentExternalIdResult) *bool { return v.Write }).(pulumi.BoolPtrOutput)
 }

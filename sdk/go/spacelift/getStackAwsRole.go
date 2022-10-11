@@ -24,7 +24,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -59,20 +58,28 @@ func LookupStackAwsRole(ctx *pulumi.Context, args *LookupStackAwsRoleArgs, opts 
 
 // A collection of arguments for invoking getStackAwsRole.
 type LookupStackAwsRoleArgs struct {
+	// ID of the module which assumes the AWS IAM role
 	ModuleId *string `pulumi:"moduleId"`
-	StackId  *string `pulumi:"stackId"`
+	// ID of the stack which assumes the AWS IAM role
+	StackId *string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getStackAwsRole.
 type LookupStackAwsRoleResult struct {
-	DurationSeconds             int    `pulumi:"durationSeconds"`
-	ExternalId                  string `pulumi:"externalId"`
-	GenerateCredentialsInWorker bool   `pulumi:"generateCredentialsInWorker"`
+	// AWS IAM role session duration in seconds
+	DurationSeconds int `pulumi:"durationSeconds"`
+	// Custom external ID (works only for private workers).
+	ExternalId string `pulumi:"externalId"`
+	// Generate AWS credentials in the private worker
+	GenerateCredentialsInWorker bool `pulumi:"generateCredentialsInWorker"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string  `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// ID of the module which assumes the AWS IAM role
 	ModuleId *string `pulumi:"moduleId"`
-	RoleArn  string  `pulumi:"roleArn"`
-	StackId  *string `pulumi:"stackId"`
+	// ARN of the AWS IAM role to attach
+	RoleArn string `pulumi:"roleArn"`
+	// ID of the stack which assumes the AWS IAM role
+	StackId *string `pulumi:"stackId"`
 }
 
 func LookupStackAwsRoleOutput(ctx *pulumi.Context, args LookupStackAwsRoleOutputArgs, opts ...pulumi.InvokeOption) LookupStackAwsRoleResultOutput {
@@ -90,8 +97,10 @@ func LookupStackAwsRoleOutput(ctx *pulumi.Context, args LookupStackAwsRoleOutput
 
 // A collection of arguments for invoking getStackAwsRole.
 type LookupStackAwsRoleOutputArgs struct {
+	// ID of the module which assumes the AWS IAM role
 	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
-	StackId  pulumi.StringPtrInput `pulumi:"stackId"`
+	// ID of the stack which assumes the AWS IAM role
+	StackId pulumi.StringPtrInput `pulumi:"stackId"`
 }
 
 func (LookupStackAwsRoleOutputArgs) ElementType() reflect.Type {
@@ -113,14 +122,17 @@ func (o LookupStackAwsRoleResultOutput) ToLookupStackAwsRoleResultOutputWithCont
 	return o
 }
 
+// AWS IAM role session duration in seconds
 func (o LookupStackAwsRoleResultOutput) DurationSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupStackAwsRoleResult) int { return v.DurationSeconds }).(pulumi.IntOutput)
 }
 
+// Custom external ID (works only for private workers).
 func (o LookupStackAwsRoleResultOutput) ExternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackAwsRoleResult) string { return v.ExternalId }).(pulumi.StringOutput)
 }
 
+// Generate AWS credentials in the private worker
 func (o LookupStackAwsRoleResultOutput) GenerateCredentialsInWorker() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupStackAwsRoleResult) bool { return v.GenerateCredentialsInWorker }).(pulumi.BoolOutput)
 }
@@ -130,14 +142,17 @@ func (o LookupStackAwsRoleResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackAwsRoleResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// ID of the module which assumes the AWS IAM role
 func (o LookupStackAwsRoleResultOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupStackAwsRoleResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
+// ARN of the AWS IAM role to attach
 func (o LookupStackAwsRoleResultOutput) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackAwsRoleResult) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
+// ID of the stack which assumes the AWS IAM role
 func (o LookupStackAwsRoleResultOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupStackAwsRoleResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }

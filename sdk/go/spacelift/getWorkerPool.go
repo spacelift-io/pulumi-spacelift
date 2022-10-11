@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -47,19 +46,25 @@ func LookupWorkerPool(ctx *pulumi.Context, args *LookupWorkerPoolArgs, opts ...p
 
 // A collection of arguments for invoking getWorkerPool.
 type LookupWorkerPoolArgs struct {
+	// ID of the worker pool
 	WorkerPoolId string `pulumi:"workerPoolId"`
 }
 
 // A collection of values returned by getWorkerPool.
 type LookupWorkerPoolResult struct {
-	Config      string `pulumi:"config"`
+	// credentials necessary to connect WorkerPool's workers to the control plane
+	Config string `pulumi:"config"`
+	// description of the worker pool
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id           string   `pulumi:"id"`
-	Labels       []string `pulumi:"labels"`
-	Name         string   `pulumi:"name"`
-	SpaceId      string   `pulumi:"spaceId"`
-	WorkerPoolId string   `pulumi:"workerPoolId"`
+	Id     string   `pulumi:"id"`
+	Labels []string `pulumi:"labels"`
+	// name of the worker pool
+	Name string `pulumi:"name"`
+	// ID (slug) of the space the worker pool is in
+	SpaceId string `pulumi:"spaceId"`
+	// ID of the worker pool
+	WorkerPoolId string `pulumi:"workerPoolId"`
 }
 
 func LookupWorkerPoolOutput(ctx *pulumi.Context, args LookupWorkerPoolOutputArgs, opts ...pulumi.InvokeOption) LookupWorkerPoolResultOutput {
@@ -77,6 +82,7 @@ func LookupWorkerPoolOutput(ctx *pulumi.Context, args LookupWorkerPoolOutputArgs
 
 // A collection of arguments for invoking getWorkerPool.
 type LookupWorkerPoolOutputArgs struct {
+	// ID of the worker pool
 	WorkerPoolId pulumi.StringInput `pulumi:"workerPoolId"`
 }
 
@@ -99,10 +105,12 @@ func (o LookupWorkerPoolResultOutput) ToLookupWorkerPoolResultOutputWithContext(
 	return o
 }
 
+// credentials necessary to connect WorkerPool's workers to the control plane
 func (o LookupWorkerPoolResultOutput) Config() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkerPoolResult) string { return v.Config }).(pulumi.StringOutput)
 }
 
+// description of the worker pool
 func (o LookupWorkerPoolResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkerPoolResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -116,14 +124,17 @@ func (o LookupWorkerPoolResultOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupWorkerPoolResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// name of the worker pool
 func (o LookupWorkerPoolResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkerPoolResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the space the worker pool is in
 func (o LookupWorkerPoolResultOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkerPoolResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
+// ID of the worker pool
 func (o LookupWorkerPoolResultOutput) WorkerPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkerPoolResult) string { return v.WorkerPoolId }).(pulumi.StringOutput)
 }

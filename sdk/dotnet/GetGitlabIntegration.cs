@@ -19,34 +19,38 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var gitlabIntegration = Output.Create(Spacelift.GetGitlabIntegration.InvokeAsync());
-        ///     }
+        ///     var gitlabIntegration = Spacelift.GetGitlabIntegration.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetGitlabIntegrationResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetGitlabIntegrationResult>("spacelift:index/getGitlabIntegration:getGitlabIntegration", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetGitlabIntegrationResult>("spacelift:index/getGitlabIntegration:getGitlabIntegration", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
     [OutputType]
     public sealed class GetGitlabIntegrationResult
     {
+        /// <summary>
+        /// Gitlab integration api host
+        /// </summary>
         public readonly string ApiHost;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Gitlab integration webhook secret
+        /// </summary>
         public readonly string WebhookSecret;
 
         [OutputConstructor]

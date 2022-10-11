@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
- * import * as pulumi_spacelift from "@spacelift-io/pulumi-spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * const no_weekend_deploysPolicy = new spacelift.Policy("no-weekend-deploysPolicy", {
  *     body: fs.readFileSync("policies/no-weekend-deploys.rego"),

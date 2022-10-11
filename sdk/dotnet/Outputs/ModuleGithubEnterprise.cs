@@ -13,6 +13,9 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class ModuleGithubEnterprise
     {
+        /// <summary>
+        /// The GitHub organization / user the repository belongs to
+        /// </summary>
         public readonly string Namespace;
 
         [OutputConstructor]

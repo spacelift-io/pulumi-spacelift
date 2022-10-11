@@ -13,6 +13,9 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class ModuleAzureDevops
     {
+        /// <summary>
+        /// The name of the Azure DevOps project
+        /// </summary>
         public readonly string Project;
 
         [OutputConstructor]

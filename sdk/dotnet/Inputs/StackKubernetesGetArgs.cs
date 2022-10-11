@@ -10,13 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift.Inputs
 {
 
-    public sealed class StackKubernetesGetArgs : Pulumi.ResourceArgs
+    public sealed class StackKubernetesGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         public StackKubernetesGetArgs()
         {
         }
+        public static new StackKubernetesGetArgs Empty => new StackKubernetesGetArgs();
     }
 }

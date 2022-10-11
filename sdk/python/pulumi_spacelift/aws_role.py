@@ -231,6 +231,8 @@ class AwsRole(pulumi.CustomResource):
                  stack_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        **NOTE:** while this resource continues to work, we have replaced it with the `AwsIntegration` resource. The new resource allows integrations to be shared by multiple stacks/modules and also supports separate read vs write roles. Please use the `AwsIntegration` resource instead.
+
         `AwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.
 
         If you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).
@@ -263,6 +265,8 @@ class AwsRole(pulumi.CustomResource):
                  args: AwsRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        **NOTE:** while this resource continues to work, we have replaced it with the `AwsIntegration` resource. The new resource allows integrations to be shared by multiple stacks/modules and also supports separate read vs write roles. Please use the `AwsIntegration` resource instead.
+
         `AwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.
 
         If you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).

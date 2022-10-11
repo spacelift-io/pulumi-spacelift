@@ -46,7 +46,13 @@ export function getStackAwsRole(args?: GetStackAwsRoleArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getStackAwsRole.
  */
 export interface GetStackAwsRoleArgs {
+    /**
+     * ID of the module which assumes the AWS IAM role
+     */
     moduleId?: string;
+    /**
+     * ID of the stack which assumes the AWS IAM role
+     */
     stackId?: string;
 }
 
@@ -54,15 +60,33 @@ export interface GetStackAwsRoleArgs {
  * A collection of values returned by getStackAwsRole.
  */
 export interface GetStackAwsRoleResult {
+    /**
+     * AWS IAM role session duration in seconds
+     */
     readonly durationSeconds: number;
+    /**
+     * Custom external ID (works only for private workers).
+     */
     readonly externalId: string;
+    /**
+     * Generate AWS credentials in the private worker
+     */
     readonly generateCredentialsInWorker: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * ID of the module which assumes the AWS IAM role
+     */
     readonly moduleId?: string;
+    /**
+     * ARN of the AWS IAM role to attach
+     */
     readonly roleArn: string;
+    /**
+     * ID of the stack which assumes the AWS IAM role
+     */
     readonly stackId?: string;
 }
 
@@ -74,6 +98,12 @@ export function getStackAwsRoleOutput(args?: GetStackAwsRoleOutputArgs, opts?: p
  * A collection of arguments for invoking getStackAwsRole.
  */
 export interface GetStackAwsRoleOutputArgs {
+    /**
+     * ID of the module which assumes the AWS IAM role
+     */
     moduleId?: pulumi.Input<string>;
+    /**
+     * ID of the stack which assumes the AWS IAM role
+     */
     stackId?: pulumi.Input<string>;
 }

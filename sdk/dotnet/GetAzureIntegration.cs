@@ -19,26 +19,24 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Spacelift.GetAzureIntegration.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Spacelift.GetAzureIntegration.InvokeAsync(new Spacelift.GetAzureIntegrationArgs
-        ///         {
-        ///             IntegrationId = "01FPAH5J0JFYSM5953T9KT2VS9",
-        ///         }));
-        ///     }
+        ///         Name = "Production",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetAzureIntegrationResult> InvokeAsync(GetAzureIntegrationArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAzureIntegrationResult>("spacelift:index/getAzureIntegration:getAzureIntegration", args ?? new GetAzureIntegrationArgs(), options.WithDefaults());
+        public static Task<GetAzureIntegrationResult> InvokeAsync(GetAzureIntegrationArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAzureIntegrationResult>("spacelift:index/getAzureIntegration:getAzureIntegration", args ?? new GetAzureIntegrationArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.AzureIntegration` represents an integration with an Azure AD tenant. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect. Note that you will need to provide admin consent manually for the integration to work
@@ -48,66 +46,114 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Spacelift.GetAzureIntegration.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Spacelift.GetAzureIntegration.InvokeAsync(new Spacelift.GetAzureIntegrationArgs
-        ///         {
-        ///             IntegrationId = "01FPAH5J0JFYSM5953T9KT2VS9",
-        ///         }));
-        ///     }
+        ///         Name = "Production",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetAzureIntegrationResult> Invoke(GetAzureIntegrationInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAzureIntegrationResult>("spacelift:index/getAzureIntegration:getAzureIntegration", args ?? new GetAzureIntegrationInvokeArgs(), options.WithDefaults());
+        public static Output<GetAzureIntegrationResult> Invoke(GetAzureIntegrationInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAzureIntegrationResult>("spacelift:index/getAzureIntegration:getAzureIntegration", args ?? new GetAzureIntegrationInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAzureIntegrationArgs : Pulumi.InvokeArgs
+    public sealed class GetAzureIntegrationArgs : global::Pulumi.InvokeArgs
     {
-        [Input("integrationId", required: true)]
-        public string IntegrationId { get; set; } = null!;
+        /// <summary>
+        /// Immutable ID of the integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
+        [Input("integrationId")]
+        public string? IntegrationId { get; set; }
+
+        /// <summary>
+        /// The friendly name of the integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
+        [Input("name")]
+        public string? Name { get; set; }
 
         public GetAzureIntegrationArgs()
         {
         }
+        public static new GetAzureIntegrationArgs Empty => new GetAzureIntegrationArgs();
     }
 
-    public sealed class GetAzureIntegrationInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAzureIntegrationInvokeArgs : global::Pulumi.InvokeArgs
     {
-        [Input("integrationId", required: true)]
-        public Input<string> IntegrationId { get; set; } = null!;
+        /// <summary>
+        /// Immutable ID of the integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
+        [Input("integrationId")]
+        public Input<string>? IntegrationId { get; set; }
+
+        /// <summary>
+        /// The friendly name of the integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         public GetAzureIntegrationInvokeArgs()
         {
         }
+        public static new GetAzureIntegrationInvokeArgs Empty => new GetAzureIntegrationInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetAzureIntegrationResult
     {
+        /// <summary>
+        /// Indicates whether admin consent has been performed for the AAD Application.
+        /// </summary>
         public readonly bool AdminConsentProvided;
+        /// <summary>
+        /// The URL to use to provide admin consent to the application in the customer's tenant
+        /// </summary>
         public readonly string AdminConsentUrl;
+        /// <summary>
+        /// The applicationId of the Azure AD application used by the integration.
+        /// </summary>
         public readonly string ApplicationId;
+        /// <summary>
+        /// The default subscription ID to use, if one isn't specified at the stack/module level
+        /// </summary>
         public readonly string DefaultSubscriptionId;
+        /// <summary>
+        /// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
+        /// </summary>
         public readonly string DisplayName;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Immutable ID of the integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
         public readonly string IntegrationId;
+        /// <summary>
+        /// Labels to set on the integration
+        /// </summary>
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// The friendly name of the integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID (slug) of the space the integration is in
+        /// </summary>
         public readonly string SpaceId;
+        /// <summary>
+        /// The Azure AD tenant ID
+        /// </summary>
         public readonly string TenantId;
 
         [OutputConstructor]

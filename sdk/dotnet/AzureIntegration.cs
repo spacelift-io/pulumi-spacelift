@@ -15,26 +15,24 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Spacelift.AzureIntegration("example", new()
     ///     {
-    ///         var example = new Spacelift.AzureIntegration("example", new Spacelift.AzureIntegrationArgs
+    ///         DefaultSubscriptionId = "default-subscription-id",
+    ///         Labels = new[]
     ///         {
-    ///             DefaultSubscriptionId = "default-subscription-id",
-    ///             Labels = 
-    ///             {
-    ///                 "one",
-    ///                 "two",
-    ///             },
-    ///             TenantId = "tenant-id",
-    ///         });
-    ///     }
+    ///             "one",
+    ///             "two",
+    ///         },
+    ///         TenantId = "tenant-id",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +42,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/azureIntegration:AzureIntegration")]
-    public partial class AzureIntegration : Pulumi.CustomResource
+    public partial class AzureIntegration : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates whether admin consent has been performed for the AAD Application.
@@ -71,8 +69,7 @@ namespace Pulumi.Spacelift
         public Output<string?> DefaultSubscriptionId { get; private set; } = null!;
 
         /// <summary>
-        /// The display name for the application in Azure. This is automatically generated when the integration is created, and
-        /// cannot be changed without deleting and recreating the integration.
+        /// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
@@ -124,7 +121,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -146,7 +143,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class AzureIntegrationArgs : Pulumi.ResourceArgs
+    public sealed class AzureIntegrationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The default subscription ID to use, if one isn't specified at the stack/module level
@@ -187,9 +184,10 @@ namespace Pulumi.Spacelift
         public AzureIntegrationArgs()
         {
         }
+        public static new AzureIntegrationArgs Empty => new AzureIntegrationArgs();
     }
 
-    public sealed class AzureIntegrationState : Pulumi.ResourceArgs
+    public sealed class AzureIntegrationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates whether admin consent has been performed for the AAD Application.
@@ -216,8 +214,7 @@ namespace Pulumi.Spacelift
         public Input<string>? DefaultSubscriptionId { get; set; }
 
         /// <summary>
-        /// The display name for the application in Azure. This is automatically generated when the integration is created, and
-        /// cannot be changed without deleting and recreating the integration.
+        /// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
@@ -255,5 +252,6 @@ namespace Pulumi.Spacelift
         public AzureIntegrationState()
         {
         }
+        public static new AzureIntegrationState Empty => new AzureIntegrationState();
     }
 }

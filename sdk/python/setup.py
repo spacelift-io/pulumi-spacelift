@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'spacelift', PLUGIN_VERSION, '--server', 'https://github.com/spacelift-io/pulumi-spacelift/releases'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'spacelift', PLUGIN_VERSION, '--server', 'https://downloads.spacelift.io/pulumi-plugins'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""

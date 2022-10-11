@@ -19,35 +19,42 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var bitbucketDatacenterIntegration = Output.Create(Spacelift.GetBitbucketDatacenterIntegration.InvokeAsync());
-        ///     }
+        ///     var bitbucketDatacenterIntegration = Spacelift.GetBitbucketDatacenterIntegration.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetBitbucketDatacenterIntegrationResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetBitbucketDatacenterIntegrationResult>("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBitbucketDatacenterIntegrationResult>("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
     [OutputType]
     public sealed class GetBitbucketDatacenterIntegrationResult
     {
+        /// <summary>
+        /// Bitbucket Datacenter integration api host
+        /// </summary>
         public readonly string ApiHost;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Bitbucket Datacenter integration user facing host
+        /// </summary>
         public readonly string UserFacingHost;
+        /// <summary>
+        /// Bitbucket Datacenter integration webhook secret
+        /// </summary>
         public readonly string WebhookSecret;
 
         [OutputConstructor]

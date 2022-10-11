@@ -36,8 +36,17 @@ export function getAzureIntegrationAttachment(args: GetAzureIntegrationAttachmen
  * A collection of arguments for invoking getAzureIntegrationAttachment.
  */
 export interface GetAzureIntegrationAttachmentArgs {
+    /**
+     * ID of the integration to attach
+     */
     integrationId: string;
+    /**
+     * ID of the module to attach the integration to
+     */
     moduleId?: string;
+    /**
+     * ID of the stack to attach the integration to
+     */
     stackId?: string;
 }
 
@@ -45,16 +54,37 @@ export interface GetAzureIntegrationAttachmentArgs {
  * A collection of values returned by getAzureIntegrationAttachment.
  */
 export interface GetAzureIntegrationAttachmentResult {
+    /**
+     * Internal ID of the attachment entity
+     */
     readonly attachmentId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * ID of the integration to attach
+     */
     readonly integrationId: string;
+    /**
+     * ID of the module to attach the integration to
+     */
     readonly moduleId?: string;
+    /**
+     * Indicates whether this attachment is used for read operations
+     */
     readonly read: boolean;
+    /**
+     * ID of the stack to attach the integration to
+     */
     readonly stackId?: string;
+    /**
+     * Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
+     */
     readonly subscriptionId: string;
+    /**
+     * Indicates whether this attachment is used for write operations
+     */
     readonly write: boolean;
 }
 
@@ -66,7 +96,16 @@ export function getAzureIntegrationAttachmentOutput(args: GetAzureIntegrationAtt
  * A collection of arguments for invoking getAzureIntegrationAttachment.
  */
 export interface GetAzureIntegrationAttachmentOutputArgs {
+    /**
+     * ID of the integration to attach
+     */
     integrationId: pulumi.Input<string>;
+    /**
+     * ID of the module to attach the integration to
+     */
     moduleId?: pulumi.Input<string>;
+    /**
+     * ID of the stack to attach the integration to
+     */
     stackId?: pulumi.Input<string>;
 }

@@ -19,35 +19,42 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var githubEnterpriseIntegration = Output.Create(Spacelift.GetGithubEnterpriseIntegration.InvokeAsync());
-        ///     }
+        ///     var githubEnterpriseIntegration = Spacelift.GetGithubEnterpriseIntegration.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetGithubEnterpriseIntegrationResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetGithubEnterpriseIntegrationResult>("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetGithubEnterpriseIntegrationResult>("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
     [OutputType]
     public sealed class GetGithubEnterpriseIntegrationResult
     {
+        /// <summary>
+        /// Github integration api host
+        /// </summary>
         public readonly string ApiHost;
+        /// <summary>
+        /// Github integration app id
+        /// </summary>
         public readonly string AppId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Github integration webhook secret
+        /// </summary>
         public readonly string WebhookSecret;
 
         [OutputConstructor]

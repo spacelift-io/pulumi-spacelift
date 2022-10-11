@@ -34,6 +34,9 @@ export function getSpace(args: GetSpaceArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getSpace.
  */
 export interface GetSpaceArgs {
+    /**
+     * immutable ID (slug) of the space
+     */
     spaceId: string;
 }
 
@@ -41,14 +44,29 @@ export interface GetSpaceArgs {
  * A collection of values returned by getSpace.
  */
 export interface GetSpaceResult {
+    /**
+     * free-form space description for users
+     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * indication whether access to this space inherits read access to entities from the parent space
+     */
     readonly inheritEntities: boolean;
+    /**
+     * name of the space
+     */
     readonly name: string;
+    /**
+     * immutable ID (slug) of parent space
+     */
     readonly parentSpaceId: string;
+    /**
+     * immutable ID (slug) of the space
+     */
     readonly spaceId: string;
 }
 
@@ -60,5 +78,8 @@ export function getSpaceOutput(args: GetSpaceOutputArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getSpace.
  */
 export interface GetSpaceOutputArgs {
+    /**
+     * immutable ID (slug) of the space
+     */
     spaceId: pulumi.Input<string>;
 }

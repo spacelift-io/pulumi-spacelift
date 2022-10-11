@@ -23,15 +23,19 @@ func LookupVcsAgentPool(ctx *pulumi.Context, args *LookupVcsAgentPoolArgs, opts 
 
 // A collection of arguments for invoking getVcsAgentPool.
 type LookupVcsAgentPoolArgs struct {
+	// ID of the VCS agent pool to retrieve
 	VcsAgentPoolId string `pulumi:"vcsAgentPoolId"`
 }
 
 // A collection of values returned by getVcsAgentPool.
 type LookupVcsAgentPoolResult struct {
+	// Free-form VCS agent pool description for users
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string `pulumi:"id"`
-	Name           string `pulumi:"name"`
+	Id string `pulumi:"id"`
+	// Name of the VCS agent pool
+	Name string `pulumi:"name"`
+	// ID of the VCS agent pool to retrieve
 	VcsAgentPoolId string `pulumi:"vcsAgentPoolId"`
 }
 
@@ -50,6 +54,7 @@ func LookupVcsAgentPoolOutput(ctx *pulumi.Context, args LookupVcsAgentPoolOutput
 
 // A collection of arguments for invoking getVcsAgentPool.
 type LookupVcsAgentPoolOutputArgs struct {
+	// ID of the VCS agent pool to retrieve
 	VcsAgentPoolId pulumi.StringInput `pulumi:"vcsAgentPoolId"`
 }
 
@@ -72,6 +77,7 @@ func (o LookupVcsAgentPoolResultOutput) ToLookupVcsAgentPoolResultOutputWithCont
 	return o
 }
 
+// Free-form VCS agent pool description for users
 func (o LookupVcsAgentPoolResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVcsAgentPoolResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -81,10 +87,12 @@ func (o LookupVcsAgentPoolResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVcsAgentPoolResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name of the VCS agent pool
 func (o LookupVcsAgentPoolResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVcsAgentPoolResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the VCS agent pool to retrieve
 func (o LookupVcsAgentPoolResultOutput) VcsAgentPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVcsAgentPoolResult) string { return v.VcsAgentPoolId }).(pulumi.StringOutput)
 }
