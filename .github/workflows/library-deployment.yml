@@ -51,14 +51,14 @@ jobs:
           python-version: 3.7
       - name: Print version
         run: pulumictl get version
+      - name: Build SDKs
+        run: make build_sdks
       - name: Set NPM auth token
         run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
       - name: Publish npm package.
         run: cd sdk/nodejs/bin && npm publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Build dotnet package
-        run: make build_dotnet
       - name: Package dotnet
         run: cd sdk/dotnet && dotnet pack --configuration Release /p:Version=$(git describe --tags --abbrev=0 | sed 's/^v//g')
       - name: Create NuGet config
