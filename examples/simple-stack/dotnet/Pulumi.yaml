@@ -1,0 +1,3 @@
+name: simple-stack-csharp
+description: A minimal C# Pulumi program
+runtime: dotnet
