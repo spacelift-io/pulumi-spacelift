@@ -7,27 +7,20 @@ import * as utilities from "./utilities";
 /**
  * `spacelift.WorkerPool` represents a worker pool assigned to the Spacelift account.
  *
- * ## Schema
+ * ## Example Usage
  *
- * ### Required
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
- * - **name** (String) name of the worker pool
- *
- * ### Optional
- *
- * - **csr** (String, Sensitive) certificate signing request in base64
- * - **description** (String) description of the worker pool
- * - **id** (String) The ID of this resource.
- * - **labels** (Set of String)
- *
- * ### Read-Only
- *
- * - **config** (String, Sensitive) credentials necessary to connect WorkerPool's workers to the control plane
- * - **private_key** (String, Sensitive) private key in base64
+ * const k8s_core = new spacelift.WorkerPool("k8s-core", {
+ *     csr: Buffer.from(fs.readFileSync("/path/to/csr"), 'binary').toString('base64'),
+ *     description: "Used for all type jobs",
+ * });
+ * ```
  *
  * ## Import
- *
- * Import is supported using the following syntax
  *
  * ```sh
  *  $ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID
@@ -82,6 +75,10 @@ export class WorkerPool extends pulumi.CustomResource {
      * private key in base64
      */
     public /*out*/ readonly privateKey!: pulumi.Output<string>;
+    /**
+     * ID (slug) of the space the worker pool is in
+     */
+    public readonly spaceId!: pulumi.Output<string>;
 
     /**
      * Create a WorkerPool resource with the given unique name, arguments, and options.
@@ -90,37 +87,31 @@ export class WorkerPool extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: WorkerPoolArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: WorkerPoolArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WorkerPoolArgs | WorkerPoolState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as WorkerPoolState | undefined;
-            inputs["config"] = state ? state.config : undefined;
-            inputs["csr"] = state ? state.csr : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["labels"] = state ? state.labels : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["config"] = state ? state.config : undefined;
+            resourceInputs["csr"] = state ? state.csr : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["spaceId"] = state ? state.spaceId : undefined;
         } else {
             const args = argsOrState as WorkerPoolArgs | undefined;
-            if ((!args || args.name === undefined) && !(opts && opts.urn)) {
-                throw new Error("Missing required property 'name'");
-            }
-            inputs["csr"] = args ? args.csr : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["labels"] = args ? args.labels : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["config"] = undefined /*out*/;
-            inputs["privateKey"] = undefined /*out*/;
+            resourceInputs["csr"] = args ? args.csr : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["spaceId"] = args ? args.spaceId : undefined;
+            resourceInputs["config"] = undefined /*out*/;
+            resourceInputs["privateKey"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
-        super(WorkerPool.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WorkerPool.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -131,24 +122,28 @@ export interface WorkerPoolState {
     /**
      * credentials necessary to connect WorkerPool's workers to the control plane
      */
-    readonly config?: pulumi.Input<string>;
+    config?: pulumi.Input<string>;
     /**
      * certificate signing request in base64
      */
-    readonly csr?: pulumi.Input<string>;
+    csr?: pulumi.Input<string>;
     /**
      * description of the worker pool
      */
-    readonly description?: pulumi.Input<string>;
-    readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
+    description?: pulumi.Input<string>;
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * name of the worker pool
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * private key in base64
      */
-    readonly privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
+    /**
+     * ID (slug) of the space the worker pool is in
+     */
+    spaceId?: pulumi.Input<string>;
 }
 
 /**
@@ -158,14 +153,18 @@ export interface WorkerPoolArgs {
     /**
      * certificate signing request in base64
      */
-    readonly csr?: pulumi.Input<string>;
+    csr?: pulumi.Input<string>;
     /**
      * description of the worker pool
      */
-    readonly description?: pulumi.Input<string>;
-    readonly labels?: pulumi.Input<pulumi.Input<string>[]>;
+    description?: pulumi.Input<string>;
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * name of the worker pool
      */
-    readonly name: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    /**
+     * ID (slug) of the space the worker pool is in
+     */
+    spaceId?: pulumi.Input<string>;
 }

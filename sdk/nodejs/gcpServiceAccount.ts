@@ -5,9 +5,37 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## Import
+ * ## Example Usage
  *
- * Import is supported using the following syntax
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
+ *
+ * const k8s_coreStack = new spacelift.Stack("k8s-coreStack", {
+ *     branch: "master",
+ *     repository: "core-infra",
+ * });
+ * const k8s_coreGcpServiceAccount = new spacelift.GcpServiceAccount("k8s-coreGcpServiceAccount", {
+ *     stackId: k8s_coreStack.id,
+ *     tokenScopes: [
+ *         "https://www.googleapis.com/auth/compute",
+ *         "https://www.googleapis.com/auth/cloud-platform",
+ *         "https://www.googleapis.com/auth/devstorage.full_control",
+ *     ],
+ * });
+ * const k8s_coreProject = new gcp.organizations.Project("k8s-coreProject", {
+ *     projectId: "unicorn-k8s-core",
+ *     orgId: _var.gcp_organization_id,
+ * });
+ * const k8s_coreIAMMember = new gcp.projects.IAMMember("k8s-coreIAMMember", {
+ *     project: k8s_coreProject.id,
+ *     role: "roles/owner",
+ *     member: pulumi.interpolate`serviceAccount:${k8s_coreGcpServiceAccount.serviceAccountEmail}`,
+ * });
+ * ```
+ *
+ * ## Import
  *
  * ```sh
  *  $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core stack/$STACK_ID
@@ -71,31 +99,26 @@ export class GcpServiceAccount extends pulumi.CustomResource {
      */
     constructor(name: string, args: GcpServiceAccountArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GcpServiceAccountArgs | GcpServiceAccountState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        let resourceInputs: pulumi.Inputs = {};
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as GcpServiceAccountState | undefined;
-            inputs["moduleId"] = state ? state.moduleId : undefined;
-            inputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
-            inputs["stackId"] = state ? state.stackId : undefined;
-            inputs["tokenScopes"] = state ? state.tokenScopes : undefined;
+            resourceInputs["moduleId"] = state ? state.moduleId : undefined;
+            resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
+            resourceInputs["stackId"] = state ? state.stackId : undefined;
+            resourceInputs["tokenScopes"] = state ? state.tokenScopes : undefined;
         } else {
             const args = argsOrState as GcpServiceAccountArgs | undefined;
-            if ((!args || args.tokenScopes === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.tokenScopes === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'tokenScopes'");
             }
-            inputs["moduleId"] = args ? args.moduleId : undefined;
-            inputs["stackId"] = args ? args.stackId : undefined;
-            inputs["tokenScopes"] = args ? args.tokenScopes : undefined;
-            inputs["serviceAccountEmail"] = undefined /*out*/;
+            resourceInputs["moduleId"] = args ? args.moduleId : undefined;
+            resourceInputs["stackId"] = args ? args.stackId : undefined;
+            resourceInputs["tokenScopes"] = args ? args.tokenScopes : undefined;
+            resourceInputs["serviceAccountEmail"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
-        super(GcpServiceAccount.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(GcpServiceAccount.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -106,19 +129,19 @@ export interface GcpServiceAccountState {
     /**
      * ID of the module which uses GCP service account credentials
      */
-    readonly moduleId?: pulumi.Input<string>;
+    moduleId?: pulumi.Input<string>;
     /**
      * Email address of the GCP service account dedicated for this stack
      */
-    readonly serviceAccountEmail?: pulumi.Input<string>;
+    serviceAccountEmail?: pulumi.Input<string>;
     /**
      * ID of the stack which uses GCP service account credentials
      */
-    readonly stackId?: pulumi.Input<string>;
+    stackId?: pulumi.Input<string>;
     /**
      * List of scopes that will be requested when generating temporary GCP service account credentials
      */
-    readonly tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -128,13 +151,13 @@ export interface GcpServiceAccountArgs {
     /**
      * ID of the module which uses GCP service account credentials
      */
-    readonly moduleId?: pulumi.Input<string>;
+    moduleId?: pulumi.Input<string>;
     /**
      * ID of the stack which uses GCP service account credentials
      */
-    readonly stackId?: pulumi.Input<string>;
+    stackId?: pulumi.Input<string>;
     /**
      * List of scopes that will be requested when generating temporary GCP service account credentials
      */
-    readonly tokenScopes: pulumi.Input<pulumi.Input<string>[]>;
+    tokenScopes: pulumi.Input<pulumi.Input<string>[]>;
 }

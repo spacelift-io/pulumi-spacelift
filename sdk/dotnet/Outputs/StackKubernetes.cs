@@ -13,6 +13,9 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class StackKubernetes
     {
+        /// <summary>
+        /// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
+        /// </summary>
         public readonly string? Namespace;
 
         [OutputConstructor]

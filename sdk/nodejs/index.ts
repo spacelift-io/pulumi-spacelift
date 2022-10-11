@@ -5,44 +5,276 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./awsRole";
-export * from "./context";
-export * from "./contextAttachment";
-export * from "./driftDetection";
-export * from "./environmentVariable";
-export * from "./gcpServiceAccount";
-export * from "./getAwsRole";
-export * from "./getAzureDevOpsIntegration";
-export * from "./getContext";
-export * from "./getContextAttachment";
-export * from "./getCurrentStack";
-export * from "./getDriftDetection";
-export * from "./getEnvironmentVariable";
-export * from "./getGcpServiceAccount";
-export * from "./getGitHubEnterpriseIntegration";
-export * from "./getIps";
-export * from "./getModule";
-export * from "./getMountedFile";
-export * from "./getPolicy";
-export * from "./getStack";
-export * from "./getStackAwsRole";
-export * from "./getStackGcpServiceAccount";
-export * from "./getVCSAgentPool";
-export * from "./getWebhook";
-export * from "./getWorkerPool";
-export * from "./getWorkerPools";
-export * from "./module";
-export * from "./mountedFile";
-export * from "./policy";
-export * from "./policyAttachment";
-export * from "./provider";
-export * from "./stack";
-export * from "./stackAwsRole";
-export * from "./stackDestructor";
-export * from "./stackGcpServiceAccount";
-export * from "./vcsagentPool";
-export * from "./webhook";
-export * from "./workerPool";
+export { AwsIntegrationArgs, AwsIntegrationState } from "./awsIntegration";
+export type AwsIntegration = import("./awsIntegration").AwsIntegration;
+export const AwsIntegration: typeof import("./awsIntegration").AwsIntegration = null as any;
+
+export { AwsIntegrationAttachmentArgs, AwsIntegrationAttachmentState } from "./awsIntegrationAttachment";
+export type AwsIntegrationAttachment = import("./awsIntegrationAttachment").AwsIntegrationAttachment;
+export const AwsIntegrationAttachment: typeof import("./awsIntegrationAttachment").AwsIntegrationAttachment = null as any;
+
+export { AwsRoleArgs, AwsRoleState } from "./awsRole";
+export type AwsRole = import("./awsRole").AwsRole;
+export const AwsRole: typeof import("./awsRole").AwsRole = null as any;
+
+export { AzureIntegrationArgs, AzureIntegrationState } from "./azureIntegration";
+export type AzureIntegration = import("./azureIntegration").AzureIntegration;
+export const AzureIntegration: typeof import("./azureIntegration").AzureIntegration = null as any;
+
+export { AzureIntegrationAttachmentArgs, AzureIntegrationAttachmentState } from "./azureIntegrationAttachment";
+export type AzureIntegrationAttachment = import("./azureIntegrationAttachment").AzureIntegrationAttachment;
+export const AzureIntegrationAttachment: typeof import("./azureIntegrationAttachment").AzureIntegrationAttachment = null as any;
+
+export { ContextArgs, ContextState } from "./context";
+export type Context = import("./context").Context;
+export const Context: typeof import("./context").Context = null as any;
+
+export { ContextAttachmentArgs, ContextAttachmentState } from "./contextAttachment";
+export type ContextAttachment = import("./contextAttachment").ContextAttachment;
+export const ContextAttachment: typeof import("./contextAttachment").ContextAttachment = null as any;
+
+export { DriftDetectionArgs, DriftDetectionState } from "./driftDetection";
+export type DriftDetection = import("./driftDetection").DriftDetection;
+export const DriftDetection: typeof import("./driftDetection").DriftDetection = null as any;
+
+export { EnvironmentVariableArgs, EnvironmentVariableState } from "./environmentVariable";
+export type EnvironmentVariable = import("./environmentVariable").EnvironmentVariable;
+export const EnvironmentVariable: typeof import("./environmentVariable").EnvironmentVariable = null as any;
+
+export { GcpServiceAccountArgs, GcpServiceAccountState } from "./gcpServiceAccount";
+export type GcpServiceAccount = import("./gcpServiceAccount").GcpServiceAccount;
+export const GcpServiceAccount: typeof import("./gcpServiceAccount").GcpServiceAccount = null as any;
+
+export { GetAccountResult } from "./getAccount";
+export const getAccount: typeof import("./getAccount").getAccount = null as any;
+
+export { GetAwsIntegrationArgs, GetAwsIntegrationResult, GetAwsIntegrationOutputArgs } from "./getAwsIntegration";
+export const getAwsIntegration: typeof import("./getAwsIntegration").getAwsIntegration = null as any;
+export const getAwsIntegrationOutput: typeof import("./getAwsIntegration").getAwsIntegrationOutput = null as any;
+
+export { GetAwsIntegrationAttachmentArgs, GetAwsIntegrationAttachmentResult, GetAwsIntegrationAttachmentOutputArgs } from "./getAwsIntegrationAttachment";
+export const getAwsIntegrationAttachment: typeof import("./getAwsIntegrationAttachment").getAwsIntegrationAttachment = null as any;
+export const getAwsIntegrationAttachmentOutput: typeof import("./getAwsIntegrationAttachment").getAwsIntegrationAttachmentOutput = null as any;
+
+export { GetAwsIntegrationAttachmentExternalIdArgs, GetAwsIntegrationAttachmentExternalIdResult, GetAwsIntegrationAttachmentExternalIdOutputArgs } from "./getAwsIntegrationAttachmentExternalId";
+export const getAwsIntegrationAttachmentExternalId: typeof import("./getAwsIntegrationAttachmentExternalId").getAwsIntegrationAttachmentExternalId = null as any;
+export const getAwsIntegrationAttachmentExternalIdOutput: typeof import("./getAwsIntegrationAttachmentExternalId").getAwsIntegrationAttachmentExternalIdOutput = null as any;
+
+export { GetAwsRoleArgs, GetAwsRoleResult, GetAwsRoleOutputArgs } from "./getAwsRole";
+export const getAwsRole: typeof import("./getAwsRole").getAwsRole = null as any;
+export const getAwsRoleOutput: typeof import("./getAwsRole").getAwsRoleOutput = null as any;
+
+export { GetAzureDevopsIntegrationResult } from "./getAzureDevopsIntegration";
+export const getAzureDevopsIntegration: typeof import("./getAzureDevopsIntegration").getAzureDevopsIntegration = null as any;
+
+export { GetAzureIntegrationArgs, GetAzureIntegrationResult, GetAzureIntegrationOutputArgs } from "./getAzureIntegration";
+export const getAzureIntegration: typeof import("./getAzureIntegration").getAzureIntegration = null as any;
+export const getAzureIntegrationOutput: typeof import("./getAzureIntegration").getAzureIntegrationOutput = null as any;
+
+export { GetAzureIntegrationAttachmentArgs, GetAzureIntegrationAttachmentResult, GetAzureIntegrationAttachmentOutputArgs } from "./getAzureIntegrationAttachment";
+export const getAzureIntegrationAttachment: typeof import("./getAzureIntegrationAttachment").getAzureIntegrationAttachment = null as any;
+export const getAzureIntegrationAttachmentOutput: typeof import("./getAzureIntegrationAttachment").getAzureIntegrationAttachmentOutput = null as any;
+
+export { GetBitbucketCloudIntegrationResult } from "./getBitbucketCloudIntegration";
+export const getBitbucketCloudIntegration: typeof import("./getBitbucketCloudIntegration").getBitbucketCloudIntegration = null as any;
+
+export { GetBitbucketDatacenterIntegrationResult } from "./getBitbucketDatacenterIntegration";
+export const getBitbucketDatacenterIntegration: typeof import("./getBitbucketDatacenterIntegration").getBitbucketDatacenterIntegration = null as any;
+
+export { GetContextArgs, GetContextResult, GetContextOutputArgs } from "./getContext";
+export const getContext: typeof import("./getContext").getContext = null as any;
+export const getContextOutput: typeof import("./getContext").getContextOutput = null as any;
+
+export { GetContextAttachmentArgs, GetContextAttachmentResult, GetContextAttachmentOutputArgs } from "./getContextAttachment";
+export const getContextAttachment: typeof import("./getContextAttachment").getContextAttachment = null as any;
+export const getContextAttachmentOutput: typeof import("./getContextAttachment").getContextAttachmentOutput = null as any;
+
+export { GetCurrentStackResult } from "./getCurrentStack";
+export const getCurrentStack: typeof import("./getCurrentStack").getCurrentStack = null as any;
+
+export { GetDriftDetectionArgs, GetDriftDetectionResult, GetDriftDetectionOutputArgs } from "./getDriftDetection";
+export const getDriftDetection: typeof import("./getDriftDetection").getDriftDetection = null as any;
+export const getDriftDetectionOutput: typeof import("./getDriftDetection").getDriftDetectionOutput = null as any;
+
+export { GetEnvironmentVariableArgs, GetEnvironmentVariableResult, GetEnvironmentVariableOutputArgs } from "./getEnvironmentVariable";
+export const getEnvironmentVariable: typeof import("./getEnvironmentVariable").getEnvironmentVariable = null as any;
+export const getEnvironmentVariableOutput: typeof import("./getEnvironmentVariable").getEnvironmentVariableOutput = null as any;
+
+export { GetGcpServiceAccountArgs, GetGcpServiceAccountResult, GetGcpServiceAccountOutputArgs } from "./getGcpServiceAccount";
+export const getGcpServiceAccount: typeof import("./getGcpServiceAccount").getGcpServiceAccount = null as any;
+export const getGcpServiceAccountOutput: typeof import("./getGcpServiceAccount").getGcpServiceAccountOutput = null as any;
+
+export { GetGithubEnterpriseIntegrationResult } from "./getGithubEnterpriseIntegration";
+export const getGithubEnterpriseIntegration: typeof import("./getGithubEnterpriseIntegration").getGithubEnterpriseIntegration = null as any;
+
+export { GetGitlabIntegrationResult } from "./getGitlabIntegration";
+export const getGitlabIntegration: typeof import("./getGitlabIntegration").getGitlabIntegration = null as any;
+
+export { GetIPsResult } from "./getIPs";
+export const getIPs: typeof import("./getIPs").getIPs = null as any;
+
+export { GetModuleArgs, GetModuleResult, GetModuleOutputArgs } from "./getModule";
+export const getModule: typeof import("./getModule").getModule = null as any;
+export const getModuleOutput: typeof import("./getModule").getModuleOutput = null as any;
+
+export { GetMountedfileArgs, GetMountedfileResult, GetMountedfileOutputArgs } from "./getMountedfile";
+export const getMountedfile: typeof import("./getMountedfile").getMountedfile = null as any;
+export const getMountedfileOutput: typeof import("./getMountedfile").getMountedfileOutput = null as any;
+
+export { GetPoliciesArgs, GetPoliciesResult, GetPoliciesOutputArgs } from "./getPolicies";
+export const getPolicies: typeof import("./getPolicies").getPolicies = null as any;
+export const getPoliciesOutput: typeof import("./getPolicies").getPoliciesOutput = null as any;
+
+export { GetPolicyArgs, GetPolicyResult, GetPolicyOutputArgs } from "./getPolicy";
+export const getPolicy: typeof import("./getPolicy").getPolicy = null as any;
+export const getPolicyOutput: typeof import("./getPolicy").getPolicyOutput = null as any;
+
+export { GetSpaceArgs, GetSpaceResult, GetSpaceOutputArgs } from "./getSpace";
+export const getSpace: typeof import("./getSpace").getSpace = null as any;
+export const getSpaceOutput: typeof import("./getSpace").getSpaceOutput = null as any;
+
+export { GetStackArgs, GetStackResult, GetStackOutputArgs } from "./getStack";
+export const getStack: typeof import("./getStack").getStack = null as any;
+export const getStackOutput: typeof import("./getStack").getStackOutput = null as any;
+
+export { GetStackAwsRoleArgs, GetStackAwsRoleResult, GetStackAwsRoleOutputArgs } from "./getStackAwsRole";
+export const getStackAwsRole: typeof import("./getStackAwsRole").getStackAwsRole = null as any;
+export const getStackAwsRoleOutput: typeof import("./getStackAwsRole").getStackAwsRoleOutput = null as any;
+
+export { GetStackGcpServiceAccountArgs, GetStackGcpServiceAccountResult, GetStackGcpServiceAccountOutputArgs } from "./getStackGcpServiceAccount";
+export const getStackGcpServiceAccount: typeof import("./getStackGcpServiceAccount").getStackGcpServiceAccount = null as any;
+export const getStackGcpServiceAccountOutput: typeof import("./getStackGcpServiceAccount").getStackGcpServiceAccountOutput = null as any;
+
+export { GetVcsAgentPoolArgs, GetVcsAgentPoolResult, GetVcsAgentPoolOutputArgs } from "./getVcsAgentPool";
+export const getVcsAgentPool: typeof import("./getVcsAgentPool").getVcsAgentPool = null as any;
+export const getVcsAgentPoolOutput: typeof import("./getVcsAgentPool").getVcsAgentPoolOutput = null as any;
+
+export { GetVcsAgentPoolsResult } from "./getVcsAgentPools";
+export const getVcsAgentPools: typeof import("./getVcsAgentPools").getVcsAgentPools = null as any;
+
+export { GetWebhookArgs, GetWebhookResult, GetWebhookOutputArgs } from "./getWebhook";
+export const getWebhook: typeof import("./getWebhook").getWebhook = null as any;
+export const getWebhookOutput: typeof import("./getWebhook").getWebhookOutput = null as any;
+
+export { GetWorkerPoolArgs, GetWorkerPoolResult, GetWorkerPoolOutputArgs } from "./getWorkerPool";
+export const getWorkerPool: typeof import("./getWorkerPool").getWorkerPool = null as any;
+export const getWorkerPoolOutput: typeof import("./getWorkerPool").getWorkerPoolOutput = null as any;
+
+export { GetWorkerPoolsResult } from "./getWorkerPools";
+export const getWorkerPools: typeof import("./getWorkerPools").getWorkerPools = null as any;
+
+export { ModuleArgs, ModuleState } from "./module";
+export type Module = import("./module").Module;
+export const Module: typeof import("./module").Module = null as any;
+
+export { MountedfileArgs, MountedfileState } from "./mountedfile";
+export type Mountedfile = import("./mountedfile").Mountedfile;
+export const Mountedfile: typeof import("./mountedfile").Mountedfile = null as any;
+
+export { PolicyArgs, PolicyState } from "./policy";
+export type Policy = import("./policy").Policy;
+export const Policy: typeof import("./policy").Policy = null as any;
+
+export { PolicyAttachmentArgs, PolicyAttachmentState } from "./policyAttachment";
+export type PolicyAttachment = import("./policyAttachment").PolicyAttachment;
+export const PolicyAttachment: typeof import("./policyAttachment").PolicyAttachment = null as any;
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+
+export { RunArgs, RunState } from "./run";
+export type Run = import("./run").Run;
+export const Run: typeof import("./run").Run = null as any;
+
+export { SpaceArgs, SpaceState } from "./space";
+export type Space = import("./space").Space;
+export const Space: typeof import("./space").Space = null as any;
+
+export { StackArgs, StackState } from "./stack";
+export type Stack = import("./stack").Stack;
+export const Stack: typeof import("./stack").Stack = null as any;
+
+export { StackAwsRoleArgs, StackAwsRoleState } from "./stackAwsRole";
+export type StackAwsRole = import("./stackAwsRole").StackAwsRole;
+export const StackAwsRole: typeof import("./stackAwsRole").StackAwsRole = null as any;
+
+export { StackDestructorArgs, StackDestructorState } from "./stackDestructor";
+export type StackDestructor = import("./stackDestructor").StackDestructor;
+export const StackDestructor: typeof import("./stackDestructor").StackDestructor = null as any;
+
+export { StackGcpServiceAccountArgs, StackGcpServiceAccountState } from "./stackGcpServiceAccount";
+export type StackGcpServiceAccount = import("./stackGcpServiceAccount").StackGcpServiceAccount;
+export const StackGcpServiceAccount: typeof import("./stackGcpServiceAccount").StackGcpServiceAccount = null as any;
+
+export { VcsAgentPoolArgs, VcsAgentPoolState } from "./vcsAgentPool";
+export type VcsAgentPool = import("./vcsAgentPool").VcsAgentPool;
+export const VcsAgentPool: typeof import("./vcsAgentPool").VcsAgentPool = null as any;
+
+export { WebhookArgs, WebhookState } from "./webhook";
+export type Webhook = import("./webhook").Webhook;
+export const Webhook: typeof import("./webhook").Webhook = null as any;
+
+export { WorkerPoolArgs, WorkerPoolState } from "./workerPool";
+export type WorkerPool = import("./workerPool").WorkerPool;
+export const WorkerPool: typeof import("./workerPool").WorkerPool = null as any;
+
+utilities.lazyLoad(exports, ["AwsIntegration"], () => require("./awsIntegration"));
+utilities.lazyLoad(exports, ["AwsIntegrationAttachment"], () => require("./awsIntegrationAttachment"));
+utilities.lazyLoad(exports, ["AwsRole"], () => require("./awsRole"));
+utilities.lazyLoad(exports, ["AzureIntegration"], () => require("./azureIntegration"));
+utilities.lazyLoad(exports, ["AzureIntegrationAttachment"], () => require("./azureIntegrationAttachment"));
+utilities.lazyLoad(exports, ["Context"], () => require("./context"));
+utilities.lazyLoad(exports, ["ContextAttachment"], () => require("./contextAttachment"));
+utilities.lazyLoad(exports, ["DriftDetection"], () => require("./driftDetection"));
+utilities.lazyLoad(exports, ["EnvironmentVariable"], () => require("./environmentVariable"));
+utilities.lazyLoad(exports, ["GcpServiceAccount"], () => require("./gcpServiceAccount"));
+utilities.lazyLoad(exports, ["getAccount"], () => require("./getAccount"));
+utilities.lazyLoad(exports, ["getAwsIntegration","getAwsIntegrationOutput"], () => require("./getAwsIntegration"));
+utilities.lazyLoad(exports, ["getAwsIntegrationAttachment","getAwsIntegrationAttachmentOutput"], () => require("./getAwsIntegrationAttachment"));
+utilities.lazyLoad(exports, ["getAwsIntegrationAttachmentExternalId","getAwsIntegrationAttachmentExternalIdOutput"], () => require("./getAwsIntegrationAttachmentExternalId"));
+utilities.lazyLoad(exports, ["getAwsRole","getAwsRoleOutput"], () => require("./getAwsRole"));
+utilities.lazyLoad(exports, ["getAzureDevopsIntegration"], () => require("./getAzureDevopsIntegration"));
+utilities.lazyLoad(exports, ["getAzureIntegration","getAzureIntegrationOutput"], () => require("./getAzureIntegration"));
+utilities.lazyLoad(exports, ["getAzureIntegrationAttachment","getAzureIntegrationAttachmentOutput"], () => require("./getAzureIntegrationAttachment"));
+utilities.lazyLoad(exports, ["getBitbucketCloudIntegration"], () => require("./getBitbucketCloudIntegration"));
+utilities.lazyLoad(exports, ["getBitbucketDatacenterIntegration"], () => require("./getBitbucketDatacenterIntegration"));
+utilities.lazyLoad(exports, ["getContext","getContextOutput"], () => require("./getContext"));
+utilities.lazyLoad(exports, ["getContextAttachment","getContextAttachmentOutput"], () => require("./getContextAttachment"));
+utilities.lazyLoad(exports, ["getCurrentStack"], () => require("./getCurrentStack"));
+utilities.lazyLoad(exports, ["getDriftDetection","getDriftDetectionOutput"], () => require("./getDriftDetection"));
+utilities.lazyLoad(exports, ["getEnvironmentVariable","getEnvironmentVariableOutput"], () => require("./getEnvironmentVariable"));
+utilities.lazyLoad(exports, ["getGcpServiceAccount","getGcpServiceAccountOutput"], () => require("./getGcpServiceAccount"));
+utilities.lazyLoad(exports, ["getGithubEnterpriseIntegration"], () => require("./getGithubEnterpriseIntegration"));
+utilities.lazyLoad(exports, ["getGitlabIntegration"], () => require("./getGitlabIntegration"));
+utilities.lazyLoad(exports, ["getIPs"], () => require("./getIPs"));
+utilities.lazyLoad(exports, ["getModule","getModuleOutput"], () => require("./getModule"));
+utilities.lazyLoad(exports, ["getMountedfile","getMountedfileOutput"], () => require("./getMountedfile"));
+utilities.lazyLoad(exports, ["getPolicies","getPoliciesOutput"], () => require("./getPolicies"));
+utilities.lazyLoad(exports, ["getPolicy","getPolicyOutput"], () => require("./getPolicy"));
+utilities.lazyLoad(exports, ["getSpace","getSpaceOutput"], () => require("./getSpace"));
+utilities.lazyLoad(exports, ["getStack","getStackOutput"], () => require("./getStack"));
+utilities.lazyLoad(exports, ["getStackAwsRole","getStackAwsRoleOutput"], () => require("./getStackAwsRole"));
+utilities.lazyLoad(exports, ["getStackGcpServiceAccount","getStackGcpServiceAccountOutput"], () => require("./getStackGcpServiceAccount"));
+utilities.lazyLoad(exports, ["getVcsAgentPool","getVcsAgentPoolOutput"], () => require("./getVcsAgentPool"));
+utilities.lazyLoad(exports, ["getVcsAgentPools"], () => require("./getVcsAgentPools"));
+utilities.lazyLoad(exports, ["getWebhook","getWebhookOutput"], () => require("./getWebhook"));
+utilities.lazyLoad(exports, ["getWorkerPool","getWorkerPoolOutput"], () => require("./getWorkerPool"));
+utilities.lazyLoad(exports, ["getWorkerPools"], () => require("./getWorkerPools"));
+utilities.lazyLoad(exports, ["Module"], () => require("./module"));
+utilities.lazyLoad(exports, ["Mountedfile"], () => require("./mountedfile"));
+utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
+utilities.lazyLoad(exports, ["PolicyAttachment"], () => require("./policyAttachment"));
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+utilities.lazyLoad(exports, ["Run"], () => require("./run"));
+utilities.lazyLoad(exports, ["Space"], () => require("./space"));
+utilities.lazyLoad(exports, ["Stack"], () => require("./stack"));
+utilities.lazyLoad(exports, ["StackAwsRole"], () => require("./stackAwsRole"));
+utilities.lazyLoad(exports, ["StackDestructor"], () => require("./stackDestructor"));
+utilities.lazyLoad(exports, ["StackGcpServiceAccount"], () => require("./stackGcpServiceAccount"));
+utilities.lazyLoad(exports, ["VcsAgentPool"], () => require("./vcsAgentPool"));
+utilities.lazyLoad(exports, ["Webhook"], () => require("./webhook"));
+utilities.lazyLoad(exports, ["WorkerPool"], () => require("./workerPool"));
 
 // Export sub-modules:
 import * as config from "./config";
@@ -53,31 +285,20 @@ export {
     types,
 };
 
-// Import resources to register:
-import { AwsRole } from "./awsRole";
-import { Context } from "./context";
-import { ContextAttachment } from "./contextAttachment";
-import { DriftDetection } from "./driftDetection";
-import { EnvironmentVariable } from "./environmentVariable";
-import { GcpServiceAccount } from "./gcpServiceAccount";
-import { Module } from "./module";
-import { MountedFile } from "./mountedFile";
-import { Policy } from "./policy";
-import { PolicyAttachment } from "./policyAttachment";
-import { Stack } from "./stack";
-import { StackAwsRole } from "./stackAwsRole";
-import { StackDestructor } from "./stackDestructor";
-import { StackGcpServiceAccount } from "./stackGcpServiceAccount";
-import { VCSAgentPool } from "./vcsagentPool";
-import { Webhook } from "./webhook";
-import { WorkerPool } from "./workerPool";
-
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "spacelift:index/awsIntegration:AwsIntegration":
+                return new AwsIntegration(name, <any>undefined, { urn })
+            case "spacelift:index/awsIntegrationAttachment:AwsIntegrationAttachment":
+                return new AwsIntegrationAttachment(name, <any>undefined, { urn })
             case "spacelift:index/awsRole:AwsRole":
                 return new AwsRole(name, <any>undefined, { urn })
+            case "spacelift:index/azureIntegration:AzureIntegration":
+                return new AzureIntegration(name, <any>undefined, { urn })
+            case "spacelift:index/azureIntegrationAttachment:AzureIntegrationAttachment":
+                return new AzureIntegrationAttachment(name, <any>undefined, { urn })
             case "spacelift:index/context:Context":
                 return new Context(name, <any>undefined, { urn })
             case "spacelift:index/contextAttachment:ContextAttachment":
@@ -90,12 +311,16 @@ const _module = {
                 return new GcpServiceAccount(name, <any>undefined, { urn })
             case "spacelift:index/module:Module":
                 return new Module(name, <any>undefined, { urn })
-            case "spacelift:index/mountedFile:MountedFile":
-                return new MountedFile(name, <any>undefined, { urn })
+            case "spacelift:index/mountedfile:Mountedfile":
+                return new Mountedfile(name, <any>undefined, { urn })
             case "spacelift:index/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
             case "spacelift:index/policyAttachment:PolicyAttachment":
                 return new PolicyAttachment(name, <any>undefined, { urn })
+            case "spacelift:index/run:Run":
+                return new Run(name, <any>undefined, { urn })
+            case "spacelift:index/space:Space":
+                return new Space(name, <any>undefined, { urn })
             case "spacelift:index/stack:Stack":
                 return new Stack(name, <any>undefined, { urn })
             case "spacelift:index/stackAwsRole:StackAwsRole":
@@ -104,8 +329,8 @@ const _module = {
                 return new StackDestructor(name, <any>undefined, { urn })
             case "spacelift:index/stackGcpServiceAccount:StackGcpServiceAccount":
                 return new StackGcpServiceAccount(name, <any>undefined, { urn })
-            case "spacelift:index/vCSAgentPool:VCSAgentPool":
-                return new VCSAgentPool(name, <any>undefined, { urn })
+            case "spacelift:index/vcsAgentPool:VcsAgentPool":
+                return new VcsAgentPool(name, <any>undefined, { urn })
             case "spacelift:index/webhook:Webhook":
                 return new Webhook(name, <any>undefined, { urn })
             case "spacelift:index/workerPool:WorkerPool":
@@ -115,26 +340,29 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("spacelift", "index/awsIntegration", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/awsIntegrationAttachment", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/awsRole", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/azureIntegration", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/azureIntegrationAttachment", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/context", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/contextAttachment", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/driftDetection", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/environmentVariable", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/gcpServiceAccount", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/module", _module)
-pulumi.runtime.registerResourceModule("spacelift", "index/mountedFile", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/mountedfile", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/policy", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/policyAttachment", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/run", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/space", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stack", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stackAwsRole", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stackDestructor", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stackGcpServiceAccount", _module)
-pulumi.runtime.registerResourceModule("spacelift", "index/vCSAgentPool", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/vcsAgentPool", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/webhook", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/workerPool", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("spacelift", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

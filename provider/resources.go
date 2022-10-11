@@ -2,65 +2,66 @@ package spacelift
 
 import (
 	"fmt"
+
 	"path/filepath"
-	"strings"
-	"unicode"
 
-	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
-	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
-
-	"github.com/spacelift-io/terraform-provider-spacelift/spacelift"
-
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/spacelift-io/pulumi-spacelift/provider/pkg/version"
+	"github.com/spacelift-io/terraform-provider-spacelift/spacelift"
+)
+
+// all of the token components used below.
+const (
+	// This variable controls the default name of the package in the package
+	// registries for nodejs and python:
+	mainPkg = "spacelift"
+	// modules:
+	mainMod = "index" // the spacelift module
 )
 
 const (
-	// packages:
-	spaceliftPkg = "spacelift"
-	// modules:
-	spaceliftMod = "index"
+	providerCommit  = "dev"
+	providerVersion = "dev"
 )
 
-var namespaceMap = map[string]string{
-	spaceliftPkg: "Spacelift",
+// preConfigureCallback is called before the providerConfigure function of the underlying provider.
+// It should validate that the provider can be configured, and provide actionable errors in the case
+// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
+// for example `stringValue(vars, "accessKey")`.
+func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
+	return nil
 }
 
-// makeMember manufactures a type token for the package and the given module and type.  It automatically
-// uses the Spacelift package and names the file by simply lower casing the resource's first character.
-func makeMember(moduleTitle string, mem string) tokens.ModuleMember {
-	moduleName := strings.ToLower(moduleTitle)
-	namespaceMap[moduleName] = moduleTitle
-	fn := string(unicode.ToLower(rune(mem[0]))) + mem[1:]
-	token := moduleName + "/" + fn
-	return tokens.ModuleMember(spaceliftPkg + ":" + token + ":" + mem)
-}
-
-// makeType manufactures a type token for the package and the given module and type.
-func makeType(mod string, typ string) tokens.Type {
-	return tokens.Type(makeMember(mod, typ))
-}
-
-// makeResource manufactures a standard resource token given a module and resource name.
-func makeResource(mod string, res string) tokens.Type {
-	return makeType(mod, res)
-}
-
-func makeDataSource(mod string, res string) tokens.ModuleMember {
-	return makeMember(mod, res)
-}
-
+// Provider returns additional overlaid schema and metadata associated with the provider..
+//
+//nolint:lll
 func Provider() tfbridge.ProviderInfo {
-	p := shimv2.NewProvider(spacelift.Provider("commit", "version")())
+
+	// Instantiate the Terraform provider
+	// TODO: use the actual commit and version of the provider here from ldflags
+	p := shimv2.NewProvider(spacelift.Provider(providerCommit, providerVersion)())
+
+	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:           p,
 		Name:        "spacelift",
-		Description: "A Pulumi package for creating and managing Spacelift resources.",
-		Keywords:    []string{"pulumi", "spacelift"},
-		License:     "Apache-2.0",
-		Homepage:    "https://spacelift.io",
-		GitHubOrg:   "spacelift-io",
-		Repository:  "git://github.com/spacelift-io/pulumi-spacelift.git",
+		DisplayName: "Spacelift",
+		Publisher:   "spacelift-io",
+		// TODO: Add logo URL here
+		LogoURL:           "https://spaceliftio.wpcomstaging.com/wp-content/uploads/2022/10/TypographyFalse-ColorDark-TypeHorizontal.png",
+		PluginDownloadURL: "https://downloads.spacelift.io/pulumi-plugins",
+		Description:       "A Pulumi package for creating and managing Spacelift resources.",
+		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
+		// For all available categories, see `Keywords` in
+		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
+		Keywords:   []string{"pulumi", "spacelift", "category/cloud", "category/infrastructure"},
+		License:    "Apache-2.0",
+		Homepage:   "https://spacelift.io",
+		Repository: "git://github.com/spacelift-io/pulumi-spacelift.git",
+		GitHubOrg:  "spacelift-io",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"api_key_endpoint": {
 				Default: &tfbridge.DefaultInfo{
@@ -91,80 +92,106 @@ func Provider() tfbridge.ProviderInfo {
 				Secret:         tfbridge.True(),
 			},
 		},
+		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"spacelift_aws_role":                  {Tok: makeResource(spaceliftMod, "AwsRole")},
-			"spacelift_context":                   {Tok: makeResource(spaceliftMod, "Context")},
-			"spacelift_context_attachment":        {Tok: makeResource(spaceliftMod, "ContextAttachment")},
-			"spacelift_drift_detection":           {Tok: makeResource(spaceliftMod, "DriftDetection")},
-			"spacelift_environment_variable":      {Tok: makeResource(spaceliftMod, "EnvironmentVariable")},
-			"spacelift_gcp_service_account":       {Tok: makeResource(spaceliftMod, "GcpServiceAccount")},
-			"spacelift_module":                    {Tok: makeResource(spaceliftMod, "Module")},
-			"spacelift_mounted_file":              {Tok: makeResource(spaceliftMod, "MountedFile")},
-			"spacelift_policy":                    {Tok: makeResource(spaceliftMod, "Policy")},
-			"spacelift_policy_attachment":         {Tok: makeResource(spaceliftMod, "PolicyAttachment")},
-			"spacelift_stack":                     {Tok: makeResource(spaceliftMod, "Stack")},
-			"spacelift_stack_destructor":          {Tok: makeResource(spaceliftMod, "StackDestructor")},
-			"spacelift_stack_aws_role":            {Tok: makeResource(spaceliftMod, "StackAwsRole")},
-			"spacelift_stack_gcp_service_account": {Tok: makeResource(spaceliftMod, "StackGcpServiceAccount")},
-			"spacelift_vcs_agent_pool":            {Tok: makeResource(spaceliftMod, "VCSAgentPool")},
-			"spacelift_webhook":                   {Tok: makeResource(spaceliftMod, "Webhook")},
-			"spacelift_worker_pool":               {Tok: makeResource(spaceliftMod, "WorkerPool")},
+			"spacelift_aws_integration":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsIntegration")},
+			"spacelift_aws_integration_attachment":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsIntegrationAttachment")},
+			"spacelift_aws_role":                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsRole")},
+			"spacelift_azure_integration":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AzureIntegration")},
+			"spacelift_azure_integration_attachment": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AzureIntegrationAttachment")},
+			"spacelift_context":                      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Context")},
+			"spacelift_context_attachment":           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ContextAttachment")},
+			"spacelift_drift_detection":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DriftDetection")},
+			"spacelift_environment_variable":         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EnvironmentVariable")},
+			"spacelift_gcp_service_account":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "GcpServiceAccount")},
+			"spacelift_module":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Module")},
+			"spacelift_mounted_file":                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Mountedfile")},
+			"spacelift_policy":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Policy")},
+			"spacelift_policy_attachment":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "PolicyAttachment")},
+			"spacelift_run":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Run")},
+			"spacelift_space":                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Space")},
+			"spacelift_stack": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Stack"), Fields: map[string]*tfbridge.SchemaInfo{
+				"pulumi": {
+					CSharpName: "CSHARPPULUMI",
+				},
+			}},
+			"spacelift_stack_aws_role":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "StackAwsRole")},
+			"spacelift_stack_destructor":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "StackDestructor")},
+			"spacelift_stack_gcp_service_account": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "StackGcpServiceAccount")},
+			"spacelift_vcs_agent_pool":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VcsAgentPool")},
+			"spacelift_webhook":                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Webhook")},
+			"spacelift_worker_pool":               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "WorkerPool")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"spacelift_aws_role":                      {Tok: makeDataSource(spaceliftMod, "getAwsRole")},
-			"spacelift_azure_devops_integration":      {Tok: makeDataSource(spaceliftMod, "getAzureDevOpsIntegration")},
-			"spacelift_bitbucket_cloud":               {Tok: makeDataSource(spaceliftMod, "getBitbucketCloudIntegration")},
-			"spacelift_bitbucket_datacenter":          {Tok: makeDataSource(spaceliftMod, "getBitbucketDatacenterIntegration")},
-			"spacelift_context_attachment":            {Tok: makeDataSource(spaceliftMod, "getContextAttachment")},
-			"spacelift_context":                       {Tok: makeDataSource(spaceliftMod, "getContext")},
-			"spacelift_current_stack":                 {Tok: makeDataSource(spaceliftMod, "getCurrentStack")},
-			"spacelift_drift_detection":               {Tok: makeDataSource(spaceliftMod, "getDriftDetection")},
-			"spacelift_environment_variable":          {Tok: makeDataSource(spaceliftMod, "getEnvironmentVariable")},
-			"spacelift_gcp_service_account":           {Tok: makeDataSource(spaceliftMod, "getGcpServiceAccount")},
-			"spacelift_github_enterprise_integration": {Tok: makeDataSource(spaceliftMod, "getGitHubEnterpriseIntegration")},
-			"spacelift_ips":                           {Tok: makeDataSource(spaceliftMod, "getIps")},
-			"spacelift_module":                        {Tok: makeDataSource(spaceliftMod, "getModule")},
-			"spacelift_mounted_file":                  {Tok: makeDataSource(spaceliftMod, "getMountedFile")},
-			"spacelift_policy":                        {Tok: makeDataSource(spaceliftMod, "getPolicy")},
-			"spacelift_stack":                         {Tok: makeDataSource(spaceliftMod, "getStack")},
-			"spacelift_vcs_agent_pool":                {Tok: makeDataSource(spaceliftMod, "getVCSAgentPool")},
-			"spacelift_webhook":                       {Tok: makeDataSource(spaceliftMod, "getWebhook")},
-			"spacelift_stack_aws_role":                {Tok: makeDataSource(spaceliftMod, "getStackAwsRole")},
-			"spacelift_stack_gcp_service_account":     {Tok: makeDataSource(spaceliftMod, "getStackGcpServiceAccount")},
-			"spacelift_worker_pool":                   {Tok: makeDataSource(spaceliftMod, "getWorkerPool")},
-			"spacelift_worker_pools":                  {Tok: makeDataSource(spaceliftMod, "getWorkerPools")},
+			"spacelift_account":                                {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAccount")},
+			"spacelift_aws_integration":                        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAwsIntegration")},
+			"spacelift_aws_integration_attachment":             {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAwsIntegrationAttachment")},
+			"spacelift_aws_integration_attachment_external_id": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAwsIntegrationAttachmentExternalId")},
+			"spacelift_aws_role":                               {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAwsRole")},
+			"spacelift_azure_devops_integration":               {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAzureDevopsIntegration")},
+			"spacelift_azure_integration":                      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAzureIntegration")},
+			"spacelift_azure_integration_attachment":           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAzureIntegrationAttachment")},
+			"spacelift_bitbucket_cloud_integration":            {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBitbucketCloudIntegration")},
+			"spacelift_bitbucket_datacenter_integration":       {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBitbucketDatacenterIntegration")},
+			"spacelift_context":                                {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getContext")},
+			"spacelift_context_attachment":                     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getContextAttachment")},
+			"spacelift_current_stack":                          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getCurrentStack")},
+			"spacelift_drift_detection":                        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getDriftDetection")},
+			"spacelift_environment_variable":                   {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getEnvironmentVariable")},
+			"spacelift_gcp_service_account":                    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getGcpServiceAccount")},
+			"spacelift_github_enterprise_integration":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getGithubEnterpriseIntegration")},
+			"spacelift_gitlab_integration":                     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getGitlabIntegration")},
+			"spacelift_ips":                                    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getIPs")},
+			"spacelift_module":                                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getModule")},
+			"spacelift_mounted_file":                           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getMountedfile")},
+			"spacelift_policies":                               {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getPolicies")},
+			"spacelift_policy":                                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getPolicy")},
+			"spacelift_space":                                  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getSpace")},
+			"spacelift_stack":                                  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStack")},
+			"spacelift_stack_aws_role":                         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStackAwsRole")},
+			"spacelift_stack_gcp_service_account":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStackGcpServiceAccount")},
+			"spacelift_vcs_agent_pool":                         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVcsAgentPool")},
+			"spacelift_vcs_agent_pools":                        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVcsAgentPools")},
+			"spacelift_webhook":                                {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getWebhook")},
+			"spacelift_worker_pool":                            {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getWorkerPool")},
+			"spacelift_worker_pools":                           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getWorkerPools")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@spacelift-io/pulumi-spacelift",
 			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^2.15.0",
+				"@pulumi/pulumi": "^3.0.0",
 			},
 			DevDependencies: map[string]string{
-				"@types/node": "^8.0.25",
+				"@types/node": "^10.0.0",
+				"@types/mime": "^2.0.0",
+			},
+		},
+		Python: &tfbridge.PythonInfo{
+			// List any Python dependencies and their version ranges
+			Requires: map[string]string{
+				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/spacelift-io/spacelift-%[1]s/sdk/", spaceliftPkg),
+				fmt.Sprintf("github.com/spacelift-io/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
-				spaceliftPkg,
+				mainPkg,
 			),
 			GenerateResourceContainerTypes: true,
 		},
-		Python: &tfbridge.PythonInfo{
-			Requires: map[string]string{
-				"pulumi": ">=2.15.0,<3.0.0",
-			},
-		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "2.*",
-				"System.Collections.Immutable": "1.6.0",
+				"Pulumi": "3.*",
 			},
-			Namespaces: namespaceMap,
+			Namespaces: map[string]string{
+				mainPkg: "Spacelift",
+			},
 		},
 	}
+
+	prov.SetAutonaming(255, "-")
 
 	return prov
 }

@@ -13,6 +13,9 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class ModuleBitbucketDatacenter
     {
+        /// <summary>
+        /// The Bitbucket project containing the repository
+        /// </summary>
         public readonly string Namespace;
 
         [OutputConstructor]

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface GetModuleAzureDevop {
     project: string;
@@ -22,6 +23,27 @@ export interface GetModuleGithubEnterprise {
 
 export interface GetModuleGitlab {
     namespace: string;
+}
+
+export interface GetPoliciesPolicy {
+    /**
+     * The ID of this resource.
+     */
+    id: string;
+    /**
+     * required labels to match
+     */
+    labels: string[];
+    name: string;
+    spaceId: string;
+    /**
+     * required policy type
+     */
+    type: string;
+}
+
+export interface GetStackAnsible {
+    playbook: string;
 }
 
 export interface GetStackAzureDevop {
@@ -64,69 +86,135 @@ export interface GetStackShowcase {
     namespace: string;
 }
 
+export interface GetVcsAgentPoolsVcsAgentPool {
+    description: string;
+    name: string;
+    vcsAgentPoolId: string;
+}
+
 export interface GetWorkerPoolsWorkerPool {
     config: string;
     description: string;
     name: string;
+    spaceId: string;
     workerPoolId: string;
 }
 
 export interface ModuleAzureDevops {
+    /**
+     * The name of the Azure DevOps project
+     */
     project: string;
 }
 
 export interface ModuleBitbucketCloud {
+    /**
+     * The Bitbucket project containing the repository
+     */
     namespace: string;
 }
 
 export interface ModuleBitbucketDatacenter {
+    /**
+     * The Bitbucket project containing the repository
+     */
     namespace: string;
 }
 
 export interface ModuleGithubEnterprise {
+    /**
+     * The GitHub organization / user the repository belongs to
+     */
     namespace: string;
 }
 
 export interface ModuleGitlab {
+    /**
+     * The GitLab namespace containing the repository
+     */
     namespace: string;
 }
 
+export interface StackAnsible {
+    /**
+     * The playbook Ansible should run.
+     */
+    playbook: string;
+}
+
 export interface StackAzureDevops {
+    /**
+     * The name of the Azure DevOps project
+     */
     project: string;
 }
 
 export interface StackBitbucketCloud {
+    /**
+     * The Bitbucket project containing the repository
+     */
     namespace: string;
 }
 
 export interface StackBitbucketDatacenter {
+    /**
+     * The Bitbucket project containing the repository
+     */
     namespace: string;
 }
 
 export interface StackCloudformation {
+    /**
+     * Template file `cloudformation package` will be called on
+     */
     entryTemplateFile: string;
+    /**
+     * AWS region to use
+     */
     region: string;
+    /**
+     * CloudFormation stack name
+     */
     stackName: string;
+    /**
+     * S3 bucket to save CloudFormation templates to
+     */
     templateBucket: string;
 }
 
 export interface StackGithubEnterprise {
+    /**
+     * The GitHub organization / user the repository belongs to
+     */
     namespace: string;
 }
 
 export interface StackGitlab {
+    /**
+     * The GitLab namespace containing the repository
+     */
     namespace: string;
 }
 
 export interface StackKubernetes {
+    /**
+     * Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
+     */
     namespace?: string;
 }
 
 export interface StackPulumi {
+    /**
+     * State backend to log into on Run initialize.
+     */
     loginUrl: string;
+    /**
+     * Pulumi stack name to use with the state backend.
+     */
     stackName: string;
 }
 
 export interface StackShowcase {
     namespace: string;
 }
+

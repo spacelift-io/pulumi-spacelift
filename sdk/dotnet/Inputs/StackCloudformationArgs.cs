@@ -10,22 +10,35 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift.Inputs
 {
 
-    public sealed class StackCloudformationArgs : Pulumi.ResourceArgs
+    public sealed class StackCloudformationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Template file `cloudformation package` will be called on
+        /// </summary>
         [Input("entryTemplateFile", required: true)]
         public Input<string> EntryTemplateFile { get; set; } = null!;
 
+        /// <summary>
+        /// AWS region to use
+        /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 
+        /// <summary>
+        /// CloudFormation stack name
+        /// </summary>
         [Input("stackName", required: true)]
         public Input<string> StackName { get; set; } = null!;
 
+        /// <summary>
+        /// S3 bucket to save CloudFormation templates to
+        /// </summary>
         [Input("templateBucket", required: true)]
         public Input<string> TemplateBucket { get; set; } = null!;
 
         public StackCloudformationArgs()
         {
         }
+        public static new StackCloudformationArgs Empty => new StackCloudformationArgs();
     }
 }

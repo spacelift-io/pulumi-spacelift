@@ -11,22 +11,106 @@ namespace Pulumi.Spacelift
 {
     public static class GetGcpServiceAccount
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var k8s_module = Spacelift.GetGcpServiceAccount.Invoke(new()
+        ///     {
+        ///         ModuleId = "k8s-module",
+        ///     });
+        /// 
+        ///     var k8s_core = Spacelift.GetGcpServiceAccount.Invoke(new()
+        ///     {
+        ///         StackId = "k8s-core",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetGcpServiceAccountResult> InvokeAsync(GetGcpServiceAccountArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetGcpServiceAccountResult>("spacelift:index/getGcpServiceAccount:getGcpServiceAccount", args ?? new GetGcpServiceAccountArgs(), options.WithVersion());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetGcpServiceAccountResult>("spacelift:index/getGcpServiceAccount:getGcpServiceAccount", args ?? new GetGcpServiceAccountArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var k8s_module = Spacelift.GetGcpServiceAccount.Invoke(new()
+        ///     {
+        ///         ModuleId = "k8s-module",
+        ///     });
+        /// 
+        ///     var k8s_core = Spacelift.GetGcpServiceAccount.Invoke(new()
+        ///     {
+        ///         StackId = "k8s-core",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetGcpServiceAccountResult> Invoke(GetGcpServiceAccountInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetGcpServiceAccountResult>("spacelift:index/getGcpServiceAccount:getGcpServiceAccount", args ?? new GetGcpServiceAccountInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetGcpServiceAccountArgs : Pulumi.InvokeArgs
+    public sealed class GetGcpServiceAccountArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
         [Input("moduleId")]
         public string? ModuleId { get; set; }
 
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
         [Input("stackId")]
         public string? StackId { get; set; }
 
         public GetGcpServiceAccountArgs()
         {
         }
+        public static new GetGcpServiceAccountArgs Empty => new GetGcpServiceAccountArgs();
+    }
+
+    public sealed class GetGcpServiceAccountInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
+        [Input("moduleId")]
+        public Input<string>? ModuleId { get; set; }
+
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
+        [Input("stackId")]
+        public Input<string>? StackId { get; set; }
+
+        public GetGcpServiceAccountInvokeArgs()
+        {
+        }
+        public static new GetGcpServiceAccountInvokeArgs Empty => new GetGcpServiceAccountInvokeArgs();
     }
 
 
@@ -37,9 +121,21 @@ namespace Pulumi.Spacelift
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
         public readonly string? ModuleId;
+        /// <summary>
+        /// email address of the GCP service account dedicated for this stack
+        /// </summary>
         public readonly string ServiceAccountEmail;
+        /// <summary>
+        /// ID of the stack which uses GCP service account credentials
+        /// </summary>
         public readonly string? StackId;
+        /// <summary>
+        /// list of Google API scopes
+        /// </summary>
         public readonly ImmutableArray<string> TokenScopes;
 
         [OutputConstructor]

@@ -2,17 +2,30 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * `spacelift.Stack` combines source code and configuration to create a runtime environment where resources are managed. In this way it's similar to a stack in AWS CloudFormation, or a project on generic CI/CD platforms.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const k8s_core = pulumi.output(spacelift.getStack({
+ *     stackId: "k8s-core",
+ * }));
+ * ```
+ */
 export function getStack(args: GetStackArgs, opts?: pulumi.InvokeOptions): Promise<GetStackResult> {
     if (!opts) {
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("spacelift:index/getStack:getStack", {
         "afterApplies": args.afterApplies,
         "afterDestroys": args.afterDestroys,
@@ -32,62 +45,260 @@ export function getStack(args: GetStackArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getStack.
  */
 export interface GetStackArgs {
-    readonly afterApplies?: string[];
-    readonly afterDestroys?: string[];
-    readonly afterInits?: string[];
-    readonly afterPerforms?: string[];
-    readonly afterPlans?: string[];
-    readonly beforeApplies?: string[];
-    readonly beforeDestroys?: string[];
-    readonly beforeInits?: string[];
-    readonly beforePerforms?: string[];
-    readonly beforePlans?: string[];
-    readonly stackId: string;
+    /**
+     * List of after-apply scripts
+     */
+    afterApplies?: string[];
+    /**
+     * List of after-destroy scripts
+     */
+    afterDestroys?: string[];
+    /**
+     * List of after-init scripts
+     */
+    afterInits?: string[];
+    /**
+     * List of after-perform scripts
+     */
+    afterPerforms?: string[];
+    /**
+     * List of after-plan scripts
+     */
+    afterPlans?: string[];
+    /**
+     * List of before-apply scripts
+     */
+    beforeApplies?: string[];
+    /**
+     * List of before-destroy scripts
+     */
+    beforeDestroys?: string[];
+    /**
+     * List of before-init scripts
+     */
+    beforeInits?: string[];
+    /**
+     * List of before-perform scripts
+     */
+    beforePerforms?: string[];
+    /**
+     * List of before-plan scripts
+     */
+    beforePlans?: string[];
+    /**
+     * ID (slug) of the stack
+     */
+    stackId: string;
 }
 
 /**
  * A collection of values returned by getStack.
  */
 export interface GetStackResult {
+    /**
+     * indicates whether this stack can administer others
+     */
     readonly administrative: boolean;
+    /**
+     * List of after-apply scripts
+     */
     readonly afterApplies?: string[];
+    /**
+     * List of after-destroy scripts
+     */
     readonly afterDestroys?: string[];
+    /**
+     * List of after-init scripts
+     */
     readonly afterInits?: string[];
+    /**
+     * List of after-perform scripts
+     */
     readonly afterPerforms?: string[];
+    /**
+     * List of after-plan scripts
+     */
     readonly afterPlans?: string[];
+    /**
+     * Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+     */
+    readonly ansibles: outputs.GetStackAnsible[];
+    /**
+     * indicates whether changes to this stack can be automatically deployed
+     */
     readonly autodeploy: boolean;
+    /**
+     * indicates whether obsolete proposed changes should automatically be retried
+     */
     readonly autoretry: boolean;
+    /**
+     * AWS IAM assume role policy statement setting up trust relationship
+     */
     readonly awsAssumeRolePolicyStatement: string;
+    /**
+     * Azure DevOps VCS settings
+     */
     readonly azureDevops: outputs.GetStackAzureDevop[];
+    /**
+     * List of before-apply scripts
+     */
     readonly beforeApplies?: string[];
+    /**
+     * List of before-destroy scripts
+     */
     readonly beforeDestroys?: string[];
+    /**
+     * List of before-init scripts
+     */
     readonly beforeInits?: string[];
+    /**
+     * List of before-perform scripts
+     */
     readonly beforePerforms?: string[];
+    /**
+     * List of before-plan scripts
+     */
     readonly beforePlans?: string[];
+    /**
+     * Bitbucket Cloud VCS settings
+     */
     readonly bitbucketClouds: outputs.GetStackBitbucketCloud[];
+    /**
+     * Bitbucket Datacenter VCS settings
+     */
     readonly bitbucketDatacenters: outputs.GetStackBitbucketDatacenter[];
+    /**
+     * Repository branch to treat as the default 'main' branch
+     */
     readonly branch: string;
+    /**
+     * CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
+     */
     readonly cloudformations: outputs.GetStackCloudformation[];
+    /**
+     * free-form stack description for users
+     */
     readonly description: string;
+    /**
+     * Indicates whether local preview runs can be triggered on this Stack.
+     */
     readonly enableLocalPreview: boolean;
+    /**
+     * GitHub Enterprise (self-hosted) VCS settings
+     */
     readonly githubEnterprises: outputs.GetStackGithubEnterprise[];
+    /**
+     * GitLab VCS settings
+     */
     readonly gitlabs: outputs.GetStackGitlab[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+     */
     readonly kubernetes: outputs.GetStackKubernete[];
     readonly labels: string[];
+    /**
+     * Determines if Spacelift should manage state for this stack
+     */
     readonly manageState: boolean;
+    /**
+     * Name of the stack - should be unique in one account
+     */
     readonly name: string;
+    /**
+     * Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+     */
     readonly projectRoot: string;
+    /**
+     * Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+     */
     readonly protectFromDeletion: boolean;
+    /**
+     * Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
+     */
     readonly pulumis: outputs.GetStackPulumi[];
+    /**
+     * Name of the repository, without the owner part
+     */
     readonly repository: string;
+    /**
+     * Name of the Docker image used to process Runs
+     */
     readonly runnerImage: string;
+    /**
+     * Showcase-related attributes
+     */
     readonly showcases: outputs.GetStackShowcase[];
+    /**
+     * ID (slug) of the space the stack is in
+     */
+    readonly spaceId: string;
+    /**
+     * ID (slug) of the stack
+     */
     readonly stackId: string;
+    readonly terraformSmartSanitization: boolean;
     readonly terraformVersion: string;
     readonly terraformWorkspace: string;
+    /**
+     * ID of the worker pool to use
+     */
     readonly workerPoolId: string;
+}
+
+export function getStackOutput(args: GetStackOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStackResult> {
+    return pulumi.output(args).apply(a => getStack(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getStack.
+ */
+export interface GetStackOutputArgs {
+    /**
+     * List of after-apply scripts
+     */
+    afterApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-destroy scripts
+     */
+    afterDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-init scripts
+     */
+    afterInits?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-perform scripts
+     */
+    afterPerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-plan scripts
+     */
+    afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-apply scripts
+     */
+    beforeApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-destroy scripts
+     */
+    beforeDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-init scripts
+     */
+    beforeInits?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-perform scripts
+     */
+    beforePerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-plan scripts
+     */
+    beforePlans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID (slug) of the stack
+     */
+    stackId: pulumi.Input<string>;
 }
