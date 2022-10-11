@@ -30,10 +30,16 @@ export function getGitlabIntegration(opts?: pulumi.InvokeOptions): Promise<GetGi
  * A collection of values returned by getGitlabIntegration.
  */
 export interface GetGitlabIntegrationResult {
+    /**
+     * Gitlab integration api host
+     */
     readonly apiHost: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Gitlab integration webhook secret
+     */
     readonly webhookSecret: string;
 }

@@ -34,5 +34,8 @@ export interface GetIPsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * the list of spacelift.io outgoing IP addresses
+     */
     readonly ips: string[];
 }

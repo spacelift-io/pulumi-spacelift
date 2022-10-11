@@ -34,6 +34,12 @@ export interface GetAzureDevopsIntegrationResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Azure DevOps integration organization url
+     */
     readonly organizationUrl: string;
+    /**
+     * Azure DevOps integration webhook password
+     */
     readonly webhookPassword: string;
 }

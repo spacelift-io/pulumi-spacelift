@@ -35,8 +35,17 @@ export function getWebhook(args: GetWebhookArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getWebhook.
  */
 export interface GetWebhookArgs {
+    /**
+     * ID of the stack which triggers the webhooks
+     */
     moduleId?: string;
+    /**
+     * ID of the stack which triggers the webhooks
+     */
     stackId?: string;
+    /**
+     * ID of the webhook
+     */
     webhookId: string;
 }
 
@@ -44,15 +53,33 @@ export interface GetWebhookArgs {
  * A collection of values returned by getWebhook.
  */
 export interface GetWebhookResult {
+    /**
+     * enables or disables sending webhooks
+     */
     readonly enabled: boolean;
+    /**
+     * endpoint to send the POST request to
+     */
     readonly endpoint: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * ID of the stack which triggers the webhooks
+     */
     readonly moduleId?: string;
+    /**
+     * secret used to sign each POST request so you're able to verify that the request comes from us
+     */
     readonly secret: string;
+    /**
+     * ID of the stack which triggers the webhooks
+     */
     readonly stackId?: string;
+    /**
+     * ID of the webhook
+     */
     readonly webhookId: string;
 }
 
@@ -64,7 +91,16 @@ export function getWebhookOutput(args: GetWebhookOutputArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getWebhook.
  */
 export interface GetWebhookOutputArgs {
+    /**
+     * ID of the stack which triggers the webhooks
+     */
     moduleId?: pulumi.Input<string>;
+    /**
+     * ID of the stack which triggers the webhooks
+     */
     stackId?: pulumi.Input<string>;
+    /**
+     * ID of the webhook
+     */
     webhookId: pulumi.Input<string>;
 }

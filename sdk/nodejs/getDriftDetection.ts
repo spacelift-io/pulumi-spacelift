@@ -33,6 +33,9 @@ export function getDriftDetection(args: GetDriftDetectionArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getDriftDetection.
  */
 export interface GetDriftDetectionArgs {
+    /**
+     * ID of the stack for which to set up drift detection
+     */
     stackId: string;
 }
 
@@ -44,9 +47,21 @@ export interface GetDriftDetectionResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Whether a tracked run should be triggered when drift is detected.
+     */
     readonly reconcile: boolean;
+    /**
+     * List of cron schedule expressions based on which drift detection should be triggered.
+     */
     readonly schedules: string[];
+    /**
+     * ID of the stack for which to set up drift detection
+     */
     readonly stackId: string;
+    /**
+     * Timezone in which the schedule is expressed
+     */
     readonly timezone: string;
 }
 
@@ -58,5 +73,8 @@ export function getDriftDetectionOutput(args: GetDriftDetectionOutputArgs, opts?
  * A collection of arguments for invoking getDriftDetection.
  */
 export interface GetDriftDetectionOutputArgs {
+    /**
+     * ID of the stack for which to set up drift detection
+     */
     stackId: pulumi.Input<string>;
 }

@@ -13,6 +13,29 @@ import (
 // `AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
 //
 // Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := spacelift.LookupAwsIntegration(ctx, &GetAwsIntegrationArgs{
+// 			Name: pulumi.StringRef("Production"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupAwsIntegration(ctx *pulumi.Context, args *LookupAwsIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupAwsIntegrationResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAwsIntegrationResult
@@ -25,21 +48,31 @@ func LookupAwsIntegration(ctx *pulumi.Context, args *LookupAwsIntegrationArgs, o
 
 // A collection of arguments for invoking getAwsIntegration.
 type LookupAwsIntegrationArgs struct {
-	IntegrationId string `pulumi:"integrationId"`
+	// Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+	IntegrationId *string `pulumi:"integrationId"`
+	// Name of the AWS integration. Either `integrationId` or `name` must be specified.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getAwsIntegration.
 type LookupAwsIntegrationResult struct {
-	DurationSeconds             int    `pulumi:"durationSeconds"`
-	ExternalId                  string `pulumi:"externalId"`
-	GenerateCredentialsInWorker bool   `pulumi:"generateCredentialsInWorker"`
+	// Duration in seconds for which the assumed role credentials should be valid
+	DurationSeconds int `pulumi:"durationSeconds"`
+	// Custom external ID (works only for private workers).
+	ExternalId string `pulumi:"externalId"`
+	// Generate AWS credentials in the private worker
+	GenerateCredentialsInWorker bool `pulumi:"generateCredentialsInWorker"`
 	// The provider-assigned unique ID for this managed resource.
-	Id            string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Immutable ID of the integration. Either `integrationId` or `name` must be specified.
 	IntegrationId string   `pulumi:"integrationId"`
 	Labels        []string `pulumi:"labels"`
-	Name          string   `pulumi:"name"`
-	RoleArn       string   `pulumi:"roleArn"`
-	SpaceId       string   `pulumi:"spaceId"`
+	// Name of the AWS integration. Either `integrationId` or `name` must be specified.
+	Name string `pulumi:"name"`
+	// ARN of the AWS IAM role to attach
+	RoleArn string `pulumi:"roleArn"`
+	// ID (slug) of the space the integration is in
+	SpaceId string `pulumi:"spaceId"`
 }
 
 func LookupAwsIntegrationOutput(ctx *pulumi.Context, args LookupAwsIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupAwsIntegrationResultOutput {
@@ -57,7 +90,10 @@ func LookupAwsIntegrationOutput(ctx *pulumi.Context, args LookupAwsIntegrationOu
 
 // A collection of arguments for invoking getAwsIntegration.
 type LookupAwsIntegrationOutputArgs struct {
-	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
+	// Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+	IntegrationId pulumi.StringPtrInput `pulumi:"integrationId"`
+	// Name of the AWS integration. Either `integrationId` or `name` must be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupAwsIntegrationOutputArgs) ElementType() reflect.Type {
@@ -79,14 +115,17 @@ func (o LookupAwsIntegrationResultOutput) ToLookupAwsIntegrationResultOutputWith
 	return o
 }
 
+// Duration in seconds for which the assumed role credentials should be valid
 func (o LookupAwsIntegrationResultOutput) DurationSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationResult) int { return v.DurationSeconds }).(pulumi.IntOutput)
 }
 
+// Custom external ID (works only for private workers).
 func (o LookupAwsIntegrationResultOutput) ExternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationResult) string { return v.ExternalId }).(pulumi.StringOutput)
 }
 
+// Generate AWS credentials in the private worker
 func (o LookupAwsIntegrationResultOutput) GenerateCredentialsInWorker() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationResult) bool { return v.GenerateCredentialsInWorker }).(pulumi.BoolOutput)
 }
@@ -96,6 +135,7 @@ func (o LookupAwsIntegrationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Immutable ID of the integration. Either `integrationId` or `name` must be specified.
 func (o LookupAwsIntegrationResultOutput) IntegrationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationResult) string { return v.IntegrationId }).(pulumi.StringOutput)
 }
@@ -104,14 +144,17 @@ func (o LookupAwsIntegrationResultOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// Name of the AWS integration. Either `integrationId` or `name` must be specified.
 func (o LookupAwsIntegrationResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ARN of the AWS IAM role to attach
 func (o LookupAwsIntegrationResultOutput) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationResult) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the space the integration is in
 func (o LookupAwsIntegrationResultOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }

@@ -15,32 +15,32 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var no_weekend_deploysPolicy = new Spacelift.Policy("no-weekend-deploysPolicy", new()
     ///     {
-    ///         var no_weekend_deploysPolicy = new Spacelift.Policy("no-weekend-deploysPolicy", new Spacelift.PolicyArgs
-    ///         {
-    ///             Body = File.ReadAllText("policies/no-weekend-deploys.rego"),
-    ///             Type = "PLAN",
-    ///         });
-    ///         var core_infra_production = new Spacelift.Stack("core-infra-production", new Spacelift.StackArgs
-    ///         {
-    ///             Branch = "master",
-    ///             Repository = "core-infra",
-    ///         });
-    ///         var no_weekend_deploysPolicyAttachment = new Spacelift.PolicyAttachment("no-weekend-deploysPolicyAttachment", new Spacelift.PolicyAttachmentArgs
-    ///         {
-    ///             PolicyId = no_weekend_deploysPolicy.Id,
-    ///             StackId = core_infra_production.Id,
-    ///         });
-    ///     }
+    ///         Body = File.ReadAllText("policies/no-weekend-deploys.rego"),
+    ///         Type = "PLAN",
+    ///     });
     /// 
-    /// }
+    ///     var core_infra_production = new Spacelift.Stack("core-infra-production", new()
+    ///     {
+    ///         Branch = "master",
+    ///         Repository = "core-infra",
+    ///     });
+    /// 
+    ///     var no_weekend_deploysPolicyAttachment = new Spacelift.PolicyAttachment("no-weekend-deploysPolicyAttachment", new()
+    ///     {
+    ///         PolicyId = no_weekend_deploysPolicy.Id,
+    ///         StackId = core_infra_production.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +50,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/policyAttachment:PolicyAttachment")]
-    public partial class PolicyAttachment : Pulumi.CustomResource
+    public partial class PolicyAttachment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// ID of the module to attach the policy to
@@ -93,7 +93,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -115,7 +115,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class PolicyAttachmentArgs : Pulumi.ResourceArgs
+    public sealed class PolicyAttachmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the module to attach the policy to
@@ -138,9 +138,10 @@ namespace Pulumi.Spacelift
         public PolicyAttachmentArgs()
         {
         }
+        public static new PolicyAttachmentArgs Empty => new PolicyAttachmentArgs();
     }
 
-    public sealed class PolicyAttachmentState : Pulumi.ResourceArgs
+    public sealed class PolicyAttachmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the module to attach the policy to
@@ -163,5 +164,6 @@ namespace Pulumi.Spacelift
         public PolicyAttachmentState()
         {
         }
+        public static new PolicyAttachmentState Empty => new PolicyAttachmentState();
     }
 }

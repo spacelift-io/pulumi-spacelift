@@ -41,9 +41,12 @@ func GetBitbucketDatacenterIntegration(ctx *pulumi.Context, opts ...pulumi.Invok
 
 // A collection of values returned by getBitbucketDatacenterIntegration.
 type GetBitbucketDatacenterIntegrationResult struct {
+	// Bitbucket Datacenter integration api host
 	ApiHost string `pulumi:"apiHost"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Bitbucket Datacenter integration user facing host
 	UserFacingHost string `pulumi:"userFacingHost"`
-	WebhookSecret  string `pulumi:"webhookSecret"`
+	// Bitbucket Datacenter integration webhook secret
+	WebhookSecret string `pulumi:"webhookSecret"`
 }

@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as spacelift from "@pulumi/spacelift";
  *
  * const ghe = new spacelift.VcsAgentPool("ghe", {
- *     description: "VCS agent pool for our internal GitHub Enterpris",
+ *     description: "VCS agent pool for our internal GitHub Enterprise",
  * });
  * ```
  *

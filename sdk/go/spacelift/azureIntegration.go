@@ -57,8 +57,7 @@ type AzureIntegration struct {
 	ApplicationId pulumi.StringOutput `pulumi:"applicationId"`
 	// The default subscription ID to use, if one isn't specified at the stack/module level
 	DefaultSubscriptionId pulumi.StringPtrOutput `pulumi:"defaultSubscriptionId"`
-	// The display name for the application in Azure. This is automatically generated when the integration is created, and
-	// cannot be changed without deleting and recreating the integration.
+	// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// Labels to set on the integration
 	Labels pulumi.StringArrayOutput `pulumi:"labels"`
@@ -111,8 +110,7 @@ type azureIntegrationState struct {
 	ApplicationId *string `pulumi:"applicationId"`
 	// The default subscription ID to use, if one isn't specified at the stack/module level
 	DefaultSubscriptionId *string `pulumi:"defaultSubscriptionId"`
-	// The display name for the application in Azure. This is automatically generated when the integration is created, and
-	// cannot be changed without deleting and recreating the integration.
+	// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
 	DisplayName *string `pulumi:"displayName"`
 	// Labels to set on the integration
 	Labels []string `pulumi:"labels"`
@@ -133,8 +131,7 @@ type AzureIntegrationState struct {
 	ApplicationId pulumi.StringPtrInput
 	// The default subscription ID to use, if one isn't specified at the stack/module level
 	DefaultSubscriptionId pulumi.StringPtrInput
-	// The display name for the application in Azure. This is automatically generated when the integration is created, and
-	// cannot be changed without deleting and recreating the integration.
+	// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
 	DisplayName pulumi.StringPtrInput
 	// Labels to set on the integration
 	Labels pulumi.StringArrayInput
@@ -284,8 +281,7 @@ func (o AzureIntegrationOutput) DefaultSubscriptionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AzureIntegration) pulumi.StringPtrOutput { return v.DefaultSubscriptionId }).(pulumi.StringPtrOutput)
 }
 
-// The display name for the application in Azure. This is automatically generated when the integration is created, and
-// cannot be changed without deleting and recreating the integration.
+// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
 func (o AzureIntegrationOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v *AzureIntegration) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
 }

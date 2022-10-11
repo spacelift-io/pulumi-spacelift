@@ -9,8 +9,52 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Spacelift
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// using Spacelift = Pulumi.Spacelift;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var k8s_coreStack = new Spacelift.Stack("k8s-coreStack", new()
+    ///     {
+    ///         Branch = "master",
+    ///         Repository = "core-infra",
+    ///     });
+    /// 
+    ///     var k8s_coreStackGcpServiceAccount = new Spacelift.StackGcpServiceAccount("k8s-coreStackGcpServiceAccount", new()
+    ///     {
+    ///         StackId = k8s_coreStack.Id,
+    ///         TokenScopes = new[]
+    ///         {
+    ///             "https://www.googleapis.com/auth/compute",
+    ///             "https://www.googleapis.com/auth/cloud-platform",
+    ///             "https://www.googleapis.com/auth/devstorage.full_control",
+    ///         },
+    ///     });
+    /// 
+    ///     var k8s_coreProject = new Gcp.Organizations.Project("k8s-coreProject", new()
+    ///     {
+    ///         ProjectId = "unicorn-k8s-core",
+    ///         OrgId = @var.Gcp_organization_id,
+    ///     });
+    /// 
+    ///     var k8s_coreIAMMember = new Gcp.Projects.IAMMember("k8s-coreIAMMember", new()
+    ///     {
+    ///         Project = k8s_coreProject.Id,
+    ///         Role = "roles/owner",
+    ///         Member = k8s_coreStackGcpServiceAccount.ServiceAccountEmail.Apply(serviceAccountEmail =&gt; $"serviceAccount:{serviceAccountEmail}"),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [SpaceliftResourceType("spacelift:index/stackGcpServiceAccount:StackGcpServiceAccount")]
-    public partial class StackGcpServiceAccount : Pulumi.CustomResource
+    public partial class StackGcpServiceAccount : global::Pulumi.CustomResource
     {
         /// <summary>
         /// ID of the module which uses GCP service account credentials
@@ -59,7 +103,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -81,7 +125,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class StackGcpServiceAccountArgs : Pulumi.ResourceArgs
+    public sealed class StackGcpServiceAccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the module which uses GCP service account credentials
@@ -110,9 +154,10 @@ namespace Pulumi.Spacelift
         public StackGcpServiceAccountArgs()
         {
         }
+        public static new StackGcpServiceAccountArgs Empty => new StackGcpServiceAccountArgs();
     }
 
-    public sealed class StackGcpServiceAccountState : Pulumi.ResourceArgs
+    public sealed class StackGcpServiceAccountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the module which uses GCP service account credentials
@@ -147,5 +192,6 @@ namespace Pulumi.Spacelift
         public StackGcpServiceAccountState()
         {
         }
+        public static new StackGcpServiceAccountState Empty => new StackGcpServiceAccountState();
     }
 }

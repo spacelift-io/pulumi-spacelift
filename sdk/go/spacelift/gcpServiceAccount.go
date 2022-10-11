@@ -11,6 +11,62 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/projects"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := spacelift.NewStack(ctx, "k8s-coreStack", &spacelift.StackArgs{
+// 			Branch:     pulumi.String("master"),
+// 			Repository: pulumi.String("core-infra"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = spacelift.NewGcpServiceAccount(ctx, "k8s-coreGcpServiceAccount", &spacelift.GcpServiceAccountArgs{
+// 			StackId: k8s_coreStack.ID(),
+// 			TokenScopes: pulumi.StringArray{
+// 				pulumi.String("https://www.googleapis.com/auth/compute"),
+// 				pulumi.String("https://www.googleapis.com/auth/cloud-platform"),
+// 				pulumi.String("https://www.googleapis.com/auth/devstorage.full_control"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = organizations.NewProject(ctx, "k8s-coreProject", &organizations.ProjectArgs{
+// 			ProjectId: pulumi.String("unicorn-k8s-core"),
+// 			OrgId:     pulumi.Any(_var.Gcp_organization_id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = projects.NewIAMMember(ctx, "k8s-coreIAMMember", &projects.IAMMemberArgs{
+// 			Project: k8s_coreProject.ID(),
+// 			Role:    pulumi.String("roles/owner"),
+// 			Member: k8s_coreGcpServiceAccount.ServiceAccountEmail.ApplyT(func(serviceAccountEmail string) (string, error) {
+// 				return fmt.Sprintf("serviceAccount:%v", serviceAccountEmail), nil
+// 			}).(pulumi.StringOutput),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // ```sh

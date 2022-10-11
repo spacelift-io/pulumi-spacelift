@@ -17,26 +17,24 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var k8s_module = Spacelift.GetModule.Invoke(new()
         ///     {
-        ///         var k8s_module = Output.Create(Spacelift.GetModule.InvokeAsync(new Spacelift.GetModuleArgs
-        ///         {
-        ///             ModuleId = "k8s-module",
-        ///         }));
-        ///     }
+        ///         ModuleId = "k8s-module",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetModuleResult> InvokeAsync(GetModuleArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetModuleResult>("spacelift:index/getModule:getModule", args ?? new GetModuleArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetModuleResult>("spacelift:index/getModule:getModule", args ?? new GetModuleArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -44,75 +42,129 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var k8s_module = Spacelift.GetModule.Invoke(new()
         ///     {
-        ///         var k8s_module = Output.Create(Spacelift.GetModule.InvokeAsync(new Spacelift.GetModuleArgs
-        ///         {
-        ///             ModuleId = "k8s-module",
-        ///         }));
-        ///     }
+        ///         ModuleId = "k8s-module",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetModuleResult> Invoke(GetModuleInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetModuleResult>("spacelift:index/getModule:getModule", args ?? new GetModuleInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetModuleResult>("spacelift:index/getModule:getModule", args ?? new GetModuleInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetModuleArgs : Pulumi.InvokeArgs
+    public sealed class GetModuleArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID (slug) of the module
+        /// </summary>
         [Input("moduleId", required: true)]
         public string ModuleId { get; set; } = null!;
 
         public GetModuleArgs()
         {
         }
+        public static new GetModuleArgs Empty => new GetModuleArgs();
     }
 
-    public sealed class GetModuleInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetModuleInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID (slug) of the module
+        /// </summary>
         [Input("moduleId", required: true)]
         public Input<string> ModuleId { get; set; } = null!;
 
         public GetModuleInvokeArgs()
         {
         }
+        public static new GetModuleInvokeArgs Empty => new GetModuleInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetModuleResult
     {
+        /// <summary>
+        /// indicates whether this module can administer others
+        /// </summary>
         public readonly bool Administrative;
+        /// <summary>
+        /// AWS IAM assume role policy statement setting up trust relationship
+        /// </summary>
         public readonly string AwsAssumeRolePolicyStatement;
+        /// <summary>
+        /// Azure DevOps VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetModuleAzureDevopResult> AzureDevops;
+        /// <summary>
+        /// Bitbucket Cloud VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetModuleBitbucketCloudResult> BitbucketClouds;
+        /// <summary>
+        /// Bitbucket Datacenter VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetModuleBitbucketDatacenterResult> BitbucketDatacenters;
+        /// <summary>
+        /// GitHub branch to apply changes to
+        /// </summary>
         public readonly string Branch;
+        /// <summary>
+        /// free-form module description for human users (supports Markdown)
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// GitHub Enterprise (self-hosted) VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetModuleGithubEnterpriseResult> GithubEnterprises;
+        /// <summary>
+        /// GitLab VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetModuleGitlabResult> Gitlabs;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// ID (slug) of the module
+        /// </summary>
         public readonly string ModuleId;
         public readonly string Name;
+        /// <summary>
+        /// Project root is the optional directory relative to the repository root containing the module source code.
+        /// </summary>
         public readonly string ProjectRoot;
+        /// <summary>
+        /// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+        /// </summary>
         public readonly bool ProtectFromDeletion;
+        /// <summary>
+        /// Name of the repository, without the owner part
+        /// </summary>
         public readonly string Repository;
+        /// <summary>
+        /// List of the accounts (subdomains) which should have access to the Module
+        /// </summary>
         public readonly ImmutableArray<string> SharedAccounts;
+        /// <summary>
+        /// ID (slug) of the space the module is in
+        /// </summary>
         public readonly string SpaceId;
         public readonly string TerraformProvider;
+        /// <summary>
+        /// ID of the worker pool to use
+        /// </summary>
         public readonly string WorkerPoolId;
 
         [OutputConstructor]

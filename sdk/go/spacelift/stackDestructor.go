@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `StackDestructor` is used to destroy the resources of a Stack before deleting it. `dependsOn` should be used to make sure that all necessery resources (environment variables, roles, integrations, etc.) are still in place when the destruction run is executed. **Note:** Destroying this resource will delete the resources in the stack. If this resource needs to be deleted and the resources in the stacks are to be preserved, ensure that the `deactivated` attribute is set to `true`.
+// `StackDestructor` is used to destroy the resources of a Stack before deleting it. `dependsOn` should be used to make sure that all necessary resources (environment variables, roles, integrations, etc.) are still in place when the destruction run is executed. **Note:** Destroying this resource will delete the resources in the stack. If this resource needs to be deleted and the resources in the stacks are to be preserved, ensure that the `deactivated` attribute is set to `true`.
 //
 // ## Example Usage
 //

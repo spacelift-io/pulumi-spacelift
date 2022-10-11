@@ -86,7 +86,7 @@ class GetAwsIntegrationResult:
     @pulumi.getter(name="integrationId")
     def integration_id(self) -> str:
         """
-        immutable ID of the integration
+        Immutable ID of the integration. Either `integration_id` or `name` must be specified.
         """
         return pulumi.get(self, "integration_id")
 
@@ -99,7 +99,7 @@ class GetAwsIntegrationResult:
     @pulumi.getter
     def name(self) -> str:
         """
-        Name of the AWS integration
+        Name of the AWS integration. Either `integration_id` or `name` must be specified.
         """
         return pulumi.get(self, "name")
 
@@ -138,17 +138,29 @@ class AwaitableGetAwsIntegrationResult(GetAwsIntegrationResult):
 
 
 def get_aws_integration(integration_id: Optional[str] = None,
+                        name: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAwsIntegrationResult:
     """
     `AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
 
     Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
 
+    ## Example Usage
 
-    :param str integration_id: immutable ID of the integration
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    example = spacelift.get_aws_integration(name="Production")
+    ```
+
+
+    :param str integration_id: Immutable ID of the integration. Either `integration_id` or `name` must be specified.
+    :param str name: Name of the AWS integration. Either `integration_id` or `name` must be specified.
     """
     __args__ = dict()
     __args__['integrationId'] = integration_id
+    __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('spacelift:index/getAwsIntegration:getAwsIntegration', __args__, opts=opts, typ=GetAwsIntegrationResult).value
 
@@ -165,14 +177,25 @@ def get_aws_integration(integration_id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_aws_integration)
-def get_aws_integration_output(integration_id: Optional[pulumi.Input[str]] = None,
+def get_aws_integration_output(integration_id: Optional[pulumi.Input[Optional[str]]] = None,
+                               name: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAwsIntegrationResult]:
     """
     `AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
 
     Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
 
+    ## Example Usage
 
-    :param str integration_id: immutable ID of the integration
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    example = spacelift.get_aws_integration(name="Production")
+    ```
+
+
+    :param str integration_id: Immutable ID of the integration. Either `integration_id` or `name` must be specified.
+    :param str name: Name of the AWS integration. Either `integration_id` or `name` must be specified.
     """
     ...

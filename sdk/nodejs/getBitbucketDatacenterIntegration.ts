@@ -30,11 +30,20 @@ export function getBitbucketDatacenterIntegration(opts?: pulumi.InvokeOptions): 
  * A collection of values returned by getBitbucketDatacenterIntegration.
  */
 export interface GetBitbucketDatacenterIntegrationResult {
+    /**
+     * Bitbucket Datacenter integration api host
+     */
     readonly apiHost: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Bitbucket Datacenter integration user facing host
+     */
     readonly userFacingHost: string;
+    /**
+     * Bitbucket Datacenter integration webhook secret
+     */
     readonly webhookSecret: string;
 }

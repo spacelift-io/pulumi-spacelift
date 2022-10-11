@@ -74,8 +74,7 @@ export class AzureIntegration extends pulumi.CustomResource {
      */
     public readonly defaultSubscriptionId!: pulumi.Output<string | undefined>;
     /**
-     * The display name for the application in Azure. This is automatically generated when the integration is created, and
-     * cannot be changed without deleting and recreating the integration.
+     * The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
      */
     public /*out*/ readonly displayName!: pulumi.Output<string>;
     /**
@@ -158,8 +157,7 @@ export interface AzureIntegrationState {
      */
     defaultSubscriptionId?: pulumi.Input<string>;
     /**
-     * The display name for the application in Azure. This is automatically generated when the integration is created, and
-     * cannot be changed without deleting and recreating the integration.
+     * The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
      */
     displayName?: pulumi.Input<string>;
     /**

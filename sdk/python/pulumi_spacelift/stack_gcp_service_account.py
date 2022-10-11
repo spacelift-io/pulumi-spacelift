@@ -148,7 +148,32 @@ class StackGcpServiceAccount(pulumi.CustomResource):
                  token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a StackGcpServiceAccount resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_spacelift as spacelift
+
+        k8s_core_stack = spacelift.Stack("k8s-coreStack",
+            branch="master",
+            repository="core-infra")
+        k8s_core_stack_gcp_service_account = spacelift.StackGcpServiceAccount("k8s-coreStackGcpServiceAccount",
+            stack_id=k8s_core_stack.id,
+            token_scopes=[
+                "https://www.googleapis.com/auth/compute",
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/devstorage.full_control",
+            ])
+        k8s_core_project = gcp.organizations.Project("k8s-coreProject",
+            project_id="unicorn-k8s-core",
+            org_id=var["gcp_organization_id"])
+        k8s_core_iam_member = gcp.projects.IAMMember("k8s-coreIAMMember",
+            project=k8s_core_project.id,
+            role="roles/owner",
+            member=k8s_core_stack_gcp_service_account.service_account_email.apply(lambda service_account_email: f"serviceAccount:{service_account_email}"))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] module_id: ID of the module which uses GCP service account credentials
@@ -162,7 +187,32 @@ class StackGcpServiceAccount(pulumi.CustomResource):
                  args: StackGcpServiceAccountArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a StackGcpServiceAccount resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_spacelift as spacelift
+
+        k8s_core_stack = spacelift.Stack("k8s-coreStack",
+            branch="master",
+            repository="core-infra")
+        k8s_core_stack_gcp_service_account = spacelift.StackGcpServiceAccount("k8s-coreStackGcpServiceAccount",
+            stack_id=k8s_core_stack.id,
+            token_scopes=[
+                "https://www.googleapis.com/auth/compute",
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/devstorage.full_control",
+            ])
+        k8s_core_project = gcp.organizations.Project("k8s-coreProject",
+            project_id="unicorn-k8s-core",
+            org_id=var["gcp_organization_id"])
+        k8s_core_iam_member = gcp.projects.IAMMember("k8s-coreIAMMember",
+            project=k8s_core_project.id,
+            role="roles/owner",
+            member=k8s_core_stack_gcp_service_account.service_account_email.apply(lambda service_account_email: f"serviceAccount:{service_account_email}"))
+        ```
+
         :param str resource_name: The name of the resource.
         :param StackGcpServiceAccountArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

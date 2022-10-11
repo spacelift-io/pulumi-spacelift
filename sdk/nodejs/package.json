@@ -9,7 +9,7 @@
         "category/infrastructure"
     ],
     "homepage": "https://spacelift.io",
-    "repository": "https://github.com/spacelift-io/pulumi-spacelift",
+    "repository": "git://github.com/spacelift-io/pulumi-spacelift.git",
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc",
@@ -26,6 +26,6 @@
     "pulumi": {
         "resource": true,
         "name": "spacelift",
-        "server": "https://github.com/spacelift-io/pulumi-spacelift/releases"
+        "server": "https://downloads.spacelift.io/pulumi-plugins"
     }
 }

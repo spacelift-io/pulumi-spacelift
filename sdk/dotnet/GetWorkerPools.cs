@@ -19,23 +19,21 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var worker_pools = Output.Create(Spacelift.GetWorkerPools.InvokeAsync());
-        ///     }
+        ///     var worker_pools = Spacelift.GetWorkerPools.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetWorkerPoolsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetWorkerPoolsResult>("spacelift:index/getWorkerPools:getWorkerPools", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetWorkerPoolsResult>("spacelift:index/getWorkerPools:getWorkerPools", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

@@ -19,27 +19,25 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Spacelift.GetAzureIntegrationAttachment.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Spacelift.GetAzureIntegrationAttachment.InvokeAsync(new Spacelift.GetAzureIntegrationAttachmentArgs
-        ///         {
-        ///             IntegrationId = "some-integration-id",
-        ///             StackId = "some-stack-id",
-        ///         }));
-        ///     }
+        ///         IntegrationId = "some-integration-id",
+        ///         StackId = "some-stack-id",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAzureIntegrationAttachmentResult> InvokeAsync(GetAzureIntegrationAttachmentArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAzureIntegrationAttachmentResult>("spacelift:index/getAzureIntegrationAttachment:getAzureIntegrationAttachment", args ?? new GetAzureIntegrationAttachmentArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAzureIntegrationAttachmentResult>("spacelift:index/getAzureIntegrationAttachment:getAzureIntegrationAttachment", args ?? new GetAzureIntegrationAttachmentArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.AzureIntegrationAttachment` represents the attachment between a reusable Azure integration and a single stack or module.
@@ -49,76 +47,115 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Spacelift.GetAzureIntegrationAttachment.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Spacelift.GetAzureIntegrationAttachment.InvokeAsync(new Spacelift.GetAzureIntegrationAttachmentArgs
-        ///         {
-        ///             IntegrationId = "some-integration-id",
-        ///             StackId = "some-stack-id",
-        ///         }));
-        ///     }
+        ///         IntegrationId = "some-integration-id",
+        ///         StackId = "some-stack-id",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAzureIntegrationAttachmentResult> Invoke(GetAzureIntegrationAttachmentInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAzureIntegrationAttachmentResult>("spacelift:index/getAzureIntegrationAttachment:getAzureIntegrationAttachment", args ?? new GetAzureIntegrationAttachmentInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAzureIntegrationAttachmentResult>("spacelift:index/getAzureIntegrationAttachment:getAzureIntegrationAttachment", args ?? new GetAzureIntegrationAttachmentInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAzureIntegrationAttachmentArgs : Pulumi.InvokeArgs
+    public sealed class GetAzureIntegrationAttachmentArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the integration to attach
+        /// </summary>
         [Input("integrationId", required: true)]
         public string IntegrationId { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the module to attach the integration to
+        /// </summary>
         [Input("moduleId")]
         public string? ModuleId { get; set; }
 
+        /// <summary>
+        /// ID of the stack to attach the integration to
+        /// </summary>
         [Input("stackId")]
         public string? StackId { get; set; }
 
         public GetAzureIntegrationAttachmentArgs()
         {
         }
+        public static new GetAzureIntegrationAttachmentArgs Empty => new GetAzureIntegrationAttachmentArgs();
     }
 
-    public sealed class GetAzureIntegrationAttachmentInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAzureIntegrationAttachmentInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the integration to attach
+        /// </summary>
         [Input("integrationId", required: true)]
         public Input<string> IntegrationId { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the module to attach the integration to
+        /// </summary>
         [Input("moduleId")]
         public Input<string>? ModuleId { get; set; }
 
+        /// <summary>
+        /// ID of the stack to attach the integration to
+        /// </summary>
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 
         public GetAzureIntegrationAttachmentInvokeArgs()
         {
         }
+        public static new GetAzureIntegrationAttachmentInvokeArgs Empty => new GetAzureIntegrationAttachmentInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetAzureIntegrationAttachmentResult
     {
+        /// <summary>
+        /// Internal ID of the attachment entity
+        /// </summary>
         public readonly string AttachmentId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// ID of the integration to attach
+        /// </summary>
         public readonly string IntegrationId;
+        /// <summary>
+        /// ID of the module to attach the integration to
+        /// </summary>
         public readonly string? ModuleId;
+        /// <summary>
+        /// Indicates whether this attachment is used for read operations
+        /// </summary>
         public readonly bool Read;
+        /// <summary>
+        /// ID of the stack to attach the integration to
+        /// </summary>
         public readonly string? StackId;
+        /// <summary>
+        /// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
+        /// </summary>
         public readonly string SubscriptionId;
+        /// <summary>
+        /// Indicates whether this attachment is used for write operations
+        /// </summary>
         public readonly bool Write;
 
         [OutputConstructor]

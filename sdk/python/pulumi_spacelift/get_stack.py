@@ -22,7 +22,7 @@ class GetStackResult:
     """
     A collection of values returned by getStack.
     """
-    def __init__(__self__, administrative=None, after_applies=None, after_destroys=None, after_inits=None, after_performs=None, after_plans=None, ansibles=None, autodeploy=None, autoretry=None, aws_assume_role_policy_statement=None, azure_devops=None, before_applies=None, before_destroys=None, before_inits=None, before_performs=None, before_plans=None, bitbucket_clouds=None, bitbucket_datacenters=None, branch=None, cloudformations=None, description=None, enable_local_preview=None, github_enterprises=None, gitlabs=None, id=None, kubernetes=None, labels=None, manage_state=None, name=None, project_root=None, protect_from_deletion=None, pulumis=None, repository=None, runner_image=None, showcases=None, space_id=None, stack_id=None, terraform_version=None, terraform_workspace=None, worker_pool_id=None):
+    def __init__(__self__, administrative=None, after_applies=None, after_destroys=None, after_inits=None, after_performs=None, after_plans=None, ansibles=None, autodeploy=None, autoretry=None, aws_assume_role_policy_statement=None, azure_devops=None, before_applies=None, before_destroys=None, before_inits=None, before_performs=None, before_plans=None, bitbucket_clouds=None, bitbucket_datacenters=None, branch=None, cloudformations=None, description=None, enable_local_preview=None, github_enterprises=None, gitlabs=None, id=None, kubernetes=None, labels=None, manage_state=None, name=None, project_root=None, protect_from_deletion=None, pulumis=None, repository=None, runner_image=None, showcases=None, space_id=None, stack_id=None, terraform_smart_sanitization=None, terraform_version=None, terraform_workspace=None, worker_pool_id=None):
         if administrative and not isinstance(administrative, bool):
             raise TypeError("Expected argument 'administrative' to be a bool")
         pulumi.set(__self__, "administrative", administrative)
@@ -134,6 +134,9 @@ class GetStackResult:
         if stack_id and not isinstance(stack_id, str):
             raise TypeError("Expected argument 'stack_id' to be a str")
         pulumi.set(__self__, "stack_id", stack_id)
+        if terraform_smart_sanitization and not isinstance(terraform_smart_sanitization, bool):
+            raise TypeError("Expected argument 'terraform_smart_sanitization' to be a bool")
+        pulumi.set(__self__, "terraform_smart_sanitization", terraform_smart_sanitization)
         if terraform_version and not isinstance(terraform_version, str):
             raise TypeError("Expected argument 'terraform_version' to be a str")
         pulumi.set(__self__, "terraform_version", terraform_version)
@@ -438,6 +441,11 @@ class GetStackResult:
         return pulumi.get(self, "stack_id")
 
     @property
+    @pulumi.getter(name="terraformSmartSanitization")
+    def terraform_smart_sanitization(self) -> bool:
+        return pulumi.get(self, "terraform_smart_sanitization")
+
+    @property
     @pulumi.getter(name="terraformVersion")
     def terraform_version(self) -> str:
         return pulumi.get(self, "terraform_version")
@@ -499,6 +507,7 @@ class AwaitableGetStackResult(GetStackResult):
             showcases=self.showcases,
             space_id=self.space_id,
             stack_id=self.stack_id,
+            terraform_smart_sanitization=self.terraform_smart_sanitization,
             terraform_version=self.terraform_version,
             terraform_workspace=self.terraform_workspace,
             worker_pool_id=self.worker_pool_id)
@@ -594,6 +603,7 @@ def get_stack(after_applies: Optional[Sequence[str]] = None,
         showcases=__ret__.showcases,
         space_id=__ret__.space_id,
         stack_id=__ret__.stack_id,
+        terraform_smart_sanitization=__ret__.terraform_smart_sanitization,
         terraform_version=__ret__.terraform_version,
         terraform_workspace=__ret__.terraform_workspace,
         worker_pool_id=__ret__.worker_pool_id)

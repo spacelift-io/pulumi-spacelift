@@ -41,9 +41,12 @@ func GetAccount(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccountRe
 
 // A collection of values returned by getAccount.
 type GetAccountResult struct {
+	// the ID of the AWS account used by Spacelift for role assumption
 	AwsAccountId string `pulumi:"awsAccountId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// name of the account
 	Name string `pulumi:"name"`
+	// account billing tier
 	Tier string `pulumi:"tier"`
 }

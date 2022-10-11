@@ -41,9 +41,12 @@ func GetGithubEnterpriseIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOp
 
 // A collection of values returned by getGithubEnterpriseIntegration.
 type GetGithubEnterpriseIntegrationResult struct {
+	// Github integration api host
 	ApiHost string `pulumi:"apiHost"`
-	AppId   string `pulumi:"appId"`
+	// Github integration app id
+	AppId string `pulumi:"appId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id            string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Github integration webhook secret
 	WebhookSecret string `pulumi:"webhookSecret"`
 }

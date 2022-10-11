@@ -16,7 +16,7 @@ namespace Pulumi.Spacelift
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [SpaceliftResourceType("pulumi:providers:spacelift")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// Endpoint to use when authenticating with an API key outside of Spacelift
@@ -60,7 +60,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
                 AdditionalSecretOutputs =
                 {
                     "apiKeySecret",
@@ -74,7 +74,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Endpoint to use when authenticating with an API key outside of Spacelift
@@ -127,5 +127,6 @@ namespace Pulumi.Spacelift
             ApiKeySecret = Utilities.GetEnv("SPACELIFT_API_KEY_SECRET");
             ApiToken = Utilities.GetEnv("SPACELIFT_API_TOKEN");
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

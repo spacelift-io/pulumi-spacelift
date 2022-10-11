@@ -15,37 +15,37 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // For a context
+    ///     var ireland_kubeconfig = new Spacelift.EnvironmentVariable("ireland-kubeconfig", new()
     ///     {
-    ///         // For a context
-    ///         var ireland_kubeconfig = new Spacelift.EnvironmentVariable("ireland-kubeconfig", new Spacelift.EnvironmentVariableArgs
-    ///         {
-    ///             ContextId = "prod-k8s-ie",
-    ///             Value = "/project/spacelift/kubeconfig",
-    ///             WriteOnly = false,
-    ///         });
-    ///         // For a module
-    ///         var module_kubeconfig = new Spacelift.EnvironmentVariable("module-kubeconfig", new Spacelift.EnvironmentVariableArgs
-    ///         {
-    ///             ModuleId = "k8s-module",
-    ///             Value = "/project/spacelift/kubeconfig",
-    ///             WriteOnly = false,
-    ///         });
-    ///         // For a stack
-    ///         var core_kubeconfig = new Spacelift.EnvironmentVariable("core-kubeconfig", new Spacelift.EnvironmentVariableArgs
-    ///         {
-    ///             StackId = "k8s-core",
-    ///             Value = "/project/spacelift/kubeconfig",
-    ///             WriteOnly = false,
-    ///         });
-    ///     }
+    ///         ContextId = "prod-k8s-ie",
+    ///         Value = "/project/spacelift/kubeconfig",
+    ///         WriteOnly = false,
+    ///     });
     /// 
-    /// }
+    ///     // For a module
+    ///     var module_kubeconfig = new Spacelift.EnvironmentVariable("module-kubeconfig", new()
+    ///     {
+    ///         ModuleId = "k8s-module",
+    ///         Value = "/project/spacelift/kubeconfig",
+    ///         WriteOnly = false,
+    ///     });
+    /// 
+    ///     // For a stack
+    ///     var core_kubeconfig = new Spacelift.EnvironmentVariable("core-kubeconfig", new()
+    ///     {
+    ///         StackId = "k8s-core",
+    ///         Value = "/project/spacelift/kubeconfig",
+    ///         WriteOnly = false,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -63,7 +63,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/environmentVariable:EnvironmentVariable")]
-    public partial class EnvironmentVariable : Pulumi.CustomResource
+    public partial class EnvironmentVariable : global::Pulumi.CustomResource
     {
         /// <summary>
         /// SHA-256 checksum of the value
@@ -130,7 +130,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -152,7 +152,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class EnvironmentVariableArgs : Pulumi.ResourceArgs
+    public sealed class EnvironmentVariableArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the context on which the environment variable is defined
@@ -193,9 +193,10 @@ namespace Pulumi.Spacelift
         public EnvironmentVariableArgs()
         {
         }
+        public static new EnvironmentVariableArgs Empty => new EnvironmentVariableArgs();
     }
 
-    public sealed class EnvironmentVariableState : Pulumi.ResourceArgs
+    public sealed class EnvironmentVariableState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// SHA-256 checksum of the value
@@ -242,5 +243,6 @@ namespace Pulumi.Spacelift
         public EnvironmentVariableState()
         {
         }
+        public static new EnvironmentVariableState Empty => new EnvironmentVariableState();
     }
 }

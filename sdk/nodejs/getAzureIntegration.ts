@@ -13,12 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
+ * // Lookup an integration by its name:
  * const example = pulumi.output(spacelift.getAzureIntegration({
- *     integrationId: "01FPAH5J0JFYSM5953T9KT2VS9",
+ *     name: "Production",
  * }));
  * ```
  */
-export function getAzureIntegration(args: GetAzureIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetAzureIntegrationResult> {
+export function getAzureIntegration(args?: GetAzureIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetAzureIntegrationResult> {
+    args = args || {};
     if (!opts) {
         opts = {}
     }
@@ -26,6 +28,7 @@ export function getAzureIntegration(args: GetAzureIntegrationArgs, opts?: pulumi
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("spacelift:index/getAzureIntegration:getAzureIntegration", {
         "integrationId": args.integrationId,
+        "name": args.name,
     }, opts);
 }
 
@@ -33,30 +36,67 @@ export function getAzureIntegration(args: GetAzureIntegrationArgs, opts?: pulumi
  * A collection of arguments for invoking getAzureIntegration.
  */
 export interface GetAzureIntegrationArgs {
-    integrationId: string;
+    /**
+     * Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+     */
+    integrationId?: string;
+    /**
+     * The friendly name of the integration. Either `integrationId` or `name` must be specified.
+     */
+    name?: string;
 }
 
 /**
  * A collection of values returned by getAzureIntegration.
  */
 export interface GetAzureIntegrationResult {
+    /**
+     * Indicates whether admin consent has been performed for the AAD Application.
+     */
     readonly adminConsentProvided: boolean;
+    /**
+     * The URL to use to provide admin consent to the application in the customer's tenant
+     */
     readonly adminConsentUrl: string;
+    /**
+     * The applicationId of the Azure AD application used by the integration.
+     */
     readonly applicationId: string;
+    /**
+     * The default subscription ID to use, if one isn't specified at the stack/module level
+     */
     readonly defaultSubscriptionId: string;
+    /**
+     * The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
+     */
     readonly displayName: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+     */
     readonly integrationId: string;
+    /**
+     * Labels to set on the integration
+     */
     readonly labels: string[];
+    /**
+     * The friendly name of the integration. Either `integrationId` or `name` must be specified.
+     */
     readonly name: string;
+    /**
+     * ID (slug) of the space the integration is in
+     */
     readonly spaceId: string;
+    /**
+     * The Azure AD tenant ID
+     */
     readonly tenantId: string;
 }
 
-export function getAzureIntegrationOutput(args: GetAzureIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAzureIntegrationResult> {
+export function getAzureIntegrationOutput(args?: GetAzureIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAzureIntegrationResult> {
     return pulumi.output(args).apply(a => getAzureIntegration(a, opts))
 }
 
@@ -64,5 +104,12 @@ export function getAzureIntegrationOutput(args: GetAzureIntegrationOutputArgs, o
  * A collection of arguments for invoking getAzureIntegration.
  */
 export interface GetAzureIntegrationOutputArgs {
-    integrationId: pulumi.Input<string>;
+    /**
+     * Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+     */
+    integrationId?: pulumi.Input<string>;
+    /**
+     * The friendly name of the integration. Either `integrationId` or `name` must be specified.
+     */
+    name?: pulumi.Input<string>;
 }

@@ -108,7 +108,7 @@ class GetAzureIntegrationResult:
     @pulumi.getter(name="integrationId")
     def integration_id(self) -> str:
         """
-        immutable ID of the integration
+        Immutable ID of the integration. Either `integration_id` or `name` must be specified.
         """
         return pulumi.get(self, "integration_id")
 
@@ -124,7 +124,7 @@ class GetAzureIntegrationResult:
     @pulumi.getter
     def name(self) -> str:
         """
-        The friendly name of the integration
+        The friendly name of the integration. Either `integration_id` or `name` must be specified.
         """
         return pulumi.get(self, "name")
 
@@ -165,6 +165,7 @@ class AwaitableGetAzureIntegrationResult(GetAzureIntegrationResult):
 
 
 def get_azure_integration(integration_id: Optional[str] = None,
+                          name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAzureIntegrationResult:
     """
     `AzureIntegration` represents an integration with an Azure AD tenant. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect. Note that you will need to provide admin consent manually for the integration to work
@@ -175,14 +176,16 @@ def get_azure_integration(integration_id: Optional[str] = None,
     import pulumi
     import pulumi_spacelift as spacelift
 
-    example = spacelift.get_azure_integration(integration_id="01FPAH5J0JFYSM5953T9KT2VS9")
+    example = spacelift.get_azure_integration(name="Production")
     ```
 
 
-    :param str integration_id: immutable ID of the integration
+    :param str integration_id: Immutable ID of the integration. Either `integration_id` or `name` must be specified.
+    :param str name: The friendly name of the integration. Either `integration_id` or `name` must be specified.
     """
     __args__ = dict()
     __args__['integrationId'] = integration_id
+    __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('spacelift:index/getAzureIntegration:getAzureIntegration', __args__, opts=opts, typ=GetAzureIntegrationResult).value
 
@@ -201,7 +204,8 @@ def get_azure_integration(integration_id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_azure_integration)
-def get_azure_integration_output(integration_id: Optional[pulumi.Input[str]] = None,
+def get_azure_integration_output(integration_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                 name: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAzureIntegrationResult]:
     """
     `AzureIntegration` represents an integration with an Azure AD tenant. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect. Note that you will need to provide admin consent manually for the integration to work
@@ -212,10 +216,11 @@ def get_azure_integration_output(integration_id: Optional[pulumi.Input[str]] = N
     import pulumi
     import pulumi_spacelift as spacelift
 
-    example = spacelift.get_azure_integration(integration_id="01FPAH5J0JFYSM5953T9KT2VS9")
+    example = spacelift.get_azure_integration(name="Production")
     ```
 
 
-    :param str integration_id: immutable ID of the integration
+    :param str integration_id: Immutable ID of the integration. Either `integration_id` or `name` must be specified.
+    :param str name: The friendly name of the integration. Either `integration_id` or `name` must be specified.
     """
     ...

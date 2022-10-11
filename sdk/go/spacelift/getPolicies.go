@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -59,17 +58,21 @@ func GetPolicies(ctx *pulumi.Context, args *GetPoliciesArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getPolicies.
 type GetPoliciesArgs struct {
+	// required labels to match
 	Labels []string `pulumi:"labels"`
-	Type   *string  `pulumi:"type"`
+	// required policy type
+	Type *string `pulumi:"type"`
 }
 
 // A collection of values returned by getPolicies.
 type GetPoliciesResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id       string              `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// required labels to match
 	Labels   []string            `pulumi:"labels"`
 	Policies []GetPoliciesPolicy `pulumi:"policies"`
-	Type     *string             `pulumi:"type"`
+	// required policy type
+	Type *string `pulumi:"type"`
 }
 
 func GetPoliciesOutput(ctx *pulumi.Context, args GetPoliciesOutputArgs, opts ...pulumi.InvokeOption) GetPoliciesResultOutput {
@@ -87,8 +90,10 @@ func GetPoliciesOutput(ctx *pulumi.Context, args GetPoliciesOutputArgs, opts ...
 
 // A collection of arguments for invoking getPolicies.
 type GetPoliciesOutputArgs struct {
+	// required labels to match
 	Labels pulumi.StringArrayInput `pulumi:"labels"`
-	Type   pulumi.StringPtrInput   `pulumi:"type"`
+	// required policy type
+	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (GetPoliciesOutputArgs) ElementType() reflect.Type {
@@ -115,6 +120,7 @@ func (o GetPoliciesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// required labels to match
 func (o GetPoliciesResultOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetPoliciesResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
@@ -123,6 +129,7 @@ func (o GetPoliciesResultOutput) Policies() GetPoliciesPolicyArrayOutput {
 	return o.ApplyT(func(v GetPoliciesResult) []GetPoliciesPolicy { return v.Policies }).(GetPoliciesPolicyArrayOutput)
 }
 
+// required policy type
 func (o GetPoliciesResultOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPoliciesResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }

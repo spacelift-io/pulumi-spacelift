@@ -15,32 +15,32 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var no_weekend_deploysPolicy = new Spacelift.Policy("no-weekend-deploysPolicy", new()
     ///     {
-    ///         var no_weekend_deploysPolicy = new Spacelift.Policy("no-weekend-deploysPolicy", new Spacelift.PolicyArgs
-    ///         {
-    ///             Body = File.ReadAllText($"{path.Module}/policies/no-weekend-deploys.rego"),
-    ///             Type = "PLAN",
-    ///         });
-    ///         var core_infra_production = new Spacelift.Stack("core-infra-production", new Spacelift.StackArgs
-    ///         {
-    ///             Branch = "master",
-    ///             Repository = "core-infra",
-    ///         });
-    ///         var no_weekend_deploysPolicyAttachment = new Spacelift.PolicyAttachment("no-weekend-deploysPolicyAttachment", new Spacelift.PolicyAttachmentArgs
-    ///         {
-    ///             PolicyId = no_weekend_deploysPolicy.Id,
-    ///             StackId = core_infra_production.Id,
-    ///         });
-    ///     }
+    ///         Body = File.ReadAllText($"{path.Module}/policies/no-weekend-deploys.rego"),
+    ///         Type = "PLAN",
+    ///     });
     /// 
-    /// }
+    ///     var core_infra_production = new Spacelift.Stack("core-infra-production", new()
+    ///     {
+    ///         Branch = "master",
+    ///         Repository = "core-infra",
+    ///     });
+    /// 
+    ///     var no_weekend_deploysPolicyAttachment = new Spacelift.PolicyAttachment("no-weekend-deploysPolicyAttachment", new()
+    ///     {
+    ///         PolicyId = no_weekend_deploysPolicy.Id,
+    ///         StackId = core_infra_production.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +50,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/policy:Policy")]
-    public partial class Policy : Pulumi.CustomResource
+    public partial class Policy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Body of the policy
@@ -74,9 +74,7 @@ namespace Pulumi.Spacelift
         public Output<string> SpaceId { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
-        /// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
-        /// `TERRAFORM_PLAN` (use `PLAN` instead).
+        /// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -104,7 +102,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -126,7 +124,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class PolicyArgs : Pulumi.ResourceArgs
+    public sealed class PolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Body of the policy
@@ -155,9 +153,7 @@ namespace Pulumi.Spacelift
         public Input<string>? SpaceId { get; set; }
 
         /// <summary>
-        /// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
-        /// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
-        /// `TERRAFORM_PLAN` (use `PLAN` instead).
+        /// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -165,9 +161,10 @@ namespace Pulumi.Spacelift
         public PolicyArgs()
         {
         }
+        public static new PolicyArgs Empty => new PolicyArgs();
     }
 
-    public sealed class PolicyState : Pulumi.ResourceArgs
+    public sealed class PolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Body of the policy
@@ -196,9 +193,7 @@ namespace Pulumi.Spacelift
         public Input<string>? SpaceId { get; set; }
 
         /// <summary>
-        /// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and
-        /// `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and
-        /// `TERRAFORM_PLAN` (use `PLAN` instead).
+        /// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -206,5 +201,6 @@ namespace Pulumi.Spacelift
         public PolicyState()
         {
         }
+        public static new PolicyState Empty => new PolicyState();
     }
 }

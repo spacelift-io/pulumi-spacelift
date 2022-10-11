@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_spacelift from "@spacelift-io/pulumi-spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * // For a stack
  * const readonly = new spacelift.AzureIntegrationAttachment("readonly", {
@@ -88,8 +88,7 @@ export class AzureIntegrationAttachment extends pulumi.CustomResource {
      */
     public readonly stackId!: pulumi.Output<string | undefined>;
     /**
-     * Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-     * level.
+     * Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
      */
     public readonly subscriptionId!: pulumi.Output<string | undefined>;
     /**
@@ -160,8 +159,7 @@ export interface AzureIntegrationAttachmentState {
      */
     stackId?: pulumi.Input<string>;
     /**
-     * Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-     * level.
+     * Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
      */
     subscriptionId?: pulumi.Input<string>;
     /**
@@ -191,8 +189,7 @@ export interface AzureIntegrationAttachmentArgs {
      */
     stackId?: pulumi.Input<string>;
     /**
-     * Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-     * level.
+     * Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
      */
     subscriptionId?: pulumi.Input<string>;
     /**

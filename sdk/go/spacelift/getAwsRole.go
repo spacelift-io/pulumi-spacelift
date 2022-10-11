@@ -22,7 +22,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -57,20 +56,28 @@ func LookupAwsRole(ctx *pulumi.Context, args *LookupAwsRoleArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getAwsRole.
 type LookupAwsRoleArgs struct {
+	// ID of the module which assumes the AWS IAM role
 	ModuleId *string `pulumi:"moduleId"`
-	StackId  *string `pulumi:"stackId"`
+	// ID of the stack which assumes the AWS IAM role
+	StackId *string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getAwsRole.
 type LookupAwsRoleResult struct {
-	DurationSeconds             int    `pulumi:"durationSeconds"`
-	ExternalId                  string `pulumi:"externalId"`
-	GenerateCredentialsInWorker bool   `pulumi:"generateCredentialsInWorker"`
+	// AWS IAM role session duration in seconds
+	DurationSeconds int `pulumi:"durationSeconds"`
+	// Custom external ID (works only for private workers).
+	ExternalId string `pulumi:"externalId"`
+	// Generate AWS credentials in the private worker
+	GenerateCredentialsInWorker bool `pulumi:"generateCredentialsInWorker"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string  `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// ID of the module which assumes the AWS IAM role
 	ModuleId *string `pulumi:"moduleId"`
-	RoleArn  string  `pulumi:"roleArn"`
-	StackId  *string `pulumi:"stackId"`
+	// ARN of the AWS IAM role to attach
+	RoleArn string `pulumi:"roleArn"`
+	// ID of the stack which assumes the AWS IAM role
+	StackId *string `pulumi:"stackId"`
 }
 
 func LookupAwsRoleOutput(ctx *pulumi.Context, args LookupAwsRoleOutputArgs, opts ...pulumi.InvokeOption) LookupAwsRoleResultOutput {
@@ -88,8 +95,10 @@ func LookupAwsRoleOutput(ctx *pulumi.Context, args LookupAwsRoleOutputArgs, opts
 
 // A collection of arguments for invoking getAwsRole.
 type LookupAwsRoleOutputArgs struct {
+	// ID of the module which assumes the AWS IAM role
 	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
-	StackId  pulumi.StringPtrInput `pulumi:"stackId"`
+	// ID of the stack which assumes the AWS IAM role
+	StackId pulumi.StringPtrInput `pulumi:"stackId"`
 }
 
 func (LookupAwsRoleOutputArgs) ElementType() reflect.Type {
@@ -111,14 +120,17 @@ func (o LookupAwsRoleResultOutput) ToLookupAwsRoleResultOutputWithContext(ctx co
 	return o
 }
 
+// AWS IAM role session duration in seconds
 func (o LookupAwsRoleResultOutput) DurationSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupAwsRoleResult) int { return v.DurationSeconds }).(pulumi.IntOutput)
 }
 
+// Custom external ID (works only for private workers).
 func (o LookupAwsRoleResultOutput) ExternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsRoleResult) string { return v.ExternalId }).(pulumi.StringOutput)
 }
 
+// Generate AWS credentials in the private worker
 func (o LookupAwsRoleResultOutput) GenerateCredentialsInWorker() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAwsRoleResult) bool { return v.GenerateCredentialsInWorker }).(pulumi.BoolOutput)
 }
@@ -128,14 +140,17 @@ func (o LookupAwsRoleResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsRoleResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// ID of the module which assumes the AWS IAM role
 func (o LookupAwsRoleResultOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAwsRoleResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
+// ARN of the AWS IAM role to attach
 func (o LookupAwsRoleResultOutput) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsRoleResult) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
+// ID of the stack which assumes the AWS IAM role
 func (o LookupAwsRoleResultOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAwsRoleResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }

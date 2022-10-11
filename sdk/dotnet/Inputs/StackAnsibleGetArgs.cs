@@ -10,13 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift.Inputs
 {
 
-    public sealed class StackAnsibleGetArgs : Pulumi.ResourceArgs
+    public sealed class StackAnsibleGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The playbook Ansible should run.
+        /// </summary>
         [Input("playbook", required: true)]
         public Input<string> Playbook { get; set; } = null!;
 
         public StackAnsibleGetArgs()
         {
         }
+        public static new StackAnsibleGetArgs Empty => new StackAnsibleGetArgs();
     }
 }

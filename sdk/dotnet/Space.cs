@@ -15,26 +15,25 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var development = new Spacelift.Space("development", new()
     ///     {
-    ///         var development = new Spacelift.Space("development", new Spacelift.SpaceArgs
-    ///         {
-    ///             ParentSpaceId = "root",
-    ///             Description = "This a child of the root space. It contains all the resources common to the development infrastructure.",
-    ///         });
-    ///         var development_frontend = new Spacelift.Space("development-frontend", new Spacelift.SpaceArgs
-    ///         {
-    ///             ParentSpaceId = development.Id,
-    ///             InheritEntities = true,
-    ///         });
-    ///     }
+    ///         ParentSpaceId = "root",
+    ///         Description = "This a child of the root space. It contains all the resources common to the development infrastructure.",
+    ///     });
     /// 
-    /// }
+    ///     var development_frontend = new Spacelift.Space("development-frontend", new()
+    ///     {
+    ///         ParentSpaceId = development.Id,
+    ///         InheritEntities = true,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +43,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/space:Space")]
-    public partial class Space : Pulumi.CustomResource
+    public partial class Space : global::Pulumi.CustomResource
     {
         /// <summary>
         /// free-form space description for users
@@ -93,7 +92,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -115,7 +114,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class SpaceArgs : Pulumi.ResourceArgs
+    public sealed class SpaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// free-form space description for users
@@ -144,9 +143,10 @@ namespace Pulumi.Spacelift
         public SpaceArgs()
         {
         }
+        public static new SpaceArgs Empty => new SpaceArgs();
     }
 
-    public sealed class SpaceState : Pulumi.ResourceArgs
+    public sealed class SpaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// free-form space description for users
@@ -175,5 +175,6 @@ namespace Pulumi.Spacelift
         public SpaceState()
         {
         }
+        public static new SpaceState Empty => new SpaceState();
     }
 }

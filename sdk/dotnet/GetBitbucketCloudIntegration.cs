@@ -19,23 +19,21 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var bitbucketCloudIntegration = Output.Create(Spacelift.GetBitbucketCloudIntegration.InvokeAsync());
-        ///     }
+        ///     var bitbucketCloudIntegration = Spacelift.GetBitbucketCloudIntegration.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetBitbucketCloudIntegrationResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetBitbucketCloudIntegrationResult>("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBitbucketCloudIntegrationResult>("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
@@ -46,6 +44,9 @@ namespace Pulumi.Spacelift
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Bitbucket Cloud username
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

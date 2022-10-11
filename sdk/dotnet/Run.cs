@@ -15,33 +15,32 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var thisStack = new Spacelift.Stack("thisStack", new()
     ///     {
-    ///         var thisStack = new Spacelift.Stack("thisStack", new Spacelift.StackArgs
-    ///         {
-    ///             Repository = "test",
-    ///             Branch = "main",
-    ///         });
-    ///         var thisRun = new Spacelift.Run("thisRun", new Spacelift.RunArgs
-    ///         {
-    ///             StackId = thisStack.Id,
-    ///             Keepers = 
-    ///             {
-    ///                 { "branch", thisStack.Branch },
-    ///             },
-    ///         });
-    ///     }
+    ///         Repository = "test",
+    ///         Branch = "main",
+    ///     });
     /// 
-    /// }
+    ///     var thisRun = new Spacelift.Run("thisRun", new()
+    ///     {
+    ///         StackId = thisStack.Id,
+    ///         Keepers = 
+    ///         {
+    ///             { "branch", thisStack.Branch },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/run:Run")]
-    public partial class Run : Pulumi.CustomResource
+    public partial class Run : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The commit SHA for which to trigger a run.
@@ -90,7 +89,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -112,7 +111,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class RunArgs : Pulumi.ResourceArgs
+    public sealed class RunArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The commit SHA for which to trigger a run.
@@ -147,9 +146,10 @@ namespace Pulumi.Spacelift
         public RunArgs()
         {
         }
+        public static new RunArgs Empty => new RunArgs();
     }
 
-    public sealed class RunState : Pulumi.ResourceArgs
+    public sealed class RunState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The commit SHA for which to trigger a run.
@@ -184,5 +184,6 @@ namespace Pulumi.Spacelift
         public RunState()
         {
         }
+        public static new RunState Empty => new RunState();
     }
 }

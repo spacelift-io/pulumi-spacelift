@@ -124,7 +124,7 @@ class VcsAgentPool(pulumi.CustomResource):
         import pulumi
         import pulumi_spacelift as spacelift
 
-        ghe = spacelift.VcsAgentPool("ghe", description="VCS agent pool for our internal GitHub Enterpris")
+        ghe = spacelift.VcsAgentPool("ghe", description="VCS agent pool for our internal GitHub Enterprise")
         ```
 
         ## Import
@@ -153,7 +153,7 @@ class VcsAgentPool(pulumi.CustomResource):
         import pulumi
         import pulumi_spacelift as spacelift
 
-        ghe = spacelift.VcsAgentPool("ghe", description="VCS agent pool for our internal GitHub Enterpris")
+        ghe = spacelift.VcsAgentPool("ghe", description="VCS agent pool for our internal GitHub Enterprise")
         ```
 
         ## Import

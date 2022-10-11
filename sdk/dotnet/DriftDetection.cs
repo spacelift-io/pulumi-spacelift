@@ -15,31 +15,30 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var core_infra_production = new Spacelift.Stack("core-infra-production", new()
     ///     {
-    ///         var core_infra_production = new Spacelift.Stack("core-infra-production", new Spacelift.StackArgs
-    ///         {
-    ///             Branch = "master",
-    ///             Repository = "core-infra",
-    ///         });
-    ///         var core_infra_production_drift_detection = new Spacelift.DriftDetection("core-infra-production-drift-detection", new Spacelift.DriftDetectionArgs
-    ///         {
-    ///             Reconcile = true,
-    ///             StackId = core_infra_production.Id,
-    ///             Schedules = 
-    ///             {
-    ///                 "*/15 * * * *",
-    ///             },
-    ///         });
-    ///         // Every 15 minutes
-    ///     }
+    ///         Branch = "master",
+    ///         Repository = "core-infra",
+    ///     });
     /// 
-    /// }
+    ///     var core_infra_production_drift_detection = new Spacelift.DriftDetection("core-infra-production-drift-detection", new()
+    ///     {
+    ///         Reconcile = true,
+    ///         StackId = core_infra_production.Id,
+    ///         Schedules = new[]
+    ///         {
+    ///             "*/15 * * * *",
+    ///         },
+    ///     });
+    /// 
+    ///     // Every 15 minutes
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +52,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/driftDetection:DriftDetection")]
-    public partial class DriftDetection : Pulumi.CustomResource
+    public partial class DriftDetection : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether a tracked run should be triggered when drift is detected.
@@ -102,7 +101,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -124,7 +123,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class DriftDetectionArgs : Pulumi.ResourceArgs
+    public sealed class DriftDetectionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether a tracked run should be triggered when drift is detected.
@@ -159,9 +158,10 @@ namespace Pulumi.Spacelift
         public DriftDetectionArgs()
         {
         }
+        public static new DriftDetectionArgs Empty => new DriftDetectionArgs();
     }
 
-    public sealed class DriftDetectionState : Pulumi.ResourceArgs
+    public sealed class DriftDetectionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether a tracked run should be triggered when drift is detected.
@@ -196,5 +196,6 @@ namespace Pulumi.Spacelift
         public DriftDetectionState()
         {
         }
+        public static new DriftDetectionState Empty => new DriftDetectionState();
     }
 }

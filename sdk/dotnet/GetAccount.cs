@@ -19,35 +19,42 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @this = Output.Create(Spacelift.GetAccount.InvokeAsync());
-        ///     }
+        ///     var @this = Spacelift.GetAccount.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAccountResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccountResult>("spacelift:index/getAccount:getAccount", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccountResult>("spacelift:index/getAccount:getAccount", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
     [OutputType]
     public sealed class GetAccountResult
     {
+        /// <summary>
+        /// the ID of the AWS account used by Spacelift for role assumption
+        /// </summary>
         public readonly string AwsAccountId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// name of the account
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// account billing tier
+        /// </summary>
         public readonly string Tier;
 
         [OutputConstructor]

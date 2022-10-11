@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift
 {
     /// <summary>
+    /// **NOTE:** while this resource continues to work, we have replaced it with the `spacelift.AwsIntegration` resource. The new resource allows integrations to be shared by multiple stacks/modules and also supports separate read vs write roles. Please use the `spacelift.AwsIntegration` resource instead.
+    /// 
     /// `spacelift.AwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.
     /// 
     /// If you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).
@@ -27,7 +29,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/awsRole:AwsRole")]
-    public partial class AwsRole : Pulumi.CustomResource
+    public partial class AwsRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// AWS IAM role session duration in seconds
@@ -88,7 +90,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -110,7 +112,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class AwsRoleArgs : Pulumi.ResourceArgs
+    public sealed class AwsRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// AWS IAM role session duration in seconds
@@ -151,9 +153,10 @@ namespace Pulumi.Spacelift
         public AwsRoleArgs()
         {
         }
+        public static new AwsRoleArgs Empty => new AwsRoleArgs();
     }
 
-    public sealed class AwsRoleState : Pulumi.ResourceArgs
+    public sealed class AwsRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// AWS IAM role session duration in seconds
@@ -194,5 +197,6 @@ namespace Pulumi.Spacelift
         public AwsRoleState()
         {
         }
+        public static new AwsRoleState Empty => new AwsRoleState();
     }
 }

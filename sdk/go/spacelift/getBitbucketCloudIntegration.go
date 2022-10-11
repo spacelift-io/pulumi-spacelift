@@ -42,6 +42,7 @@ func GetBitbucketCloudIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOpti
 // A collection of values returned by getBitbucketCloudIntegration.
 type GetBitbucketCloudIntegrationResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id       string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Bitbucket Cloud username
 	Username string `pulumi:"username"`
 }

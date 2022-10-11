@@ -16,26 +16,24 @@ namespace Pulumi.Spacelift
     /// 
     /// ```csharp
     /// using System;
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
-    /// {
     /// 	private static string ReadFileBase64(string path) {
     /// 		return Convert.ToBase64String(Encoding.UTF8.GetBytes(File.ReadAllText(path)))
     /// 	}
     /// 
-    ///     public MyStack()
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var k8s_core = new Spacelift.WorkerPool("k8s-core", new()
     ///     {
-    ///         var k8s_core = new Spacelift.WorkerPool("k8s-core", new Spacelift.WorkerPoolArgs
-    ///         {
-    ///             Csr = ReadFileBase64("/path/to/csr"),
-    ///             Description = "Used for all type jobs",
-    ///         });
-    ///     }
+    ///         Csr = ReadFileBase64("/path/to/csr"),
+    ///         Description = "Used for all type jobs",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -45,7 +43,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/workerPool:WorkerPool")]
-    public partial class WorkerPool : Pulumi.CustomResource
+    public partial class WorkerPool : global::Pulumi.CustomResource
     {
         /// <summary>
         /// credentials necessary to connect WorkerPool's workers to the control plane
@@ -109,7 +107,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -131,7 +129,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class WorkerPoolArgs : Pulumi.ResourceArgs
+    public sealed class WorkerPoolArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// certificate signing request in base64
@@ -168,9 +166,10 @@ namespace Pulumi.Spacelift
         public WorkerPoolArgs()
         {
         }
+        public static new WorkerPoolArgs Empty => new WorkerPoolArgs();
     }
 
-    public sealed class WorkerPoolState : Pulumi.ResourceArgs
+    public sealed class WorkerPoolState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// credentials necessary to connect WorkerPool's workers to the control plane
@@ -219,5 +218,6 @@ namespace Pulumi.Spacelift
         public WorkerPoolState()
         {
         }
+        public static new WorkerPoolState Empty => new WorkerPoolState();
     }
 }

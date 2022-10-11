@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -39,7 +40,13 @@ export function getPolicies(args?: GetPoliciesArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getPolicies.
  */
 export interface GetPoliciesArgs {
+    /**
+     * required labels to match
+     */
     labels?: string[];
+    /**
+     * required policy type
+     */
     type?: string;
 }
 
@@ -51,8 +58,14 @@ export interface GetPoliciesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * required labels to match
+     */
     readonly labels?: string[];
     readonly policies: outputs.GetPoliciesPolicy[];
+    /**
+     * required policy type
+     */
     readonly type?: string;
 }
 
@@ -64,6 +77,12 @@ export function getPoliciesOutput(args?: GetPoliciesOutputArgs, opts?: pulumi.In
  * A collection of arguments for invoking getPolicies.
  */
 export interface GetPoliciesOutputArgs {
+    /**
+     * required labels to match
+     */
     labels?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * required policy type
+     */
     type?: pulumi.Input<string>;
 }

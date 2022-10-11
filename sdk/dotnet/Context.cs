@@ -15,20 +15,18 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var prod_k8s_ie = new Spacelift.Context("prod-k8s-ie", new()
     ///     {
-    ///         var prod_k8s_ie = new Spacelift.Context("prod-k8s-ie", new Spacelift.ContextArgs
-    ///         {
-    ///             Description = "Configuration details for the compute cluster in 🇮🇪",
-    ///         });
-    ///     }
+    ///         Description = "Configuration details for the compute cluster in 🇮🇪",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -38,7 +36,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/context:Context")]
-    public partial class Context : Pulumi.CustomResource
+    public partial class Context : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Free-form context description for users
@@ -84,7 +82,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -106,7 +104,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class ContextArgs : Pulumi.ResourceArgs
+    public sealed class ContextArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Free-form context description for users
@@ -137,9 +135,10 @@ namespace Pulumi.Spacelift
         public ContextArgs()
         {
         }
+        public static new ContextArgs Empty => new ContextArgs();
     }
 
-    public sealed class ContextState : Pulumi.ResourceArgs
+    public sealed class ContextState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Free-form context description for users
@@ -170,5 +169,6 @@ namespace Pulumi.Spacelift
         public ContextState()
         {
         }
+        public static new ContextState Empty => new ContextState();
     }
 }

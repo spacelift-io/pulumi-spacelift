@@ -33,6 +33,9 @@ export function getWorkerPool(args: GetWorkerPoolArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getWorkerPool.
  */
 export interface GetWorkerPoolArgs {
+    /**
+     * ID of the worker pool
+     */
     workerPoolId: string;
 }
 
@@ -40,15 +43,30 @@ export interface GetWorkerPoolArgs {
  * A collection of values returned by getWorkerPool.
  */
 export interface GetWorkerPoolResult {
+    /**
+     * credentials necessary to connect WorkerPool's workers to the control plane
+     */
     readonly config: string;
+    /**
+     * description of the worker pool
+     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly labels: string[];
+    /**
+     * name of the worker pool
+     */
     readonly name: string;
+    /**
+     * ID (slug) of the space the worker pool is in
+     */
     readonly spaceId: string;
+    /**
+     * ID of the worker pool
+     */
     readonly workerPoolId: string;
 }
 
@@ -60,5 +78,8 @@ export function getWorkerPoolOutput(args: GetWorkerPoolOutputArgs, opts?: pulumi
  * A collection of arguments for invoking getWorkerPool.
  */
 export interface GetWorkerPoolOutputArgs {
+    /**
+     * ID of the worker pool
+     */
     workerPoolId: pulumi.Input<string>;
 }

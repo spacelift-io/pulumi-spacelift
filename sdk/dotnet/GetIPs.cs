@@ -19,23 +19,21 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var ips = Output.Create(Spacelift.GetIPs.InvokeAsync());
-        ///     }
+        ///     var ips = Spacelift.GetIPs.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetIPsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetIPsResult>("spacelift:index/getIPs:getIPs", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetIPsResult>("spacelift:index/getIPs:getIPs", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
@@ -46,6 +44,9 @@ namespace Pulumi.Spacelift
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// the list of spacelift.io outgoing IP addresses
+        /// </summary>
         public readonly ImmutableArray<string> Ips;
 
         [OutputConstructor]

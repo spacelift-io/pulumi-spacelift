@@ -214,8 +214,6 @@ class AwsIntegrationAttachment(pulumi.CustomResource):
                  write: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        **Note:** This resource is experimental. Please continue to use `AwsRole`.
-
         `AwsIntegrationAttachment` represents the attachment between a reusable AWS integration and a single stack or module.
 
         ## Example Usage
@@ -261,8 +259,6 @@ class AwsIntegrationAttachment(pulumi.CustomResource):
                  args: AwsIntegrationAttachmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        **Note:** This resource is experimental. Please continue to use `AwsRole`.
-
         `AwsIntegrationAttachment` represents the attachment between a reusable AWS integration and a single stack or module.
 
         ## Example Usage

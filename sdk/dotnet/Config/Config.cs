@@ -30,7 +30,7 @@ namespace Pulumi.Spacelift
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("spacelift");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("spacelift");
 
         private static readonly __Value<string?> _apiKeyEndpoint = new __Value<string?>(() => __config.Get("apiKeyEndpoint") ?? Utilities.GetEnv("SPACELIFT_API_KEY_ENDPOINT"));
         /// <summary>

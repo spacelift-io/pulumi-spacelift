@@ -19,28 +19,27 @@ namespace Pulumi.Spacelift
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @this = Output.Create(Spacelift.GetCurrentStack.InvokeAsync());
-        ///         var core_kubeconfig = new Spacelift.EnvironmentVariable("core-kubeconfig", new Spacelift.EnvironmentVariableArgs
-        ///         {
-        ///             StackId = @this.Apply(@this =&gt; @this.Id),
-        ///             Value = "bacon",
-        ///         });
-        ///     }
+        ///     var @this = Spacelift.GetCurrentStack.Invoke();
         /// 
-        /// }
+        ///     var core_kubeconfig = new Spacelift.EnvironmentVariable("core-kubeconfig", new()
+        ///     {
+        ///         StackId = @this.Apply(getCurrentStackResult =&gt; getCurrentStackResult).Apply(@this =&gt; @this.Apply(getCurrentStackResult =&gt; getCurrentStackResult.Id)),
+        ///         Value = "bacon",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCurrentStackResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCurrentStackResult>("spacelift:index/getCurrentStack:getCurrentStack", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCurrentStackResult>("spacelift:index/getCurrentStack:getCurrentStack", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

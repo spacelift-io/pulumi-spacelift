@@ -11,8 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// **Note:** This resource is experimental. Please continue to use `AwsRole`.
-//
 // `AwsIntegrationAttachment` represents the attachment between a reusable AWS integration and a single stack or module.
 //
 // ## Example Usage

@@ -15,46 +15,63 @@ namespace Pulumi.Spacelift
         /// `spacelift.VcsAgentPool` represents a Spacelift **VCS agent pool** - a logical group of proxies allowing Spacelift to access private VCS installations
         /// </summary>
         public static Task<GetVcsAgentPoolResult> InvokeAsync(GetVcsAgentPoolArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVcsAgentPoolResult>("spacelift:index/getVcsAgentPool:getVcsAgentPool", args ?? new GetVcsAgentPoolArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVcsAgentPoolResult>("spacelift:index/getVcsAgentPool:getVcsAgentPool", args ?? new GetVcsAgentPoolArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.VcsAgentPool` represents a Spacelift **VCS agent pool** - a logical group of proxies allowing Spacelift to access private VCS installations
         /// </summary>
         public static Output<GetVcsAgentPoolResult> Invoke(GetVcsAgentPoolInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVcsAgentPoolResult>("spacelift:index/getVcsAgentPool:getVcsAgentPool", args ?? new GetVcsAgentPoolInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVcsAgentPoolResult>("spacelift:index/getVcsAgentPool:getVcsAgentPool", args ?? new GetVcsAgentPoolInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetVcsAgentPoolArgs : Pulumi.InvokeArgs
+    public sealed class GetVcsAgentPoolArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the VCS agent pool to retrieve
+        /// </summary>
         [Input("vcsAgentPoolId", required: true)]
         public string VcsAgentPoolId { get; set; } = null!;
 
         public GetVcsAgentPoolArgs()
         {
         }
+        public static new GetVcsAgentPoolArgs Empty => new GetVcsAgentPoolArgs();
     }
 
-    public sealed class GetVcsAgentPoolInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetVcsAgentPoolInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the VCS agent pool to retrieve
+        /// </summary>
         [Input("vcsAgentPoolId", required: true)]
         public Input<string> VcsAgentPoolId { get; set; } = null!;
 
         public GetVcsAgentPoolInvokeArgs()
         {
         }
+        public static new GetVcsAgentPoolInvokeArgs Empty => new GetVcsAgentPoolInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetVcsAgentPoolResult
     {
+        /// <summary>
+        /// Free-form VCS agent pool description for users
+        /// </summary>
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Name of the VCS agent pool
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID of the VCS agent pool to retrieve
+        /// </summary>
         public readonly string VcsAgentPoolId;
 
         [OutputConstructor]

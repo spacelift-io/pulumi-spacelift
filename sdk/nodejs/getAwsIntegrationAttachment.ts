@@ -24,8 +24,17 @@ export function getAwsIntegrationAttachment(args: GetAwsIntegrationAttachmentArg
  * A collection of arguments for invoking getAwsIntegrationAttachment.
  */
 export interface GetAwsIntegrationAttachmentArgs {
+    /**
+     * ID of the integration to attach
+     */
     integrationId: string;
+    /**
+     * ID of the module to attach the integration to
+     */
     moduleId?: string;
+    /**
+     * ID of the stack to attach the integration to
+     */
     stackId?: string;
 }
 
@@ -33,15 +42,33 @@ export interface GetAwsIntegrationAttachmentArgs {
  * A collection of values returned by getAwsIntegrationAttachment.
  */
 export interface GetAwsIntegrationAttachmentResult {
+    /**
+     * Internal ID of the attachment entity
+     */
     readonly attachmentId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * ID of the integration to attach
+     */
     readonly integrationId: string;
+    /**
+     * ID of the module to attach the integration to
+     */
     readonly moduleId?: string;
+    /**
+     * Indicates whether this attachment is used for read operations
+     */
     readonly read: boolean;
+    /**
+     * ID of the stack to attach the integration to
+     */
     readonly stackId?: string;
+    /**
+     * Indicates whether this attachment is used for write operations
+     */
     readonly write: boolean;
 }
 
@@ -53,7 +80,16 @@ export function getAwsIntegrationAttachmentOutput(args: GetAwsIntegrationAttachm
  * A collection of arguments for invoking getAwsIntegrationAttachment.
  */
 export interface GetAwsIntegrationAttachmentOutputArgs {
+    /**
+     * ID of the integration to attach
+     */
     integrationId: pulumi.Input<string>;
+    /**
+     * ID of the module to attach the integration to
+     */
     moduleId?: pulumi.Input<string>;
+    /**
+     * ID of the stack to attach the integration to
+     */
     stackId?: pulumi.Input<string>;
 }

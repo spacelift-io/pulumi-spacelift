@@ -38,7 +38,13 @@ export function getGcpServiceAccount(args?: GetGcpServiceAccountArgs, opts?: pul
  * A collection of arguments for invoking getGcpServiceAccount.
  */
 export interface GetGcpServiceAccountArgs {
+    /**
+     * ID of the stack which uses GCP service account credentials
+     */
     moduleId?: string;
+    /**
+     * ID of the stack which uses GCP service account credentials
+     */
     stackId?: string;
 }
 
@@ -50,9 +56,21 @@ export interface GetGcpServiceAccountResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * ID of the stack which uses GCP service account credentials
+     */
     readonly moduleId?: string;
+    /**
+     * email address of the GCP service account dedicated for this stack
+     */
     readonly serviceAccountEmail: string;
+    /**
+     * ID of the stack which uses GCP service account credentials
+     */
     readonly stackId?: string;
+    /**
+     * list of Google API scopes
+     */
     readonly tokenScopes: string[];
 }
 
@@ -64,6 +82,12 @@ export function getGcpServiceAccountOutput(args?: GetGcpServiceAccountOutputArgs
  * A collection of arguments for invoking getGcpServiceAccount.
  */
 export interface GetGcpServiceAccountOutputArgs {
+    /**
+     * ID of the stack which uses GCP service account credentials
+     */
     moduleId?: pulumi.Input<string>;
+    /**
+     * ID of the stack which uses GCP service account credentials
+     */
     stackId?: pulumi.Input<string>;
 }

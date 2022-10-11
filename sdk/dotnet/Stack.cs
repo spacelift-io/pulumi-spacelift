@@ -15,148 +15,155 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // Terraform stack using Bitbucket Cloud as VCS
+    ///     var k8s_cluster_bitbucket_cloud = new Spacelift.Stack("k8s-cluster-bitbucket-cloud", new()
     ///     {
-    ///         // Terraform stack using github.com as VCS
-    ///         var k8s_cluster = new Spacelift.Stack("k8s-cluster", new Spacelift.StackArgs
+    ///         Administrative = true,
+    ///         Autodeploy = true,
+    ///         BitbucketCloud = new Spacelift.Inputs.StackBitbucketCloudArgs
     ///         {
-    ///             Administrative = true,
-    ///             Autodeploy = true,
-    ///             Branch = "master",
-    ///             Description = "Provisions a Kubernetes cluster",
-    ///             ProjectRoot = "cluster",
-    ///             Repository = "core-infra",
-    ///             TerraformVersion = "0.12.6",
-    ///         });
-    ///         // Terraform stack using Bitbucket Cloud as VCS
-    ///         var k8s_cluster_bitbucket_cloud = new Spacelift.Stack("k8s-cluster-bitbucket-cloud", new Spacelift.StackArgs
-    ///         {
-    ///             Administrative = true,
-    ///             Autodeploy = true,
-    ///             BitbucketCloud = new Spacelift.Inputs.StackBitbucketCloudArgs
-    ///             {
-    ///                 Namespace = "SPACELIFT",
-    ///             },
-    ///             Branch = "master",
-    ///             Description = "Provisions a Kubernetes cluster",
-    ///             ProjectRoot = "cluster",
-    ///             Repository = "core-infra",
-    ///             TerraformVersion = "0.12.6",
-    ///         });
-    ///         // Terraform stack using Bitbucket Data Center as VCS
-    ///         var k8s_cluster_bitbucket_datacenter = new Spacelift.Stack("k8s-cluster-bitbucket-datacenter", new Spacelift.StackArgs
-    ///         {
-    ///             Administrative = true,
-    ///             Autodeploy = true,
-    ///             BitbucketDatacenter = new Spacelift.Inputs.StackBitbucketDatacenterArgs
-    ///             {
-    ///                 Namespace = "SPACELIFT",
-    ///             },
-    ///             Branch = "master",
-    ///             Description = "Provisions a Kubernetes cluster",
-    ///             ProjectRoot = "cluster",
-    ///             Repository = "core-infra",
-    ///             TerraformVersion = "0.12.6",
-    ///         });
-    ///         // Terraform stack using GitHub Enterprise as VCS
-    ///         var k8s_cluster_github_enterprise = new Spacelift.Stack("k8s-cluster-github-enterprise", new Spacelift.StackArgs
-    ///         {
-    ///             Administrative = true,
-    ///             Autodeploy = true,
-    ///             Branch = "master",
-    ///             Description = "Provisions a Kubernetes cluster",
-    ///             GithubEnterprise = new Spacelift.Inputs.StackGithubEnterpriseArgs
-    ///             {
-    ///                 Namespace = "spacelift",
-    ///             },
-    ///             ProjectRoot = "cluster",
-    ///             Repository = "core-infra",
-    ///             TerraformVersion = "0.12.6",
-    ///         });
-    ///         // Terraform stack using GitLab as VCS
-    ///         var k8s_cluster_gitlab = new Spacelift.Stack("k8s-cluster-gitlab", new Spacelift.StackArgs
-    ///         {
-    ///             Administrative = true,
-    ///             Autodeploy = true,
-    ///             Branch = "master",
-    ///             Description = "Provisions a Kubernetes cluster",
-    ///             Gitlab = new Spacelift.Inputs.StackGitlabArgs
-    ///             {
-    ///                 Namespace = "spacelift",
-    ///             },
-    ///             ProjectRoot = "cluster",
-    ///             Repository = "core-infra",
-    ///             TerraformVersion = "0.12.6",
-    ///         });
-    ///         // CloudFormation stack using github.com as VCS
-    ///         var k8s_cluster_cloudformation = new Spacelift.Stack("k8s-cluster-cloudformation", new Spacelift.StackArgs
-    ///         {
-    ///             Autodeploy = true,
-    ///             Branch = "master",
-    ///             Cloudformation = new Spacelift.Inputs.StackCloudformationArgs
-    ///             {
-    ///                 EntryTemplateFile = "main.yaml",
-    ///                 Region = "eu-central-1",
-    ///                 StackName = "k8s-cluster",
-    ///                 TemplateBucket = "s3://bucket",
-    ///             },
-    ///             Description = "Provisions a Kubernetes cluster",
-    ///             ProjectRoot = "cluster",
-    ///             Repository = "core-infra",
-    ///         });
-    ///         // Pulumi stack using github.com as VCS
-    ///         var k8s_cluster_pulumi = new Spacelift.Stack("k8s-cluster-pulumi", new Spacelift.StackArgs
-    ///         {
-    ///             Autodeploy = true,
-    ///             Branch = "master",
-    ///             Description = "Provisions a Kubernetes cluster",
-    ///             ProjectRoot = "cluster",
-    ///             CSHARPPULUMI = new Spacelift.Inputs.StackPulumiArgs
-    ///             {
-    ///                 LoginUrl = "s3://pulumi-state-bucket",
-    ///                 StackName = "kubernetes-core-services",
-    ///             },
-    ///             Repository = "core-infra",
-    ///             RunnerImage = "public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest",
-    ///         });
-    ///         // Kubernetes stack using github.com as VCS
-    ///         var k8s_core_kubernetes = new Spacelift.Stack("k8s-core-kubernetes", new Spacelift.StackArgs
-    ///         {
-    ///             Autodeploy = true,
-    ///             BeforeInits = 
-    ///             {
-    ///                 "aws eks update-kubeconfig --region us-east-2 --name k8s-cluster",
-    ///             },
-    ///             Branch = "master",
-    ///             Description = "Shared cluster services (Datadog, Istio etc.)",
-    ///             Kubernetes = new Spacelift.Inputs.StackKubernetesArgs
-    ///             {
-    ///                 Namespace = "core",
-    ///             },
-    ///             ProjectRoot = "core-services",
-    ///             Repository = "core-infra",
-    ///         });
-    ///         // Ansible stack using github.com as VCS
-    ///         var ansible_stack = new Spacelift.Stack("ansible-stack", new Spacelift.StackArgs
-    ///         {
-    ///             Ansible = new Spacelift.Inputs.StackAnsibleArgs
-    ///             {
-    ///                 Playbook = "main.yml",
-    ///             },
-    ///             Autodeploy = true,
-    ///             Branch = "master",
-    ///             Description = "Provisioning EC2 machines",
-    ///             Repository = "ansible-playbooks",
-    ///             RunnerImage = "public.ecr.aws/spacelift/runner-ansible:latest",
-    ///         });
-    ///     }
+    ///             Namespace = "SPACELIFT",
+    ///         },
+    ///         Branch = "master",
+    ///         Description = "Provisions a Kubernetes cluster",
+    ///         ProjectRoot = "cluster",
+    ///         Repository = "core-infra",
+    ///         TerraformVersion = "0.12.6",
+    ///     });
     /// 
-    /// }
+    ///     // Terraform stack using Bitbucket Data Center as VCS
+    ///     var k8s_cluster_bitbucket_datacenter = new Spacelift.Stack("k8s-cluster-bitbucket-datacenter", new()
+    ///     {
+    ///         Administrative = true,
+    ///         Autodeploy = true,
+    ///         BitbucketDatacenter = new Spacelift.Inputs.StackBitbucketDatacenterArgs
+    ///         {
+    ///             Namespace = "SPACELIFT",
+    ///         },
+    ///         Branch = "master",
+    ///         Description = "Provisions a Kubernetes cluster",
+    ///         ProjectRoot = "cluster",
+    ///         Repository = "core-infra",
+    ///         TerraformVersion = "0.12.6",
+    ///     });
+    /// 
+    ///     // Terraform stack using GitHub Enterprise as VCS
+    ///     var k8s_cluster_github_enterprise = new Spacelift.Stack("k8s-cluster-github-enterprise", new()
+    ///     {
+    ///         Administrative = true,
+    ///         Autodeploy = true,
+    ///         Branch = "master",
+    ///         Description = "Provisions a Kubernetes cluster",
+    ///         GithubEnterprise = new Spacelift.Inputs.StackGithubEnterpriseArgs
+    ///         {
+    ///             Namespace = "spacelift",
+    ///         },
+    ///         ProjectRoot = "cluster",
+    ///         Repository = "core-infra",
+    ///         TerraformVersion = "0.12.6",
+    ///     });
+    /// 
+    ///     // Terraform stack using GitLab as VCS
+    ///     var k8s_cluster_gitlab = new Spacelift.Stack("k8s-cluster-gitlab", new()
+    ///     {
+    ///         Administrative = true,
+    ///         Autodeploy = true,
+    ///         Branch = "master",
+    ///         Description = "Provisions a Kubernetes cluster",
+    ///         Gitlab = new Spacelift.Inputs.StackGitlabArgs
+    ///         {
+    ///             Namespace = "spacelift",
+    ///         },
+    ///         ProjectRoot = "cluster",
+    ///         Repository = "core-infra",
+    ///         TerraformVersion = "0.12.6",
+    ///     });
+    /// 
+    ///     // Terraform stack using github.com as VCS and enabling smart sanitization
+    ///     var k8s_cluster = new Spacelift.Stack("k8s-cluster", new()
+    ///     {
+    ///         Administrative = true,
+    ///         Autodeploy = true,
+    ///         Branch = "master",
+    ///         Description = "Provisions a Kubernetes cluster",
+    ///         ProjectRoot = "cluster",
+    ///         Repository = "core-infra",
+    ///         TerraformSmartSanitization = true,
+    ///         TerraformVersion = "1.2.6",
+    ///     });
+    /// 
+    ///     // CloudFormation stack using github.com as VCS
+    ///     var k8s_cluster_cloudformation = new Spacelift.Stack("k8s-cluster-cloudformation", new()
+    ///     {
+    ///         Autodeploy = true,
+    ///         Branch = "master",
+    ///         Cloudformation = new Spacelift.Inputs.StackCloudformationArgs
+    ///         {
+    ///             EntryTemplateFile = "main.yaml",
+    ///             Region = "eu-central-1",
+    ///             StackName = "k8s-cluster",
+    ///             TemplateBucket = "s3://bucket",
+    ///         },
+    ///         Description = "Provisions a Kubernetes cluster",
+    ///         ProjectRoot = "cluster",
+    ///         Repository = "core-infra",
+    ///     });
+    /// 
+    ///     // Pulumi stack using github.com as VCS
+    ///     var k8s_cluster_pulumi = new Spacelift.Stack("k8s-cluster-pulumi", new()
+    ///     {
+    ///         Autodeploy = true,
+    ///         Branch = "master",
+    ///         Description = "Provisions a Kubernetes cluster",
+    ///         ProjectRoot = "cluster",
+    ///         CSHARPPULUMI = new Spacelift.Inputs.StackPulumiArgs
+    ///         {
+    ///             LoginUrl = "s3://pulumi-state-bucket",
+    ///             StackName = "kubernetes-core-services",
+    ///         },
+    ///         Repository = "core-infra",
+    ///         RunnerImage = "public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest",
+    ///     });
+    /// 
+    ///     // Kubernetes stack using github.com as VCS
+    ///     var k8s_core_kubernetes = new Spacelift.Stack("k8s-core-kubernetes", new()
+    ///     {
+    ///         Autodeploy = true,
+    ///         BeforeInits = new[]
+    ///         {
+    ///             "aws eks update-kubeconfig --region us-east-2 --name k8s-cluster",
+    ///         },
+    ///         Branch = "master",
+    ///         Description = "Shared cluster services (Datadog, Istio etc.)",
+    ///         Kubernetes = new Spacelift.Inputs.StackKubernetesArgs
+    ///         {
+    ///             Namespace = "core",
+    ///         },
+    ///         ProjectRoot = "core-services",
+    ///         Repository = "core-infra",
+    ///     });
+    /// 
+    ///     // Ansible stack using github.com as VCS
+    ///     var ansible_stack = new Spacelift.Stack("ansible-stack", new()
+    ///     {
+    ///         Ansible = new Spacelift.Inputs.StackAnsibleArgs
+    ///         {
+    ///             Playbook = "main.yml",
+    ///         },
+    ///         Autodeploy = true,
+    ///         Branch = "master",
+    ///         Description = "Provisioning EC2 machines",
+    ///         Repository = "ansible-playbooks",
+    ///         RunnerImage = "public.ecr.aws/spacelift/runner-ansible:latest",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -166,7 +173,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/stack:Stack")]
-    public partial class Stack : Pulumi.CustomResource
+    public partial class Stack : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates whether this stack can manage others. Defaults to `false`.
@@ -397,6 +404,14 @@ namespace Pulumi.Spacelift
         public Output<string> SpaceId { get; private set; } = null!;
 
         /// <summary>
+        /// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+        /// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+        /// Defaults to `false`.
+        /// </summary>
+        [Output("terraformSmartSanitization")]
+        public Output<bool?> TerraformSmartSanitization { get; private set; } = null!;
+
+        /// <summary>
         /// Terraform version to use
         /// </summary>
         [Output("terraformVersion")]
@@ -437,7 +452,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -459,7 +474,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class StackArgs : Pulumi.ResourceArgs
+    public sealed class StackArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates whether this stack can manage others. Defaults to `false`.
@@ -749,6 +764,14 @@ namespace Pulumi.Spacelift
         public Input<string>? SpaceId { get; set; }
 
         /// <summary>
+        /// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+        /// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+        /// Defaults to `false`.
+        /// </summary>
+        [Input("terraformSmartSanitization")]
+        public Input<bool>? TerraformSmartSanitization { get; set; }
+
+        /// <summary>
         /// Terraform version to use
         /// </summary>
         [Input("terraformVersion")]
@@ -769,9 +792,10 @@ namespace Pulumi.Spacelift
         public StackArgs()
         {
         }
+        public static new StackArgs Empty => new StackArgs();
     }
 
-    public sealed class StackState : Pulumi.ResourceArgs
+    public sealed class StackState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates whether this stack can manage others. Defaults to `false`.
@@ -1067,6 +1091,14 @@ namespace Pulumi.Spacelift
         public Input<string>? SpaceId { get; set; }
 
         /// <summary>
+        /// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+        /// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+        /// Defaults to `false`.
+        /// </summary>
+        [Input("terraformSmartSanitization")]
+        public Input<bool>? TerraformSmartSanitization { get; set; }
+
+        /// <summary>
         /// Terraform version to use
         /// </summary>
         [Input("terraformVersion")]
@@ -1087,5 +1119,6 @@ namespace Pulumi.Spacelift
         public StackState()
         {
         }
+        public static new StackState Empty => new StackState();
     }
 }

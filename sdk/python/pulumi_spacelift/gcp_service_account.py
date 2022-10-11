@@ -148,6 +148,32 @@ class GcpServiceAccount(pulumi.CustomResource):
                  token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_spacelift as spacelift
+
+        k8s_core_stack = spacelift.Stack("k8s-coreStack",
+            branch="master",
+            repository="core-infra")
+        k8s_core_gcp_service_account = spacelift.GcpServiceAccount("k8s-coreGcpServiceAccount",
+            stack_id=k8s_core_stack.id,
+            token_scopes=[
+                "https://www.googleapis.com/auth/compute",
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/devstorage.full_control",
+            ])
+        k8s_core_project = gcp.organizations.Project("k8s-coreProject",
+            project_id="unicorn-k8s-core",
+            org_id=var["gcp_organization_id"])
+        k8s_core_iam_member = gcp.projects.IAMMember("k8s-coreIAMMember",
+            project=k8s_core_project.id,
+            role="roles/owner",
+            member=k8s_core_gcp_service_account.service_account_email.apply(lambda service_account_email: f"serviceAccount:{service_account_email}"))
+        ```
+
         ## Import
 
         ```sh
@@ -171,6 +197,32 @@ class GcpServiceAccount(pulumi.CustomResource):
                  args: GcpServiceAccountArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_spacelift as spacelift
+
+        k8s_core_stack = spacelift.Stack("k8s-coreStack",
+            branch="master",
+            repository="core-infra")
+        k8s_core_gcp_service_account = spacelift.GcpServiceAccount("k8s-coreGcpServiceAccount",
+            stack_id=k8s_core_stack.id,
+            token_scopes=[
+                "https://www.googleapis.com/auth/compute",
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/devstorage.full_control",
+            ])
+        k8s_core_project = gcp.organizations.Project("k8s-coreProject",
+            project_id="unicorn-k8s-core",
+            org_id=var["gcp_organization_id"])
+        k8s_core_iam_member = gcp.projects.IAMMember("k8s-coreIAMMember",
+            project=k8s_core_project.id,
+            role="roles/owner",
+            member=k8s_core_gcp_service_account.service_account_email.apply(lambda service_account_email: f"serviceAccount:{service_account_email}"))
+        ```
+
         ## Import
 
         ```sh

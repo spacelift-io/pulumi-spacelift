@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift.Inputs
 {
 
-    public sealed class StackShowcaseGetArgs : Pulumi.ResourceArgs
+    public sealed class StackShowcaseGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("namespace", required: true)]
         public Input<string> Namespace { get; set; } = null!;
@@ -18,5 +18,6 @@ namespace Pulumi.Spacelift.Inputs
         public StackShowcaseGetArgs()
         {
         }
+        public static new StackShowcaseGetArgs Empty => new StackShowcaseGetArgs();
     }
 }

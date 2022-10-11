@@ -13,6 +13,9 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class StackAnsible
     {
+        /// <summary>
+        /// The playbook Ansible should run.
+        /// </summary>
         public readonly string Playbook;
 
         [OutputConstructor]

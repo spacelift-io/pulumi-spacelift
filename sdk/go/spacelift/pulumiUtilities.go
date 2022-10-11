@@ -88,14 +88,14 @@ func isZero(v interface{}) bool {
 
 // pkgResourceDefaultOpts provides package level defaults to pulumi.OptionResource.
 func pkgResourceDefaultOpts(opts []pulumi.ResourceOption) []pulumi.ResourceOption {
-	defaults := []pulumi.ResourceOption{pulumi.PluginDownloadURL("https://github.com/spacelift-io/pulumi-spacelift/releases")}
+	defaults := []pulumi.ResourceOption{pulumi.PluginDownloadURL("https://downloads.spacelift.io/pulumi-plugins")}
 
 	return append(defaults, opts...)
 }
 
 // pkgInvokeDefaultOpts provides package level defaults to pulumi.OptionInvoke.
 func pkgInvokeDefaultOpts(opts []pulumi.InvokeOption) []pulumi.InvokeOption {
-	defaults := []pulumi.InvokeOption{pulumi.PluginDownloadURL("https://github.com/spacelift-io/pulumi-spacelift/releases")}
+	defaults := []pulumi.InvokeOption{pulumi.PluginDownloadURL("https://downloads.spacelift.io/pulumi-plugins")}
 
 	return append(defaults, opts...)
 }

@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -62,23 +61,34 @@ func LookupEnvironmentVariable(ctx *pulumi.Context, args *LookupEnvironmentVaria
 
 // A collection of arguments for invoking getEnvironmentVariable.
 type LookupEnvironmentVariableArgs struct {
+	// ID of the context on which the environment variable is defined
 	ContextId *string `pulumi:"contextId"`
-	ModuleId  *string `pulumi:"moduleId"`
-	Name      string  `pulumi:"name"`
-	StackId   *string `pulumi:"stackId"`
+	// ID of the module on which the environment variable is defined
+	ModuleId *string `pulumi:"moduleId"`
+	// name of the environment variable
+	Name string `pulumi:"name"`
+	// ID of the stack on which the environment variable is defined
+	StackId *string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getEnvironmentVariable.
 type LookupEnvironmentVariableResult struct {
-	Checksum  string  `pulumi:"checksum"`
+	// SHA-256 checksum of the value
+	Checksum string `pulumi:"checksum"`
+	// ID of the context on which the environment variable is defined
 	ContextId *string `pulumi:"contextId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string  `pulumi:"id"`
-	ModuleId  *string `pulumi:"moduleId"`
-	Name      string  `pulumi:"name"`
-	StackId   *string `pulumi:"stackId"`
-	Value     string  `pulumi:"value"`
-	WriteOnly bool    `pulumi:"writeOnly"`
+	Id string `pulumi:"id"`
+	// ID of the module on which the environment variable is defined
+	ModuleId *string `pulumi:"moduleId"`
+	// name of the environment variable
+	Name string `pulumi:"name"`
+	// ID of the stack on which the environment variable is defined
+	StackId *string `pulumi:"stackId"`
+	// value of the environment variable
+	Value string `pulumi:"value"`
+	// indicates whether the value can be read back outside a Run
+	WriteOnly bool `pulumi:"writeOnly"`
 }
 
 func LookupEnvironmentVariableOutput(ctx *pulumi.Context, args LookupEnvironmentVariableOutputArgs, opts ...pulumi.InvokeOption) LookupEnvironmentVariableResultOutput {
@@ -96,10 +106,14 @@ func LookupEnvironmentVariableOutput(ctx *pulumi.Context, args LookupEnvironment
 
 // A collection of arguments for invoking getEnvironmentVariable.
 type LookupEnvironmentVariableOutputArgs struct {
+	// ID of the context on which the environment variable is defined
 	ContextId pulumi.StringPtrInput `pulumi:"contextId"`
-	ModuleId  pulumi.StringPtrInput `pulumi:"moduleId"`
-	Name      pulumi.StringInput    `pulumi:"name"`
-	StackId   pulumi.StringPtrInput `pulumi:"stackId"`
+	// ID of the module on which the environment variable is defined
+	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
+	// name of the environment variable
+	Name pulumi.StringInput `pulumi:"name"`
+	// ID of the stack on which the environment variable is defined
+	StackId pulumi.StringPtrInput `pulumi:"stackId"`
 }
 
 func (LookupEnvironmentVariableOutputArgs) ElementType() reflect.Type {
@@ -121,10 +135,12 @@ func (o LookupEnvironmentVariableResultOutput) ToLookupEnvironmentVariableResult
 	return o
 }
 
+// SHA-256 checksum of the value
 func (o LookupEnvironmentVariableResultOutput) Checksum() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) string { return v.Checksum }).(pulumi.StringOutput)
 }
 
+// ID of the context on which the environment variable is defined
 func (o LookupEnvironmentVariableResultOutput) ContextId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) *string { return v.ContextId }).(pulumi.StringPtrOutput)
 }
@@ -134,22 +150,27 @@ func (o LookupEnvironmentVariableResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// ID of the module on which the environment variable is defined
 func (o LookupEnvironmentVariableResultOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
+// name of the environment variable
 func (o LookupEnvironmentVariableResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the stack on which the environment variable is defined
 func (o LookupEnvironmentVariableResultOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }
 
+// value of the environment variable
 func (o LookupEnvironmentVariableResultOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) string { return v.Value }).(pulumi.StringOutput)
 }
 
+// indicates whether the value can be read back outside a Run
 func (o LookupEnvironmentVariableResultOutput) WriteOnly() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) bool { return v.WriteOnly }).(pulumi.BoolOutput)
 }

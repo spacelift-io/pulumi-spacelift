@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -26,7 +25,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := spacelift.LookupAzureIntegration(ctx, &GetAzureIntegrationArgs{
-// 			IntegrationId: "01FPAH5J0JFYSM5953T9KT2VS9",
+// 			Name: pulumi.StringRef("Production"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -47,23 +46,36 @@ func LookupAzureIntegration(ctx *pulumi.Context, args *LookupAzureIntegrationArg
 
 // A collection of arguments for invoking getAzureIntegration.
 type LookupAzureIntegrationArgs struct {
-	IntegrationId string `pulumi:"integrationId"`
+	// Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+	IntegrationId *string `pulumi:"integrationId"`
+	// The friendly name of the integration. Either `integrationId` or `name` must be specified.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getAzureIntegration.
 type LookupAzureIntegrationResult struct {
-	AdminConsentProvided  bool   `pulumi:"adminConsentProvided"`
-	AdminConsentUrl       string `pulumi:"adminConsentUrl"`
-	ApplicationId         string `pulumi:"applicationId"`
+	// Indicates whether admin consent has been performed for the AAD Application.
+	AdminConsentProvided bool `pulumi:"adminConsentProvided"`
+	// The URL to use to provide admin consent to the application in the customer's tenant
+	AdminConsentUrl string `pulumi:"adminConsentUrl"`
+	// The applicationId of the Azure AD application used by the integration.
+	ApplicationId string `pulumi:"applicationId"`
+	// The default subscription ID to use, if one isn't specified at the stack/module level
 	DefaultSubscriptionId string `pulumi:"defaultSubscriptionId"`
-	DisplayName           string `pulumi:"displayName"`
+	// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
+	DisplayName string `pulumi:"displayName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id            string   `pulumi:"id"`
-	IntegrationId string   `pulumi:"integrationId"`
-	Labels        []string `pulumi:"labels"`
-	Name          string   `pulumi:"name"`
-	SpaceId       string   `pulumi:"spaceId"`
-	TenantId      string   `pulumi:"tenantId"`
+	Id string `pulumi:"id"`
+	// Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+	IntegrationId string `pulumi:"integrationId"`
+	// Labels to set on the integration
+	Labels []string `pulumi:"labels"`
+	// The friendly name of the integration. Either `integrationId` or `name` must be specified.
+	Name string `pulumi:"name"`
+	// ID (slug) of the space the integration is in
+	SpaceId string `pulumi:"spaceId"`
+	// The Azure AD tenant ID
+	TenantId string `pulumi:"tenantId"`
 }
 
 func LookupAzureIntegrationOutput(ctx *pulumi.Context, args LookupAzureIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupAzureIntegrationResultOutput {
@@ -81,7 +93,10 @@ func LookupAzureIntegrationOutput(ctx *pulumi.Context, args LookupAzureIntegrati
 
 // A collection of arguments for invoking getAzureIntegration.
 type LookupAzureIntegrationOutputArgs struct {
-	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
+	// Immutable ID of the integration. Either `integrationId` or `name` must be specified.
+	IntegrationId pulumi.StringPtrInput `pulumi:"integrationId"`
+	// The friendly name of the integration. Either `integrationId` or `name` must be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupAzureIntegrationOutputArgs) ElementType() reflect.Type {
@@ -103,22 +118,27 @@ func (o LookupAzureIntegrationResultOutput) ToLookupAzureIntegrationResultOutput
 	return o
 }
 
+// Indicates whether admin consent has been performed for the AAD Application.
 func (o LookupAzureIntegrationResultOutput) AdminConsentProvided() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) bool { return v.AdminConsentProvided }).(pulumi.BoolOutput)
 }
 
+// The URL to use to provide admin consent to the application in the customer's tenant
 func (o LookupAzureIntegrationResultOutput) AdminConsentUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) string { return v.AdminConsentUrl }).(pulumi.StringOutput)
 }
 
+// The applicationId of the Azure AD application used by the integration.
 func (o LookupAzureIntegrationResultOutput) ApplicationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) string { return v.ApplicationId }).(pulumi.StringOutput)
 }
 
+// The default subscription ID to use, if one isn't specified at the stack/module level
 func (o LookupAzureIntegrationResultOutput) DefaultSubscriptionId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) string { return v.DefaultSubscriptionId }).(pulumi.StringOutput)
 }
 
+// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
 func (o LookupAzureIntegrationResultOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) string { return v.DisplayName }).(pulumi.StringOutput)
 }
@@ -128,22 +148,27 @@ func (o LookupAzureIntegrationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Immutable ID of the integration. Either `integrationId` or `name` must be specified.
 func (o LookupAzureIntegrationResultOutput) IntegrationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) string { return v.IntegrationId }).(pulumi.StringOutput)
 }
 
+// Labels to set on the integration
 func (o LookupAzureIntegrationResultOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// The friendly name of the integration. Either `integrationId` or `name` must be specified.
 func (o LookupAzureIntegrationResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the space the integration is in
 func (o LookupAzureIntegrationResultOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
+// The Azure AD tenant ID
 func (o LookupAzureIntegrationResultOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationResult) string { return v.TenantId }).(pulumi.StringOutput)
 }

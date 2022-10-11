@@ -15,32 +15,31 @@ namespace Pulumi.Spacelift
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // For a stack
+    ///     var @readonly = new Spacelift.AzureIntegrationAttachment("readonly", new()
     ///     {
-    ///         // For a stack
-    ///         var @readonly = new Spacelift.AzureIntegrationAttachment("readonly", new Spacelift.AzureIntegrationAttachmentArgs
-    ///         {
-    ///             IntegrationId = spacelift_azure_integration.Example.Id,
-    ///             StackId = spacelift_stack.Example.Id,
-    ///             Write = false,
-    ///             SubscriptionId = "subscription_id",
-    ///         });
-    ///         // For a module
-    ///         var writeonly = new Spacelift.AzureIntegrationAttachment("writeonly", new Spacelift.AzureIntegrationAttachmentArgs
-    ///         {
-    ///             IntegrationId = spacelift_azure_integration.Example.Id,
-    ///             StackId = spacelift_module.Example.Id,
-    ///             Read = false,
-    ///             SubscriptionId = "subscription_id",
-    ///         });
-    ///     }
+    ///         IntegrationId = spacelift_azure_integration.Example.Id,
+    ///         StackId = spacelift_stack.Example.Id,
+    ///         Write = false,
+    ///         SubscriptionId = "subscription_id",
+    ///     });
     /// 
-    /// }
+    ///     // For a module
+    ///     var writeonly = new Spacelift.AzureIntegrationAttachment("writeonly", new()
+    ///     {
+    ///         IntegrationId = spacelift_azure_integration.Example.Id,
+    ///         StackId = spacelift_module.Example.Id,
+    ///         Read = false,
+    ///         SubscriptionId = "subscription_id",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -54,7 +53,7 @@ namespace Pulumi.Spacelift
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/azureIntegrationAttachment:AzureIntegrationAttachment")]
-    public partial class AzureIntegrationAttachment : Pulumi.CustomResource
+    public partial class AzureIntegrationAttachment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Internal ID of the attachment entity
@@ -87,8 +86,7 @@ namespace Pulumi.Spacelift
         public Output<string?> StackId { get; private set; } = null!;
 
         /// <summary>
-        /// Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-        /// level.
+        /// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
         /// </summary>
         [Output("subscriptionId")]
         public Output<string?> SubscriptionId { get; private set; } = null!;
@@ -122,7 +120,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -144,7 +142,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class AzureIntegrationAttachmentArgs : Pulumi.ResourceArgs
+    public sealed class AzureIntegrationAttachmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the integration to attach
@@ -171,8 +169,7 @@ namespace Pulumi.Spacelift
         public Input<string>? StackId { get; set; }
 
         /// <summary>
-        /// Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-        /// level.
+        /// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
         /// </summary>
         [Input("subscriptionId")]
         public Input<string>? SubscriptionId { get; set; }
@@ -186,9 +183,10 @@ namespace Pulumi.Spacelift
         public AzureIntegrationAttachmentArgs()
         {
         }
+        public static new AzureIntegrationAttachmentArgs Empty => new AzureIntegrationAttachmentArgs();
     }
 
-    public sealed class AzureIntegrationAttachmentState : Pulumi.ResourceArgs
+    public sealed class AzureIntegrationAttachmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Internal ID of the attachment entity
@@ -221,8 +219,7 @@ namespace Pulumi.Spacelift
         public Input<string>? StackId { get; set; }
 
         /// <summary>
-        /// Contains the Azure subscription ID to use with this Stack. Overrides the default subscription ID set at the integration
-        /// level.
+        /// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
         /// </summary>
         [Input("subscriptionId")]
         public Input<string>? SubscriptionId { get; set; }
@@ -236,5 +233,6 @@ namespace Pulumi.Spacelift
         public AzureIntegrationAttachmentState()
         {
         }
+        public static new AzureIntegrationAttachmentState Empty => new AzureIntegrationAttachmentState();
     }
 }

@@ -13,6 +13,9 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class ModuleGitlab
     {
+        /// <summary>
+        /// The GitLab namespace containing the repository
+        /// </summary>
         public readonly string Namespace;
 
         [OutputConstructor]

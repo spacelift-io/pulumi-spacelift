@@ -19,26 +19,13 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewStack(ctx, "k8s-cluster", &spacelift.StackArgs{
-// 			Administrative:   pulumi.Bool(true),
-// 			Autodeploy:       pulumi.Bool(true),
-// 			Branch:           pulumi.String("master"),
-// 			Description:      pulumi.String("Provisions a Kubernetes cluster"),
-// 			ProjectRoot:      pulumi.String("cluster"),
-// 			Repository:       pulumi.String("core-infra"),
-// 			TerraformVersion: pulumi.String("0.12.6"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStack(ctx, "k8s-cluster-bitbucket-cloud", &spacelift.StackArgs{
+// 		_, err := spacelift.NewStack(ctx, "k8s-cluster-bitbucket-cloud", &spacelift.StackArgs{
 // 			Administrative: pulumi.Bool(true),
 // 			Autodeploy:     pulumi.Bool(true),
 // 			BitbucketCloud: &StackBitbucketCloudArgs{
@@ -94,6 +81,19 @@ import (
 // 			ProjectRoot:      pulumi.String("cluster"),
 // 			Repository:       pulumi.String("core-infra"),
 // 			TerraformVersion: pulumi.String("0.12.6"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = spacelift.NewStack(ctx, "k8s-cluster", &spacelift.StackArgs{
+// 			Administrative:             pulumi.Bool(true),
+// 			Autodeploy:                 pulumi.Bool(true),
+// 			Branch:                     pulumi.String("master"),
+// 			Description:                pulumi.String("Provisions a Kubernetes cluster"),
+// 			ProjectRoot:                pulumi.String("cluster"),
+// 			Repository:                 pulumi.String("core-infra"),
+// 			TerraformSmartSanitization: pulumi.Bool(true),
+// 			TerraformVersion:           pulumi.String("1.2.6"),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -247,6 +247,10 @@ type Stack struct {
 	Slug pulumi.StringOutput `pulumi:"slug"`
 	// ID (slug) of the space the stack is in
 	SpaceId pulumi.StringOutput `pulumi:"spaceId"`
+	// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+	// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+	// Defaults to `false`.
+	TerraformSmartSanitization pulumi.BoolPtrOutput `pulumi:"terraformSmartSanitization"`
 	// Terraform version to use
 	TerraformVersion pulumi.StringPtrOutput `pulumi:"terraformVersion"`
 	// Terraform workspace to select
@@ -367,6 +371,10 @@ type stackState struct {
 	Slug *string `pulumi:"slug"`
 	// ID (slug) of the space the stack is in
 	SpaceId *string `pulumi:"spaceId"`
+	// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+	// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+	// Defaults to `false`.
+	TerraformSmartSanitization *bool `pulumi:"terraformSmartSanitization"`
 	// Terraform version to use
 	TerraformVersion *string `pulumi:"terraformVersion"`
 	// Terraform workspace to select
@@ -452,6 +460,10 @@ type StackState struct {
 	Slug pulumi.StringPtrInput
 	// ID (slug) of the space the stack is in
 	SpaceId pulumi.StringPtrInput
+	// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+	// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+	// Defaults to `false`.
+	TerraformSmartSanitization pulumi.BoolPtrInput
 	// Terraform version to use
 	TerraformVersion pulumi.StringPtrInput
 	// Terraform workspace to select
@@ -539,6 +551,10 @@ type stackArgs struct {
 	Slug *string `pulumi:"slug"`
 	// ID (slug) of the space the stack is in
 	SpaceId *string `pulumi:"spaceId"`
+	// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+	// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+	// Defaults to `false`.
+	TerraformSmartSanitization *bool `pulumi:"terraformSmartSanitization"`
 	// Terraform version to use
 	TerraformVersion *string `pulumi:"terraformVersion"`
 	// Terraform workspace to select
@@ -623,6 +639,10 @@ type StackArgs struct {
 	Slug pulumi.StringPtrInput
 	// ID (slug) of the space the stack is in
 	SpaceId pulumi.StringPtrInput
+	// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+	// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+	// Defaults to `false`.
+	TerraformSmartSanitization pulumi.BoolPtrInput
 	// Terraform version to use
 	TerraformVersion pulumi.StringPtrInput
 	// Terraform workspace to select
@@ -909,6 +929,13 @@ func (o StackOutput) Slug() pulumi.StringOutput {
 // ID (slug) of the space the stack is in
 func (o StackOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.SpaceId }).(pulumi.StringOutput)
+}
+
+// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
+// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
+// Defaults to `false`.
+func (o StackOutput) TerraformSmartSanitization() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Stack) pulumi.BoolPtrOutput { return v.TerraformSmartSanitization }).(pulumi.BoolPtrOutput)
 }
 
 // Terraform version to use

@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -62,23 +61,34 @@ func LookupMountedfile(ctx *pulumi.Context, args *LookupMountedfileArgs, opts ..
 
 // A collection of arguments for invoking getMountedfile.
 type LookupMountedfileArgs struct {
-	ContextId    *string `pulumi:"contextId"`
-	ModuleId     *string `pulumi:"moduleId"`
-	RelativePath string  `pulumi:"relativePath"`
-	StackId      *string `pulumi:"stackId"`
+	// ID of the context where the mounted file is stored
+	ContextId *string `pulumi:"contextId"`
+	// ID of the module where the mounted file is stored
+	ModuleId *string `pulumi:"moduleId"`
+	// relative path to the mounted file
+	RelativePath string `pulumi:"relativePath"`
+	// ID of the stack where the mounted file is stored
+	StackId *string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getMountedfile.
 type LookupMountedfileResult struct {
-	Checksum  string  `pulumi:"checksum"`
-	Content   string  `pulumi:"content"`
+	// SHA-256 checksum of the value
+	Checksum string `pulumi:"checksum"`
+	// content of the mounted file encoded using Base-64
+	Content string `pulumi:"content"`
+	// ID of the context where the mounted file is stored
 	ContextId *string `pulumi:"contextId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id           string  `pulumi:"id"`
-	ModuleId     *string `pulumi:"moduleId"`
-	RelativePath string  `pulumi:"relativePath"`
-	StackId      *string `pulumi:"stackId"`
-	WriteOnly    bool    `pulumi:"writeOnly"`
+	Id string `pulumi:"id"`
+	// ID of the module where the mounted file is stored
+	ModuleId *string `pulumi:"moduleId"`
+	// relative path to the mounted file
+	RelativePath string `pulumi:"relativePath"`
+	// ID of the stack where the mounted file is stored
+	StackId *string `pulumi:"stackId"`
+	// indicates whether the value can be read back outside a Run
+	WriteOnly bool `pulumi:"writeOnly"`
 }
 
 func LookupMountedfileOutput(ctx *pulumi.Context, args LookupMountedfileOutputArgs, opts ...pulumi.InvokeOption) LookupMountedfileResultOutput {
@@ -96,10 +106,14 @@ func LookupMountedfileOutput(ctx *pulumi.Context, args LookupMountedfileOutputAr
 
 // A collection of arguments for invoking getMountedfile.
 type LookupMountedfileOutputArgs struct {
-	ContextId    pulumi.StringPtrInput `pulumi:"contextId"`
-	ModuleId     pulumi.StringPtrInput `pulumi:"moduleId"`
-	RelativePath pulumi.StringInput    `pulumi:"relativePath"`
-	StackId      pulumi.StringPtrInput `pulumi:"stackId"`
+	// ID of the context where the mounted file is stored
+	ContextId pulumi.StringPtrInput `pulumi:"contextId"`
+	// ID of the module where the mounted file is stored
+	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
+	// relative path to the mounted file
+	RelativePath pulumi.StringInput `pulumi:"relativePath"`
+	// ID of the stack where the mounted file is stored
+	StackId pulumi.StringPtrInput `pulumi:"stackId"`
 }
 
 func (LookupMountedfileOutputArgs) ElementType() reflect.Type {
@@ -121,14 +135,17 @@ func (o LookupMountedfileResultOutput) ToLookupMountedfileResultOutputWithContex
 	return o
 }
 
+// SHA-256 checksum of the value
 func (o LookupMountedfileResultOutput) Checksum() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMountedfileResult) string { return v.Checksum }).(pulumi.StringOutput)
 }
 
+// content of the mounted file encoded using Base-64
 func (o LookupMountedfileResultOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMountedfileResult) string { return v.Content }).(pulumi.StringOutput)
 }
 
+// ID of the context where the mounted file is stored
 func (o LookupMountedfileResultOutput) ContextId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupMountedfileResult) *string { return v.ContextId }).(pulumi.StringPtrOutput)
 }
@@ -138,18 +155,22 @@ func (o LookupMountedfileResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMountedfileResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// ID of the module where the mounted file is stored
 func (o LookupMountedfileResultOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupMountedfileResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
+// relative path to the mounted file
 func (o LookupMountedfileResultOutput) RelativePath() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMountedfileResult) string { return v.RelativePath }).(pulumi.StringOutput)
 }
 
+// ID of the stack where the mounted file is stored
 func (o LookupMountedfileResultOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupMountedfileResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }
 
+// indicates whether the value can be read back outside a Run
 func (o LookupMountedfileResultOutput) WriteOnly() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupMountedfileResult) bool { return v.WriteOnly }).(pulumi.BoolOutput)
 }

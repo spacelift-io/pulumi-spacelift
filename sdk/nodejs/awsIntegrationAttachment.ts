@@ -5,15 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * **Note:** This resource is experimental. Please continue to use `spacelift.AwsRole`.
- *
  * `spacelift.AwsIntegrationAttachment` represents the attachment between a reusable AWS integration and a single stack or module.
  *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_spacelift from "@spacelift-io/pulumi-spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * // For a stack
  * const thisAwsIntegrationAttachment = new spacelift.AwsIntegrationAttachment("thisAwsIntegrationAttachment", {

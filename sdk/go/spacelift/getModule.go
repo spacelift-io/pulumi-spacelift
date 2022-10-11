@@ -16,7 +16,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -45,32 +44,49 @@ func LookupModule(ctx *pulumi.Context, args *LookupModuleArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getModule.
 type LookupModuleArgs struct {
+	// ID (slug) of the module
 	ModuleId string `pulumi:"moduleId"`
 }
 
 // A collection of values returned by getModule.
 type LookupModuleResult struct {
-	Administrative               bool                           `pulumi:"administrative"`
-	AwsAssumeRolePolicyStatement string                         `pulumi:"awsAssumeRolePolicyStatement"`
-	AzureDevops                  []GetModuleAzureDevop          `pulumi:"azureDevops"`
-	BitbucketClouds              []GetModuleBitbucketCloud      `pulumi:"bitbucketClouds"`
-	BitbucketDatacenters         []GetModuleBitbucketDatacenter `pulumi:"bitbucketDatacenters"`
-	Branch                       string                         `pulumi:"branch"`
-	Description                  string                         `pulumi:"description"`
-	GithubEnterprises            []GetModuleGithubEnterprise    `pulumi:"githubEnterprises"`
-	Gitlabs                      []GetModuleGitlab              `pulumi:"gitlabs"`
+	// indicates whether this module can administer others
+	Administrative bool `pulumi:"administrative"`
+	// AWS IAM assume role policy statement setting up trust relationship
+	AwsAssumeRolePolicyStatement string `pulumi:"awsAssumeRolePolicyStatement"`
+	// Azure DevOps VCS settings
+	AzureDevops []GetModuleAzureDevop `pulumi:"azureDevops"`
+	// Bitbucket Cloud VCS settings
+	BitbucketClouds []GetModuleBitbucketCloud `pulumi:"bitbucketClouds"`
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenters []GetModuleBitbucketDatacenter `pulumi:"bitbucketDatacenters"`
+	// GitHub branch to apply changes to
+	Branch string `pulumi:"branch"`
+	// free-form module description for human users (supports Markdown)
+	Description string `pulumi:"description"`
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprises []GetModuleGithubEnterprise `pulumi:"githubEnterprises"`
+	// GitLab VCS settings
+	Gitlabs []GetModuleGitlab `pulumi:"gitlabs"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                  string   `pulumi:"id"`
-	Labels              []string `pulumi:"labels"`
-	ModuleId            string   `pulumi:"moduleId"`
-	Name                string   `pulumi:"name"`
-	ProjectRoot         string   `pulumi:"projectRoot"`
-	ProtectFromDeletion bool     `pulumi:"protectFromDeletion"`
-	Repository          string   `pulumi:"repository"`
-	SharedAccounts      []string `pulumi:"sharedAccounts"`
-	SpaceId             string   `pulumi:"spaceId"`
-	TerraformProvider   string   `pulumi:"terraformProvider"`
-	WorkerPoolId        string   `pulumi:"workerPoolId"`
+	Id     string   `pulumi:"id"`
+	Labels []string `pulumi:"labels"`
+	// ID (slug) of the module
+	ModuleId string `pulumi:"moduleId"`
+	Name     string `pulumi:"name"`
+	// Project root is the optional directory relative to the repository root containing the module source code.
+	ProjectRoot string `pulumi:"projectRoot"`
+	// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
+	ProtectFromDeletion bool `pulumi:"protectFromDeletion"`
+	// Name of the repository, without the owner part
+	Repository string `pulumi:"repository"`
+	// List of the accounts (subdomains) which should have access to the Module
+	SharedAccounts []string `pulumi:"sharedAccounts"`
+	// ID (slug) of the space the module is in
+	SpaceId           string `pulumi:"spaceId"`
+	TerraformProvider string `pulumi:"terraformProvider"`
+	// ID of the worker pool to use
+	WorkerPoolId string `pulumi:"workerPoolId"`
 }
 
 func LookupModuleOutput(ctx *pulumi.Context, args LookupModuleOutputArgs, opts ...pulumi.InvokeOption) LookupModuleResultOutput {
@@ -88,6 +104,7 @@ func LookupModuleOutput(ctx *pulumi.Context, args LookupModuleOutputArgs, opts .
 
 // A collection of arguments for invoking getModule.
 type LookupModuleOutputArgs struct {
+	// ID (slug) of the module
 	ModuleId pulumi.StringInput `pulumi:"moduleId"`
 }
 
@@ -110,38 +127,47 @@ func (o LookupModuleResultOutput) ToLookupModuleResultOutputWithContext(ctx cont
 	return o
 }
 
+// indicates whether this module can administer others
 func (o LookupModuleResultOutput) Administrative() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupModuleResult) bool { return v.Administrative }).(pulumi.BoolOutput)
 }
 
+// AWS IAM assume role policy statement setting up trust relationship
 func (o LookupModuleResultOutput) AwsAssumeRolePolicyStatement() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.AwsAssumeRolePolicyStatement }).(pulumi.StringOutput)
 }
 
+// Azure DevOps VCS settings
 func (o LookupModuleResultOutput) AzureDevops() GetModuleAzureDevopArrayOutput {
 	return o.ApplyT(func(v LookupModuleResult) []GetModuleAzureDevop { return v.AzureDevops }).(GetModuleAzureDevopArrayOutput)
 }
 
+// Bitbucket Cloud VCS settings
 func (o LookupModuleResultOutput) BitbucketClouds() GetModuleBitbucketCloudArrayOutput {
 	return o.ApplyT(func(v LookupModuleResult) []GetModuleBitbucketCloud { return v.BitbucketClouds }).(GetModuleBitbucketCloudArrayOutput)
 }
 
+// Bitbucket Datacenter VCS settings
 func (o LookupModuleResultOutput) BitbucketDatacenters() GetModuleBitbucketDatacenterArrayOutput {
 	return o.ApplyT(func(v LookupModuleResult) []GetModuleBitbucketDatacenter { return v.BitbucketDatacenters }).(GetModuleBitbucketDatacenterArrayOutput)
 }
 
+// GitHub branch to apply changes to
 func (o LookupModuleResultOutput) Branch() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.Branch }).(pulumi.StringOutput)
 }
 
+// free-form module description for human users (supports Markdown)
 func (o LookupModuleResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// GitHub Enterprise (self-hosted) VCS settings
 func (o LookupModuleResultOutput) GithubEnterprises() GetModuleGithubEnterpriseArrayOutput {
 	return o.ApplyT(func(v LookupModuleResult) []GetModuleGithubEnterprise { return v.GithubEnterprises }).(GetModuleGithubEnterpriseArrayOutput)
 }
 
+// GitLab VCS settings
 func (o LookupModuleResultOutput) Gitlabs() GetModuleGitlabArrayOutput {
 	return o.ApplyT(func(v LookupModuleResult) []GetModuleGitlab { return v.Gitlabs }).(GetModuleGitlabArrayOutput)
 }
@@ -155,6 +181,7 @@ func (o LookupModuleResultOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupModuleResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// ID (slug) of the module
 func (o LookupModuleResultOutput) ModuleId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.ModuleId }).(pulumi.StringOutput)
 }
@@ -163,22 +190,27 @@ func (o LookupModuleResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Project root is the optional directory relative to the repository root containing the module source code.
 func (o LookupModuleResultOutput) ProjectRoot() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.ProjectRoot }).(pulumi.StringOutput)
 }
 
+// Protect this module from accidental deletion. If set, attempts to delete this module will fail.
 func (o LookupModuleResultOutput) ProtectFromDeletion() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupModuleResult) bool { return v.ProtectFromDeletion }).(pulumi.BoolOutput)
 }
 
+// Name of the repository, without the owner part
 func (o LookupModuleResultOutput) Repository() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.Repository }).(pulumi.StringOutput)
 }
 
+// List of the accounts (subdomains) which should have access to the Module
 func (o LookupModuleResultOutput) SharedAccounts() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupModuleResult) []string { return v.SharedAccounts }).(pulumi.StringArrayOutput)
 }
 
+// ID (slug) of the space the module is in
 func (o LookupModuleResultOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }
@@ -187,6 +219,7 @@ func (o LookupModuleResultOutput) TerraformProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.TerraformProvider }).(pulumi.StringOutput)
 }
 
+// ID of the worker pool to use
 func (o LookupModuleResultOutput) WorkerPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.WorkerPoolId }).(pulumi.StringOutput)
 }

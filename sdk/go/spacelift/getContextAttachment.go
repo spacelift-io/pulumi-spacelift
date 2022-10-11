@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -55,19 +54,26 @@ func LookupContextAttachment(ctx *pulumi.Context, args *LookupContextAttachmentA
 
 // A collection of arguments for invoking getContextAttachment.
 type LookupContextAttachmentArgs struct {
-	ContextId string  `pulumi:"contextId"`
-	ModuleId  *string `pulumi:"moduleId"`
-	StackId   *string `pulumi:"stackId"`
+	// ID of the attached context
+	ContextId string `pulumi:"contextId"`
+	// ID of the attached module
+	ModuleId *string `pulumi:"moduleId"`
+	// ID of the attached stack
+	StackId *string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getContextAttachment.
 type LookupContextAttachmentResult struct {
+	// ID of the attached context
 	ContextId string `pulumi:"contextId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string  `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// ID of the attached module
 	ModuleId *string `pulumi:"moduleId"`
-	Priority int     `pulumi:"priority"`
-	StackId  *string `pulumi:"stackId"`
+	// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value.
+	Priority int `pulumi:"priority"`
+	// ID of the attached stack
+	StackId *string `pulumi:"stackId"`
 }
 
 func LookupContextAttachmentOutput(ctx *pulumi.Context, args LookupContextAttachmentOutputArgs, opts ...pulumi.InvokeOption) LookupContextAttachmentResultOutput {
@@ -85,9 +91,12 @@ func LookupContextAttachmentOutput(ctx *pulumi.Context, args LookupContextAttach
 
 // A collection of arguments for invoking getContextAttachment.
 type LookupContextAttachmentOutputArgs struct {
-	ContextId pulumi.StringInput    `pulumi:"contextId"`
-	ModuleId  pulumi.StringPtrInput `pulumi:"moduleId"`
-	StackId   pulumi.StringPtrInput `pulumi:"stackId"`
+	// ID of the attached context
+	ContextId pulumi.StringInput `pulumi:"contextId"`
+	// ID of the attached module
+	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
+	// ID of the attached stack
+	StackId pulumi.StringPtrInput `pulumi:"stackId"`
 }
 
 func (LookupContextAttachmentOutputArgs) ElementType() reflect.Type {
@@ -109,6 +118,7 @@ func (o LookupContextAttachmentResultOutput) ToLookupContextAttachmentResultOutp
 	return o
 }
 
+// ID of the attached context
 func (o LookupContextAttachmentResultOutput) ContextId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContextAttachmentResult) string { return v.ContextId }).(pulumi.StringOutput)
 }
@@ -118,14 +128,17 @@ func (o LookupContextAttachmentResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContextAttachmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// ID of the attached module
 func (o LookupContextAttachmentResultOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupContextAttachmentResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
+// Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value.
 func (o LookupContextAttachmentResultOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupContextAttachmentResult) int { return v.Priority }).(pulumi.IntOutput)
 }
 
+// ID of the attached stack
 func (o LookupContextAttachmentResultOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupContextAttachmentResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }

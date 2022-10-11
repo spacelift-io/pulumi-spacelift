@@ -41,8 +41,10 @@ func GetGitlabIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*Ge
 
 // A collection of values returned by getGitlabIntegration.
 type GetGitlabIntegrationResult struct {
+	// Gitlab integration api host
 	ApiHost string `pulumi:"apiHost"`
 	// The provider-assigned unique ID for this managed resource.
-	Id            string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Gitlab integration webhook secret
 	WebhookSecret string `pulumi:"webhookSecret"`
 }

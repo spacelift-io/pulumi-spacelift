@@ -53,7 +53,7 @@ namespace Pulumi.Spacelift
         {
             var dst = src ?? new global::Pulumi.InvokeOptions{};
             dst.Version = src?.Version ?? Version;
-            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "https://github.com/spacelift-io/pulumi-spacelift/releases";
+            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "https://downloads.spacelift.io/pulumi-plugins";
             return dst;
         }
 
@@ -75,7 +75,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    internal sealed class SpaceliftResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class SpaceliftResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public SpaceliftResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {

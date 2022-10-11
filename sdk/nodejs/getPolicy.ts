@@ -34,6 +34,9 @@ export function getPolicy(args: GetPolicyArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getPolicy.
  */
 export interface GetPolicyArgs {
+    /**
+     * immutable ID (slug) of the policy
+     */
     policyId: string;
 }
 
@@ -41,15 +44,30 @@ export interface GetPolicyArgs {
  * A collection of values returned by getPolicy.
  */
 export interface GetPolicyResult {
+    /**
+     * body of the policy
+     */
     readonly body: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly labels: string[];
+    /**
+     * name of the policy
+     */
     readonly name: string;
+    /**
+     * immutable ID (slug) of the policy
+     */
     readonly policyId: string;
+    /**
+     * ID (slug) of the space the policy is in
+     */
     readonly spaceId: string;
+    /**
+     * type of the policy
+     */
     readonly type: string;
 }
 
@@ -61,5 +79,8 @@ export function getPolicyOutput(args: GetPolicyOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getPolicy.
  */
 export interface GetPolicyOutputArgs {
+    /**
+     * immutable ID (slug) of the policy
+     */
     policyId: pulumi.Input<string>;
 }

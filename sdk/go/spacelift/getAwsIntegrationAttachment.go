@@ -23,21 +23,30 @@ func LookupAwsIntegrationAttachment(ctx *pulumi.Context, args *LookupAwsIntegrat
 
 // A collection of arguments for invoking getAwsIntegrationAttachment.
 type LookupAwsIntegrationAttachmentArgs struct {
-	IntegrationId string  `pulumi:"integrationId"`
-	ModuleId      *string `pulumi:"moduleId"`
-	StackId       *string `pulumi:"stackId"`
+	// ID of the integration to attach
+	IntegrationId string `pulumi:"integrationId"`
+	// ID of the module to attach the integration to
+	ModuleId *string `pulumi:"moduleId"`
+	// ID of the stack to attach the integration to
+	StackId *string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getAwsIntegrationAttachment.
 type LookupAwsIntegrationAttachmentResult struct {
+	// Internal ID of the attachment entity
 	AttachmentId string `pulumi:"attachmentId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id            string  `pulumi:"id"`
-	IntegrationId string  `pulumi:"integrationId"`
-	ModuleId      *string `pulumi:"moduleId"`
-	Read          bool    `pulumi:"read"`
-	StackId       *string `pulumi:"stackId"`
-	Write         bool    `pulumi:"write"`
+	Id string `pulumi:"id"`
+	// ID of the integration to attach
+	IntegrationId string `pulumi:"integrationId"`
+	// ID of the module to attach the integration to
+	ModuleId *string `pulumi:"moduleId"`
+	// Indicates whether this attachment is used for read operations
+	Read bool `pulumi:"read"`
+	// ID of the stack to attach the integration to
+	StackId *string `pulumi:"stackId"`
+	// Indicates whether this attachment is used for write operations
+	Write bool `pulumi:"write"`
 }
 
 func LookupAwsIntegrationAttachmentOutput(ctx *pulumi.Context, args LookupAwsIntegrationAttachmentOutputArgs, opts ...pulumi.InvokeOption) LookupAwsIntegrationAttachmentResultOutput {
@@ -55,9 +64,12 @@ func LookupAwsIntegrationAttachmentOutput(ctx *pulumi.Context, args LookupAwsInt
 
 // A collection of arguments for invoking getAwsIntegrationAttachment.
 type LookupAwsIntegrationAttachmentOutputArgs struct {
-	IntegrationId pulumi.StringInput    `pulumi:"integrationId"`
-	ModuleId      pulumi.StringPtrInput `pulumi:"moduleId"`
-	StackId       pulumi.StringPtrInput `pulumi:"stackId"`
+	// ID of the integration to attach
+	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
+	// ID of the module to attach the integration to
+	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
+	// ID of the stack to attach the integration to
+	StackId pulumi.StringPtrInput `pulumi:"stackId"`
 }
 
 func (LookupAwsIntegrationAttachmentOutputArgs) ElementType() reflect.Type {
@@ -79,6 +91,7 @@ func (o LookupAwsIntegrationAttachmentResultOutput) ToLookupAwsIntegrationAttach
 	return o
 }
 
+// Internal ID of the attachment entity
 func (o LookupAwsIntegrationAttachmentResultOutput) AttachmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationAttachmentResult) string { return v.AttachmentId }).(pulumi.StringOutput)
 }
@@ -88,22 +101,27 @@ func (o LookupAwsIntegrationAttachmentResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationAttachmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// ID of the integration to attach
 func (o LookupAwsIntegrationAttachmentResultOutput) IntegrationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationAttachmentResult) string { return v.IntegrationId }).(pulumi.StringOutput)
 }
 
+// ID of the module to attach the integration to
 func (o LookupAwsIntegrationAttachmentResultOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationAttachmentResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
+// Indicates whether this attachment is used for read operations
 func (o LookupAwsIntegrationAttachmentResultOutput) Read() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationAttachmentResult) bool { return v.Read }).(pulumi.BoolOutput)
 }
 
+// ID of the stack to attach the integration to
 func (o LookupAwsIntegrationAttachmentResultOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationAttachmentResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }
 
+// Indicates whether this attachment is used for write operations
 func (o LookupAwsIntegrationAttachmentResultOutput) Write() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAwsIntegrationAttachmentResult) bool { return v.Write }).(pulumi.BoolOutput)
 }

@@ -10,43 +10,39 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift
 {
     /// <summary>
-    /// `spacelift.StackDestructor` is used to destroy the resources of a Stack before deleting it. `depends_on` should be used to make sure that all necessery resources (environment variables, roles, integrations, etc.) are still in place when the destruction run is executed. **Note:** Destroying this resource will delete the resources in the stack. If this resource needs to be deleted and the resources in the stacks are to be preserved, ensure that the `deactivated` attribute is set to `true`.
+    /// `spacelift.StackDestructor` is used to destroy the resources of a Stack before deleting it. `depends_on` should be used to make sure that all necessary resources (environment variables, roles, integrations, etc.) are still in place when the destruction run is executed. **Note:** Destroying this resource will delete the resources in the stack. If this resource needs to be deleted and the resources in the stacks are to be preserved, ensure that the `deactivated` attribute is set to `true`.
     /// 
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var k8s_coreStack = new Spacelift.Stack("k8s-coreStack", new Spacelift.StackArgs
-    ///         {
-    ///         });
-    ///         // ...
-    ///         var credentials = new Spacelift.EnvironmentVariable("credentials", new Spacelift.EnvironmentVariableArgs
-    ///         {
-    ///         });
-    ///         // ...
-    ///         var k8s_coreStackDestructor = new Spacelift.StackDestructor("k8s-coreStackDestructor", new Spacelift.StackDestructorArgs
-    ///         {
-    ///             StackId = k8s_coreStack.Id,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 credentials,
-    ///             },
-    ///         });
-    ///     }
+    ///     var k8s_coreStack = new Spacelift.Stack("k8s-coreStack");
     /// 
-    /// }
+    ///     // ...
+    ///     var credentials = new Spacelift.EnvironmentVariable("credentials");
+    /// 
+    ///     // ...
+    ///     var k8s_coreStackDestructor = new Spacelift.StackDestructor("k8s-coreStackDestructor", new()
+    ///     {
+    ///         StackId = k8s_coreStack.Id,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             credentials,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [SpaceliftResourceType("spacelift:index/stackDestructor:StackDestructor")]
-    public partial class StackDestructor : Pulumi.CustomResource
+    public partial class StackDestructor : global::Pulumi.CustomResource
     {
         /// <summary>
         /// If set to true, destruction won't delete the stack
@@ -83,7 +79,7 @@ namespace Pulumi.Spacelift
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/spacelift-io/pulumi-spacelift/releases",
+                PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -105,7 +101,7 @@ namespace Pulumi.Spacelift
         }
     }
 
-    public sealed class StackDestructorArgs : Pulumi.ResourceArgs
+    public sealed class StackDestructorArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// If set to true, destruction won't delete the stack
@@ -122,9 +118,10 @@ namespace Pulumi.Spacelift
         public StackDestructorArgs()
         {
         }
+        public static new StackDestructorArgs Empty => new StackDestructorArgs();
     }
 
-    public sealed class StackDestructorState : Pulumi.ResourceArgs
+    public sealed class StackDestructorState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// If set to true, destruction won't delete the stack
@@ -141,5 +138,6 @@ namespace Pulumi.Spacelift
         public StackDestructorState()
         {
         }
+        public static new StackDestructorState Empty => new StackDestructorState();
     }
 }

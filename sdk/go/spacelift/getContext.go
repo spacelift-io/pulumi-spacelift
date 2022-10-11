@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -47,18 +46,23 @@ func LookupContext(ctx *pulumi.Context, args *LookupContextArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getContext.
 type LookupContextArgs struct {
+	// immutable ID (slug) of the context
 	ContextId string `pulumi:"contextId"`
 }
 
 // A collection of values returned by getContext.
 type LookupContextResult struct {
-	ContextId   string `pulumi:"contextId"`
+	// immutable ID (slug) of the context
+	ContextId string `pulumi:"contextId"`
+	// free-form context description for users
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id      string   `pulumi:"id"`
-	Labels  []string `pulumi:"labels"`
-	Name    string   `pulumi:"name"`
-	SpaceId string   `pulumi:"spaceId"`
+	Id     string   `pulumi:"id"`
+	Labels []string `pulumi:"labels"`
+	// name of the context
+	Name string `pulumi:"name"`
+	// ID (slug) of the space the context is in
+	SpaceId string `pulumi:"spaceId"`
 }
 
 func LookupContextOutput(ctx *pulumi.Context, args LookupContextOutputArgs, opts ...pulumi.InvokeOption) LookupContextResultOutput {
@@ -76,6 +80,7 @@ func LookupContextOutput(ctx *pulumi.Context, args LookupContextOutputArgs, opts
 
 // A collection of arguments for invoking getContext.
 type LookupContextOutputArgs struct {
+	// immutable ID (slug) of the context
 	ContextId pulumi.StringInput `pulumi:"contextId"`
 }
 
@@ -98,10 +103,12 @@ func (o LookupContextResultOutput) ToLookupContextResultOutputWithContext(ctx co
 	return o
 }
 
+// immutable ID (slug) of the context
 func (o LookupContextResultOutput) ContextId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContextResult) string { return v.ContextId }).(pulumi.StringOutput)
 }
 
+// free-form context description for users
 func (o LookupContextResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContextResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -115,10 +122,12 @@ func (o LookupContextResultOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupContextResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// name of the context
 func (o LookupContextResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContextResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the space the context is in
 func (o LookupContextResultOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContextResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }

@@ -15,55 +15,138 @@ namespace Pulumi.Spacelift
         /// `spacelift.AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
         /// 
         /// Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Spacelift.GetAwsIntegration.Invoke(new()
+        ///     {
+        ///         Name = "Production",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
-        public static Task<GetAwsIntegrationResult> InvokeAsync(GetAwsIntegrationArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAwsIntegrationResult>("spacelift:index/getAwsIntegration:getAwsIntegration", args ?? new GetAwsIntegrationArgs(), options.WithDefaults());
+        public static Task<GetAwsIntegrationResult> InvokeAsync(GetAwsIntegrationArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAwsIntegrationResult>("spacelift:index/getAwsIntegration:getAwsIntegration", args ?? new GetAwsIntegrationArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
         /// 
         /// Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Spacelift.GetAwsIntegration.Invoke(new()
+        ///     {
+        ///         Name = "Production",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
-        public static Output<GetAwsIntegrationResult> Invoke(GetAwsIntegrationInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAwsIntegrationResult>("spacelift:index/getAwsIntegration:getAwsIntegration", args ?? new GetAwsIntegrationInvokeArgs(), options.WithDefaults());
+        public static Output<GetAwsIntegrationResult> Invoke(GetAwsIntegrationInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAwsIntegrationResult>("spacelift:index/getAwsIntegration:getAwsIntegration", args ?? new GetAwsIntegrationInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAwsIntegrationArgs : Pulumi.InvokeArgs
+    public sealed class GetAwsIntegrationArgs : global::Pulumi.InvokeArgs
     {
-        [Input("integrationId", required: true)]
-        public string IntegrationId { get; set; } = null!;
+        /// <summary>
+        /// Immutable ID of the integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
+        [Input("integrationId")]
+        public string? IntegrationId { get; set; }
+
+        /// <summary>
+        /// Name of the AWS integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
+        [Input("name")]
+        public string? Name { get; set; }
 
         public GetAwsIntegrationArgs()
         {
         }
+        public static new GetAwsIntegrationArgs Empty => new GetAwsIntegrationArgs();
     }
 
-    public sealed class GetAwsIntegrationInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAwsIntegrationInvokeArgs : global::Pulumi.InvokeArgs
     {
-        [Input("integrationId", required: true)]
-        public Input<string> IntegrationId { get; set; } = null!;
+        /// <summary>
+        /// Immutable ID of the integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
+        [Input("integrationId")]
+        public Input<string>? IntegrationId { get; set; }
+
+        /// <summary>
+        /// Name of the AWS integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         public GetAwsIntegrationInvokeArgs()
         {
         }
+        public static new GetAwsIntegrationInvokeArgs Empty => new GetAwsIntegrationInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetAwsIntegrationResult
     {
+        /// <summary>
+        /// Duration in seconds for which the assumed role credentials should be valid
+        /// </summary>
         public readonly int DurationSeconds;
+        /// <summary>
+        /// Custom external ID (works only for private workers).
+        /// </summary>
         public readonly string ExternalId;
+        /// <summary>
+        /// Generate AWS credentials in the private worker
+        /// </summary>
         public readonly bool GenerateCredentialsInWorker;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Immutable ID of the integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
         public readonly string IntegrationId;
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// Name of the AWS integration. Either `integration_id` or `name` must be specified.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ARN of the AWS IAM role to attach
+        /// </summary>
         public readonly string RoleArn;
+        /// <summary>
+        /// ID (slug) of the space the integration is in
+        /// </summary>
         public readonly string SpaceId;
 
         [OutputConstructor]

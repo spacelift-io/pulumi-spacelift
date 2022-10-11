@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-spacelift/sdk/go/spacelift"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
 // )
@@ -48,22 +47,32 @@ func LookupAzureIntegrationAttachment(ctx *pulumi.Context, args *LookupAzureInte
 
 // A collection of arguments for invoking getAzureIntegrationAttachment.
 type LookupAzureIntegrationAttachmentArgs struct {
-	IntegrationId string  `pulumi:"integrationId"`
-	ModuleId      *string `pulumi:"moduleId"`
-	StackId       *string `pulumi:"stackId"`
+	// ID of the integration to attach
+	IntegrationId string `pulumi:"integrationId"`
+	// ID of the module to attach the integration to
+	ModuleId *string `pulumi:"moduleId"`
+	// ID of the stack to attach the integration to
+	StackId *string `pulumi:"stackId"`
 }
 
 // A collection of values returned by getAzureIntegrationAttachment.
 type LookupAzureIntegrationAttachmentResult struct {
+	// Internal ID of the attachment entity
 	AttachmentId string `pulumi:"attachmentId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	IntegrationId  string  `pulumi:"integrationId"`
-	ModuleId       *string `pulumi:"moduleId"`
-	Read           bool    `pulumi:"read"`
-	StackId        *string `pulumi:"stackId"`
-	SubscriptionId string  `pulumi:"subscriptionId"`
-	Write          bool    `pulumi:"write"`
+	Id string `pulumi:"id"`
+	// ID of the integration to attach
+	IntegrationId string `pulumi:"integrationId"`
+	// ID of the module to attach the integration to
+	ModuleId *string `pulumi:"moduleId"`
+	// Indicates whether this attachment is used for read operations
+	Read bool `pulumi:"read"`
+	// ID of the stack to attach the integration to
+	StackId *string `pulumi:"stackId"`
+	// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
+	SubscriptionId string `pulumi:"subscriptionId"`
+	// Indicates whether this attachment is used for write operations
+	Write bool `pulumi:"write"`
 }
 
 func LookupAzureIntegrationAttachmentOutput(ctx *pulumi.Context, args LookupAzureIntegrationAttachmentOutputArgs, opts ...pulumi.InvokeOption) LookupAzureIntegrationAttachmentResultOutput {
@@ -81,9 +90,12 @@ func LookupAzureIntegrationAttachmentOutput(ctx *pulumi.Context, args LookupAzur
 
 // A collection of arguments for invoking getAzureIntegrationAttachment.
 type LookupAzureIntegrationAttachmentOutputArgs struct {
-	IntegrationId pulumi.StringInput    `pulumi:"integrationId"`
-	ModuleId      pulumi.StringPtrInput `pulumi:"moduleId"`
-	StackId       pulumi.StringPtrInput `pulumi:"stackId"`
+	// ID of the integration to attach
+	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
+	// ID of the module to attach the integration to
+	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
+	// ID of the stack to attach the integration to
+	StackId pulumi.StringPtrInput `pulumi:"stackId"`
 }
 
 func (LookupAzureIntegrationAttachmentOutputArgs) ElementType() reflect.Type {
@@ -105,6 +117,7 @@ func (o LookupAzureIntegrationAttachmentResultOutput) ToLookupAzureIntegrationAt
 	return o
 }
 
+// Internal ID of the attachment entity
 func (o LookupAzureIntegrationAttachmentResultOutput) AttachmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationAttachmentResult) string { return v.AttachmentId }).(pulumi.StringOutput)
 }
@@ -114,26 +127,32 @@ func (o LookupAzureIntegrationAttachmentResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationAttachmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// ID of the integration to attach
 func (o LookupAzureIntegrationAttachmentResultOutput) IntegrationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationAttachmentResult) string { return v.IntegrationId }).(pulumi.StringOutput)
 }
 
+// ID of the module to attach the integration to
 func (o LookupAzureIntegrationAttachmentResultOutput) ModuleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationAttachmentResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
+// Indicates whether this attachment is used for read operations
 func (o LookupAzureIntegrationAttachmentResultOutput) Read() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationAttachmentResult) bool { return v.Read }).(pulumi.BoolOutput)
 }
 
+// ID of the stack to attach the integration to
 func (o LookupAzureIntegrationAttachmentResultOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationAttachmentResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }
 
+// Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
 func (o LookupAzureIntegrationAttachmentResultOutput) SubscriptionId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationAttachmentResult) string { return v.SubscriptionId }).(pulumi.StringOutput)
 }
 
+// Indicates whether this attachment is used for write operations
 func (o LookupAzureIntegrationAttachmentResultOutput) Write() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAzureIntegrationAttachmentResult) bool { return v.Write }).(pulumi.BoolOutput)
 }

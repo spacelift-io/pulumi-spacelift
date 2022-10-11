@@ -11,6 +11,7 @@ import (
 )
 
 type ModuleAzureDevops struct {
+	// The name of the Azure DevOps project
 	Project string `pulumi:"project"`
 }
 
@@ -26,6 +27,7 @@ type ModuleAzureDevopsInput interface {
 }
 
 type ModuleAzureDevopsArgs struct {
+	// The name of the Azure DevOps project
 	Project pulumi.StringInput `pulumi:"project"`
 }
 
@@ -106,6 +108,7 @@ func (o ModuleAzureDevopsOutput) ToModuleAzureDevopsPtrOutputWithContext(ctx con
 	}).(ModuleAzureDevopsPtrOutput)
 }
 
+// The name of the Azure DevOps project
 func (o ModuleAzureDevopsOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleAzureDevops) string { return v.Project }).(pulumi.StringOutput)
 }
@@ -134,6 +137,7 @@ func (o ModuleAzureDevopsPtrOutput) Elem() ModuleAzureDevopsOutput {
 	}).(ModuleAzureDevopsOutput)
 }
 
+// The name of the Azure DevOps project
 func (o ModuleAzureDevopsPtrOutput) Project() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ModuleAzureDevops) *string {
 		if v == nil {
@@ -144,6 +148,7 @@ func (o ModuleAzureDevopsPtrOutput) Project() pulumi.StringPtrOutput {
 }
 
 type ModuleBitbucketCloud struct {
+	// The Bitbucket project containing the repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -159,6 +164,7 @@ type ModuleBitbucketCloudInput interface {
 }
 
 type ModuleBitbucketCloudArgs struct {
+	// The Bitbucket project containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -239,6 +245,7 @@ func (o ModuleBitbucketCloudOutput) ToModuleBitbucketCloudPtrOutputWithContext(c
 	}).(ModuleBitbucketCloudPtrOutput)
 }
 
+// The Bitbucket project containing the repository
 func (o ModuleBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -267,6 +274,7 @@ func (o ModuleBitbucketCloudPtrOutput) Elem() ModuleBitbucketCloudOutput {
 	}).(ModuleBitbucketCloudOutput)
 }
 
+// The Bitbucket project containing the repository
 func (o ModuleBitbucketCloudPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ModuleBitbucketCloud) *string {
 		if v == nil {
@@ -277,6 +285,7 @@ func (o ModuleBitbucketCloudPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type ModuleBitbucketDatacenter struct {
+	// The Bitbucket project containing the repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -292,6 +301,7 @@ type ModuleBitbucketDatacenterInput interface {
 }
 
 type ModuleBitbucketDatacenterArgs struct {
+	// The Bitbucket project containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -372,6 +382,7 @@ func (o ModuleBitbucketDatacenterOutput) ToModuleBitbucketDatacenterPtrOutputWit
 	}).(ModuleBitbucketDatacenterPtrOutput)
 }
 
+// The Bitbucket project containing the repository
 func (o ModuleBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -400,6 +411,7 @@ func (o ModuleBitbucketDatacenterPtrOutput) Elem() ModuleBitbucketDatacenterOutp
 	}).(ModuleBitbucketDatacenterOutput)
 }
 
+// The Bitbucket project containing the repository
 func (o ModuleBitbucketDatacenterPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ModuleBitbucketDatacenter) *string {
 		if v == nil {
@@ -410,6 +422,7 @@ func (o ModuleBitbucketDatacenterPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type ModuleGithubEnterprise struct {
+	// The GitHub organization / user the repository belongs to
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -425,6 +438,7 @@ type ModuleGithubEnterpriseInput interface {
 }
 
 type ModuleGithubEnterpriseArgs struct {
+	// The GitHub organization / user the repository belongs to
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -505,6 +519,7 @@ func (o ModuleGithubEnterpriseOutput) ToModuleGithubEnterprisePtrOutputWithConte
 	}).(ModuleGithubEnterprisePtrOutput)
 }
 
+// The GitHub organization / user the repository belongs to
 func (o ModuleGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -533,6 +548,7 @@ func (o ModuleGithubEnterprisePtrOutput) Elem() ModuleGithubEnterpriseOutput {
 	}).(ModuleGithubEnterpriseOutput)
 }
 
+// The GitHub organization / user the repository belongs to
 func (o ModuleGithubEnterprisePtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ModuleGithubEnterprise) *string {
 		if v == nil {
@@ -543,6 +559,7 @@ func (o ModuleGithubEnterprisePtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type ModuleGitlab struct {
+	// The GitLab namespace containing the repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -558,6 +575,7 @@ type ModuleGitlabInput interface {
 }
 
 type ModuleGitlabArgs struct {
+	// The GitLab namespace containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -638,6 +656,7 @@ func (o ModuleGitlabOutput) ToModuleGitlabPtrOutputWithContext(ctx context.Conte
 	}).(ModuleGitlabPtrOutput)
 }
 
+// The GitLab namespace containing the repository
 func (o ModuleGitlabOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleGitlab) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -666,6 +685,7 @@ func (o ModuleGitlabPtrOutput) Elem() ModuleGitlabOutput {
 	}).(ModuleGitlabOutput)
 }
 
+// The GitLab namespace containing the repository
 func (o ModuleGitlabPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ModuleGitlab) *string {
 		if v == nil {
@@ -676,6 +696,7 @@ func (o ModuleGitlabPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type StackAnsible struct {
+	// The playbook Ansible should run.
 	Playbook string `pulumi:"playbook"`
 }
 
@@ -691,6 +712,7 @@ type StackAnsibleInput interface {
 }
 
 type StackAnsibleArgs struct {
+	// The playbook Ansible should run.
 	Playbook pulumi.StringInput `pulumi:"playbook"`
 }
 
@@ -771,6 +793,7 @@ func (o StackAnsibleOutput) ToStackAnsiblePtrOutputWithContext(ctx context.Conte
 	}).(StackAnsiblePtrOutput)
 }
 
+// The playbook Ansible should run.
 func (o StackAnsibleOutput) Playbook() pulumi.StringOutput {
 	return o.ApplyT(func(v StackAnsible) string { return v.Playbook }).(pulumi.StringOutput)
 }
@@ -799,6 +822,7 @@ func (o StackAnsiblePtrOutput) Elem() StackAnsibleOutput {
 	}).(StackAnsibleOutput)
 }
 
+// The playbook Ansible should run.
 func (o StackAnsiblePtrOutput) Playbook() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackAnsible) *string {
 		if v == nil {
@@ -809,6 +833,7 @@ func (o StackAnsiblePtrOutput) Playbook() pulumi.StringPtrOutput {
 }
 
 type StackAzureDevops struct {
+	// The name of the Azure DevOps project
 	Project string `pulumi:"project"`
 }
 
@@ -824,6 +849,7 @@ type StackAzureDevopsInput interface {
 }
 
 type StackAzureDevopsArgs struct {
+	// The name of the Azure DevOps project
 	Project pulumi.StringInput `pulumi:"project"`
 }
 
@@ -904,6 +930,7 @@ func (o StackAzureDevopsOutput) ToStackAzureDevopsPtrOutputWithContext(ctx conte
 	}).(StackAzureDevopsPtrOutput)
 }
 
+// The name of the Azure DevOps project
 func (o StackAzureDevopsOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v StackAzureDevops) string { return v.Project }).(pulumi.StringOutput)
 }
@@ -932,6 +959,7 @@ func (o StackAzureDevopsPtrOutput) Elem() StackAzureDevopsOutput {
 	}).(StackAzureDevopsOutput)
 }
 
+// The name of the Azure DevOps project
 func (o StackAzureDevopsPtrOutput) Project() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackAzureDevops) *string {
 		if v == nil {
@@ -942,6 +970,7 @@ func (o StackAzureDevopsPtrOutput) Project() pulumi.StringPtrOutput {
 }
 
 type StackBitbucketCloud struct {
+	// The Bitbucket project containing the repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -957,6 +986,7 @@ type StackBitbucketCloudInput interface {
 }
 
 type StackBitbucketCloudArgs struct {
+	// The Bitbucket project containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -1037,6 +1067,7 @@ func (o StackBitbucketCloudOutput) ToStackBitbucketCloudPtrOutputWithContext(ctx
 	}).(StackBitbucketCloudPtrOutput)
 }
 
+// The Bitbucket project containing the repository
 func (o StackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -1065,6 +1096,7 @@ func (o StackBitbucketCloudPtrOutput) Elem() StackBitbucketCloudOutput {
 	}).(StackBitbucketCloudOutput)
 }
 
+// The Bitbucket project containing the repository
 func (o StackBitbucketCloudPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackBitbucketCloud) *string {
 		if v == nil {
@@ -1075,6 +1107,7 @@ func (o StackBitbucketCloudPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type StackBitbucketDatacenter struct {
+	// The Bitbucket project containing the repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -1090,6 +1123,7 @@ type StackBitbucketDatacenterInput interface {
 }
 
 type StackBitbucketDatacenterArgs struct {
+	// The Bitbucket project containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -1170,6 +1204,7 @@ func (o StackBitbucketDatacenterOutput) ToStackBitbucketDatacenterPtrOutputWithC
 	}).(StackBitbucketDatacenterPtrOutput)
 }
 
+// The Bitbucket project containing the repository
 func (o StackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -1198,6 +1233,7 @@ func (o StackBitbucketDatacenterPtrOutput) Elem() StackBitbucketDatacenterOutput
 	}).(StackBitbucketDatacenterOutput)
 }
 
+// The Bitbucket project containing the repository
 func (o StackBitbucketDatacenterPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackBitbucketDatacenter) *string {
 		if v == nil {
@@ -1208,10 +1244,14 @@ func (o StackBitbucketDatacenterPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type StackCloudformation struct {
+	// Template file `cloudformation package` will be called on
 	EntryTemplateFile string `pulumi:"entryTemplateFile"`
-	Region            string `pulumi:"region"`
-	StackName         string `pulumi:"stackName"`
-	TemplateBucket    string `pulumi:"templateBucket"`
+	// AWS region to use
+	Region string `pulumi:"region"`
+	// CloudFormation stack name
+	StackName string `pulumi:"stackName"`
+	// S3 bucket to save CloudFormation templates to
+	TemplateBucket string `pulumi:"templateBucket"`
 }
 
 // StackCloudformationInput is an input type that accepts StackCloudformationArgs and StackCloudformationOutput values.
@@ -1226,10 +1266,14 @@ type StackCloudformationInput interface {
 }
 
 type StackCloudformationArgs struct {
+	// Template file `cloudformation package` will be called on
 	EntryTemplateFile pulumi.StringInput `pulumi:"entryTemplateFile"`
-	Region            pulumi.StringInput `pulumi:"region"`
-	StackName         pulumi.StringInput `pulumi:"stackName"`
-	TemplateBucket    pulumi.StringInput `pulumi:"templateBucket"`
+	// AWS region to use
+	Region pulumi.StringInput `pulumi:"region"`
+	// CloudFormation stack name
+	StackName pulumi.StringInput `pulumi:"stackName"`
+	// S3 bucket to save CloudFormation templates to
+	TemplateBucket pulumi.StringInput `pulumi:"templateBucket"`
 }
 
 func (StackCloudformationArgs) ElementType() reflect.Type {
@@ -1309,18 +1353,22 @@ func (o StackCloudformationOutput) ToStackCloudformationPtrOutputWithContext(ctx
 	}).(StackCloudformationPtrOutput)
 }
 
+// Template file `cloudformation package` will be called on
 func (o StackCloudformationOutput) EntryTemplateFile() pulumi.StringOutput {
 	return o.ApplyT(func(v StackCloudformation) string { return v.EntryTemplateFile }).(pulumi.StringOutput)
 }
 
+// AWS region to use
 func (o StackCloudformationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v StackCloudformation) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// CloudFormation stack name
 func (o StackCloudformationOutput) StackName() pulumi.StringOutput {
 	return o.ApplyT(func(v StackCloudformation) string { return v.StackName }).(pulumi.StringOutput)
 }
 
+// S3 bucket to save CloudFormation templates to
 func (o StackCloudformationOutput) TemplateBucket() pulumi.StringOutput {
 	return o.ApplyT(func(v StackCloudformation) string { return v.TemplateBucket }).(pulumi.StringOutput)
 }
@@ -1349,6 +1397,7 @@ func (o StackCloudformationPtrOutput) Elem() StackCloudformationOutput {
 	}).(StackCloudformationOutput)
 }
 
+// Template file `cloudformation package` will be called on
 func (o StackCloudformationPtrOutput) EntryTemplateFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackCloudformation) *string {
 		if v == nil {
@@ -1358,6 +1407,7 @@ func (o StackCloudformationPtrOutput) EntryTemplateFile() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// AWS region to use
 func (o StackCloudformationPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackCloudformation) *string {
 		if v == nil {
@@ -1367,6 +1417,7 @@ func (o StackCloudformationPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// CloudFormation stack name
 func (o StackCloudformationPtrOutput) StackName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackCloudformation) *string {
 		if v == nil {
@@ -1376,6 +1427,7 @@ func (o StackCloudformationPtrOutput) StackName() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// S3 bucket to save CloudFormation templates to
 func (o StackCloudformationPtrOutput) TemplateBucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackCloudformation) *string {
 		if v == nil {
@@ -1386,6 +1438,7 @@ func (o StackCloudformationPtrOutput) TemplateBucket() pulumi.StringPtrOutput {
 }
 
 type StackGithubEnterprise struct {
+	// The GitHub organization / user the repository belongs to
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -1401,6 +1454,7 @@ type StackGithubEnterpriseInput interface {
 }
 
 type StackGithubEnterpriseArgs struct {
+	// The GitHub organization / user the repository belongs to
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -1481,6 +1535,7 @@ func (o StackGithubEnterpriseOutput) ToStackGithubEnterprisePtrOutputWithContext
 	}).(StackGithubEnterprisePtrOutput)
 }
 
+// The GitHub organization / user the repository belongs to
 func (o StackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -1509,6 +1564,7 @@ func (o StackGithubEnterprisePtrOutput) Elem() StackGithubEnterpriseOutput {
 	}).(StackGithubEnterpriseOutput)
 }
 
+// The GitHub organization / user the repository belongs to
 func (o StackGithubEnterprisePtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackGithubEnterprise) *string {
 		if v == nil {
@@ -1519,6 +1575,7 @@ func (o StackGithubEnterprisePtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type StackGitlab struct {
+	// The GitLab namespace containing the repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -1534,6 +1591,7 @@ type StackGitlabInput interface {
 }
 
 type StackGitlabArgs struct {
+	// The GitLab namespace containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -1614,6 +1672,7 @@ func (o StackGitlabOutput) ToStackGitlabPtrOutputWithContext(ctx context.Context
 	}).(StackGitlabPtrOutput)
 }
 
+// The GitLab namespace containing the repository
 func (o StackGitlabOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackGitlab) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -1642,6 +1701,7 @@ func (o StackGitlabPtrOutput) Elem() StackGitlabOutput {
 	}).(StackGitlabOutput)
 }
 
+// The GitLab namespace containing the repository
 func (o StackGitlabPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackGitlab) *string {
 		if v == nil {
@@ -1652,6 +1712,7 @@ func (o StackGitlabPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type StackKubernetes struct {
+	// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
 	Namespace *string `pulumi:"namespace"`
 }
 
@@ -1667,6 +1728,7 @@ type StackKubernetesInput interface {
 }
 
 type StackKubernetesArgs struct {
+	// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 }
 
@@ -1747,6 +1809,7 @@ func (o StackKubernetesOutput) ToStackKubernetesPtrOutputWithContext(ctx context
 	}).(StackKubernetesPtrOutput)
 }
 
+// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
 func (o StackKubernetesOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StackKubernetes) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
@@ -1775,6 +1838,7 @@ func (o StackKubernetesPtrOutput) Elem() StackKubernetesOutput {
 	}).(StackKubernetesOutput)
 }
 
+// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
 func (o StackKubernetesPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackKubernetes) *string {
 		if v == nil {
@@ -1785,7 +1849,9 @@ func (o StackKubernetesPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type StackPulumi struct {
-	LoginUrl  string `pulumi:"loginUrl"`
+	// State backend to log into on Run initialize.
+	LoginUrl string `pulumi:"loginUrl"`
+	// Pulumi stack name to use with the state backend.
 	StackName string `pulumi:"stackName"`
 }
 
@@ -1801,7 +1867,9 @@ type StackPulumiInput interface {
 }
 
 type StackPulumiArgs struct {
-	LoginUrl  pulumi.StringInput `pulumi:"loginUrl"`
+	// State backend to log into on Run initialize.
+	LoginUrl pulumi.StringInput `pulumi:"loginUrl"`
+	// Pulumi stack name to use with the state backend.
 	StackName pulumi.StringInput `pulumi:"stackName"`
 }
 
@@ -1882,10 +1950,12 @@ func (o StackPulumiOutput) ToStackPulumiPtrOutputWithContext(ctx context.Context
 	}).(StackPulumiPtrOutput)
 }
 
+// State backend to log into on Run initialize.
 func (o StackPulumiOutput) LoginUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v StackPulumi) string { return v.LoginUrl }).(pulumi.StringOutput)
 }
 
+// Pulumi stack name to use with the state backend.
 func (o StackPulumiOutput) StackName() pulumi.StringOutput {
 	return o.ApplyT(func(v StackPulumi) string { return v.StackName }).(pulumi.StringOutput)
 }
@@ -1914,6 +1984,7 @@ func (o StackPulumiPtrOutput) Elem() StackPulumiOutput {
 	}).(StackPulumiOutput)
 }
 
+// State backend to log into on Run initialize.
 func (o StackPulumiPtrOutput) LoginUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackPulumi) *string {
 		if v == nil {
@@ -1923,6 +1994,7 @@ func (o StackPulumiPtrOutput) LoginUrl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Pulumi stack name to use with the state backend.
 func (o StackPulumiPtrOutput) StackName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackPulumi) *string {
 		if v == nil {
@@ -2536,11 +2608,14 @@ func (o GetModuleGitlabArrayOutput) Index(i pulumi.IntInput) GetModuleGitlabOutp
 }
 
 type GetPoliciesPolicy struct {
-	Id      string   `pulumi:"id"`
+	// The ID of this resource.
+	Id string `pulumi:"id"`
+	// required labels to match
 	Labels  []string `pulumi:"labels"`
 	Name    string   `pulumi:"name"`
 	SpaceId string   `pulumi:"spaceId"`
-	Type    string   `pulumi:"type"`
+	// required policy type
+	Type string `pulumi:"type"`
 }
 
 // GetPoliciesPolicyInput is an input type that accepts GetPoliciesPolicyArgs and GetPoliciesPolicyOutput values.
@@ -2555,11 +2630,14 @@ type GetPoliciesPolicyInput interface {
 }
 
 type GetPoliciesPolicyArgs struct {
-	Id      pulumi.StringInput      `pulumi:"id"`
+	// The ID of this resource.
+	Id pulumi.StringInput `pulumi:"id"`
+	// required labels to match
 	Labels  pulumi.StringArrayInput `pulumi:"labels"`
 	Name    pulumi.StringInput      `pulumi:"name"`
 	SpaceId pulumi.StringInput      `pulumi:"spaceId"`
-	Type    pulumi.StringInput      `pulumi:"type"`
+	// required policy type
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetPoliciesPolicyArgs) ElementType() reflect.Type {
@@ -2613,10 +2691,12 @@ func (o GetPoliciesPolicyOutput) ToGetPoliciesPolicyOutputWithContext(ctx contex
 	return o
 }
 
+// The ID of this resource.
 func (o GetPoliciesPolicyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// required labels to match
 func (o GetPoliciesPolicyOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
@@ -2629,6 +2709,7 @@ func (o GetPoliciesPolicyOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
+// required policy type
 func (o GetPoliciesPolicyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Type }).(pulumi.StringOutput)
 }
