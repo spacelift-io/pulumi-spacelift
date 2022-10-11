@@ -18,27 +18,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewContext(ctx, "prod-k8s-ie", &spacelift.ContextArgs{
-// 			Description: pulumi.String("Configuration details for the compute cluster in 🇮🇪"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewContext(ctx, "prod-k8s-ie", &spacelift.ContextArgs{
+//				Description: pulumi.String("Configuration details for the compute cluster in 🇮🇪"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/context:Context prod-k8s-ie $CONTEXT_ID
+//
+//	$ pulumi import spacelift:index/context:Context prod-k8s-ie $CONTEXT_ID
+//
 // ```
 type Context struct {
 	pulumi.CustomResourceState
@@ -152,7 +157,7 @@ func (i *Context) ToContextOutputWithContext(ctx context.Context) ContextOutput 
 // ContextArrayInput is an input type that accepts ContextArray and ContextArrayOutput values.
 // You can construct a concrete instance of `ContextArrayInput` via:
 //
-//          ContextArray{ ContextArgs{...} }
+//	ContextArray{ ContextArgs{...} }
 type ContextArrayInput interface {
 	pulumi.Input
 
@@ -177,7 +182,7 @@ func (i ContextArray) ToContextArrayOutputWithContext(ctx context.Context) Conte
 // ContextMapInput is an input type that accepts ContextMap and ContextMapOutput values.
 // You can construct a concrete instance of `ContextMapInput` via:
 //
-//          ContextMap{ "key": ContextArgs{...} }
+//	ContextMap{ "key": ContextArgs{...} }
 type ContextMapInput interface {
 	pulumi.Input
 

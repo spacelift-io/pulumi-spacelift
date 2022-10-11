@@ -19,31 +19,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		thisStack, err := spacelift.NewStack(ctx, "thisStack", &spacelift.StackArgs{
-// 			Repository: pulumi.String("test"),
-// 			Branch:     pulumi.String("main"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewRun(ctx, "thisRun", &spacelift.RunArgs{
-// 			StackId: thisStack.ID(),
-// 			Keepers: pulumi.AnyMap{
-// 				"branch": thisStack.Branch,
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			thisStack, err := spacelift.NewStack(ctx, "thisStack", &spacelift.StackArgs{
+//				Repository: pulumi.String("test"),
+//				Branch:     pulumi.String("main"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewRun(ctx, "thisRun", &spacelift.RunArgs{
+//				StackId: thisStack.ID(),
+//				Keepers: pulumi.AnyMap{
+//					"branch": thisStack.Branch,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Run struct {
 	pulumi.CustomResourceState
@@ -165,7 +168,7 @@ func (i *Run) ToRunOutputWithContext(ctx context.Context) RunOutput {
 // RunArrayInput is an input type that accepts RunArray and RunArrayOutput values.
 // You can construct a concrete instance of `RunArrayInput` via:
 //
-//          RunArray{ RunArgs{...} }
+//	RunArray{ RunArgs{...} }
 type RunArrayInput interface {
 	pulumi.Input
 
@@ -190,7 +193,7 @@ func (i RunArray) ToRunArrayOutputWithContext(ctx context.Context) RunArrayOutpu
 // RunMapInput is an input type that accepts RunMap and RunMapOutput values.
 // You can construct a concrete instance of `RunMapInput` via:
 //
-//          RunMap{ "key": RunArgs{...} }
+//	RunMap{ "key": RunArgs{...} }
 type RunMapInput interface {
 	pulumi.Input
 

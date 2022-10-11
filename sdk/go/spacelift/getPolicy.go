@@ -18,22 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		policy, err := spacelift.LookupPolicy(ctx, &GetPolicyArgs{
-// 			PolicyId: spacelift_policy.Policy.Id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("policyBody", policy.Body)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			policy, err := spacelift.LookupPolicy(ctx, &GetPolicyArgs{
+//				PolicyId: spacelift_policy.Policy.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("policyBody", policy.Body)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupPolicy(ctx *pulumi.Context, args *LookupPolicyArgs, opts ...pulumi.InvokeOption) (*LookupPolicyResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

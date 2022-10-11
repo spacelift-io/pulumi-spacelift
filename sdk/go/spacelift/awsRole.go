@@ -22,11 +22,15 @@ import (
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/awsRole:AwsRole k8s-core stack/$STACK_ID
+//
+//	$ pulumi import spacelift:index/awsRole:AwsRole k8s-core stack/$STACK_ID
+//
 // ```
 //
 // ```sh
-//  $ pulumi import spacelift:index/awsRole:AwsRole k8s-core module/$MODULE_ID
+//
+//	$ pulumi import spacelift:index/awsRole:AwsRole k8s-core module/$MODULE_ID
+//
 // ```
 type AwsRole struct {
 	pulumi.CustomResourceState
@@ -168,7 +172,7 @@ func (i *AwsRole) ToAwsRoleOutputWithContext(ctx context.Context) AwsRoleOutput 
 // AwsRoleArrayInput is an input type that accepts AwsRoleArray and AwsRoleArrayOutput values.
 // You can construct a concrete instance of `AwsRoleArrayInput` via:
 //
-//          AwsRoleArray{ AwsRoleArgs{...} }
+//	AwsRoleArray{ AwsRoleArgs{...} }
 type AwsRoleArrayInput interface {
 	pulumi.Input
 
@@ -193,7 +197,7 @@ func (i AwsRoleArray) ToAwsRoleArrayOutputWithContext(ctx context.Context) AwsRo
 // AwsRoleMapInput is an input type that accepts AwsRoleMap and AwsRoleMapOutput values.
 // You can construct a concrete instance of `AwsRoleMapInput` via:
 //
-//          AwsRoleMap{ "key": AwsRoleArgs{...} }
+//	AwsRoleMap{ "key": AwsRoleArgs{...} }
 type AwsRoleMapInput interface {
 	pulumi.Input
 

@@ -62,8 +62,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &StackGcpServiceAccount{}
 	case "spacelift:index/vcsAgentPool:VcsAgentPool":
 		r = &VcsAgentPool{}
-	case "spacelift:index/webook:Webook":
-		r = &Webook{}
+	case "spacelift:index/webhook:Webhook":
+		r = &Webhook{}
 	case "spacelift:index/workerPool:WorkerPool":
 		r = &WorkerPool{}
 	default:
@@ -201,7 +201,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"spacelift",
-		"index/webook",
+		"index/webhook",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

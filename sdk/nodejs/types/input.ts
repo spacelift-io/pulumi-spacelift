@@ -122,4 +122,3 @@ export interface StackPulumi {
 export interface StackShowcase {
     namespace: pulumi.Input<string>;
 }
-

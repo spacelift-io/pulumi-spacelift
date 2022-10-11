@@ -119,7 +119,7 @@ func Provider() tfbridge.ProviderInfo {
 			"spacelift_stack_destructor":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "StackDestructor")},
 			"spacelift_stack_gcp_service_account": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "StackGcpServiceAccount")},
 			"spacelift_vcs_agent_pool":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VcsAgentPool")},
-			"spacelift_webhook":                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Webook")},
+			"spacelift_webhook":                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Webhook")},
 			"spacelift_worker_pool":               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "WorkerPool")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{

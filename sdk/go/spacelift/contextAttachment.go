@@ -19,29 +19,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewContextAttachment(ctx, "attachment", &spacelift.ContextAttachmentArgs{
-// 			ContextId: pulumi.String("prod-k8s-ie"),
-// 			ModuleId:  pulumi.String("k8s-module"),
-// 			Priority:  pulumi.Int(0),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewContextAttachment(ctx, "attachment", &spacelift.ContextAttachmentArgs{
+//				ContextId: pulumi.String("prod-k8s-ie"),
+//				ModuleId:  pulumi.String("k8s-module"),
+//				Priority:  pulumi.Int(0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/contextAttachment:ContextAttachment test_stack $CONTEXT_ID/$STACK_ID
+//
+//	$ pulumi import spacelift:index/contextAttachment:ContextAttachment test_stack $CONTEXT_ID/$STACK_ID
+//
 // ```
 type ContextAttachment struct {
 	pulumi.CustomResourceState
@@ -163,7 +168,7 @@ func (i *ContextAttachment) ToContextAttachmentOutputWithContext(ctx context.Con
 // ContextAttachmentArrayInput is an input type that accepts ContextAttachmentArray and ContextAttachmentArrayOutput values.
 // You can construct a concrete instance of `ContextAttachmentArrayInput` via:
 //
-//          ContextAttachmentArray{ ContextAttachmentArgs{...} }
+//	ContextAttachmentArray{ ContextAttachmentArgs{...} }
 type ContextAttachmentArrayInput interface {
 	pulumi.Input
 
@@ -188,7 +193,7 @@ func (i ContextAttachmentArray) ToContextAttachmentArrayOutputWithContext(ctx co
 // ContextAttachmentMapInput is an input type that accepts ContextAttachmentMap and ContextAttachmentMapOutput values.
 // You can construct a concrete instance of `ContextAttachmentMapInput` via:
 //
-//          ContextAttachmentMap{ "key": ContextAttachmentArgs{...} }
+//	ContextAttachmentMap{ "key": ContextAttachmentArgs{...} }
 type ContextAttachmentMapInput interface {
 	pulumi.Input
 

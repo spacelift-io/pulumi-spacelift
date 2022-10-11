@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Spacelift
 {
     /// <summary>
-    /// `spacelift.Webook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+    /// `spacelift.Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
     /// 
     /// ## Example Usage
     /// 
@@ -21,7 +21,7 @@ namespace Pulumi.Spacelift
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var webhook = new Spacelift.Webook("webhook", new()
+    ///     var webhook = new Spacelift.Webhook("webhook", new()
     ///     {
     ///         Endpoint = "https://example.com/webhooks",
     ///         StackId = "k8s-core",
@@ -33,11 +33,11 @@ namespace Pulumi.Spacelift
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import spacelift:index/webook:Webook webhook stack/$STACK_ID/$WEBHOOK_ID
+    ///  $ pulumi import spacelift:index/webhook:Webhook webhook stack/$STACK_ID/$WEBHOOK_ID
     /// ```
     /// </summary>
-    [SpaceliftResourceType("spacelift:index/webook:Webook")]
-    public partial class Webook : global::Pulumi.CustomResource
+    [SpaceliftResourceType("spacelift:index/webhook:Webhook")]
+    public partial class Webhook : global::Pulumi.CustomResource
     {
         /// <summary>
         /// enables or disables sending webhooks. Defaults to `true`.
@@ -71,19 +71,19 @@ namespace Pulumi.Spacelift
 
 
         /// <summary>
-        /// Create a Webook resource with the given unique name, arguments, and options.
+        /// Create a Webhook resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Webook(string name, WebookArgs args, CustomResourceOptions? options = null)
-            : base("spacelift:index/webook:Webook", name, args ?? new WebookArgs(), MakeResourceOptions(options, ""))
+        public Webhook(string name, WebhookArgs args, CustomResourceOptions? options = null)
+            : base("spacelift:index/webhook:Webhook", name, args ?? new WebhookArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Webook(string name, Input<string> id, WebookState? state = null, CustomResourceOptions? options = null)
-            : base("spacelift:index/webook:Webook", name, state, MakeResourceOptions(options, id))
+        private Webhook(string name, Input<string> id, WebhookState? state = null, CustomResourceOptions? options = null)
+            : base("spacelift:index/webhook:Webhook", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -100,7 +100,7 @@ namespace Pulumi.Spacelift
             return merged;
         }
         /// <summary>
-        /// Get an existing Webook resource's state with the given name, ID, and optional extra
+        /// Get an existing Webhook resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -108,13 +108,13 @@ namespace Pulumi.Spacelift
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Webook Get(string name, Input<string> id, WebookState? state = null, CustomResourceOptions? options = null)
+        public static Webhook Get(string name, Input<string> id, WebhookState? state = null, CustomResourceOptions? options = null)
         {
-            return new Webook(name, id, state, options);
+            return new Webhook(name, id, state, options);
         }
     }
 
-    public sealed class WebookArgs : global::Pulumi.ResourceArgs
+    public sealed class WebhookArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// enables or disables sending webhooks. Defaults to `true`.
@@ -146,13 +146,13 @@ namespace Pulumi.Spacelift
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 
-        public WebookArgs()
+        public WebhookArgs()
         {
         }
-        public static new WebookArgs Empty => new WebookArgs();
+        public static new WebhookArgs Empty => new WebhookArgs();
     }
 
-    public sealed class WebookState : global::Pulumi.ResourceArgs
+    public sealed class WebhookState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// enables or disables sending webhooks. Defaults to `true`.
@@ -184,9 +184,9 @@ namespace Pulumi.Spacelift
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 
-        public WebookState()
+        public WebhookState()
         {
         }
-        public static new WebookState Empty => new WebookState();
+        public static new WebhookState Empty => new WebhookState();
     }
 }

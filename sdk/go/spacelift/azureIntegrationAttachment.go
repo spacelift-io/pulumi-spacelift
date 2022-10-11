@@ -19,43 +19,50 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewAzureIntegrationAttachment(ctx, "readonly", &spacelift.AzureIntegrationAttachmentArgs{
-// 			IntegrationId:  pulumi.Any(spacelift_azure_integration.Example.Id),
-// 			StackId:        pulumi.Any(spacelift_stack.Example.Id),
-// 			Write:          pulumi.Bool(false),
-// 			SubscriptionId: pulumi.String("subscription_id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewAzureIntegrationAttachment(ctx, "writeonly", &spacelift.AzureIntegrationAttachmentArgs{
-// 			IntegrationId:  pulumi.Any(spacelift_azure_integration.Example.Id),
-// 			StackId:        pulumi.Any(spacelift_module.Example.Id),
-// 			Read:           pulumi.Bool(false),
-// 			SubscriptionId: pulumi.String("subscription_id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewAzureIntegrationAttachment(ctx, "readonly", &spacelift.AzureIntegrationAttachmentArgs{
+//				IntegrationId:  pulumi.Any(spacelift_azure_integration.Example.Id),
+//				StackId:        pulumi.Any(spacelift_stack.Example.Id),
+//				Write:          pulumi.Bool(false),
+//				SubscriptionId: pulumi.String("subscription_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewAzureIntegrationAttachment(ctx, "writeonly", &spacelift.AzureIntegrationAttachmentArgs{
+//				IntegrationId:  pulumi.Any(spacelift_azure_integration.Example.Id),
+//				StackId:        pulumi.Any(spacelift_module.Example.Id),
+//				Read:           pulumi.Bool(false),
+//				SubscriptionId: pulumi.String("subscription_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/azureIntegrationAttachment:AzureIntegrationAttachment readonly $INTEGRATION_ID/$STACK_ID
+//
+//	$ pulumi import spacelift:index/azureIntegrationAttachment:AzureIntegrationAttachment readonly $INTEGRATION_ID/$STACK_ID
+//
 // ```
 //
 // ```sh
-//  $ pulumi import spacelift:index/azureIntegrationAttachment:AzureIntegrationAttachment writeonly $INTEGRATION_ID/$MODULE_ID
+//
+//	$ pulumi import spacelift:index/azureIntegrationAttachment:AzureIntegrationAttachment writeonly $INTEGRATION_ID/$MODULE_ID
+//
 // ```
 type AzureIntegrationAttachment struct {
 	pulumi.CustomResourceState
@@ -203,7 +210,7 @@ func (i *AzureIntegrationAttachment) ToAzureIntegrationAttachmentOutputWithConte
 // AzureIntegrationAttachmentArrayInput is an input type that accepts AzureIntegrationAttachmentArray and AzureIntegrationAttachmentArrayOutput values.
 // You can construct a concrete instance of `AzureIntegrationAttachmentArrayInput` via:
 //
-//          AzureIntegrationAttachmentArray{ AzureIntegrationAttachmentArgs{...} }
+//	AzureIntegrationAttachmentArray{ AzureIntegrationAttachmentArgs{...} }
 type AzureIntegrationAttachmentArrayInput interface {
 	pulumi.Input
 
@@ -228,7 +235,7 @@ func (i AzureIntegrationAttachmentArray) ToAzureIntegrationAttachmentArrayOutput
 // AzureIntegrationAttachmentMapInput is an input type that accepts AzureIntegrationAttachmentMap and AzureIntegrationAttachmentMapOutput values.
 // You can construct a concrete instance of `AzureIntegrationAttachmentMapInput` via:
 //
-//          AzureIntegrationAttachmentMap{ "key": AzureIntegrationAttachmentArgs{...} }
+//	AzureIntegrationAttachmentMap{ "key": AzureIntegrationAttachmentArgs{...} }
 type AzureIntegrationAttachmentMapInput interface {
 	pulumi.Input
 

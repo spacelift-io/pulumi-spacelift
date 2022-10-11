@@ -19,53 +19,62 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewEnvironmentVariable(ctx, "ireland-kubeconfig", &spacelift.EnvironmentVariableArgs{
-// 			ContextId: pulumi.String("prod-k8s-ie"),
-// 			Value:     pulumi.String("/project/spacelift/kubeconfig"),
-// 			WriteOnly: pulumi.Bool(false),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewEnvironmentVariable(ctx, "module-kubeconfig", &spacelift.EnvironmentVariableArgs{
-// 			ModuleId:  pulumi.String("k8s-module"),
-// 			Value:     pulumi.String("/project/spacelift/kubeconfig"),
-// 			WriteOnly: pulumi.Bool(false),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewEnvironmentVariable(ctx, "core-kubeconfig", &spacelift.EnvironmentVariableArgs{
-// 			StackId:   pulumi.String("k8s-core"),
-// 			Value:     pulumi.String("/project/spacelift/kubeconfig"),
-// 			WriteOnly: pulumi.Bool(false),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewEnvironmentVariable(ctx, "ireland-kubeconfig", &spacelift.EnvironmentVariableArgs{
+//				ContextId: pulumi.String("prod-k8s-ie"),
+//				Value:     pulumi.String("/project/spacelift/kubeconfig"),
+//				WriteOnly: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewEnvironmentVariable(ctx, "module-kubeconfig", &spacelift.EnvironmentVariableArgs{
+//				ModuleId:  pulumi.String("k8s-module"),
+//				Value:     pulumi.String("/project/spacelift/kubeconfig"),
+//				WriteOnly: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewEnvironmentVariable(ctx, "core-kubeconfig", &spacelift.EnvironmentVariableArgs{
+//				StackId:   pulumi.String("k8s-core"),
+//				Value:     pulumi.String("/project/spacelift/kubeconfig"),
+//				WriteOnly: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/environmentVariable:EnvironmentVariable ireland-kubeconfig context/$CONTEXT_ID/$ENVIRONMENT_VARIABLE_NAME
+//
+//	$ pulumi import spacelift:index/environmentVariable:EnvironmentVariable ireland-kubeconfig context/$CONTEXT_ID/$ENVIRONMENT_VARIABLE_NAME
+//
 // ```
 //
 // ```sh
-//  $ pulumi import spacelift:index/environmentVariable:EnvironmentVariable module-kubeconfig module/$MODULE_ID/$ENVIRONMENT_VARIABLE_NAME
+//
+//	$ pulumi import spacelift:index/environmentVariable:EnvironmentVariable module-kubeconfig module/$MODULE_ID/$ENVIRONMENT_VARIABLE_NAME
+//
 // ```
 //
 // ```sh
-//  $ pulumi import spacelift:index/environmentVariable:EnvironmentVariable core-kubeconfig stack/$STACK_ID/$ENVIRONMENT_VARIABLE_NAME
+//
+//	$ pulumi import spacelift:index/environmentVariable:EnvironmentVariable core-kubeconfig stack/$STACK_ID/$ENVIRONMENT_VARIABLE_NAME
+//
 // ```
 type EnvironmentVariable struct {
 	pulumi.CustomResourceState
@@ -213,7 +222,7 @@ func (i *EnvironmentVariable) ToEnvironmentVariableOutputWithContext(ctx context
 // EnvironmentVariableArrayInput is an input type that accepts EnvironmentVariableArray and EnvironmentVariableArrayOutput values.
 // You can construct a concrete instance of `EnvironmentVariableArrayInput` via:
 //
-//          EnvironmentVariableArray{ EnvironmentVariableArgs{...} }
+//	EnvironmentVariableArray{ EnvironmentVariableArgs{...} }
 type EnvironmentVariableArrayInput interface {
 	pulumi.Input
 
@@ -238,7 +247,7 @@ func (i EnvironmentVariableArray) ToEnvironmentVariableArrayOutputWithContext(ct
 // EnvironmentVariableMapInput is an input type that accepts EnvironmentVariableMap and EnvironmentVariableMapOutput values.
 // You can construct a concrete instance of `EnvironmentVariableMapInput` via:
 //
-//          EnvironmentVariableMap{ "key": EnvironmentVariableArgs{...} }
+//	EnvironmentVariableMap{ "key": EnvironmentVariableArgs{...} }
 type EnvironmentVariableMapInput interface {
 	pulumi.Input
 

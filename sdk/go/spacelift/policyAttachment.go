@@ -19,52 +19,57 @@ import (
 // package main
 //
 // import (
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewPolicy(ctx, "no-weekend-deploysPolicy", &spacelift.PolicyArgs{
-// 			Body: readFileOrPanic("policies/no-weekend-deploys.rego"),
-// 			Type: pulumi.String("PLAN"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStack(ctx, "core-infra-production", &spacelift.StackArgs{
-// 			Branch:     pulumi.String("master"),
-// 			Repository: pulumi.String("core-infra"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewPolicyAttachment(ctx, "no-weekend-deploysPolicyAttachment", &spacelift.PolicyAttachmentArgs{
-// 			PolicyId: no_weekend_deploysPolicy.ID(),
-// 			StackId:  core_infra_production.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewPolicy(ctx, "no-weekend-deploysPolicy", &spacelift.PolicyArgs{
+//				Body: readFileOrPanic("policies/no-weekend-deploys.rego"),
+//				Type: pulumi.String("PLAN"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewStack(ctx, "core-infra-production", &spacelift.StackArgs{
+//				Branch:     pulumi.String("master"),
+//				Repository: pulumi.String("core-infra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewPolicyAttachment(ctx, "no-weekend-deploysPolicyAttachment", &spacelift.PolicyAttachmentArgs{
+//				PolicyId: no_weekend_deploysPolicy.ID(),
+//				StackId:  core_infra_production.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/policyAttachment:PolicyAttachment no-weekend-deploys $POLICY_ID/$STACK_ID
+//
+//	$ pulumi import spacelift:index/policyAttachment:PolicyAttachment no-weekend-deploys $POLICY_ID/$STACK_ID
+//
 // ```
 type PolicyAttachment struct {
 	pulumi.CustomResourceState
@@ -176,7 +181,7 @@ func (i *PolicyAttachment) ToPolicyAttachmentOutputWithContext(ctx context.Conte
 // PolicyAttachmentArrayInput is an input type that accepts PolicyAttachmentArray and PolicyAttachmentArrayOutput values.
 // You can construct a concrete instance of `PolicyAttachmentArrayInput` via:
 //
-//          PolicyAttachmentArray{ PolicyAttachmentArgs{...} }
+//	PolicyAttachmentArray{ PolicyAttachmentArgs{...} }
 type PolicyAttachmentArrayInput interface {
 	pulumi.Input
 
@@ -201,7 +206,7 @@ func (i PolicyAttachmentArray) ToPolicyAttachmentArrayOutputWithContext(ctx cont
 // PolicyAttachmentMapInput is an input type that accepts PolicyAttachmentMap and PolicyAttachmentMapOutput values.
 // You can construct a concrete instance of `PolicyAttachmentMapInput` via:
 //
-//          PolicyAttachmentMap{ "key": PolicyAttachmentArgs{...} }
+//	PolicyAttachmentMap{ "key": PolicyAttachmentArgs{...} }
 type PolicyAttachmentMapInput interface {
 	pulumi.Input
 

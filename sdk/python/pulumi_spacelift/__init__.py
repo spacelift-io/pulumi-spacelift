@@ -59,7 +59,7 @@ from .stack_aws_role import *
 from .stack_destructor import *
 from .stack_gcp_service_account import *
 from .vcs_agent_pool import *
-from .webook import *
+from .webhook import *
 from .worker_pool import *
 from ._inputs import *
 from . import outputs
@@ -244,10 +244,10 @@ _utilities.register(
  },
  {
   "pkg": "spacelift",
-  "mod": "index/webook",
+  "mod": "index/webhook",
   "fqn": "pulumi_spacelift",
   "classes": {
-   "spacelift:index/webook:Webook": "Webook"
+   "spacelift:index/webhook:Webhook": "Webhook"
   }
  },
  {

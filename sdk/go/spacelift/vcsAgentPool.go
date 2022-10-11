@@ -18,27 +18,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewVcsAgentPool(ctx, "ghe", &spacelift.VcsAgentPoolArgs{
-// 			Description: pulumi.String("VCS agent pool for our internal GitHub Enterprise"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewVcsAgentPool(ctx, "ghe", &spacelift.VcsAgentPoolArgs{
+//				Description: pulumi.String("VCS agent pool for our internal GitHub Enterprise"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/vcsAgentPool:VcsAgentPool ghe $VCS_AGENT_POOL_ID
+//
+//	$ pulumi import spacelift:index/vcsAgentPool:VcsAgentPool ghe $VCS_AGENT_POOL_ID
+//
 // ```
 type VcsAgentPool struct {
 	pulumi.CustomResourceState
@@ -143,7 +148,7 @@ func (i *VcsAgentPool) ToVcsAgentPoolOutputWithContext(ctx context.Context) VcsA
 // VcsAgentPoolArrayInput is an input type that accepts VcsAgentPoolArray and VcsAgentPoolArrayOutput values.
 // You can construct a concrete instance of `VcsAgentPoolArrayInput` via:
 //
-//          VcsAgentPoolArray{ VcsAgentPoolArgs{...} }
+//	VcsAgentPoolArray{ VcsAgentPoolArgs{...} }
 type VcsAgentPoolArrayInput interface {
 	pulumi.Input
 
@@ -168,7 +173,7 @@ func (i VcsAgentPoolArray) ToVcsAgentPoolArrayOutputWithContext(ctx context.Cont
 // VcsAgentPoolMapInput is an input type that accepts VcsAgentPoolMap and VcsAgentPoolMapOutput values.
 // You can construct a concrete instance of `VcsAgentPoolMapInput` via:
 //
-//          VcsAgentPoolMap{ "key": VcsAgentPoolArgs{...} }
+//	VcsAgentPoolMap{ "key": VcsAgentPoolArgs{...} }
 type VcsAgentPoolMapInput interface {
 	pulumi.Input
 

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `spacelift.Webook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+ * `spacelift.Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
  *
  * ## Example Usage
  *

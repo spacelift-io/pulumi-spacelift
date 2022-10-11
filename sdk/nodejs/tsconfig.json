@@ -74,7 +74,7 @@
         "types/output.ts",
         "utilities.ts",
         "vcsAgentPool.ts",
-        "webook.ts",
+        "webhook.ts",
         "workerPool.ts"
     ]
 }

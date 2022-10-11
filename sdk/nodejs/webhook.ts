@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `spacelift.Webook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+ * `spacelift.Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
  *
  * ## Example Usage
  *
@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const webhook = new spacelift.Webook("webhook", {
+ * const webhook = new spacelift.Webhook("webhook", {
  *     endpoint: "https://example.com/webhooks",
  *     stackId: "k8s-core",
  * });
@@ -22,12 +22,12 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- *  $ pulumi import spacelift:index/webook:Webook webhook stack/$STACK_ID/$WEBHOOK_ID
+ *  $ pulumi import spacelift:index/webhook:Webhook webhook stack/$STACK_ID/$WEBHOOK_ID
  * ```
  */
-export class Webook extends pulumi.CustomResource {
+export class Webhook extends pulumi.CustomResource {
     /**
-     * Get an existing Webook resource's state with the given name, ID, and optional extra
+     * Get an existing Webhook resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -35,22 +35,22 @@ export class Webook extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: WebookState, opts?: pulumi.CustomResourceOptions): Webook {
-        return new Webook(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: WebhookState, opts?: pulumi.CustomResourceOptions): Webhook {
+        return new Webhook(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'spacelift:index/webook:Webook';
+    public static readonly __pulumiType = 'spacelift:index/webhook:Webhook';
 
     /**
-     * Returns true if the given object is an instance of Webook.  This is designed to work even
+     * Returns true if the given object is an instance of Webhook.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Webook {
+    public static isInstance(obj: any): obj is Webhook {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Webook.__pulumiType;
+        return obj['__pulumiType'] === Webhook.__pulumiType;
     }
 
     /**
@@ -75,25 +75,25 @@ export class Webook extends pulumi.CustomResource {
     public readonly stackId!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a Webook resource with the given unique name, arguments, and options.
+     * Create a Webhook resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: WebookArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: WebookArgs | WebookState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: WebhookArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: WebhookArgs | WebhookState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as WebookState | undefined;
+            const state = argsOrState as WebhookState | undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["endpoint"] = state ? state.endpoint : undefined;
             resourceInputs["moduleId"] = state ? state.moduleId : undefined;
             resourceInputs["secret"] = state ? state.secret : undefined;
             resourceInputs["stackId"] = state ? state.stackId : undefined;
         } else {
-            const args = argsOrState as WebookArgs | undefined;
+            const args = argsOrState as WebhookArgs | undefined;
             if ((!args || args.endpoint === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'endpoint'");
             }
@@ -104,14 +104,14 @@ export class Webook extends pulumi.CustomResource {
             resourceInputs["stackId"] = args ? args.stackId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Webook.__pulumiType, name, resourceInputs, opts);
+        super(Webhook.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering Webook resources.
+ * Input properties used for looking up and filtering Webhook resources.
  */
-export interface WebookState {
+export interface WebhookState {
     /**
      * enables or disables sending webhooks. Defaults to `true`.
      */
@@ -135,9 +135,9 @@ export interface WebookState {
 }
 
 /**
- * The set of arguments for constructing a Webook resource.
+ * The set of arguments for constructing a Webhook resource.
  */
-export interface WebookArgs {
+export interface WebhookArgs {
     /**
      * enables or disables sending webhooks. Defaults to `true`.
      */

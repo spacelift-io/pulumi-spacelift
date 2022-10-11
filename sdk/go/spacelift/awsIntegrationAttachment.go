@@ -19,43 +19,48 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewAwsIntegrationAttachment(ctx, "thisAwsIntegrationAttachment", &spacelift.AwsIntegrationAttachmentArgs{
-// 			IntegrationId: pulumi.Any(spacelift_aws_integration.This.Id),
-// 			StackId:       pulumi.String("my-stack-id"),
-// 			Read:          pulumi.Bool(true),
-// 			Write:         pulumi.Bool(true),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			aws_iam_role.This,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewAwsIntegrationAttachment(ctx, "thisIndex/awsIntegrationAttachmentAwsIntegrationAttachment", &spacelift.AwsIntegrationAttachmentArgs{
-// 			IntegrationId: pulumi.Any(spacelift_aws_integration.This.Id),
-// 			ModuleId:      pulumi.String("my-module-id"),
-// 			Read:          pulumi.Bool(true),
-// 			Write:         pulumi.Bool(true),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			aws_iam_role.This,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewAwsIntegrationAttachment(ctx, "thisAwsIntegrationAttachment", &spacelift.AwsIntegrationAttachmentArgs{
+//				IntegrationId: pulumi.Any(spacelift_aws_integration.This.Id),
+//				StackId:       pulumi.String("my-stack-id"),
+//				Read:          pulumi.Bool(true),
+//				Write:         pulumi.Bool(true),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				aws_iam_role.This,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewAwsIntegrationAttachment(ctx, "thisIndex/awsIntegrationAttachmentAwsIntegrationAttachment", &spacelift.AwsIntegrationAttachmentArgs{
+//				IntegrationId: pulumi.Any(spacelift_aws_integration.This.Id),
+//				ModuleId:      pulumi.String("my-module-id"),
+//				Read:          pulumi.Bool(true),
+//				Write:         pulumi.Bool(true),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				aws_iam_role.This,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/awsIntegrationAttachment:AwsIntegrationAttachment read_write_my_stack $INTEGRATION_ID/$PROJECT_ID
+//
+//	$ pulumi import spacelift:index/awsIntegrationAttachment:AwsIntegrationAttachment read_write_my_stack $INTEGRATION_ID/$PROJECT_ID
+//
 // ```
 type AwsIntegrationAttachment struct {
 	pulumi.CustomResourceState
@@ -193,7 +198,7 @@ func (i *AwsIntegrationAttachment) ToAwsIntegrationAttachmentOutputWithContext(c
 // AwsIntegrationAttachmentArrayInput is an input type that accepts AwsIntegrationAttachmentArray and AwsIntegrationAttachmentArrayOutput values.
 // You can construct a concrete instance of `AwsIntegrationAttachmentArrayInput` via:
 //
-//          AwsIntegrationAttachmentArray{ AwsIntegrationAttachmentArgs{...} }
+//	AwsIntegrationAttachmentArray{ AwsIntegrationAttachmentArgs{...} }
 type AwsIntegrationAttachmentArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +223,7 @@ func (i AwsIntegrationAttachmentArray) ToAwsIntegrationAttachmentArrayOutputWith
 // AwsIntegrationAttachmentMapInput is an input type that accepts AwsIntegrationAttachmentMap and AwsIntegrationAttachmentMapOutput values.
 // You can construct a concrete instance of `AwsIntegrationAttachmentMapInput` via:
 //
-//          AwsIntegrationAttachmentMap{ "key": AwsIntegrationAttachmentArgs{...} }
+//	AwsIntegrationAttachmentMap{ "key": AwsIntegrationAttachmentArgs{...} }
 type AwsIntegrationAttachmentMapInput interface {
 	pulumi.Input
 

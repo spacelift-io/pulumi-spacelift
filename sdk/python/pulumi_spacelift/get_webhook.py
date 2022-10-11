@@ -121,7 +121,7 @@ def get_webhook(module_id: Optional[str] = None,
                 webhook_id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebhookResult:
     """
-    `Webook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+    `Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
 
     ## Example Usage
 
@@ -160,7 +160,7 @@ def get_webhook_output(module_id: Optional[pulumi.Input[Optional[str]]] = None,
                        webhook_id: Optional[pulumi.Input[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebhookResult]:
     """
-    `Webook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+    `Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
 
     ## Example Usage
 

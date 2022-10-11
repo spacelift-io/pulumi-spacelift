@@ -18,21 +18,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.LookupAzureIntegration(ctx, &GetAzureIntegrationArgs{
-// 			Name: pulumi.StringRef("Production"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.LookupAzureIntegration(ctx, &GetAzureIntegrationArgs{
+//				Name: pulumi.StringRef("Production"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupAzureIntegration(ctx *pulumi.Context, args *LookupAzureIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupAzureIntegrationResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

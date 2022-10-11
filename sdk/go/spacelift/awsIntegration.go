@@ -18,7 +18,9 @@ import (
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/awsIntegration:AwsIntegration read_write_integration $INTEGRATION_ID
+//
+//	$ pulumi import spacelift:index/awsIntegration:AwsIntegration read_write_integration $INTEGRATION_ID
+//
 // ```
 type AwsIntegration struct {
 	pulumi.CustomResourceState
@@ -170,7 +172,7 @@ func (i *AwsIntegration) ToAwsIntegrationOutputWithContext(ctx context.Context) 
 // AwsIntegrationArrayInput is an input type that accepts AwsIntegrationArray and AwsIntegrationArrayOutput values.
 // You can construct a concrete instance of `AwsIntegrationArrayInput` via:
 //
-//          AwsIntegrationArray{ AwsIntegrationArgs{...} }
+//	AwsIntegrationArray{ AwsIntegrationArgs{...} }
 type AwsIntegrationArrayInput interface {
 	pulumi.Input
 
@@ -195,7 +197,7 @@ func (i AwsIntegrationArray) ToAwsIntegrationArrayOutputWithContext(ctx context.
 // AwsIntegrationMapInput is an input type that accepts AwsIntegrationMap and AwsIntegrationMapOutput values.
 // You can construct a concrete instance of `AwsIntegrationMapInput` via:
 //
-//          AwsIntegrationMap{ "key": AwsIntegrationArgs{...} }
+//	AwsIntegrationMap{ "key": AwsIntegrationArgs{...} }
 type AwsIntegrationMapInput interface {
 	pulumi.Input
 

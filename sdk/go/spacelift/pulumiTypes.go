@@ -18,7 +18,7 @@ type ModuleAzureDevops struct {
 // ModuleAzureDevopsInput is an input type that accepts ModuleAzureDevopsArgs and ModuleAzureDevopsOutput values.
 // You can construct a concrete instance of `ModuleAzureDevopsInput` via:
 //
-//          ModuleAzureDevopsArgs{...}
+//	ModuleAzureDevopsArgs{...}
 type ModuleAzureDevopsInput interface {
 	pulumi.Input
 
@@ -54,11 +54,11 @@ func (i ModuleAzureDevopsArgs) ToModuleAzureDevopsPtrOutputWithContext(ctx conte
 // ModuleAzureDevopsPtrInput is an input type that accepts ModuleAzureDevopsArgs, ModuleAzureDevopsPtr and ModuleAzureDevopsPtrOutput values.
 // You can construct a concrete instance of `ModuleAzureDevopsPtrInput` via:
 //
-//          ModuleAzureDevopsArgs{...}
+//	        ModuleAzureDevopsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ModuleAzureDevopsPtrInput interface {
 	pulumi.Input
 
@@ -155,7 +155,7 @@ type ModuleBitbucketCloud struct {
 // ModuleBitbucketCloudInput is an input type that accepts ModuleBitbucketCloudArgs and ModuleBitbucketCloudOutput values.
 // You can construct a concrete instance of `ModuleBitbucketCloudInput` via:
 //
-//          ModuleBitbucketCloudArgs{...}
+//	ModuleBitbucketCloudArgs{...}
 type ModuleBitbucketCloudInput interface {
 	pulumi.Input
 
@@ -191,11 +191,11 @@ func (i ModuleBitbucketCloudArgs) ToModuleBitbucketCloudPtrOutputWithContext(ctx
 // ModuleBitbucketCloudPtrInput is an input type that accepts ModuleBitbucketCloudArgs, ModuleBitbucketCloudPtr and ModuleBitbucketCloudPtrOutput values.
 // You can construct a concrete instance of `ModuleBitbucketCloudPtrInput` via:
 //
-//          ModuleBitbucketCloudArgs{...}
+//	        ModuleBitbucketCloudArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ModuleBitbucketCloudPtrInput interface {
 	pulumi.Input
 
@@ -292,7 +292,7 @@ type ModuleBitbucketDatacenter struct {
 // ModuleBitbucketDatacenterInput is an input type that accepts ModuleBitbucketDatacenterArgs and ModuleBitbucketDatacenterOutput values.
 // You can construct a concrete instance of `ModuleBitbucketDatacenterInput` via:
 //
-//          ModuleBitbucketDatacenterArgs{...}
+//	ModuleBitbucketDatacenterArgs{...}
 type ModuleBitbucketDatacenterInput interface {
 	pulumi.Input
 
@@ -328,11 +328,11 @@ func (i ModuleBitbucketDatacenterArgs) ToModuleBitbucketDatacenterPtrOutputWithC
 // ModuleBitbucketDatacenterPtrInput is an input type that accepts ModuleBitbucketDatacenterArgs, ModuleBitbucketDatacenterPtr and ModuleBitbucketDatacenterPtrOutput values.
 // You can construct a concrete instance of `ModuleBitbucketDatacenterPtrInput` via:
 //
-//          ModuleBitbucketDatacenterArgs{...}
+//	        ModuleBitbucketDatacenterArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ModuleBitbucketDatacenterPtrInput interface {
 	pulumi.Input
 
@@ -429,7 +429,7 @@ type ModuleGithubEnterprise struct {
 // ModuleGithubEnterpriseInput is an input type that accepts ModuleGithubEnterpriseArgs and ModuleGithubEnterpriseOutput values.
 // You can construct a concrete instance of `ModuleGithubEnterpriseInput` via:
 //
-//          ModuleGithubEnterpriseArgs{...}
+//	ModuleGithubEnterpriseArgs{...}
 type ModuleGithubEnterpriseInput interface {
 	pulumi.Input
 
@@ -465,11 +465,11 @@ func (i ModuleGithubEnterpriseArgs) ToModuleGithubEnterprisePtrOutputWithContext
 // ModuleGithubEnterprisePtrInput is an input type that accepts ModuleGithubEnterpriseArgs, ModuleGithubEnterprisePtr and ModuleGithubEnterprisePtrOutput values.
 // You can construct a concrete instance of `ModuleGithubEnterprisePtrInput` via:
 //
-//          ModuleGithubEnterpriseArgs{...}
+//	        ModuleGithubEnterpriseArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ModuleGithubEnterprisePtrInput interface {
 	pulumi.Input
 
@@ -566,7 +566,7 @@ type ModuleGitlab struct {
 // ModuleGitlabInput is an input type that accepts ModuleGitlabArgs and ModuleGitlabOutput values.
 // You can construct a concrete instance of `ModuleGitlabInput` via:
 //
-//          ModuleGitlabArgs{...}
+//	ModuleGitlabArgs{...}
 type ModuleGitlabInput interface {
 	pulumi.Input
 
@@ -602,11 +602,11 @@ func (i ModuleGitlabArgs) ToModuleGitlabPtrOutputWithContext(ctx context.Context
 // ModuleGitlabPtrInput is an input type that accepts ModuleGitlabArgs, ModuleGitlabPtr and ModuleGitlabPtrOutput values.
 // You can construct a concrete instance of `ModuleGitlabPtrInput` via:
 //
-//          ModuleGitlabArgs{...}
+//	        ModuleGitlabArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ModuleGitlabPtrInput interface {
 	pulumi.Input
 
@@ -703,7 +703,7 @@ type StackAnsible struct {
 // StackAnsibleInput is an input type that accepts StackAnsibleArgs and StackAnsibleOutput values.
 // You can construct a concrete instance of `StackAnsibleInput` via:
 //
-//          StackAnsibleArgs{...}
+//	StackAnsibleArgs{...}
 type StackAnsibleInput interface {
 	pulumi.Input
 
@@ -739,11 +739,11 @@ func (i StackAnsibleArgs) ToStackAnsiblePtrOutputWithContext(ctx context.Context
 // StackAnsiblePtrInput is an input type that accepts StackAnsibleArgs, StackAnsiblePtr and StackAnsiblePtrOutput values.
 // You can construct a concrete instance of `StackAnsiblePtrInput` via:
 //
-//          StackAnsibleArgs{...}
+//	        StackAnsibleArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StackAnsiblePtrInput interface {
 	pulumi.Input
 
@@ -840,7 +840,7 @@ type StackAzureDevops struct {
 // StackAzureDevopsInput is an input type that accepts StackAzureDevopsArgs and StackAzureDevopsOutput values.
 // You can construct a concrete instance of `StackAzureDevopsInput` via:
 //
-//          StackAzureDevopsArgs{...}
+//	StackAzureDevopsArgs{...}
 type StackAzureDevopsInput interface {
 	pulumi.Input
 
@@ -876,11 +876,11 @@ func (i StackAzureDevopsArgs) ToStackAzureDevopsPtrOutputWithContext(ctx context
 // StackAzureDevopsPtrInput is an input type that accepts StackAzureDevopsArgs, StackAzureDevopsPtr and StackAzureDevopsPtrOutput values.
 // You can construct a concrete instance of `StackAzureDevopsPtrInput` via:
 //
-//          StackAzureDevopsArgs{...}
+//	        StackAzureDevopsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StackAzureDevopsPtrInput interface {
 	pulumi.Input
 
@@ -977,7 +977,7 @@ type StackBitbucketCloud struct {
 // StackBitbucketCloudInput is an input type that accepts StackBitbucketCloudArgs and StackBitbucketCloudOutput values.
 // You can construct a concrete instance of `StackBitbucketCloudInput` via:
 //
-//          StackBitbucketCloudArgs{...}
+//	StackBitbucketCloudArgs{...}
 type StackBitbucketCloudInput interface {
 	pulumi.Input
 
@@ -1013,11 +1013,11 @@ func (i StackBitbucketCloudArgs) ToStackBitbucketCloudPtrOutputWithContext(ctx c
 // StackBitbucketCloudPtrInput is an input type that accepts StackBitbucketCloudArgs, StackBitbucketCloudPtr and StackBitbucketCloudPtrOutput values.
 // You can construct a concrete instance of `StackBitbucketCloudPtrInput` via:
 //
-//          StackBitbucketCloudArgs{...}
+//	        StackBitbucketCloudArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StackBitbucketCloudPtrInput interface {
 	pulumi.Input
 
@@ -1114,7 +1114,7 @@ type StackBitbucketDatacenter struct {
 // StackBitbucketDatacenterInput is an input type that accepts StackBitbucketDatacenterArgs and StackBitbucketDatacenterOutput values.
 // You can construct a concrete instance of `StackBitbucketDatacenterInput` via:
 //
-//          StackBitbucketDatacenterArgs{...}
+//	StackBitbucketDatacenterArgs{...}
 type StackBitbucketDatacenterInput interface {
 	pulumi.Input
 
@@ -1150,11 +1150,11 @@ func (i StackBitbucketDatacenterArgs) ToStackBitbucketDatacenterPtrOutputWithCon
 // StackBitbucketDatacenterPtrInput is an input type that accepts StackBitbucketDatacenterArgs, StackBitbucketDatacenterPtr and StackBitbucketDatacenterPtrOutput values.
 // You can construct a concrete instance of `StackBitbucketDatacenterPtrInput` via:
 //
-//          StackBitbucketDatacenterArgs{...}
+//	        StackBitbucketDatacenterArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StackBitbucketDatacenterPtrInput interface {
 	pulumi.Input
 
@@ -1257,7 +1257,7 @@ type StackCloudformation struct {
 // StackCloudformationInput is an input type that accepts StackCloudformationArgs and StackCloudformationOutput values.
 // You can construct a concrete instance of `StackCloudformationInput` via:
 //
-//          StackCloudformationArgs{...}
+//	StackCloudformationArgs{...}
 type StackCloudformationInput interface {
 	pulumi.Input
 
@@ -1299,11 +1299,11 @@ func (i StackCloudformationArgs) ToStackCloudformationPtrOutputWithContext(ctx c
 // StackCloudformationPtrInput is an input type that accepts StackCloudformationArgs, StackCloudformationPtr and StackCloudformationPtrOutput values.
 // You can construct a concrete instance of `StackCloudformationPtrInput` via:
 //
-//          StackCloudformationArgs{...}
+//	        StackCloudformationArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StackCloudformationPtrInput interface {
 	pulumi.Input
 
@@ -1445,7 +1445,7 @@ type StackGithubEnterprise struct {
 // StackGithubEnterpriseInput is an input type that accepts StackGithubEnterpriseArgs and StackGithubEnterpriseOutput values.
 // You can construct a concrete instance of `StackGithubEnterpriseInput` via:
 //
-//          StackGithubEnterpriseArgs{...}
+//	StackGithubEnterpriseArgs{...}
 type StackGithubEnterpriseInput interface {
 	pulumi.Input
 
@@ -1481,11 +1481,11 @@ func (i StackGithubEnterpriseArgs) ToStackGithubEnterprisePtrOutputWithContext(c
 // StackGithubEnterprisePtrInput is an input type that accepts StackGithubEnterpriseArgs, StackGithubEnterprisePtr and StackGithubEnterprisePtrOutput values.
 // You can construct a concrete instance of `StackGithubEnterprisePtrInput` via:
 //
-//          StackGithubEnterpriseArgs{...}
+//	        StackGithubEnterpriseArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StackGithubEnterprisePtrInput interface {
 	pulumi.Input
 
@@ -1582,7 +1582,7 @@ type StackGitlab struct {
 // StackGitlabInput is an input type that accepts StackGitlabArgs and StackGitlabOutput values.
 // You can construct a concrete instance of `StackGitlabInput` via:
 //
-//          StackGitlabArgs{...}
+//	StackGitlabArgs{...}
 type StackGitlabInput interface {
 	pulumi.Input
 
@@ -1618,11 +1618,11 @@ func (i StackGitlabArgs) ToStackGitlabPtrOutputWithContext(ctx context.Context) 
 // StackGitlabPtrInput is an input type that accepts StackGitlabArgs, StackGitlabPtr and StackGitlabPtrOutput values.
 // You can construct a concrete instance of `StackGitlabPtrInput` via:
 //
-//          StackGitlabArgs{...}
+//	        StackGitlabArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StackGitlabPtrInput interface {
 	pulumi.Input
 
@@ -1719,7 +1719,7 @@ type StackKubernetes struct {
 // StackKubernetesInput is an input type that accepts StackKubernetesArgs and StackKubernetesOutput values.
 // You can construct a concrete instance of `StackKubernetesInput` via:
 //
-//          StackKubernetesArgs{...}
+//	StackKubernetesArgs{...}
 type StackKubernetesInput interface {
 	pulumi.Input
 
@@ -1755,11 +1755,11 @@ func (i StackKubernetesArgs) ToStackKubernetesPtrOutputWithContext(ctx context.C
 // StackKubernetesPtrInput is an input type that accepts StackKubernetesArgs, StackKubernetesPtr and StackKubernetesPtrOutput values.
 // You can construct a concrete instance of `StackKubernetesPtrInput` via:
 //
-//          StackKubernetesArgs{...}
+//	        StackKubernetesArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StackKubernetesPtrInput interface {
 	pulumi.Input
 
@@ -1858,7 +1858,7 @@ type StackPulumi struct {
 // StackPulumiInput is an input type that accepts StackPulumiArgs and StackPulumiOutput values.
 // You can construct a concrete instance of `StackPulumiInput` via:
 //
-//          StackPulumiArgs{...}
+//	StackPulumiArgs{...}
 type StackPulumiInput interface {
 	pulumi.Input
 
@@ -1896,11 +1896,11 @@ func (i StackPulumiArgs) ToStackPulumiPtrOutputWithContext(ctx context.Context) 
 // StackPulumiPtrInput is an input type that accepts StackPulumiArgs, StackPulumiPtr and StackPulumiPtrOutput values.
 // You can construct a concrete instance of `StackPulumiPtrInput` via:
 //
-//          StackPulumiArgs{...}
+//	        StackPulumiArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StackPulumiPtrInput interface {
 	pulumi.Input
 
@@ -2011,7 +2011,7 @@ type StackShowcase struct {
 // StackShowcaseInput is an input type that accepts StackShowcaseArgs and StackShowcaseOutput values.
 // You can construct a concrete instance of `StackShowcaseInput` via:
 //
-//          StackShowcaseArgs{...}
+//	StackShowcaseArgs{...}
 type StackShowcaseInput interface {
 	pulumi.Input
 
@@ -2046,11 +2046,11 @@ func (i StackShowcaseArgs) ToStackShowcasePtrOutputWithContext(ctx context.Conte
 // StackShowcasePtrInput is an input type that accepts StackShowcaseArgs, StackShowcasePtr and StackShowcasePtrOutput values.
 // You can construct a concrete instance of `StackShowcasePtrInput` via:
 //
-//          StackShowcaseArgs{...}
+//	        StackShowcaseArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StackShowcasePtrInput interface {
 	pulumi.Input
 
@@ -2144,7 +2144,7 @@ type GetModuleAzureDevop struct {
 // GetModuleAzureDevopInput is an input type that accepts GetModuleAzureDevopArgs and GetModuleAzureDevopOutput values.
 // You can construct a concrete instance of `GetModuleAzureDevopInput` via:
 //
-//          GetModuleAzureDevopArgs{...}
+//	GetModuleAzureDevopArgs{...}
 type GetModuleAzureDevopInput interface {
 	pulumi.Input
 
@@ -2171,7 +2171,7 @@ func (i GetModuleAzureDevopArgs) ToGetModuleAzureDevopOutputWithContext(ctx cont
 // GetModuleAzureDevopArrayInput is an input type that accepts GetModuleAzureDevopArray and GetModuleAzureDevopArrayOutput values.
 // You can construct a concrete instance of `GetModuleAzureDevopArrayInput` via:
 //
-//          GetModuleAzureDevopArray{ GetModuleAzureDevopArgs{...} }
+//	GetModuleAzureDevopArray{ GetModuleAzureDevopArgs{...} }
 type GetModuleAzureDevopArrayInput interface {
 	pulumi.Input
 
@@ -2238,7 +2238,7 @@ type GetModuleBitbucketCloud struct {
 // GetModuleBitbucketCloudInput is an input type that accepts GetModuleBitbucketCloudArgs and GetModuleBitbucketCloudOutput values.
 // You can construct a concrete instance of `GetModuleBitbucketCloudInput` via:
 //
-//          GetModuleBitbucketCloudArgs{...}
+//	GetModuleBitbucketCloudArgs{...}
 type GetModuleBitbucketCloudInput interface {
 	pulumi.Input
 
@@ -2265,7 +2265,7 @@ func (i GetModuleBitbucketCloudArgs) ToGetModuleBitbucketCloudOutputWithContext(
 // GetModuleBitbucketCloudArrayInput is an input type that accepts GetModuleBitbucketCloudArray and GetModuleBitbucketCloudArrayOutput values.
 // You can construct a concrete instance of `GetModuleBitbucketCloudArrayInput` via:
 //
-//          GetModuleBitbucketCloudArray{ GetModuleBitbucketCloudArgs{...} }
+//	GetModuleBitbucketCloudArray{ GetModuleBitbucketCloudArgs{...} }
 type GetModuleBitbucketCloudArrayInput interface {
 	pulumi.Input
 
@@ -2332,7 +2332,7 @@ type GetModuleBitbucketDatacenter struct {
 // GetModuleBitbucketDatacenterInput is an input type that accepts GetModuleBitbucketDatacenterArgs and GetModuleBitbucketDatacenterOutput values.
 // You can construct a concrete instance of `GetModuleBitbucketDatacenterInput` via:
 //
-//          GetModuleBitbucketDatacenterArgs{...}
+//	GetModuleBitbucketDatacenterArgs{...}
 type GetModuleBitbucketDatacenterInput interface {
 	pulumi.Input
 
@@ -2359,7 +2359,7 @@ func (i GetModuleBitbucketDatacenterArgs) ToGetModuleBitbucketDatacenterOutputWi
 // GetModuleBitbucketDatacenterArrayInput is an input type that accepts GetModuleBitbucketDatacenterArray and GetModuleBitbucketDatacenterArrayOutput values.
 // You can construct a concrete instance of `GetModuleBitbucketDatacenterArrayInput` via:
 //
-//          GetModuleBitbucketDatacenterArray{ GetModuleBitbucketDatacenterArgs{...} }
+//	GetModuleBitbucketDatacenterArray{ GetModuleBitbucketDatacenterArgs{...} }
 type GetModuleBitbucketDatacenterArrayInput interface {
 	pulumi.Input
 
@@ -2426,7 +2426,7 @@ type GetModuleGithubEnterprise struct {
 // GetModuleGithubEnterpriseInput is an input type that accepts GetModuleGithubEnterpriseArgs and GetModuleGithubEnterpriseOutput values.
 // You can construct a concrete instance of `GetModuleGithubEnterpriseInput` via:
 //
-//          GetModuleGithubEnterpriseArgs{...}
+//	GetModuleGithubEnterpriseArgs{...}
 type GetModuleGithubEnterpriseInput interface {
 	pulumi.Input
 
@@ -2453,7 +2453,7 @@ func (i GetModuleGithubEnterpriseArgs) ToGetModuleGithubEnterpriseOutputWithCont
 // GetModuleGithubEnterpriseArrayInput is an input type that accepts GetModuleGithubEnterpriseArray and GetModuleGithubEnterpriseArrayOutput values.
 // You can construct a concrete instance of `GetModuleGithubEnterpriseArrayInput` via:
 //
-//          GetModuleGithubEnterpriseArray{ GetModuleGithubEnterpriseArgs{...} }
+//	GetModuleGithubEnterpriseArray{ GetModuleGithubEnterpriseArgs{...} }
 type GetModuleGithubEnterpriseArrayInput interface {
 	pulumi.Input
 
@@ -2520,7 +2520,7 @@ type GetModuleGitlab struct {
 // GetModuleGitlabInput is an input type that accepts GetModuleGitlabArgs and GetModuleGitlabOutput values.
 // You can construct a concrete instance of `GetModuleGitlabInput` via:
 //
-//          GetModuleGitlabArgs{...}
+//	GetModuleGitlabArgs{...}
 type GetModuleGitlabInput interface {
 	pulumi.Input
 
@@ -2547,7 +2547,7 @@ func (i GetModuleGitlabArgs) ToGetModuleGitlabOutputWithContext(ctx context.Cont
 // GetModuleGitlabArrayInput is an input type that accepts GetModuleGitlabArray and GetModuleGitlabArrayOutput values.
 // You can construct a concrete instance of `GetModuleGitlabArrayInput` via:
 //
-//          GetModuleGitlabArray{ GetModuleGitlabArgs{...} }
+//	GetModuleGitlabArray{ GetModuleGitlabArgs{...} }
 type GetModuleGitlabArrayInput interface {
 	pulumi.Input
 
@@ -2621,7 +2621,7 @@ type GetPoliciesPolicy struct {
 // GetPoliciesPolicyInput is an input type that accepts GetPoliciesPolicyArgs and GetPoliciesPolicyOutput values.
 // You can construct a concrete instance of `GetPoliciesPolicyInput` via:
 //
-//          GetPoliciesPolicyArgs{...}
+//	GetPoliciesPolicyArgs{...}
 type GetPoliciesPolicyInput interface {
 	pulumi.Input
 
@@ -2655,7 +2655,7 @@ func (i GetPoliciesPolicyArgs) ToGetPoliciesPolicyOutputWithContext(ctx context.
 // GetPoliciesPolicyArrayInput is an input type that accepts GetPoliciesPolicyArray and GetPoliciesPolicyArrayOutput values.
 // You can construct a concrete instance of `GetPoliciesPolicyArrayInput` via:
 //
-//          GetPoliciesPolicyArray{ GetPoliciesPolicyArgs{...} }
+//	GetPoliciesPolicyArray{ GetPoliciesPolicyArgs{...} }
 type GetPoliciesPolicyArrayInput interface {
 	pulumi.Input
 
@@ -2741,7 +2741,7 @@ type GetStackAnsible struct {
 // GetStackAnsibleInput is an input type that accepts GetStackAnsibleArgs and GetStackAnsibleOutput values.
 // You can construct a concrete instance of `GetStackAnsibleInput` via:
 //
-//          GetStackAnsibleArgs{...}
+//	GetStackAnsibleArgs{...}
 type GetStackAnsibleInput interface {
 	pulumi.Input
 
@@ -2768,7 +2768,7 @@ func (i GetStackAnsibleArgs) ToGetStackAnsibleOutputWithContext(ctx context.Cont
 // GetStackAnsibleArrayInput is an input type that accepts GetStackAnsibleArray and GetStackAnsibleArrayOutput values.
 // You can construct a concrete instance of `GetStackAnsibleArrayInput` via:
 //
-//          GetStackAnsibleArray{ GetStackAnsibleArgs{...} }
+//	GetStackAnsibleArray{ GetStackAnsibleArgs{...} }
 type GetStackAnsibleArrayInput interface {
 	pulumi.Input
 
@@ -2835,7 +2835,7 @@ type GetStackAzureDevop struct {
 // GetStackAzureDevopInput is an input type that accepts GetStackAzureDevopArgs and GetStackAzureDevopOutput values.
 // You can construct a concrete instance of `GetStackAzureDevopInput` via:
 //
-//          GetStackAzureDevopArgs{...}
+//	GetStackAzureDevopArgs{...}
 type GetStackAzureDevopInput interface {
 	pulumi.Input
 
@@ -2862,7 +2862,7 @@ func (i GetStackAzureDevopArgs) ToGetStackAzureDevopOutputWithContext(ctx contex
 // GetStackAzureDevopArrayInput is an input type that accepts GetStackAzureDevopArray and GetStackAzureDevopArrayOutput values.
 // You can construct a concrete instance of `GetStackAzureDevopArrayInput` via:
 //
-//          GetStackAzureDevopArray{ GetStackAzureDevopArgs{...} }
+//	GetStackAzureDevopArray{ GetStackAzureDevopArgs{...} }
 type GetStackAzureDevopArrayInput interface {
 	pulumi.Input
 
@@ -2929,7 +2929,7 @@ type GetStackBitbucketCloud struct {
 // GetStackBitbucketCloudInput is an input type that accepts GetStackBitbucketCloudArgs and GetStackBitbucketCloudOutput values.
 // You can construct a concrete instance of `GetStackBitbucketCloudInput` via:
 //
-//          GetStackBitbucketCloudArgs{...}
+//	GetStackBitbucketCloudArgs{...}
 type GetStackBitbucketCloudInput interface {
 	pulumi.Input
 
@@ -2956,7 +2956,7 @@ func (i GetStackBitbucketCloudArgs) ToGetStackBitbucketCloudOutputWithContext(ct
 // GetStackBitbucketCloudArrayInput is an input type that accepts GetStackBitbucketCloudArray and GetStackBitbucketCloudArrayOutput values.
 // You can construct a concrete instance of `GetStackBitbucketCloudArrayInput` via:
 //
-//          GetStackBitbucketCloudArray{ GetStackBitbucketCloudArgs{...} }
+//	GetStackBitbucketCloudArray{ GetStackBitbucketCloudArgs{...} }
 type GetStackBitbucketCloudArrayInput interface {
 	pulumi.Input
 
@@ -3023,7 +3023,7 @@ type GetStackBitbucketDatacenter struct {
 // GetStackBitbucketDatacenterInput is an input type that accepts GetStackBitbucketDatacenterArgs and GetStackBitbucketDatacenterOutput values.
 // You can construct a concrete instance of `GetStackBitbucketDatacenterInput` via:
 //
-//          GetStackBitbucketDatacenterArgs{...}
+//	GetStackBitbucketDatacenterArgs{...}
 type GetStackBitbucketDatacenterInput interface {
 	pulumi.Input
 
@@ -3050,7 +3050,7 @@ func (i GetStackBitbucketDatacenterArgs) ToGetStackBitbucketDatacenterOutputWith
 // GetStackBitbucketDatacenterArrayInput is an input type that accepts GetStackBitbucketDatacenterArray and GetStackBitbucketDatacenterArrayOutput values.
 // You can construct a concrete instance of `GetStackBitbucketDatacenterArrayInput` via:
 //
-//          GetStackBitbucketDatacenterArray{ GetStackBitbucketDatacenterArgs{...} }
+//	GetStackBitbucketDatacenterArray{ GetStackBitbucketDatacenterArgs{...} }
 type GetStackBitbucketDatacenterArrayInput interface {
 	pulumi.Input
 
@@ -3120,7 +3120,7 @@ type GetStackCloudformation struct {
 // GetStackCloudformationInput is an input type that accepts GetStackCloudformationArgs and GetStackCloudformationOutput values.
 // You can construct a concrete instance of `GetStackCloudformationInput` via:
 //
-//          GetStackCloudformationArgs{...}
+//	GetStackCloudformationArgs{...}
 type GetStackCloudformationInput interface {
 	pulumi.Input
 
@@ -3150,7 +3150,7 @@ func (i GetStackCloudformationArgs) ToGetStackCloudformationOutputWithContext(ct
 // GetStackCloudformationArrayInput is an input type that accepts GetStackCloudformationArray and GetStackCloudformationArrayOutput values.
 // You can construct a concrete instance of `GetStackCloudformationArrayInput` via:
 //
-//          GetStackCloudformationArray{ GetStackCloudformationArgs{...} }
+//	GetStackCloudformationArray{ GetStackCloudformationArgs{...} }
 type GetStackCloudformationArrayInput interface {
 	pulumi.Input
 
@@ -3229,7 +3229,7 @@ type GetStackGithubEnterprise struct {
 // GetStackGithubEnterpriseInput is an input type that accepts GetStackGithubEnterpriseArgs and GetStackGithubEnterpriseOutput values.
 // You can construct a concrete instance of `GetStackGithubEnterpriseInput` via:
 //
-//          GetStackGithubEnterpriseArgs{...}
+//	GetStackGithubEnterpriseArgs{...}
 type GetStackGithubEnterpriseInput interface {
 	pulumi.Input
 
@@ -3256,7 +3256,7 @@ func (i GetStackGithubEnterpriseArgs) ToGetStackGithubEnterpriseOutputWithContex
 // GetStackGithubEnterpriseArrayInput is an input type that accepts GetStackGithubEnterpriseArray and GetStackGithubEnterpriseArrayOutput values.
 // You can construct a concrete instance of `GetStackGithubEnterpriseArrayInput` via:
 //
-//          GetStackGithubEnterpriseArray{ GetStackGithubEnterpriseArgs{...} }
+//	GetStackGithubEnterpriseArray{ GetStackGithubEnterpriseArgs{...} }
 type GetStackGithubEnterpriseArrayInput interface {
 	pulumi.Input
 
@@ -3323,7 +3323,7 @@ type GetStackGitlab struct {
 // GetStackGitlabInput is an input type that accepts GetStackGitlabArgs and GetStackGitlabOutput values.
 // You can construct a concrete instance of `GetStackGitlabInput` via:
 //
-//          GetStackGitlabArgs{...}
+//	GetStackGitlabArgs{...}
 type GetStackGitlabInput interface {
 	pulumi.Input
 
@@ -3350,7 +3350,7 @@ func (i GetStackGitlabArgs) ToGetStackGitlabOutputWithContext(ctx context.Contex
 // GetStackGitlabArrayInput is an input type that accepts GetStackGitlabArray and GetStackGitlabArrayOutput values.
 // You can construct a concrete instance of `GetStackGitlabArrayInput` via:
 //
-//          GetStackGitlabArray{ GetStackGitlabArgs{...} }
+//	GetStackGitlabArray{ GetStackGitlabArgs{...} }
 type GetStackGitlabArrayInput interface {
 	pulumi.Input
 
@@ -3417,7 +3417,7 @@ type GetStackKubernete struct {
 // GetStackKuberneteInput is an input type that accepts GetStackKuberneteArgs and GetStackKuberneteOutput values.
 // You can construct a concrete instance of `GetStackKuberneteInput` via:
 //
-//          GetStackKuberneteArgs{...}
+//	GetStackKuberneteArgs{...}
 type GetStackKuberneteInput interface {
 	pulumi.Input
 
@@ -3444,7 +3444,7 @@ func (i GetStackKuberneteArgs) ToGetStackKuberneteOutputWithContext(ctx context.
 // GetStackKuberneteArrayInput is an input type that accepts GetStackKuberneteArray and GetStackKuberneteArrayOutput values.
 // You can construct a concrete instance of `GetStackKuberneteArrayInput` via:
 //
-//          GetStackKuberneteArray{ GetStackKuberneteArgs{...} }
+//	GetStackKuberneteArray{ GetStackKuberneteArgs{...} }
 type GetStackKuberneteArrayInput interface {
 	pulumi.Input
 
@@ -3512,7 +3512,7 @@ type GetStackPulumi struct {
 // GetStackPulumiInput is an input type that accepts GetStackPulumiArgs and GetStackPulumiOutput values.
 // You can construct a concrete instance of `GetStackPulumiInput` via:
 //
-//          GetStackPulumiArgs{...}
+//	GetStackPulumiArgs{...}
 type GetStackPulumiInput interface {
 	pulumi.Input
 
@@ -3540,7 +3540,7 @@ func (i GetStackPulumiArgs) ToGetStackPulumiOutputWithContext(ctx context.Contex
 // GetStackPulumiArrayInput is an input type that accepts GetStackPulumiArray and GetStackPulumiArrayOutput values.
 // You can construct a concrete instance of `GetStackPulumiArrayInput` via:
 //
-//          GetStackPulumiArray{ GetStackPulumiArgs{...} }
+//	GetStackPulumiArray{ GetStackPulumiArgs{...} }
 type GetStackPulumiArrayInput interface {
 	pulumi.Input
 
@@ -3611,7 +3611,7 @@ type GetStackShowcase struct {
 // GetStackShowcaseInput is an input type that accepts GetStackShowcaseArgs and GetStackShowcaseOutput values.
 // You can construct a concrete instance of `GetStackShowcaseInput` via:
 //
-//          GetStackShowcaseArgs{...}
+//	GetStackShowcaseArgs{...}
 type GetStackShowcaseInput interface {
 	pulumi.Input
 
@@ -3638,7 +3638,7 @@ func (i GetStackShowcaseArgs) ToGetStackShowcaseOutputWithContext(ctx context.Co
 // GetStackShowcaseArrayInput is an input type that accepts GetStackShowcaseArray and GetStackShowcaseArrayOutput values.
 // You can construct a concrete instance of `GetStackShowcaseArrayInput` via:
 //
-//          GetStackShowcaseArray{ GetStackShowcaseArgs{...} }
+//	GetStackShowcaseArray{ GetStackShowcaseArgs{...} }
 type GetStackShowcaseArrayInput interface {
 	pulumi.Input
 
@@ -3707,7 +3707,7 @@ type GetVcsAgentPoolsVcsAgentPool struct {
 // GetVcsAgentPoolsVcsAgentPoolInput is an input type that accepts GetVcsAgentPoolsVcsAgentPoolArgs and GetVcsAgentPoolsVcsAgentPoolOutput values.
 // You can construct a concrete instance of `GetVcsAgentPoolsVcsAgentPoolInput` via:
 //
-//          GetVcsAgentPoolsVcsAgentPoolArgs{...}
+//	GetVcsAgentPoolsVcsAgentPoolArgs{...}
 type GetVcsAgentPoolsVcsAgentPoolInput interface {
 	pulumi.Input
 
@@ -3736,7 +3736,7 @@ func (i GetVcsAgentPoolsVcsAgentPoolArgs) ToGetVcsAgentPoolsVcsAgentPoolOutputWi
 // GetVcsAgentPoolsVcsAgentPoolArrayInput is an input type that accepts GetVcsAgentPoolsVcsAgentPoolArray and GetVcsAgentPoolsVcsAgentPoolArrayOutput values.
 // You can construct a concrete instance of `GetVcsAgentPoolsVcsAgentPoolArrayInput` via:
 //
-//          GetVcsAgentPoolsVcsAgentPoolArray{ GetVcsAgentPoolsVcsAgentPoolArgs{...} }
+//	GetVcsAgentPoolsVcsAgentPoolArray{ GetVcsAgentPoolsVcsAgentPoolArgs{...} }
 type GetVcsAgentPoolsVcsAgentPoolArrayInput interface {
 	pulumi.Input
 
@@ -3815,7 +3815,7 @@ type GetWorkerPoolsWorkerPool struct {
 // GetWorkerPoolsWorkerPoolInput is an input type that accepts GetWorkerPoolsWorkerPoolArgs and GetWorkerPoolsWorkerPoolOutput values.
 // You can construct a concrete instance of `GetWorkerPoolsWorkerPoolInput` via:
 //
-//          GetWorkerPoolsWorkerPoolArgs{...}
+//	GetWorkerPoolsWorkerPoolArgs{...}
 type GetWorkerPoolsWorkerPoolInput interface {
 	pulumi.Input
 
@@ -3846,7 +3846,7 @@ func (i GetWorkerPoolsWorkerPoolArgs) ToGetWorkerPoolsWorkerPoolOutputWithContex
 // GetWorkerPoolsWorkerPoolArrayInput is an input type that accepts GetWorkerPoolsWorkerPoolArray and GetWorkerPoolsWorkerPoolArrayOutput values.
 // You can construct a concrete instance of `GetWorkerPoolsWorkerPoolArrayInput` via:
 //
-//          GetWorkerPoolsWorkerPoolArray{ GetWorkerPoolsWorkerPoolArgs{...} }
+//	GetWorkerPoolsWorkerPoolArray{ GetWorkerPoolsWorkerPoolArgs{...} }
 type GetWorkerPoolsWorkerPoolArrayInput interface {
 	pulumi.Input
 

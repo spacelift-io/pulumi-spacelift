@@ -20,21 +20,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.LookupAwsIntegration(ctx, &GetAwsIntegrationArgs{
-// 			Name: pulumi.StringRef("Production"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.LookupAwsIntegration(ctx, &GetAwsIntegrationArgs{
+//				Name: pulumi.StringRef("Production"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupAwsIntegration(ctx *pulumi.Context, args *LookupAwsIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupAwsIntegrationResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

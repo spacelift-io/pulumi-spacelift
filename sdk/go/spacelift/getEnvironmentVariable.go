@@ -18,36 +18,39 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.LookupEnvironmentVariable(ctx, &GetEnvironmentVariableArgs{
-// 			ContextId: pulumi.StringRef("prod-k8s-ie"),
-// 			Name:      "KUBECONFIG",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.LookupEnvironmentVariable(ctx, &GetEnvironmentVariableArgs{
-// 			ModuleId: pulumi.StringRef("k8s-module"),
-// 			Name:     "KUBECONFIG",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.LookupEnvironmentVariable(ctx, &GetEnvironmentVariableArgs{
-// 			Name:    "KUBECONFIG",
-// 			StackId: pulumi.StringRef("k8s-core"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.LookupEnvironmentVariable(ctx, &GetEnvironmentVariableArgs{
+//				ContextId: pulumi.StringRef("prod-k8s-ie"),
+//				Name:      "KUBECONFIG",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.LookupEnvironmentVariable(ctx, &GetEnvironmentVariableArgs{
+//				ModuleId: pulumi.StringRef("k8s-module"),
+//				Name:     "KUBECONFIG",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.LookupEnvironmentVariable(ctx, &GetEnvironmentVariableArgs{
+//				Name:    "KUBECONFIG",
+//				StackId: pulumi.StringRef("k8s-core"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupEnvironmentVariable(ctx *pulumi.Context, args *LookupEnvironmentVariableArgs, opts ...pulumi.InvokeOption) (*LookupEnvironmentVariableResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

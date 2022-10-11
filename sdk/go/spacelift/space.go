@@ -18,35 +18,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		development, err := spacelift.NewSpace(ctx, "development", &spacelift.SpaceArgs{
-// 			ParentSpaceId: pulumi.String("root"),
-// 			Description:   pulumi.String("This a child of the root space. It contains all the resources common to the development infrastructure."),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewSpace(ctx, "development-frontend", &spacelift.SpaceArgs{
-// 			ParentSpaceId:   development.ID(),
-// 			InheritEntities: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			development, err := spacelift.NewSpace(ctx, "development", &spacelift.SpaceArgs{
+//				ParentSpaceId: pulumi.String("root"),
+//				Description:   pulumi.String("This a child of the root space. It contains all the resources common to the development infrastructure."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewSpace(ctx, "development-frontend", &spacelift.SpaceArgs{
+//				ParentSpaceId:   development.ID(),
+//				InheritEntities: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/space:Space development $SPACE_ID
+//
+//	$ pulumi import spacelift:index/space:Space development $SPACE_ID
+//
 // ```
 type Space struct {
 	pulumi.CustomResourceState
@@ -165,7 +170,7 @@ func (i *Space) ToSpaceOutputWithContext(ctx context.Context) SpaceOutput {
 // SpaceArrayInput is an input type that accepts SpaceArray and SpaceArrayOutput values.
 // You can construct a concrete instance of `SpaceArrayInput` via:
 //
-//          SpaceArray{ SpaceArgs{...} }
+//	SpaceArray{ SpaceArgs{...} }
 type SpaceArrayInput interface {
 	pulumi.Input
 
@@ -190,7 +195,7 @@ func (i SpaceArray) ToSpaceArrayOutputWithContext(ctx context.Context) SpaceArra
 // SpaceMapInput is an input type that accepts SpaceMap and SpaceMapOutput values.
 // You can construct a concrete instance of `SpaceMapInput` via:
 //
-//          SpaceMap{ "key": SpaceArgs{...} }
+//	SpaceMap{ "key": SpaceArgs{...} }
 type SpaceMapInput interface {
 	pulumi.Input
 

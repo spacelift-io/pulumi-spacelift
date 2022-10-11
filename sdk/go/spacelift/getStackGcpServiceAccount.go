@@ -16,27 +16,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.LookupStackGcpServiceAccount(ctx, &GetStackGcpServiceAccountArgs{
-// 			ModuleId: pulumi.StringRef("k8s-module"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.LookupStackGcpServiceAccount(ctx, &GetStackGcpServiceAccountArgs{
-// 			StackId: pulumi.StringRef("k8s-core"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.LookupStackGcpServiceAccount(ctx, &GetStackGcpServiceAccountArgs{
+//				ModuleId: pulumi.StringRef("k8s-module"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.LookupStackGcpServiceAccount(ctx, &GetStackGcpServiceAccountArgs{
+//				StackId: pulumi.StringRef("k8s-core"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupStackGcpServiceAccount(ctx *pulumi.Context, args *LookupStackGcpServiceAccountArgs, opts ...pulumi.InvokeOption) (*LookupStackGcpServiceAccountResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

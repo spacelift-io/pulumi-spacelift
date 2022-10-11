@@ -217,3 +217,4 @@ export interface StackPulumi {
 export interface StackShowcase {
     namespace: string;
 }
+

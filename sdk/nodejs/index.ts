@@ -211,9 +211,9 @@ export { VcsAgentPoolArgs, VcsAgentPoolState } from "./vcsAgentPool";
 export type VcsAgentPool = import("./vcsAgentPool").VcsAgentPool;
 export const VcsAgentPool: typeof import("./vcsAgentPool").VcsAgentPool = null as any;
 
-export { WebookArgs, WebookState } from "./webook";
-export type Webook = import("./webook").Webook;
-export const Webook: typeof import("./webook").Webook = null as any;
+export { WebhookArgs, WebhookState } from "./webhook";
+export type Webhook = import("./webhook").Webhook;
+export const Webhook: typeof import("./webhook").Webhook = null as any;
 
 export { WorkerPoolArgs, WorkerPoolState } from "./workerPool";
 export type WorkerPool = import("./workerPool").WorkerPool;
@@ -273,7 +273,7 @@ utilities.lazyLoad(exports, ["StackAwsRole"], () => require("./stackAwsRole"));
 utilities.lazyLoad(exports, ["StackDestructor"], () => require("./stackDestructor"));
 utilities.lazyLoad(exports, ["StackGcpServiceAccount"], () => require("./stackGcpServiceAccount"));
 utilities.lazyLoad(exports, ["VcsAgentPool"], () => require("./vcsAgentPool"));
-utilities.lazyLoad(exports, ["Webook"], () => require("./webook"));
+utilities.lazyLoad(exports, ["Webhook"], () => require("./webhook"));
 utilities.lazyLoad(exports, ["WorkerPool"], () => require("./workerPool"));
 
 // Export sub-modules:
@@ -331,8 +331,8 @@ const _module = {
                 return new StackGcpServiceAccount(name, <any>undefined, { urn })
             case "spacelift:index/vcsAgentPool:VcsAgentPool":
                 return new VcsAgentPool(name, <any>undefined, { urn })
-            case "spacelift:index/webook:Webook":
-                return new Webook(name, <any>undefined, { urn })
+            case "spacelift:index/webhook:Webhook":
+                return new Webhook(name, <any>undefined, { urn })
             case "spacelift:index/workerPool:WorkerPool":
                 return new WorkerPool(name, <any>undefined, { urn })
             default:
@@ -361,7 +361,7 @@ pulumi.runtime.registerResourceModule("spacelift", "index/stackAwsRole", _module
 pulumi.runtime.registerResourceModule("spacelift", "index/stackDestructor", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stackGcpServiceAccount", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/vcsAgentPool", _module)
-pulumi.runtime.registerResourceModule("spacelift", "index/webook", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/webhook", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/workerPool", _module)
 pulumi.runtime.registerResourcePackage("spacelift", {
     version: utilities.getVersion(),

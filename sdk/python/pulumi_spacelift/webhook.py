@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['WebookArgs', 'Webook']
+__all__ = ['WebhookArgs', 'Webhook']
 
 @pulumi.input_type
-class WebookArgs:
+class WebhookArgs:
     def __init__(__self__, *,
                  endpoint: pulumi.Input[str],
                  enabled: Optional[pulumi.Input[bool]] = None,
@@ -20,7 +20,7 @@ class WebookArgs:
                  secret: Optional[pulumi.Input[str]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a Webook resource.
+        The set of arguments for constructing a Webhook resource.
         :param pulumi.Input[str] endpoint: endpoint to send the POST request to
         :param pulumi.Input[bool] enabled: enables or disables sending webhooks. Defaults to `true`.
         :param pulumi.Input[str] module_id: ID of the module which triggers the webhooks
@@ -99,7 +99,7 @@ class WebookArgs:
 
 
 @pulumi.input_type
-class _WebookState:
+class _WebhookState:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
@@ -107,7 +107,7 @@ class _WebookState:
                  secret: Optional[pulumi.Input[str]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering Webook resources.
+        Input properties used for looking up and filtering Webhook resources.
         :param pulumi.Input[bool] enabled: enables or disables sending webhooks. Defaults to `true`.
         :param pulumi.Input[str] endpoint: endpoint to send the POST request to
         :param pulumi.Input[str] module_id: ID of the module which triggers the webhooks
@@ -186,7 +186,7 @@ class _WebookState:
         pulumi.set(self, "stack_id", value)
 
 
-class Webook(pulumi.CustomResource):
+class Webhook(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -198,7 +198,7 @@ class Webook(pulumi.CustomResource):
                  stack_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        `Webook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+        `Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
 
         ## Example Usage
 
@@ -206,7 +206,7 @@ class Webook(pulumi.CustomResource):
         import pulumi
         import pulumi_spacelift as spacelift
 
-        webhook = spacelift.Webook("webhook",
+        webhook = spacelift.Webhook("webhook",
             endpoint="https://example.com/webhooks",
             stack_id="k8s-core")
         ```
@@ -214,7 +214,7 @@ class Webook(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import spacelift:index/webook:Webook webhook stack/$STACK_ID/$WEBHOOK_ID
+         $ pulumi import spacelift:index/webhook:Webhook webhook stack/$STACK_ID/$WEBHOOK_ID
         ```
 
         :param str resource_name: The name of the resource.
@@ -229,10 +229,10 @@ class Webook(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: WebookArgs,
+                 args: WebhookArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        `Webook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+        `Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
 
         ## Example Usage
 
@@ -240,7 +240,7 @@ class Webook(pulumi.CustomResource):
         import pulumi
         import pulumi_spacelift as spacelift
 
-        webhook = spacelift.Webook("webhook",
+        webhook = spacelift.Webhook("webhook",
             endpoint="https://example.com/webhooks",
             stack_id="k8s-core")
         ```
@@ -248,16 +248,16 @@ class Webook(pulumi.CustomResource):
         ## Import
 
         ```sh
-         $ pulumi import spacelift:index/webook:Webook webhook stack/$STACK_ID/$WEBHOOK_ID
+         $ pulumi import spacelift:index/webhook:Webhook webhook stack/$STACK_ID/$WEBHOOK_ID
         ```
 
         :param str resource_name: The name of the resource.
-        :param WebookArgs args: The arguments to use to populate this resource's properties.
+        :param WebhookArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(WebookArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(WebhookArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -278,7 +278,7 @@ class Webook(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = WebookArgs.__new__(WebookArgs)
+            __props__ = WebhookArgs.__new__(WebhookArgs)
 
             __props__.__dict__["enabled"] = enabled
             if endpoint is None and not opts.urn:
@@ -287,8 +287,8 @@ class Webook(pulumi.CustomResource):
             __props__.__dict__["module_id"] = module_id
             __props__.__dict__["secret"] = secret
             __props__.__dict__["stack_id"] = stack_id
-        super(Webook, __self__).__init__(
-            'spacelift:index/webook:Webook',
+        super(Webhook, __self__).__init__(
+            'spacelift:index/webhook:Webhook',
             resource_name,
             __props__,
             opts)
@@ -301,9 +301,9 @@ class Webook(pulumi.CustomResource):
             endpoint: Optional[pulumi.Input[str]] = None,
             module_id: Optional[pulumi.Input[str]] = None,
             secret: Optional[pulumi.Input[str]] = None,
-            stack_id: Optional[pulumi.Input[str]] = None) -> 'Webook':
+            stack_id: Optional[pulumi.Input[str]] = None) -> 'Webhook':
         """
-        Get an existing Webook resource's state with the given name, id, and optional extra
+        Get an existing Webhook resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -317,14 +317,14 @@ class Webook(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _WebookState.__new__(_WebookState)
+        __props__ = _WebhookState.__new__(_WebhookState)
 
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["module_id"] = module_id
         __props__.__dict__["secret"] = secret
         __props__.__dict__["stack_id"] = stack_id
-        return Webook(resource_name, opts=opts, __props__=__props__)
+        return Webhook(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

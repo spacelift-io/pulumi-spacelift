@@ -19,42 +19,49 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewStack(ctx, "core-infra-production", &spacelift.StackArgs{
-// 			Branch:     pulumi.String("master"),
-// 			Repository: pulumi.String("core-infra"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewDriftDetection(ctx, "core-infra-production-drift-detection", &spacelift.DriftDetectionArgs{
-// 			Reconcile: pulumi.Bool(true),
-// 			StackId:   core_infra_production.ID(),
-// 			Schedules: pulumi.StringArray{
-// 				pulumi.String("*/15 * * * *"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewStack(ctx, "core-infra-production", &spacelift.StackArgs{
+//				Branch:     pulumi.String("master"),
+//				Repository: pulumi.String("core-infra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewDriftDetection(ctx, "core-infra-production-drift-detection", &spacelift.DriftDetectionArgs{
+//				Reconcile: pulumi.Bool(true),
+//				StackId:   core_infra_production.ID(),
+//				Schedules: pulumi.StringArray{
+//					pulumi.String("*/15 * * * *"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/driftDetection:DriftDetection core-infra-production-drift-detection stack/$STACK_ID
+//
+//	$ pulumi import spacelift:index/driftDetection:DriftDetection core-infra-production-drift-detection stack/$STACK_ID
+//
 // ```
 //
 // ```sh
-//  $ pulumi import spacelift:index/driftDetection:DriftDetection core-infra-production-drift-detection module/$MODULE_ID
+//
+//	$ pulumi import spacelift:index/driftDetection:DriftDetection core-infra-production-drift-detection module/$MODULE_ID
+//
 // ```
 type DriftDetection struct {
 	pulumi.CustomResourceState
@@ -179,7 +186,7 @@ func (i *DriftDetection) ToDriftDetectionOutputWithContext(ctx context.Context) 
 // DriftDetectionArrayInput is an input type that accepts DriftDetectionArray and DriftDetectionArrayOutput values.
 // You can construct a concrete instance of `DriftDetectionArrayInput` via:
 //
-//          DriftDetectionArray{ DriftDetectionArgs{...} }
+//	DriftDetectionArray{ DriftDetectionArgs{...} }
 type DriftDetectionArrayInput interface {
 	pulumi.Input
 
@@ -204,7 +211,7 @@ func (i DriftDetectionArray) ToDriftDetectionArrayOutputWithContext(ctx context.
 // DriftDetectionMapInput is an input type that accepts DriftDetectionMap and DriftDetectionMapOutput values.
 // You can construct a concrete instance of `DriftDetectionMapInput` via:
 //
-//          DriftDetectionMap{ "key": DriftDetectionArgs{...} }
+//	DriftDetectionMap{ "key": DriftDetectionArgs{...} }
 type DriftDetectionMapInput interface {
 	pulumi.Input
 

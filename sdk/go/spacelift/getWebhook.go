@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `Webook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+// `Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
 //
 // ## Example Usage
 //
@@ -18,25 +18,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.GetWebhook(ctx, &GetWebhookArgs{
-// 			WebhookId: spacelift_webhook.Webhook.Id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.LookupWebhook(ctx, &GetWebhookArgs{
+//				WebhookId: spacelift_webhook.Webhook.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
-func GetWebhook(ctx *pulumi.Context, args *GetWebhookArgs, opts ...pulumi.InvokeOption) (*GetWebhookResult, error) {
+func LookupWebhook(ctx *pulumi.Context, args *LookupWebhookArgs, opts ...pulumi.InvokeOption) (*LookupWebhookResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
-	var rv GetWebhookResult
+	var rv LookupWebhookResult
 	err := ctx.Invoke("spacelift:index/getWebhook:getWebhook", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -45,7 +48,7 @@ func GetWebhook(ctx *pulumi.Context, args *GetWebhookArgs, opts ...pulumi.Invoke
 }
 
 // A collection of arguments for invoking getWebhook.
-type GetWebhookArgs struct {
+type LookupWebhookArgs struct {
 	// ID of the stack which triggers the webhooks
 	ModuleId *string `pulumi:"moduleId"`
 	// ID of the stack which triggers the webhooks
@@ -55,7 +58,7 @@ type GetWebhookArgs struct {
 }
 
 // A collection of values returned by getWebhook.
-type GetWebhookResult struct {
+type LookupWebhookResult struct {
 	// enables or disables sending webhooks
 	Enabled bool `pulumi:"enabled"`
 	// endpoint to send the POST request to
@@ -72,21 +75,21 @@ type GetWebhookResult struct {
 	WebhookId string `pulumi:"webhookId"`
 }
 
-func GetWebhookOutput(ctx *pulumi.Context, args GetWebhookOutputArgs, opts ...pulumi.InvokeOption) GetWebhookResultOutput {
+func LookupWebhookOutput(ctx *pulumi.Context, args LookupWebhookOutputArgs, opts ...pulumi.InvokeOption) LookupWebhookResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetWebhookResult, error) {
-			args := v.(GetWebhookArgs)
-			r, err := GetWebhook(ctx, &args, opts...)
-			var s GetWebhookResult
+		ApplyT(func(v interface{}) (LookupWebhookResult, error) {
+			args := v.(LookupWebhookArgs)
+			r, err := LookupWebhook(ctx, &args, opts...)
+			var s LookupWebhookResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetWebhookResultOutput)
+		}).(LookupWebhookResultOutput)
 }
 
 // A collection of arguments for invoking getWebhook.
-type GetWebhookOutputArgs struct {
+type LookupWebhookOutputArgs struct {
 	// ID of the stack which triggers the webhooks
 	ModuleId pulumi.StringPtrInput `pulumi:"moduleId"`
 	// ID of the stack which triggers the webhooks
@@ -95,60 +98,60 @@ type GetWebhookOutputArgs struct {
 	WebhookId pulumi.StringInput `pulumi:"webhookId"`
 }
 
-func (GetWebhookOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetWebhookArgs)(nil)).Elem()
+func (LookupWebhookOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupWebhookArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getWebhook.
-type GetWebhookResultOutput struct{ *pulumi.OutputState }
+type LookupWebhookResultOutput struct{ *pulumi.OutputState }
 
-func (GetWebhookResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetWebhookResult)(nil)).Elem()
+func (LookupWebhookResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupWebhookResult)(nil)).Elem()
 }
 
-func (o GetWebhookResultOutput) ToGetWebhookResultOutput() GetWebhookResultOutput {
+func (o LookupWebhookResultOutput) ToLookupWebhookResultOutput() LookupWebhookResultOutput {
 	return o
 }
 
-func (o GetWebhookResultOutput) ToGetWebhookResultOutputWithContext(ctx context.Context) GetWebhookResultOutput {
+func (o LookupWebhookResultOutput) ToLookupWebhookResultOutputWithContext(ctx context.Context) LookupWebhookResultOutput {
 	return o
 }
 
 // enables or disables sending webhooks
-func (o GetWebhookResultOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetWebhookResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+func (o LookupWebhookResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupWebhookResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
 // endpoint to send the POST request to
-func (o GetWebhookResultOutput) Endpoint() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhookResult) string { return v.Endpoint }).(pulumi.StringOutput)
+func (o LookupWebhookResultOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhookResult) string { return v.Endpoint }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetWebhookResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhookResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupWebhookResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhookResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // ID of the stack which triggers the webhooks
-func (o GetWebhookResultOutput) ModuleId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebhookResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
+func (o LookupWebhookResultOutput) ModuleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWebhookResult) *string { return v.ModuleId }).(pulumi.StringPtrOutput)
 }
 
 // secret used to sign each POST request so you're able to verify that the request comes from us
-func (o GetWebhookResultOutput) Secret() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhookResult) string { return v.Secret }).(pulumi.StringOutput)
+func (o LookupWebhookResultOutput) Secret() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhookResult) string { return v.Secret }).(pulumi.StringOutput)
 }
 
 // ID of the stack which triggers the webhooks
-func (o GetWebhookResultOutput) StackId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebhookResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
+func (o LookupWebhookResultOutput) StackId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWebhookResult) *string { return v.StackId }).(pulumi.StringPtrOutput)
 }
 
 // ID of the webhook
-func (o GetWebhookResultOutput) WebhookId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhookResult) string { return v.WebhookId }).(pulumi.StringOutput)
+func (o LookupWebhookResultOutput) WebhookId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhookResult) string { return v.WebhookId }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetWebhookResultOutput{})
+	pulumi.RegisterOutputType(LookupWebhookResultOutput{})
 }

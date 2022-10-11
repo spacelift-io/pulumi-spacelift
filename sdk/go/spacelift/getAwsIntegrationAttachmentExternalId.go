@@ -18,33 +18,36 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.GetAwsIntegrationAttachmentExternalId(ctx, &GetAwsIntegrationAttachmentExternalIdArgs{
-// 			IntegrationId: spacelift_aws_integration.This.Id,
-// 			StackId:       pulumi.StringRef("my-stack-id"),
-// 			Read:          pulumi.BoolRef(true),
-// 			Write:         pulumi.BoolRef(true),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.GetAwsIntegrationAttachmentExternalId(ctx, &GetAwsIntegrationAttachmentExternalIdArgs{
-// 			IntegrationId: spacelift_aws_integration.This.Id,
-// 			ModuleId:      pulumi.StringRef("my-module-id"),
-// 			Read:          pulumi.BoolRef(true),
-// 			Write:         pulumi.BoolRef(true),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.GetAwsIntegrationAttachmentExternalId(ctx, &GetAwsIntegrationAttachmentExternalIdArgs{
+//				IntegrationId: spacelift_aws_integration.This.Id,
+//				StackId:       pulumi.StringRef("my-stack-id"),
+//				Read:          pulumi.BoolRef(true),
+//				Write:         pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.GetAwsIntegrationAttachmentExternalId(ctx, &GetAwsIntegrationAttachmentExternalIdArgs{
+//				IntegrationId: spacelift_aws_integration.This.Id,
+//				ModuleId:      pulumi.StringRef("my-module-id"),
+//				Read:          pulumi.BoolRef(true),
+//				Write:         pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetAwsIntegrationAttachmentExternalId(ctx *pulumi.Context, args *GetAwsIntegrationAttachmentExternalIdArgs, opts ...pulumi.InvokeOption) (*GetAwsIntegrationAttachmentExternalIdResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

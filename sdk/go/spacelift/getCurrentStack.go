@@ -15,26 +15,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		this, err := spacelift.GetCurrentStack(ctx, nil, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewEnvironmentVariable(ctx, "core-kubeconfig", &spacelift.EnvironmentVariableArgs{
-// 			StackId: pulumi.String(this.Id),
-// 			Value:   pulumi.String("bacon"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			this, err := spacelift.GetCurrentStack(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewEnvironmentVariable(ctx, "core-kubeconfig", &spacelift.EnvironmentVariableArgs{
+//				StackId: pulumi.String(this.Id),
+//				Value:   pulumi.String("bacon"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetCurrentStack(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetCurrentStackResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

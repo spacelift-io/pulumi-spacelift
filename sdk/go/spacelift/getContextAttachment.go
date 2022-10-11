@@ -18,29 +18,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.LookupContextAttachment(ctx, &GetContextAttachmentArgs{
-// 			ContextId: "prod-k8s-ie",
-// 			StackId:   pulumi.StringRef("apps-cluster"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.LookupContextAttachment(ctx, &GetContextAttachmentArgs{
-// 			ContextId: "prod-k8s-ie",
-// 			ModuleId:  pulumi.StringRef("terraform-aws-kafka"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.LookupContextAttachment(ctx, &GetContextAttachmentArgs{
+//				ContextId: "prod-k8s-ie",
+//				StackId:   pulumi.StringRef("apps-cluster"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.LookupContextAttachment(ctx, &GetContextAttachmentArgs{
+//				ContextId: "prod-k8s-ie",
+//				ModuleId:  pulumi.StringRef("terraform-aws-kafka"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupContextAttachment(ctx *pulumi.Context, args *LookupContextAttachmentArgs, opts ...pulumi.InvokeOption) (*LookupContextAttachmentResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

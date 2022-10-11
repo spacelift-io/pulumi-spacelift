@@ -19,154 +19,159 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewStack(ctx, "k8s-cluster-bitbucket-cloud", &spacelift.StackArgs{
-// 			Administrative: pulumi.Bool(true),
-// 			Autodeploy:     pulumi.Bool(true),
-// 			BitbucketCloud: &StackBitbucketCloudArgs{
-// 				Namespace: pulumi.String("SPACELIFT"),
-// 			},
-// 			Branch:           pulumi.String("master"),
-// 			Description:      pulumi.String("Provisions a Kubernetes cluster"),
-// 			ProjectRoot:      pulumi.String("cluster"),
-// 			Repository:       pulumi.String("core-infra"),
-// 			TerraformVersion: pulumi.String("0.12.6"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStack(ctx, "k8s-cluster-bitbucket-datacenter", &spacelift.StackArgs{
-// 			Administrative: pulumi.Bool(true),
-// 			Autodeploy:     pulumi.Bool(true),
-// 			BitbucketDatacenter: &StackBitbucketDatacenterArgs{
-// 				Namespace: pulumi.String("SPACELIFT"),
-// 			},
-// 			Branch:           pulumi.String("master"),
-// 			Description:      pulumi.String("Provisions a Kubernetes cluster"),
-// 			ProjectRoot:      pulumi.String("cluster"),
-// 			Repository:       pulumi.String("core-infra"),
-// 			TerraformVersion: pulumi.String("0.12.6"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStack(ctx, "k8s-cluster-github-enterprise", &spacelift.StackArgs{
-// 			Administrative: pulumi.Bool(true),
-// 			Autodeploy:     pulumi.Bool(true),
-// 			Branch:         pulumi.String("master"),
-// 			Description:    pulumi.String("Provisions a Kubernetes cluster"),
-// 			GithubEnterprise: &StackGithubEnterpriseArgs{
-// 				Namespace: pulumi.String("spacelift"),
-// 			},
-// 			ProjectRoot:      pulumi.String("cluster"),
-// 			Repository:       pulumi.String("core-infra"),
-// 			TerraformVersion: pulumi.String("0.12.6"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStack(ctx, "k8s-cluster-gitlab", &spacelift.StackArgs{
-// 			Administrative: pulumi.Bool(true),
-// 			Autodeploy:     pulumi.Bool(true),
-// 			Branch:         pulumi.String("master"),
-// 			Description:    pulumi.String("Provisions a Kubernetes cluster"),
-// 			Gitlab: &StackGitlabArgs{
-// 				Namespace: pulumi.String("spacelift"),
-// 			},
-// 			ProjectRoot:      pulumi.String("cluster"),
-// 			Repository:       pulumi.String("core-infra"),
-// 			TerraformVersion: pulumi.String("0.12.6"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStack(ctx, "k8s-cluster", &spacelift.StackArgs{
-// 			Administrative:             pulumi.Bool(true),
-// 			Autodeploy:                 pulumi.Bool(true),
-// 			Branch:                     pulumi.String("master"),
-// 			Description:                pulumi.String("Provisions a Kubernetes cluster"),
-// 			ProjectRoot:                pulumi.String("cluster"),
-// 			Repository:                 pulumi.String("core-infra"),
-// 			TerraformSmartSanitization: pulumi.Bool(true),
-// 			TerraformVersion:           pulumi.String("1.2.6"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStack(ctx, "k8s-cluster-cloudformation", &spacelift.StackArgs{
-// 			Autodeploy: pulumi.Bool(true),
-// 			Branch:     pulumi.String("master"),
-// 			Cloudformation: &StackCloudformationArgs{
-// 				EntryTemplateFile: pulumi.String("main.yaml"),
-// 				Region:            pulumi.String("eu-central-1"),
-// 				StackName:         pulumi.String("k8s-cluster"),
-// 				TemplateBucket:    pulumi.String("s3://bucket"),
-// 			},
-// 			Description: pulumi.String("Provisions a Kubernetes cluster"),
-// 			ProjectRoot: pulumi.String("cluster"),
-// 			Repository:  pulumi.String("core-infra"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStack(ctx, "k8s-cluster-pulumi", &spacelift.StackArgs{
-// 			Autodeploy:  pulumi.Bool(true),
-// 			Branch:      pulumi.String("master"),
-// 			Description: pulumi.String("Provisions a Kubernetes cluster"),
-// 			ProjectRoot: pulumi.String("cluster"),
-// 			Pulumi: &StackPulumiArgs{
-// 				LoginUrl:  pulumi.String("s3://pulumi-state-bucket"),
-// 				StackName: pulumi.String("kubernetes-core-services"),
-// 			},
-// 			Repository:  pulumi.String("core-infra"),
-// 			RunnerImage: pulumi.String("public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStack(ctx, "k8s-core-kubernetes", &spacelift.StackArgs{
-// 			Autodeploy: pulumi.Bool(true),
-// 			BeforeInits: pulumi.StringArray{
-// 				pulumi.String("aws eks update-kubeconfig --region us-east-2 --name k8s-cluster"),
-// 			},
-// 			Branch:      pulumi.String("master"),
-// 			Description: pulumi.String("Shared cluster services (Datadog, Istio etc.)"),
-// 			Kubernetes: &StackKubernetesArgs{
-// 				Namespace: pulumi.String("core"),
-// 			},
-// 			ProjectRoot: pulumi.String("core-services"),
-// 			Repository:  pulumi.String("core-infra"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStack(ctx, "ansible-stack", &spacelift.StackArgs{
-// 			Ansible: &StackAnsibleArgs{
-// 				Playbook: pulumi.String("main.yml"),
-// 			},
-// 			Autodeploy:  pulumi.Bool(true),
-// 			Branch:      pulumi.String("master"),
-// 			Description: pulumi.String("Provisioning EC2 machines"),
-// 			Repository:  pulumi.String("ansible-playbooks"),
-// 			RunnerImage: pulumi.String("public.ecr.aws/spacelift/runner-ansible:latest"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewStack(ctx, "k8s-cluster-bitbucket-cloud", &spacelift.StackArgs{
+//				Administrative: pulumi.Bool(true),
+//				Autodeploy:     pulumi.Bool(true),
+//				BitbucketCloud: &StackBitbucketCloudArgs{
+//					Namespace: pulumi.String("SPACELIFT"),
+//				},
+//				Branch:           pulumi.String("master"),
+//				Description:      pulumi.String("Provisions a Kubernetes cluster"),
+//				ProjectRoot:      pulumi.String("cluster"),
+//				Repository:       pulumi.String("core-infra"),
+//				TerraformVersion: pulumi.String("0.12.6"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewStack(ctx, "k8s-cluster-bitbucket-datacenter", &spacelift.StackArgs{
+//				Administrative: pulumi.Bool(true),
+//				Autodeploy:     pulumi.Bool(true),
+//				BitbucketDatacenter: &StackBitbucketDatacenterArgs{
+//					Namespace: pulumi.String("SPACELIFT"),
+//				},
+//				Branch:           pulumi.String("master"),
+//				Description:      pulumi.String("Provisions a Kubernetes cluster"),
+//				ProjectRoot:      pulumi.String("cluster"),
+//				Repository:       pulumi.String("core-infra"),
+//				TerraformVersion: pulumi.String("0.12.6"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewStack(ctx, "k8s-cluster-github-enterprise", &spacelift.StackArgs{
+//				Administrative: pulumi.Bool(true),
+//				Autodeploy:     pulumi.Bool(true),
+//				Branch:         pulumi.String("master"),
+//				Description:    pulumi.String("Provisions a Kubernetes cluster"),
+//				GithubEnterprise: &StackGithubEnterpriseArgs{
+//					Namespace: pulumi.String("spacelift"),
+//				},
+//				ProjectRoot:      pulumi.String("cluster"),
+//				Repository:       pulumi.String("core-infra"),
+//				TerraformVersion: pulumi.String("0.12.6"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewStack(ctx, "k8s-cluster-gitlab", &spacelift.StackArgs{
+//				Administrative: pulumi.Bool(true),
+//				Autodeploy:     pulumi.Bool(true),
+//				Branch:         pulumi.String("master"),
+//				Description:    pulumi.String("Provisions a Kubernetes cluster"),
+//				Gitlab: &StackGitlabArgs{
+//					Namespace: pulumi.String("spacelift"),
+//				},
+//				ProjectRoot:      pulumi.String("cluster"),
+//				Repository:       pulumi.String("core-infra"),
+//				TerraformVersion: pulumi.String("0.12.6"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewStack(ctx, "k8s-cluster", &spacelift.StackArgs{
+//				Administrative:             pulumi.Bool(true),
+//				Autodeploy:                 pulumi.Bool(true),
+//				Branch:                     pulumi.String("master"),
+//				Description:                pulumi.String("Provisions a Kubernetes cluster"),
+//				ProjectRoot:                pulumi.String("cluster"),
+//				Repository:                 pulumi.String("core-infra"),
+//				TerraformSmartSanitization: pulumi.Bool(true),
+//				TerraformVersion:           pulumi.String("1.2.6"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewStack(ctx, "k8s-cluster-cloudformation", &spacelift.StackArgs{
+//				Autodeploy: pulumi.Bool(true),
+//				Branch:     pulumi.String("master"),
+//				Cloudformation: &StackCloudformationArgs{
+//					EntryTemplateFile: pulumi.String("main.yaml"),
+//					Region:            pulumi.String("eu-central-1"),
+//					StackName:         pulumi.String("k8s-cluster"),
+//					TemplateBucket:    pulumi.String("s3://bucket"),
+//				},
+//				Description: pulumi.String("Provisions a Kubernetes cluster"),
+//				ProjectRoot: pulumi.String("cluster"),
+//				Repository:  pulumi.String("core-infra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewStack(ctx, "k8s-cluster-pulumi", &spacelift.StackArgs{
+//				Autodeploy:  pulumi.Bool(true),
+//				Branch:      pulumi.String("master"),
+//				Description: pulumi.String("Provisions a Kubernetes cluster"),
+//				ProjectRoot: pulumi.String("cluster"),
+//				Pulumi: &StackPulumiArgs{
+//					LoginUrl:  pulumi.String("s3://pulumi-state-bucket"),
+//					StackName: pulumi.String("kubernetes-core-services"),
+//				},
+//				Repository:  pulumi.String("core-infra"),
+//				RunnerImage: pulumi.String("public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewStack(ctx, "k8s-core-kubernetes", &spacelift.StackArgs{
+//				Autodeploy: pulumi.Bool(true),
+//				BeforeInits: pulumi.StringArray{
+//					pulumi.String("aws eks update-kubeconfig --region us-east-2 --name k8s-cluster"),
+//				},
+//				Branch:      pulumi.String("master"),
+//				Description: pulumi.String("Shared cluster services (Datadog, Istio etc.)"),
+//				Kubernetes: &StackKubernetesArgs{
+//					Namespace: pulumi.String("core"),
+//				},
+//				ProjectRoot: pulumi.String("core-services"),
+//				Repository:  pulumi.String("core-infra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewStack(ctx, "ansible-stack", &spacelift.StackArgs{
+//				Ansible: &StackAnsibleArgs{
+//					Playbook: pulumi.String("main.yml"),
+//				},
+//				Autodeploy:  pulumi.Bool(true),
+//				Branch:      pulumi.String("master"),
+//				Description: pulumi.String("Provisioning EC2 machines"),
+//				Repository:  pulumi.String("ansible-playbooks"),
+//				RunnerImage: pulumi.String("public.ecr.aws/spacelift/runner-ansible:latest"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/stack:Stack k8s_core $STACK_ID
+//
+//	$ pulumi import spacelift:index/stack:Stack k8s_core $STACK_ID
+//
 // ```
 type Stack struct {
 	pulumi.CustomResourceState
@@ -677,7 +682,7 @@ func (i *Stack) ToStackOutputWithContext(ctx context.Context) StackOutput {
 // StackArrayInput is an input type that accepts StackArray and StackArrayOutput values.
 // You can construct a concrete instance of `StackArrayInput` via:
 //
-//          StackArray{ StackArgs{...} }
+//	StackArray{ StackArgs{...} }
 type StackArrayInput interface {
 	pulumi.Input
 
@@ -702,7 +707,7 @@ func (i StackArray) ToStackArrayOutputWithContext(ctx context.Context) StackArra
 // StackMapInput is an input type that accepts StackMap and StackMapOutput values.
 // You can construct a concrete instance of `StackMapInput` via:
 //
-//          StackMap{ "key": StackArgs{...} }
+//	StackMap{ "key": StackArgs{...} }
 type StackMapInput interface {
 	pulumi.Input
 

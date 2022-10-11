@@ -22,27 +22,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.LookupAwsRole(ctx, &GetAwsRoleArgs{
-// 			ModuleId: pulumi.StringRef("k8s-module"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.LookupAwsRole(ctx, &GetAwsRoleArgs{
-// 			StackId: pulumi.StringRef("k8s-core"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.LookupAwsRole(ctx, &GetAwsRoleArgs{
+//				ModuleId: pulumi.StringRef("k8s-module"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.LookupAwsRole(ctx, &GetAwsRoleArgs{
+//				StackId: pulumi.StringRef("k8s-core"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupAwsRole(ctx *pulumi.Context, args *LookupAwsRoleArgs, opts ...pulumi.InvokeOption) (*LookupAwsRoleResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

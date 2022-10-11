@@ -18,39 +18,44 @@ import (
 // package main
 //
 // import (
-// 	"encoding/base64"
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"encoding/base64"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func filebase64OrPanic(path string) pulumi.StringPtrInput {
-// 	if fileData, err := ioutil.ReadFile(path); err == nil {
-// 		return pulumi.String(base64.StdEncoding.EncodeToString(fileData[:]))
-// 	} else {
-// 		panic(err.Error())
-// 	}
-// }
+//	func filebase64OrPanic(path string) pulumi.StringPtrInput {
+//		if fileData, err := ioutil.ReadFile(path); err == nil {
+//			return pulumi.String(base64.StdEncoding.EncodeToString(fileData[:]))
+//		} else {
+//			panic(err.Error())
+//		}
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewWorkerPool(ctx, "k8s-core", &spacelift.WorkerPoolArgs{
-// 			Csr:         filebase64OrPanic("/path/to/csr"),
-// 			Description: pulumi.String("Used for all type jobs"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewWorkerPool(ctx, "k8s-core", &spacelift.WorkerPoolArgs{
+//				Csr:         filebase64OrPanic("/path/to/csr"),
+//				Description: pulumi.String("Used for all type jobs"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID
+//
+//	$ pulumi import spacelift:index/workerPool:WorkerPool k8s-core $WORKER_POOL_ID
+//
 // ```
 type WorkerPool struct {
 	pulumi.CustomResourceState
@@ -186,7 +191,7 @@ func (i *WorkerPool) ToWorkerPoolOutputWithContext(ctx context.Context) WorkerPo
 // WorkerPoolArrayInput is an input type that accepts WorkerPoolArray and WorkerPoolArrayOutput values.
 // You can construct a concrete instance of `WorkerPoolArrayInput` via:
 //
-//          WorkerPoolArray{ WorkerPoolArgs{...} }
+//	WorkerPoolArray{ WorkerPoolArgs{...} }
 type WorkerPoolArrayInput interface {
 	pulumi.Input
 
@@ -211,7 +216,7 @@ func (i WorkerPoolArray) ToWorkerPoolArrayOutputWithContext(ctx context.Context)
 // WorkerPoolMapInput is an input type that accepts WorkerPoolMap and WorkerPoolMapOutput values.
 // You can construct a concrete instance of `WorkerPoolMapInput` via:
 //
-//          WorkerPoolMap{ "key": WorkerPoolArgs{...} }
+//	WorkerPoolMap{ "key": WorkerPoolArgs{...} }
 type WorkerPoolMapInput interface {
 	pulumi.Input
 

@@ -18,33 +18,36 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.GetPolicies(ctx, nil, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.GetPolicies(ctx, &GetPoliciesArgs{
-// 			Type: pulumi.StringRef("PLAN"),
-// 			Labels: []string{
-// 				"autoattach",
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		var splat0 []interface{}
-// 		for _, val0 := range data.Spacelift_policies.This.Policies {
-// 			splat0 = append(splat0, val0.Id)
-// 		}
-// 		ctx.Export("policyIds", splat0)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.GetPolicies(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.GetPolicies(ctx, &GetPoliciesArgs{
+//				Type: pulumi.StringRef("PLAN"),
+//				Labels: []string{
+//					"autoattach",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			var splat0 []interface{}
+//			for _, val0 := range data.Spacelift_policies.This.Policies {
+//				splat0 = append(splat0, val0.Id)
+//			}
+//			ctx.Export("policyIds", splat0)
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetPolicies(ctx *pulumi.Context, args *GetPoliciesArgs, opts ...pulumi.InvokeOption) (*GetPoliciesResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

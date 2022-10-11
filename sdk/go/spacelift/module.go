@@ -17,41 +17,46 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewModule(ctx, "k8s-module", &spacelift.ModuleArgs{
-// 			Administrative:    pulumi.Bool(true),
-// 			Branch:            pulumi.String("master"),
-// 			Description:       pulumi.String("Infra terraform module"),
-// 			Repository:        pulumi.String("terraform-super-module"),
-// 			TerraformProvider: pulumi.String("aws"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewModule(ctx, "example-module", &spacelift.ModuleArgs{
-// 			Administrative: pulumi.Bool(true),
-// 			Branch:         pulumi.String("master"),
-// 			Description:    pulumi.String("Example terraform module"),
-// 			ProjectRoot:    pulumi.String("example"),
-// 			Repository:     pulumi.String("terraform-aws-example"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewModule(ctx, "k8s-module", &spacelift.ModuleArgs{
+//				Administrative:    pulumi.Bool(true),
+//				Branch:            pulumi.String("master"),
+//				Description:       pulumi.String("Infra terraform module"),
+//				Repository:        pulumi.String("terraform-super-module"),
+//				TerraformProvider: pulumi.String("aws"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewModule(ctx, "example-module", &spacelift.ModuleArgs{
+//				Administrative: pulumi.Bool(true),
+//				Branch:         pulumi.String("master"),
+//				Description:    pulumi.String("Example terraform module"),
+//				ProjectRoot:    pulumi.String("example"),
+//				Repository:     pulumi.String("terraform-aws-example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/module:Module k8s-module $MODULE_ID
+//
+//	$ pulumi import spacelift:index/module:Module k8s-module $MODULE_ID
+//
 // ```
 type Module struct {
 	pulumi.CustomResourceState
@@ -327,7 +332,7 @@ func (i *Module) ToModuleOutputWithContext(ctx context.Context) ModuleOutput {
 // ModuleArrayInput is an input type that accepts ModuleArray and ModuleArrayOutput values.
 // You can construct a concrete instance of `ModuleArrayInput` via:
 //
-//          ModuleArray{ ModuleArgs{...} }
+//	ModuleArray{ ModuleArgs{...} }
 type ModuleArrayInput interface {
 	pulumi.Input
 
@@ -352,7 +357,7 @@ func (i ModuleArray) ToModuleArrayOutputWithContext(ctx context.Context) ModuleA
 // ModuleMapInput is an input type that accepts ModuleMap and ModuleMapOutput values.
 // You can construct a concrete instance of `ModuleMapInput` via:
 //
-//          ModuleMap{ "key": ModuleArgs{...} }
+//	ModuleMap{ "key": ModuleArgs{...} }
 type ModuleMapInput interface {
 	pulumi.Input
 

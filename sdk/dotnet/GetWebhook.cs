@@ -12,7 +12,7 @@ namespace Pulumi.Spacelift
     public static class GetWebhook
     {
         /// <summary>
-        /// `spacelift.Webook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+        /// `spacelift.Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -39,7 +39,7 @@ namespace Pulumi.Spacelift
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetWebhookResult>("spacelift:index/getWebhook:getWebhook", args ?? new GetWebhookArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `spacelift.Webook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+        /// `spacelift.Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
         /// 
         /// {{% examples %}}
         /// ## Example Usage

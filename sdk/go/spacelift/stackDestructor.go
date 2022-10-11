@@ -19,31 +19,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewStack(ctx, "k8s-coreStack", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		credentials, err := spacelift.NewEnvironmentVariable(ctx, "credentials", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewStackDestructor(ctx, "k8s-coreStackDestructor", &spacelift.StackDestructorArgs{
-// 			StackId: k8s_coreStack.ID(),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			credentials,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewStack(ctx, "k8s-coreStack", nil)
+//			if err != nil {
+//				return err
+//			}
+//			credentials, err := spacelift.NewEnvironmentVariable(ctx, "credentials", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewStackDestructor(ctx, "k8s-coreStackDestructor", &spacelift.StackDestructorArgs{
+//				StackId: k8s_coreStack.ID(),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				credentials,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type StackDestructor struct {
 	pulumi.CustomResourceState
@@ -145,7 +148,7 @@ func (i *StackDestructor) ToStackDestructorOutputWithContext(ctx context.Context
 // StackDestructorArrayInput is an input type that accepts StackDestructorArray and StackDestructorArrayOutput values.
 // You can construct a concrete instance of `StackDestructorArrayInput` via:
 //
-//          StackDestructorArray{ StackDestructorArgs{...} }
+//	StackDestructorArray{ StackDestructorArgs{...} }
 type StackDestructorArrayInput interface {
 	pulumi.Input
 
@@ -170,7 +173,7 @@ func (i StackDestructorArray) ToStackDestructorArrayOutputWithContext(ctx contex
 // StackDestructorMapInput is an input type that accepts StackDestructorMap and StackDestructorMapOutput values.
 // You can construct a concrete instance of `StackDestructorMapInput` via:
 //
-//          StackDestructorMap{ "key": StackDestructorArgs{...} }
+//	StackDestructorMap{ "key": StackDestructorArgs{...} }
 type StackDestructorMapInput interface {
 	pulumi.Input
 

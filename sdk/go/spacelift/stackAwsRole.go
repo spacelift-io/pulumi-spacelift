@@ -160,7 +160,7 @@ func (i *StackAwsRole) ToStackAwsRoleOutputWithContext(ctx context.Context) Stac
 // StackAwsRoleArrayInput is an input type that accepts StackAwsRoleArray and StackAwsRoleArrayOutput values.
 // You can construct a concrete instance of `StackAwsRoleArrayInput` via:
 //
-//          StackAwsRoleArray{ StackAwsRoleArgs{...} }
+//	StackAwsRoleArray{ StackAwsRoleArgs{...} }
 type StackAwsRoleArrayInput interface {
 	pulumi.Input
 
@@ -185,7 +185,7 @@ func (i StackAwsRoleArray) ToStackAwsRoleArrayOutputWithContext(ctx context.Cont
 // StackAwsRoleMapInput is an input type that accepts StackAwsRoleMap and StackAwsRoleMapOutput values.
 // You can construct a concrete instance of `StackAwsRoleMapInput` via:
 //
-//          StackAwsRoleMap{ "key": StackAwsRoleArgs{...} }
+//	StackAwsRoleMap{ "key": StackAwsRoleArgs{...} }
 type StackAwsRoleMapInput interface {
 	pulumi.Input
 

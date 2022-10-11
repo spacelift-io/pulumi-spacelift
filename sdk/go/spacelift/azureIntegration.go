@@ -19,32 +19,37 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewAzureIntegration(ctx, "example", &spacelift.AzureIntegrationArgs{
-// 			DefaultSubscriptionId: pulumi.String("default-subscription-id"),
-// 			Labels: pulumi.StringArray{
-// 				pulumi.String("one"),
-// 				pulumi.String("two"),
-// 			},
-// 			TenantId: pulumi.String("tenant-id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewAzureIntegration(ctx, "example", &spacelift.AzureIntegrationArgs{
+//				DefaultSubscriptionId: pulumi.String("default-subscription-id"),
+//				Labels: pulumi.StringArray{
+//					pulumi.String("one"),
+//					pulumi.String("two"),
+//				},
+//				TenantId: pulumi.String("tenant-id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/azureIntegration:AzureIntegration example $INTEGRATION_ID
+//
+//	$ pulumi import spacelift:index/azureIntegration:AzureIntegration example $INTEGRATION_ID
+//
 // ```
 type AzureIntegration struct {
 	pulumi.CustomResourceState
@@ -200,7 +205,7 @@ func (i *AzureIntegration) ToAzureIntegrationOutputWithContext(ctx context.Conte
 // AzureIntegrationArrayInput is an input type that accepts AzureIntegrationArray and AzureIntegrationArrayOutput values.
 // You can construct a concrete instance of `AzureIntegrationArrayInput` via:
 //
-//          AzureIntegrationArray{ AzureIntegrationArgs{...} }
+//	AzureIntegrationArray{ AzureIntegrationArgs{...} }
 type AzureIntegrationArrayInput interface {
 	pulumi.Input
 
@@ -225,7 +230,7 @@ func (i AzureIntegrationArray) ToAzureIntegrationArrayOutputWithContext(ctx cont
 // AzureIntegrationMapInput is an input type that accepts AzureIntegrationMap and AzureIntegrationMapOutput values.
 // You can construct a concrete instance of `AzureIntegrationMapInput` via:
 //
-//          AzureIntegrationMap{ "key": AzureIntegrationArgs{...} }
+//	AzureIntegrationMap{ "key": AzureIntegrationArgs{...} }
 type AzureIntegrationMapInput interface {
 	pulumi.Input
 

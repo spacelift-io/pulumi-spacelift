@@ -19,65 +19,74 @@ import (
 // package main
 //
 // import (
-// 	"encoding/base64"
-// 	"fmt"
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"encoding/base64"
+//	"fmt"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func filebase64OrPanic(path string) pulumi.StringPtrInput {
-// 	if fileData, err := ioutil.ReadFile(path); err == nil {
-// 		return pulumi.String(base64.StdEncoding.EncodeToString(fileData[:]))
-// 	} else {
-// 		panic(err.Error())
-// 	}
-// }
+//	func filebase64OrPanic(path string) pulumi.StringPtrInput {
+//		if fileData, err := ioutil.ReadFile(path); err == nil {
+//			return pulumi.String(base64.StdEncoding.EncodeToString(fileData[:]))
+//		} else {
+//			panic(err.Error())
+//		}
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.NewMountedfile(ctx, "ireland-kubeconfig", &spacelift.MountedfileArgs{
-// 			ContextId:    pulumi.String("prod-k8s-ie"),
-// 			RelativePath: pulumi.String("kubeconfig"),
-// 			Content:      filebase64OrPanic(fmt.Sprintf("%v/kubeconfig.json", path.Module)),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewMountedfile(ctx, "module-kubeconfig", &spacelift.MountedfileArgs{
-// 			ModuleId:     pulumi.String("k8s-module"),
-// 			RelativePath: pulumi.String("kubeconfig"),
-// 			Content:      filebase64OrPanic(fmt.Sprintf("%v/kubeconfig.json", path.Module)),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = spacelift.NewMountedfile(ctx, "core-kubeconfig", &spacelift.MountedfileArgs{
-// 			StackId:      pulumi.String("k8s-core"),
-// 			RelativePath: pulumi.String("kubeconfig"),
-// 			Content:      filebase64OrPanic(fmt.Sprintf("%v/kubeconfig.json", path.Module)),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.NewMountedfile(ctx, "ireland-kubeconfig", &spacelift.MountedfileArgs{
+//				ContextId:    pulumi.String("prod-k8s-ie"),
+//				RelativePath: pulumi.String("kubeconfig"),
+//				Content:      filebase64OrPanic(fmt.Sprintf("%v/kubeconfig.json", path.Module)),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewMountedfile(ctx, "module-kubeconfig", &spacelift.MountedfileArgs{
+//				ModuleId:     pulumi.String("k8s-module"),
+//				RelativePath: pulumi.String("kubeconfig"),
+//				Content:      filebase64OrPanic(fmt.Sprintf("%v/kubeconfig.json", path.Module)),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = spacelift.NewMountedfile(ctx, "core-kubeconfig", &spacelift.MountedfileArgs{
+//				StackId:      pulumi.String("k8s-core"),
+//				RelativePath: pulumi.String("kubeconfig"),
+//				Content:      filebase64OrPanic(fmt.Sprintf("%v/kubeconfig.json", path.Module)),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // ```sh
-//  $ pulumi import spacelift:index/mountedfile:Mountedfile ireland-kubeconfig context/$CONTEXT_ID/$MOUNTED_FILE_ID
+//
+//	$ pulumi import spacelift:index/mountedfile:Mountedfile ireland-kubeconfig context/$CONTEXT_ID/$MOUNTED_FILE_ID
+//
 // ```
 //
 // ```sh
-//  $ pulumi import spacelift:index/mountedfile:Mountedfile module-kubeconfig module/$MODULE_ID/$MOUNTED_FILE_ID
+//
+//	$ pulumi import spacelift:index/mountedfile:Mountedfile module-kubeconfig module/$MODULE_ID/$MOUNTED_FILE_ID
+//
 // ```
 //
 // ```sh
-//  $ pulumi import spacelift:index/mountedfile:Mountedfile core-kubeconfig stack/$STACK_ID/$MOUNTED_FILE_ID
+//
+//	$ pulumi import spacelift:index/mountedfile:Mountedfile core-kubeconfig stack/$STACK_ID/$MOUNTED_FILE_ID
+//
 // ```
 type Mountedfile struct {
 	pulumi.CustomResourceState
@@ -228,7 +237,7 @@ func (i *Mountedfile) ToMountedfileOutputWithContext(ctx context.Context) Mounte
 // MountedfileArrayInput is an input type that accepts MountedfileArray and MountedfileArrayOutput values.
 // You can construct a concrete instance of `MountedfileArrayInput` via:
 //
-//          MountedfileArray{ MountedfileArgs{...} }
+//	MountedfileArray{ MountedfileArgs{...} }
 type MountedfileArrayInput interface {
 	pulumi.Input
 
@@ -253,7 +262,7 @@ func (i MountedfileArray) ToMountedfileArrayOutputWithContext(ctx context.Contex
 // MountedfileMapInput is an input type that accepts MountedfileMap and MountedfileMapOutput values.
 // You can construct a concrete instance of `MountedfileMapInput` via:
 //
-//          MountedfileMap{ "key": MountedfileArgs{...} }
+//	MountedfileMap{ "key": MountedfileArgs{...} }
 type MountedfileMapInput interface {
 	pulumi.Input
 

@@ -18,21 +18,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := spacelift.LookupWorkerPool(ctx, &GetWorkerPoolArgs{
-// 			WorkerPoolId: "k8s-core",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := spacelift.LookupWorkerPool(ctx, &GetWorkerPoolArgs{
+//				WorkerPoolId: "k8s-core",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupWorkerPool(ctx *pulumi.Context, args *LookupWorkerPoolArgs, opts ...pulumi.InvokeOption) (*LookupWorkerPoolResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
