@@ -59,9 +59,7 @@ jobs:
         run: cd sdk/nodejs/bin && npm publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Package dotnet
-        run: cd sdk/dotnet && dotnet pack --configuration Release /p:Version=$(git describe --tags --abbrev=0 | sed 's/^v//g')
       - name: Create NuGet config
         run: cp nuget.config.template sdk/dotnet/nuget.config
       - name: Publish dotnet package
-        run: cd sdk/dotnet && dotnet nuget push "bin/Release/Pulumi.Spacelift.$(git describe --tags --abbrev=0 | sed 's/^v//g').nupkg"  --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+        run: cd sdk/dotnet && dotnet nuget push ${{github.workspace}}/sdk/dotnet/bin/Debug/*.nupkg  --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
