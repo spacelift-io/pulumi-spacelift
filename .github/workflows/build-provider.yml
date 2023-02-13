@@ -2,6 +2,10 @@ name: Build provider
 
 on: { push: { branches-ignore: [future, main] } }
 
+concurrency:
+  group: build-provider-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-provider:
     name: Build provider

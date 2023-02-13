@@ -2,8 +2,6 @@ name: Preprod deployment
 
 on:
   push:
-    branches:
-      - future
 
 jobs:
   preprod-provider-deployment:
@@ -51,15 +49,23 @@ jobs:
           PROVIDER_OS: ${{ matrix.provider_os }}
 
       - name: Create package directory
-        run: mkdir package && mv bin/pulumi-resource-* package/ && ls -la package/
+        run: |
+          mkdir -p package/arm64 package/amd64
+          mv bin/pulumi-resource-*amd64* package/amd64/pulumi-resource-spacelift
+          mv bin/pulumi-resource-*arm64* package/arm64/pulumi-resource-spacelift
 
       - name: Create package
-        run: cd package && tar -zcvf pulumi-resource-spacelift-v0.0.0-${{matrix.provider_os}}-amd64.tar.gz pulumi-resource-*
+        run: |
+          cd package/amd64
+          tar -zcvf pulumi-resource-spacelift-v0.0.0-${{matrix.provider_os}}-amd64.tar.gz pulumi-resource-*
+          cd ../arm64
+          tar -zcvf pulumi-resource-spacelift-v0.0.0-${{matrix.provider_os}}-arm64.tar.gz pulumi-resource-*
 
       - name: Create upload directory
-        run: mkdir -p upload/pulumi-plugins && mv package/*.tar.gz upload/pulumi-plugins/
+        run: mkdir -p upload/pulumi-plugins && mv package/*/*.tar.gz upload/pulumi-plugins/ && ls -la upload/pulumi-plugins/
 
       - name: Configure AWS credentials
+        if: github.ref == 'refs/heads/future'
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-region: ${{ secrets.PREPROD_AWS_REGION }}
@@ -67,12 +73,14 @@ jobs:
           role-duration-seconds: 900
 
       - name: Upload the provider binary to downloads.spacelift.dev
+        if: github.ref == 'refs/heads/future'
         run: >-
           aws s3 sync
           upload/ s3://${{ secrets.PREPROD_AWS_S3_BUCKET }}/
           --no-progress
 
       - name: Invalidate downloads.spacelift.dev cache
+        if: github.ref == 'refs/heads/future'
         run: >-
           aws cloudfront create-invalidation
           --distribution-id ${{ secrets.PREPROD_DISTRIBUTION }}
