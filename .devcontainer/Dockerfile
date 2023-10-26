@@ -14,7 +14,7 @@ RUN apt-get update && \
 # See README.md
 
 # Install go 
-ARG GO_VERSION=1.18.3
+ARG GO_VERSION=1.21.3
 RUN rm -rf /usr/local/go && \
   wget -O ${GO_VERSION}.tar.gz https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
   tar -C /usr/local -xzf ${GO_VERSION}.tar.gz && \
@@ -30,13 +30,13 @@ RUN mkdir -p $GOPATH/bin && \
 ENV PATH=$PATH:$GOPATH/bin
 
 # Install pulumictl
-ARG PULUMICTL_VERSION=v0.0.32
+ARG PULUMICTL_VERSION=v0.0.45
 RUN rm -rf /usr/local/bin/pulumictl && \
   wget -O pulumictl.${PULUMICTL_VERSION}.tar.gz https://github.com/pulumi/pulumictl/releases/download/${PULUMICTL_VERSION}/pulumictl-${PULUMICTL_VERSION}-linux-amd64.tar.gz && \
   tar -C /usr/local/bin -xzf pulumictl.${PULUMICTL_VERSION}.tar.gz
 
 # Install nodejs
-ARG NODEJS_VERSION=v16.16.0
+ARG NODEJS_VERSION=v16.20.2
 ARG NODEJS_PKG=node-${NODEJS_VERSION}-linux-x64
 ARG NODEJS_TARBALL=${NODEJS_PKG}.tar.xz
 RUN rm -rf /usr/local/node && \

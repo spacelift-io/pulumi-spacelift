@@ -7,7 +7,7 @@ jobs:
   preprod-provider-deployment:
     name: Build and upload provider
     runs-on: ubuntu-latest
-    container: golang:1.19-alpine
+    container: golang:1.21-alpine
     permissions:
       id-token: write
       contents: read
@@ -28,7 +28,7 @@ jobs:
         run: rm -rf /github/home/.pulumi
 
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        uses: jaxxstorm/action-install-gh-release@v1
         with:
           repo: pulumi/pulumictl
         env:
