@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `ContextAttachment` represents a Spacelift attachment of a single context to a single stack or module, with a predefined priority.
@@ -20,20 +22,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupContextAttachment(ctx, &GetContextAttachmentArgs{
+//			_, err := spacelift.LookupContextAttachment(ctx, &spacelift.LookupContextAttachmentArgs{
 //				ContextId: "prod-k8s-ie",
 //				StackId:   pulumi.StringRef("apps-cluster"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = spacelift.LookupContextAttachment(ctx, &GetContextAttachmentArgs{
+//			_, err = spacelift.LookupContextAttachment(ctx, &spacelift.LookupContextAttachmentArgs{
 //				ContextId: "prod-k8s-ie",
 //				ModuleId:  pulumi.StringRef("terraform-aws-kafka"),
 //			}, nil)
@@ -46,7 +48,7 @@ import (
 //
 // ```
 func LookupContextAttachment(ctx *pulumi.Context, args *LookupContextAttachmentArgs, opts ...pulumi.InvokeOption) (*LookupContextAttachmentResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupContextAttachmentResult
 	err := ctx.Invoke("spacelift:index/getContextAttachment:getContextAttachment", args, &rv, opts...)
 	if err != nil {
@@ -119,6 +121,12 @@ func (o LookupContextAttachmentResultOutput) ToLookupContextAttachmentResultOutp
 
 func (o LookupContextAttachmentResultOutput) ToLookupContextAttachmentResultOutputWithContext(ctx context.Context) LookupContextAttachmentResultOutput {
 	return o
+}
+
+func (o LookupContextAttachmentResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupContextAttachmentResult] {
+	return pulumix.Output[LookupContextAttachmentResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // ID of the attached context

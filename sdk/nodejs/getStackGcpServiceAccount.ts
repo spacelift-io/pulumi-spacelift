@@ -11,23 +11,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * // For a Module
- * const k8s_module = pulumi.output(spacelift.getStackGcpServiceAccount({
+ * const k8s-module = spacelift.getStackGcpServiceAccount({
  *     moduleId: "k8s-module",
- * }));
- * // For a Stack
- * const k8s_core = pulumi.output(spacelift.getStackGcpServiceAccount({
+ * });
+ * const k8s-core = spacelift.getStackGcpServiceAccount({
  *     stackId: "k8s-core",
- * }));
+ * });
  * ```
  */
 export function getStackGcpServiceAccount(args?: GetStackGcpServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetStackGcpServiceAccountResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getStackGcpServiceAccount:getStackGcpServiceAccount", {
         "moduleId": args.moduleId,
         "stackId": args.stackId,
@@ -73,9 +68,23 @@ export interface GetStackGcpServiceAccountResult {
      */
     readonly tokenScopes: string[];
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const k8s-module = spacelift.getStackGcpServiceAccount({
+ *     moduleId: "k8s-module",
+ * });
+ * const k8s-core = spacelift.getStackGcpServiceAccount({
+ *     stackId: "k8s-core",
+ * });
+ * ```
+ */
 export function getStackGcpServiceAccountOutput(args?: GetStackGcpServiceAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStackGcpServiceAccountResult> {
-    return pulumi.output(args).apply(a => getStackGcpServiceAccount(a, opts))
+    return pulumi.output(args).apply((a: any) => getStackGcpServiceAccount(a, opts))
 }
 
 /**

@@ -19,11 +19,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getWebhook(args: GetWebhookArgs, opts?: pulumi.InvokeOptions): Promise<GetWebhookResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getWebhook:getWebhook", {
         "moduleId": args.moduleId,
         "stackId": args.stackId,
@@ -82,9 +79,22 @@ export interface GetWebhookResult {
      */
     readonly webhookId: string;
 }
-
+/**
+ * `spacelift.Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const webhook = spacelift.getWebhook({
+ *     webhookId: spacelift_webhook.webhook.id,
+ * });
+ * ```
+ */
 export function getWebhookOutput(args: GetWebhookOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWebhookResult> {
-    return pulumi.output(args).apply(a => getWebhook(a, opts))
+    return pulumi.output(args).apply((a: any) => getWebhook(a, opts))
 }
 
 /**

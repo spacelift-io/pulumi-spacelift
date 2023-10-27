@@ -93,19 +93,12 @@ namespace Pulumi.Spacelift
     {
         [Input("labels")]
         private List<string>? _labels;
-
-        /// <summary>
-        /// required labels to match
-        /// </summary>
         public List<string> Labels
         {
             get => _labels ?? (_labels = new List<string>());
             set => _labels = value;
         }
 
-        /// <summary>
-        /// required policy type
-        /// </summary>
         [Input("type")]
         public string? Type { get; set; }
 
@@ -119,19 +112,12 @@ namespace Pulumi.Spacelift
     {
         [Input("labels")]
         private InputList<string>? _labels;
-
-        /// <summary>
-        /// required labels to match
-        /// </summary>
         public InputList<string> Labels
         {
             get => _labels ?? (_labels = new InputList<string>());
             set => _labels = value;
         }
 
-        /// <summary>
-        /// required policy type
-        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

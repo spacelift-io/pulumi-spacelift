@@ -18,11 +18,12 @@ namespace Pulumi.Spacelift
     /// using System;
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
     /// 	private static string ReadFileBase64(string path) {
-    /// 		return Convert.ToBase64String(Encoding.UTF8.GetBytes(File.ReadAllText(path)))
+    /// 		return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(File.ReadAllText(path)));
     /// 	}
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -108,6 +109,12 @@ namespace Pulumi.Spacelift
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
+                AdditionalSecretOutputs =
+                {
+                    "config",
+                    "csr",
+                    "privateKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -131,11 +138,21 @@ namespace Pulumi.Spacelift
 
     public sealed class WorkerPoolArgs : global::Pulumi.ResourceArgs
     {
+        [Input("csr")]
+        private Input<string>? _csr;
+
         /// <summary>
         /// certificate signing request in base64
         /// </summary>
-        [Input("csr")]
-        public Input<string>? Csr { get; set; }
+        public Input<string>? Csr
+        {
+            get => _csr;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _csr = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// description of the worker pool
@@ -171,17 +188,37 @@ namespace Pulumi.Spacelift
 
     public sealed class WorkerPoolState : global::Pulumi.ResourceArgs
     {
+        [Input("config")]
+        private Input<string>? _config;
+
         /// <summary>
         /// credentials necessary to connect WorkerPool's workers to the control plane
         /// </summary>
-        [Input("config")]
-        public Input<string>? Config { get; set; }
+        public Input<string>? Config
+        {
+            get => _config;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _config = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("csr")]
+        private Input<string>? _csr;
 
         /// <summary>
         /// certificate signing request in base64
         /// </summary>
-        [Input("csr")]
-        public Input<string>? Csr { get; set; }
+        public Input<string>? Csr
+        {
+            get => _csr;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _csr = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// description of the worker pool
@@ -203,11 +240,21 @@ namespace Pulumi.Spacelift
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
         /// <summary>
         /// private key in base64
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// ID (slug) of the space the worker pool is in

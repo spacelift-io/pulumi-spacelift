@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -22,7 +22,7 @@ class GetStackResult:
     """
     A collection of values returned by getStack.
     """
-    def __init__(__self__, administrative=None, after_applies=None, after_destroys=None, after_inits=None, after_performs=None, after_plans=None, ansibles=None, autodeploy=None, autoretry=None, aws_assume_role_policy_statement=None, azure_devops=None, before_applies=None, before_destroys=None, before_inits=None, before_performs=None, before_plans=None, bitbucket_clouds=None, bitbucket_datacenters=None, branch=None, cloudformations=None, description=None, enable_local_preview=None, github_enterprises=None, gitlabs=None, id=None, kubernetes=None, labels=None, manage_state=None, name=None, project_root=None, protect_from_deletion=None, pulumis=None, repository=None, runner_image=None, showcases=None, space_id=None, stack_id=None, terraform_smart_sanitization=None, terraform_version=None, terraform_workspace=None, worker_pool_id=None):
+    def __init__(__self__, administrative=None, after_applies=None, after_destroys=None, after_inits=None, after_performs=None, after_plans=None, after_runs=None, ansibles=None, autodeploy=None, autoretry=None, aws_assume_role_policy_statement=None, azure_devops=None, before_applies=None, before_destroys=None, before_inits=None, before_performs=None, before_plans=None, bitbucket_clouds=None, bitbucket_datacenters=None, branch=None, cloudformations=None, description=None, enable_local_preview=None, github_enterprises=None, gitlabs=None, id=None, kubernetes=None, labels=None, manage_state=None, name=None, project_root=None, protect_from_deletion=None, pulumis=None, raw_gits=None, repository=None, runner_image=None, showcases=None, space_id=None, stack_id=None, terraform_external_state_access=None, terraform_smart_sanitization=None, terraform_version=None, terraform_workflow_tool=None, terraform_workspace=None, worker_pool_id=None):
         if administrative and not isinstance(administrative, bool):
             raise TypeError("Expected argument 'administrative' to be a bool")
         pulumi.set(__self__, "administrative", administrative)
@@ -41,6 +41,9 @@ class GetStackResult:
         if after_plans and not isinstance(after_plans, list):
             raise TypeError("Expected argument 'after_plans' to be a list")
         pulumi.set(__self__, "after_plans", after_plans)
+        if after_runs and not isinstance(after_runs, list):
+            raise TypeError("Expected argument 'after_runs' to be a list")
+        pulumi.set(__self__, "after_runs", after_runs)
         if ansibles and not isinstance(ansibles, list):
             raise TypeError("Expected argument 'ansibles' to be a list")
         pulumi.set(__self__, "ansibles", ansibles)
@@ -119,6 +122,9 @@ class GetStackResult:
         if pulumis and not isinstance(pulumis, list):
             raise TypeError("Expected argument 'pulumis' to be a list")
         pulumi.set(__self__, "pulumis", pulumis)
+        if raw_gits and not isinstance(raw_gits, list):
+            raise TypeError("Expected argument 'raw_gits' to be a list")
+        pulumi.set(__self__, "raw_gits", raw_gits)
         if repository and not isinstance(repository, str):
             raise TypeError("Expected argument 'repository' to be a str")
         pulumi.set(__self__, "repository", repository)
@@ -134,12 +140,18 @@ class GetStackResult:
         if stack_id and not isinstance(stack_id, str):
             raise TypeError("Expected argument 'stack_id' to be a str")
         pulumi.set(__self__, "stack_id", stack_id)
+        if terraform_external_state_access and not isinstance(terraform_external_state_access, bool):
+            raise TypeError("Expected argument 'terraform_external_state_access' to be a bool")
+        pulumi.set(__self__, "terraform_external_state_access", terraform_external_state_access)
         if terraform_smart_sanitization and not isinstance(terraform_smart_sanitization, bool):
             raise TypeError("Expected argument 'terraform_smart_sanitization' to be a bool")
         pulumi.set(__self__, "terraform_smart_sanitization", terraform_smart_sanitization)
         if terraform_version and not isinstance(terraform_version, str):
             raise TypeError("Expected argument 'terraform_version' to be a str")
         pulumi.set(__self__, "terraform_version", terraform_version)
+        if terraform_workflow_tool and not isinstance(terraform_workflow_tool, str):
+            raise TypeError("Expected argument 'terraform_workflow_tool' to be a str")
+        pulumi.set(__self__, "terraform_workflow_tool", terraform_workflow_tool)
         if terraform_workspace and not isinstance(terraform_workspace, str):
             raise TypeError("Expected argument 'terraform_workspace' to be a str")
         pulumi.set(__self__, "terraform_workspace", terraform_workspace)
@@ -157,7 +169,7 @@ class GetStackResult:
 
     @property
     @pulumi.getter(name="afterApplies")
-    def after_applies(self) -> Optional[Sequence[str]]:
+    def after_applies(self) -> Sequence[str]:
         """
         List of after-apply scripts
         """
@@ -165,7 +177,7 @@ class GetStackResult:
 
     @property
     @pulumi.getter(name="afterDestroys")
-    def after_destroys(self) -> Optional[Sequence[str]]:
+    def after_destroys(self) -> Sequence[str]:
         """
         List of after-destroy scripts
         """
@@ -173,7 +185,7 @@ class GetStackResult:
 
     @property
     @pulumi.getter(name="afterInits")
-    def after_inits(self) -> Optional[Sequence[str]]:
+    def after_inits(self) -> Sequence[str]:
         """
         List of after-init scripts
         """
@@ -181,7 +193,7 @@ class GetStackResult:
 
     @property
     @pulumi.getter(name="afterPerforms")
-    def after_performs(self) -> Optional[Sequence[str]]:
+    def after_performs(self) -> Sequence[str]:
         """
         List of after-perform scripts
         """
@@ -189,11 +201,19 @@ class GetStackResult:
 
     @property
     @pulumi.getter(name="afterPlans")
-    def after_plans(self) -> Optional[Sequence[str]]:
+    def after_plans(self) -> Sequence[str]:
         """
         List of after-plan scripts
         """
         return pulumi.get(self, "after_plans")
+
+    @property
+    @pulumi.getter(name="afterRuns")
+    def after_runs(self) -> Optional[Sequence[str]]:
+        """
+        List of after-run scripts
+        """
+        return pulumi.get(self, "after_runs")
 
     @property
     @pulumi.getter
@@ -237,7 +257,7 @@ class GetStackResult:
 
     @property
     @pulumi.getter(name="beforeApplies")
-    def before_applies(self) -> Optional[Sequence[str]]:
+    def before_applies(self) -> Sequence[str]:
         """
         List of before-apply scripts
         """
@@ -245,7 +265,7 @@ class GetStackResult:
 
     @property
     @pulumi.getter(name="beforeDestroys")
-    def before_destroys(self) -> Optional[Sequence[str]]:
+    def before_destroys(self) -> Sequence[str]:
         """
         List of before-destroy scripts
         """
@@ -253,7 +273,7 @@ class GetStackResult:
 
     @property
     @pulumi.getter(name="beforeInits")
-    def before_inits(self) -> Optional[Sequence[str]]:
+    def before_inits(self) -> Sequence[str]:
         """
         List of before-init scripts
         """
@@ -261,7 +281,7 @@ class GetStackResult:
 
     @property
     @pulumi.getter(name="beforePerforms")
-    def before_performs(self) -> Optional[Sequence[str]]:
+    def before_performs(self) -> Sequence[str]:
         """
         List of before-perform scripts
         """
@@ -269,7 +289,7 @@ class GetStackResult:
 
     @property
     @pulumi.getter(name="beforePlans")
-    def before_plans(self) -> Optional[Sequence[str]]:
+    def before_plans(self) -> Sequence[str]:
         """
         List of before-plan scripts
         """
@@ -401,6 +421,14 @@ class GetStackResult:
         return pulumi.get(self, "pulumis")
 
     @property
+    @pulumi.getter(name="rawGits")
+    def raw_gits(self) -> Sequence['outputs.GetStackRawGitResult']:
+        """
+        One-way VCS integration using a raw Git repository link
+        """
+        return pulumi.get(self, "raw_gits")
+
+    @property
     @pulumi.getter
     def repository(self) -> str:
         """
@@ -441,6 +469,14 @@ class GetStackResult:
         return pulumi.get(self, "stack_id")
 
     @property
+    @pulumi.getter(name="terraformExternalStateAccess")
+    def terraform_external_state_access(self) -> bool:
+        """
+        Indicates whether you can access the Stack state file from other stacks or outside of Spacelift.
+        """
+        return pulumi.get(self, "terraform_external_state_access")
+
+    @property
     @pulumi.getter(name="terraformSmartSanitization")
     def terraform_smart_sanitization(self) -> bool:
         return pulumi.get(self, "terraform_smart_sanitization")
@@ -449,6 +485,14 @@ class GetStackResult:
     @pulumi.getter(name="terraformVersion")
     def terraform_version(self) -> str:
         return pulumi.get(self, "terraform_version")
+
+    @property
+    @pulumi.getter(name="terraformWorkflowTool")
+    def terraform_workflow_tool(self) -> str:
+        """
+        Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+        """
+        return pulumi.get(self, "terraform_workflow_tool")
 
     @property
     @pulumi.getter(name="terraformWorkspace")
@@ -476,6 +520,7 @@ class AwaitableGetStackResult(GetStackResult):
             after_inits=self.after_inits,
             after_performs=self.after_performs,
             after_plans=self.after_plans,
+            after_runs=self.after_runs,
             ansibles=self.ansibles,
             autodeploy=self.autodeploy,
             autoretry=self.autoretry,
@@ -502,13 +547,16 @@ class AwaitableGetStackResult(GetStackResult):
             project_root=self.project_root,
             protect_from_deletion=self.protect_from_deletion,
             pulumis=self.pulumis,
+            raw_gits=self.raw_gits,
             repository=self.repository,
             runner_image=self.runner_image,
             showcases=self.showcases,
             space_id=self.space_id,
             stack_id=self.stack_id,
+            terraform_external_state_access=self.terraform_external_state_access,
             terraform_smart_sanitization=self.terraform_smart_sanitization,
             terraform_version=self.terraform_version,
+            terraform_workflow_tool=self.terraform_workflow_tool,
             terraform_workspace=self.terraform_workspace,
             worker_pool_id=self.worker_pool_id)
 
@@ -518,6 +566,7 @@ def get_stack(after_applies: Optional[Sequence[str]] = None,
               after_inits: Optional[Sequence[str]] = None,
               after_performs: Optional[Sequence[str]] = None,
               after_plans: Optional[Sequence[str]] = None,
+              after_runs: Optional[Sequence[str]] = None,
               before_applies: Optional[Sequence[str]] = None,
               before_destroys: Optional[Sequence[str]] = None,
               before_inits: Optional[Sequence[str]] = None,
@@ -543,6 +592,7 @@ def get_stack(after_applies: Optional[Sequence[str]] = None,
     :param Sequence[str] after_inits: List of after-init scripts
     :param Sequence[str] after_performs: List of after-perform scripts
     :param Sequence[str] after_plans: List of after-plan scripts
+    :param Sequence[str] after_runs: List of after-run scripts
     :param Sequence[str] before_applies: List of before-apply scripts
     :param Sequence[str] before_destroys: List of before-destroy scripts
     :param Sequence[str] before_inits: List of before-init scripts
@@ -556,6 +606,7 @@ def get_stack(after_applies: Optional[Sequence[str]] = None,
     __args__['afterInits'] = after_inits
     __args__['afterPerforms'] = after_performs
     __args__['afterPlans'] = after_plans
+    __args__['afterRuns'] = after_runs
     __args__['beforeApplies'] = before_applies
     __args__['beforeDestroys'] = before_destroys
     __args__['beforeInits'] = before_inits
@@ -566,47 +617,51 @@ def get_stack(after_applies: Optional[Sequence[str]] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getStack:getStack', __args__, opts=opts, typ=GetStackResult).value
 
     return AwaitableGetStackResult(
-        administrative=__ret__.administrative,
-        after_applies=__ret__.after_applies,
-        after_destroys=__ret__.after_destroys,
-        after_inits=__ret__.after_inits,
-        after_performs=__ret__.after_performs,
-        after_plans=__ret__.after_plans,
-        ansibles=__ret__.ansibles,
-        autodeploy=__ret__.autodeploy,
-        autoretry=__ret__.autoretry,
-        aws_assume_role_policy_statement=__ret__.aws_assume_role_policy_statement,
-        azure_devops=__ret__.azure_devops,
-        before_applies=__ret__.before_applies,
-        before_destroys=__ret__.before_destroys,
-        before_inits=__ret__.before_inits,
-        before_performs=__ret__.before_performs,
-        before_plans=__ret__.before_plans,
-        bitbucket_clouds=__ret__.bitbucket_clouds,
-        bitbucket_datacenters=__ret__.bitbucket_datacenters,
-        branch=__ret__.branch,
-        cloudformations=__ret__.cloudformations,
-        description=__ret__.description,
-        enable_local_preview=__ret__.enable_local_preview,
-        github_enterprises=__ret__.github_enterprises,
-        gitlabs=__ret__.gitlabs,
-        id=__ret__.id,
-        kubernetes=__ret__.kubernetes,
-        labels=__ret__.labels,
-        manage_state=__ret__.manage_state,
-        name=__ret__.name,
-        project_root=__ret__.project_root,
-        protect_from_deletion=__ret__.protect_from_deletion,
-        pulumis=__ret__.pulumis,
-        repository=__ret__.repository,
-        runner_image=__ret__.runner_image,
-        showcases=__ret__.showcases,
-        space_id=__ret__.space_id,
-        stack_id=__ret__.stack_id,
-        terraform_smart_sanitization=__ret__.terraform_smart_sanitization,
-        terraform_version=__ret__.terraform_version,
-        terraform_workspace=__ret__.terraform_workspace,
-        worker_pool_id=__ret__.worker_pool_id)
+        administrative=pulumi.get(__ret__, 'administrative'),
+        after_applies=pulumi.get(__ret__, 'after_applies'),
+        after_destroys=pulumi.get(__ret__, 'after_destroys'),
+        after_inits=pulumi.get(__ret__, 'after_inits'),
+        after_performs=pulumi.get(__ret__, 'after_performs'),
+        after_plans=pulumi.get(__ret__, 'after_plans'),
+        after_runs=pulumi.get(__ret__, 'after_runs'),
+        ansibles=pulumi.get(__ret__, 'ansibles'),
+        autodeploy=pulumi.get(__ret__, 'autodeploy'),
+        autoretry=pulumi.get(__ret__, 'autoretry'),
+        aws_assume_role_policy_statement=pulumi.get(__ret__, 'aws_assume_role_policy_statement'),
+        azure_devops=pulumi.get(__ret__, 'azure_devops'),
+        before_applies=pulumi.get(__ret__, 'before_applies'),
+        before_destroys=pulumi.get(__ret__, 'before_destroys'),
+        before_inits=pulumi.get(__ret__, 'before_inits'),
+        before_performs=pulumi.get(__ret__, 'before_performs'),
+        before_plans=pulumi.get(__ret__, 'before_plans'),
+        bitbucket_clouds=pulumi.get(__ret__, 'bitbucket_clouds'),
+        bitbucket_datacenters=pulumi.get(__ret__, 'bitbucket_datacenters'),
+        branch=pulumi.get(__ret__, 'branch'),
+        cloudformations=pulumi.get(__ret__, 'cloudformations'),
+        description=pulumi.get(__ret__, 'description'),
+        enable_local_preview=pulumi.get(__ret__, 'enable_local_preview'),
+        github_enterprises=pulumi.get(__ret__, 'github_enterprises'),
+        gitlabs=pulumi.get(__ret__, 'gitlabs'),
+        id=pulumi.get(__ret__, 'id'),
+        kubernetes=pulumi.get(__ret__, 'kubernetes'),
+        labels=pulumi.get(__ret__, 'labels'),
+        manage_state=pulumi.get(__ret__, 'manage_state'),
+        name=pulumi.get(__ret__, 'name'),
+        project_root=pulumi.get(__ret__, 'project_root'),
+        protect_from_deletion=pulumi.get(__ret__, 'protect_from_deletion'),
+        pulumis=pulumi.get(__ret__, 'pulumis'),
+        raw_gits=pulumi.get(__ret__, 'raw_gits'),
+        repository=pulumi.get(__ret__, 'repository'),
+        runner_image=pulumi.get(__ret__, 'runner_image'),
+        showcases=pulumi.get(__ret__, 'showcases'),
+        space_id=pulumi.get(__ret__, 'space_id'),
+        stack_id=pulumi.get(__ret__, 'stack_id'),
+        terraform_external_state_access=pulumi.get(__ret__, 'terraform_external_state_access'),
+        terraform_smart_sanitization=pulumi.get(__ret__, 'terraform_smart_sanitization'),
+        terraform_version=pulumi.get(__ret__, 'terraform_version'),
+        terraform_workflow_tool=pulumi.get(__ret__, 'terraform_workflow_tool'),
+        terraform_workspace=pulumi.get(__ret__, 'terraform_workspace'),
+        worker_pool_id=pulumi.get(__ret__, 'worker_pool_id'))
 
 
 @_utilities.lift_output_func(get_stack)
@@ -615,6 +670,7 @@ def get_stack_output(after_applies: Optional[pulumi.Input[Optional[Sequence[str]
                      after_inits: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      after_performs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      after_plans: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                     after_runs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      before_applies: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      before_destroys: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      before_inits: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -640,6 +696,7 @@ def get_stack_output(after_applies: Optional[pulumi.Input[Optional[Sequence[str]
     :param Sequence[str] after_inits: List of after-init scripts
     :param Sequence[str] after_performs: List of after-perform scripts
     :param Sequence[str] after_plans: List of after-plan scripts
+    :param Sequence[str] after_runs: List of after-run scripts
     :param Sequence[str] before_applies: List of before-apply scripts
     :param Sequence[str] before_destroys: List of before-destroy scripts
     :param Sequence[str] before_inits: List of before-init scripts

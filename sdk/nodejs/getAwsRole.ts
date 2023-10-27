@@ -17,23 +17,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * // With a module
- * const k8s_module = pulumi.output(spacelift.getAwsRole({
+ * const k8s-module = spacelift.getAwsRole({
  *     moduleId: "k8s-module",
- * }));
- * // With a stack
- * const k8s_core = pulumi.output(spacelift.getAwsRole({
+ * });
+ * const k8s-core = spacelift.getAwsRole({
  *     stackId: "k8s-core",
- * }));
+ * });
  * ```
  */
 export function getAwsRole(args?: GetAwsRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAwsRoleResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getAwsRole:getAwsRole", {
         "moduleId": args.moduleId,
         "stackId": args.stackId,
@@ -87,9 +82,29 @@ export interface GetAwsRoleResult {
      */
     readonly stackId?: string;
 }
-
+/**
+ * `spacelift.AwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.
+ *
+ * If you use private workers, you can also assume IAM role on the worker side using your own AWS credentials (e.g. from EC2 instance profile).
+ *
+ * Note: when assuming credentials for **shared worker**, Spacelift will use `$accountName@$stackID` or `$accountName@$moduleID` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const k8s-module = spacelift.getAwsRole({
+ *     moduleId: "k8s-module",
+ * });
+ * const k8s-core = spacelift.getAwsRole({
+ *     stackId: "k8s-core",
+ * });
+ * ```
+ */
 export function getAwsRoleOutput(args?: GetAwsRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAwsRoleResult> {
-    return pulumi.output(args).apply(a => getAwsRole(a, opts))
+    return pulumi.output(args).apply((a: any) => getAwsRole(a, opts))
 }
 
 /**

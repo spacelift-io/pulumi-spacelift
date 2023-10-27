@@ -14,13 +14,21 @@ namespace Pulumi.Spacelift.Outputs
     public sealed class StackKubernetes
     {
         /// <summary>
+        /// Kubectl version.
+        /// </summary>
+        public readonly string? KubectlVersion;
+        /// <summary>
         /// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
         /// </summary>
         public readonly string? Namespace;
 
         [OutputConstructor]
-        private StackKubernetes(string? @namespace)
+        private StackKubernetes(
+            string? kubectlVersion,
+
+            string? @namespace)
         {
+            KubectlVersion = kubectlVersion;
             Namespace = @namespace;
         }
     }

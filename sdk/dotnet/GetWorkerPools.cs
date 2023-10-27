@@ -20,6 +20,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -34,6 +35,31 @@ namespace Pulumi.Spacelift
         /// </summary>
         public static Task<GetWorkerPoolsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetWorkerPoolsResult>("spacelift:index/getWorkerPools:getWorkerPools", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// `spacelift.getWorkerPools` represents the worker pools assigned to the Spacelift account.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var worker_pools = Spacelift.GetWorkerPools.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetWorkerPoolsResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetWorkerPoolsResult>("spacelift:index/getWorkerPools:getWorkerPools", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

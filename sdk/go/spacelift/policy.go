@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `Policy` represents a Spacelift **policy** - a collection of customer-defined rules that are applied by Spacelift at one of the decision points within the application.
@@ -21,15 +23,15 @@ import (
 // import (
 //
 //	"fmt"
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -82,7 +84,7 @@ type Policy struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ID (slug) of the space the policy is in
 	SpaceId pulumi.StringOutput `pulumi:"spaceId"`
-	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, `TRIGGER` and `NOTIFICATION`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -99,7 +101,7 @@ func NewPolicy(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Policy
 	err := ctx.RegisterResource("spacelift:index/policy:Policy", name, args, &resource, opts...)
 	if err != nil {
@@ -129,7 +131,7 @@ type policyState struct {
 	Name *string `pulumi:"name"`
 	// ID (slug) of the space the policy is in
 	SpaceId *string `pulumi:"spaceId"`
-	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, `TRIGGER` and `NOTIFICATION`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type *string `pulumi:"type"`
 }
 
@@ -141,7 +143,7 @@ type PolicyState struct {
 	Name pulumi.StringPtrInput
 	// ID (slug) of the space the policy is in
 	SpaceId pulumi.StringPtrInput
-	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, `TRIGGER` and `NOTIFICATION`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type pulumi.StringPtrInput
 }
 
@@ -157,7 +159,7 @@ type policyArgs struct {
 	Name *string `pulumi:"name"`
 	// ID (slug) of the space the policy is in
 	SpaceId *string `pulumi:"spaceId"`
-	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, `TRIGGER` and `NOTIFICATION`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type string `pulumi:"type"`
 }
 
@@ -170,7 +172,7 @@ type PolicyArgs struct {
 	Name pulumi.StringPtrInput
 	// ID (slug) of the space the policy is in
 	SpaceId pulumi.StringPtrInput
-	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
+	// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, `TRIGGER` and `NOTIFICATION`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 	Type pulumi.StringInput
 }
 
@@ -195,6 +197,12 @@ func (i *Policy) ToPolicyOutput() PolicyOutput {
 
 func (i *Policy) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PolicyOutput)
+}
+
+func (i *Policy) ToOutput(ctx context.Context) pulumix.Output[*Policy] {
+	return pulumix.Output[*Policy]{
+		OutputState: i.ToPolicyOutputWithContext(ctx).OutputState,
+	}
 }
 
 // PolicyArrayInput is an input type that accepts PolicyArray and PolicyArrayOutput values.
@@ -222,6 +230,12 @@ func (i PolicyArray) ToPolicyArrayOutputWithContext(ctx context.Context) PolicyA
 	return pulumi.ToOutputWithContext(ctx, i).(PolicyArrayOutput)
 }
 
+func (i PolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*Policy] {
+	return pulumix.Output[[]*Policy]{
+		OutputState: i.ToPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // PolicyMapInput is an input type that accepts PolicyMap and PolicyMapOutput values.
 // You can construct a concrete instance of `PolicyMapInput` via:
 //
@@ -247,6 +261,12 @@ func (i PolicyMap) ToPolicyMapOutputWithContext(ctx context.Context) PolicyMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(PolicyMapOutput)
 }
 
+func (i PolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Policy] {
+	return pulumix.Output[map[string]*Policy]{
+		OutputState: i.ToPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type PolicyOutput struct{ *pulumi.OutputState }
 
 func (PolicyOutput) ElementType() reflect.Type {
@@ -259,6 +279,12 @@ func (o PolicyOutput) ToPolicyOutput() PolicyOutput {
 
 func (o PolicyOutput) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
 	return o
+}
+
+func (o PolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*Policy] {
+	return pulumix.Output[*Policy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Body of the policy
@@ -280,7 +306,7 @@ func (o PolicyOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.SpaceId }).(pulumi.StringOutput)
 }
 
-// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, and `TRIGGER`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
+// Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, `TRIGGER` and `NOTIFICATION`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
 func (o PolicyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
@@ -297,6 +323,12 @@ func (o PolicyArrayOutput) ToPolicyArrayOutput() PolicyArrayOutput {
 
 func (o PolicyArrayOutput) ToPolicyArrayOutputWithContext(ctx context.Context) PolicyArrayOutput {
 	return o
+}
+
+func (o PolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Policy] {
+	return pulumix.Output[[]*Policy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PolicyArrayOutput) Index(i pulumi.IntInput) PolicyOutput {
@@ -317,6 +349,12 @@ func (o PolicyMapOutput) ToPolicyMapOutput() PolicyMapOutput {
 
 func (o PolicyMapOutput) ToPolicyMapOutputWithContext(ctx context.Context) PolicyMapOutput {
 	return o
+}
+
+func (o PolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Policy] {
+	return pulumix.Output[map[string]*Policy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PolicyMapOutput) MapIndex(k pulumi.StringInput) PolicyOutput {

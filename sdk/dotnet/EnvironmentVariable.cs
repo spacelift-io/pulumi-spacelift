@@ -16,6 +16,7 @@ namespace Pulumi.Spacelift
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
@@ -96,13 +97,13 @@ namespace Pulumi.Spacelift
         public Output<string?> StackId { get; private set; } = null!;
 
         /// <summary>
-        /// Value of the environment variable
+        /// Value of the environment variable. Defaults to an empty string.
         /// </summary>
         [Output("value")]
-        public Output<string> Value { get; private set; } = null!;
+        public Output<string?> Value { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether the value can be read back outside a Run. Defaults to `true`.
+        /// Indicates whether the value is secret or not. Defaults to `true`.
         /// </summary>
         [Output("writeOnly")]
         public Output<bool?> WriteOnly { get; private set; } = null!;
@@ -115,7 +116,7 @@ namespace Pulumi.Spacelift
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public EnvironmentVariable(string name, EnvironmentVariableArgs args, CustomResourceOptions? options = null)
+        public EnvironmentVariable(string name, EnvironmentVariableArgs? args = null, CustomResourceOptions? options = null)
             : base("spacelift:index/environmentVariable:EnvironmentVariable", name, args ?? new EnvironmentVariableArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -131,6 +132,10 @@ namespace Pulumi.Spacelift
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
+                AdditionalSecretOutputs =
+                {
+                    "value",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -178,14 +183,24 @@ namespace Pulumi.Spacelift
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 
-        /// <summary>
-        /// Value of the environment variable
-        /// </summary>
-        [Input("value", required: true)]
-        public Input<string> Value { get; set; } = null!;
+        [Input("value")]
+        private Input<string>? _value;
 
         /// <summary>
-        /// Indicates whether the value can be read back outside a Run. Defaults to `true`.
+        /// Value of the environment variable. Defaults to an empty string.
+        /// </summary>
+        public Input<string>? Value
+        {
+            get => _value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _value = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether the value is secret or not. Defaults to `true`.
         /// </summary>
         [Input("writeOnly")]
         public Input<bool>? WriteOnly { get; set; }
@@ -228,14 +243,24 @@ namespace Pulumi.Spacelift
         [Input("stackId")]
         public Input<string>? StackId { get; set; }
 
-        /// <summary>
-        /// Value of the environment variable
-        /// </summary>
         [Input("value")]
-        public Input<string>? Value { get; set; }
+        private Input<string>? _value;
 
         /// <summary>
-        /// Indicates whether the value can be read back outside a Run. Defaults to `true`.
+        /// Value of the environment variable. Defaults to an empty string.
+        /// </summary>
+        public Input<string>? Value
+        {
+            get => _value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _value = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether the value is secret or not. Defaults to `true`.
         /// </summary>
         [Input("writeOnly")]
         public Input<bool>? WriteOnly { get; set; }

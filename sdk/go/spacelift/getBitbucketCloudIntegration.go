@@ -4,7 +4,12 @@
 package spacelift
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getBitbucketCloudIntegration` returns details about Bitbucket Cloud integration
@@ -17,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -33,7 +38,7 @@ import (
 //
 // ```
 func GetBitbucketCloudIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetBitbucketCloudIntegrationResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBitbucketCloudIntegrationResult
 	err := ctx.Invoke("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", nil, &rv, opts...)
 	if err != nil {
@@ -48,4 +53,50 @@ type GetBitbucketCloudIntegrationResult struct {
 	Id string `pulumi:"id"`
 	// Bitbucket Cloud username
 	Username string `pulumi:"username"`
+}
+
+func GetBitbucketCloudIntegrationOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetBitbucketCloudIntegrationResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetBitbucketCloudIntegrationResult, error) {
+		r, err := GetBitbucketCloudIntegration(ctx, opts...)
+		var s GetBitbucketCloudIntegrationResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetBitbucketCloudIntegrationResultOutput)
+}
+
+// A collection of values returned by getBitbucketCloudIntegration.
+type GetBitbucketCloudIntegrationResultOutput struct{ *pulumi.OutputState }
+
+func (GetBitbucketCloudIntegrationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBitbucketCloudIntegrationResult)(nil)).Elem()
+}
+
+func (o GetBitbucketCloudIntegrationResultOutput) ToGetBitbucketCloudIntegrationResultOutput() GetBitbucketCloudIntegrationResultOutput {
+	return o
+}
+
+func (o GetBitbucketCloudIntegrationResultOutput) ToGetBitbucketCloudIntegrationResultOutputWithContext(ctx context.Context) GetBitbucketCloudIntegrationResultOutput {
+	return o
+}
+
+func (o GetBitbucketCloudIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBitbucketCloudIntegrationResult] {
+	return pulumix.Output[GetBitbucketCloudIntegrationResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetBitbucketCloudIntegrationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Bitbucket Cloud username
+func (o GetBitbucketCloudIntegrationResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetBitbucketCloudIntegrationResultOutput{})
 }

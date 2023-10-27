@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetBitbucketDatacenterIntegrationResult',
     'AwaitableGetBitbucketDatacenterIntegrationResult',
     'get_bitbucket_datacenter_integration',
+    'get_bitbucket_datacenter_integration_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetBitbucketDatacenterIntegrationResult:
     """
     A collection of values returned by getBitbucketDatacenterIntegration.
     """
-    def __init__(__self__, api_host=None, id=None, user_facing_host=None, webhook_secret=None):
+    def __init__(__self__, api_host=None, id=None, user_facing_host=None, webhook_secret=None, webhook_url=None):
         if api_host and not isinstance(api_host, str):
             raise TypeError("Expected argument 'api_host' to be a str")
         pulumi.set(__self__, "api_host", api_host)
@@ -33,6 +34,9 @@ class GetBitbucketDatacenterIntegrationResult:
         if webhook_secret and not isinstance(webhook_secret, str):
             raise TypeError("Expected argument 'webhook_secret' to be a str")
         pulumi.set(__self__, "webhook_secret", webhook_secret)
+        if webhook_url and not isinstance(webhook_url, str):
+            raise TypeError("Expected argument 'webhook_url' to be a str")
+        pulumi.set(__self__, "webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="apiHost")
@@ -66,6 +70,14 @@ class GetBitbucketDatacenterIntegrationResult:
         """
         return pulumi.get(self, "webhook_secret")
 
+    @property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> str:
+        """
+        Bitbucket Datacenter integration webhook URL
+        """
+        return pulumi.get(self, "webhook_url")
+
 
 class AwaitableGetBitbucketDatacenterIntegrationResult(GetBitbucketDatacenterIntegrationResult):
     # pylint: disable=using-constant-test
@@ -76,7 +88,8 @@ class AwaitableGetBitbucketDatacenterIntegrationResult(GetBitbucketDatacenterInt
             api_host=self.api_host,
             id=self.id,
             user_facing_host=self.user_facing_host,
-            webhook_secret=self.webhook_secret)
+            webhook_secret=self.webhook_secret,
+            webhook_url=self.webhook_url)
 
 
 def get_bitbucket_datacenter_integration(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBitbucketDatacenterIntegrationResult:
@@ -97,7 +110,25 @@ def get_bitbucket_datacenter_integration(opts: Optional[pulumi.InvokeOptions] = 
     __ret__ = pulumi.runtime.invoke('spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration', __args__, opts=opts, typ=GetBitbucketDatacenterIntegrationResult).value
 
     return AwaitableGetBitbucketDatacenterIntegrationResult(
-        api_host=__ret__.api_host,
-        id=__ret__.id,
-        user_facing_host=__ret__.user_facing_host,
-        webhook_secret=__ret__.webhook_secret)
+        api_host=pulumi.get(__ret__, 'api_host'),
+        id=pulumi.get(__ret__, 'id'),
+        user_facing_host=pulumi.get(__ret__, 'user_facing_host'),
+        webhook_secret=pulumi.get(__ret__, 'webhook_secret'),
+        webhook_url=pulumi.get(__ret__, 'webhook_url'))
+
+
+@_utilities.lift_output_func(get_bitbucket_datacenter_integration)
+def get_bitbucket_datacenter_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBitbucketDatacenterIntegrationResult]:
+    """
+    `get_bitbucket_datacenter_integration` returns details about Bitbucket Datacenter integration
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    bitbucket_datacenter_integration = spacelift.get_bitbucket_datacenter_integration()
+    ```
+    """
+    ...

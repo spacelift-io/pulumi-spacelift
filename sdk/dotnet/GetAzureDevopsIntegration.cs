@@ -20,6 +20,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -34,6 +35,31 @@ namespace Pulumi.Spacelift
         /// </summary>
         public static Task<GetAzureDevopsIntegrationResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAzureDevopsIntegrationResult>("spacelift:index/getAzureDevopsIntegration:getAzureDevopsIntegration", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// `spacelift.getAzureDevopsIntegration` returns details about Azure DevOps integration
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var azureDevopsIntegration = Spacelift.GetAzureDevopsIntegration.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetAzureDevopsIntegrationResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAzureDevopsIntegrationResult>("spacelift:index/getAzureDevopsIntegration:getAzureDevopsIntegration", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

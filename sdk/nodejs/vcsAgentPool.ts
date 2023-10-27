@@ -11,11 +11,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as spacelift from "@pulumi/spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
- * const ghe = new spacelift.VcsAgentPool("ghe", {
- *     description: "VCS agent pool for our internal GitHub Enterprise",
- * });
+ * const ghe = new spacelift.VcsAgentPool("ghe", {description: "VCS agent pool for our internal GitHub Enterprise"});
  * ```
  *
  * ## Import
@@ -88,6 +86,8 @@ export class VcsAgentPool extends pulumi.CustomResource {
             resourceInputs["config"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["config"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(VcsAgentPool.__pulumiType, name, resourceInputs, opts);
     }
 }

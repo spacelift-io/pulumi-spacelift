@@ -13,19 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * // Lookup an integration by its name:
- * const example = pulumi.output(spacelift.getAzureIntegration({
+ * const example = spacelift.getAzureIntegration({
  *     name: "Production",
- * }));
+ * });
  * ```
  */
 export function getAzureIntegration(args?: GetAzureIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetAzureIntegrationResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getAzureIntegration:getAzureIntegration", {
         "integrationId": args.integrationId,
         "name": args.name,
@@ -95,9 +91,22 @@ export interface GetAzureIntegrationResult {
      */
     readonly tenantId: string;
 }
-
+/**
+ * `spacelift.AzureIntegration` represents an integration with an Azure AD tenant. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect. Note that you will need to provide admin consent manually for the integration to work
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const example = spacelift.getAzureIntegration({
+ *     name: "Production",
+ * });
+ * ```
+ */
 export function getAzureIntegrationOutput(args?: GetAzureIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAzureIntegrationResult> {
-    return pulumi.output(args).apply(a => getAzureIntegration(a, opts))
+    return pulumi.output(args).apply((a: any) => getAzureIntegration(a, opts))
 }
 
 /**

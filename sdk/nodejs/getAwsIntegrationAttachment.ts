@@ -8,11 +8,8 @@ import * as utilities from "./utilities";
  * `spacelift.AwsIntegrationAttachment` represents the attachment between a reusable AWS integration and a single stack or module.
  */
 export function getAwsIntegrationAttachment(args: GetAwsIntegrationAttachmentArgs, opts?: pulumi.InvokeOptions): Promise<GetAwsIntegrationAttachmentResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getAwsIntegrationAttachment:getAwsIntegrationAttachment", {
         "integrationId": args.integrationId,
         "moduleId": args.moduleId,
@@ -71,9 +68,11 @@ export interface GetAwsIntegrationAttachmentResult {
      */
     readonly write: boolean;
 }
-
+/**
+ * `spacelift.AwsIntegrationAttachment` represents the attachment between a reusable AWS integration and a single stack or module.
+ */
 export function getAwsIntegrationAttachmentOutput(args: GetAwsIntegrationAttachmentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAwsIntegrationAttachmentResult> {
-    return pulumi.output(args).apply(a => getAwsIntegrationAttachment(a, opts))
+    return pulumi.output(args).apply((a: any) => getAwsIntegrationAttachment(a, opts))
 }
 
 /**

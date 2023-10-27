@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetAccountResult',
     'AwaitableGetAccountResult',
     'get_account',
+    'get_account_output',
 ]
 
 @pulumi.output_type
@@ -97,7 +98,24 @@ def get_account(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAcco
     __ret__ = pulumi.runtime.invoke('spacelift:index/getAccount:getAccount', __args__, opts=opts, typ=GetAccountResult).value
 
     return AwaitableGetAccountResult(
-        aws_account_id=__ret__.aws_account_id,
-        id=__ret__.id,
-        name=__ret__.name,
-        tier=__ret__.tier)
+        aws_account_id=pulumi.get(__ret__, 'aws_account_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        tier=pulumi.get(__ret__, 'tier'))
+
+
+@_utilities.lift_output_func(get_account)
+def get_account_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountResult]:
+    """
+    `get_account` represents the currently used Spacelift **account**
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    this = spacelift.get_account()
+    ```
+    """
+    ...

@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // ## Example Usage
@@ -18,13 +20,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupModule(ctx, &GetModuleArgs{
+//			_, err := spacelift.LookupModule(ctx, &spacelift.LookupModuleArgs{
 //				ModuleId: "k8s-module",
 //			}, nil)
 //			if err != nil {
@@ -36,7 +38,7 @@ import (
 //
 // ```
 func LookupModule(ctx *pulumi.Context, args *LookupModuleArgs, opts ...pulumi.InvokeOption) (*LookupModuleResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupModuleResult
 	err := ctx.Invoke("spacelift:index/getModule:getModule", args, &rv, opts...)
 	if err != nil {
@@ -67,6 +69,8 @@ type LookupModuleResult struct {
 	Branch string `pulumi:"branch"`
 	// free-form module description for human users (supports Markdown)
 	Description string `pulumi:"description"`
+	// Indicates whether local preview versions can be triggered on this Module.
+	EnableLocalPreview bool `pulumi:"enableLocalPreview"`
 	// GitHub Enterprise (self-hosted) VCS settings
 	GithubEnterprises []GetModuleGithubEnterprise `pulumi:"githubEnterprises"`
 	// GitLab VCS settings
@@ -90,6 +94,8 @@ type LookupModuleResult struct {
 	TerraformProvider string `pulumi:"terraformProvider"`
 	// ID of the worker pool to use
 	WorkerPoolId string `pulumi:"workerPoolId"`
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+	WorkflowTool string `pulumi:"workflowTool"`
 }
 
 func LookupModuleOutput(ctx *pulumi.Context, args LookupModuleOutputArgs, opts ...pulumi.InvokeOption) LookupModuleResultOutput {
@@ -130,6 +136,12 @@ func (o LookupModuleResultOutput) ToLookupModuleResultOutputWithContext(ctx cont
 	return o
 }
 
+func (o LookupModuleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupModuleResult] {
+	return pulumix.Output[LookupModuleResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 // indicates whether this module can administer others
 func (o LookupModuleResultOutput) Administrative() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupModuleResult) bool { return v.Administrative }).(pulumi.BoolOutput)
@@ -163,6 +175,11 @@ func (o LookupModuleResultOutput) Branch() pulumi.StringOutput {
 // free-form module description for human users (supports Markdown)
 func (o LookupModuleResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Indicates whether local preview versions can be triggered on this Module.
+func (o LookupModuleResultOutput) EnableLocalPreview() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupModuleResult) bool { return v.EnableLocalPreview }).(pulumi.BoolOutput)
 }
 
 // GitHub Enterprise (self-hosted) VCS settings
@@ -225,6 +242,11 @@ func (o LookupModuleResultOutput) TerraformProvider() pulumi.StringOutput {
 // ID of the worker pool to use
 func (o LookupModuleResultOutput) WorkerPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModuleResult) string { return v.WorkerPoolId }).(pulumi.StringOutput)
+}
+
+// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+func (o LookupModuleResultOutput) WorkflowTool() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupModuleResult) string { return v.WorkflowTool }).(pulumi.StringOutput)
 }
 
 func init() {

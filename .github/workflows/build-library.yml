@@ -1,0 +1,61 @@
+name: Build library
+
+on: { push: { branches-ignore: [future, main] } }
+
+concurrency:
+  group: build-library-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-library:
+    name: Build library
+    runs-on: ubuntu-latest
+    container: golang:1.21-alpine
+    steps:
+      - name: Install build dependencies
+        run: |
+          apk add --no-cache alpine-sdk git bash npm python3 py3-pip
+
+      - name: Install yarn
+        run: npm install --global yarn
+
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6
+
+      - name: Check out repository code
+        uses: actions/checkout@main
+        with: { fetch-depth: 0 }
+
+      - name: Treat repo as safe
+        run: git config --global --add safe.directory /__w/pulumi-spacelift/pulumi-spacelift
+
+      - name: Remove Pulumi directory
+        run: rm -rf /github/home/.pulumi
+
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1
+        with:
+          repo: pulumi/pulumictl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install pulumi
+        uses: pulumi/actions@v4
+
+      - name: Tag version
+        run: |
+          CURRENTTAG=$(git describe --tags --abbrev=0)
+          git tag $CURRENTTAG${{ github.run_number }}
+
+      - name: Print version
+        run: pulumictl get version
+
+      - name: Build SDKs
+        run: make build_sdks
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Check if sdk is up to date
+        run: git diff --exit-code ./

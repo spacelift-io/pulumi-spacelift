@@ -4,10 +4,15 @@
 package spacelift
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
-// `getIPs` returns the list of Spacelift's outgoing IP addresses, which you can use to whitelist connections coming from the Spacelift's "mothership".
+// `getIPs` returns the list of Spacelift's outgoing IP addresses, which you can use to whitelist connections coming from the Spacelift's "mothership". **NOTE:** this does not include the IP addresses of the workers in Spacelift's public worker pool. If you need to ensure that requests made during runs originate from a known set of IP addresses, please consider setting up a [private worker pool](https://docs.spacelift.io/concepts/worker-pools).
 //
 // ## Example Usage
 //
@@ -17,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -33,7 +38,7 @@ import (
 //
 // ```
 func GetIPs(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetIPsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetIPsResult
 	err := ctx.Invoke("spacelift:index/getIPs:getIPs", nil, &rv, opts...)
 	if err != nil {
@@ -48,4 +53,50 @@ type GetIPsResult struct {
 	Id string `pulumi:"id"`
 	// the list of spacelift.io outgoing IP addresses
 	Ips []string `pulumi:"ips"`
+}
+
+func GetIPsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetIPsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetIPsResult, error) {
+		r, err := GetIPs(ctx, opts...)
+		var s GetIPsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetIPsResultOutput)
+}
+
+// A collection of values returned by getIPs.
+type GetIPsResultOutput struct{ *pulumi.OutputState }
+
+func (GetIPsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIPsResult)(nil)).Elem()
+}
+
+func (o GetIPsResultOutput) ToGetIPsResultOutput() GetIPsResultOutput {
+	return o
+}
+
+func (o GetIPsResultOutput) ToGetIPsResultOutputWithContext(ctx context.Context) GetIPsResultOutput {
+	return o
+}
+
+func (o GetIPsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetIPsResult] {
+	return pulumix.Output[GetIPsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetIPsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIPsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// the list of spacelift.io outgoing IP addresses
+func (o GetIPsResultOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetIPsResult) []string { return v.Ips }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetIPsResultOutput{})
 }

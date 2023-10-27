@@ -16,6 +16,7 @@ namespace Pulumi.Spacelift
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
@@ -34,7 +35,7 @@ namespace Pulumi.Spacelift
     ///         Description = "Provisions a Kubernetes cluster",
     ///         ProjectRoot = "cluster",
     ///         Repository = "core-infra",
-    ///         TerraformVersion = "0.12.6",
+    ///         TerraformVersion = "1.3.0",
     ///     });
     /// 
     ///     // Terraform stack using Bitbucket Data Center as VCS
@@ -50,10 +51,10 @@ namespace Pulumi.Spacelift
     ///         Description = "Provisions a Kubernetes cluster",
     ///         ProjectRoot = "cluster",
     ///         Repository = "core-infra",
-    ///         TerraformVersion = "0.12.6",
+    ///         TerraformVersion = "1.3.0",
     ///     });
     /// 
-    ///     // Terraform stack using GitHub Enterprise as VCS
+    ///     // Terraform stack using a GitHub Custom Application. See the following page for more info: https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application
     ///     var k8s_cluster_github_enterprise = new Spacelift.Stack("k8s-cluster-github-enterprise", new()
     ///     {
     ///         Administrative = true,
@@ -66,7 +67,7 @@ namespace Pulumi.Spacelift
     ///         },
     ///         ProjectRoot = "cluster",
     ///         Repository = "core-infra",
-    ///         TerraformVersion = "0.12.6",
+    ///         TerraformVersion = "1.3.0",
     ///     });
     /// 
     ///     // Terraform stack using GitLab as VCS
@@ -82,10 +83,10 @@ namespace Pulumi.Spacelift
     ///         },
     ///         ProjectRoot = "cluster",
     ///         Repository = "core-infra",
-    ///         TerraformVersion = "0.12.6",
+    ///         TerraformVersion = "1.3.0",
     ///     });
     /// 
-    ///     // Terraform stack using github.com as VCS and enabling smart sanitization
+    ///     // Terraform stack using github.com as VCS and enabling external state access
     ///     var k8s_cluster = new Spacelift.Stack("k8s-cluster", new()
     ///     {
     ///         Administrative = true,
@@ -94,8 +95,8 @@ namespace Pulumi.Spacelift
     ///         Description = "Provisions a Kubernetes cluster",
     ///         ProjectRoot = "cluster",
     ///         Repository = "core-infra",
-    ///         TerraformSmartSanitization = true,
-    ///         TerraformVersion = "1.2.6",
+    ///         TerraformExternalStateAccess = true,
+    ///         TerraformVersion = "1.3.0",
     ///     });
     /// 
     ///     // CloudFormation stack using github.com as VCS
@@ -122,7 +123,7 @@ namespace Pulumi.Spacelift
     ///         Branch = "master",
     ///         Description = "Provisions a Kubernetes cluster",
     ///         ProjectRoot = "cluster",
-    ///         CSHARPPULUMI = new Spacelift.Inputs.StackPulumiArgs
+    ///         Pulumi_backend = new Spacelift.Inputs.StackPulumiArgs
     ///         {
     ///             LoginUrl = "s3://pulumi-state-bucket",
     ///             StackName = "kubernetes-core-services",
@@ -143,6 +144,7 @@ namespace Pulumi.Spacelift
     ///         Description = "Shared cluster services (Datadog, Istio etc.)",
     ///         Kubernetes = new Spacelift.Inputs.StackKubernetesArgs
     ///         {
+    ///             KubectlVersion = "1.26.1",
     ///             Namespace = "core",
     ///         },
     ///         ProjectRoot = "core-services",
@@ -210,6 +212,12 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Output("afterPlans")]
         public Output<ImmutableArray<string>> AfterPlans { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        [Output("afterRuns")]
+        public Output<ImmutableArray<string>> AfterRuns { get; private set; } = null!;
 
         /// <summary>
         /// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
@@ -308,13 +316,13 @@ namespace Pulumi.Spacelift
         public Output<bool?> EnableLocalPreview { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+        /// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
         /// </summary>
         [Output("githubActionDeploy")]
         public Output<bool?> GithubActionDeploy { get; private set; } = null!;
 
         /// <summary>
-        /// GitHub Enterprise (self-hosted) VCS settings
+        /// VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
         /// </summary>
         [Output("githubEnterprise")]
         public Output<Outputs.StackGithubEnterprise?> GithubEnterprise { get; private set; } = null!;
@@ -374,7 +382,13 @@ namespace Pulumi.Spacelift
         /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         /// </summary>
         [Output("pulumi")]
-        public Output<Outputs.StackPulumi?> CSHARPPULUMI { get; private set; } = null!;
+        public Output<Outputs.StackPulumi?> pulumi_backend { get; private set; } = null!;
+
+        /// <summary>
+        /// One-way VCS integration using a raw Git repository link
+        /// </summary>
+        [Output("rawGit")]
+        public Output<Outputs.StackRawGit?> RawGit { get; private set; } = null!;
 
         /// <summary>
         /// Name of the repository, without the owner part
@@ -398,10 +412,16 @@ namespace Pulumi.Spacelift
         public Output<string> Slug { get; private set; } = null!;
 
         /// <summary>
-        /// ID (slug) of the space the stack is in
+        /// ID (slug) of the space the stack is in. Defaults to `legacy`.
         /// </summary>
         [Output("spaceId")]
         public Output<string> SpaceId { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+        /// </summary>
+        [Output("terraformExternalStateAccess")]
+        public Output<bool?> TerraformExternalStateAccess { get; private set; } = null!;
 
         /// <summary>
         /// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
@@ -418,13 +438,25 @@ namespace Pulumi.Spacelift
         public Output<string?> TerraformVersion { get; private set; } = null!;
 
         /// <summary>
+        /// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+        /// </summary>
+        [Output("terraformWorkflowTool")]
+        public Output<string> TerraformWorkflowTool { get; private set; } = null!;
+
+        /// <summary>
         /// Terraform workspace to select
         /// </summary>
         [Output("terraformWorkspace")]
         public Output<string?> TerraformWorkspace { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the worker pool to use
+        /// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+        /// </summary>
+        [Output("terragrunt")]
+        public Output<Outputs.StackTerragrunt?> Terragrunt { get; private set; } = null!;
+
+        /// <summary>
+        /// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         /// </summary>
         [Output("workerPoolId")]
         public Output<string?> WorkerPoolId { get; private set; } = null!;
@@ -453,6 +485,10 @@ namespace Pulumi.Spacelift
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
+                AdditionalSecretOutputs =
+                {
+                    "importState",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -540,6 +576,18 @@ namespace Pulumi.Spacelift
         {
             get => _afterPlans ?? (_afterPlans = new InputList<string>());
             set => _afterPlans = value;
+        }
+
+        [Input("afterRuns")]
+        private InputList<string>? _afterRuns;
+
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        public InputList<string> AfterRuns
+        {
+            get => _afterRuns ?? (_afterRuns = new InputList<string>());
+            set => _afterRuns = value;
         }
 
         /// <summary>
@@ -663,13 +711,13 @@ namespace Pulumi.Spacelift
         public Input<bool>? EnableLocalPreview { get; set; }
 
         /// <summary>
-        /// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+        /// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
         /// </summary>
         [Input("githubActionDeploy")]
         public Input<bool>? GithubActionDeploy { get; set; }
 
         /// <summary>
-        /// GitHub Enterprise (self-hosted) VCS settings
+        /// VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
         /// </summary>
         [Input("githubEnterprise")]
         public Input<Inputs.StackGithubEnterpriseArgs>? GithubEnterprise { get; set; }
@@ -680,11 +728,21 @@ namespace Pulumi.Spacelift
         [Input("gitlab")]
         public Input<Inputs.StackGitlabArgs>? Gitlab { get; set; }
 
+        [Input("importState")]
+        private Input<string>? _importState;
+
         /// <summary>
         /// State file to upload when creating a new stack
         /// </summary>
-        [Input("importState")]
-        public Input<string>? ImportState { get; set; }
+        public Input<string>? ImportState
+        {
+            get => _importState;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _importState = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Path to the state file to upload when creating a new stack
@@ -734,7 +792,13 @@ namespace Pulumi.Spacelift
         /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         /// </summary>
         [Input("pulumi")]
-        public Input<Inputs.StackPulumiArgs>? CSHARPPULUMI { get; set; }
+        public Input<Inputs.StackPulumiArgs>? pulumi_backend { get; set; }
+
+        /// <summary>
+        /// One-way VCS integration using a raw Git repository link
+        /// </summary>
+        [Input("rawGit")]
+        public Input<Inputs.StackRawGitArgs>? RawGit { get; set; }
 
         /// <summary>
         /// Name of the repository, without the owner part
@@ -758,10 +822,16 @@ namespace Pulumi.Spacelift
         public Input<string>? Slug { get; set; }
 
         /// <summary>
-        /// ID (slug) of the space the stack is in
+        /// ID (slug) of the space the stack is in. Defaults to `legacy`.
         /// </summary>
         [Input("spaceId")]
         public Input<string>? SpaceId { get; set; }
+
+        /// <summary>
+        /// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+        /// </summary>
+        [Input("terraformExternalStateAccess")]
+        public Input<bool>? TerraformExternalStateAccess { get; set; }
 
         /// <summary>
         /// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
@@ -778,13 +848,25 @@ namespace Pulumi.Spacelift
         public Input<string>? TerraformVersion { get; set; }
 
         /// <summary>
+        /// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+        /// </summary>
+        [Input("terraformWorkflowTool")]
+        public Input<string>? TerraformWorkflowTool { get; set; }
+
+        /// <summary>
         /// Terraform workspace to select
         /// </summary>
         [Input("terraformWorkspace")]
         public Input<string>? TerraformWorkspace { get; set; }
 
         /// <summary>
-        /// ID of the worker pool to use
+        /// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+        /// </summary>
+        [Input("terragrunt")]
+        public Input<Inputs.StackTerragruntArgs>? Terragrunt { get; set; }
+
+        /// <summary>
+        /// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         /// </summary>
         [Input("workerPoolId")]
         public Input<string>? WorkerPoolId { get; set; }
@@ -861,6 +943,18 @@ namespace Pulumi.Spacelift
         {
             get => _afterPlans ?? (_afterPlans = new InputList<string>());
             set => _afterPlans = value;
+        }
+
+        [Input("afterRuns")]
+        private InputList<string>? _afterRuns;
+
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        public InputList<string> AfterRuns
+        {
+            get => _afterRuns ?? (_afterRuns = new InputList<string>());
+            set => _afterRuns = value;
         }
 
         /// <summary>
@@ -990,13 +1084,13 @@ namespace Pulumi.Spacelift
         public Input<bool>? EnableLocalPreview { get; set; }
 
         /// <summary>
-        /// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+        /// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
         /// </summary>
         [Input("githubActionDeploy")]
         public Input<bool>? GithubActionDeploy { get; set; }
 
         /// <summary>
-        /// GitHub Enterprise (self-hosted) VCS settings
+        /// VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
         /// </summary>
         [Input("githubEnterprise")]
         public Input<Inputs.StackGithubEnterpriseGetArgs>? GithubEnterprise { get; set; }
@@ -1007,11 +1101,21 @@ namespace Pulumi.Spacelift
         [Input("gitlab")]
         public Input<Inputs.StackGitlabGetArgs>? Gitlab { get; set; }
 
+        [Input("importState")]
+        private Input<string>? _importState;
+
         /// <summary>
         /// State file to upload when creating a new stack
         /// </summary>
-        [Input("importState")]
-        public Input<string>? ImportState { get; set; }
+        public Input<string>? ImportState
+        {
+            get => _importState;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _importState = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Path to the state file to upload when creating a new stack
@@ -1061,7 +1165,13 @@ namespace Pulumi.Spacelift
         /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
         /// </summary>
         [Input("pulumi")]
-        public Input<Inputs.StackPulumiGetArgs>? CSHARPPULUMI { get; set; }
+        public Input<Inputs.StackPulumiGetArgs>? pulumi_backend { get; set; }
+
+        /// <summary>
+        /// One-way VCS integration using a raw Git repository link
+        /// </summary>
+        [Input("rawGit")]
+        public Input<Inputs.StackRawGitGetArgs>? RawGit { get; set; }
 
         /// <summary>
         /// Name of the repository, without the owner part
@@ -1085,10 +1195,16 @@ namespace Pulumi.Spacelift
         public Input<string>? Slug { get; set; }
 
         /// <summary>
-        /// ID (slug) of the space the stack is in
+        /// ID (slug) of the space the stack is in. Defaults to `legacy`.
         /// </summary>
         [Input("spaceId")]
         public Input<string>? SpaceId { get; set; }
+
+        /// <summary>
+        /// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+        /// </summary>
+        [Input("terraformExternalStateAccess")]
+        public Input<bool>? TerraformExternalStateAccess { get; set; }
 
         /// <summary>
         /// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
@@ -1105,13 +1221,25 @@ namespace Pulumi.Spacelift
         public Input<string>? TerraformVersion { get; set; }
 
         /// <summary>
+        /// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+        /// </summary>
+        [Input("terraformWorkflowTool")]
+        public Input<string>? TerraformWorkflowTool { get; set; }
+
+        /// <summary>
         /// Terraform workspace to select
         /// </summary>
         [Input("terraformWorkspace")]
         public Input<string>? TerraformWorkspace { get; set; }
 
         /// <summary>
-        /// ID of the worker pool to use
+        /// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+        /// </summary>
+        [Input("terragrunt")]
+        public Input<Inputs.StackTerragruntGetArgs>? Terragrunt { get; set; }
+
+        /// <summary>
+        /// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         /// </summary>
         [Input("workerPoolId")]
         public Input<string>? WorkerPoolId { get; set; }

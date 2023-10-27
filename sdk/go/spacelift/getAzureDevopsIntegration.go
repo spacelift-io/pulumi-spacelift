@@ -4,7 +4,12 @@
 package spacelift
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getAzureDevopsIntegration` returns details about Azure DevOps integration
@@ -17,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -33,7 +38,7 @@ import (
 //
 // ```
 func GetAzureDevopsIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAzureDevopsIntegrationResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAzureDevopsIntegrationResult
 	err := ctx.Invoke("spacelift:index/getAzureDevopsIntegration:getAzureDevopsIntegration", nil, &rv, opts...)
 	if err != nil {
@@ -50,4 +55,55 @@ type GetAzureDevopsIntegrationResult struct {
 	OrganizationUrl string `pulumi:"organizationUrl"`
 	// Azure DevOps integration webhook password
 	WebhookPassword string `pulumi:"webhookPassword"`
+}
+
+func GetAzureDevopsIntegrationOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetAzureDevopsIntegrationResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetAzureDevopsIntegrationResult, error) {
+		r, err := GetAzureDevopsIntegration(ctx, opts...)
+		var s GetAzureDevopsIntegrationResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetAzureDevopsIntegrationResultOutput)
+}
+
+// A collection of values returned by getAzureDevopsIntegration.
+type GetAzureDevopsIntegrationResultOutput struct{ *pulumi.OutputState }
+
+func (GetAzureDevopsIntegrationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAzureDevopsIntegrationResult)(nil)).Elem()
+}
+
+func (o GetAzureDevopsIntegrationResultOutput) ToGetAzureDevopsIntegrationResultOutput() GetAzureDevopsIntegrationResultOutput {
+	return o
+}
+
+func (o GetAzureDevopsIntegrationResultOutput) ToGetAzureDevopsIntegrationResultOutputWithContext(ctx context.Context) GetAzureDevopsIntegrationResultOutput {
+	return o
+}
+
+func (o GetAzureDevopsIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAzureDevopsIntegrationResult] {
+	return pulumix.Output[GetAzureDevopsIntegrationResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAzureDevopsIntegrationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureDevopsIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Azure DevOps integration organization url
+func (o GetAzureDevopsIntegrationResultOutput) OrganizationUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureDevopsIntegrationResult) string { return v.OrganizationUrl }).(pulumi.StringOutput)
+}
+
+// Azure DevOps integration webhook password
+func (o GetAzureDevopsIntegrationResultOutput) WebhookPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureDevopsIntegrationResult) string { return v.WebhookPassword }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAzureDevopsIntegrationResultOutput{})
 }

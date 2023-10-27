@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['MountedfileArgs', 'Mountedfile']
@@ -29,16 +29,51 @@ class MountedfileArgs:
         :param pulumi.Input[str] stack_id: ID of the stack on which the mounted file is defined
         :param pulumi.Input[bool] write_only: Indicates whether the content can be read back outside a Run. Defaults to `true`.
         """
-        pulumi.set(__self__, "content", content)
-        pulumi.set(__self__, "relative_path", relative_path)
+        MountedfileArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            content=content,
+            relative_path=relative_path,
+            context_id=context_id,
+            module_id=module_id,
+            stack_id=stack_id,
+            write_only=write_only,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             content: Optional[pulumi.Input[str]] = None,
+             relative_path: Optional[pulumi.Input[str]] = None,
+             context_id: Optional[pulumi.Input[str]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             write_only: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if content is None:
+            raise TypeError("Missing 'content' argument")
+        if relative_path is None and 'relativePath' in kwargs:
+            relative_path = kwargs['relativePath']
+        if relative_path is None:
+            raise TypeError("Missing 'relative_path' argument")
+        if context_id is None and 'contextId' in kwargs:
+            context_id = kwargs['contextId']
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+        if write_only is None and 'writeOnly' in kwargs:
+            write_only = kwargs['writeOnly']
+
+        _setter("content", content)
+        _setter("relative_path", relative_path)
         if context_id is not None:
-            pulumi.set(__self__, "context_id", context_id)
+            _setter("context_id", context_id)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
         if write_only is not None:
-            pulumi.set(__self__, "write_only", write_only)
+            _setter("write_only", write_only)
 
     @property
     @pulumi.getter
@@ -133,20 +168,53 @@ class _MountedfileState:
         :param pulumi.Input[str] stack_id: ID of the stack on which the mounted file is defined
         :param pulumi.Input[bool] write_only: Indicates whether the content can be read back outside a Run. Defaults to `true`.
         """
+        _MountedfileState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            checksum=checksum,
+            content=content,
+            context_id=context_id,
+            module_id=module_id,
+            relative_path=relative_path,
+            stack_id=stack_id,
+            write_only=write_only,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             checksum: Optional[pulumi.Input[str]] = None,
+             content: Optional[pulumi.Input[str]] = None,
+             context_id: Optional[pulumi.Input[str]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             relative_path: Optional[pulumi.Input[str]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             write_only: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if context_id is None and 'contextId' in kwargs:
+            context_id = kwargs['contextId']
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if relative_path is None and 'relativePath' in kwargs:
+            relative_path = kwargs['relativePath']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+        if write_only is None and 'writeOnly' in kwargs:
+            write_only = kwargs['writeOnly']
+
         if checksum is not None:
-            pulumi.set(__self__, "checksum", checksum)
+            _setter("checksum", checksum)
         if content is not None:
-            pulumi.set(__self__, "content", content)
+            _setter("content", content)
         if context_id is not None:
-            pulumi.set(__self__, "context_id", context_id)
+            _setter("context_id", context_id)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if relative_path is not None:
-            pulumi.set(__self__, "relative_path", relative_path)
+            _setter("relative_path", relative_path)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
         if write_only is not None:
-            pulumi.set(__self__, "write_only", write_only)
+            _setter("write_only", write_only)
 
     @property
     @pulumi.getter
@@ -352,6 +420,10 @@ class Mountedfile(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            MountedfileArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -374,7 +446,7 @@ class Mountedfile(pulumi.CustomResource):
 
             if content is None and not opts.urn:
                 raise TypeError("Missing required property 'content'")
-            __props__.__dict__["content"] = content
+            __props__.__dict__["content"] = None if content is None else pulumi.Output.secret(content)
             __props__.__dict__["context_id"] = context_id
             __props__.__dict__["module_id"] = module_id
             if relative_path is None and not opts.urn:
@@ -383,6 +455,8 @@ class Mountedfile(pulumi.CustomResource):
             __props__.__dict__["stack_id"] = stack_id
             __props__.__dict__["write_only"] = write_only
             __props__.__dict__["checksum"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["content"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Mountedfile, __self__).__init__(
             'spacelift:index/mountedfile:Mountedfile',
             resource_name,

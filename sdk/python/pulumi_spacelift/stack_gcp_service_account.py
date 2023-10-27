@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['StackGcpServiceAccountArgs', 'StackGcpServiceAccount']
@@ -23,11 +23,34 @@ class StackGcpServiceAccountArgs:
         :param pulumi.Input[str] module_id: ID of the module which uses GCP service account credentials
         :param pulumi.Input[str] stack_id: ID of the stack which uses GCP service account credentials
         """
-        pulumi.set(__self__, "token_scopes", token_scopes)
+        StackGcpServiceAccountArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            token_scopes=token_scopes,
+            module_id=module_id,
+            stack_id=stack_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if token_scopes is None and 'tokenScopes' in kwargs:
+            token_scopes = kwargs['tokenScopes']
+        if token_scopes is None:
+            raise TypeError("Missing 'token_scopes' argument")
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+
+        _setter("token_scopes", token_scopes)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
 
     @property
     @pulumi.getter(name="tokenScopes")
@@ -80,14 +103,39 @@ class _StackGcpServiceAccountState:
         :param pulumi.Input[str] stack_id: ID of the stack which uses GCP service account credentials
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of scopes that will be requested when generating temporary GCP service account credentials
         """
+        _StackGcpServiceAccountState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            module_id=module_id,
+            service_account_email=service_account_email,
+            stack_id=stack_id,
+            token_scopes=token_scopes,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             module_id: Optional[pulumi.Input[str]] = None,
+             service_account_email: Optional[pulumi.Input[str]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if service_account_email is None and 'serviceAccountEmail' in kwargs:
+            service_account_email = kwargs['serviceAccountEmail']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+        if token_scopes is None and 'tokenScopes' in kwargs:
+            token_scopes = kwargs['tokenScopes']
+
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if service_account_email is not None:
-            pulumi.set(__self__, "service_account_email", service_account_email)
+            _setter("service_account_email", service_account_email)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
         if token_scopes is not None:
-            pulumi.set(__self__, "token_scopes", token_scopes)
+            _setter("token_scopes", token_scopes)
 
     @property
     @pulumi.getter(name="moduleId")
@@ -152,7 +200,7 @@ class StackGcpServiceAccount(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_gcp as gcp
+        import pulumi_google as google
         import pulumi_spacelift as spacelift
 
         k8s_core_stack = spacelift.Stack("k8s-coreStack",
@@ -165,13 +213,14 @@ class StackGcpServiceAccount(pulumi.CustomResource):
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/devstorage.full_control",
             ])
-        k8s_core_project = gcp.organizations.Project("k8s-coreProject",
-            project_id="unicorn-k8s-core",
-            org_id=var["gcp_organization_id"])
-        k8s_core_iam_member = gcp.projects.IAMMember("k8s-coreIAMMember",
-            project=k8s_core_project.id,
-            role="roles/owner",
-            member=k8s_core_stack_gcp_service_account.service_account_email.apply(lambda service_account_email: f"serviceAccount:{service_account_email}"))
+        k8s_coregoogle_project = google.index.Google_project("k8s-coregoogle_project",
+            name=Kubernetes code,
+            project_id=unicorn-k8s-core,
+            org_id=var.gcp_organization_id)
+        k8s_coregoogle_project_iam_member = google.index.Google_project_iam_member("k8s-coregoogle_project_iam_member",
+            project=k8s_coregoogle_project.id,
+            role=roles/owner,
+            member=fserviceAccount:{k8s_core_stack_gcp_service_account.service_account_email})
         ```
 
         :param str resource_name: The name of the resource.
@@ -191,7 +240,7 @@ class StackGcpServiceAccount(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_gcp as gcp
+        import pulumi_google as google
         import pulumi_spacelift as spacelift
 
         k8s_core_stack = spacelift.Stack("k8s-coreStack",
@@ -204,13 +253,14 @@ class StackGcpServiceAccount(pulumi.CustomResource):
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/devstorage.full_control",
             ])
-        k8s_core_project = gcp.organizations.Project("k8s-coreProject",
-            project_id="unicorn-k8s-core",
-            org_id=var["gcp_organization_id"])
-        k8s_core_iam_member = gcp.projects.IAMMember("k8s-coreIAMMember",
-            project=k8s_core_project.id,
-            role="roles/owner",
-            member=k8s_core_stack_gcp_service_account.service_account_email.apply(lambda service_account_email: f"serviceAccount:{service_account_email}"))
+        k8s_coregoogle_project = google.index.Google_project("k8s-coregoogle_project",
+            name=Kubernetes code,
+            project_id=unicorn-k8s-core,
+            org_id=var.gcp_organization_id)
+        k8s_coregoogle_project_iam_member = google.index.Google_project_iam_member("k8s-coregoogle_project_iam_member",
+            project=k8s_coregoogle_project.id,
+            role=roles/owner,
+            member=fserviceAccount:{k8s_core_stack_gcp_service_account.service_account_email})
         ```
 
         :param str resource_name: The name of the resource.
@@ -223,6 +273,10 @@ class StackGcpServiceAccount(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            StackGcpServiceAccountArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

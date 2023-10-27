@@ -13,24 +13,19 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * // With a stack.
- * const apps_k8s_ie = pulumi.output(spacelift.getContextAttachment({
+ * const apps-k8s-ie = spacelift.getContextAttachment({
  *     contextId: "prod-k8s-ie",
  *     stackId: "apps-cluster",
- * }));
- * // With a module.
- * const kafka_k8s_ie = pulumi.output(spacelift.getContextAttachment({
+ * });
+ * const kafka-k8s-ie = spacelift.getContextAttachment({
  *     contextId: "prod-k8s-ie",
  *     moduleId: "terraform-aws-kafka",
- * }));
+ * });
  * ```
  */
 export function getContextAttachment(args: GetContextAttachmentArgs, opts?: pulumi.InvokeOptions): Promise<GetContextAttachmentResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getContextAttachment:getContextAttachment", {
         "contextId": args.contextId,
         "moduleId": args.moduleId,
@@ -81,9 +76,27 @@ export interface GetContextAttachmentResult {
      */
     readonly stackId?: string;
 }
-
+/**
+ * `spacelift.ContextAttachment` represents a Spacelift attachment of a single context to a single stack or module, with a predefined priority.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const apps-k8s-ie = spacelift.getContextAttachment({
+ *     contextId: "prod-k8s-ie",
+ *     stackId: "apps-cluster",
+ * });
+ * const kafka-k8s-ie = spacelift.getContextAttachment({
+ *     contextId: "prod-k8s-ie",
+ *     moduleId: "terraform-aws-kafka",
+ * });
+ * ```
+ */
 export function getContextAttachmentOutput(args: GetContextAttachmentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContextAttachmentResult> {
-    return pulumi.output(args).apply(a => getContextAttachment(a, opts))
+    return pulumi.output(args).apply((a: any) => getContextAttachment(a, opts))
 }
 
 /**

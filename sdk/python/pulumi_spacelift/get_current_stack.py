@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetCurrentStackResult',
     'AwaitableGetCurrentStackResult',
     'get_current_stack',
+    'get_current_stack_output',
 ]
 
 @pulumi.output_type
@@ -64,4 +65,24 @@ def get_current_stack(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableG
     __ret__ = pulumi.runtime.invoke('spacelift:index/getCurrentStack:getCurrentStack', __args__, opts=opts, typ=GetCurrentStackResult).value
 
     return AwaitableGetCurrentStackResult(
-        id=__ret__.id)
+        id=pulumi.get(__ret__, 'id'))
+
+
+@_utilities.lift_output_func(get_current_stack)
+def get_current_stack_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCurrentStackResult]:
+    """
+    `get_current_stack` is a data source that provides information about the current administrative stack if the run is executed within Spacelift by a stack or module. This allows clever tricks like attaching contexts or policies to the stack that manages them.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    this = spacelift.get_current_stack()
+    core_kubeconfig = spacelift.EnvironmentVariable("core-kubeconfig",
+        stack_id=this.id,
+        value="bacon")
+    ```
+    """
+    ...

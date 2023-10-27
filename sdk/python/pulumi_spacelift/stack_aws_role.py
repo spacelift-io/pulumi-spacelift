@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['StackAwsRoleArgs', 'StackAwsRole']
@@ -29,17 +29,52 @@ class StackAwsRoleArgs:
         :param pulumi.Input[str] module_id: ID of the module which assumes the AWS IAM role
         :param pulumi.Input[str] stack_id: ID of the stack which assumes the AWS IAM role
         """
-        pulumi.set(__self__, "role_arn", role_arn)
+        StackAwsRoleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            role_arn=role_arn,
+            duration_seconds=duration_seconds,
+            external_id=external_id,
+            generate_credentials_in_worker=generate_credentials_in_worker,
+            module_id=module_id,
+            stack_id=stack_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             role_arn: Optional[pulumi.Input[str]] = None,
+             duration_seconds: Optional[pulumi.Input[int]] = None,
+             external_id: Optional[pulumi.Input[str]] = None,
+             generate_credentials_in_worker: Optional[pulumi.Input[bool]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if role_arn is None and 'roleArn' in kwargs:
+            role_arn = kwargs['roleArn']
+        if role_arn is None:
+            raise TypeError("Missing 'role_arn' argument")
+        if duration_seconds is None and 'durationSeconds' in kwargs:
+            duration_seconds = kwargs['durationSeconds']
+        if external_id is None and 'externalId' in kwargs:
+            external_id = kwargs['externalId']
+        if generate_credentials_in_worker is None and 'generateCredentialsInWorker' in kwargs:
+            generate_credentials_in_worker = kwargs['generateCredentialsInWorker']
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+
+        _setter("role_arn", role_arn)
         if duration_seconds is not None:
-            pulumi.set(__self__, "duration_seconds", duration_seconds)
+            _setter("duration_seconds", duration_seconds)
         if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
+            _setter("external_id", external_id)
         if generate_credentials_in_worker is not None:
-            pulumi.set(__self__, "generate_credentials_in_worker", generate_credentials_in_worker)
+            _setter("generate_credentials_in_worker", generate_credentials_in_worker)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -132,18 +167,51 @@ class _StackAwsRoleState:
         :param pulumi.Input[str] role_arn: ARN of the AWS IAM role to attach
         :param pulumi.Input[str] stack_id: ID of the stack which assumes the AWS IAM role
         """
+        _StackAwsRoleState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            duration_seconds=duration_seconds,
+            external_id=external_id,
+            generate_credentials_in_worker=generate_credentials_in_worker,
+            module_id=module_id,
+            role_arn=role_arn,
+            stack_id=stack_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             duration_seconds: Optional[pulumi.Input[int]] = None,
+             external_id: Optional[pulumi.Input[str]] = None,
+             generate_credentials_in_worker: Optional[pulumi.Input[bool]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             role_arn: Optional[pulumi.Input[str]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if duration_seconds is None and 'durationSeconds' in kwargs:
+            duration_seconds = kwargs['durationSeconds']
+        if external_id is None and 'externalId' in kwargs:
+            external_id = kwargs['externalId']
+        if generate_credentials_in_worker is None and 'generateCredentialsInWorker' in kwargs:
+            generate_credentials_in_worker = kwargs['generateCredentialsInWorker']
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if role_arn is None and 'roleArn' in kwargs:
+            role_arn = kwargs['roleArn']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+
         if duration_seconds is not None:
-            pulumi.set(__self__, "duration_seconds", duration_seconds)
+            _setter("duration_seconds", duration_seconds)
         if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
+            _setter("external_id", external_id)
         if generate_credentials_in_worker is not None:
-            pulumi.set(__self__, "generate_credentials_in_worker", generate_credentials_in_worker)
+            _setter("generate_credentials_in_worker", generate_credentials_in_worker)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if role_arn is not None:
-            pulumi.set(__self__, "role_arn", role_arn)
+            _setter("role_arn", role_arn)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
 
     @property
     @pulumi.getter(name="durationSeconds")
@@ -277,6 +345,10 @@ class StackAwsRole(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            StackAwsRoleArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

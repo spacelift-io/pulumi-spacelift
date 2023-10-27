@@ -8,11 +8,13 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
 //
-// Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+// Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName@$integrationID@$stackID@suffix` or `$accountName@$integrationID@$moduleID@$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
 //
 // ## Example Usage
 //
@@ -22,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupAwsIntegration(ctx, &GetAwsIntegrationArgs{
+//			_, err := spacelift.LookupAwsIntegration(ctx, &spacelift.LookupAwsIntegrationArgs{
 //				Name: pulumi.StringRef("Production"),
 //			}, nil)
 //			if err != nil {
@@ -40,7 +42,7 @@ import (
 //
 // ```
 func LookupAwsIntegration(ctx *pulumi.Context, args *LookupAwsIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupAwsIntegrationResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAwsIntegrationResult
 	err := ctx.Invoke("spacelift:index/getAwsIntegration:getAwsIntegration", args, &rv, opts...)
 	if err != nil {
@@ -116,6 +118,12 @@ func (o LookupAwsIntegrationResultOutput) ToLookupAwsIntegrationResultOutput() L
 
 func (o LookupAwsIntegrationResultOutput) ToLookupAwsIntegrationResultOutputWithContext(ctx context.Context) LookupAwsIntegrationResultOutput {
 	return o
+}
+
+func (o LookupAwsIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAwsIntegrationResult] {
+	return pulumix.Output[LookupAwsIntegrationResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Duration in seconds for which the assumed role credentials should be valid

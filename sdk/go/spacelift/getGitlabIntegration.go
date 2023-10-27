@@ -4,7 +4,12 @@
 package spacelift
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getGitlabIntegration` returns details about Gitlab integration
@@ -17,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -33,7 +38,7 @@ import (
 //
 // ```
 func GetGitlabIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetGitlabIntegrationResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetGitlabIntegrationResult
 	err := ctx.Invoke("spacelift:index/getGitlabIntegration:getGitlabIntegration", nil, &rv, opts...)
 	if err != nil {
@@ -50,4 +55,55 @@ type GetGitlabIntegrationResult struct {
 	Id string `pulumi:"id"`
 	// Gitlab integration webhook secret
 	WebhookSecret string `pulumi:"webhookSecret"`
+}
+
+func GetGitlabIntegrationOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetGitlabIntegrationResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetGitlabIntegrationResult, error) {
+		r, err := GetGitlabIntegration(ctx, opts...)
+		var s GetGitlabIntegrationResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetGitlabIntegrationResultOutput)
+}
+
+// A collection of values returned by getGitlabIntegration.
+type GetGitlabIntegrationResultOutput struct{ *pulumi.OutputState }
+
+func (GetGitlabIntegrationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGitlabIntegrationResult)(nil)).Elem()
+}
+
+func (o GetGitlabIntegrationResultOutput) ToGetGitlabIntegrationResultOutput() GetGitlabIntegrationResultOutput {
+	return o
+}
+
+func (o GetGitlabIntegrationResultOutput) ToGetGitlabIntegrationResultOutputWithContext(ctx context.Context) GetGitlabIntegrationResultOutput {
+	return o
+}
+
+func (o GetGitlabIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetGitlabIntegrationResult] {
+	return pulumix.Output[GetGitlabIntegrationResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Gitlab integration api host
+func (o GetGitlabIntegrationResultOutput) ApiHost() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabIntegrationResult) string { return v.ApiHost }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetGitlabIntegrationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Gitlab integration webhook secret
+func (o GetGitlabIntegrationResultOutput) WebhookSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabIntegrationResult) string { return v.WebhookSecret }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetGitlabIntegrationResultOutput{})
 }

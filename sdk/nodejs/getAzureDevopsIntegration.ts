@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const azureDevopsIntegration = pulumi.output(spacelift.getAzureDevopsIntegration());
+ * const azureDevopsIntegration = spacelift.getAzureDevopsIntegration({});
  * ```
  */
 export function getAzureDevopsIntegration(opts?: pulumi.InvokeOptions): Promise<GetAzureDevopsIntegrationResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getAzureDevopsIntegration:getAzureDevopsIntegration", {
     }, opts);
 }
@@ -42,4 +39,19 @@ export interface GetAzureDevopsIntegrationResult {
      * Azure DevOps integration webhook password
      */
     readonly webhookPassword: string;
+}
+/**
+ * `spacelift.getAzureDevopsIntegration` returns details about Azure DevOps integration
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const azureDevopsIntegration = spacelift.getAzureDevopsIntegration({});
+ * ```
+ */
+export function getAzureDevopsIntegrationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetAzureDevopsIntegrationResult> {
+    return pulumi.output(getAzureDevopsIntegration(opts))
 }

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -14,6 +14,7 @@ __all__ = [
     'GetWorkerPoolsResult',
     'AwaitableGetWorkerPoolsResult',
     'get_worker_pools',
+    'get_worker_pools_output',
 ]
 
 @pulumi.output_type
@@ -71,5 +72,22 @@ def get_worker_pools(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     __ret__ = pulumi.runtime.invoke('spacelift:index/getWorkerPools:getWorkerPools', __args__, opts=opts, typ=GetWorkerPoolsResult).value
 
     return AwaitableGetWorkerPoolsResult(
-        id=__ret__.id,
-        worker_pools=__ret__.worker_pools)
+        id=pulumi.get(__ret__, 'id'),
+        worker_pools=pulumi.get(__ret__, 'worker_pools'))
+
+
+@_utilities.lift_output_func(get_worker_pools)
+def get_worker_pools_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkerPoolsResult]:
+    """
+    `get_worker_pools` represents the worker pools assigned to the Spacelift account.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    worker_pools = spacelift.get_worker_pools()
+    ```
+    """
+    ...

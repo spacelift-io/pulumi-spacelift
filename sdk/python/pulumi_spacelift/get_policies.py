@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -95,10 +95,6 @@ def get_policies(labels: Optional[Sequence[str]] = None,
         labels=["autoattach"])
     pulumi.export("policyIds", [__item["id"] for __item in data["spacelift_policies"]["this"]["policies"]])
     ```
-
-
-    :param Sequence[str] labels: required labels to match
-    :param str type: required policy type
     """
     __args__ = dict()
     __args__['labels'] = labels
@@ -107,10 +103,10 @@ def get_policies(labels: Optional[Sequence[str]] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getPolicies:getPolicies', __args__, opts=opts, typ=GetPoliciesResult).value
 
     return AwaitableGetPoliciesResult(
-        id=__ret__.id,
-        labels=__ret__.labels,
-        policies=__ret__.policies,
-        type=__ret__.type)
+        id=pulumi.get(__ret__, 'id'),
+        labels=pulumi.get(__ret__, 'labels'),
+        policies=pulumi.get(__ret__, 'policies'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_policies)
@@ -131,9 +127,5 @@ def get_policies_output(labels: Optional[pulumi.Input[Optional[Sequence[str]]]] 
         labels=["autoattach"])
     pulumi.export("policyIds", [__item["id"] for __item in data["spacelift_policies"]["this"]["policies"]])
     ```
-
-
-    :param Sequence[str] labels: required labels to match
-    :param str type: required policy type
     """
     ...

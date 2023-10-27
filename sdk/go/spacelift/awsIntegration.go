@@ -7,13 +7,15 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
 //
-// Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-$suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+// Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName@$integrationID@$stackID@$suffix` or `$accountName@$integrationID@$moduleID@$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
 //
 // ## Import
 //
@@ -51,7 +53,7 @@ func NewAwsIntegration(ctx *pulumi.Context,
 	if args.RoleArn == nil {
 		return nil, errors.New("invalid value for required argument 'RoleArn'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AwsIntegration
 	err := ctx.RegisterResource("spacelift:index/awsIntegration:AwsIntegration", name, args, &resource, opts...)
 	if err != nil {
@@ -169,6 +171,12 @@ func (i *AwsIntegration) ToAwsIntegrationOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(AwsIntegrationOutput)
 }
 
+func (i *AwsIntegration) ToOutput(ctx context.Context) pulumix.Output[*AwsIntegration] {
+	return pulumix.Output[*AwsIntegration]{
+		OutputState: i.ToAwsIntegrationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AwsIntegrationArrayInput is an input type that accepts AwsIntegrationArray and AwsIntegrationArrayOutput values.
 // You can construct a concrete instance of `AwsIntegrationArrayInput` via:
 //
@@ -192,6 +200,12 @@ func (i AwsIntegrationArray) ToAwsIntegrationArrayOutput() AwsIntegrationArrayOu
 
 func (i AwsIntegrationArray) ToAwsIntegrationArrayOutputWithContext(ctx context.Context) AwsIntegrationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AwsIntegrationArrayOutput)
+}
+
+func (i AwsIntegrationArray) ToOutput(ctx context.Context) pulumix.Output[[]*AwsIntegration] {
+	return pulumix.Output[[]*AwsIntegration]{
+		OutputState: i.ToAwsIntegrationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AwsIntegrationMapInput is an input type that accepts AwsIntegrationMap and AwsIntegrationMapOutput values.
@@ -219,6 +233,12 @@ func (i AwsIntegrationMap) ToAwsIntegrationMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(AwsIntegrationMapOutput)
 }
 
+func (i AwsIntegrationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AwsIntegration] {
+	return pulumix.Output[map[string]*AwsIntegration]{
+		OutputState: i.ToAwsIntegrationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AwsIntegrationOutput struct{ *pulumi.OutputState }
 
 func (AwsIntegrationOutput) ElementType() reflect.Type {
@@ -231,6 +251,12 @@ func (o AwsIntegrationOutput) ToAwsIntegrationOutput() AwsIntegrationOutput {
 
 func (o AwsIntegrationOutput) ToAwsIntegrationOutputWithContext(ctx context.Context) AwsIntegrationOutput {
 	return o
+}
+
+func (o AwsIntegrationOutput) ToOutput(ctx context.Context) pulumix.Output[*AwsIntegration] {
+	return pulumix.Output[*AwsIntegration]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Duration in seconds for which the assumed role credentials should be valid. Defaults to `900`.
@@ -282,6 +308,12 @@ func (o AwsIntegrationArrayOutput) ToAwsIntegrationArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o AwsIntegrationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AwsIntegration] {
+	return pulumix.Output[[]*AwsIntegration]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AwsIntegrationArrayOutput) Index(i pulumi.IntInput) AwsIntegrationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AwsIntegration {
 		return vs[0].([]*AwsIntegration)[vs[1].(int)]
@@ -300,6 +332,12 @@ func (o AwsIntegrationMapOutput) ToAwsIntegrationMapOutput() AwsIntegrationMapOu
 
 func (o AwsIntegrationMapOutput) ToAwsIntegrationMapOutputWithContext(ctx context.Context) AwsIntegrationMapOutput {
 	return o
+}
+
+func (o AwsIntegrationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AwsIntegration] {
+	return pulumix.Output[map[string]*AwsIntegration]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AwsIntegrationMapOutput) MapIndex(k pulumi.StringInput) AwsIntegrationOutput {

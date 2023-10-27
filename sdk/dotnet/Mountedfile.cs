@@ -18,11 +18,12 @@ namespace Pulumi.Spacelift
     /// using System;
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
     /// 	private static string ReadFileBase64(string path) {
-    /// 		return Convert.ToBase64String(Encoding.UTF8.GetBytes(File.ReadAllText(path)))
+    /// 		return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(File.ReadAllText(path)));
     /// 	}
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -137,6 +138,10 @@ namespace Pulumi.Spacelift
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
+                AdditionalSecretOutputs =
+                {
+                    "content",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -160,11 +165,21 @@ namespace Pulumi.Spacelift
 
     public sealed class MountedfileArgs : global::Pulumi.ResourceArgs
     {
+        [Input("content", required: true)]
+        private Input<string>? _content;
+
         /// <summary>
         /// Content of the mounted file encoded using Base-64
         /// </summary>
-        [Input("content", required: true)]
-        public Input<string> Content { get; set; } = null!;
+        public Input<string>? Content
+        {
+            get => _content;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _content = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// ID of the context on which the mounted file is defined
@@ -210,11 +225,21 @@ namespace Pulumi.Spacelift
         [Input("checksum")]
         public Input<string>? Checksum { get; set; }
 
+        [Input("content")]
+        private Input<string>? _content;
+
         /// <summary>
         /// Content of the mounted file encoded using Base-64
         /// </summary>
-        [Input("content")]
-        public Input<string>? Content { get; set; }
+        public Input<string>? Content
+        {
+            get => _content;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _content = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// ID of the context on which the mounted file is defined

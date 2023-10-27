@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -14,6 +14,7 @@ __all__ = [
     'GetVcsAgentPoolsResult',
     'AwaitableGetVcsAgentPoolsResult',
     'get_vcs_agent_pools',
+    'get_vcs_agent_pools_output',
 ]
 
 @pulumi.output_type
@@ -71,5 +72,22 @@ def get_vcs_agent_pools(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitabl
     __ret__ = pulumi.runtime.invoke('spacelift:index/getVcsAgentPools:getVcsAgentPools', __args__, opts=opts, typ=GetVcsAgentPoolsResult).value
 
     return AwaitableGetVcsAgentPoolsResult(
-        id=__ret__.id,
-        vcs_agent_pools=__ret__.vcs_agent_pools)
+        id=pulumi.get(__ret__, 'id'),
+        vcs_agent_pools=pulumi.get(__ret__, 'vcs_agent_pools'))
+
+
+@_utilities.lift_output_func(get_vcs_agent_pools)
+def get_vcs_agent_pools_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVcsAgentPoolsResult]:
+    """
+    `get_vcs_agent_pools` represents the VCS agent pools assigned to the Spacelift account.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    vcs_agent_pools = spacelift.get_vcs_agent_pools()
+    ```
+    """
+    ...

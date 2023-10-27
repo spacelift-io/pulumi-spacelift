@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VcsAgentPoolArgs', 'VcsAgentPool']
@@ -21,10 +21,23 @@ class VcsAgentPoolArgs:
         :param pulumi.Input[str] description: Free-form VCS agent pool description for users
         :param pulumi.Input[str] name: Name of the VCS agent pool, must be unique within an account
         """
+        VcsAgentPoolArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter
@@ -63,12 +76,27 @@ class _VcsAgentPoolState:
         :param pulumi.Input[str] description: Free-form VCS agent pool description for users
         :param pulumi.Input[str] name: Name of the VCS agent pool, must be unique within an account
         """
+        _VcsAgentPoolState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config=config,
+            description=description,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter
@@ -172,6 +200,10 @@ class VcsAgentPool(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            VcsAgentPoolArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -191,6 +223,8 @@ class VcsAgentPool(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
             __props__.__dict__["config"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["config"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(VcsAgentPool, __self__).__init__(
             'spacelift:index/vcsAgentPool:VcsAgentPool',
             resource_name,

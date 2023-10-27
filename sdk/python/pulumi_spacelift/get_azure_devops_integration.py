@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetAzureDevopsIntegrationResult',
     'AwaitableGetAzureDevopsIntegrationResult',
     'get_azure_devops_integration',
+    'get_azure_devops_integration_output',
 ]
 
 @pulumi.output_type
@@ -85,6 +86,23 @@ def get_azure_devops_integration(opts: Optional[pulumi.InvokeOptions] = None) ->
     __ret__ = pulumi.runtime.invoke('spacelift:index/getAzureDevopsIntegration:getAzureDevopsIntegration', __args__, opts=opts, typ=GetAzureDevopsIntegrationResult).value
 
     return AwaitableGetAzureDevopsIntegrationResult(
-        id=__ret__.id,
-        organization_url=__ret__.organization_url,
-        webhook_password=__ret__.webhook_password)
+        id=pulumi.get(__ret__, 'id'),
+        organization_url=pulumi.get(__ret__, 'organization_url'),
+        webhook_password=pulumi.get(__ret__, 'webhook_password'))
+
+
+@_utilities.lift_output_func(get_azure_devops_integration)
+def get_azure_devops_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAzureDevopsIntegrationResult]:
+    """
+    `get_azure_devops_integration` returns details about Azure DevOps integration
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    azure_devops_integration = spacelift.get_azure_devops_integration()
+    ```
+    """
+    ...

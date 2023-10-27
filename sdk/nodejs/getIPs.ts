@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `spacelift.getIPs` returns the list of Spacelift's outgoing IP addresses, which you can use to whitelist connections coming from the Spacelift's "mothership".
+ * `spacelift.getIPs` returns the list of Spacelift's outgoing IP addresses, which you can use to whitelist connections coming from the Spacelift's "mothership". **NOTE:** this does not include the IP addresses of the workers in Spacelift's public worker pool. If you need to ensure that requests made during runs originate from a known set of IP addresses, please consider setting up a [private worker pool](https://docs.spacelift.io/concepts/worker-pools).
  *
  * ## Example Usage
  *
@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const ips = pulumi.output(spacelift.getIPs());
+ * const ips = spacelift.getIPs({});
  * ```
  */
 export function getIPs(opts?: pulumi.InvokeOptions): Promise<GetIPsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getIPs:getIPs", {
     }, opts);
 }
@@ -38,4 +35,19 @@ export interface GetIPsResult {
      * the list of spacelift.io outgoing IP addresses
      */
     readonly ips: string[];
+}
+/**
+ * `spacelift.getIPs` returns the list of Spacelift's outgoing IP addresses, which you can use to whitelist connections coming from the Spacelift's "mothership". **NOTE:** this does not include the IP addresses of the workers in Spacelift's public worker pool. If you need to ensure that requests made during runs originate from a known set of IP addresses, please consider setting up a [private worker pool](https://docs.spacelift.io/concepts/worker-pools).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const ips = spacelift.getIPs({});
+ * ```
+ */
+export function getIPsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetIPsResult> {
+    return pulumi.output(getIPs(opts))
 }

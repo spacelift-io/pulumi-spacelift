@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['EnvironmentVariableArgs', 'EnvironmentVariable']
@@ -14,44 +14,62 @@ __all__ = ['EnvironmentVariableArgs', 'EnvironmentVariable']
 @pulumi.input_type
 class EnvironmentVariableArgs:
     def __init__(__self__, *,
-                 value: pulumi.Input[str],
                  context_id: Optional[pulumi.Input[str]] = None,
                  module_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None,
                  write_only: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a EnvironmentVariable resource.
-        :param pulumi.Input[str] value: Value of the environment variable
         :param pulumi.Input[str] context_id: ID of the context on which the environment variable is defined
         :param pulumi.Input[str] module_id: ID of the module on which the environment variable is defined
         :param pulumi.Input[str] name: Name of the environment variable
         :param pulumi.Input[str] stack_id: ID of the stack on which the environment variable is defined
-        :param pulumi.Input[bool] write_only: Indicates whether the value can be read back outside a Run. Defaults to `true`.
+        :param pulumi.Input[str] value: Value of the environment variable. Defaults to an empty string.
+        :param pulumi.Input[bool] write_only: Indicates whether the value is secret or not. Defaults to `true`.
         """
-        pulumi.set(__self__, "value", value)
+        EnvironmentVariableArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            context_id=context_id,
+            module_id=module_id,
+            name=name,
+            stack_id=stack_id,
+            value=value,
+            write_only=write_only,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             context_id: Optional[pulumi.Input[str]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             value: Optional[pulumi.Input[str]] = None,
+             write_only: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if context_id is None and 'contextId' in kwargs:
+            context_id = kwargs['contextId']
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+        if write_only is None and 'writeOnly' in kwargs:
+            write_only = kwargs['writeOnly']
+
         if context_id is not None:
-            pulumi.set(__self__, "context_id", context_id)
+            _setter("context_id", context_id)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
+        if value is not None:
+            _setter("value", value)
         if write_only is not None:
-            pulumi.set(__self__, "write_only", write_only)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        """
-        Value of the environment variable
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
+            _setter("write_only", write_only)
 
     @property
     @pulumi.getter(name="contextId")
@@ -102,10 +120,22 @@ class EnvironmentVariableArgs:
         pulumi.set(self, "stack_id", value)
 
     @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value of the environment variable. Defaults to an empty string.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+    @property
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates whether the value can be read back outside a Run. Defaults to `true`.
+        Indicates whether the value is secret or not. Defaults to `true`.
         """
         return pulumi.get(self, "write_only")
 
@@ -131,23 +161,54 @@ class _EnvironmentVariableState:
         :param pulumi.Input[str] module_id: ID of the module on which the environment variable is defined
         :param pulumi.Input[str] name: Name of the environment variable
         :param pulumi.Input[str] stack_id: ID of the stack on which the environment variable is defined
-        :param pulumi.Input[str] value: Value of the environment variable
-        :param pulumi.Input[bool] write_only: Indicates whether the value can be read back outside a Run. Defaults to `true`.
+        :param pulumi.Input[str] value: Value of the environment variable. Defaults to an empty string.
+        :param pulumi.Input[bool] write_only: Indicates whether the value is secret or not. Defaults to `true`.
         """
+        _EnvironmentVariableState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            checksum=checksum,
+            context_id=context_id,
+            module_id=module_id,
+            name=name,
+            stack_id=stack_id,
+            value=value,
+            write_only=write_only,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             checksum: Optional[pulumi.Input[str]] = None,
+             context_id: Optional[pulumi.Input[str]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             value: Optional[pulumi.Input[str]] = None,
+             write_only: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if context_id is None and 'contextId' in kwargs:
+            context_id = kwargs['contextId']
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+        if write_only is None and 'writeOnly' in kwargs:
+            write_only = kwargs['writeOnly']
+
         if checksum is not None:
-            pulumi.set(__self__, "checksum", checksum)
+            _setter("checksum", checksum)
         if context_id is not None:
-            pulumi.set(__self__, "context_id", context_id)
+            _setter("context_id", context_id)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
         if value is not None:
-            pulumi.set(__self__, "value", value)
+            _setter("value", value)
         if write_only is not None:
-            pulumi.set(__self__, "write_only", write_only)
+            _setter("write_only", write_only)
 
     @property
     @pulumi.getter
@@ -213,7 +274,7 @@ class _EnvironmentVariableState:
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
         """
-        Value of the environment variable
+        Value of the environment variable. Defaults to an empty string.
         """
         return pulumi.get(self, "value")
 
@@ -225,7 +286,7 @@ class _EnvironmentVariableState:
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates whether the value can be read back outside a Run. Defaults to `true`.
+        Indicates whether the value is secret or not. Defaults to `true`.
         """
         return pulumi.get(self, "write_only")
 
@@ -292,14 +353,14 @@ class EnvironmentVariable(pulumi.CustomResource):
         :param pulumi.Input[str] module_id: ID of the module on which the environment variable is defined
         :param pulumi.Input[str] name: Name of the environment variable
         :param pulumi.Input[str] stack_id: ID of the stack on which the environment variable is defined
-        :param pulumi.Input[str] value: Value of the environment variable
-        :param pulumi.Input[bool] write_only: Indicates whether the value can be read back outside a Run. Defaults to `true`.
+        :param pulumi.Input[str] value: Value of the environment variable. Defaults to an empty string.
+        :param pulumi.Input[bool] write_only: Indicates whether the value is secret or not. Defaults to `true`.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: EnvironmentVariableArgs,
+                 args: Optional[EnvironmentVariableArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `EnvironmentVariable` defines an environment variable on the context (`Context`), stack (`Stack`) or a module (`Module`), thereby allowing to pass and share various secrets and configuration with Spacelift stacks.
@@ -351,6 +412,10 @@ class EnvironmentVariable(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            EnvironmentVariableArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -375,11 +440,11 @@ class EnvironmentVariable(pulumi.CustomResource):
             __props__.__dict__["module_id"] = module_id
             __props__.__dict__["name"] = name
             __props__.__dict__["stack_id"] = stack_id
-            if value is None and not opts.urn:
-                raise TypeError("Missing required property 'value'")
-            __props__.__dict__["value"] = value
+            __props__.__dict__["value"] = None if value is None else pulumi.Output.secret(value)
             __props__.__dict__["write_only"] = write_only
             __props__.__dict__["checksum"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["value"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(EnvironmentVariable, __self__).__init__(
             'spacelift:index/environmentVariable:EnvironmentVariable',
             resource_name,
@@ -409,8 +474,8 @@ class EnvironmentVariable(pulumi.CustomResource):
         :param pulumi.Input[str] module_id: ID of the module on which the environment variable is defined
         :param pulumi.Input[str] name: Name of the environment variable
         :param pulumi.Input[str] stack_id: ID of the stack on which the environment variable is defined
-        :param pulumi.Input[str] value: Value of the environment variable
-        :param pulumi.Input[bool] write_only: Indicates whether the value can be read back outside a Run. Defaults to `true`.
+        :param pulumi.Input[str] value: Value of the environment variable. Defaults to an empty string.
+        :param pulumi.Input[bool] write_only: Indicates whether the value is secret or not. Defaults to `true`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -467,9 +532,9 @@ class EnvironmentVariable(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def value(self) -> pulumi.Output[str]:
+    def value(self) -> pulumi.Output[Optional[str]]:
         """
-        Value of the environment variable
+        Value of the environment variable. Defaults to an empty string.
         """
         return pulumi.get(self, "value")
 
@@ -477,7 +542,7 @@ class EnvironmentVariable(pulumi.CustomResource):
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates whether the value can be read back outside a Run. Defaults to `true`.
+        Indicates whether the value is secret or not. Defaults to `true`.
         """
         return pulumi.get(self, "write_only")
 

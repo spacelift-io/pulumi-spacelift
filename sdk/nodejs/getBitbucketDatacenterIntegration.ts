@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const bitbucketDatacenterIntegration = pulumi.output(spacelift.getBitbucketDatacenterIntegration());
+ * const bitbucketDatacenterIntegration = spacelift.getBitbucketDatacenterIntegration({});
  * ```
  */
 export function getBitbucketDatacenterIntegration(opts?: pulumi.InvokeOptions): Promise<GetBitbucketDatacenterIntegrationResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", {
     }, opts);
 }
@@ -46,4 +43,23 @@ export interface GetBitbucketDatacenterIntegrationResult {
      * Bitbucket Datacenter integration webhook secret
      */
     readonly webhookSecret: string;
+    /**
+     * Bitbucket Datacenter integration webhook URL
+     */
+    readonly webhookUrl: string;
+}
+/**
+ * `spacelift.getBitbucketDatacenterIntegration` returns details about Bitbucket Datacenter integration
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const bitbucketDatacenterIntegration = spacelift.getBitbucketDatacenterIntegration({});
+ * ```
+ */
+export function getBitbucketDatacenterIntegrationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetBitbucketDatacenterIntegrationResult> {
+    return pulumi.output(getBitbucketDatacenterIntegration(opts))
 }

@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // The provider type for the spacelift package. By default, resources use package-wide configuration
@@ -34,30 +36,38 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if isZero(args.ApiKeyEndpoint) {
-		args.ApiKeyEndpoint = pulumi.StringPtr(getEnvOrDefault("", nil, "SPACELIFT_API_KEY_ENDPOINT").(string))
+	if args.ApiKeyEndpoint == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "SPACELIFT_API_KEY_ENDPOINT"); d != nil {
+			args.ApiKeyEndpoint = pulumi.StringPtr(d.(string))
+		}
 	}
-	if isZero(args.ApiKeyId) {
-		args.ApiKeyId = pulumi.StringPtr(getEnvOrDefault("", nil, "SPACELIFT_API_KEY_ID").(string))
+	if args.ApiKeyId == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "SPACELIFT_API_KEY_ID"); d != nil {
+			args.ApiKeyId = pulumi.StringPtr(d.(string))
+		}
 	}
-	if isZero(args.ApiKeySecret) {
-		args.ApiKeySecret = pulumi.StringPtr(getEnvOrDefault("", nil, "SPACELIFT_API_KEY_SECRET").(string))
+	if args.ApiKeySecret == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "SPACELIFT_API_KEY_SECRET"); d != nil {
+			args.ApiKeySecret = pulumi.StringPtr(d.(string))
+		}
 	}
-	if isZero(args.ApiToken) {
-		args.ApiToken = pulumi.StringPtr(getEnvOrDefault("", nil, "SPACELIFT_API_TOKEN").(string))
+	if args.ApiToken == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "SPACELIFT_API_TOKEN"); d != nil {
+			args.ApiToken = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.ApiKeySecret != nil {
-		args.ApiKeySecret = pulumi.ToSecret(args.ApiKeySecret).(pulumi.StringPtrOutput)
+		args.ApiKeySecret = pulumi.ToSecret(args.ApiKeySecret).(pulumi.StringPtrInput)
 	}
 	if args.ApiToken != nil {
-		args.ApiToken = pulumi.ToSecret(args.ApiToken).(pulumi.StringPtrOutput)
+		args.ApiToken = pulumi.ToSecret(args.ApiToken).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"apiKeySecret",
 		"apiToken",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:spacelift", name, args, &resource, opts...)
 	if err != nil {
@@ -112,6 +122,12 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
+func (i *Provider) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
+	return pulumix.Output[*Provider]{
+		OutputState: i.ToProviderOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderOutput struct{ *pulumi.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
@@ -124,6 +140,12 @@ func (o ProviderOutput) ToProviderOutput() ProviderOutput {
 
 func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
 	return o
+}
+
+func (o ProviderOutput) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
+	return pulumix.Output[*Provider]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Endpoint to use when authenticating with an API key outside of Spacelift

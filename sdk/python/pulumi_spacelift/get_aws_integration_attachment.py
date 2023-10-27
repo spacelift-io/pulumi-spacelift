@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -136,13 +136,13 @@ def get_aws_integration_attachment(integration_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getAwsIntegrationAttachment:getAwsIntegrationAttachment', __args__, opts=opts, typ=GetAwsIntegrationAttachmentResult).value
 
     return AwaitableGetAwsIntegrationAttachmentResult(
-        attachment_id=__ret__.attachment_id,
-        id=__ret__.id,
-        integration_id=__ret__.integration_id,
-        module_id=__ret__.module_id,
-        read=__ret__.read,
-        stack_id=__ret__.stack_id,
-        write=__ret__.write)
+        attachment_id=pulumi.get(__ret__, 'attachment_id'),
+        id=pulumi.get(__ret__, 'id'),
+        integration_id=pulumi.get(__ret__, 'integration_id'),
+        module_id=pulumi.get(__ret__, 'module_id'),
+        read=pulumi.get(__ret__, 'read'),
+        stack_id=pulumi.get(__ret__, 'stack_id'),
+        write=pulumi.get(__ret__, 'write'))
 
 
 @_utilities.lift_output_func(get_aws_integration_attachment)

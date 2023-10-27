@@ -20,11 +20,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getSpace(args: GetSpaceArgs, opts?: pulumi.InvokeOptions): Promise<GetSpaceResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getSpace:getSpace", {
         "spaceId": args.spaceId,
     }, opts);
@@ -57,6 +54,10 @@ export interface GetSpaceResult {
      */
     readonly inheritEntities: boolean;
     /**
+     * list of labels describing a space
+     */
+    readonly labels: string[];
+    /**
      * name of the space
      */
     readonly name: string;
@@ -69,9 +70,23 @@ export interface GetSpaceResult {
      */
     readonly spaceId: string;
 }
-
+/**
+ * `spacelift.Space` represents a Spacelift **space** - a collection of resources such as stacks, modules, policies, etc. Allows for more granular access control. Can have a parent space.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const space = spacelift.getSpace({
+ *     spaceId: spacelift_space.space.id,
+ * });
+ * export const spaceDescription = space.then(space => space.description);
+ * ```
+ */
 export function getSpaceOutput(args: GetSpaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSpaceResult> {
-    return pulumi.output(args).apply(a => getSpace(a, opts))
+    return pulumi.output(args).apply((a: any) => getSpace(a, opts))
 }
 
 /**

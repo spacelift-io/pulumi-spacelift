@@ -15,15 +15,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const worker_pools = pulumi.output(spacelift.getWorkerPools());
+ * const worker-pools = spacelift.getWorkerPools({});
  * ```
  */
 export function getWorkerPools(opts?: pulumi.InvokeOptions): Promise<GetWorkerPoolsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getWorkerPools:getWorkerPools", {
     }, opts);
 }
@@ -37,4 +34,19 @@ export interface GetWorkerPoolsResult {
      */
     readonly id: string;
     readonly workerPools: outputs.GetWorkerPoolsWorkerPool[];
+}
+/**
+ * `spacelift.getWorkerPools` represents the worker pools assigned to the Spacelift account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const worker-pools = spacelift.getWorkerPools({});
+ * ```
+ */
+export function getWorkerPoolsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetWorkerPoolsResult> {
+    return pulumi.output(getWorkerPools(opts))
 }

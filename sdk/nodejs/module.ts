@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as spacelift from "@pulumi/spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * // Explicit module name and provider:
  * const k8s_module = new spacelift.Module("k8s-module", {
@@ -94,6 +94,10 @@ export class Module extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+     */
+    public readonly enableLocalPreview!: pulumi.Output<boolean | undefined>;
+    /**
      * GitHub Enterprise (self-hosted) VCS settings
      */
     public readonly githubEnterprise!: pulumi.Output<outputs.ModuleGithubEnterprise | undefined>;
@@ -135,9 +139,13 @@ export class Module extends pulumi.CustomResource {
      */
     public readonly terraformProvider!: pulumi.Output<string>;
     /**
-     * ID of the worker pool to use
+     * ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
      */
     public readonly workerPoolId!: pulumi.Output<string | undefined>;
+    /**
+     * Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+     */
+    public readonly workflowTool!: pulumi.Output<string>;
 
     /**
      * Create a Module resource with the given unique name, arguments, and options.
@@ -159,6 +167,7 @@ export class Module extends pulumi.CustomResource {
             resourceInputs["bitbucketDatacenter"] = state ? state.bitbucketDatacenter : undefined;
             resourceInputs["branch"] = state ? state.branch : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["enableLocalPreview"] = state ? state.enableLocalPreview : undefined;
             resourceInputs["githubEnterprise"] = state ? state.githubEnterprise : undefined;
             resourceInputs["gitlab"] = state ? state.gitlab : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
@@ -170,6 +179,7 @@ export class Module extends pulumi.CustomResource {
             resourceInputs["spaceId"] = state ? state.spaceId : undefined;
             resourceInputs["terraformProvider"] = state ? state.terraformProvider : undefined;
             resourceInputs["workerPoolId"] = state ? state.workerPoolId : undefined;
+            resourceInputs["workflowTool"] = state ? state.workflowTool : undefined;
         } else {
             const args = argsOrState as ModuleArgs | undefined;
             if ((!args || args.branch === undefined) && !opts.urn) {
@@ -184,6 +194,7 @@ export class Module extends pulumi.CustomResource {
             resourceInputs["bitbucketDatacenter"] = args ? args.bitbucketDatacenter : undefined;
             resourceInputs["branch"] = args ? args.branch : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["enableLocalPreview"] = args ? args.enableLocalPreview : undefined;
             resourceInputs["githubEnterprise"] = args ? args.githubEnterprise : undefined;
             resourceInputs["gitlab"] = args ? args.gitlab : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
@@ -195,6 +206,7 @@ export class Module extends pulumi.CustomResource {
             resourceInputs["spaceId"] = args ? args.spaceId : undefined;
             resourceInputs["terraformProvider"] = args ? args.terraformProvider : undefined;
             resourceInputs["workerPoolId"] = args ? args.workerPoolId : undefined;
+            resourceInputs["workflowTool"] = args ? args.workflowTool : undefined;
             resourceInputs["awsAssumeRolePolicyStatement"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -234,6 +246,10 @@ export interface ModuleState {
      * Free-form module description for users
      */
     description?: pulumi.Input<string>;
+    /**
+     * Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+     */
+    enableLocalPreview?: pulumi.Input<boolean>;
     /**
      * GitHub Enterprise (self-hosted) VCS settings
      */
@@ -276,9 +292,13 @@ export interface ModuleState {
      */
     terraformProvider?: pulumi.Input<string>;
     /**
-     * ID of the worker pool to use
+     * ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
      */
     workerPoolId?: pulumi.Input<string>;
+    /**
+     * Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+     */
+    workflowTool?: pulumi.Input<string>;
 }
 
 /**
@@ -309,6 +329,10 @@ export interface ModuleArgs {
      * Free-form module description for users
      */
     description?: pulumi.Input<string>;
+    /**
+     * Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+     */
+    enableLocalPreview?: pulumi.Input<boolean>;
     /**
      * GitHub Enterprise (self-hosted) VCS settings
      */
@@ -351,7 +375,11 @@ export interface ModuleArgs {
      */
     terraformProvider?: pulumi.Input<string>;
     /**
-     * ID of the worker pool to use
+     * ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
      */
     workerPoolId?: pulumi.Input<string>;
+    /**
+     * Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+     */
+    workflowTool?: pulumi.Input<string>;
 }

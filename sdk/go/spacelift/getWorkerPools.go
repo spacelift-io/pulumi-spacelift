@@ -4,7 +4,12 @@
 package spacelift
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getWorkerPools` represents the worker pools assigned to the Spacelift account.
@@ -17,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -33,7 +38,7 @@ import (
 //
 // ```
 func GetWorkerPools(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetWorkerPoolsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetWorkerPoolsResult
 	err := ctx.Invoke("spacelift:index/getWorkerPools:getWorkerPools", nil, &rv, opts...)
 	if err != nil {
@@ -47,4 +52,49 @@ type GetWorkerPoolsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id          string                     `pulumi:"id"`
 	WorkerPools []GetWorkerPoolsWorkerPool `pulumi:"workerPools"`
+}
+
+func GetWorkerPoolsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetWorkerPoolsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetWorkerPoolsResult, error) {
+		r, err := GetWorkerPools(ctx, opts...)
+		var s GetWorkerPoolsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetWorkerPoolsResultOutput)
+}
+
+// A collection of values returned by getWorkerPools.
+type GetWorkerPoolsResultOutput struct{ *pulumi.OutputState }
+
+func (GetWorkerPoolsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkerPoolsResult)(nil)).Elem()
+}
+
+func (o GetWorkerPoolsResultOutput) ToGetWorkerPoolsResultOutput() GetWorkerPoolsResultOutput {
+	return o
+}
+
+func (o GetWorkerPoolsResultOutput) ToGetWorkerPoolsResultOutputWithContext(ctx context.Context) GetWorkerPoolsResultOutput {
+	return o
+}
+
+func (o GetWorkerPoolsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetWorkerPoolsResult] {
+	return pulumix.Output[GetWorkerPoolsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetWorkerPoolsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkerPoolsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetWorkerPoolsResultOutput) WorkerPools() GetWorkerPoolsWorkerPoolArrayOutput {
+	return o.ApplyT(func(v GetWorkerPoolsResult) []GetWorkerPoolsWorkerPool { return v.WorkerPools }).(GetWorkerPoolsWorkerPoolArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetWorkerPoolsResultOutput{})
 }

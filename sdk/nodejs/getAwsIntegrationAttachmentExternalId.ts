@@ -28,11 +28,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getAwsIntegrationAttachmentExternalId(args: GetAwsIntegrationAttachmentExternalIdArgs, opts?: pulumi.InvokeOptions): Promise<GetAwsIntegrationAttachmentExternalIdResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getAwsIntegrationAttachmentExternalId:getAwsIntegrationAttachmentExternalId", {
         "integrationId": args.integrationId,
         "moduleId": args.moduleId,
@@ -105,9 +102,31 @@ export interface GetAwsIntegrationAttachmentExternalIdResult {
      */
     readonly write?: boolean;
 }
-
+/**
+ * `spacelift.getAwsIntegrationAttachmentExternalId` is used to generate the external ID that would be used for role assumption when an AWS integration is attached to a stack or module.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const myStack = spacelift.getAwsIntegrationAttachmentExternalId({
+ *     integrationId: spacelift_aws_integration["this"].id,
+ *     stackId: "my-stack-id",
+ *     read: true,
+ *     write: true,
+ * });
+ * const myModule = spacelift.getAwsIntegrationAttachmentExternalId({
+ *     integrationId: spacelift_aws_integration["this"].id,
+ *     moduleId: "my-module-id",
+ *     read: true,
+ *     write: true,
+ * });
+ * ```
+ */
 export function getAwsIntegrationAttachmentExternalIdOutput(args: GetAwsIntegrationAttachmentExternalIdOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAwsIntegrationAttachmentExternalIdResult> {
-    return pulumi.output(args).apply(a => getAwsIntegrationAttachmentExternalId(a, opts))
+    return pulumi.output(args).apply((a: any) => getAwsIntegrationAttachmentExternalId(a, opts))
 }
 
 /**

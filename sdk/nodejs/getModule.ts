@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const k8s_module = pulumi.output(spacelift.getModule({
+ * const k8s-module = spacelift.getModule({
  *     moduleId: "k8s-module",
- * }));
+ * });
  * ```
  */
 export function getModule(args: GetModuleArgs, opts?: pulumi.InvokeOptions): Promise<GetModuleResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getModule:getModule", {
         "moduleId": args.moduleId,
     }, opts);
@@ -72,6 +69,10 @@ export interface GetModuleResult {
      */
     readonly description: string;
     /**
+     * Indicates whether local preview versions can be triggered on this Module.
+     */
+    readonly enableLocalPreview: boolean;
+    /**
      * GitHub Enterprise (self-hosted) VCS settings
      */
     readonly githubEnterprises: outputs.GetModuleGithubEnterprise[];
@@ -114,10 +115,25 @@ export interface GetModuleResult {
      * ID of the worker pool to use
      */
     readonly workerPoolId: string;
+    /**
+     * Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+     */
+    readonly workflowTool: string;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const k8s-module = spacelift.getModule({
+ *     moduleId: "k8s-module",
+ * });
+ * ```
+ */
 export function getModuleOutput(args: GetModuleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetModuleResult> {
-    return pulumi.output(args).apply(a => getModule(a, opts))
+    return pulumi.output(args).apply((a: any) => getModule(a, opts))
 }
 
 /**

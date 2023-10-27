@@ -8,11 +8,13 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `AwsIntegrationAttachment` represents the attachment between a reusable AWS integration and a single stack or module.
 func LookupAwsIntegrationAttachment(ctx *pulumi.Context, args *LookupAwsIntegrationAttachmentArgs, opts ...pulumi.InvokeOption) (*LookupAwsIntegrationAttachmentResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAwsIntegrationAttachmentResult
 	err := ctx.Invoke("spacelift:index/getAwsIntegrationAttachment:getAwsIntegrationAttachment", args, &rv, opts...)
 	if err != nil {
@@ -89,6 +91,12 @@ func (o LookupAwsIntegrationAttachmentResultOutput) ToLookupAwsIntegrationAttach
 
 func (o LookupAwsIntegrationAttachmentResultOutput) ToLookupAwsIntegrationAttachmentResultOutputWithContext(ctx context.Context) LookupAwsIntegrationAttachmentResultOutput {
 	return o
+}
+
+func (o LookupAwsIntegrationAttachmentResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAwsIntegrationAttachmentResult] {
+	return pulumix.Output[LookupAwsIntegrationAttachmentResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Internal ID of the attachment entity

@@ -13,18 +13,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const core_infra_production_drift_detection = pulumi.output(spacelift.getDriftDetection({
+ * const core-infra-production-drift-detection = spacelift.getDriftDetection({
  *     stackId: "core-infra-production",
- * }));
+ * });
  * ```
  */
 export function getDriftDetection(args: GetDriftDetectionArgs, opts?: pulumi.InvokeOptions): Promise<GetDriftDetectionResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getDriftDetection:getDriftDetection", {
+        "ignoreState": args.ignoreState,
         "stackId": args.stackId,
     }, opts);
 }
@@ -33,6 +31,10 @@ export function getDriftDetection(args: GetDriftDetectionArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getDriftDetection.
  */
 export interface GetDriftDetectionArgs {
+    /**
+     * Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+     */
+    ignoreState?: boolean;
     /**
      * ID of the stack for which to set up drift detection
      */
@@ -47,6 +49,10 @@ export interface GetDriftDetectionResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+     */
+    readonly ignoreState?: boolean;
     /**
      * Whether a tracked run should be triggered when drift is detected.
      */
@@ -64,15 +70,32 @@ export interface GetDriftDetectionResult {
      */
     readonly timezone: string;
 }
-
+/**
+ * `spacelift.DriftDetection` represents a Drift Detection configuration for a Stack. It will trigger a proposed run on the given schedule, which you can listen for using run state webhooks. If reconcile is true, then a tracked run will be triggered when drift is detected.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const core-infra-production-drift-detection = spacelift.getDriftDetection({
+ *     stackId: "core-infra-production",
+ * });
+ * ```
+ */
 export function getDriftDetectionOutput(args: GetDriftDetectionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDriftDetectionResult> {
-    return pulumi.output(args).apply(a => getDriftDetection(a, opts))
+    return pulumi.output(args).apply((a: any) => getDriftDetection(a, opts))
 }
 
 /**
  * A collection of arguments for invoking getDriftDetection.
  */
 export interface GetDriftDetectionOutputArgs {
+    /**
+     * Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+     */
+    ignoreState?: pulumi.Input<boolean>;
     /**
      * ID of the stack for which to set up drift detection
      */

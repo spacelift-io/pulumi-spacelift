@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // ## Example Usage
@@ -18,19 +20,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupStackGcpServiceAccount(ctx, &GetStackGcpServiceAccountArgs{
+//			_, err := spacelift.LookupStackGcpServiceAccount(ctx, &spacelift.LookupStackGcpServiceAccountArgs{
 //				ModuleId: pulumi.StringRef("k8s-module"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = spacelift.LookupStackGcpServiceAccount(ctx, &GetStackGcpServiceAccountArgs{
+//			_, err = spacelift.LookupStackGcpServiceAccount(ctx, &spacelift.LookupStackGcpServiceAccountArgs{
 //				StackId: pulumi.StringRef("k8s-core"),
 //			}, nil)
 //			if err != nil {
@@ -42,7 +44,7 @@ import (
 //
 // ```
 func LookupStackGcpServiceAccount(ctx *pulumi.Context, args *LookupStackGcpServiceAccountArgs, opts ...pulumi.InvokeOption) (*LookupStackGcpServiceAccountResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStackGcpServiceAccountResult
 	err := ctx.Invoke("spacelift:index/getStackGcpServiceAccount:getStackGcpServiceAccount", args, &rv, opts...)
 	if err != nil {
@@ -111,6 +113,12 @@ func (o LookupStackGcpServiceAccountResultOutput) ToLookupStackGcpServiceAccount
 
 func (o LookupStackGcpServiceAccountResultOutput) ToLookupStackGcpServiceAccountResultOutputWithContext(ctx context.Context) LookupStackGcpServiceAccountResultOutput {
 	return o
+}
+
+func (o LookupStackGcpServiceAccountResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupStackGcpServiceAccountResult] {
+	return pulumix.Output[LookupStackGcpServiceAccountResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

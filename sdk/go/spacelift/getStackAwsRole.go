@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // > **Note:** `StackAwsRole` is deprecated. Please use `AwsRole` instead. The functionality is identical.
@@ -26,19 +28,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupStackAwsRole(ctx, &GetStackAwsRoleArgs{
+//			_, err := spacelift.LookupStackAwsRole(ctx, &spacelift.LookupStackAwsRoleArgs{
 //				ModuleId: pulumi.StringRef("k8s-module"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = spacelift.LookupStackAwsRole(ctx, &GetStackAwsRoleArgs{
+//			_, err = spacelift.LookupStackAwsRole(ctx, &spacelift.LookupStackAwsRoleArgs{
 //				StackId: pulumi.StringRef("k8s-core"),
 //			}, nil)
 //			if err != nil {
@@ -50,7 +52,7 @@ import (
 //
 // ```
 func LookupStackAwsRole(ctx *pulumi.Context, args *LookupStackAwsRoleArgs, opts ...pulumi.InvokeOption) (*LookupStackAwsRoleResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStackAwsRoleResult
 	err := ctx.Invoke("spacelift:index/getStackAwsRole:getStackAwsRole", args, &rv, opts...)
 	if err != nil {
@@ -123,6 +125,12 @@ func (o LookupStackAwsRoleResultOutput) ToLookupStackAwsRoleResultOutput() Looku
 
 func (o LookupStackAwsRoleResultOutput) ToLookupStackAwsRoleResultOutputWithContext(ctx context.Context) LookupStackAwsRoleResultOutput {
 	return o
+}
+
+func (o LookupStackAwsRoleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupStackAwsRoleResult] {
+	return pulumix.Output[LookupStackAwsRoleResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // AWS IAM role session duration in seconds

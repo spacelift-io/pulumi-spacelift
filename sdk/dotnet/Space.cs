@@ -16,6 +16,7 @@ namespace Pulumi.Spacelift
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
@@ -56,6 +57,12 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Output("inheritEntities")]
         public Output<bool?> InheritEntities { get; private set; } = null!;
+
+        /// <summary>
+        /// list of labels describing a space
+        /// </summary>
+        [Output("labels")]
+        public Output<ImmutableArray<string>> Labels { get; private set; } = null!;
 
         /// <summary>
         /// name of the space
@@ -128,6 +135,18 @@ namespace Pulumi.Spacelift
         [Input("inheritEntities")]
         public Input<bool>? InheritEntities { get; set; }
 
+        [Input("labels")]
+        private InputList<string>? _labels;
+
+        /// <summary>
+        /// list of labels describing a space
+        /// </summary>
+        public InputList<string> Labels
+        {
+            get => _labels ?? (_labels = new InputList<string>());
+            set => _labels = value;
+        }
+
         /// <summary>
         /// name of the space
         /// </summary>
@@ -159,6 +178,18 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Input("inheritEntities")]
         public Input<bool>? InheritEntities { get; set; }
+
+        [Input("labels")]
+        private InputList<string>? _labels;
+
+        /// <summary>
+        /// list of labels describing a space
+        /// </summary>
+        public InputList<string> Labels
+        {
+            get => _labels ?? (_labels = new InputList<string>());
+            set => _labels = value;
+        }
 
         /// <summary>
         /// name of the space

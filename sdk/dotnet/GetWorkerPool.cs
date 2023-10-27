@@ -20,6 +20,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -27,7 +28,7 @@ namespace Pulumi.Spacelift
         /// {
         ///     var k8s_core = Spacelift.GetWorkerPool.Invoke(new()
         ///     {
-        ///         WorkerPoolId = "k8s-core",
+        ///         WorkerPoolId = "01G1KTZ4BA86RBN3XNN3YK9EWT",
         ///     });
         /// 
         /// });
@@ -47,6 +48,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -54,7 +56,7 @@ namespace Pulumi.Spacelift
         /// {
         ///     var k8s_core = Spacelift.GetWorkerPool.Invoke(new()
         ///     {
-        ///         WorkerPoolId = "k8s-core",
+        ///         WorkerPoolId = "01G1KTZ4BA86RBN3XNN3YK9EWT",
         ///     });
         /// 
         /// });

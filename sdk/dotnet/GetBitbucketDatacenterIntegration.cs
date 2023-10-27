@@ -20,6 +20,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -34,6 +35,31 @@ namespace Pulumi.Spacelift
         /// </summary>
         public static Task<GetBitbucketDatacenterIntegrationResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBitbucketDatacenterIntegrationResult>("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// `spacelift.getBitbucketDatacenterIntegration` returns details about Bitbucket Datacenter integration
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var bitbucketDatacenterIntegration = Spacelift.GetBitbucketDatacenterIntegration.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetBitbucketDatacenterIntegrationResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBitbucketDatacenterIntegrationResult>("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
@@ -56,6 +82,10 @@ namespace Pulumi.Spacelift
         /// Bitbucket Datacenter integration webhook secret
         /// </summary>
         public readonly string WebhookSecret;
+        /// <summary>
+        /// Bitbucket Datacenter integration webhook URL
+        /// </summary>
+        public readonly string WebhookUrl;
 
         [OutputConstructor]
         private GetBitbucketDatacenterIntegrationResult(
@@ -65,12 +95,15 @@ namespace Pulumi.Spacelift
 
             string userFacingHost,
 
-            string webhookSecret)
+            string webhookSecret,
+
+            string webhookUrl)
         {
             ApiHost = apiHost;
             Id = id;
             UserFacingHost = userFacingHost;
             WebhookSecret = webhookSecret;
+            WebhookUrl = webhookUrl;
         }
     }
 }

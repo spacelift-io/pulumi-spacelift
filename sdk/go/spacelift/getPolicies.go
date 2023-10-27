@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getPolicies` can find all policies that have certain labels.
@@ -20,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -30,7 +32,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = spacelift.GetPolicies(ctx, &GetPoliciesArgs{
+//			_, err = spacelift.GetPolicies(ctx, &spacelift.GetPoliciesArgs{
 //				Type: pulumi.StringRef("PLAN"),
 //				Labels: []string{
 //					"autoattach",
@@ -50,7 +52,7 @@ import (
 //
 // ```
 func GetPolicies(ctx *pulumi.Context, args *GetPoliciesArgs, opts ...pulumi.InvokeOption) (*GetPoliciesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPoliciesResult
 	err := ctx.Invoke("spacelift:index/getPolicies:getPolicies", args, &rv, opts...)
 	if err != nil {
@@ -61,10 +63,8 @@ func GetPolicies(ctx *pulumi.Context, args *GetPoliciesArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getPolicies.
 type GetPoliciesArgs struct {
-	// required labels to match
 	Labels []string `pulumi:"labels"`
-	// required policy type
-	Type *string `pulumi:"type"`
+	Type   *string  `pulumi:"type"`
 }
 
 // A collection of values returned by getPolicies.
@@ -93,10 +93,8 @@ func GetPoliciesOutput(ctx *pulumi.Context, args GetPoliciesOutputArgs, opts ...
 
 // A collection of arguments for invoking getPolicies.
 type GetPoliciesOutputArgs struct {
-	// required labels to match
 	Labels pulumi.StringArrayInput `pulumi:"labels"`
-	// required policy type
-	Type pulumi.StringPtrInput `pulumi:"type"`
+	Type   pulumi.StringPtrInput   `pulumi:"type"`
 }
 
 func (GetPoliciesOutputArgs) ElementType() reflect.Type {
@@ -116,6 +114,12 @@ func (o GetPoliciesResultOutput) ToGetPoliciesResultOutput() GetPoliciesResultOu
 
 func (o GetPoliciesResultOutput) ToGetPoliciesResultOutputWithContext(ctx context.Context) GetPoliciesResultOutput {
 	return o
+}
+
+func (o GetPoliciesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetPoliciesResult] {
+	return pulumix.Output[GetPoliciesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

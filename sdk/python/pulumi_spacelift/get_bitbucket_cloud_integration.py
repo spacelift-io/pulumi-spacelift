@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetBitbucketCloudIntegrationResult',
     'AwaitableGetBitbucketCloudIntegrationResult',
     'get_bitbucket_cloud_integration',
+    'get_bitbucket_cloud_integration_output',
 ]
 
 @pulumi.output_type
@@ -73,5 +74,22 @@ def get_bitbucket_cloud_integration(opts: Optional[pulumi.InvokeOptions] = None)
     __ret__ = pulumi.runtime.invoke('spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration', __args__, opts=opts, typ=GetBitbucketCloudIntegrationResult).value
 
     return AwaitableGetBitbucketCloudIntegrationResult(
-        id=__ret__.id,
-        username=__ret__.username)
+        id=pulumi.get(__ret__, 'id'),
+        username=pulumi.get(__ret__, 'username'))
+
+
+@_utilities.lift_output_func(get_bitbucket_cloud_integration)
+def get_bitbucket_cloud_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBitbucketCloudIntegrationResult]:
+    """
+    `get_bitbucket_cloud_integration` returns details about Bitbucket Cloud integration
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    bitbucket_cloud_integration = spacelift.get_bitbucket_cloud_integration()
+    ```
+    """
+    ...

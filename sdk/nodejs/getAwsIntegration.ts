@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * `spacelift.AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
  *
- * Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+ * Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName@$integrationID@$stackID@suffix` or `$accountName@$integrationID@$moduleID@$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
  *
  * ## Example Usage
  *
@@ -15,19 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * // Lookup an integration by its name:
- * const example = pulumi.output(spacelift.getAwsIntegration({
+ * const example = spacelift.getAwsIntegration({
  *     name: "Production",
- * }));
+ * });
  * ```
  */
 export function getAwsIntegration(args?: GetAwsIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetAwsIntegrationResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getAwsIntegration:getAwsIntegration", {
         "integrationId": args.integrationId,
         "name": args.name,
@@ -86,9 +82,24 @@ export interface GetAwsIntegrationResult {
      */
     readonly spaceId: string;
 }
-
+/**
+ * `spacelift.AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
+ *
+ * Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName@$integrationID@$stackID@suffix` or `$accountName@$integrationID@$moduleID@$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const example = spacelift.getAwsIntegration({
+ *     name: "Production",
+ * });
+ * ```
+ */
 export function getAwsIntegrationOutput(args?: GetAwsIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAwsIntegrationResult> {
-    return pulumi.output(args).apply(a => getAwsIntegration(a, opts))
+    return pulumi.output(args).apply((a: any) => getAwsIntegration(a, opts))
 }
 
 /**

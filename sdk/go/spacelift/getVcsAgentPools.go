@@ -4,7 +4,12 @@
 package spacelift
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getVcsAgentPools` represents the VCS agent pools assigned to the Spacelift account.
@@ -17,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -33,7 +38,7 @@ import (
 //
 // ```
 func GetVcsAgentPools(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetVcsAgentPoolsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVcsAgentPoolsResult
 	err := ctx.Invoke("spacelift:index/getVcsAgentPools:getVcsAgentPools", nil, &rv, opts...)
 	if err != nil {
@@ -47,4 +52,49 @@ type GetVcsAgentPoolsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id            string                         `pulumi:"id"`
 	VcsAgentPools []GetVcsAgentPoolsVcsAgentPool `pulumi:"vcsAgentPools"`
+}
+
+func GetVcsAgentPoolsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetVcsAgentPoolsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetVcsAgentPoolsResult, error) {
+		r, err := GetVcsAgentPools(ctx, opts...)
+		var s GetVcsAgentPoolsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetVcsAgentPoolsResultOutput)
+}
+
+// A collection of values returned by getVcsAgentPools.
+type GetVcsAgentPoolsResultOutput struct{ *pulumi.OutputState }
+
+func (GetVcsAgentPoolsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVcsAgentPoolsResult)(nil)).Elem()
+}
+
+func (o GetVcsAgentPoolsResultOutput) ToGetVcsAgentPoolsResultOutput() GetVcsAgentPoolsResultOutput {
+	return o
+}
+
+func (o GetVcsAgentPoolsResultOutput) ToGetVcsAgentPoolsResultOutputWithContext(ctx context.Context) GetVcsAgentPoolsResultOutput {
+	return o
+}
+
+func (o GetVcsAgentPoolsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetVcsAgentPoolsResult] {
+	return pulumix.Output[GetVcsAgentPoolsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetVcsAgentPoolsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVcsAgentPoolsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetVcsAgentPoolsResultOutput) VcsAgentPools() GetVcsAgentPoolsVcsAgentPoolArrayOutput {
+	return o.ApplyT(func(v GetVcsAgentPoolsResult) []GetVcsAgentPoolsVcsAgentPool { return v.VcsAgentPools }).(GetVcsAgentPoolsVcsAgentPoolArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetVcsAgentPoolsResultOutput{})
 }

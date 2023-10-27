@@ -11,11 +11,9 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as spacelift from "@pulumi/spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
- * const prod_k8s_ie = new spacelift.Context("prod-k8s-ie", {
- *     description: "Configuration details for the compute cluster in 🇮🇪",
- * });
+ * const prod_k8s_ie = new spacelift.Context("prod-k8s-ie", {description: "Configuration details for the compute cluster in 🇮🇪"});
  * ```
  *
  * ## Import

@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `AwsIntegrationAttachment` represents the attachment between a reusable AWS integration and a single stack or module.
@@ -21,7 +23,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -89,7 +91,7 @@ func NewAwsIntegrationAttachment(ctx *pulumi.Context,
 	if args.IntegrationId == nil {
 		return nil, errors.New("invalid value for required argument 'IntegrationId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AwsIntegrationAttachment
 	err := ctx.RegisterResource("spacelift:index/awsIntegrationAttachment:AwsIntegrationAttachment", name, args, &resource, opts...)
 	if err != nil {
@@ -195,6 +197,12 @@ func (i *AwsIntegrationAttachment) ToAwsIntegrationAttachmentOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(AwsIntegrationAttachmentOutput)
 }
 
+func (i *AwsIntegrationAttachment) ToOutput(ctx context.Context) pulumix.Output[*AwsIntegrationAttachment] {
+	return pulumix.Output[*AwsIntegrationAttachment]{
+		OutputState: i.ToAwsIntegrationAttachmentOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AwsIntegrationAttachmentArrayInput is an input type that accepts AwsIntegrationAttachmentArray and AwsIntegrationAttachmentArrayOutput values.
 // You can construct a concrete instance of `AwsIntegrationAttachmentArrayInput` via:
 //
@@ -218,6 +226,12 @@ func (i AwsIntegrationAttachmentArray) ToAwsIntegrationAttachmentArrayOutput() A
 
 func (i AwsIntegrationAttachmentArray) ToAwsIntegrationAttachmentArrayOutputWithContext(ctx context.Context) AwsIntegrationAttachmentArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AwsIntegrationAttachmentArrayOutput)
+}
+
+func (i AwsIntegrationAttachmentArray) ToOutput(ctx context.Context) pulumix.Output[[]*AwsIntegrationAttachment] {
+	return pulumix.Output[[]*AwsIntegrationAttachment]{
+		OutputState: i.ToAwsIntegrationAttachmentArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AwsIntegrationAttachmentMapInput is an input type that accepts AwsIntegrationAttachmentMap and AwsIntegrationAttachmentMapOutput values.
@@ -245,6 +259,12 @@ func (i AwsIntegrationAttachmentMap) ToAwsIntegrationAttachmentMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(AwsIntegrationAttachmentMapOutput)
 }
 
+func (i AwsIntegrationAttachmentMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AwsIntegrationAttachment] {
+	return pulumix.Output[map[string]*AwsIntegrationAttachment]{
+		OutputState: i.ToAwsIntegrationAttachmentMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AwsIntegrationAttachmentOutput struct{ *pulumi.OutputState }
 
 func (AwsIntegrationAttachmentOutput) ElementType() reflect.Type {
@@ -257,6 +277,12 @@ func (o AwsIntegrationAttachmentOutput) ToAwsIntegrationAttachmentOutput() AwsIn
 
 func (o AwsIntegrationAttachmentOutput) ToAwsIntegrationAttachmentOutputWithContext(ctx context.Context) AwsIntegrationAttachmentOutput {
 	return o
+}
+
+func (o AwsIntegrationAttachmentOutput) ToOutput(ctx context.Context) pulumix.Output[*AwsIntegrationAttachment] {
+	return pulumix.Output[*AwsIntegrationAttachment]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Internal ID of the attachment entity
@@ -303,6 +329,12 @@ func (o AwsIntegrationAttachmentArrayOutput) ToAwsIntegrationAttachmentArrayOutp
 	return o
 }
 
+func (o AwsIntegrationAttachmentArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AwsIntegrationAttachment] {
+	return pulumix.Output[[]*AwsIntegrationAttachment]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AwsIntegrationAttachmentArrayOutput) Index(i pulumi.IntInput) AwsIntegrationAttachmentOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AwsIntegrationAttachment {
 		return vs[0].([]*AwsIntegrationAttachment)[vs[1].(int)]
@@ -321,6 +353,12 @@ func (o AwsIntegrationAttachmentMapOutput) ToAwsIntegrationAttachmentMapOutput()
 
 func (o AwsIntegrationAttachmentMapOutput) ToAwsIntegrationAttachmentMapOutputWithContext(ctx context.Context) AwsIntegrationAttachmentMapOutput {
 	return o
+}
+
+func (o AwsIntegrationAttachmentMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AwsIntegrationAttachment] {
+	return pulumix.Output[map[string]*AwsIntegrationAttachment]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AwsIntegrationAttachmentMapOutput) MapIndex(k pulumi.StringInput) AwsIntegrationAttachmentOutput {

@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `AzureIntegration` represents an integration with an Azure AD tenant. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect. Note that you will need to provide admin consent manually for the integration to work
@@ -20,13 +22,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupAzureIntegration(ctx, &GetAzureIntegrationArgs{
+//			_, err := spacelift.LookupAzureIntegration(ctx, &spacelift.LookupAzureIntegrationArgs{
 //				Name: pulumi.StringRef("Production"),
 //			}, nil)
 //			if err != nil {
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupAzureIntegration(ctx *pulumi.Context, args *LookupAzureIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupAzureIntegrationResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAzureIntegrationResult
 	err := ctx.Invoke("spacelift:index/getAzureIntegration:getAzureIntegration", args, &rv, opts...)
 	if err != nil {
@@ -119,6 +121,12 @@ func (o LookupAzureIntegrationResultOutput) ToLookupAzureIntegrationResultOutput
 
 func (o LookupAzureIntegrationResultOutput) ToLookupAzureIntegrationResultOutputWithContext(ctx context.Context) LookupAzureIntegrationResultOutput {
 	return o
+}
+
+func (o LookupAzureIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAzureIntegrationResult] {
+	return pulumix.Output[LookupAzureIntegrationResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates whether admin consent has been performed for the AAD Application.

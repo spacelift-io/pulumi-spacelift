@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AwsIntegrationAttachmentArgs', 'AwsIntegrationAttachment']
@@ -27,15 +27,42 @@ class AwsIntegrationAttachmentArgs:
         :param pulumi.Input[str] stack_id: ID of the stack to attach the integration to
         :param pulumi.Input[bool] write: Indicates whether this attachment is used for write operations. Defaults to `true`.
         """
-        pulumi.set(__self__, "integration_id", integration_id)
+        AwsIntegrationAttachmentArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            integration_id=integration_id,
+            module_id=module_id,
+            read=read,
+            stack_id=stack_id,
+            write=write,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             integration_id: Optional[pulumi.Input[str]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             read: Optional[pulumi.Input[bool]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             write: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if integration_id is None and 'integrationId' in kwargs:
+            integration_id = kwargs['integrationId']
+        if integration_id is None:
+            raise TypeError("Missing 'integration_id' argument")
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+
+        _setter("integration_id", integration_id)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if read is not None:
-            pulumi.set(__self__, "read", read)
+            _setter("read", read)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
         if write is not None:
-            pulumi.set(__self__, "write", write)
+            _setter("write", write)
 
     @property
     @pulumi.getter(name="integrationId")
@@ -116,18 +143,47 @@ class _AwsIntegrationAttachmentState:
         :param pulumi.Input[str] stack_id: ID of the stack to attach the integration to
         :param pulumi.Input[bool] write: Indicates whether this attachment is used for write operations. Defaults to `true`.
         """
+        _AwsIntegrationAttachmentState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            attachment_id=attachment_id,
+            integration_id=integration_id,
+            module_id=module_id,
+            read=read,
+            stack_id=stack_id,
+            write=write,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             attachment_id: Optional[pulumi.Input[str]] = None,
+             integration_id: Optional[pulumi.Input[str]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             read: Optional[pulumi.Input[bool]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             write: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if attachment_id is None and 'attachmentId' in kwargs:
+            attachment_id = kwargs['attachmentId']
+        if integration_id is None and 'integrationId' in kwargs:
+            integration_id = kwargs['integrationId']
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+
         if attachment_id is not None:
-            pulumi.set(__self__, "attachment_id", attachment_id)
+            _setter("attachment_id", attachment_id)
         if integration_id is not None:
-            pulumi.set(__self__, "integration_id", integration_id)
+            _setter("integration_id", integration_id)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if read is not None:
-            pulumi.set(__self__, "read", read)
+            _setter("read", read)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
         if write is not None:
-            pulumi.set(__self__, "write", write)
+            _setter("write", write)
 
     @property
     @pulumi.getter(name="attachmentId")
@@ -299,6 +355,10 @@ class AwsIntegrationAttachment(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AwsIntegrationAttachmentArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

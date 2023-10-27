@@ -20,6 +20,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -51,6 +52,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -120,6 +122,10 @@ namespace Pulumi.Spacelift
         /// </summary>
         public readonly bool InheritEntities;
         /// <summary>
+        /// list of labels describing a space
+        /// </summary>
+        public readonly ImmutableArray<string> Labels;
+        /// <summary>
         /// name of the space
         /// </summary>
         public readonly string Name;
@@ -140,6 +146,8 @@ namespace Pulumi.Spacelift
 
             bool inheritEntities,
 
+            ImmutableArray<string> labels,
+
             string name,
 
             string parentSpaceId,
@@ -149,6 +157,7 @@ namespace Pulumi.Spacelift
             Description = description;
             Id = id;
             InheritEntities = inheritEntities;
+            Labels = labels;
             Name = name;
             ParentSpaceId = parentSpaceId;
             SpaceId = spaceId;

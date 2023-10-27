@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `DriftDetection` represents a Drift Detection configuration for a Stack. It will trigger a proposed run on the given schedule, which you can listen for using run state webhooks. If reconcile is true, then a tracked run will be triggered when drift is detected.
@@ -21,7 +23,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -66,6 +68,8 @@ import (
 type DriftDetection struct {
 	pulumi.CustomResourceState
 
+	// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+	IgnoreState pulumi.BoolPtrOutput `pulumi:"ignoreState"`
 	// Whether a tracked run should be triggered when drift is detected.
 	Reconcile pulumi.BoolPtrOutput `pulumi:"reconcile"`
 	// List of cron schedule expressions based on which drift detection should be triggered.
@@ -89,7 +93,7 @@ func NewDriftDetection(ctx *pulumi.Context,
 	if args.StackId == nil {
 		return nil, errors.New("invalid value for required argument 'StackId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DriftDetection
 	err := ctx.RegisterResource("spacelift:index/driftDetection:DriftDetection", name, args, &resource, opts...)
 	if err != nil {
@@ -112,6 +116,8 @@ func GetDriftDetection(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DriftDetection resources.
 type driftDetectionState struct {
+	// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+	IgnoreState *bool `pulumi:"ignoreState"`
 	// Whether a tracked run should be triggered when drift is detected.
 	Reconcile *bool `pulumi:"reconcile"`
 	// List of cron schedule expressions based on which drift detection should be triggered.
@@ -123,6 +129,8 @@ type driftDetectionState struct {
 }
 
 type DriftDetectionState struct {
+	// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+	IgnoreState pulumi.BoolPtrInput
 	// Whether a tracked run should be triggered when drift is detected.
 	Reconcile pulumi.BoolPtrInput
 	// List of cron schedule expressions based on which drift detection should be triggered.
@@ -138,6 +146,8 @@ func (DriftDetectionState) ElementType() reflect.Type {
 }
 
 type driftDetectionArgs struct {
+	// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+	IgnoreState *bool `pulumi:"ignoreState"`
 	// Whether a tracked run should be triggered when drift is detected.
 	Reconcile *bool `pulumi:"reconcile"`
 	// List of cron schedule expressions based on which drift detection should be triggered.
@@ -150,6 +160,8 @@ type driftDetectionArgs struct {
 
 // The set of arguments for constructing a DriftDetection resource.
 type DriftDetectionArgs struct {
+	// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+	IgnoreState pulumi.BoolPtrInput
 	// Whether a tracked run should be triggered when drift is detected.
 	Reconcile pulumi.BoolPtrInput
 	// List of cron schedule expressions based on which drift detection should be triggered.
@@ -183,6 +195,12 @@ func (i *DriftDetection) ToDriftDetectionOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DriftDetectionOutput)
 }
 
+func (i *DriftDetection) ToOutput(ctx context.Context) pulumix.Output[*DriftDetection] {
+	return pulumix.Output[*DriftDetection]{
+		OutputState: i.ToDriftDetectionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DriftDetectionArrayInput is an input type that accepts DriftDetectionArray and DriftDetectionArrayOutput values.
 // You can construct a concrete instance of `DriftDetectionArrayInput` via:
 //
@@ -206,6 +224,12 @@ func (i DriftDetectionArray) ToDriftDetectionArrayOutput() DriftDetectionArrayOu
 
 func (i DriftDetectionArray) ToDriftDetectionArrayOutputWithContext(ctx context.Context) DriftDetectionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DriftDetectionArrayOutput)
+}
+
+func (i DriftDetectionArray) ToOutput(ctx context.Context) pulumix.Output[[]*DriftDetection] {
+	return pulumix.Output[[]*DriftDetection]{
+		OutputState: i.ToDriftDetectionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DriftDetectionMapInput is an input type that accepts DriftDetectionMap and DriftDetectionMapOutput values.
@@ -233,6 +257,12 @@ func (i DriftDetectionMap) ToDriftDetectionMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DriftDetectionMapOutput)
 }
 
+func (i DriftDetectionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DriftDetection] {
+	return pulumix.Output[map[string]*DriftDetection]{
+		OutputState: i.ToDriftDetectionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DriftDetectionOutput struct{ *pulumi.OutputState }
 
 func (DriftDetectionOutput) ElementType() reflect.Type {
@@ -245,6 +275,17 @@ func (o DriftDetectionOutput) ToDriftDetectionOutput() DriftDetectionOutput {
 
 func (o DriftDetectionOutput) ToDriftDetectionOutputWithContext(ctx context.Context) DriftDetectionOutput {
 	return o
+}
+
+func (o DriftDetectionOutput) ToOutput(ctx context.Context) pulumix.Output[*DriftDetection] {
+	return pulumix.Output[*DriftDetection]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+func (o DriftDetectionOutput) IgnoreState() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DriftDetection) pulumi.BoolPtrOutput { return v.IgnoreState }).(pulumi.BoolPtrOutput)
 }
 
 // Whether a tracked run should be triggered when drift is detected.
@@ -281,6 +322,12 @@ func (o DriftDetectionArrayOutput) ToDriftDetectionArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o DriftDetectionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DriftDetection] {
+	return pulumix.Output[[]*DriftDetection]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DriftDetectionArrayOutput) Index(i pulumi.IntInput) DriftDetectionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DriftDetection {
 		return vs[0].([]*DriftDetection)[vs[1].(int)]
@@ -299,6 +346,12 @@ func (o DriftDetectionMapOutput) ToDriftDetectionMapOutput() DriftDetectionMapOu
 
 func (o DriftDetectionMapOutput) ToDriftDetectionMapOutputWithContext(ctx context.Context) DriftDetectionMapOutput {
 	return o
+}
+
+func (o DriftDetectionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DriftDetection] {
+	return pulumix.Output[map[string]*DriftDetection]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DriftDetectionMapOutput) MapIndex(k pulumi.StringInput) DriftDetectionOutput {

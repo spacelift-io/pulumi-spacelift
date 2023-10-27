@@ -20,6 +20,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -29,7 +30,7 @@ namespace Pulumi.Spacelift
         /// 
         ///     var core_kubeconfig = new Spacelift.EnvironmentVariable("core-kubeconfig", new()
         ///     {
-        ///         StackId = @this.Apply(getCurrentStackResult =&gt; getCurrentStackResult).Apply(@this =&gt; @this.Apply(getCurrentStackResult =&gt; getCurrentStackResult.Id)),
+        ///         StackId = @this.Apply(@this =&gt; @this.Apply(getCurrentStackResult =&gt; getCurrentStackResult.Id)),
         ///         Value = "bacon",
         ///     });
         /// 
@@ -40,6 +41,37 @@ namespace Pulumi.Spacelift
         /// </summary>
         public static Task<GetCurrentStackResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCurrentStackResult>("spacelift:index/getCurrentStack:getCurrentStack", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// `spacelift.getCurrentStack` is a data source that provides information about the current administrative stack if the run is executed within Spacelift by a stack or module. This allows clever tricks like attaching contexts or policies to the stack that manages them.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @this = Spacelift.GetCurrentStack.Invoke();
+        /// 
+        ///     var core_kubeconfig = new Spacelift.EnvironmentVariable("core-kubeconfig", new()
+        ///     {
+        ///         StackId = @this.Apply(@this =&gt; @this.Apply(getCurrentStackResult =&gt; getCurrentStackResult.Id)),
+        ///         Value = "bacon",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetCurrentStackResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCurrentStackResult>("spacelift:index/getCurrentStack:getCurrentStack", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

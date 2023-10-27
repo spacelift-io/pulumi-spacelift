@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as spacelift from "@pulumi/spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * const webhook = new spacelift.Webhook("webhook", {
  *     endpoint: "https://example.com/webhooks",
@@ -100,10 +100,12 @@ export class Webhook extends pulumi.CustomResource {
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["endpoint"] = args ? args.endpoint : undefined;
             resourceInputs["moduleId"] = args ? args.moduleId : undefined;
-            resourceInputs["secret"] = args ? args.secret : undefined;
+            resourceInputs["secret"] = args?.secret ? pulumi.secret(args.secret) : undefined;
             resourceInputs["stackId"] = args ? args.stackId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secret"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Webhook.__pulumiType, name, resourceInputs, opts);
     }
 }

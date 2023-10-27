@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -117,11 +117,11 @@ def get_stack_gcp_service_account(module_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getStackGcpServiceAccount:getStackGcpServiceAccount', __args__, opts=opts, typ=GetStackGcpServiceAccountResult).value
 
     return AwaitableGetStackGcpServiceAccountResult(
-        id=__ret__.id,
-        module_id=__ret__.module_id,
-        service_account_email=__ret__.service_account_email,
-        stack_id=__ret__.stack_id,
-        token_scopes=__ret__.token_scopes)
+        id=pulumi.get(__ret__, 'id'),
+        module_id=pulumi.get(__ret__, 'module_id'),
+        service_account_email=pulumi.get(__ret__, 'service_account_email'),
+        stack_id=pulumi.get(__ret__, 'stack_id'),
+        token_scopes=pulumi.get(__ret__, 'token_scopes'))
 
 
 @_utilities.lift_output_func(get_stack_gcp_service_account)

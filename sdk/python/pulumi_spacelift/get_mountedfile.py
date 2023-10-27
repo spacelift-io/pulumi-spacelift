@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -165,14 +165,14 @@ def get_mountedfile(context_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getMountedfile:getMountedfile', __args__, opts=opts, typ=GetMountedfileResult).value
 
     return AwaitableGetMountedfileResult(
-        checksum=__ret__.checksum,
-        content=__ret__.content,
-        context_id=__ret__.context_id,
-        id=__ret__.id,
-        module_id=__ret__.module_id,
-        relative_path=__ret__.relative_path,
-        stack_id=__ret__.stack_id,
-        write_only=__ret__.write_only)
+        checksum=pulumi.get(__ret__, 'checksum'),
+        content=pulumi.get(__ret__, 'content'),
+        context_id=pulumi.get(__ret__, 'context_id'),
+        id=pulumi.get(__ret__, 'id'),
+        module_id=pulumi.get(__ret__, 'module_id'),
+        relative_path=pulumi.get(__ret__, 'relative_path'),
+        stack_id=pulumi.get(__ret__, 'stack_id'),
+        write_only=pulumi.get(__ret__, 'write_only'))
 
 
 @_utilities.lift_output_func(get_mountedfile)

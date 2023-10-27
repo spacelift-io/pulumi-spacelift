@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -143,7 +143,7 @@ def get_aws_integration(integration_id: Optional[str] = None,
     """
     `AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
 
-    Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+    Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName@$integrationID@$stackID@suffix` or `$accountName@$integrationID@$moduleID@$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
 
     ## Example Usage
 
@@ -165,15 +165,15 @@ def get_aws_integration(integration_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getAwsIntegration:getAwsIntegration', __args__, opts=opts, typ=GetAwsIntegrationResult).value
 
     return AwaitableGetAwsIntegrationResult(
-        duration_seconds=__ret__.duration_seconds,
-        external_id=__ret__.external_id,
-        generate_credentials_in_worker=__ret__.generate_credentials_in_worker,
-        id=__ret__.id,
-        integration_id=__ret__.integration_id,
-        labels=__ret__.labels,
-        name=__ret__.name,
-        role_arn=__ret__.role_arn,
-        space_id=__ret__.space_id)
+        duration_seconds=pulumi.get(__ret__, 'duration_seconds'),
+        external_id=pulumi.get(__ret__, 'external_id'),
+        generate_credentials_in_worker=pulumi.get(__ret__, 'generate_credentials_in_worker'),
+        id=pulumi.get(__ret__, 'id'),
+        integration_id=pulumi.get(__ret__, 'integration_id'),
+        labels=pulumi.get(__ret__, 'labels'),
+        name=pulumi.get(__ret__, 'name'),
+        role_arn=pulumi.get(__ret__, 'role_arn'),
+        space_id=pulumi.get(__ret__, 'space_id'))
 
 
 @_utilities.lift_output_func(get_aws_integration)
@@ -183,7 +183,7 @@ def get_aws_integration_output(integration_id: Optional[pulumi.Input[Optional[st
     """
     `AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
 
-    Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+    Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName@$integrationID@$stackID@suffix` or `$accountName@$integrationID@$moduleID@$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
 
     ## Example Usage
 

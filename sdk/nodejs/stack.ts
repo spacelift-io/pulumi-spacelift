@@ -13,46 +13,46 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as spacelift from "@pulumi/spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * // Terraform stack using Bitbucket Cloud as VCS
  * const k8s_cluster_bitbucket_cloud = new spacelift.Stack("k8s-cluster-bitbucket-cloud", {
  *     administrative: true,
  *     autodeploy: true,
  *     bitbucketCloud: {
- *         namespace: "SPACELIFT", // The Bitbucket project containing the repository
+ *         namespace: "SPACELIFT",
  *     },
  *     branch: "master",
  *     description: "Provisions a Kubernetes cluster",
  *     projectRoot: "cluster",
  *     repository: "core-infra",
- *     terraformVersion: "0.12.6",
+ *     terraformVersion: "1.3.0",
  * });
  * // Terraform stack using Bitbucket Data Center as VCS
  * const k8s_cluster_bitbucket_datacenter = new spacelift.Stack("k8s-cluster-bitbucket-datacenter", {
  *     administrative: true,
  *     autodeploy: true,
  *     bitbucketDatacenter: {
- *         namespace: "SPACELIFT", // The Bitbucket project containing the repository
+ *         namespace: "SPACELIFT",
  *     },
  *     branch: "master",
  *     description: "Provisions a Kubernetes cluster",
  *     projectRoot: "cluster",
  *     repository: "core-infra",
- *     terraformVersion: "0.12.6",
+ *     terraformVersion: "1.3.0",
  * });
- * // Terraform stack using GitHub Enterprise as VCS
+ * // Terraform stack using a GitHub Custom Application. See the following page for more info: https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application
  * const k8s_cluster_github_enterprise = new spacelift.Stack("k8s-cluster-github-enterprise", {
  *     administrative: true,
  *     autodeploy: true,
  *     branch: "master",
  *     description: "Provisions a Kubernetes cluster",
  *     githubEnterprise: {
- *         namespace: "spacelift", // The GitHub organization / user the repository belongs to
+ *         namespace: "spacelift",
  *     },
  *     projectRoot: "cluster",
  *     repository: "core-infra",
- *     terraformVersion: "0.12.6",
+ *     terraformVersion: "1.3.0",
  * });
  * // Terraform stack using GitLab as VCS
  * const k8s_cluster_gitlab = new spacelift.Stack("k8s-cluster-gitlab", {
@@ -61,13 +61,13 @@ import * as utilities from "./utilities";
  *     branch: "master",
  *     description: "Provisions a Kubernetes cluster",
  *     gitlab: {
- *         namespace: "spacelift", // The GitLab namespace containing the repository
+ *         namespace: "spacelift",
  *     },
  *     projectRoot: "cluster",
  *     repository: "core-infra",
- *     terraformVersion: "0.12.6",
+ *     terraformVersion: "1.3.0",
  * });
- * // Terraform stack using github.com as VCS and enabling smart sanitization
+ * // Terraform stack using github.com as VCS and enabling external state access
  * const k8s_cluster = new spacelift.Stack("k8s-cluster", {
  *     administrative: true,
  *     autodeploy: true,
@@ -75,8 +75,8 @@ import * as utilities from "./utilities";
  *     description: "Provisions a Kubernetes cluster",
  *     projectRoot: "cluster",
  *     repository: "core-infra",
- *     terraformSmartSanitization: true,
- *     terraformVersion: "1.2.6",
+ *     terraformExternalStateAccess: true,
+ *     terraformVersion: "1.3.0",
  * });
  * // CloudFormation stack using github.com as VCS
  * const k8s_cluster_cloudformation = new spacelift.Stack("k8s-cluster-cloudformation", {
@@ -108,11 +108,11 @@ import * as utilities from "./utilities";
  * // Kubernetes stack using github.com as VCS
  * const k8s_core_kubernetes = new spacelift.Stack("k8s-core-kubernetes", {
  *     autodeploy: true,
- *     // You can use hooks to authenticate with your cluster
  *     beforeInits: ["aws eks update-kubeconfig --region us-east-2 --name k8s-cluster"],
  *     branch: "master",
  *     description: "Shared cluster services (Datadog, Istio etc.)",
  *     kubernetes: {
+ *         kubectlVersion: "1.26.1",
  *         namespace: "core",
  *     },
  *     projectRoot: "core-services",
@@ -190,6 +190,10 @@ export class Stack extends pulumi.CustomResource {
      */
     public readonly afterPlans!: pulumi.Output<string[] | undefined>;
     /**
+     * List of after-run scripts
+     */
+    public readonly afterRuns!: pulumi.Output<string[] | undefined>;
+    /**
      * Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
      */
     public readonly ansible!: pulumi.Output<outputs.StackAnsible | undefined>;
@@ -254,11 +258,11 @@ export class Stack extends pulumi.CustomResource {
      */
     public readonly enableLocalPreview!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+     * Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
      */
     public readonly githubActionDeploy!: pulumi.Output<boolean | undefined>;
     /**
-     * GitHub Enterprise (self-hosted) VCS settings
+     * VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
      */
     public readonly githubEnterprise!: pulumi.Output<outputs.StackGithubEnterprise | undefined>;
     /**
@@ -299,6 +303,10 @@ export class Stack extends pulumi.CustomResource {
      */
     public readonly pulumi!: pulumi.Output<outputs.StackPulumi | undefined>;
     /**
+     * One-way VCS integration using a raw Git repository link
+     */
+    public readonly rawGit!: pulumi.Output<outputs.StackRawGit | undefined>;
+    /**
      * Name of the repository, without the owner part
      */
     public readonly repository!: pulumi.Output<string>;
@@ -312,9 +320,13 @@ export class Stack extends pulumi.CustomResource {
      */
     public readonly slug!: pulumi.Output<string>;
     /**
-     * ID (slug) of the space the stack is in
+     * ID (slug) of the space the stack is in. Defaults to `legacy`.
      */
     public readonly spaceId!: pulumi.Output<string>;
+    /**
+     * Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+     */
+    public readonly terraformExternalStateAccess!: pulumi.Output<boolean | undefined>;
     /**
      * Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
      * and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
@@ -326,11 +338,19 @@ export class Stack extends pulumi.CustomResource {
      */
     public readonly terraformVersion!: pulumi.Output<string | undefined>;
     /**
+     * Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+     */
+    public readonly terraformWorkflowTool!: pulumi.Output<string>;
+    /**
      * Terraform workspace to select
      */
     public readonly terraformWorkspace!: pulumi.Output<string | undefined>;
     /**
-     * ID of the worker pool to use
+     * Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+     */
+    public readonly terragrunt!: pulumi.Output<outputs.StackTerragrunt | undefined>;
+    /**
+     * ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
      */
     public readonly workerPoolId!: pulumi.Output<string | undefined>;
 
@@ -353,6 +373,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["afterInits"] = state ? state.afterInits : undefined;
             resourceInputs["afterPerforms"] = state ? state.afterPerforms : undefined;
             resourceInputs["afterPlans"] = state ? state.afterPlans : undefined;
+            resourceInputs["afterRuns"] = state ? state.afterRuns : undefined;
             resourceInputs["ansible"] = state ? state.ansible : undefined;
             resourceInputs["autodeploy"] = state ? state.autodeploy : undefined;
             resourceInputs["autoretry"] = state ? state.autoretry : undefined;
@@ -381,14 +402,18 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["projectRoot"] = state ? state.projectRoot : undefined;
             resourceInputs["protectFromDeletion"] = state ? state.protectFromDeletion : undefined;
             resourceInputs["pulumi"] = state ? state.pulumi : undefined;
+            resourceInputs["rawGit"] = state ? state.rawGit : undefined;
             resourceInputs["repository"] = state ? state.repository : undefined;
             resourceInputs["runnerImage"] = state ? state.runnerImage : undefined;
             resourceInputs["showcase"] = state ? state.showcase : undefined;
             resourceInputs["slug"] = state ? state.slug : undefined;
             resourceInputs["spaceId"] = state ? state.spaceId : undefined;
+            resourceInputs["terraformExternalStateAccess"] = state ? state.terraformExternalStateAccess : undefined;
             resourceInputs["terraformSmartSanitization"] = state ? state.terraformSmartSanitization : undefined;
             resourceInputs["terraformVersion"] = state ? state.terraformVersion : undefined;
+            resourceInputs["terraformWorkflowTool"] = state ? state.terraformWorkflowTool : undefined;
             resourceInputs["terraformWorkspace"] = state ? state.terraformWorkspace : undefined;
+            resourceInputs["terragrunt"] = state ? state.terragrunt : undefined;
             resourceInputs["workerPoolId"] = state ? state.workerPoolId : undefined;
         } else {
             const args = argsOrState as StackArgs | undefined;
@@ -404,6 +429,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["afterInits"] = args ? args.afterInits : undefined;
             resourceInputs["afterPerforms"] = args ? args.afterPerforms : undefined;
             resourceInputs["afterPlans"] = args ? args.afterPlans : undefined;
+            resourceInputs["afterRuns"] = args ? args.afterRuns : undefined;
             resourceInputs["ansible"] = args ? args.ansible : undefined;
             resourceInputs["autodeploy"] = args ? args.autodeploy : undefined;
             resourceInputs["autoretry"] = args ? args.autoretry : undefined;
@@ -422,7 +448,7 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["githubActionDeploy"] = args ? args.githubActionDeploy : undefined;
             resourceInputs["githubEnterprise"] = args ? args.githubEnterprise : undefined;
             resourceInputs["gitlab"] = args ? args.gitlab : undefined;
-            resourceInputs["importState"] = args ? args.importState : undefined;
+            resourceInputs["importState"] = args?.importState ? pulumi.secret(args.importState) : undefined;
             resourceInputs["importStateFile"] = args ? args.importStateFile : undefined;
             resourceInputs["kubernetes"] = args ? args.kubernetes : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
@@ -431,18 +457,24 @@ export class Stack extends pulumi.CustomResource {
             resourceInputs["projectRoot"] = args ? args.projectRoot : undefined;
             resourceInputs["protectFromDeletion"] = args ? args.protectFromDeletion : undefined;
             resourceInputs["pulumi"] = args ? args.pulumi : undefined;
+            resourceInputs["rawGit"] = args ? args.rawGit : undefined;
             resourceInputs["repository"] = args ? args.repository : undefined;
             resourceInputs["runnerImage"] = args ? args.runnerImage : undefined;
             resourceInputs["showcase"] = args ? args.showcase : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["spaceId"] = args ? args.spaceId : undefined;
+            resourceInputs["terraformExternalStateAccess"] = args ? args.terraformExternalStateAccess : undefined;
             resourceInputs["terraformSmartSanitization"] = args ? args.terraformSmartSanitization : undefined;
             resourceInputs["terraformVersion"] = args ? args.terraformVersion : undefined;
+            resourceInputs["terraformWorkflowTool"] = args ? args.terraformWorkflowTool : undefined;
             resourceInputs["terraformWorkspace"] = args ? args.terraformWorkspace : undefined;
+            resourceInputs["terragrunt"] = args ? args.terragrunt : undefined;
             resourceInputs["workerPoolId"] = args ? args.workerPoolId : undefined;
             resourceInputs["awsAssumeRolePolicyStatement"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["importState"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Stack.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -475,6 +507,10 @@ export interface StackState {
      * List of after-plan scripts
      */
     afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-run scripts
+     */
+    afterRuns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
      */
@@ -540,11 +576,11 @@ export interface StackState {
      */
     enableLocalPreview?: pulumi.Input<boolean>;
     /**
-     * Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+     * Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
      */
     githubActionDeploy?: pulumi.Input<boolean>;
     /**
-     * GitHub Enterprise (self-hosted) VCS settings
+     * VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
      */
     githubEnterprise?: pulumi.Input<inputs.StackGithubEnterprise>;
     /**
@@ -585,6 +621,10 @@ export interface StackState {
      */
     pulumi?: pulumi.Input<inputs.StackPulumi>;
     /**
+     * One-way VCS integration using a raw Git repository link
+     */
+    rawGit?: pulumi.Input<inputs.StackRawGit>;
+    /**
      * Name of the repository, without the owner part
      */
     repository?: pulumi.Input<string>;
@@ -598,9 +638,13 @@ export interface StackState {
      */
     slug?: pulumi.Input<string>;
     /**
-     * ID (slug) of the space the stack is in
+     * ID (slug) of the space the stack is in. Defaults to `legacy`.
      */
     spaceId?: pulumi.Input<string>;
+    /**
+     * Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+     */
+    terraformExternalStateAccess?: pulumi.Input<boolean>;
     /**
      * Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
      * and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
@@ -612,11 +656,19 @@ export interface StackState {
      */
     terraformVersion?: pulumi.Input<string>;
     /**
+     * Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+     */
+    terraformWorkflowTool?: pulumi.Input<string>;
+    /**
      * Terraform workspace to select
      */
     terraformWorkspace?: pulumi.Input<string>;
     /**
-     * ID of the worker pool to use
+     * Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+     */
+    terragrunt?: pulumi.Input<inputs.StackTerragrunt>;
+    /**
+     * ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
      */
     workerPoolId?: pulumi.Input<string>;
 }
@@ -649,6 +701,10 @@ export interface StackArgs {
      * List of after-plan scripts
      */
     afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-run scripts
+     */
+    afterRuns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
      */
@@ -710,11 +766,11 @@ export interface StackArgs {
      */
     enableLocalPreview?: pulumi.Input<boolean>;
     /**
-     * Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+     * Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
      */
     githubActionDeploy?: pulumi.Input<boolean>;
     /**
-     * GitHub Enterprise (self-hosted) VCS settings
+     * VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
      */
     githubEnterprise?: pulumi.Input<inputs.StackGithubEnterprise>;
     /**
@@ -755,6 +811,10 @@ export interface StackArgs {
      */
     pulumi?: pulumi.Input<inputs.StackPulumi>;
     /**
+     * One-way VCS integration using a raw Git repository link
+     */
+    rawGit?: pulumi.Input<inputs.StackRawGit>;
+    /**
      * Name of the repository, without the owner part
      */
     repository: pulumi.Input<string>;
@@ -768,9 +828,13 @@ export interface StackArgs {
      */
     slug?: pulumi.Input<string>;
     /**
-     * ID (slug) of the space the stack is in
+     * ID (slug) of the space the stack is in. Defaults to `legacy`.
      */
     spaceId?: pulumi.Input<string>;
+    /**
+     * Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+     */
+    terraformExternalStateAccess?: pulumi.Input<boolean>;
     /**
      * Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
      * and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
@@ -782,11 +846,19 @@ export interface StackArgs {
      */
     terraformVersion?: pulumi.Input<string>;
     /**
+     * Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+     */
+    terraformWorkflowTool?: pulumi.Input<string>;
+    /**
      * Terraform workspace to select
      */
     terraformWorkspace?: pulumi.Input<string>;
     /**
-     * ID of the worker pool to use
+     * Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+     */
+    terragrunt?: pulumi.Input<inputs.StackTerragrunt>;
+    /**
+     * ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
      */
     workerPoolId?: pulumi.Input<string>;
 }

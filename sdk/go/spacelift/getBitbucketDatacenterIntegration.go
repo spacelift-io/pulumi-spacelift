@@ -4,7 +4,12 @@
 package spacelift
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getBitbucketDatacenterIntegration` returns details about Bitbucket Datacenter integration
@@ -17,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -33,7 +38,7 @@ import (
 //
 // ```
 func GetBitbucketDatacenterIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetBitbucketDatacenterIntegrationResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBitbucketDatacenterIntegrationResult
 	err := ctx.Invoke("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", nil, &rv, opts...)
 	if err != nil {
@@ -52,4 +57,67 @@ type GetBitbucketDatacenterIntegrationResult struct {
 	UserFacingHost string `pulumi:"userFacingHost"`
 	// Bitbucket Datacenter integration webhook secret
 	WebhookSecret string `pulumi:"webhookSecret"`
+	// Bitbucket Datacenter integration webhook URL
+	WebhookUrl string `pulumi:"webhookUrl"`
+}
+
+func GetBitbucketDatacenterIntegrationOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetBitbucketDatacenterIntegrationResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetBitbucketDatacenterIntegrationResult, error) {
+		r, err := GetBitbucketDatacenterIntegration(ctx, opts...)
+		var s GetBitbucketDatacenterIntegrationResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetBitbucketDatacenterIntegrationResultOutput)
+}
+
+// A collection of values returned by getBitbucketDatacenterIntegration.
+type GetBitbucketDatacenterIntegrationResultOutput struct{ *pulumi.OutputState }
+
+func (GetBitbucketDatacenterIntegrationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBitbucketDatacenterIntegrationResult)(nil)).Elem()
+}
+
+func (o GetBitbucketDatacenterIntegrationResultOutput) ToGetBitbucketDatacenterIntegrationResultOutput() GetBitbucketDatacenterIntegrationResultOutput {
+	return o
+}
+
+func (o GetBitbucketDatacenterIntegrationResultOutput) ToGetBitbucketDatacenterIntegrationResultOutputWithContext(ctx context.Context) GetBitbucketDatacenterIntegrationResultOutput {
+	return o
+}
+
+func (o GetBitbucketDatacenterIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBitbucketDatacenterIntegrationResult] {
+	return pulumix.Output[GetBitbucketDatacenterIntegrationResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Bitbucket Datacenter integration api host
+func (o GetBitbucketDatacenterIntegrationResultOutput) ApiHost() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.ApiHost }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetBitbucketDatacenterIntegrationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Bitbucket Datacenter integration user facing host
+func (o GetBitbucketDatacenterIntegrationResultOutput) UserFacingHost() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.UserFacingHost }).(pulumi.StringOutput)
+}
+
+// Bitbucket Datacenter integration webhook secret
+func (o GetBitbucketDatacenterIntegrationResultOutput) WebhookSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.WebhookSecret }).(pulumi.StringOutput)
+}
+
+// Bitbucket Datacenter integration webhook URL
+func (o GetBitbucketDatacenterIntegrationResultOutput) WebhookUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.WebhookUrl }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetBitbucketDatacenterIntegrationResultOutput{})
 }

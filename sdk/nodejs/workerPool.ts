@@ -102,7 +102,7 @@ export class WorkerPool extends pulumi.CustomResource {
             resourceInputs["spaceId"] = state ? state.spaceId : undefined;
         } else {
             const args = argsOrState as WorkerPoolArgs | undefined;
-            resourceInputs["csr"] = args ? args.csr : undefined;
+            resourceInputs["csr"] = args?.csr ? pulumi.secret(args.csr) : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -111,6 +111,8 @@ export class WorkerPool extends pulumi.CustomResource {
             resourceInputs["privateKey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["config", "csr", "privateKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(WorkerPool.__pulumiType, name, resourceInputs, opts);
     }
 }

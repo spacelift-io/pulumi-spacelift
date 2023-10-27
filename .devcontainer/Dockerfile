@@ -54,14 +54,7 @@ RUN apt-get install -y python3 && \
   apt-get install -y python3-setuptools
 
 # Install .NET
-RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
-  dpkg -i packages-microsoft-prod.deb && \
-  rm packages-microsoft-prod.deb
-
-RUN apt-get update && \
-  apt-get install -y apt-transport-https && \
-  apt-get update && \
-  apt-get install -y dotnet-sdk-6.0
+RUN apt-get install -y dotnet-sdk-6.0
 
 # Install Pulumi
 RUN curl -fsSL https://get.pulumi.com | sh

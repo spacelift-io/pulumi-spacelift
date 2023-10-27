@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // ## Example Usage
@@ -20,10 +22,9 @@ import (
 //
 //	"fmt"
 //
-//	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/organizations"
-//	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/projects"
+//	"github.com/pulumi/pulumi-google/sdk/v1/go/google"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -47,19 +48,18 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = organizations.NewProject(ctx, "k8s-coreProject", &organizations.ProjectArgs{
-//				ProjectId: pulumi.String("unicorn-k8s-core"),
-//				OrgId:     pulumi.Any(_var.Gcp_organization_id),
+//			_, err = index.NewGoogle_project(ctx, "k8s-coregoogle_project", &index.Google_projectArgs{
+//				Name:      "Kubernetes code",
+//				ProjectId: "unicorn-k8s-core",
+//				OrgId:     _var.Gcp_organization_id,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = projects.NewIAMMember(ctx, "k8s-coreIAMMember", &projects.IAMMemberArgs{
-//				Project: k8s_coreProject.ID(),
-//				Role:    pulumi.String("roles/owner"),
-//				Member: k8s_coreGcpServiceAccount.ServiceAccountEmail.ApplyT(func(serviceAccountEmail string) (string, error) {
-//					return fmt.Sprintf("serviceAccount:%v", serviceAccountEmail), nil
-//				}).(pulumi.StringOutput),
+//			_, err = index.NewGoogle_project_iam_member(ctx, "k8s-coregoogle_project_iam_member", &index.Google_project_iam_memberArgs{
+//				Project: k8s_coregoogle_project.Id,
+//				Role:    "roles/owner",
+//				Member:  pulumi.String(fmt.Sprintf("serviceAccount:%v", k8s_coreGcpServiceAccount.ServiceAccountEmail)),
 //			})
 //			if err != nil {
 //				return err
@@ -106,7 +106,7 @@ func NewGcpServiceAccount(ctx *pulumi.Context,
 	if args.TokenScopes == nil {
 		return nil, errors.New("invalid value for required argument 'TokenScopes'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GcpServiceAccount
 	err := ctx.RegisterResource("spacelift:index/gcpServiceAccount:GcpServiceAccount", name, args, &resource, opts...)
 	if err != nil {
@@ -196,6 +196,12 @@ func (i *GcpServiceAccount) ToGcpServiceAccountOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(GcpServiceAccountOutput)
 }
 
+func (i *GcpServiceAccount) ToOutput(ctx context.Context) pulumix.Output[*GcpServiceAccount] {
+	return pulumix.Output[*GcpServiceAccount]{
+		OutputState: i.ToGcpServiceAccountOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GcpServiceAccountArrayInput is an input type that accepts GcpServiceAccountArray and GcpServiceAccountArrayOutput values.
 // You can construct a concrete instance of `GcpServiceAccountArrayInput` via:
 //
@@ -219,6 +225,12 @@ func (i GcpServiceAccountArray) ToGcpServiceAccountArrayOutput() GcpServiceAccou
 
 func (i GcpServiceAccountArray) ToGcpServiceAccountArrayOutputWithContext(ctx context.Context) GcpServiceAccountArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GcpServiceAccountArrayOutput)
+}
+
+func (i GcpServiceAccountArray) ToOutput(ctx context.Context) pulumix.Output[[]*GcpServiceAccount] {
+	return pulumix.Output[[]*GcpServiceAccount]{
+		OutputState: i.ToGcpServiceAccountArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // GcpServiceAccountMapInput is an input type that accepts GcpServiceAccountMap and GcpServiceAccountMapOutput values.
@@ -246,6 +258,12 @@ func (i GcpServiceAccountMap) ToGcpServiceAccountMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GcpServiceAccountMapOutput)
 }
 
+func (i GcpServiceAccountMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GcpServiceAccount] {
+	return pulumix.Output[map[string]*GcpServiceAccount]{
+		OutputState: i.ToGcpServiceAccountMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GcpServiceAccountOutput struct{ *pulumi.OutputState }
 
 func (GcpServiceAccountOutput) ElementType() reflect.Type {
@@ -258,6 +276,12 @@ func (o GcpServiceAccountOutput) ToGcpServiceAccountOutput() GcpServiceAccountOu
 
 func (o GcpServiceAccountOutput) ToGcpServiceAccountOutputWithContext(ctx context.Context) GcpServiceAccountOutput {
 	return o
+}
+
+func (o GcpServiceAccountOutput) ToOutput(ctx context.Context) pulumix.Output[*GcpServiceAccount] {
+	return pulumix.Output[*GcpServiceAccount]{
+		OutputState: o.OutputState,
+	}
 }
 
 // ID of the module which uses GCP service account credentials
@@ -294,6 +318,12 @@ func (o GcpServiceAccountArrayOutput) ToGcpServiceAccountArrayOutputWithContext(
 	return o
 }
 
+func (o GcpServiceAccountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GcpServiceAccount] {
+	return pulumix.Output[[]*GcpServiceAccount]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GcpServiceAccountArrayOutput) Index(i pulumi.IntInput) GcpServiceAccountOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GcpServiceAccount {
 		return vs[0].([]*GcpServiceAccount)[vs[1].(int)]
@@ -312,6 +342,12 @@ func (o GcpServiceAccountMapOutput) ToGcpServiceAccountMapOutput() GcpServiceAcc
 
 func (o GcpServiceAccountMapOutput) ToGcpServiceAccountMapOutputWithContext(ctx context.Context) GcpServiceAccountMapOutput {
 	return o
+}
+
+func (o GcpServiceAccountMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GcpServiceAccount] {
+	return pulumix.Output[map[string]*GcpServiceAccount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GcpServiceAccountMapOutput) MapIndex(k pulumi.StringInput) GcpServiceAccountOutput {

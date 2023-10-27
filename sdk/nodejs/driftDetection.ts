@@ -64,6 +64,10 @@ export class DriftDetection extends pulumi.CustomResource {
     }
 
     /**
+     * Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+     */
+    public readonly ignoreState!: pulumi.Output<boolean | undefined>;
+    /**
      * Whether a tracked run should be triggered when drift is detected.
      */
     public readonly reconcile!: pulumi.Output<boolean | undefined>;
@@ -93,6 +97,7 @@ export class DriftDetection extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DriftDetectionState | undefined;
+            resourceInputs["ignoreState"] = state ? state.ignoreState : undefined;
             resourceInputs["reconcile"] = state ? state.reconcile : undefined;
             resourceInputs["schedules"] = state ? state.schedules : undefined;
             resourceInputs["stackId"] = state ? state.stackId : undefined;
@@ -105,6 +110,7 @@ export class DriftDetection extends pulumi.CustomResource {
             if ((!args || args.stackId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'stackId'");
             }
+            resourceInputs["ignoreState"] = args ? args.ignoreState : undefined;
             resourceInputs["reconcile"] = args ? args.reconcile : undefined;
             resourceInputs["schedules"] = args ? args.schedules : undefined;
             resourceInputs["stackId"] = args ? args.stackId : undefined;
@@ -119,6 +125,10 @@ export class DriftDetection extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DriftDetection resources.
  */
 export interface DriftDetectionState {
+    /**
+     * Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+     */
+    ignoreState?: pulumi.Input<boolean>;
     /**
      * Whether a tracked run should be triggered when drift is detected.
      */
@@ -141,6 +151,10 @@ export interface DriftDetectionState {
  * The set of arguments for constructing a DriftDetection resource.
  */
 export interface DriftDetectionArgs {
+    /**
+     * Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+     */
+    ignoreState?: pulumi.Input<boolean>;
     /**
      * Whether a tracked run should be triggered when drift is detected.
      */

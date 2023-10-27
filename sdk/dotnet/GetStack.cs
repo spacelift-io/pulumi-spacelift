@@ -20,6 +20,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -47,6 +48,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -127,6 +129,18 @@ namespace Pulumi.Spacelift
         {
             get => _afterPlans ?? (_afterPlans = new List<string>());
             set => _afterPlans = value;
+        }
+
+        [Input("afterRuns")]
+        private List<string>? _afterRuns;
+
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        public List<string> AfterRuns
+        {
+            get => _afterRuns ?? (_afterRuns = new List<string>());
+            set => _afterRuns = value;
         }
 
         [Input("beforeApplies")]
@@ -263,6 +277,18 @@ namespace Pulumi.Spacelift
             set => _afterPlans = value;
         }
 
+        [Input("afterRuns")]
+        private InputList<string>? _afterRuns;
+
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        public InputList<string> AfterRuns
+        {
+            get => _afterRuns ?? (_afterRuns = new InputList<string>());
+            set => _afterRuns = value;
+        }
+
         [Input("beforeApplies")]
         private InputList<string>? _beforeApplies;
 
@@ -363,6 +389,10 @@ namespace Pulumi.Spacelift
         /// List of after-plan scripts
         /// </summary>
         public readonly ImmutableArray<string> AfterPlans;
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        public readonly ImmutableArray<string> AfterRuns;
         /// <summary>
         /// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
         /// </summary>
@@ -465,6 +495,10 @@ namespace Pulumi.Spacelift
         /// </summary>
         public readonly ImmutableArray<Outputs.GetStackPulumiResult> Pulumis;
         /// <summary>
+        /// One-way VCS integration using a raw Git repository link
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetStackRawGitResult> RawGits;
+        /// <summary>
         /// Name of the repository, without the owner part
         /// </summary>
         public readonly string Repository;
@@ -484,8 +518,16 @@ namespace Pulumi.Spacelift
         /// ID (slug) of the stack
         /// </summary>
         public readonly string StackId;
+        /// <summary>
+        /// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift.
+        /// </summary>
+        public readonly bool TerraformExternalStateAccess;
         public readonly bool TerraformSmartSanitization;
         public readonly string TerraformVersion;
+        /// <summary>
+        /// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+        /// </summary>
+        public readonly string TerraformWorkflowTool;
         public readonly string TerraformWorkspace;
         /// <summary>
         /// ID of the worker pool to use
@@ -505,6 +547,8 @@ namespace Pulumi.Spacelift
             ImmutableArray<string> afterPerforms,
 
             ImmutableArray<string> afterPlans,
+
+            ImmutableArray<string> afterRuns,
 
             ImmutableArray<Outputs.GetStackAnsibleResult> ansibles,
 
@@ -558,6 +602,8 @@ namespace Pulumi.Spacelift
 
             ImmutableArray<Outputs.GetStackPulumiResult> pulumis,
 
+            ImmutableArray<Outputs.GetStackRawGitResult> rawGits,
+
             string repository,
 
             string runnerImage,
@@ -568,9 +614,13 @@ namespace Pulumi.Spacelift
 
             string stackId,
 
+            bool terraformExternalStateAccess,
+
             bool terraformSmartSanitization,
 
             string terraformVersion,
+
+            string terraformWorkflowTool,
 
             string terraformWorkspace,
 
@@ -582,6 +632,7 @@ namespace Pulumi.Spacelift
             AfterInits = afterInits;
             AfterPerforms = afterPerforms;
             AfterPlans = afterPlans;
+            AfterRuns = afterRuns;
             Ansibles = ansibles;
             Autodeploy = autodeploy;
             Autoretry = autoretry;
@@ -608,13 +659,16 @@ namespace Pulumi.Spacelift
             ProjectRoot = projectRoot;
             ProtectFromDeletion = protectFromDeletion;
             Pulumis = pulumis;
+            RawGits = rawGits;
             Repository = repository;
             RunnerImage = runnerImage;
             Showcases = showcases;
             SpaceId = spaceId;
             StackId = stackId;
+            TerraformExternalStateAccess = terraformExternalStateAccess;
             TerraformSmartSanitization = terraformSmartSanitization;
             TerraformVersion = terraformVersion;
+            TerraformWorkflowTool = terraformWorkflowTool;
             TerraformWorkspace = terraformWorkspace;
             WorkerPoolId = workerPoolId;
         }

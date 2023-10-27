@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const thisAccount = pulumi.output(spacelift.getAccount());
+ * const this = spacelift.getAccount({});
  * ```
  */
 export function getAccount(opts?: pulumi.InvokeOptions): Promise<GetAccountResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getAccount:getAccount", {
     }, opts);
 }
@@ -46,4 +43,19 @@ export interface GetAccountResult {
      * account billing tier
      */
     readonly tier: string;
+}
+/**
+ * `spacelift.getAccount` represents the currently used Spacelift **account**
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const this = spacelift.getAccount({});
+ * ```
+ */
+export function getAccountOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountResult> {
+    return pulumi.output(getAccount(opts))
 }

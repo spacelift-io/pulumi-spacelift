@@ -66,6 +66,10 @@ export class Space extends pulumi.CustomResource {
      */
     public readonly inheritEntities!: pulumi.Output<boolean | undefined>;
     /**
+     * list of labels describing a space
+     */
+    public readonly labels!: pulumi.Output<string[] | undefined>;
+    /**
      * name of the space
      */
     public readonly name!: pulumi.Output<string>;
@@ -89,12 +93,14 @@ export class Space extends pulumi.CustomResource {
             const state = argsOrState as SpaceState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["inheritEntities"] = state ? state.inheritEntities : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["parentSpaceId"] = state ? state.parentSpaceId : undefined;
         } else {
             const args = argsOrState as SpaceArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["inheritEntities"] = args ? args.inheritEntities : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["parentSpaceId"] = args ? args.parentSpaceId : undefined;
         }
@@ -115,6 +121,10 @@ export interface SpaceState {
      * indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
      */
     inheritEntities?: pulumi.Input<boolean>;
+    /**
+     * list of labels describing a space
+     */
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * name of the space
      */
@@ -137,6 +147,10 @@ export interface SpaceArgs {
      * indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
      */
     inheritEntities?: pulumi.Input<boolean>;
+    /**
+     * list of labels describing a space
+     */
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * name of the space
      */

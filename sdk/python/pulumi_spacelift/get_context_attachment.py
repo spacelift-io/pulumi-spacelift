@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -124,11 +124,11 @@ def get_context_attachment(context_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getContextAttachment:getContextAttachment', __args__, opts=opts, typ=GetContextAttachmentResult).value
 
     return AwaitableGetContextAttachmentResult(
-        context_id=__ret__.context_id,
-        id=__ret__.id,
-        module_id=__ret__.module_id,
-        priority=__ret__.priority,
-        stack_id=__ret__.stack_id)
+        context_id=pulumi.get(__ret__, 'context_id'),
+        id=pulumi.get(__ret__, 'id'),
+        module_id=pulumi.get(__ret__, 'module_id'),
+        priority=pulumi.get(__ret__, 'priority'),
+        stack_id=pulumi.get(__ret__, 'stack_id'))
 
 
 @_utilities.lift_output_func(get_context_attachment)
