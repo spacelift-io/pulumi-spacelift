@@ -11,7 +11,7 @@ defaults:
 
 jobs:
   library-deployment:
-    name: Build and upload provider
+    name: 🚀 Build and upload provider
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
@@ -79,3 +79,9 @@ jobs:
 
       - name: Publish dotnet package
         run: cd sdk/dotnet && dotnet nuget push ${{github.workspace}}/sdk/dotnet/bin/Debug/*.nupkg  --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+      
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          generateReleaseNotes: true
+          skipIfReleaseExists: true

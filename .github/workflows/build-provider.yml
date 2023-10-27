@@ -1,6 +1,6 @@
 name: Build provider
 
-on: { push: { branches-ignore: [future, main] } }
+on: { pull_request: {} }
 
 concurrency:
   group: build-provider-${{ github.ref }}
@@ -8,22 +8,19 @@ concurrency:
 
 jobs:
   build-provider:
-    name: Build provider
+    name: 👷‍♀️ Build provider
     runs-on: ubuntu-latest
     container: golang:1.21-alpine
     steps:
       - name: Install build dependencies
-        run: |
-          apk add --no-cache alpine-sdk git bash
+        run: apk add --no-cache alpine-sdk git bash
 
       - name: Check out repository code
         uses: actions/checkout@main
+        with: { fetch-depth: 0 }
 
       - name: Treat repo as safe
         run: git config --global --add safe.directory /__w/pulumi-spacelift/pulumi-spacelift
-
-      - name: Remove Pulumi directory
-        run: rm -rf /github/home/.pulumi
 
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1
@@ -36,7 +33,9 @@ jobs:
         uses: pulumi/actions@v4
 
       - name: Tag version
-        run: git tag -d `git tag | grep -E '.'` && git tag v0.0.0
+        run: |
+          CURRENTTAG=$(git describe --tags --abbrev=0)
+          git tag $CURRENTTAG${{ github.run_number }}
 
       - name: Print version
         run: pulumictl get version
