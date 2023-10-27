@@ -20,6 +20,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -47,6 +48,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -70,6 +72,12 @@ namespace Pulumi.Spacelift
     public sealed class GetDriftDetectionArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+        /// </summary>
+        [Input("ignoreState")]
+        public bool? IgnoreState { get; set; }
+
+        /// <summary>
         /// ID of the stack for which to set up drift detection
         /// </summary>
         [Input("stackId", required: true)]
@@ -83,6 +91,12 @@ namespace Pulumi.Spacelift
 
     public sealed class GetDriftDetectionInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+        /// </summary>
+        [Input("ignoreState")]
+        public Input<bool>? IgnoreState { get; set; }
+
         /// <summary>
         /// ID of the stack for which to set up drift detection
         /// </summary>
@@ -104,6 +118,10 @@ namespace Pulumi.Spacelift
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+        /// </summary>
+        public readonly bool? IgnoreState;
+        /// <summary>
         /// Whether a tracked run should be triggered when drift is detected.
         /// </summary>
         public readonly bool Reconcile;
@@ -124,6 +142,8 @@ namespace Pulumi.Spacelift
         private GetDriftDetectionResult(
             string id,
 
+            bool? ignoreState,
+
             bool reconcile,
 
             ImmutableArray<string> schedules,
@@ -133,6 +153,7 @@ namespace Pulumi.Spacelift
             string timezone)
         {
             Id = id;
+            IgnoreState = ignoreState;
             Reconcile = reconcile;
             Schedules = schedules;
             StackId = stackId;

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AwsIntegrationArgs', 'AwsIntegration']
@@ -31,19 +31,54 @@ class AwsIntegrationArgs:
         :param pulumi.Input[str] name: The friendly name of the integration
         :param pulumi.Input[str] space_id: ID (slug) of the space the integration is in
         """
-        pulumi.set(__self__, "role_arn", role_arn)
+        AwsIntegrationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            role_arn=role_arn,
+            duration_seconds=duration_seconds,
+            external_id=external_id,
+            generate_credentials_in_worker=generate_credentials_in_worker,
+            labels=labels,
+            name=name,
+            space_id=space_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             role_arn: Optional[pulumi.Input[str]] = None,
+             duration_seconds: Optional[pulumi.Input[int]] = None,
+             external_id: Optional[pulumi.Input[str]] = None,
+             generate_credentials_in_worker: Optional[pulumi.Input[bool]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             space_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if role_arn is None and 'roleArn' in kwargs:
+            role_arn = kwargs['roleArn']
+        if role_arn is None:
+            raise TypeError("Missing 'role_arn' argument")
+        if duration_seconds is None and 'durationSeconds' in kwargs:
+            duration_seconds = kwargs['durationSeconds']
+        if external_id is None and 'externalId' in kwargs:
+            external_id = kwargs['externalId']
+        if generate_credentials_in_worker is None and 'generateCredentialsInWorker' in kwargs:
+            generate_credentials_in_worker = kwargs['generateCredentialsInWorker']
+        if space_id is None and 'spaceId' in kwargs:
+            space_id = kwargs['spaceId']
+
+        _setter("role_arn", role_arn)
         if duration_seconds is not None:
-            pulumi.set(__self__, "duration_seconds", duration_seconds)
+            _setter("duration_seconds", duration_seconds)
         if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
+            _setter("external_id", external_id)
         if generate_credentials_in_worker is not None:
-            pulumi.set(__self__, "generate_credentials_in_worker", generate_credentials_in_worker)
+            _setter("generate_credentials_in_worker", generate_credentials_in_worker)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if space_id is not None:
-            pulumi.set(__self__, "space_id", space_id)
+            _setter("space_id", space_id)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -150,20 +185,53 @@ class _AwsIntegrationState:
         :param pulumi.Input[str] role_arn: ARN of the AWS IAM role to attach
         :param pulumi.Input[str] space_id: ID (slug) of the space the integration is in
         """
+        _AwsIntegrationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            duration_seconds=duration_seconds,
+            external_id=external_id,
+            generate_credentials_in_worker=generate_credentials_in_worker,
+            labels=labels,
+            name=name,
+            role_arn=role_arn,
+            space_id=space_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             duration_seconds: Optional[pulumi.Input[int]] = None,
+             external_id: Optional[pulumi.Input[str]] = None,
+             generate_credentials_in_worker: Optional[pulumi.Input[bool]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             role_arn: Optional[pulumi.Input[str]] = None,
+             space_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if duration_seconds is None and 'durationSeconds' in kwargs:
+            duration_seconds = kwargs['durationSeconds']
+        if external_id is None and 'externalId' in kwargs:
+            external_id = kwargs['externalId']
+        if generate_credentials_in_worker is None and 'generateCredentialsInWorker' in kwargs:
+            generate_credentials_in_worker = kwargs['generateCredentialsInWorker']
+        if role_arn is None and 'roleArn' in kwargs:
+            role_arn = kwargs['roleArn']
+        if space_id is None and 'spaceId' in kwargs:
+            space_id = kwargs['spaceId']
+
         if duration_seconds is not None:
-            pulumi.set(__self__, "duration_seconds", duration_seconds)
+            _setter("duration_seconds", duration_seconds)
         if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
+            _setter("external_id", external_id)
         if generate_credentials_in_worker is not None:
-            pulumi.set(__self__, "generate_credentials_in_worker", generate_credentials_in_worker)
+            _setter("generate_credentials_in_worker", generate_credentials_in_worker)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if role_arn is not None:
-            pulumi.set(__self__, "role_arn", role_arn)
+            _setter("role_arn", role_arn)
         if space_id is not None:
-            pulumi.set(__self__, "space_id", space_id)
+            _setter("space_id", space_id)
 
     @property
     @pulumi.getter(name="durationSeconds")
@@ -266,7 +334,7 @@ class AwsIntegration(pulumi.CustomResource):
         """
         `AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
 
-        Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-$suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+        Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName@$integrationID@$stackID@$suffix` or `$accountName@$integrationID@$moduleID@$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
 
         ## Import
 
@@ -293,7 +361,7 @@ class AwsIntegration(pulumi.CustomResource):
         """
         `AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.
 
-        Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName-$integrationID@$stackID-$suffix` or `$accountName-$integrationID@$moduleID-$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
+        Note: when assuming credentials for **shared workers**, Spacelift will use `$accountName@$integrationID@$stackID@$suffix` or `$accountName@$integrationID@$moduleID@$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.
 
         ## Import
 
@@ -311,6 +379,10 @@ class AwsIntegration(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AwsIntegrationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

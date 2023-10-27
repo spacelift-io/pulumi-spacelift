@@ -18,6 +18,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -43,6 +44,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -124,6 +126,10 @@ namespace Pulumi.Spacelift
         /// </summary>
         public readonly string Description;
         /// <summary>
+        /// Indicates whether local preview versions can be triggered on this Module.
+        /// </summary>
+        public readonly bool EnableLocalPreview;
+        /// <summary>
         /// GitHub Enterprise (self-hosted) VCS settings
         /// </summary>
         public readonly ImmutableArray<Outputs.GetModuleGithubEnterpriseResult> GithubEnterprises;
@@ -166,6 +172,10 @@ namespace Pulumi.Spacelift
         /// ID of the worker pool to use
         /// </summary>
         public readonly string WorkerPoolId;
+        /// <summary>
+        /// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+        /// </summary>
+        public readonly string WorkflowTool;
 
         [OutputConstructor]
         private GetModuleResult(
@@ -182,6 +192,8 @@ namespace Pulumi.Spacelift
             string branch,
 
             string description,
+
+            bool enableLocalPreview,
 
             ImmutableArray<Outputs.GetModuleGithubEnterpriseResult> githubEnterprises,
 
@@ -207,7 +219,9 @@ namespace Pulumi.Spacelift
 
             string terraformProvider,
 
-            string workerPoolId)
+            string workerPoolId,
+
+            string workflowTool)
         {
             Administrative = administrative;
             AwsAssumeRolePolicyStatement = awsAssumeRolePolicyStatement;
@@ -216,6 +230,7 @@ namespace Pulumi.Spacelift
             BitbucketDatacenters = bitbucketDatacenters;
             Branch = branch;
             Description = description;
+            EnableLocalPreview = enableLocalPreview;
             GithubEnterprises = githubEnterprises;
             Gitlabs = gitlabs;
             Id = id;
@@ -229,6 +244,7 @@ namespace Pulumi.Spacelift
             SpaceId = spaceId;
             TerraformProvider = terraformProvider;
             WorkerPoolId = workerPoolId;
+            WorkflowTool = workflowTool;
         }
     }
 }

@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as spacelift from "@pulumi/spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * // For a module
  * const attachment = new spacelift.ContextAttachment("attachment", {

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AzureIntegrationArgs', 'AzureIntegration']
@@ -27,15 +27,42 @@ class AzureIntegrationArgs:
         :param pulumi.Input[str] name: The friendly name of the integration
         :param pulumi.Input[str] space_id: ID (slug) of the space the integration is in
         """
-        pulumi.set(__self__, "tenant_id", tenant_id)
+        AzureIntegrationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            tenant_id=tenant_id,
+            default_subscription_id=default_subscription_id,
+            labels=labels,
+            name=name,
+            space_id=space_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             tenant_id: Optional[pulumi.Input[str]] = None,
+             default_subscription_id: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             space_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if tenant_id is None and 'tenantId' in kwargs:
+            tenant_id = kwargs['tenantId']
+        if tenant_id is None:
+            raise TypeError("Missing 'tenant_id' argument")
+        if default_subscription_id is None and 'defaultSubscriptionId' in kwargs:
+            default_subscription_id = kwargs['defaultSubscriptionId']
+        if space_id is None and 'spaceId' in kwargs:
+            space_id = kwargs['spaceId']
+
+        _setter("tenant_id", tenant_id)
         if default_subscription_id is not None:
-            pulumi.set(__self__, "default_subscription_id", default_subscription_id)
+            _setter("default_subscription_id", default_subscription_id)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if space_id is not None:
-            pulumi.set(__self__, "space_id", space_id)
+            _setter("space_id", space_id)
 
     @property
     @pulumi.getter(name="tenantId")
@@ -122,24 +149,65 @@ class _AzureIntegrationState:
         :param pulumi.Input[str] space_id: ID (slug) of the space the integration is in
         :param pulumi.Input[str] tenant_id: The Azure AD tenant ID
         """
+        _AzureIntegrationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            admin_consent_provided=admin_consent_provided,
+            admin_consent_url=admin_consent_url,
+            application_id=application_id,
+            default_subscription_id=default_subscription_id,
+            display_name=display_name,
+            labels=labels,
+            name=name,
+            space_id=space_id,
+            tenant_id=tenant_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             admin_consent_provided: Optional[pulumi.Input[bool]] = None,
+             admin_consent_url: Optional[pulumi.Input[str]] = None,
+             application_id: Optional[pulumi.Input[str]] = None,
+             default_subscription_id: Optional[pulumi.Input[str]] = None,
+             display_name: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             space_id: Optional[pulumi.Input[str]] = None,
+             tenant_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if admin_consent_provided is None and 'adminConsentProvided' in kwargs:
+            admin_consent_provided = kwargs['adminConsentProvided']
+        if admin_consent_url is None and 'adminConsentUrl' in kwargs:
+            admin_consent_url = kwargs['adminConsentUrl']
+        if application_id is None and 'applicationId' in kwargs:
+            application_id = kwargs['applicationId']
+        if default_subscription_id is None and 'defaultSubscriptionId' in kwargs:
+            default_subscription_id = kwargs['defaultSubscriptionId']
+        if display_name is None and 'displayName' in kwargs:
+            display_name = kwargs['displayName']
+        if space_id is None and 'spaceId' in kwargs:
+            space_id = kwargs['spaceId']
+        if tenant_id is None and 'tenantId' in kwargs:
+            tenant_id = kwargs['tenantId']
+
         if admin_consent_provided is not None:
-            pulumi.set(__self__, "admin_consent_provided", admin_consent_provided)
+            _setter("admin_consent_provided", admin_consent_provided)
         if admin_consent_url is not None:
-            pulumi.set(__self__, "admin_consent_url", admin_consent_url)
+            _setter("admin_consent_url", admin_consent_url)
         if application_id is not None:
-            pulumi.set(__self__, "application_id", application_id)
+            _setter("application_id", application_id)
         if default_subscription_id is not None:
-            pulumi.set(__self__, "default_subscription_id", default_subscription_id)
+            _setter("default_subscription_id", default_subscription_id)
         if display_name is not None:
-            pulumi.set(__self__, "display_name", display_name)
+            _setter("display_name", display_name)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if space_id is not None:
-            pulumi.set(__self__, "space_id", space_id)
+            _setter("space_id", space_id)
         if tenant_id is not None:
-            pulumi.set(__self__, "tenant_id", tenant_id)
+            _setter("tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="adminConsentProvided")
@@ -333,6 +401,10 @@ class AzureIntegration(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AzureIntegrationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

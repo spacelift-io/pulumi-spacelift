@@ -20,11 +20,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getPolicy(args: GetPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetPolicyResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getPolicy:getPolicy", {
         "policyId": args.policyId,
     }, opts);
@@ -70,9 +67,23 @@ export interface GetPolicyResult {
      */
     readonly type: string;
 }
-
+/**
+ * `spacelift.Policy` represents a Spacelift **policy** - a collection of customer-defined rules that are applied by Spacelift at one of the decision points within the application.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const policy = spacelift.getPolicy({
+ *     policyId: spacelift_policy.policy.id,
+ * });
+ * export const policyBody = policy.then(policy => policy.body);
+ * ```
+ */
 export function getPolicyOutput(args: GetPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPolicyResult> {
-    return pulumi.output(args).apply(a => getPolicy(a, opts))
+    return pulumi.output(args).apply((a: any) => getPolicy(a, opts))
 }
 
 /**

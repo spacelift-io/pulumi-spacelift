@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const gitlabIntegration = pulumi.output(spacelift.getGitlabIntegration());
+ * const gitlabIntegration = spacelift.getGitlabIntegration({});
  * ```
  */
 export function getGitlabIntegration(opts?: pulumi.InvokeOptions): Promise<GetGitlabIntegrationResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getGitlabIntegration:getGitlabIntegration", {
     }, opts);
 }
@@ -42,4 +39,19 @@ export interface GetGitlabIntegrationResult {
      * Gitlab integration webhook secret
      */
     readonly webhookSecret: string;
+}
+/**
+ * `spacelift.getGitlabIntegration` returns details about Gitlab integration
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const gitlabIntegration = spacelift.getGitlabIntegration({});
+ * ```
+ */
+export function getGitlabIntegrationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetGitlabIntegrationResult> {
+    return pulumi.output(getGitlabIntegration(opts))
 }

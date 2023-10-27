@@ -13,6 +13,12 @@ namespace Pulumi.Spacelift.Inputs
     public sealed class StackKubernetesGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Kubectl version.
+        /// </summary>
+        [Input("kubectlVersion")]
+        public Input<string>? KubectlVersion { get; set; }
+
+        /// <summary>
         /// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
         /// </summary>
         [Input("namespace")]

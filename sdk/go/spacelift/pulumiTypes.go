@@ -8,7 +8,141 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
+
+var _ = internal.GetEnvOrDefault
+
+type IdpGroupMappingPolicy struct {
+	// Type of access to the space. Possible values are: READ, WRITE, ADMIN
+	Role string `pulumi:"role"`
+	// ID (slug) of the space the user group has access to
+	SpaceId string `pulumi:"spaceId"`
+}
+
+// IdpGroupMappingPolicyInput is an input type that accepts IdpGroupMappingPolicyArgs and IdpGroupMappingPolicyOutput values.
+// You can construct a concrete instance of `IdpGroupMappingPolicyInput` via:
+//
+//	IdpGroupMappingPolicyArgs{...}
+type IdpGroupMappingPolicyInput interface {
+	pulumi.Input
+
+	ToIdpGroupMappingPolicyOutput() IdpGroupMappingPolicyOutput
+	ToIdpGroupMappingPolicyOutputWithContext(context.Context) IdpGroupMappingPolicyOutput
+}
+
+type IdpGroupMappingPolicyArgs struct {
+	// Type of access to the space. Possible values are: READ, WRITE, ADMIN
+	Role pulumi.StringInput `pulumi:"role"`
+	// ID (slug) of the space the user group has access to
+	SpaceId pulumi.StringInput `pulumi:"spaceId"`
+}
+
+func (IdpGroupMappingPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IdpGroupMappingPolicy)(nil)).Elem()
+}
+
+func (i IdpGroupMappingPolicyArgs) ToIdpGroupMappingPolicyOutput() IdpGroupMappingPolicyOutput {
+	return i.ToIdpGroupMappingPolicyOutputWithContext(context.Background())
+}
+
+func (i IdpGroupMappingPolicyArgs) ToIdpGroupMappingPolicyOutputWithContext(ctx context.Context) IdpGroupMappingPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IdpGroupMappingPolicyOutput)
+}
+
+func (i IdpGroupMappingPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[IdpGroupMappingPolicy] {
+	return pulumix.Output[IdpGroupMappingPolicy]{
+		OutputState: i.ToIdpGroupMappingPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
+// IdpGroupMappingPolicyArrayInput is an input type that accepts IdpGroupMappingPolicyArray and IdpGroupMappingPolicyArrayOutput values.
+// You can construct a concrete instance of `IdpGroupMappingPolicyArrayInput` via:
+//
+//	IdpGroupMappingPolicyArray{ IdpGroupMappingPolicyArgs{...} }
+type IdpGroupMappingPolicyArrayInput interface {
+	pulumi.Input
+
+	ToIdpGroupMappingPolicyArrayOutput() IdpGroupMappingPolicyArrayOutput
+	ToIdpGroupMappingPolicyArrayOutputWithContext(context.Context) IdpGroupMappingPolicyArrayOutput
+}
+
+type IdpGroupMappingPolicyArray []IdpGroupMappingPolicyInput
+
+func (IdpGroupMappingPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IdpGroupMappingPolicy)(nil)).Elem()
+}
+
+func (i IdpGroupMappingPolicyArray) ToIdpGroupMappingPolicyArrayOutput() IdpGroupMappingPolicyArrayOutput {
+	return i.ToIdpGroupMappingPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i IdpGroupMappingPolicyArray) ToIdpGroupMappingPolicyArrayOutputWithContext(ctx context.Context) IdpGroupMappingPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IdpGroupMappingPolicyArrayOutput)
+}
+
+func (i IdpGroupMappingPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]IdpGroupMappingPolicy] {
+	return pulumix.Output[[]IdpGroupMappingPolicy]{
+		OutputState: i.ToIdpGroupMappingPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type IdpGroupMappingPolicyOutput struct{ *pulumi.OutputState }
+
+func (IdpGroupMappingPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IdpGroupMappingPolicy)(nil)).Elem()
+}
+
+func (o IdpGroupMappingPolicyOutput) ToIdpGroupMappingPolicyOutput() IdpGroupMappingPolicyOutput {
+	return o
+}
+
+func (o IdpGroupMappingPolicyOutput) ToIdpGroupMappingPolicyOutputWithContext(ctx context.Context) IdpGroupMappingPolicyOutput {
+	return o
+}
+
+func (o IdpGroupMappingPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[IdpGroupMappingPolicy] {
+	return pulumix.Output[IdpGroupMappingPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Type of access to the space. Possible values are: READ, WRITE, ADMIN
+func (o IdpGroupMappingPolicyOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v IdpGroupMappingPolicy) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// ID (slug) of the space the user group has access to
+func (o IdpGroupMappingPolicyOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v IdpGroupMappingPolicy) string { return v.SpaceId }).(pulumi.StringOutput)
+}
+
+type IdpGroupMappingPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (IdpGroupMappingPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IdpGroupMappingPolicy)(nil)).Elem()
+}
+
+func (o IdpGroupMappingPolicyArrayOutput) ToIdpGroupMappingPolicyArrayOutput() IdpGroupMappingPolicyArrayOutput {
+	return o
+}
+
+func (o IdpGroupMappingPolicyArrayOutput) ToIdpGroupMappingPolicyArrayOutputWithContext(ctx context.Context) IdpGroupMappingPolicyArrayOutput {
+	return o
+}
+
+func (o IdpGroupMappingPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]IdpGroupMappingPolicy] {
+	return pulumix.Output[[]IdpGroupMappingPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o IdpGroupMappingPolicyArrayOutput) Index(i pulumi.IntInput) IdpGroupMappingPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IdpGroupMappingPolicy {
+		return vs[0].([]IdpGroupMappingPolicy)[vs[1].(int)]
+	}).(IdpGroupMappingPolicyOutput)
+}
 
 type ModuleAzureDevops struct {
 	// The name of the Azure DevOps project
@@ -41,6 +175,12 @@ func (i ModuleAzureDevopsArgs) ToModuleAzureDevopsOutput() ModuleAzureDevopsOutp
 
 func (i ModuleAzureDevopsArgs) ToModuleAzureDevopsOutputWithContext(ctx context.Context) ModuleAzureDevopsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleAzureDevopsOutput)
+}
+
+func (i ModuleAzureDevopsArgs) ToOutput(ctx context.Context) pulumix.Output[ModuleAzureDevops] {
+	return pulumix.Output[ModuleAzureDevops]{
+		OutputState: i.ToModuleAzureDevopsOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ModuleAzureDevopsArgs) ToModuleAzureDevopsPtrOutput() ModuleAzureDevopsPtrOutput {
@@ -84,6 +224,12 @@ func (i *moduleAzureDevopsPtrType) ToModuleAzureDevopsPtrOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleAzureDevopsPtrOutput)
 }
 
+func (i *moduleAzureDevopsPtrType) ToOutput(ctx context.Context) pulumix.Output[*ModuleAzureDevops] {
+	return pulumix.Output[*ModuleAzureDevops]{
+		OutputState: i.ToModuleAzureDevopsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ModuleAzureDevopsOutput struct{ *pulumi.OutputState }
 
 func (ModuleAzureDevopsOutput) ElementType() reflect.Type {
@@ -108,6 +254,12 @@ func (o ModuleAzureDevopsOutput) ToModuleAzureDevopsPtrOutputWithContext(ctx con
 	}).(ModuleAzureDevopsPtrOutput)
 }
 
+func (o ModuleAzureDevopsOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleAzureDevops] {
+	return pulumix.Output[ModuleAzureDevops]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The name of the Azure DevOps project
 func (o ModuleAzureDevopsOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleAzureDevops) string { return v.Project }).(pulumi.StringOutput)
@@ -125,6 +277,12 @@ func (o ModuleAzureDevopsPtrOutput) ToModuleAzureDevopsPtrOutput() ModuleAzureDe
 
 func (o ModuleAzureDevopsPtrOutput) ToModuleAzureDevopsPtrOutputWithContext(ctx context.Context) ModuleAzureDevopsPtrOutput {
 	return o
+}
+
+func (o ModuleAzureDevopsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleAzureDevops] {
+	return pulumix.Output[*ModuleAzureDevops]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ModuleAzureDevopsPtrOutput) Elem() ModuleAzureDevopsOutput {
@@ -180,6 +338,12 @@ func (i ModuleBitbucketCloudArgs) ToModuleBitbucketCloudOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketCloudOutput)
 }
 
+func (i ModuleBitbucketCloudArgs) ToOutput(ctx context.Context) pulumix.Output[ModuleBitbucketCloud] {
+	return pulumix.Output[ModuleBitbucketCloud]{
+		OutputState: i.ToModuleBitbucketCloudOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ModuleBitbucketCloudArgs) ToModuleBitbucketCloudPtrOutput() ModuleBitbucketCloudPtrOutput {
 	return i.ToModuleBitbucketCloudPtrOutputWithContext(context.Background())
 }
@@ -221,6 +385,12 @@ func (i *moduleBitbucketCloudPtrType) ToModuleBitbucketCloudPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketCloudPtrOutput)
 }
 
+func (i *moduleBitbucketCloudPtrType) ToOutput(ctx context.Context) pulumix.Output[*ModuleBitbucketCloud] {
+	return pulumix.Output[*ModuleBitbucketCloud]{
+		OutputState: i.ToModuleBitbucketCloudPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ModuleBitbucketCloudOutput struct{ *pulumi.OutputState }
 
 func (ModuleBitbucketCloudOutput) ElementType() reflect.Type {
@@ -245,6 +415,12 @@ func (o ModuleBitbucketCloudOutput) ToModuleBitbucketCloudPtrOutputWithContext(c
 	}).(ModuleBitbucketCloudPtrOutput)
 }
 
+func (o ModuleBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleBitbucketCloud] {
+	return pulumix.Output[ModuleBitbucketCloud]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The Bitbucket project containing the repository
 func (o ModuleBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
@@ -262,6 +438,12 @@ func (o ModuleBitbucketCloudPtrOutput) ToModuleBitbucketCloudPtrOutput() ModuleB
 
 func (o ModuleBitbucketCloudPtrOutput) ToModuleBitbucketCloudPtrOutputWithContext(ctx context.Context) ModuleBitbucketCloudPtrOutput {
 	return o
+}
+
+func (o ModuleBitbucketCloudPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleBitbucketCloud] {
+	return pulumix.Output[*ModuleBitbucketCloud]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ModuleBitbucketCloudPtrOutput) Elem() ModuleBitbucketCloudOutput {
@@ -317,6 +499,12 @@ func (i ModuleBitbucketDatacenterArgs) ToModuleBitbucketDatacenterOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketDatacenterOutput)
 }
 
+func (i ModuleBitbucketDatacenterArgs) ToOutput(ctx context.Context) pulumix.Output[ModuleBitbucketDatacenter] {
+	return pulumix.Output[ModuleBitbucketDatacenter]{
+		OutputState: i.ToModuleBitbucketDatacenterOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ModuleBitbucketDatacenterArgs) ToModuleBitbucketDatacenterPtrOutput() ModuleBitbucketDatacenterPtrOutput {
 	return i.ToModuleBitbucketDatacenterPtrOutputWithContext(context.Background())
 }
@@ -358,6 +546,12 @@ func (i *moduleBitbucketDatacenterPtrType) ToModuleBitbucketDatacenterPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketDatacenterPtrOutput)
 }
 
+func (i *moduleBitbucketDatacenterPtrType) ToOutput(ctx context.Context) pulumix.Output[*ModuleBitbucketDatacenter] {
+	return pulumix.Output[*ModuleBitbucketDatacenter]{
+		OutputState: i.ToModuleBitbucketDatacenterPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ModuleBitbucketDatacenterOutput struct{ *pulumi.OutputState }
 
 func (ModuleBitbucketDatacenterOutput) ElementType() reflect.Type {
@@ -382,6 +576,12 @@ func (o ModuleBitbucketDatacenterOutput) ToModuleBitbucketDatacenterPtrOutputWit
 	}).(ModuleBitbucketDatacenterPtrOutput)
 }
 
+func (o ModuleBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleBitbucketDatacenter] {
+	return pulumix.Output[ModuleBitbucketDatacenter]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The Bitbucket project containing the repository
 func (o ModuleBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
@@ -399,6 +599,12 @@ func (o ModuleBitbucketDatacenterPtrOutput) ToModuleBitbucketDatacenterPtrOutput
 
 func (o ModuleBitbucketDatacenterPtrOutput) ToModuleBitbucketDatacenterPtrOutputWithContext(ctx context.Context) ModuleBitbucketDatacenterPtrOutput {
 	return o
+}
+
+func (o ModuleBitbucketDatacenterPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleBitbucketDatacenter] {
+	return pulumix.Output[*ModuleBitbucketDatacenter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ModuleBitbucketDatacenterPtrOutput) Elem() ModuleBitbucketDatacenterOutput {
@@ -454,6 +660,12 @@ func (i ModuleGithubEnterpriseArgs) ToModuleGithubEnterpriseOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleGithubEnterpriseOutput)
 }
 
+func (i ModuleGithubEnterpriseArgs) ToOutput(ctx context.Context) pulumix.Output[ModuleGithubEnterprise] {
+	return pulumix.Output[ModuleGithubEnterprise]{
+		OutputState: i.ToModuleGithubEnterpriseOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ModuleGithubEnterpriseArgs) ToModuleGithubEnterprisePtrOutput() ModuleGithubEnterprisePtrOutput {
 	return i.ToModuleGithubEnterprisePtrOutputWithContext(context.Background())
 }
@@ -495,6 +707,12 @@ func (i *moduleGithubEnterprisePtrType) ToModuleGithubEnterprisePtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleGithubEnterprisePtrOutput)
 }
 
+func (i *moduleGithubEnterprisePtrType) ToOutput(ctx context.Context) pulumix.Output[*ModuleGithubEnterprise] {
+	return pulumix.Output[*ModuleGithubEnterprise]{
+		OutputState: i.ToModuleGithubEnterprisePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ModuleGithubEnterpriseOutput struct{ *pulumi.OutputState }
 
 func (ModuleGithubEnterpriseOutput) ElementType() reflect.Type {
@@ -519,6 +737,12 @@ func (o ModuleGithubEnterpriseOutput) ToModuleGithubEnterprisePtrOutputWithConte
 	}).(ModuleGithubEnterprisePtrOutput)
 }
 
+func (o ModuleGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleGithubEnterprise] {
+	return pulumix.Output[ModuleGithubEnterprise]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The GitHub organization / user the repository belongs to
 func (o ModuleGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
@@ -536,6 +760,12 @@ func (o ModuleGithubEnterprisePtrOutput) ToModuleGithubEnterprisePtrOutput() Mod
 
 func (o ModuleGithubEnterprisePtrOutput) ToModuleGithubEnterprisePtrOutputWithContext(ctx context.Context) ModuleGithubEnterprisePtrOutput {
 	return o
+}
+
+func (o ModuleGithubEnterprisePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleGithubEnterprise] {
+	return pulumix.Output[*ModuleGithubEnterprise]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ModuleGithubEnterprisePtrOutput) Elem() ModuleGithubEnterpriseOutput {
@@ -591,6 +821,12 @@ func (i ModuleGitlabArgs) ToModuleGitlabOutputWithContext(ctx context.Context) M
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleGitlabOutput)
 }
 
+func (i ModuleGitlabArgs) ToOutput(ctx context.Context) pulumix.Output[ModuleGitlab] {
+	return pulumix.Output[ModuleGitlab]{
+		OutputState: i.ToModuleGitlabOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ModuleGitlabArgs) ToModuleGitlabPtrOutput() ModuleGitlabPtrOutput {
 	return i.ToModuleGitlabPtrOutputWithContext(context.Background())
 }
@@ -632,6 +868,12 @@ func (i *moduleGitlabPtrType) ToModuleGitlabPtrOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleGitlabPtrOutput)
 }
 
+func (i *moduleGitlabPtrType) ToOutput(ctx context.Context) pulumix.Output[*ModuleGitlab] {
+	return pulumix.Output[*ModuleGitlab]{
+		OutputState: i.ToModuleGitlabPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ModuleGitlabOutput struct{ *pulumi.OutputState }
 
 func (ModuleGitlabOutput) ElementType() reflect.Type {
@@ -656,6 +898,12 @@ func (o ModuleGitlabOutput) ToModuleGitlabPtrOutputWithContext(ctx context.Conte
 	}).(ModuleGitlabPtrOutput)
 }
 
+func (o ModuleGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleGitlab] {
+	return pulumix.Output[ModuleGitlab]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The GitLab namespace containing the repository
 func (o ModuleGitlabOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleGitlab) string { return v.Namespace }).(pulumi.StringOutput)
@@ -673,6 +921,12 @@ func (o ModuleGitlabPtrOutput) ToModuleGitlabPtrOutput() ModuleGitlabPtrOutput {
 
 func (o ModuleGitlabPtrOutput) ToModuleGitlabPtrOutputWithContext(ctx context.Context) ModuleGitlabPtrOutput {
 	return o
+}
+
+func (o ModuleGitlabPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleGitlab] {
+	return pulumix.Output[*ModuleGitlab]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ModuleGitlabPtrOutput) Elem() ModuleGitlabOutput {
@@ -728,6 +982,12 @@ func (i StackAnsibleArgs) ToStackAnsibleOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(StackAnsibleOutput)
 }
 
+func (i StackAnsibleArgs) ToOutput(ctx context.Context) pulumix.Output[StackAnsible] {
+	return pulumix.Output[StackAnsible]{
+		OutputState: i.ToStackAnsibleOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i StackAnsibleArgs) ToStackAnsiblePtrOutput() StackAnsiblePtrOutput {
 	return i.ToStackAnsiblePtrOutputWithContext(context.Background())
 }
@@ -769,6 +1029,12 @@ func (i *stackAnsiblePtrType) ToStackAnsiblePtrOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(StackAnsiblePtrOutput)
 }
 
+func (i *stackAnsiblePtrType) ToOutput(ctx context.Context) pulumix.Output[*StackAnsible] {
+	return pulumix.Output[*StackAnsible]{
+		OutputState: i.ToStackAnsiblePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackAnsibleOutput struct{ *pulumi.OutputState }
 
 func (StackAnsibleOutput) ElementType() reflect.Type {
@@ -793,6 +1059,12 @@ func (o StackAnsibleOutput) ToStackAnsiblePtrOutputWithContext(ctx context.Conte
 	}).(StackAnsiblePtrOutput)
 }
 
+func (o StackAnsibleOutput) ToOutput(ctx context.Context) pulumix.Output[StackAnsible] {
+	return pulumix.Output[StackAnsible]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The playbook Ansible should run.
 func (o StackAnsibleOutput) Playbook() pulumi.StringOutput {
 	return o.ApplyT(func(v StackAnsible) string { return v.Playbook }).(pulumi.StringOutput)
@@ -810,6 +1082,12 @@ func (o StackAnsiblePtrOutput) ToStackAnsiblePtrOutput() StackAnsiblePtrOutput {
 
 func (o StackAnsiblePtrOutput) ToStackAnsiblePtrOutputWithContext(ctx context.Context) StackAnsiblePtrOutput {
 	return o
+}
+
+func (o StackAnsiblePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackAnsible] {
+	return pulumix.Output[*StackAnsible]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackAnsiblePtrOutput) Elem() StackAnsibleOutput {
@@ -865,6 +1143,12 @@ func (i StackAzureDevopsArgs) ToStackAzureDevopsOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(StackAzureDevopsOutput)
 }
 
+func (i StackAzureDevopsArgs) ToOutput(ctx context.Context) pulumix.Output[StackAzureDevops] {
+	return pulumix.Output[StackAzureDevops]{
+		OutputState: i.ToStackAzureDevopsOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i StackAzureDevopsArgs) ToStackAzureDevopsPtrOutput() StackAzureDevopsPtrOutput {
 	return i.ToStackAzureDevopsPtrOutputWithContext(context.Background())
 }
@@ -906,6 +1190,12 @@ func (i *stackAzureDevopsPtrType) ToStackAzureDevopsPtrOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(StackAzureDevopsPtrOutput)
 }
 
+func (i *stackAzureDevopsPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackAzureDevops] {
+	return pulumix.Output[*StackAzureDevops]{
+		OutputState: i.ToStackAzureDevopsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackAzureDevopsOutput struct{ *pulumi.OutputState }
 
 func (StackAzureDevopsOutput) ElementType() reflect.Type {
@@ -930,6 +1220,12 @@ func (o StackAzureDevopsOutput) ToStackAzureDevopsPtrOutputWithContext(ctx conte
 	}).(StackAzureDevopsPtrOutput)
 }
 
+func (o StackAzureDevopsOutput) ToOutput(ctx context.Context) pulumix.Output[StackAzureDevops] {
+	return pulumix.Output[StackAzureDevops]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The name of the Azure DevOps project
 func (o StackAzureDevopsOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v StackAzureDevops) string { return v.Project }).(pulumi.StringOutput)
@@ -947,6 +1243,12 @@ func (o StackAzureDevopsPtrOutput) ToStackAzureDevopsPtrOutput() StackAzureDevop
 
 func (o StackAzureDevopsPtrOutput) ToStackAzureDevopsPtrOutputWithContext(ctx context.Context) StackAzureDevopsPtrOutput {
 	return o
+}
+
+func (o StackAzureDevopsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackAzureDevops] {
+	return pulumix.Output[*StackAzureDevops]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackAzureDevopsPtrOutput) Elem() StackAzureDevopsOutput {
@@ -1002,6 +1304,12 @@ func (i StackBitbucketCloudArgs) ToStackBitbucketCloudOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketCloudOutput)
 }
 
+func (i StackBitbucketCloudArgs) ToOutput(ctx context.Context) pulumix.Output[StackBitbucketCloud] {
+	return pulumix.Output[StackBitbucketCloud]{
+		OutputState: i.ToStackBitbucketCloudOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i StackBitbucketCloudArgs) ToStackBitbucketCloudPtrOutput() StackBitbucketCloudPtrOutput {
 	return i.ToStackBitbucketCloudPtrOutputWithContext(context.Background())
 }
@@ -1043,6 +1351,12 @@ func (i *stackBitbucketCloudPtrType) ToStackBitbucketCloudPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketCloudPtrOutput)
 }
 
+func (i *stackBitbucketCloudPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackBitbucketCloud] {
+	return pulumix.Output[*StackBitbucketCloud]{
+		OutputState: i.ToStackBitbucketCloudPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackBitbucketCloudOutput struct{ *pulumi.OutputState }
 
 func (StackBitbucketCloudOutput) ElementType() reflect.Type {
@@ -1067,6 +1381,12 @@ func (o StackBitbucketCloudOutput) ToStackBitbucketCloudPtrOutputWithContext(ctx
 	}).(StackBitbucketCloudPtrOutput)
 }
 
+func (o StackBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[StackBitbucketCloud] {
+	return pulumix.Output[StackBitbucketCloud]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The Bitbucket project containing the repository
 func (o StackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
@@ -1084,6 +1404,12 @@ func (o StackBitbucketCloudPtrOutput) ToStackBitbucketCloudPtrOutput() StackBitb
 
 func (o StackBitbucketCloudPtrOutput) ToStackBitbucketCloudPtrOutputWithContext(ctx context.Context) StackBitbucketCloudPtrOutput {
 	return o
+}
+
+func (o StackBitbucketCloudPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackBitbucketCloud] {
+	return pulumix.Output[*StackBitbucketCloud]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackBitbucketCloudPtrOutput) Elem() StackBitbucketCloudOutput {
@@ -1139,6 +1465,12 @@ func (i StackBitbucketDatacenterArgs) ToStackBitbucketDatacenterOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketDatacenterOutput)
 }
 
+func (i StackBitbucketDatacenterArgs) ToOutput(ctx context.Context) pulumix.Output[StackBitbucketDatacenter] {
+	return pulumix.Output[StackBitbucketDatacenter]{
+		OutputState: i.ToStackBitbucketDatacenterOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i StackBitbucketDatacenterArgs) ToStackBitbucketDatacenterPtrOutput() StackBitbucketDatacenterPtrOutput {
 	return i.ToStackBitbucketDatacenterPtrOutputWithContext(context.Background())
 }
@@ -1180,6 +1512,12 @@ func (i *stackBitbucketDatacenterPtrType) ToStackBitbucketDatacenterPtrOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketDatacenterPtrOutput)
 }
 
+func (i *stackBitbucketDatacenterPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackBitbucketDatacenter] {
+	return pulumix.Output[*StackBitbucketDatacenter]{
+		OutputState: i.ToStackBitbucketDatacenterPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackBitbucketDatacenterOutput struct{ *pulumi.OutputState }
 
 func (StackBitbucketDatacenterOutput) ElementType() reflect.Type {
@@ -1204,6 +1542,12 @@ func (o StackBitbucketDatacenterOutput) ToStackBitbucketDatacenterPtrOutputWithC
 	}).(StackBitbucketDatacenterPtrOutput)
 }
 
+func (o StackBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Output[StackBitbucketDatacenter] {
+	return pulumix.Output[StackBitbucketDatacenter]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The Bitbucket project containing the repository
 func (o StackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
@@ -1221,6 +1565,12 @@ func (o StackBitbucketDatacenterPtrOutput) ToStackBitbucketDatacenterPtrOutput()
 
 func (o StackBitbucketDatacenterPtrOutput) ToStackBitbucketDatacenterPtrOutputWithContext(ctx context.Context) StackBitbucketDatacenterPtrOutput {
 	return o
+}
+
+func (o StackBitbucketDatacenterPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackBitbucketDatacenter] {
+	return pulumix.Output[*StackBitbucketDatacenter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackBitbucketDatacenterPtrOutput) Elem() StackBitbucketDatacenterOutput {
@@ -1288,6 +1638,12 @@ func (i StackCloudformationArgs) ToStackCloudformationOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(StackCloudformationOutput)
 }
 
+func (i StackCloudformationArgs) ToOutput(ctx context.Context) pulumix.Output[StackCloudformation] {
+	return pulumix.Output[StackCloudformation]{
+		OutputState: i.ToStackCloudformationOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i StackCloudformationArgs) ToStackCloudformationPtrOutput() StackCloudformationPtrOutput {
 	return i.ToStackCloudformationPtrOutputWithContext(context.Background())
 }
@@ -1329,6 +1685,12 @@ func (i *stackCloudformationPtrType) ToStackCloudformationPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(StackCloudformationPtrOutput)
 }
 
+func (i *stackCloudformationPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackCloudformation] {
+	return pulumix.Output[*StackCloudformation]{
+		OutputState: i.ToStackCloudformationPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackCloudformationOutput struct{ *pulumi.OutputState }
 
 func (StackCloudformationOutput) ElementType() reflect.Type {
@@ -1351,6 +1713,12 @@ func (o StackCloudformationOutput) ToStackCloudformationPtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v StackCloudformation) *StackCloudformation {
 		return &v
 	}).(StackCloudformationPtrOutput)
+}
+
+func (o StackCloudformationOutput) ToOutput(ctx context.Context) pulumix.Output[StackCloudformation] {
+	return pulumix.Output[StackCloudformation]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Template file `cloudformation package` will be called on
@@ -1385,6 +1753,12 @@ func (o StackCloudformationPtrOutput) ToStackCloudformationPtrOutput() StackClou
 
 func (o StackCloudformationPtrOutput) ToStackCloudformationPtrOutputWithContext(ctx context.Context) StackCloudformationPtrOutput {
 	return o
+}
+
+func (o StackCloudformationPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackCloudformation] {
+	return pulumix.Output[*StackCloudformation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackCloudformationPtrOutput) Elem() StackCloudformationOutput {
@@ -1470,6 +1844,12 @@ func (i StackGithubEnterpriseArgs) ToStackGithubEnterpriseOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(StackGithubEnterpriseOutput)
 }
 
+func (i StackGithubEnterpriseArgs) ToOutput(ctx context.Context) pulumix.Output[StackGithubEnterprise] {
+	return pulumix.Output[StackGithubEnterprise]{
+		OutputState: i.ToStackGithubEnterpriseOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i StackGithubEnterpriseArgs) ToStackGithubEnterprisePtrOutput() StackGithubEnterprisePtrOutput {
 	return i.ToStackGithubEnterprisePtrOutputWithContext(context.Background())
 }
@@ -1511,6 +1891,12 @@ func (i *stackGithubEnterprisePtrType) ToStackGithubEnterprisePtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(StackGithubEnterprisePtrOutput)
 }
 
+func (i *stackGithubEnterprisePtrType) ToOutput(ctx context.Context) pulumix.Output[*StackGithubEnterprise] {
+	return pulumix.Output[*StackGithubEnterprise]{
+		OutputState: i.ToStackGithubEnterprisePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackGithubEnterpriseOutput struct{ *pulumi.OutputState }
 
 func (StackGithubEnterpriseOutput) ElementType() reflect.Type {
@@ -1535,6 +1921,12 @@ func (o StackGithubEnterpriseOutput) ToStackGithubEnterprisePtrOutputWithContext
 	}).(StackGithubEnterprisePtrOutput)
 }
 
+func (o StackGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Output[StackGithubEnterprise] {
+	return pulumix.Output[StackGithubEnterprise]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The GitHub organization / user the repository belongs to
 func (o StackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
@@ -1552,6 +1944,12 @@ func (o StackGithubEnterprisePtrOutput) ToStackGithubEnterprisePtrOutput() Stack
 
 func (o StackGithubEnterprisePtrOutput) ToStackGithubEnterprisePtrOutputWithContext(ctx context.Context) StackGithubEnterprisePtrOutput {
 	return o
+}
+
+func (o StackGithubEnterprisePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackGithubEnterprise] {
+	return pulumix.Output[*StackGithubEnterprise]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackGithubEnterprisePtrOutput) Elem() StackGithubEnterpriseOutput {
@@ -1607,6 +2005,12 @@ func (i StackGitlabArgs) ToStackGitlabOutputWithContext(ctx context.Context) Sta
 	return pulumi.ToOutputWithContext(ctx, i).(StackGitlabOutput)
 }
 
+func (i StackGitlabArgs) ToOutput(ctx context.Context) pulumix.Output[StackGitlab] {
+	return pulumix.Output[StackGitlab]{
+		OutputState: i.ToStackGitlabOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i StackGitlabArgs) ToStackGitlabPtrOutput() StackGitlabPtrOutput {
 	return i.ToStackGitlabPtrOutputWithContext(context.Background())
 }
@@ -1648,6 +2052,12 @@ func (i *stackGitlabPtrType) ToStackGitlabPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(StackGitlabPtrOutput)
 }
 
+func (i *stackGitlabPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackGitlab] {
+	return pulumix.Output[*StackGitlab]{
+		OutputState: i.ToStackGitlabPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackGitlabOutput struct{ *pulumi.OutputState }
 
 func (StackGitlabOutput) ElementType() reflect.Type {
@@ -1672,6 +2082,12 @@ func (o StackGitlabOutput) ToStackGitlabPtrOutputWithContext(ctx context.Context
 	}).(StackGitlabPtrOutput)
 }
 
+func (o StackGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[StackGitlab] {
+	return pulumix.Output[StackGitlab]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The GitLab namespace containing the repository
 func (o StackGitlabOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackGitlab) string { return v.Namespace }).(pulumi.StringOutput)
@@ -1689,6 +2105,12 @@ func (o StackGitlabPtrOutput) ToStackGitlabPtrOutput() StackGitlabPtrOutput {
 
 func (o StackGitlabPtrOutput) ToStackGitlabPtrOutputWithContext(ctx context.Context) StackGitlabPtrOutput {
 	return o
+}
+
+func (o StackGitlabPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackGitlab] {
+	return pulumix.Output[*StackGitlab]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackGitlabPtrOutput) Elem() StackGitlabOutput {
@@ -1712,6 +2134,8 @@ func (o StackGitlabPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type StackKubernetes struct {
+	// Kubectl version.
+	KubectlVersion *string `pulumi:"kubectlVersion"`
 	// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
 	Namespace *string `pulumi:"namespace"`
 }
@@ -1728,6 +2152,8 @@ type StackKubernetesInput interface {
 }
 
 type StackKubernetesArgs struct {
+	// Kubectl version.
+	KubectlVersion pulumi.StringPtrInput `pulumi:"kubectlVersion"`
 	// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 }
@@ -1742,6 +2168,12 @@ func (i StackKubernetesArgs) ToStackKubernetesOutput() StackKubernetesOutput {
 
 func (i StackKubernetesArgs) ToStackKubernetesOutputWithContext(ctx context.Context) StackKubernetesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StackKubernetesOutput)
+}
+
+func (i StackKubernetesArgs) ToOutput(ctx context.Context) pulumix.Output[StackKubernetes] {
+	return pulumix.Output[StackKubernetes]{
+		OutputState: i.ToStackKubernetesOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i StackKubernetesArgs) ToStackKubernetesPtrOutput() StackKubernetesPtrOutput {
@@ -1785,6 +2217,12 @@ func (i *stackKubernetesPtrType) ToStackKubernetesPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(StackKubernetesPtrOutput)
 }
 
+func (i *stackKubernetesPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackKubernetes] {
+	return pulumix.Output[*StackKubernetes]{
+		OutputState: i.ToStackKubernetesPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackKubernetesOutput struct{ *pulumi.OutputState }
 
 func (StackKubernetesOutput) ElementType() reflect.Type {
@@ -1809,6 +2247,17 @@ func (o StackKubernetesOutput) ToStackKubernetesPtrOutputWithContext(ctx context
 	}).(StackKubernetesPtrOutput)
 }
 
+func (o StackKubernetesOutput) ToOutput(ctx context.Context) pulumix.Output[StackKubernetes] {
+	return pulumix.Output[StackKubernetes]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Kubectl version.
+func (o StackKubernetesOutput) KubectlVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackKubernetes) *string { return v.KubectlVersion }).(pulumi.StringPtrOutput)
+}
+
 // Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
 func (o StackKubernetesOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StackKubernetes) *string { return v.Namespace }).(pulumi.StringPtrOutput)
@@ -1828,6 +2277,12 @@ func (o StackKubernetesPtrOutput) ToStackKubernetesPtrOutputWithContext(ctx cont
 	return o
 }
 
+func (o StackKubernetesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackKubernetes] {
+	return pulumix.Output[*StackKubernetes]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o StackKubernetesPtrOutput) Elem() StackKubernetesOutput {
 	return o.ApplyT(func(v *StackKubernetes) StackKubernetes {
 		if v != nil {
@@ -1836,6 +2291,16 @@ func (o StackKubernetesPtrOutput) Elem() StackKubernetesOutput {
 		var ret StackKubernetes
 		return ret
 	}).(StackKubernetesOutput)
+}
+
+// Kubectl version.
+func (o StackKubernetesPtrOutput) KubectlVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackKubernetes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KubectlVersion
+	}).(pulumi.StringPtrOutput)
 }
 
 // Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
@@ -1885,6 +2350,12 @@ func (i StackPulumiArgs) ToStackPulumiOutputWithContext(ctx context.Context) Sta
 	return pulumi.ToOutputWithContext(ctx, i).(StackPulumiOutput)
 }
 
+func (i StackPulumiArgs) ToOutput(ctx context.Context) pulumix.Output[StackPulumi] {
+	return pulumix.Output[StackPulumi]{
+		OutputState: i.ToStackPulumiOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i StackPulumiArgs) ToStackPulumiPtrOutput() StackPulumiPtrOutput {
 	return i.ToStackPulumiPtrOutputWithContext(context.Background())
 }
@@ -1926,6 +2397,12 @@ func (i *stackPulumiPtrType) ToStackPulumiPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(StackPulumiPtrOutput)
 }
 
+func (i *stackPulumiPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackPulumi] {
+	return pulumix.Output[*StackPulumi]{
+		OutputState: i.ToStackPulumiPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackPulumiOutput struct{ *pulumi.OutputState }
 
 func (StackPulumiOutput) ElementType() reflect.Type {
@@ -1950,6 +2427,12 @@ func (o StackPulumiOutput) ToStackPulumiPtrOutputWithContext(ctx context.Context
 	}).(StackPulumiPtrOutput)
 }
 
+func (o StackPulumiOutput) ToOutput(ctx context.Context) pulumix.Output[StackPulumi] {
+	return pulumix.Output[StackPulumi]{
+		OutputState: o.OutputState,
+	}
+}
+
 // State backend to log into on Run initialize.
 func (o StackPulumiOutput) LoginUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v StackPulumi) string { return v.LoginUrl }).(pulumi.StringOutput)
@@ -1972,6 +2455,12 @@ func (o StackPulumiPtrOutput) ToStackPulumiPtrOutput() StackPulumiPtrOutput {
 
 func (o StackPulumiPtrOutput) ToStackPulumiPtrOutputWithContext(ctx context.Context) StackPulumiPtrOutput {
 	return o
+}
+
+func (o StackPulumiPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackPulumi] {
+	return pulumix.Output[*StackPulumi]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackPulumiPtrOutput) Elem() StackPulumiOutput {
@@ -2004,6 +2493,186 @@ func (o StackPulumiPtrOutput) StackName() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type StackRawGit struct {
+	// User-friendly namespace for the repository, this is for cosmetic purposes only
+	Namespace string `pulumi:"namespace"`
+	// HTTPS URL of the Git repository
+	Url string `pulumi:"url"`
+}
+
+// StackRawGitInput is an input type that accepts StackRawGitArgs and StackRawGitOutput values.
+// You can construct a concrete instance of `StackRawGitInput` via:
+//
+//	StackRawGitArgs{...}
+type StackRawGitInput interface {
+	pulumi.Input
+
+	ToStackRawGitOutput() StackRawGitOutput
+	ToStackRawGitOutputWithContext(context.Context) StackRawGitOutput
+}
+
+type StackRawGitArgs struct {
+	// User-friendly namespace for the repository, this is for cosmetic purposes only
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+	// HTTPS URL of the Git repository
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (StackRawGitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackRawGit)(nil)).Elem()
+}
+
+func (i StackRawGitArgs) ToStackRawGitOutput() StackRawGitOutput {
+	return i.ToStackRawGitOutputWithContext(context.Background())
+}
+
+func (i StackRawGitArgs) ToStackRawGitOutputWithContext(ctx context.Context) StackRawGitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackRawGitOutput)
+}
+
+func (i StackRawGitArgs) ToOutput(ctx context.Context) pulumix.Output[StackRawGit] {
+	return pulumix.Output[StackRawGit]{
+		OutputState: i.ToStackRawGitOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i StackRawGitArgs) ToStackRawGitPtrOutput() StackRawGitPtrOutput {
+	return i.ToStackRawGitPtrOutputWithContext(context.Background())
+}
+
+func (i StackRawGitArgs) ToStackRawGitPtrOutputWithContext(ctx context.Context) StackRawGitPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackRawGitOutput).ToStackRawGitPtrOutputWithContext(ctx)
+}
+
+// StackRawGitPtrInput is an input type that accepts StackRawGitArgs, StackRawGitPtr and StackRawGitPtrOutput values.
+// You can construct a concrete instance of `StackRawGitPtrInput` via:
+//
+//	        StackRawGitArgs{...}
+//
+//	or:
+//
+//	        nil
+type StackRawGitPtrInput interface {
+	pulumi.Input
+
+	ToStackRawGitPtrOutput() StackRawGitPtrOutput
+	ToStackRawGitPtrOutputWithContext(context.Context) StackRawGitPtrOutput
+}
+
+type stackRawGitPtrType StackRawGitArgs
+
+func StackRawGitPtr(v *StackRawGitArgs) StackRawGitPtrInput {
+	return (*stackRawGitPtrType)(v)
+}
+
+func (*stackRawGitPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackRawGit)(nil)).Elem()
+}
+
+func (i *stackRawGitPtrType) ToStackRawGitPtrOutput() StackRawGitPtrOutput {
+	return i.ToStackRawGitPtrOutputWithContext(context.Background())
+}
+
+func (i *stackRawGitPtrType) ToStackRawGitPtrOutputWithContext(ctx context.Context) StackRawGitPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackRawGitPtrOutput)
+}
+
+func (i *stackRawGitPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackRawGit] {
+	return pulumix.Output[*StackRawGit]{
+		OutputState: i.ToStackRawGitPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type StackRawGitOutput struct{ *pulumi.OutputState }
+
+func (StackRawGitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackRawGit)(nil)).Elem()
+}
+
+func (o StackRawGitOutput) ToStackRawGitOutput() StackRawGitOutput {
+	return o
+}
+
+func (o StackRawGitOutput) ToStackRawGitOutputWithContext(ctx context.Context) StackRawGitOutput {
+	return o
+}
+
+func (o StackRawGitOutput) ToStackRawGitPtrOutput() StackRawGitPtrOutput {
+	return o.ToStackRawGitPtrOutputWithContext(context.Background())
+}
+
+func (o StackRawGitOutput) ToStackRawGitPtrOutputWithContext(ctx context.Context) StackRawGitPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StackRawGit) *StackRawGit {
+		return &v
+	}).(StackRawGitPtrOutput)
+}
+
+func (o StackRawGitOutput) ToOutput(ctx context.Context) pulumix.Output[StackRawGit] {
+	return pulumix.Output[StackRawGit]{
+		OutputState: o.OutputState,
+	}
+}
+
+// User-friendly namespace for the repository, this is for cosmetic purposes only
+func (o StackRawGitOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v StackRawGit) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// HTTPS URL of the Git repository
+func (o StackRawGitOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v StackRawGit) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type StackRawGitPtrOutput struct{ *pulumi.OutputState }
+
+func (StackRawGitPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackRawGit)(nil)).Elem()
+}
+
+func (o StackRawGitPtrOutput) ToStackRawGitPtrOutput() StackRawGitPtrOutput {
+	return o
+}
+
+func (o StackRawGitPtrOutput) ToStackRawGitPtrOutputWithContext(ctx context.Context) StackRawGitPtrOutput {
+	return o
+}
+
+func (o StackRawGitPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackRawGit] {
+	return pulumix.Output[*StackRawGit]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o StackRawGitPtrOutput) Elem() StackRawGitOutput {
+	return o.ApplyT(func(v *StackRawGit) StackRawGit {
+		if v != nil {
+			return *v
+		}
+		var ret StackRawGit
+		return ret
+	}).(StackRawGitOutput)
+}
+
+// User-friendly namespace for the repository, this is for cosmetic purposes only
+func (o StackRawGitPtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackRawGit) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
+// HTTPS URL of the Git repository
+func (o StackRawGitPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackRawGit) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
 type StackShowcase struct {
 	Namespace string `pulumi:"namespace"`
 }
@@ -2033,6 +2702,12 @@ func (i StackShowcaseArgs) ToStackShowcaseOutput() StackShowcaseOutput {
 
 func (i StackShowcaseArgs) ToStackShowcaseOutputWithContext(ctx context.Context) StackShowcaseOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StackShowcaseOutput)
+}
+
+func (i StackShowcaseArgs) ToOutput(ctx context.Context) pulumix.Output[StackShowcase] {
+	return pulumix.Output[StackShowcase]{
+		OutputState: i.ToStackShowcaseOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i StackShowcaseArgs) ToStackShowcasePtrOutput() StackShowcasePtrOutput {
@@ -2076,6 +2751,12 @@ func (i *stackShowcasePtrType) ToStackShowcasePtrOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(StackShowcasePtrOutput)
 }
 
+func (i *stackShowcasePtrType) ToOutput(ctx context.Context) pulumix.Output[*StackShowcase] {
+	return pulumix.Output[*StackShowcase]{
+		OutputState: i.ToStackShowcasePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackShowcaseOutput struct{ *pulumi.OutputState }
 
 func (StackShowcaseOutput) ElementType() reflect.Type {
@@ -2100,6 +2781,12 @@ func (o StackShowcaseOutput) ToStackShowcasePtrOutputWithContext(ctx context.Con
 	}).(StackShowcasePtrOutput)
 }
 
+func (o StackShowcaseOutput) ToOutput(ctx context.Context) pulumix.Output[StackShowcase] {
+	return pulumix.Output[StackShowcase]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o StackShowcaseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackShowcase) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -2116,6 +2803,12 @@ func (o StackShowcasePtrOutput) ToStackShowcasePtrOutput() StackShowcasePtrOutpu
 
 func (o StackShowcasePtrOutput) ToStackShowcasePtrOutputWithContext(ctx context.Context) StackShowcasePtrOutput {
 	return o
+}
+
+func (o StackShowcasePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackShowcase] {
+	return pulumix.Output[*StackShowcase]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackShowcasePtrOutput) Elem() StackShowcaseOutput {
@@ -2135,6 +2828,938 @@ func (o StackShowcasePtrOutput) Namespace() pulumi.StringPtrOutput {
 		}
 		return &v.Namespace
 	}).(pulumi.StringPtrOutput)
+}
+
+type StackTerragrunt struct {
+	TerraformVersion *string `pulumi:"terraformVersion"`
+	// Terragrunt version.
+	TerragruntVersion *string `pulumi:"terragruntVersion"`
+	// Whether to use `terragrunt run-all` instead of `terragrunt`.
+	UseRunAll            *bool `pulumi:"useRunAll"`
+	UseSmartSanitization *bool `pulumi:"useSmartSanitization"`
+}
+
+// StackTerragruntInput is an input type that accepts StackTerragruntArgs and StackTerragruntOutput values.
+// You can construct a concrete instance of `StackTerragruntInput` via:
+//
+//	StackTerragruntArgs{...}
+type StackTerragruntInput interface {
+	pulumi.Input
+
+	ToStackTerragruntOutput() StackTerragruntOutput
+	ToStackTerragruntOutputWithContext(context.Context) StackTerragruntOutput
+}
+
+type StackTerragruntArgs struct {
+	TerraformVersion pulumi.StringPtrInput `pulumi:"terraformVersion"`
+	// Terragrunt version.
+	TerragruntVersion pulumi.StringPtrInput `pulumi:"terragruntVersion"`
+	// Whether to use `terragrunt run-all` instead of `terragrunt`.
+	UseRunAll            pulumi.BoolPtrInput `pulumi:"useRunAll"`
+	UseSmartSanitization pulumi.BoolPtrInput `pulumi:"useSmartSanitization"`
+}
+
+func (StackTerragruntArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackTerragrunt)(nil)).Elem()
+}
+
+func (i StackTerragruntArgs) ToStackTerragruntOutput() StackTerragruntOutput {
+	return i.ToStackTerragruntOutputWithContext(context.Background())
+}
+
+func (i StackTerragruntArgs) ToStackTerragruntOutputWithContext(ctx context.Context) StackTerragruntOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackTerragruntOutput)
+}
+
+func (i StackTerragruntArgs) ToOutput(ctx context.Context) pulumix.Output[StackTerragrunt] {
+	return pulumix.Output[StackTerragrunt]{
+		OutputState: i.ToStackTerragruntOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i StackTerragruntArgs) ToStackTerragruntPtrOutput() StackTerragruntPtrOutput {
+	return i.ToStackTerragruntPtrOutputWithContext(context.Background())
+}
+
+func (i StackTerragruntArgs) ToStackTerragruntPtrOutputWithContext(ctx context.Context) StackTerragruntPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackTerragruntOutput).ToStackTerragruntPtrOutputWithContext(ctx)
+}
+
+// StackTerragruntPtrInput is an input type that accepts StackTerragruntArgs, StackTerragruntPtr and StackTerragruntPtrOutput values.
+// You can construct a concrete instance of `StackTerragruntPtrInput` via:
+//
+//	        StackTerragruntArgs{...}
+//
+//	or:
+//
+//	        nil
+type StackTerragruntPtrInput interface {
+	pulumi.Input
+
+	ToStackTerragruntPtrOutput() StackTerragruntPtrOutput
+	ToStackTerragruntPtrOutputWithContext(context.Context) StackTerragruntPtrOutput
+}
+
+type stackTerragruntPtrType StackTerragruntArgs
+
+func StackTerragruntPtr(v *StackTerragruntArgs) StackTerragruntPtrInput {
+	return (*stackTerragruntPtrType)(v)
+}
+
+func (*stackTerragruntPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackTerragrunt)(nil)).Elem()
+}
+
+func (i *stackTerragruntPtrType) ToStackTerragruntPtrOutput() StackTerragruntPtrOutput {
+	return i.ToStackTerragruntPtrOutputWithContext(context.Background())
+}
+
+func (i *stackTerragruntPtrType) ToStackTerragruntPtrOutputWithContext(ctx context.Context) StackTerragruntPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StackTerragruntPtrOutput)
+}
+
+func (i *stackTerragruntPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackTerragrunt] {
+	return pulumix.Output[*StackTerragrunt]{
+		OutputState: i.ToStackTerragruntPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type StackTerragruntOutput struct{ *pulumi.OutputState }
+
+func (StackTerragruntOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StackTerragrunt)(nil)).Elem()
+}
+
+func (o StackTerragruntOutput) ToStackTerragruntOutput() StackTerragruntOutput {
+	return o
+}
+
+func (o StackTerragruntOutput) ToStackTerragruntOutputWithContext(ctx context.Context) StackTerragruntOutput {
+	return o
+}
+
+func (o StackTerragruntOutput) ToStackTerragruntPtrOutput() StackTerragruntPtrOutput {
+	return o.ToStackTerragruntPtrOutputWithContext(context.Background())
+}
+
+func (o StackTerragruntOutput) ToStackTerragruntPtrOutputWithContext(ctx context.Context) StackTerragruntPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StackTerragrunt) *StackTerragrunt {
+		return &v
+	}).(StackTerragruntPtrOutput)
+}
+
+func (o StackTerragruntOutput) ToOutput(ctx context.Context) pulumix.Output[StackTerragrunt] {
+	return pulumix.Output[StackTerragrunt]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o StackTerragruntOutput) TerraformVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackTerragrunt) *string { return v.TerraformVersion }).(pulumi.StringPtrOutput)
+}
+
+// Terragrunt version.
+func (o StackTerragruntOutput) TerragruntVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackTerragrunt) *string { return v.TerragruntVersion }).(pulumi.StringPtrOutput)
+}
+
+// Whether to use `terragrunt run-all` instead of `terragrunt`.
+func (o StackTerragruntOutput) UseRunAll() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v StackTerragrunt) *bool { return v.UseRunAll }).(pulumi.BoolPtrOutput)
+}
+
+func (o StackTerragruntOutput) UseSmartSanitization() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v StackTerragrunt) *bool { return v.UseSmartSanitization }).(pulumi.BoolPtrOutput)
+}
+
+type StackTerragruntPtrOutput struct{ *pulumi.OutputState }
+
+func (StackTerragruntPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StackTerragrunt)(nil)).Elem()
+}
+
+func (o StackTerragruntPtrOutput) ToStackTerragruntPtrOutput() StackTerragruntPtrOutput {
+	return o
+}
+
+func (o StackTerragruntPtrOutput) ToStackTerragruntPtrOutputWithContext(ctx context.Context) StackTerragruntPtrOutput {
+	return o
+}
+
+func (o StackTerragruntPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackTerragrunt] {
+	return pulumix.Output[*StackTerragrunt]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o StackTerragruntPtrOutput) Elem() StackTerragruntOutput {
+	return o.ApplyT(func(v *StackTerragrunt) StackTerragrunt {
+		if v != nil {
+			return *v
+		}
+		var ret StackTerragrunt
+		return ret
+	}).(StackTerragruntOutput)
+}
+
+func (o StackTerragruntPtrOutput) TerraformVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackTerragrunt) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TerraformVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// Terragrunt version.
+func (o StackTerragruntPtrOutput) TerragruntVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackTerragrunt) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TerragruntVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to use `terragrunt run-all` instead of `terragrunt`.
+func (o StackTerragruntPtrOutput) UseRunAll() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *StackTerragrunt) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRunAll
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o StackTerragruntPtrOutput) UseSmartSanitization() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *StackTerragrunt) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseSmartSanitization
+	}).(pulumi.BoolPtrOutput)
+}
+
+type UserPolicy struct {
+	// Type of access to the space. Possible values are: READ, WRITE, ADMIN
+	Role string `pulumi:"role"`
+	// ID (slug) of the space the user has access to
+	SpaceId string `pulumi:"spaceId"`
+}
+
+// UserPolicyInput is an input type that accepts UserPolicyArgs and UserPolicyOutput values.
+// You can construct a concrete instance of `UserPolicyInput` via:
+//
+//	UserPolicyArgs{...}
+type UserPolicyInput interface {
+	pulumi.Input
+
+	ToUserPolicyOutput() UserPolicyOutput
+	ToUserPolicyOutputWithContext(context.Context) UserPolicyOutput
+}
+
+type UserPolicyArgs struct {
+	// Type of access to the space. Possible values are: READ, WRITE, ADMIN
+	Role pulumi.StringInput `pulumi:"role"`
+	// ID (slug) of the space the user has access to
+	SpaceId pulumi.StringInput `pulumi:"spaceId"`
+}
+
+func (UserPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPolicy)(nil)).Elem()
+}
+
+func (i UserPolicyArgs) ToUserPolicyOutput() UserPolicyOutput {
+	return i.ToUserPolicyOutputWithContext(context.Background())
+}
+
+func (i UserPolicyArgs) ToUserPolicyOutputWithContext(ctx context.Context) UserPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserPolicyOutput)
+}
+
+func (i UserPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[UserPolicy] {
+	return pulumix.Output[UserPolicy]{
+		OutputState: i.ToUserPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserPolicyArrayInput is an input type that accepts UserPolicyArray and UserPolicyArrayOutput values.
+// You can construct a concrete instance of `UserPolicyArrayInput` via:
+//
+//	UserPolicyArray{ UserPolicyArgs{...} }
+type UserPolicyArrayInput interface {
+	pulumi.Input
+
+	ToUserPolicyArrayOutput() UserPolicyArrayOutput
+	ToUserPolicyArrayOutputWithContext(context.Context) UserPolicyArrayOutput
+}
+
+type UserPolicyArray []UserPolicyInput
+
+func (UserPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserPolicy)(nil)).Elem()
+}
+
+func (i UserPolicyArray) ToUserPolicyArrayOutput() UserPolicyArrayOutput {
+	return i.ToUserPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i UserPolicyArray) ToUserPolicyArrayOutputWithContext(ctx context.Context) UserPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserPolicyArrayOutput)
+}
+
+func (i UserPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]UserPolicy] {
+	return pulumix.Output[[]UserPolicy]{
+		OutputState: i.ToUserPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserPolicyOutput struct{ *pulumi.OutputState }
+
+func (UserPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPolicy)(nil)).Elem()
+}
+
+func (o UserPolicyOutput) ToUserPolicyOutput() UserPolicyOutput {
+	return o
+}
+
+func (o UserPolicyOutput) ToUserPolicyOutputWithContext(ctx context.Context) UserPolicyOutput {
+	return o
+}
+
+func (o UserPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[UserPolicy] {
+	return pulumix.Output[UserPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Type of access to the space. Possible values are: READ, WRITE, ADMIN
+func (o UserPolicyOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicy) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// ID (slug) of the space the user has access to
+func (o UserPolicyOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v UserPolicy) string { return v.SpaceId }).(pulumi.StringOutput)
+}
+
+type UserPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (UserPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserPolicy)(nil)).Elem()
+}
+
+func (o UserPolicyArrayOutput) ToUserPolicyArrayOutput() UserPolicyArrayOutput {
+	return o
+}
+
+func (o UserPolicyArrayOutput) ToUserPolicyArrayOutputWithContext(ctx context.Context) UserPolicyArrayOutput {
+	return o
+}
+
+func (o UserPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserPolicy] {
+	return pulumix.Output[[]UserPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserPolicyArrayOutput) Index(i pulumi.IntInput) UserPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserPolicy {
+		return vs[0].([]UserPolicy)[vs[1].(int)]
+	}).(UserPolicyOutput)
+}
+
+type GetAwsIntegrationsIntegration struct {
+	DurationSeconds             int      `pulumi:"durationSeconds"`
+	ExternalId                  string   `pulumi:"externalId"`
+	GenerateCredentialsInWorker bool     `pulumi:"generateCredentialsInWorker"`
+	IntegrationId               string   `pulumi:"integrationId"`
+	Labels                      []string `pulumi:"labels"`
+	Name                        string   `pulumi:"name"`
+	RoleArn                     string   `pulumi:"roleArn"`
+	SpaceId                     string   `pulumi:"spaceId"`
+}
+
+// GetAwsIntegrationsIntegrationInput is an input type that accepts GetAwsIntegrationsIntegrationArgs and GetAwsIntegrationsIntegrationOutput values.
+// You can construct a concrete instance of `GetAwsIntegrationsIntegrationInput` via:
+//
+//	GetAwsIntegrationsIntegrationArgs{...}
+type GetAwsIntegrationsIntegrationInput interface {
+	pulumi.Input
+
+	ToGetAwsIntegrationsIntegrationOutput() GetAwsIntegrationsIntegrationOutput
+	ToGetAwsIntegrationsIntegrationOutputWithContext(context.Context) GetAwsIntegrationsIntegrationOutput
+}
+
+type GetAwsIntegrationsIntegrationArgs struct {
+	DurationSeconds             pulumi.IntInput         `pulumi:"durationSeconds"`
+	ExternalId                  pulumi.StringInput      `pulumi:"externalId"`
+	GenerateCredentialsInWorker pulumi.BoolInput        `pulumi:"generateCredentialsInWorker"`
+	IntegrationId               pulumi.StringInput      `pulumi:"integrationId"`
+	Labels                      pulumi.StringArrayInput `pulumi:"labels"`
+	Name                        pulumi.StringInput      `pulumi:"name"`
+	RoleArn                     pulumi.StringInput      `pulumi:"roleArn"`
+	SpaceId                     pulumi.StringInput      `pulumi:"spaceId"`
+}
+
+func (GetAwsIntegrationsIntegrationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAwsIntegrationsIntegration)(nil)).Elem()
+}
+
+func (i GetAwsIntegrationsIntegrationArgs) ToGetAwsIntegrationsIntegrationOutput() GetAwsIntegrationsIntegrationOutput {
+	return i.ToGetAwsIntegrationsIntegrationOutputWithContext(context.Background())
+}
+
+func (i GetAwsIntegrationsIntegrationArgs) ToGetAwsIntegrationsIntegrationOutputWithContext(ctx context.Context) GetAwsIntegrationsIntegrationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAwsIntegrationsIntegrationOutput)
+}
+
+func (i GetAwsIntegrationsIntegrationArgs) ToOutput(ctx context.Context) pulumix.Output[GetAwsIntegrationsIntegration] {
+	return pulumix.Output[GetAwsIntegrationsIntegration]{
+		OutputState: i.ToGetAwsIntegrationsIntegrationOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetAwsIntegrationsIntegrationArrayInput is an input type that accepts GetAwsIntegrationsIntegrationArray and GetAwsIntegrationsIntegrationArrayOutput values.
+// You can construct a concrete instance of `GetAwsIntegrationsIntegrationArrayInput` via:
+//
+//	GetAwsIntegrationsIntegrationArray{ GetAwsIntegrationsIntegrationArgs{...} }
+type GetAwsIntegrationsIntegrationArrayInput interface {
+	pulumi.Input
+
+	ToGetAwsIntegrationsIntegrationArrayOutput() GetAwsIntegrationsIntegrationArrayOutput
+	ToGetAwsIntegrationsIntegrationArrayOutputWithContext(context.Context) GetAwsIntegrationsIntegrationArrayOutput
+}
+
+type GetAwsIntegrationsIntegrationArray []GetAwsIntegrationsIntegrationInput
+
+func (GetAwsIntegrationsIntegrationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAwsIntegrationsIntegration)(nil)).Elem()
+}
+
+func (i GetAwsIntegrationsIntegrationArray) ToGetAwsIntegrationsIntegrationArrayOutput() GetAwsIntegrationsIntegrationArrayOutput {
+	return i.ToGetAwsIntegrationsIntegrationArrayOutputWithContext(context.Background())
+}
+
+func (i GetAwsIntegrationsIntegrationArray) ToGetAwsIntegrationsIntegrationArrayOutputWithContext(ctx context.Context) GetAwsIntegrationsIntegrationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAwsIntegrationsIntegrationArrayOutput)
+}
+
+func (i GetAwsIntegrationsIntegrationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAwsIntegrationsIntegration] {
+	return pulumix.Output[[]GetAwsIntegrationsIntegration]{
+		OutputState: i.ToGetAwsIntegrationsIntegrationArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetAwsIntegrationsIntegrationOutput struct{ *pulumi.OutputState }
+
+func (GetAwsIntegrationsIntegrationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAwsIntegrationsIntegration)(nil)).Elem()
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) ToGetAwsIntegrationsIntegrationOutput() GetAwsIntegrationsIntegrationOutput {
+	return o
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) ToGetAwsIntegrationsIntegrationOutputWithContext(ctx context.Context) GetAwsIntegrationsIntegrationOutput {
+	return o
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) ToOutput(ctx context.Context) pulumix.Output[GetAwsIntegrationsIntegration] {
+	return pulumix.Output[GetAwsIntegrationsIntegration]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) DurationSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAwsIntegrationsIntegration) int { return v.DurationSeconds }).(pulumi.IntOutput)
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) ExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAwsIntegrationsIntegration) string { return v.ExternalId }).(pulumi.StringOutput)
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) GenerateCredentialsInWorker() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAwsIntegrationsIntegration) bool { return v.GenerateCredentialsInWorker }).(pulumi.BoolOutput)
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) IntegrationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAwsIntegrationsIntegration) string { return v.IntegrationId }).(pulumi.StringOutput)
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAwsIntegrationsIntegration) []string { return v.Labels }).(pulumi.StringArrayOutput)
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAwsIntegrationsIntegration) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAwsIntegrationsIntegration) string { return v.RoleArn }).(pulumi.StringOutput)
+}
+
+func (o GetAwsIntegrationsIntegrationOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAwsIntegrationsIntegration) string { return v.SpaceId }).(pulumi.StringOutput)
+}
+
+type GetAwsIntegrationsIntegrationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAwsIntegrationsIntegrationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAwsIntegrationsIntegration)(nil)).Elem()
+}
+
+func (o GetAwsIntegrationsIntegrationArrayOutput) ToGetAwsIntegrationsIntegrationArrayOutput() GetAwsIntegrationsIntegrationArrayOutput {
+	return o
+}
+
+func (o GetAwsIntegrationsIntegrationArrayOutput) ToGetAwsIntegrationsIntegrationArrayOutputWithContext(ctx context.Context) GetAwsIntegrationsIntegrationArrayOutput {
+	return o
+}
+
+func (o GetAwsIntegrationsIntegrationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAwsIntegrationsIntegration] {
+	return pulumix.Output[[]GetAwsIntegrationsIntegration]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetAwsIntegrationsIntegrationArrayOutput) Index(i pulumi.IntInput) GetAwsIntegrationsIntegrationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAwsIntegrationsIntegration {
+		return vs[0].([]GetAwsIntegrationsIntegration)[vs[1].(int)]
+	}).(GetAwsIntegrationsIntegrationOutput)
+}
+
+type GetAzureIntegrationsIntegration struct {
+	AdminConsentProvided  bool     `pulumi:"adminConsentProvided"`
+	AdminConsentUrl       string   `pulumi:"adminConsentUrl"`
+	ApplicationId         string   `pulumi:"applicationId"`
+	DefaultSubscriptionId string   `pulumi:"defaultSubscriptionId"`
+	DisplayName           string   `pulumi:"displayName"`
+	IntegrationId         string   `pulumi:"integrationId"`
+	Labels                []string `pulumi:"labels"`
+	Name                  string   `pulumi:"name"`
+	SpaceId               string   `pulumi:"spaceId"`
+	TenantId              string   `pulumi:"tenantId"`
+}
+
+// GetAzureIntegrationsIntegrationInput is an input type that accepts GetAzureIntegrationsIntegrationArgs and GetAzureIntegrationsIntegrationOutput values.
+// You can construct a concrete instance of `GetAzureIntegrationsIntegrationInput` via:
+//
+//	GetAzureIntegrationsIntegrationArgs{...}
+type GetAzureIntegrationsIntegrationInput interface {
+	pulumi.Input
+
+	ToGetAzureIntegrationsIntegrationOutput() GetAzureIntegrationsIntegrationOutput
+	ToGetAzureIntegrationsIntegrationOutputWithContext(context.Context) GetAzureIntegrationsIntegrationOutput
+}
+
+type GetAzureIntegrationsIntegrationArgs struct {
+	AdminConsentProvided  pulumi.BoolInput        `pulumi:"adminConsentProvided"`
+	AdminConsentUrl       pulumi.StringInput      `pulumi:"adminConsentUrl"`
+	ApplicationId         pulumi.StringInput      `pulumi:"applicationId"`
+	DefaultSubscriptionId pulumi.StringInput      `pulumi:"defaultSubscriptionId"`
+	DisplayName           pulumi.StringInput      `pulumi:"displayName"`
+	IntegrationId         pulumi.StringInput      `pulumi:"integrationId"`
+	Labels                pulumi.StringArrayInput `pulumi:"labels"`
+	Name                  pulumi.StringInput      `pulumi:"name"`
+	SpaceId               pulumi.StringInput      `pulumi:"spaceId"`
+	TenantId              pulumi.StringInput      `pulumi:"tenantId"`
+}
+
+func (GetAzureIntegrationsIntegrationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAzureIntegrationsIntegration)(nil)).Elem()
+}
+
+func (i GetAzureIntegrationsIntegrationArgs) ToGetAzureIntegrationsIntegrationOutput() GetAzureIntegrationsIntegrationOutput {
+	return i.ToGetAzureIntegrationsIntegrationOutputWithContext(context.Background())
+}
+
+func (i GetAzureIntegrationsIntegrationArgs) ToGetAzureIntegrationsIntegrationOutputWithContext(ctx context.Context) GetAzureIntegrationsIntegrationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAzureIntegrationsIntegrationOutput)
+}
+
+func (i GetAzureIntegrationsIntegrationArgs) ToOutput(ctx context.Context) pulumix.Output[GetAzureIntegrationsIntegration] {
+	return pulumix.Output[GetAzureIntegrationsIntegration]{
+		OutputState: i.ToGetAzureIntegrationsIntegrationOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetAzureIntegrationsIntegrationArrayInput is an input type that accepts GetAzureIntegrationsIntegrationArray and GetAzureIntegrationsIntegrationArrayOutput values.
+// You can construct a concrete instance of `GetAzureIntegrationsIntegrationArrayInput` via:
+//
+//	GetAzureIntegrationsIntegrationArray{ GetAzureIntegrationsIntegrationArgs{...} }
+type GetAzureIntegrationsIntegrationArrayInput interface {
+	pulumi.Input
+
+	ToGetAzureIntegrationsIntegrationArrayOutput() GetAzureIntegrationsIntegrationArrayOutput
+	ToGetAzureIntegrationsIntegrationArrayOutputWithContext(context.Context) GetAzureIntegrationsIntegrationArrayOutput
+}
+
+type GetAzureIntegrationsIntegrationArray []GetAzureIntegrationsIntegrationInput
+
+func (GetAzureIntegrationsIntegrationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAzureIntegrationsIntegration)(nil)).Elem()
+}
+
+func (i GetAzureIntegrationsIntegrationArray) ToGetAzureIntegrationsIntegrationArrayOutput() GetAzureIntegrationsIntegrationArrayOutput {
+	return i.ToGetAzureIntegrationsIntegrationArrayOutputWithContext(context.Background())
+}
+
+func (i GetAzureIntegrationsIntegrationArray) ToGetAzureIntegrationsIntegrationArrayOutputWithContext(ctx context.Context) GetAzureIntegrationsIntegrationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAzureIntegrationsIntegrationArrayOutput)
+}
+
+func (i GetAzureIntegrationsIntegrationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAzureIntegrationsIntegration] {
+	return pulumix.Output[[]GetAzureIntegrationsIntegration]{
+		OutputState: i.ToGetAzureIntegrationsIntegrationArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetAzureIntegrationsIntegrationOutput struct{ *pulumi.OutputState }
+
+func (GetAzureIntegrationsIntegrationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAzureIntegrationsIntegration)(nil)).Elem()
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) ToGetAzureIntegrationsIntegrationOutput() GetAzureIntegrationsIntegrationOutput {
+	return o
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) ToGetAzureIntegrationsIntegrationOutputWithContext(ctx context.Context) GetAzureIntegrationsIntegrationOutput {
+	return o
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) ToOutput(ctx context.Context) pulumix.Output[GetAzureIntegrationsIntegration] {
+	return pulumix.Output[GetAzureIntegrationsIntegration]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) AdminConsentProvided() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAzureIntegrationsIntegration) bool { return v.AdminConsentProvided }).(pulumi.BoolOutput)
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) AdminConsentUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.AdminConsentUrl }).(pulumi.StringOutput)
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) ApplicationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.ApplicationId }).(pulumi.StringOutput)
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) DefaultSubscriptionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.DefaultSubscriptionId }).(pulumi.StringOutput)
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) IntegrationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.IntegrationId }).(pulumi.StringOutput)
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAzureIntegrationsIntegration) []string { return v.Labels }).(pulumi.StringArrayOutput)
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.SpaceId }).(pulumi.StringOutput)
+}
+
+func (o GetAzureIntegrationsIntegrationOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.TenantId }).(pulumi.StringOutput)
+}
+
+type GetAzureIntegrationsIntegrationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAzureIntegrationsIntegrationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAzureIntegrationsIntegration)(nil)).Elem()
+}
+
+func (o GetAzureIntegrationsIntegrationArrayOutput) ToGetAzureIntegrationsIntegrationArrayOutput() GetAzureIntegrationsIntegrationArrayOutput {
+	return o
+}
+
+func (o GetAzureIntegrationsIntegrationArrayOutput) ToGetAzureIntegrationsIntegrationArrayOutputWithContext(ctx context.Context) GetAzureIntegrationsIntegrationArrayOutput {
+	return o
+}
+
+func (o GetAzureIntegrationsIntegrationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAzureIntegrationsIntegration] {
+	return pulumix.Output[[]GetAzureIntegrationsIntegration]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetAzureIntegrationsIntegrationArrayOutput) Index(i pulumi.IntInput) GetAzureIntegrationsIntegrationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAzureIntegrationsIntegration {
+		return vs[0].([]GetAzureIntegrationsIntegration)[vs[1].(int)]
+	}).(GetAzureIntegrationsIntegrationOutput)
+}
+
+type GetContextsContext struct {
+	ContextId   string   `pulumi:"contextId"`
+	Description string   `pulumi:"description"`
+	Labels      []string `pulumi:"labels"`
+	Name        string   `pulumi:"name"`
+	SpaceId     string   `pulumi:"spaceId"`
+}
+
+// GetContextsContextInput is an input type that accepts GetContextsContextArgs and GetContextsContextOutput values.
+// You can construct a concrete instance of `GetContextsContextInput` via:
+//
+//	GetContextsContextArgs{...}
+type GetContextsContextInput interface {
+	pulumi.Input
+
+	ToGetContextsContextOutput() GetContextsContextOutput
+	ToGetContextsContextOutputWithContext(context.Context) GetContextsContextOutput
+}
+
+type GetContextsContextArgs struct {
+	ContextId   pulumi.StringInput      `pulumi:"contextId"`
+	Description pulumi.StringInput      `pulumi:"description"`
+	Labels      pulumi.StringArrayInput `pulumi:"labels"`
+	Name        pulumi.StringInput      `pulumi:"name"`
+	SpaceId     pulumi.StringInput      `pulumi:"spaceId"`
+}
+
+func (GetContextsContextArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContextsContext)(nil)).Elem()
+}
+
+func (i GetContextsContextArgs) ToGetContextsContextOutput() GetContextsContextOutput {
+	return i.ToGetContextsContextOutputWithContext(context.Background())
+}
+
+func (i GetContextsContextArgs) ToGetContextsContextOutputWithContext(ctx context.Context) GetContextsContextOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContextsContextOutput)
+}
+
+func (i GetContextsContextArgs) ToOutput(ctx context.Context) pulumix.Output[GetContextsContext] {
+	return pulumix.Output[GetContextsContext]{
+		OutputState: i.ToGetContextsContextOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetContextsContextArrayInput is an input type that accepts GetContextsContextArray and GetContextsContextArrayOutput values.
+// You can construct a concrete instance of `GetContextsContextArrayInput` via:
+//
+//	GetContextsContextArray{ GetContextsContextArgs{...} }
+type GetContextsContextArrayInput interface {
+	pulumi.Input
+
+	ToGetContextsContextArrayOutput() GetContextsContextArrayOutput
+	ToGetContextsContextArrayOutputWithContext(context.Context) GetContextsContextArrayOutput
+}
+
+type GetContextsContextArray []GetContextsContextInput
+
+func (GetContextsContextArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContextsContext)(nil)).Elem()
+}
+
+func (i GetContextsContextArray) ToGetContextsContextArrayOutput() GetContextsContextArrayOutput {
+	return i.ToGetContextsContextArrayOutputWithContext(context.Background())
+}
+
+func (i GetContextsContextArray) ToGetContextsContextArrayOutputWithContext(ctx context.Context) GetContextsContextArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContextsContextArrayOutput)
+}
+
+func (i GetContextsContextArray) ToOutput(ctx context.Context) pulumix.Output[[]GetContextsContext] {
+	return pulumix.Output[[]GetContextsContext]{
+		OutputState: i.ToGetContextsContextArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetContextsContextOutput struct{ *pulumi.OutputState }
+
+func (GetContextsContextOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContextsContext)(nil)).Elem()
+}
+
+func (o GetContextsContextOutput) ToGetContextsContextOutput() GetContextsContextOutput {
+	return o
+}
+
+func (o GetContextsContextOutput) ToGetContextsContextOutputWithContext(ctx context.Context) GetContextsContextOutput {
+	return o
+}
+
+func (o GetContextsContextOutput) ToOutput(ctx context.Context) pulumix.Output[GetContextsContext] {
+	return pulumix.Output[GetContextsContext]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetContextsContextOutput) ContextId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContextsContext) string { return v.ContextId }).(pulumi.StringOutput)
+}
+
+func (o GetContextsContextOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContextsContext) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o GetContextsContextOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetContextsContext) []string { return v.Labels }).(pulumi.StringArrayOutput)
+}
+
+func (o GetContextsContextOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContextsContext) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetContextsContextOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContextsContext) string { return v.SpaceId }).(pulumi.StringOutput)
+}
+
+type GetContextsContextArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContextsContextArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContextsContext)(nil)).Elem()
+}
+
+func (o GetContextsContextArrayOutput) ToGetContextsContextArrayOutput() GetContextsContextArrayOutput {
+	return o
+}
+
+func (o GetContextsContextArrayOutput) ToGetContextsContextArrayOutputWithContext(ctx context.Context) GetContextsContextArrayOutput {
+	return o
+}
+
+func (o GetContextsContextArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetContextsContext] {
+	return pulumix.Output[[]GetContextsContext]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetContextsContextArrayOutput) Index(i pulumi.IntInput) GetContextsContextOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContextsContext {
+		return vs[0].([]GetContextsContext)[vs[1].(int)]
+	}).(GetContextsContextOutput)
+}
+
+type GetContextsLabel struct {
+	AnyOfs []string `pulumi:"anyOfs"`
+}
+
+// GetContextsLabelInput is an input type that accepts GetContextsLabelArgs and GetContextsLabelOutput values.
+// You can construct a concrete instance of `GetContextsLabelInput` via:
+//
+//	GetContextsLabelArgs{...}
+type GetContextsLabelInput interface {
+	pulumi.Input
+
+	ToGetContextsLabelOutput() GetContextsLabelOutput
+	ToGetContextsLabelOutputWithContext(context.Context) GetContextsLabelOutput
+}
+
+type GetContextsLabelArgs struct {
+	AnyOfs pulumi.StringArrayInput `pulumi:"anyOfs"`
+}
+
+func (GetContextsLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContextsLabel)(nil)).Elem()
+}
+
+func (i GetContextsLabelArgs) ToGetContextsLabelOutput() GetContextsLabelOutput {
+	return i.ToGetContextsLabelOutputWithContext(context.Background())
+}
+
+func (i GetContextsLabelArgs) ToGetContextsLabelOutputWithContext(ctx context.Context) GetContextsLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContextsLabelOutput)
+}
+
+func (i GetContextsLabelArgs) ToOutput(ctx context.Context) pulumix.Output[GetContextsLabel] {
+	return pulumix.Output[GetContextsLabel]{
+		OutputState: i.ToGetContextsLabelOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetContextsLabelArrayInput is an input type that accepts GetContextsLabelArray and GetContextsLabelArrayOutput values.
+// You can construct a concrete instance of `GetContextsLabelArrayInput` via:
+//
+//	GetContextsLabelArray{ GetContextsLabelArgs{...} }
+type GetContextsLabelArrayInput interface {
+	pulumi.Input
+
+	ToGetContextsLabelArrayOutput() GetContextsLabelArrayOutput
+	ToGetContextsLabelArrayOutputWithContext(context.Context) GetContextsLabelArrayOutput
+}
+
+type GetContextsLabelArray []GetContextsLabelInput
+
+func (GetContextsLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContextsLabel)(nil)).Elem()
+}
+
+func (i GetContextsLabelArray) ToGetContextsLabelArrayOutput() GetContextsLabelArrayOutput {
+	return i.ToGetContextsLabelArrayOutputWithContext(context.Background())
+}
+
+func (i GetContextsLabelArray) ToGetContextsLabelArrayOutputWithContext(ctx context.Context) GetContextsLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContextsLabelArrayOutput)
+}
+
+func (i GetContextsLabelArray) ToOutput(ctx context.Context) pulumix.Output[[]GetContextsLabel] {
+	return pulumix.Output[[]GetContextsLabel]{
+		OutputState: i.ToGetContextsLabelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetContextsLabelOutput struct{ *pulumi.OutputState }
+
+func (GetContextsLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContextsLabel)(nil)).Elem()
+}
+
+func (o GetContextsLabelOutput) ToGetContextsLabelOutput() GetContextsLabelOutput {
+	return o
+}
+
+func (o GetContextsLabelOutput) ToGetContextsLabelOutputWithContext(ctx context.Context) GetContextsLabelOutput {
+	return o
+}
+
+func (o GetContextsLabelOutput) ToOutput(ctx context.Context) pulumix.Output[GetContextsLabel] {
+	return pulumix.Output[GetContextsLabel]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetContextsLabelOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetContextsLabel) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
+}
+
+type GetContextsLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContextsLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContextsLabel)(nil)).Elem()
+}
+
+func (o GetContextsLabelArrayOutput) ToGetContextsLabelArrayOutput() GetContextsLabelArrayOutput {
+	return o
+}
+
+func (o GetContextsLabelArrayOutput) ToGetContextsLabelArrayOutputWithContext(ctx context.Context) GetContextsLabelArrayOutput {
+	return o
+}
+
+func (o GetContextsLabelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetContextsLabel] {
+	return pulumix.Output[[]GetContextsLabel]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetContextsLabelArrayOutput) Index(i pulumi.IntInput) GetContextsLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContextsLabel {
+		return vs[0].([]GetContextsLabel)[vs[1].(int)]
+	}).(GetContextsLabelOutput)
 }
 
 type GetModuleAzureDevop struct {
@@ -2168,6 +3793,12 @@ func (i GetModuleAzureDevopArgs) ToGetModuleAzureDevopOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleAzureDevopOutput)
 }
 
+func (i GetModuleAzureDevopArgs) ToOutput(ctx context.Context) pulumix.Output[GetModuleAzureDevop] {
+	return pulumix.Output[GetModuleAzureDevop]{
+		OutputState: i.ToGetModuleAzureDevopOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetModuleAzureDevopArrayInput is an input type that accepts GetModuleAzureDevopArray and GetModuleAzureDevopArrayOutput values.
 // You can construct a concrete instance of `GetModuleAzureDevopArrayInput` via:
 //
@@ -2193,6 +3824,12 @@ func (i GetModuleAzureDevopArray) ToGetModuleAzureDevopArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleAzureDevopArrayOutput)
 }
 
+func (i GetModuleAzureDevopArray) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleAzureDevop] {
+	return pulumix.Output[[]GetModuleAzureDevop]{
+		OutputState: i.ToGetModuleAzureDevopArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetModuleAzureDevopOutput struct{ *pulumi.OutputState }
 
 func (GetModuleAzureDevopOutput) ElementType() reflect.Type {
@@ -2205,6 +3842,12 @@ func (o GetModuleAzureDevopOutput) ToGetModuleAzureDevopOutput() GetModuleAzureD
 
 func (o GetModuleAzureDevopOutput) ToGetModuleAzureDevopOutputWithContext(ctx context.Context) GetModuleAzureDevopOutput {
 	return o
+}
+
+func (o GetModuleAzureDevopOutput) ToOutput(ctx context.Context) pulumix.Output[GetModuleAzureDevop] {
+	return pulumix.Output[GetModuleAzureDevop]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetModuleAzureDevopOutput) Project() pulumi.StringOutput {
@@ -2223,6 +3866,12 @@ func (o GetModuleAzureDevopArrayOutput) ToGetModuleAzureDevopArrayOutput() GetMo
 
 func (o GetModuleAzureDevopArrayOutput) ToGetModuleAzureDevopArrayOutputWithContext(ctx context.Context) GetModuleAzureDevopArrayOutput {
 	return o
+}
+
+func (o GetModuleAzureDevopArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleAzureDevop] {
+	return pulumix.Output[[]GetModuleAzureDevop]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetModuleAzureDevopArrayOutput) Index(i pulumi.IntInput) GetModuleAzureDevopOutput {
@@ -2262,6 +3911,12 @@ func (i GetModuleBitbucketCloudArgs) ToGetModuleBitbucketCloudOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketCloudOutput)
 }
 
+func (i GetModuleBitbucketCloudArgs) ToOutput(ctx context.Context) pulumix.Output[GetModuleBitbucketCloud] {
+	return pulumix.Output[GetModuleBitbucketCloud]{
+		OutputState: i.ToGetModuleBitbucketCloudOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetModuleBitbucketCloudArrayInput is an input type that accepts GetModuleBitbucketCloudArray and GetModuleBitbucketCloudArrayOutput values.
 // You can construct a concrete instance of `GetModuleBitbucketCloudArrayInput` via:
 //
@@ -2287,6 +3942,12 @@ func (i GetModuleBitbucketCloudArray) ToGetModuleBitbucketCloudArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketCloudArrayOutput)
 }
 
+func (i GetModuleBitbucketCloudArray) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleBitbucketCloud] {
+	return pulumix.Output[[]GetModuleBitbucketCloud]{
+		OutputState: i.ToGetModuleBitbucketCloudArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetModuleBitbucketCloudOutput struct{ *pulumi.OutputState }
 
 func (GetModuleBitbucketCloudOutput) ElementType() reflect.Type {
@@ -2299,6 +3960,12 @@ func (o GetModuleBitbucketCloudOutput) ToGetModuleBitbucketCloudOutput() GetModu
 
 func (o GetModuleBitbucketCloudOutput) ToGetModuleBitbucketCloudOutputWithContext(ctx context.Context) GetModuleBitbucketCloudOutput {
 	return o
+}
+
+func (o GetModuleBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[GetModuleBitbucketCloud] {
+	return pulumix.Output[GetModuleBitbucketCloud]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetModuleBitbucketCloudOutput) Namespace() pulumi.StringOutput {
@@ -2317,6 +3984,12 @@ func (o GetModuleBitbucketCloudArrayOutput) ToGetModuleBitbucketCloudArrayOutput
 
 func (o GetModuleBitbucketCloudArrayOutput) ToGetModuleBitbucketCloudArrayOutputWithContext(ctx context.Context) GetModuleBitbucketCloudArrayOutput {
 	return o
+}
+
+func (o GetModuleBitbucketCloudArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleBitbucketCloud] {
+	return pulumix.Output[[]GetModuleBitbucketCloud]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetModuleBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetModuleBitbucketCloudOutput {
@@ -2356,6 +4029,12 @@ func (i GetModuleBitbucketDatacenterArgs) ToGetModuleBitbucketDatacenterOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketDatacenterOutput)
 }
 
+func (i GetModuleBitbucketDatacenterArgs) ToOutput(ctx context.Context) pulumix.Output[GetModuleBitbucketDatacenter] {
+	return pulumix.Output[GetModuleBitbucketDatacenter]{
+		OutputState: i.ToGetModuleBitbucketDatacenterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetModuleBitbucketDatacenterArrayInput is an input type that accepts GetModuleBitbucketDatacenterArray and GetModuleBitbucketDatacenterArrayOutput values.
 // You can construct a concrete instance of `GetModuleBitbucketDatacenterArrayInput` via:
 //
@@ -2381,6 +4060,12 @@ func (i GetModuleBitbucketDatacenterArray) ToGetModuleBitbucketDatacenterArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketDatacenterArrayOutput)
 }
 
+func (i GetModuleBitbucketDatacenterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleBitbucketDatacenter] {
+	return pulumix.Output[[]GetModuleBitbucketDatacenter]{
+		OutputState: i.ToGetModuleBitbucketDatacenterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetModuleBitbucketDatacenterOutput struct{ *pulumi.OutputState }
 
 func (GetModuleBitbucketDatacenterOutput) ElementType() reflect.Type {
@@ -2393,6 +4078,12 @@ func (o GetModuleBitbucketDatacenterOutput) ToGetModuleBitbucketDatacenterOutput
 
 func (o GetModuleBitbucketDatacenterOutput) ToGetModuleBitbucketDatacenterOutputWithContext(ctx context.Context) GetModuleBitbucketDatacenterOutput {
 	return o
+}
+
+func (o GetModuleBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Output[GetModuleBitbucketDatacenter] {
+	return pulumix.Output[GetModuleBitbucketDatacenter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetModuleBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
@@ -2411,6 +4102,12 @@ func (o GetModuleBitbucketDatacenterArrayOutput) ToGetModuleBitbucketDatacenterA
 
 func (o GetModuleBitbucketDatacenterArrayOutput) ToGetModuleBitbucketDatacenterArrayOutputWithContext(ctx context.Context) GetModuleBitbucketDatacenterArrayOutput {
 	return o
+}
+
+func (o GetModuleBitbucketDatacenterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleBitbucketDatacenter] {
+	return pulumix.Output[[]GetModuleBitbucketDatacenter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetModuleBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetModuleBitbucketDatacenterOutput {
@@ -2450,6 +4147,12 @@ func (i GetModuleGithubEnterpriseArgs) ToGetModuleGithubEnterpriseOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleGithubEnterpriseOutput)
 }
 
+func (i GetModuleGithubEnterpriseArgs) ToOutput(ctx context.Context) pulumix.Output[GetModuleGithubEnterprise] {
+	return pulumix.Output[GetModuleGithubEnterprise]{
+		OutputState: i.ToGetModuleGithubEnterpriseOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetModuleGithubEnterpriseArrayInput is an input type that accepts GetModuleGithubEnterpriseArray and GetModuleGithubEnterpriseArrayOutput values.
 // You can construct a concrete instance of `GetModuleGithubEnterpriseArrayInput` via:
 //
@@ -2475,6 +4178,12 @@ func (i GetModuleGithubEnterpriseArray) ToGetModuleGithubEnterpriseArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleGithubEnterpriseArrayOutput)
 }
 
+func (i GetModuleGithubEnterpriseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleGithubEnterprise] {
+	return pulumix.Output[[]GetModuleGithubEnterprise]{
+		OutputState: i.ToGetModuleGithubEnterpriseArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetModuleGithubEnterpriseOutput struct{ *pulumi.OutputState }
 
 func (GetModuleGithubEnterpriseOutput) ElementType() reflect.Type {
@@ -2487,6 +4196,12 @@ func (o GetModuleGithubEnterpriseOutput) ToGetModuleGithubEnterpriseOutput() Get
 
 func (o GetModuleGithubEnterpriseOutput) ToGetModuleGithubEnterpriseOutputWithContext(ctx context.Context) GetModuleGithubEnterpriseOutput {
 	return o
+}
+
+func (o GetModuleGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Output[GetModuleGithubEnterprise] {
+	return pulumix.Output[GetModuleGithubEnterprise]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetModuleGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
@@ -2505,6 +4220,12 @@ func (o GetModuleGithubEnterpriseArrayOutput) ToGetModuleGithubEnterpriseArrayOu
 
 func (o GetModuleGithubEnterpriseArrayOutput) ToGetModuleGithubEnterpriseArrayOutputWithContext(ctx context.Context) GetModuleGithubEnterpriseArrayOutput {
 	return o
+}
+
+func (o GetModuleGithubEnterpriseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleGithubEnterprise] {
+	return pulumix.Output[[]GetModuleGithubEnterprise]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetModuleGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetModuleGithubEnterpriseOutput {
@@ -2544,6 +4265,12 @@ func (i GetModuleGitlabArgs) ToGetModuleGitlabOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleGitlabOutput)
 }
 
+func (i GetModuleGitlabArgs) ToOutput(ctx context.Context) pulumix.Output[GetModuleGitlab] {
+	return pulumix.Output[GetModuleGitlab]{
+		OutputState: i.ToGetModuleGitlabOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetModuleGitlabArrayInput is an input type that accepts GetModuleGitlabArray and GetModuleGitlabArrayOutput values.
 // You can construct a concrete instance of `GetModuleGitlabArrayInput` via:
 //
@@ -2569,6 +4296,12 @@ func (i GetModuleGitlabArray) ToGetModuleGitlabArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleGitlabArrayOutput)
 }
 
+func (i GetModuleGitlabArray) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleGitlab] {
+	return pulumix.Output[[]GetModuleGitlab]{
+		OutputState: i.ToGetModuleGitlabArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetModuleGitlabOutput struct{ *pulumi.OutputState }
 
 func (GetModuleGitlabOutput) ElementType() reflect.Type {
@@ -2581,6 +4314,12 @@ func (o GetModuleGitlabOutput) ToGetModuleGitlabOutput() GetModuleGitlabOutput {
 
 func (o GetModuleGitlabOutput) ToGetModuleGitlabOutputWithContext(ctx context.Context) GetModuleGitlabOutput {
 	return o
+}
+
+func (o GetModuleGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[GetModuleGitlab] {
+	return pulumix.Output[GetModuleGitlab]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetModuleGitlabOutput) Namespace() pulumi.StringOutput {
@@ -2601,6 +4340,12 @@ func (o GetModuleGitlabArrayOutput) ToGetModuleGitlabArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o GetModuleGitlabArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleGitlab] {
+	return pulumix.Output[[]GetModuleGitlab]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetModuleGitlabArrayOutput) Index(i pulumi.IntInput) GetModuleGitlabOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleGitlab {
 		return vs[0].([]GetModuleGitlab)[vs[1].(int)]
@@ -2608,14 +4353,11 @@ func (o GetModuleGitlabArrayOutput) Index(i pulumi.IntInput) GetModuleGitlabOutp
 }
 
 type GetPoliciesPolicy struct {
-	// The ID of this resource.
-	Id string `pulumi:"id"`
-	// required labels to match
+	Id      string   `pulumi:"id"`
 	Labels  []string `pulumi:"labels"`
 	Name    string   `pulumi:"name"`
 	SpaceId string   `pulumi:"spaceId"`
-	// required policy type
-	Type string `pulumi:"type"`
+	Type    string   `pulumi:"type"`
 }
 
 // GetPoliciesPolicyInput is an input type that accepts GetPoliciesPolicyArgs and GetPoliciesPolicyOutput values.
@@ -2630,14 +4372,11 @@ type GetPoliciesPolicyInput interface {
 }
 
 type GetPoliciesPolicyArgs struct {
-	// The ID of this resource.
-	Id pulumi.StringInput `pulumi:"id"`
-	// required labels to match
+	Id      pulumi.StringInput      `pulumi:"id"`
 	Labels  pulumi.StringArrayInput `pulumi:"labels"`
 	Name    pulumi.StringInput      `pulumi:"name"`
 	SpaceId pulumi.StringInput      `pulumi:"spaceId"`
-	// required policy type
-	Type pulumi.StringInput `pulumi:"type"`
+	Type    pulumi.StringInput      `pulumi:"type"`
 }
 
 func (GetPoliciesPolicyArgs) ElementType() reflect.Type {
@@ -2650,6 +4389,12 @@ func (i GetPoliciesPolicyArgs) ToGetPoliciesPolicyOutput() GetPoliciesPolicyOutp
 
 func (i GetPoliciesPolicyArgs) ToGetPoliciesPolicyOutputWithContext(ctx context.Context) GetPoliciesPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetPoliciesPolicyOutput)
+}
+
+func (i GetPoliciesPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetPoliciesPolicy] {
+	return pulumix.Output[GetPoliciesPolicy]{
+		OutputState: i.ToGetPoliciesPolicyOutputWithContext(ctx).OutputState,
+	}
 }
 
 // GetPoliciesPolicyArrayInput is an input type that accepts GetPoliciesPolicyArray and GetPoliciesPolicyArrayOutput values.
@@ -2677,6 +4422,12 @@ func (i GetPoliciesPolicyArray) ToGetPoliciesPolicyArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetPoliciesPolicyArrayOutput)
 }
 
+func (i GetPoliciesPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetPoliciesPolicy] {
+	return pulumix.Output[[]GetPoliciesPolicy]{
+		OutputState: i.ToGetPoliciesPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetPoliciesPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetPoliciesPolicyOutput) ElementType() reflect.Type {
@@ -2691,12 +4442,16 @@ func (o GetPoliciesPolicyOutput) ToGetPoliciesPolicyOutputWithContext(ctx contex
 	return o
 }
 
-// The ID of this resource.
+func (o GetPoliciesPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetPoliciesPolicy] {
+	return pulumix.Output[GetPoliciesPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetPoliciesPolicyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// required labels to match
 func (o GetPoliciesPolicyOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
@@ -2709,7 +4464,6 @@ func (o GetPoliciesPolicyOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
-// required policy type
 func (o GetPoliciesPolicyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -2728,10 +4482,164 @@ func (o GetPoliciesPolicyArrayOutput) ToGetPoliciesPolicyArrayOutputWithContext(
 	return o
 }
 
+func (o GetPoliciesPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetPoliciesPolicy] {
+	return pulumix.Output[[]GetPoliciesPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetPoliciesPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPoliciesPolicy {
 		return vs[0].([]GetPoliciesPolicy)[vs[1].(int)]
 	}).(GetPoliciesPolicyOutput)
+}
+
+type GetSpacesSpace struct {
+	Description     string   `pulumi:"description"`
+	InheritEntities bool     `pulumi:"inheritEntities"`
+	Labels          []string `pulumi:"labels"`
+	Name            string   `pulumi:"name"`
+	ParentSpaceId   string   `pulumi:"parentSpaceId"`
+	SpaceId         string   `pulumi:"spaceId"`
+}
+
+// GetSpacesSpaceInput is an input type that accepts GetSpacesSpaceArgs and GetSpacesSpaceOutput values.
+// You can construct a concrete instance of `GetSpacesSpaceInput` via:
+//
+//	GetSpacesSpaceArgs{...}
+type GetSpacesSpaceInput interface {
+	pulumi.Input
+
+	ToGetSpacesSpaceOutput() GetSpacesSpaceOutput
+	ToGetSpacesSpaceOutputWithContext(context.Context) GetSpacesSpaceOutput
+}
+
+type GetSpacesSpaceArgs struct {
+	Description     pulumi.StringInput      `pulumi:"description"`
+	InheritEntities pulumi.BoolInput        `pulumi:"inheritEntities"`
+	Labels          pulumi.StringArrayInput `pulumi:"labels"`
+	Name            pulumi.StringInput      `pulumi:"name"`
+	ParentSpaceId   pulumi.StringInput      `pulumi:"parentSpaceId"`
+	SpaceId         pulumi.StringInput      `pulumi:"spaceId"`
+}
+
+func (GetSpacesSpaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpacesSpace)(nil)).Elem()
+}
+
+func (i GetSpacesSpaceArgs) ToGetSpacesSpaceOutput() GetSpacesSpaceOutput {
+	return i.ToGetSpacesSpaceOutputWithContext(context.Background())
+}
+
+func (i GetSpacesSpaceArgs) ToGetSpacesSpaceOutputWithContext(ctx context.Context) GetSpacesSpaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpacesSpaceOutput)
+}
+
+func (i GetSpacesSpaceArgs) ToOutput(ctx context.Context) pulumix.Output[GetSpacesSpace] {
+	return pulumix.Output[GetSpacesSpace]{
+		OutputState: i.ToGetSpacesSpaceOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetSpacesSpaceArrayInput is an input type that accepts GetSpacesSpaceArray and GetSpacesSpaceArrayOutput values.
+// You can construct a concrete instance of `GetSpacesSpaceArrayInput` via:
+//
+//	GetSpacesSpaceArray{ GetSpacesSpaceArgs{...} }
+type GetSpacesSpaceArrayInput interface {
+	pulumi.Input
+
+	ToGetSpacesSpaceArrayOutput() GetSpacesSpaceArrayOutput
+	ToGetSpacesSpaceArrayOutputWithContext(context.Context) GetSpacesSpaceArrayOutput
+}
+
+type GetSpacesSpaceArray []GetSpacesSpaceInput
+
+func (GetSpacesSpaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSpacesSpace)(nil)).Elem()
+}
+
+func (i GetSpacesSpaceArray) ToGetSpacesSpaceArrayOutput() GetSpacesSpaceArrayOutput {
+	return i.ToGetSpacesSpaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetSpacesSpaceArray) ToGetSpacesSpaceArrayOutputWithContext(ctx context.Context) GetSpacesSpaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSpacesSpaceArrayOutput)
+}
+
+func (i GetSpacesSpaceArray) ToOutput(ctx context.Context) pulumix.Output[[]GetSpacesSpace] {
+	return pulumix.Output[[]GetSpacesSpace]{
+		OutputState: i.ToGetSpacesSpaceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetSpacesSpaceOutput struct{ *pulumi.OutputState }
+
+func (GetSpacesSpaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSpacesSpace)(nil)).Elem()
+}
+
+func (o GetSpacesSpaceOutput) ToGetSpacesSpaceOutput() GetSpacesSpaceOutput {
+	return o
+}
+
+func (o GetSpacesSpaceOutput) ToGetSpacesSpaceOutputWithContext(ctx context.Context) GetSpacesSpaceOutput {
+	return o
+}
+
+func (o GetSpacesSpaceOutput) ToOutput(ctx context.Context) pulumix.Output[GetSpacesSpace] {
+	return pulumix.Output[GetSpacesSpace]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetSpacesSpaceOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSpacesSpace) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o GetSpacesSpaceOutput) InheritEntities() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSpacesSpace) bool { return v.InheritEntities }).(pulumi.BoolOutput)
+}
+
+func (o GetSpacesSpaceOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSpacesSpace) []string { return v.Labels }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSpacesSpaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSpacesSpace) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetSpacesSpaceOutput) ParentSpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSpacesSpace) string { return v.ParentSpaceId }).(pulumi.StringOutput)
+}
+
+func (o GetSpacesSpaceOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSpacesSpace) string { return v.SpaceId }).(pulumi.StringOutput)
+}
+
+type GetSpacesSpaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSpacesSpaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSpacesSpace)(nil)).Elem()
+}
+
+func (o GetSpacesSpaceArrayOutput) ToGetSpacesSpaceArrayOutput() GetSpacesSpaceArrayOutput {
+	return o
+}
+
+func (o GetSpacesSpaceArrayOutput) ToGetSpacesSpaceArrayOutputWithContext(ctx context.Context) GetSpacesSpaceArrayOutput {
+	return o
+}
+
+func (o GetSpacesSpaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetSpacesSpace] {
+	return pulumix.Output[[]GetSpacesSpace]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetSpacesSpaceArrayOutput) Index(i pulumi.IntInput) GetSpacesSpaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSpacesSpace {
+		return vs[0].([]GetSpacesSpace)[vs[1].(int)]
+	}).(GetSpacesSpaceOutput)
 }
 
 type GetStackAnsible struct {
@@ -2765,6 +4673,12 @@ func (i GetStackAnsibleArgs) ToGetStackAnsibleOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackAnsibleOutput)
 }
 
+func (i GetStackAnsibleArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackAnsible] {
+	return pulumix.Output[GetStackAnsible]{
+		OutputState: i.ToGetStackAnsibleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackAnsibleArrayInput is an input type that accepts GetStackAnsibleArray and GetStackAnsibleArrayOutput values.
 // You can construct a concrete instance of `GetStackAnsibleArrayInput` via:
 //
@@ -2790,6 +4704,12 @@ func (i GetStackAnsibleArray) ToGetStackAnsibleArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackAnsibleArrayOutput)
 }
 
+func (i GetStackAnsibleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackAnsible] {
+	return pulumix.Output[[]GetStackAnsible]{
+		OutputState: i.ToGetStackAnsibleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackAnsibleOutput struct{ *pulumi.OutputState }
 
 func (GetStackAnsibleOutput) ElementType() reflect.Type {
@@ -2802,6 +4722,12 @@ func (o GetStackAnsibleOutput) ToGetStackAnsibleOutput() GetStackAnsibleOutput {
 
 func (o GetStackAnsibleOutput) ToGetStackAnsibleOutputWithContext(ctx context.Context) GetStackAnsibleOutput {
 	return o
+}
+
+func (o GetStackAnsibleOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackAnsible] {
+	return pulumix.Output[GetStackAnsible]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackAnsibleOutput) Playbook() pulumi.StringOutput {
@@ -2820,6 +4746,12 @@ func (o GetStackAnsibleArrayOutput) ToGetStackAnsibleArrayOutput() GetStackAnsib
 
 func (o GetStackAnsibleArrayOutput) ToGetStackAnsibleArrayOutputWithContext(ctx context.Context) GetStackAnsibleArrayOutput {
 	return o
+}
+
+func (o GetStackAnsibleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackAnsible] {
+	return pulumix.Output[[]GetStackAnsible]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackAnsibleArrayOutput) Index(i pulumi.IntInput) GetStackAnsibleOutput {
@@ -2859,6 +4791,12 @@ func (i GetStackAzureDevopArgs) ToGetStackAzureDevopOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackAzureDevopOutput)
 }
 
+func (i GetStackAzureDevopArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackAzureDevop] {
+	return pulumix.Output[GetStackAzureDevop]{
+		OutputState: i.ToGetStackAzureDevopOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackAzureDevopArrayInput is an input type that accepts GetStackAzureDevopArray and GetStackAzureDevopArrayOutput values.
 // You can construct a concrete instance of `GetStackAzureDevopArrayInput` via:
 //
@@ -2884,6 +4822,12 @@ func (i GetStackAzureDevopArray) ToGetStackAzureDevopArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackAzureDevopArrayOutput)
 }
 
+func (i GetStackAzureDevopArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackAzureDevop] {
+	return pulumix.Output[[]GetStackAzureDevop]{
+		OutputState: i.ToGetStackAzureDevopArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackAzureDevopOutput struct{ *pulumi.OutputState }
 
 func (GetStackAzureDevopOutput) ElementType() reflect.Type {
@@ -2896,6 +4840,12 @@ func (o GetStackAzureDevopOutput) ToGetStackAzureDevopOutput() GetStackAzureDevo
 
 func (o GetStackAzureDevopOutput) ToGetStackAzureDevopOutputWithContext(ctx context.Context) GetStackAzureDevopOutput {
 	return o
+}
+
+func (o GetStackAzureDevopOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackAzureDevop] {
+	return pulumix.Output[GetStackAzureDevop]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackAzureDevopOutput) Project() pulumi.StringOutput {
@@ -2914,6 +4864,12 @@ func (o GetStackAzureDevopArrayOutput) ToGetStackAzureDevopArrayOutput() GetStac
 
 func (o GetStackAzureDevopArrayOutput) ToGetStackAzureDevopArrayOutputWithContext(ctx context.Context) GetStackAzureDevopArrayOutput {
 	return o
+}
+
+func (o GetStackAzureDevopArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackAzureDevop] {
+	return pulumix.Output[[]GetStackAzureDevop]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackAzureDevopArrayOutput) Index(i pulumi.IntInput) GetStackAzureDevopOutput {
@@ -2953,6 +4909,12 @@ func (i GetStackBitbucketCloudArgs) ToGetStackBitbucketCloudOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketCloudOutput)
 }
 
+func (i GetStackBitbucketCloudArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackBitbucketCloud] {
+	return pulumix.Output[GetStackBitbucketCloud]{
+		OutputState: i.ToGetStackBitbucketCloudOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackBitbucketCloudArrayInput is an input type that accepts GetStackBitbucketCloudArray and GetStackBitbucketCloudArrayOutput values.
 // You can construct a concrete instance of `GetStackBitbucketCloudArrayInput` via:
 //
@@ -2978,6 +4940,12 @@ func (i GetStackBitbucketCloudArray) ToGetStackBitbucketCloudArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketCloudArrayOutput)
 }
 
+func (i GetStackBitbucketCloudArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackBitbucketCloud] {
+	return pulumix.Output[[]GetStackBitbucketCloud]{
+		OutputState: i.ToGetStackBitbucketCloudArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackBitbucketCloudOutput struct{ *pulumi.OutputState }
 
 func (GetStackBitbucketCloudOutput) ElementType() reflect.Type {
@@ -2990,6 +4958,12 @@ func (o GetStackBitbucketCloudOutput) ToGetStackBitbucketCloudOutput() GetStackB
 
 func (o GetStackBitbucketCloudOutput) ToGetStackBitbucketCloudOutputWithContext(ctx context.Context) GetStackBitbucketCloudOutput {
 	return o
+}
+
+func (o GetStackBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackBitbucketCloud] {
+	return pulumix.Output[GetStackBitbucketCloud]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
@@ -3008,6 +4982,12 @@ func (o GetStackBitbucketCloudArrayOutput) ToGetStackBitbucketCloudArrayOutput()
 
 func (o GetStackBitbucketCloudArrayOutput) ToGetStackBitbucketCloudArrayOutputWithContext(ctx context.Context) GetStackBitbucketCloudArrayOutput {
 	return o
+}
+
+func (o GetStackBitbucketCloudArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackBitbucketCloud] {
+	return pulumix.Output[[]GetStackBitbucketCloud]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetStackBitbucketCloudOutput {
@@ -3047,6 +5027,12 @@ func (i GetStackBitbucketDatacenterArgs) ToGetStackBitbucketDatacenterOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketDatacenterOutput)
 }
 
+func (i GetStackBitbucketDatacenterArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackBitbucketDatacenter] {
+	return pulumix.Output[GetStackBitbucketDatacenter]{
+		OutputState: i.ToGetStackBitbucketDatacenterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackBitbucketDatacenterArrayInput is an input type that accepts GetStackBitbucketDatacenterArray and GetStackBitbucketDatacenterArrayOutput values.
 // You can construct a concrete instance of `GetStackBitbucketDatacenterArrayInput` via:
 //
@@ -3072,6 +5058,12 @@ func (i GetStackBitbucketDatacenterArray) ToGetStackBitbucketDatacenterArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketDatacenterArrayOutput)
 }
 
+func (i GetStackBitbucketDatacenterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackBitbucketDatacenter] {
+	return pulumix.Output[[]GetStackBitbucketDatacenter]{
+		OutputState: i.ToGetStackBitbucketDatacenterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackBitbucketDatacenterOutput struct{ *pulumi.OutputState }
 
 func (GetStackBitbucketDatacenterOutput) ElementType() reflect.Type {
@@ -3084,6 +5076,12 @@ func (o GetStackBitbucketDatacenterOutput) ToGetStackBitbucketDatacenterOutput()
 
 func (o GetStackBitbucketDatacenterOutput) ToGetStackBitbucketDatacenterOutputWithContext(ctx context.Context) GetStackBitbucketDatacenterOutput {
 	return o
+}
+
+func (o GetStackBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackBitbucketDatacenter] {
+	return pulumix.Output[GetStackBitbucketDatacenter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
@@ -3102,6 +5100,12 @@ func (o GetStackBitbucketDatacenterArrayOutput) ToGetStackBitbucketDatacenterArr
 
 func (o GetStackBitbucketDatacenterArrayOutput) ToGetStackBitbucketDatacenterArrayOutputWithContext(ctx context.Context) GetStackBitbucketDatacenterArrayOutput {
 	return o
+}
+
+func (o GetStackBitbucketDatacenterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackBitbucketDatacenter] {
+	return pulumix.Output[[]GetStackBitbucketDatacenter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetStackBitbucketDatacenterOutput {
@@ -3147,6 +5151,12 @@ func (i GetStackCloudformationArgs) ToGetStackCloudformationOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackCloudformationOutput)
 }
 
+func (i GetStackCloudformationArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackCloudformation] {
+	return pulumix.Output[GetStackCloudformation]{
+		OutputState: i.ToGetStackCloudformationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackCloudformationArrayInput is an input type that accepts GetStackCloudformationArray and GetStackCloudformationArrayOutput values.
 // You can construct a concrete instance of `GetStackCloudformationArrayInput` via:
 //
@@ -3172,6 +5182,12 @@ func (i GetStackCloudformationArray) ToGetStackCloudformationArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackCloudformationArrayOutput)
 }
 
+func (i GetStackCloudformationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackCloudformation] {
+	return pulumix.Output[[]GetStackCloudformation]{
+		OutputState: i.ToGetStackCloudformationArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackCloudformationOutput struct{ *pulumi.OutputState }
 
 func (GetStackCloudformationOutput) ElementType() reflect.Type {
@@ -3184,6 +5200,12 @@ func (o GetStackCloudformationOutput) ToGetStackCloudformationOutput() GetStackC
 
 func (o GetStackCloudformationOutput) ToGetStackCloudformationOutputWithContext(ctx context.Context) GetStackCloudformationOutput {
 	return o
+}
+
+func (o GetStackCloudformationOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackCloudformation] {
+	return pulumix.Output[GetStackCloudformation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackCloudformationOutput) EntryTemplateFile() pulumi.StringOutput {
@@ -3214,6 +5236,12 @@ func (o GetStackCloudformationArrayOutput) ToGetStackCloudformationArrayOutput()
 
 func (o GetStackCloudformationArrayOutput) ToGetStackCloudformationArrayOutputWithContext(ctx context.Context) GetStackCloudformationArrayOutput {
 	return o
+}
+
+func (o GetStackCloudformationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackCloudformation] {
+	return pulumix.Output[[]GetStackCloudformation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackCloudformationArrayOutput) Index(i pulumi.IntInput) GetStackCloudformationOutput {
@@ -3253,6 +5281,12 @@ func (i GetStackGithubEnterpriseArgs) ToGetStackGithubEnterpriseOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackGithubEnterpriseOutput)
 }
 
+func (i GetStackGithubEnterpriseArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackGithubEnterprise] {
+	return pulumix.Output[GetStackGithubEnterprise]{
+		OutputState: i.ToGetStackGithubEnterpriseOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackGithubEnterpriseArrayInput is an input type that accepts GetStackGithubEnterpriseArray and GetStackGithubEnterpriseArrayOutput values.
 // You can construct a concrete instance of `GetStackGithubEnterpriseArrayInput` via:
 //
@@ -3278,6 +5312,12 @@ func (i GetStackGithubEnterpriseArray) ToGetStackGithubEnterpriseArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackGithubEnterpriseArrayOutput)
 }
 
+func (i GetStackGithubEnterpriseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackGithubEnterprise] {
+	return pulumix.Output[[]GetStackGithubEnterprise]{
+		OutputState: i.ToGetStackGithubEnterpriseArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackGithubEnterpriseOutput struct{ *pulumi.OutputState }
 
 func (GetStackGithubEnterpriseOutput) ElementType() reflect.Type {
@@ -3290,6 +5330,12 @@ func (o GetStackGithubEnterpriseOutput) ToGetStackGithubEnterpriseOutput() GetSt
 
 func (o GetStackGithubEnterpriseOutput) ToGetStackGithubEnterpriseOutputWithContext(ctx context.Context) GetStackGithubEnterpriseOutput {
 	return o
+}
+
+func (o GetStackGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackGithubEnterprise] {
+	return pulumix.Output[GetStackGithubEnterprise]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
@@ -3308,6 +5354,12 @@ func (o GetStackGithubEnterpriseArrayOutput) ToGetStackGithubEnterpriseArrayOutp
 
 func (o GetStackGithubEnterpriseArrayOutput) ToGetStackGithubEnterpriseArrayOutputWithContext(ctx context.Context) GetStackGithubEnterpriseArrayOutput {
 	return o
+}
+
+func (o GetStackGithubEnterpriseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackGithubEnterprise] {
+	return pulumix.Output[[]GetStackGithubEnterprise]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetStackGithubEnterpriseOutput {
@@ -3347,6 +5399,12 @@ func (i GetStackGitlabArgs) ToGetStackGitlabOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackGitlabOutput)
 }
 
+func (i GetStackGitlabArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackGitlab] {
+	return pulumix.Output[GetStackGitlab]{
+		OutputState: i.ToGetStackGitlabOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackGitlabArrayInput is an input type that accepts GetStackGitlabArray and GetStackGitlabArrayOutput values.
 // You can construct a concrete instance of `GetStackGitlabArrayInput` via:
 //
@@ -3372,6 +5430,12 @@ func (i GetStackGitlabArray) ToGetStackGitlabArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackGitlabArrayOutput)
 }
 
+func (i GetStackGitlabArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackGitlab] {
+	return pulumix.Output[[]GetStackGitlab]{
+		OutputState: i.ToGetStackGitlabArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackGitlabOutput struct{ *pulumi.OutputState }
 
 func (GetStackGitlabOutput) ElementType() reflect.Type {
@@ -3384,6 +5448,12 @@ func (o GetStackGitlabOutput) ToGetStackGitlabOutput() GetStackGitlabOutput {
 
 func (o GetStackGitlabOutput) ToGetStackGitlabOutputWithContext(ctx context.Context) GetStackGitlabOutput {
 	return o
+}
+
+func (o GetStackGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackGitlab] {
+	return pulumix.Output[GetStackGitlab]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackGitlabOutput) Namespace() pulumi.StringOutput {
@@ -3404,6 +5474,12 @@ func (o GetStackGitlabArrayOutput) ToGetStackGitlabArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o GetStackGitlabArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackGitlab] {
+	return pulumix.Output[[]GetStackGitlab]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetStackGitlabArrayOutput) Index(i pulumi.IntInput) GetStackGitlabOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackGitlab {
 		return vs[0].([]GetStackGitlab)[vs[1].(int)]
@@ -3411,7 +5487,8 @@ func (o GetStackGitlabArrayOutput) Index(i pulumi.IntInput) GetStackGitlabOutput
 }
 
 type GetStackKubernete struct {
-	Namespace string `pulumi:"namespace"`
+	KubectlVersion string `pulumi:"kubectlVersion"`
+	Namespace      string `pulumi:"namespace"`
 }
 
 // GetStackKuberneteInput is an input type that accepts GetStackKuberneteArgs and GetStackKuberneteOutput values.
@@ -3426,7 +5503,8 @@ type GetStackKuberneteInput interface {
 }
 
 type GetStackKuberneteArgs struct {
-	Namespace pulumi.StringInput `pulumi:"namespace"`
+	KubectlVersion pulumi.StringInput `pulumi:"kubectlVersion"`
+	Namespace      pulumi.StringInput `pulumi:"namespace"`
 }
 
 func (GetStackKuberneteArgs) ElementType() reflect.Type {
@@ -3439,6 +5517,12 @@ func (i GetStackKuberneteArgs) ToGetStackKuberneteOutput() GetStackKuberneteOutp
 
 func (i GetStackKuberneteArgs) ToGetStackKuberneteOutputWithContext(ctx context.Context) GetStackKuberneteOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackKuberneteOutput)
+}
+
+func (i GetStackKuberneteArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackKubernete] {
+	return pulumix.Output[GetStackKubernete]{
+		OutputState: i.ToGetStackKuberneteOutputWithContext(ctx).OutputState,
+	}
 }
 
 // GetStackKuberneteArrayInput is an input type that accepts GetStackKuberneteArray and GetStackKuberneteArrayOutput values.
@@ -3466,6 +5550,12 @@ func (i GetStackKuberneteArray) ToGetStackKuberneteArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackKuberneteArrayOutput)
 }
 
+func (i GetStackKuberneteArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackKubernete] {
+	return pulumix.Output[[]GetStackKubernete]{
+		OutputState: i.ToGetStackKuberneteArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackKuberneteOutput struct{ *pulumi.OutputState }
 
 func (GetStackKuberneteOutput) ElementType() reflect.Type {
@@ -3478,6 +5568,16 @@ func (o GetStackKuberneteOutput) ToGetStackKuberneteOutput() GetStackKuberneteOu
 
 func (o GetStackKuberneteOutput) ToGetStackKuberneteOutputWithContext(ctx context.Context) GetStackKuberneteOutput {
 	return o
+}
+
+func (o GetStackKuberneteOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackKubernete] {
+	return pulumix.Output[GetStackKubernete]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStackKuberneteOutput) KubectlVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackKubernete) string { return v.KubectlVersion }).(pulumi.StringOutput)
 }
 
 func (o GetStackKuberneteOutput) Namespace() pulumi.StringOutput {
@@ -3496,6 +5596,12 @@ func (o GetStackKuberneteArrayOutput) ToGetStackKuberneteArrayOutput() GetStackK
 
 func (o GetStackKuberneteArrayOutput) ToGetStackKuberneteArrayOutputWithContext(ctx context.Context) GetStackKuberneteArrayOutput {
 	return o
+}
+
+func (o GetStackKuberneteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackKubernete] {
+	return pulumix.Output[[]GetStackKubernete]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackKuberneteArrayOutput) Index(i pulumi.IntInput) GetStackKuberneteOutput {
@@ -3537,6 +5643,12 @@ func (i GetStackPulumiArgs) ToGetStackPulumiOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackPulumiOutput)
 }
 
+func (i GetStackPulumiArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackPulumi] {
+	return pulumix.Output[GetStackPulumi]{
+		OutputState: i.ToGetStackPulumiOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackPulumiArrayInput is an input type that accepts GetStackPulumiArray and GetStackPulumiArrayOutput values.
 // You can construct a concrete instance of `GetStackPulumiArrayInput` via:
 //
@@ -3562,6 +5674,12 @@ func (i GetStackPulumiArray) ToGetStackPulumiArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackPulumiArrayOutput)
 }
 
+func (i GetStackPulumiArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackPulumi] {
+	return pulumix.Output[[]GetStackPulumi]{
+		OutputState: i.ToGetStackPulumiArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackPulumiOutput struct{ *pulumi.OutputState }
 
 func (GetStackPulumiOutput) ElementType() reflect.Type {
@@ -3574,6 +5692,12 @@ func (o GetStackPulumiOutput) ToGetStackPulumiOutput() GetStackPulumiOutput {
 
 func (o GetStackPulumiOutput) ToGetStackPulumiOutputWithContext(ctx context.Context) GetStackPulumiOutput {
 	return o
+}
+
+func (o GetStackPulumiOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackPulumi] {
+	return pulumix.Output[GetStackPulumi]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackPulumiOutput) LoginUrl() pulumi.StringOutput {
@@ -3598,10 +5722,140 @@ func (o GetStackPulumiArrayOutput) ToGetStackPulumiArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o GetStackPulumiArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackPulumi] {
+	return pulumix.Output[[]GetStackPulumi]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetStackPulumiArrayOutput) Index(i pulumi.IntInput) GetStackPulumiOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackPulumi {
 		return vs[0].([]GetStackPulumi)[vs[1].(int)]
 	}).(GetStackPulumiOutput)
+}
+
+type GetStackRawGit struct {
+	Namespace string `pulumi:"namespace"`
+	Url       string `pulumi:"url"`
+}
+
+// GetStackRawGitInput is an input type that accepts GetStackRawGitArgs and GetStackRawGitOutput values.
+// You can construct a concrete instance of `GetStackRawGitInput` via:
+//
+//	GetStackRawGitArgs{...}
+type GetStackRawGitInput interface {
+	pulumi.Input
+
+	ToGetStackRawGitOutput() GetStackRawGitOutput
+	ToGetStackRawGitOutputWithContext(context.Context) GetStackRawGitOutput
+}
+
+type GetStackRawGitArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+	Url       pulumi.StringInput `pulumi:"url"`
+}
+
+func (GetStackRawGitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackRawGit)(nil)).Elem()
+}
+
+func (i GetStackRawGitArgs) ToGetStackRawGitOutput() GetStackRawGitOutput {
+	return i.ToGetStackRawGitOutputWithContext(context.Background())
+}
+
+func (i GetStackRawGitArgs) ToGetStackRawGitOutputWithContext(ctx context.Context) GetStackRawGitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackRawGitOutput)
+}
+
+func (i GetStackRawGitArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackRawGit] {
+	return pulumix.Output[GetStackRawGit]{
+		OutputState: i.ToGetStackRawGitOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStackRawGitArrayInput is an input type that accepts GetStackRawGitArray and GetStackRawGitArrayOutput values.
+// You can construct a concrete instance of `GetStackRawGitArrayInput` via:
+//
+//	GetStackRawGitArray{ GetStackRawGitArgs{...} }
+type GetStackRawGitArrayInput interface {
+	pulumi.Input
+
+	ToGetStackRawGitArrayOutput() GetStackRawGitArrayOutput
+	ToGetStackRawGitArrayOutputWithContext(context.Context) GetStackRawGitArrayOutput
+}
+
+type GetStackRawGitArray []GetStackRawGitInput
+
+func (GetStackRawGitArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackRawGit)(nil)).Elem()
+}
+
+func (i GetStackRawGitArray) ToGetStackRawGitArrayOutput() GetStackRawGitArrayOutput {
+	return i.ToGetStackRawGitArrayOutputWithContext(context.Background())
+}
+
+func (i GetStackRawGitArray) ToGetStackRawGitArrayOutputWithContext(ctx context.Context) GetStackRawGitArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStackRawGitArrayOutput)
+}
+
+func (i GetStackRawGitArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackRawGit] {
+	return pulumix.Output[[]GetStackRawGit]{
+		OutputState: i.ToGetStackRawGitArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStackRawGitOutput struct{ *pulumi.OutputState }
+
+func (GetStackRawGitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStackRawGit)(nil)).Elem()
+}
+
+func (o GetStackRawGitOutput) ToGetStackRawGitOutput() GetStackRawGitOutput {
+	return o
+}
+
+func (o GetStackRawGitOutput) ToGetStackRawGitOutputWithContext(ctx context.Context) GetStackRawGitOutput {
+	return o
+}
+
+func (o GetStackRawGitOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackRawGit] {
+	return pulumix.Output[GetStackRawGit]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStackRawGitOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackRawGit) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+func (o GetStackRawGitOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackRawGit) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type GetStackRawGitArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStackRawGitArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStackRawGit)(nil)).Elem()
+}
+
+func (o GetStackRawGitArrayOutput) ToGetStackRawGitArrayOutput() GetStackRawGitArrayOutput {
+	return o
+}
+
+func (o GetStackRawGitArrayOutput) ToGetStackRawGitArrayOutputWithContext(ctx context.Context) GetStackRawGitArrayOutput {
+	return o
+}
+
+func (o GetStackRawGitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackRawGit] {
+	return pulumix.Output[[]GetStackRawGit]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStackRawGitArrayOutput) Index(i pulumi.IntInput) GetStackRawGitOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackRawGit {
+		return vs[0].([]GetStackRawGit)[vs[1].(int)]
+	}).(GetStackRawGitOutput)
 }
 
 type GetStackShowcase struct {
@@ -3635,6 +5889,12 @@ func (i GetStackShowcaseArgs) ToGetStackShowcaseOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackShowcaseOutput)
 }
 
+func (i GetStackShowcaseArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackShowcase] {
+	return pulumix.Output[GetStackShowcase]{
+		OutputState: i.ToGetStackShowcaseOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetStackShowcaseArrayInput is an input type that accepts GetStackShowcaseArray and GetStackShowcaseArrayOutput values.
 // You can construct a concrete instance of `GetStackShowcaseArrayInput` via:
 //
@@ -3660,6 +5920,12 @@ func (i GetStackShowcaseArray) ToGetStackShowcaseArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackShowcaseArrayOutput)
 }
 
+func (i GetStackShowcaseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackShowcase] {
+	return pulumix.Output[[]GetStackShowcase]{
+		OutputState: i.ToGetStackShowcaseArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetStackShowcaseOutput struct{ *pulumi.OutputState }
 
 func (GetStackShowcaseOutput) ElementType() reflect.Type {
@@ -3672,6 +5938,12 @@ func (o GetStackShowcaseOutput) ToGetStackShowcaseOutput() GetStackShowcaseOutpu
 
 func (o GetStackShowcaseOutput) ToGetStackShowcaseOutputWithContext(ctx context.Context) GetStackShowcaseOutput {
 	return o
+}
+
+func (o GetStackShowcaseOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackShowcase] {
+	return pulumix.Output[GetStackShowcase]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetStackShowcaseOutput) Namespace() pulumi.StringOutput {
@@ -3692,10 +5964,3414 @@ func (o GetStackShowcaseArrayOutput) ToGetStackShowcaseArrayOutputWithContext(ct
 	return o
 }
 
+func (o GetStackShowcaseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackShowcase] {
+	return pulumix.Output[[]GetStackShowcase]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetStackShowcaseArrayOutput) Index(i pulumi.IntInput) GetStackShowcaseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackShowcase {
 		return vs[0].([]GetStackShowcase)[vs[1].(int)]
 	}).(GetStackShowcaseOutput)
+}
+
+type GetStacksAdministrative struct {
+	Equals *bool `pulumi:"equals"`
+}
+
+// GetStacksAdministrativeInput is an input type that accepts GetStacksAdministrativeArgs and GetStacksAdministrativeOutput values.
+// You can construct a concrete instance of `GetStacksAdministrativeInput` via:
+//
+//	GetStacksAdministrativeArgs{...}
+type GetStacksAdministrativeInput interface {
+	pulumi.Input
+
+	ToGetStacksAdministrativeOutput() GetStacksAdministrativeOutput
+	ToGetStacksAdministrativeOutputWithContext(context.Context) GetStacksAdministrativeOutput
+}
+
+type GetStacksAdministrativeArgs struct {
+	Equals pulumi.BoolPtrInput `pulumi:"equals"`
+}
+
+func (GetStacksAdministrativeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksAdministrative)(nil)).Elem()
+}
+
+func (i GetStacksAdministrativeArgs) ToGetStacksAdministrativeOutput() GetStacksAdministrativeOutput {
+	return i.ToGetStacksAdministrativeOutputWithContext(context.Background())
+}
+
+func (i GetStacksAdministrativeArgs) ToGetStacksAdministrativeOutputWithContext(ctx context.Context) GetStacksAdministrativeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksAdministrativeOutput)
+}
+
+func (i GetStacksAdministrativeArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksAdministrative] {
+	return pulumix.Output[GetStacksAdministrative]{
+		OutputState: i.ToGetStacksAdministrativeOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i GetStacksAdministrativeArgs) ToGetStacksAdministrativePtrOutput() GetStacksAdministrativePtrOutput {
+	return i.ToGetStacksAdministrativePtrOutputWithContext(context.Background())
+}
+
+func (i GetStacksAdministrativeArgs) ToGetStacksAdministrativePtrOutputWithContext(ctx context.Context) GetStacksAdministrativePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksAdministrativeOutput).ToGetStacksAdministrativePtrOutputWithContext(ctx)
+}
+
+// GetStacksAdministrativePtrInput is an input type that accepts GetStacksAdministrativeArgs, GetStacksAdministrativePtr and GetStacksAdministrativePtrOutput values.
+// You can construct a concrete instance of `GetStacksAdministrativePtrInput` via:
+//
+//	        GetStacksAdministrativeArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStacksAdministrativePtrInput interface {
+	pulumi.Input
+
+	ToGetStacksAdministrativePtrOutput() GetStacksAdministrativePtrOutput
+	ToGetStacksAdministrativePtrOutputWithContext(context.Context) GetStacksAdministrativePtrOutput
+}
+
+type getStacksAdministrativePtrType GetStacksAdministrativeArgs
+
+func GetStacksAdministrativePtr(v *GetStacksAdministrativeArgs) GetStacksAdministrativePtrInput {
+	return (*getStacksAdministrativePtrType)(v)
+}
+
+func (*getStacksAdministrativePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksAdministrative)(nil)).Elem()
+}
+
+func (i *getStacksAdministrativePtrType) ToGetStacksAdministrativePtrOutput() GetStacksAdministrativePtrOutput {
+	return i.ToGetStacksAdministrativePtrOutputWithContext(context.Background())
+}
+
+func (i *getStacksAdministrativePtrType) ToGetStacksAdministrativePtrOutputWithContext(ctx context.Context) GetStacksAdministrativePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksAdministrativePtrOutput)
+}
+
+func (i *getStacksAdministrativePtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksAdministrative] {
+	return pulumix.Output[*GetStacksAdministrative]{
+		OutputState: i.ToGetStacksAdministrativePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksAdministrativeOutput struct{ *pulumi.OutputState }
+
+func (GetStacksAdministrativeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksAdministrative)(nil)).Elem()
+}
+
+func (o GetStacksAdministrativeOutput) ToGetStacksAdministrativeOutput() GetStacksAdministrativeOutput {
+	return o
+}
+
+func (o GetStacksAdministrativeOutput) ToGetStacksAdministrativeOutputWithContext(ctx context.Context) GetStacksAdministrativeOutput {
+	return o
+}
+
+func (o GetStacksAdministrativeOutput) ToGetStacksAdministrativePtrOutput() GetStacksAdministrativePtrOutput {
+	return o.ToGetStacksAdministrativePtrOutputWithContext(context.Background())
+}
+
+func (o GetStacksAdministrativeOutput) ToGetStacksAdministrativePtrOutputWithContext(ctx context.Context) GetStacksAdministrativePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStacksAdministrative) *GetStacksAdministrative {
+		return &v
+	}).(GetStacksAdministrativePtrOutput)
+}
+
+func (o GetStacksAdministrativeOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksAdministrative] {
+	return pulumix.Output[GetStacksAdministrative]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksAdministrativeOutput) Equals() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetStacksAdministrative) *bool { return v.Equals }).(pulumi.BoolPtrOutput)
+}
+
+type GetStacksAdministrativePtrOutput struct{ *pulumi.OutputState }
+
+func (GetStacksAdministrativePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksAdministrative)(nil)).Elem()
+}
+
+func (o GetStacksAdministrativePtrOutput) ToGetStacksAdministrativePtrOutput() GetStacksAdministrativePtrOutput {
+	return o
+}
+
+func (o GetStacksAdministrativePtrOutput) ToGetStacksAdministrativePtrOutputWithContext(ctx context.Context) GetStacksAdministrativePtrOutput {
+	return o
+}
+
+func (o GetStacksAdministrativePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksAdministrative] {
+	return pulumix.Output[*GetStacksAdministrative]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksAdministrativePtrOutput) Elem() GetStacksAdministrativeOutput {
+	return o.ApplyT(func(v *GetStacksAdministrative) GetStacksAdministrative {
+		if v != nil {
+			return *v
+		}
+		var ret GetStacksAdministrative
+		return ret
+	}).(GetStacksAdministrativeOutput)
+}
+
+func (o GetStacksAdministrativePtrOutput) Equals() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetStacksAdministrative) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Equals
+	}).(pulumi.BoolPtrOutput)
+}
+
+type GetStacksBranch struct {
+	AnyOfs []string `pulumi:"anyOfs"`
+}
+
+// GetStacksBranchInput is an input type that accepts GetStacksBranchArgs and GetStacksBranchOutput values.
+// You can construct a concrete instance of `GetStacksBranchInput` via:
+//
+//	GetStacksBranchArgs{...}
+type GetStacksBranchInput interface {
+	pulumi.Input
+
+	ToGetStacksBranchOutput() GetStacksBranchOutput
+	ToGetStacksBranchOutputWithContext(context.Context) GetStacksBranchOutput
+}
+
+type GetStacksBranchArgs struct {
+	AnyOfs pulumi.StringArrayInput `pulumi:"anyOfs"`
+}
+
+func (GetStacksBranchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksBranch)(nil)).Elem()
+}
+
+func (i GetStacksBranchArgs) ToGetStacksBranchOutput() GetStacksBranchOutput {
+	return i.ToGetStacksBranchOutputWithContext(context.Background())
+}
+
+func (i GetStacksBranchArgs) ToGetStacksBranchOutputWithContext(ctx context.Context) GetStacksBranchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksBranchOutput)
+}
+
+func (i GetStacksBranchArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksBranch] {
+	return pulumix.Output[GetStacksBranch]{
+		OutputState: i.ToGetStacksBranchOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i GetStacksBranchArgs) ToGetStacksBranchPtrOutput() GetStacksBranchPtrOutput {
+	return i.ToGetStacksBranchPtrOutputWithContext(context.Background())
+}
+
+func (i GetStacksBranchArgs) ToGetStacksBranchPtrOutputWithContext(ctx context.Context) GetStacksBranchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksBranchOutput).ToGetStacksBranchPtrOutputWithContext(ctx)
+}
+
+// GetStacksBranchPtrInput is an input type that accepts GetStacksBranchArgs, GetStacksBranchPtr and GetStacksBranchPtrOutput values.
+// You can construct a concrete instance of `GetStacksBranchPtrInput` via:
+//
+//	        GetStacksBranchArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStacksBranchPtrInput interface {
+	pulumi.Input
+
+	ToGetStacksBranchPtrOutput() GetStacksBranchPtrOutput
+	ToGetStacksBranchPtrOutputWithContext(context.Context) GetStacksBranchPtrOutput
+}
+
+type getStacksBranchPtrType GetStacksBranchArgs
+
+func GetStacksBranchPtr(v *GetStacksBranchArgs) GetStacksBranchPtrInput {
+	return (*getStacksBranchPtrType)(v)
+}
+
+func (*getStacksBranchPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksBranch)(nil)).Elem()
+}
+
+func (i *getStacksBranchPtrType) ToGetStacksBranchPtrOutput() GetStacksBranchPtrOutput {
+	return i.ToGetStacksBranchPtrOutputWithContext(context.Background())
+}
+
+func (i *getStacksBranchPtrType) ToGetStacksBranchPtrOutputWithContext(ctx context.Context) GetStacksBranchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksBranchPtrOutput)
+}
+
+func (i *getStacksBranchPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksBranch] {
+	return pulumix.Output[*GetStacksBranch]{
+		OutputState: i.ToGetStacksBranchPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksBranchOutput struct{ *pulumi.OutputState }
+
+func (GetStacksBranchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksBranch)(nil)).Elem()
+}
+
+func (o GetStacksBranchOutput) ToGetStacksBranchOutput() GetStacksBranchOutput {
+	return o
+}
+
+func (o GetStacksBranchOutput) ToGetStacksBranchOutputWithContext(ctx context.Context) GetStacksBranchOutput {
+	return o
+}
+
+func (o GetStacksBranchOutput) ToGetStacksBranchPtrOutput() GetStacksBranchPtrOutput {
+	return o.ToGetStacksBranchPtrOutputWithContext(context.Background())
+}
+
+func (o GetStacksBranchOutput) ToGetStacksBranchPtrOutputWithContext(ctx context.Context) GetStacksBranchPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStacksBranch) *GetStacksBranch {
+		return &v
+	}).(GetStacksBranchPtrOutput)
+}
+
+func (o GetStacksBranchOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksBranch] {
+	return pulumix.Output[GetStacksBranch]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksBranchOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksBranch) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
+}
+
+type GetStacksBranchPtrOutput struct{ *pulumi.OutputState }
+
+func (GetStacksBranchPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksBranch)(nil)).Elem()
+}
+
+func (o GetStacksBranchPtrOutput) ToGetStacksBranchPtrOutput() GetStacksBranchPtrOutput {
+	return o
+}
+
+func (o GetStacksBranchPtrOutput) ToGetStacksBranchPtrOutputWithContext(ctx context.Context) GetStacksBranchPtrOutput {
+	return o
+}
+
+func (o GetStacksBranchPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksBranch] {
+	return pulumix.Output[*GetStacksBranch]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksBranchPtrOutput) Elem() GetStacksBranchOutput {
+	return o.ApplyT(func(v *GetStacksBranch) GetStacksBranch {
+		if v != nil {
+			return *v
+		}
+		var ret GetStacksBranch
+		return ret
+	}).(GetStacksBranchOutput)
+}
+
+func (o GetStacksBranchPtrOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetStacksBranch) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AnyOfs
+	}).(pulumi.StringArrayOutput)
+}
+
+type GetStacksCommit struct {
+	AnyOfs []string `pulumi:"anyOfs"`
+}
+
+// GetStacksCommitInput is an input type that accepts GetStacksCommitArgs and GetStacksCommitOutput values.
+// You can construct a concrete instance of `GetStacksCommitInput` via:
+//
+//	GetStacksCommitArgs{...}
+type GetStacksCommitInput interface {
+	pulumi.Input
+
+	ToGetStacksCommitOutput() GetStacksCommitOutput
+	ToGetStacksCommitOutputWithContext(context.Context) GetStacksCommitOutput
+}
+
+type GetStacksCommitArgs struct {
+	AnyOfs pulumi.StringArrayInput `pulumi:"anyOfs"`
+}
+
+func (GetStacksCommitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksCommit)(nil)).Elem()
+}
+
+func (i GetStacksCommitArgs) ToGetStacksCommitOutput() GetStacksCommitOutput {
+	return i.ToGetStacksCommitOutputWithContext(context.Background())
+}
+
+func (i GetStacksCommitArgs) ToGetStacksCommitOutputWithContext(ctx context.Context) GetStacksCommitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksCommitOutput)
+}
+
+func (i GetStacksCommitArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksCommit] {
+	return pulumix.Output[GetStacksCommit]{
+		OutputState: i.ToGetStacksCommitOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i GetStacksCommitArgs) ToGetStacksCommitPtrOutput() GetStacksCommitPtrOutput {
+	return i.ToGetStacksCommitPtrOutputWithContext(context.Background())
+}
+
+func (i GetStacksCommitArgs) ToGetStacksCommitPtrOutputWithContext(ctx context.Context) GetStacksCommitPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksCommitOutput).ToGetStacksCommitPtrOutputWithContext(ctx)
+}
+
+// GetStacksCommitPtrInput is an input type that accepts GetStacksCommitArgs, GetStacksCommitPtr and GetStacksCommitPtrOutput values.
+// You can construct a concrete instance of `GetStacksCommitPtrInput` via:
+//
+//	        GetStacksCommitArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStacksCommitPtrInput interface {
+	pulumi.Input
+
+	ToGetStacksCommitPtrOutput() GetStacksCommitPtrOutput
+	ToGetStacksCommitPtrOutputWithContext(context.Context) GetStacksCommitPtrOutput
+}
+
+type getStacksCommitPtrType GetStacksCommitArgs
+
+func GetStacksCommitPtr(v *GetStacksCommitArgs) GetStacksCommitPtrInput {
+	return (*getStacksCommitPtrType)(v)
+}
+
+func (*getStacksCommitPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksCommit)(nil)).Elem()
+}
+
+func (i *getStacksCommitPtrType) ToGetStacksCommitPtrOutput() GetStacksCommitPtrOutput {
+	return i.ToGetStacksCommitPtrOutputWithContext(context.Background())
+}
+
+func (i *getStacksCommitPtrType) ToGetStacksCommitPtrOutputWithContext(ctx context.Context) GetStacksCommitPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksCommitPtrOutput)
+}
+
+func (i *getStacksCommitPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksCommit] {
+	return pulumix.Output[*GetStacksCommit]{
+		OutputState: i.ToGetStacksCommitPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksCommitOutput struct{ *pulumi.OutputState }
+
+func (GetStacksCommitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksCommit)(nil)).Elem()
+}
+
+func (o GetStacksCommitOutput) ToGetStacksCommitOutput() GetStacksCommitOutput {
+	return o
+}
+
+func (o GetStacksCommitOutput) ToGetStacksCommitOutputWithContext(ctx context.Context) GetStacksCommitOutput {
+	return o
+}
+
+func (o GetStacksCommitOutput) ToGetStacksCommitPtrOutput() GetStacksCommitPtrOutput {
+	return o.ToGetStacksCommitPtrOutputWithContext(context.Background())
+}
+
+func (o GetStacksCommitOutput) ToGetStacksCommitPtrOutputWithContext(ctx context.Context) GetStacksCommitPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStacksCommit) *GetStacksCommit {
+		return &v
+	}).(GetStacksCommitPtrOutput)
+}
+
+func (o GetStacksCommitOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksCommit] {
+	return pulumix.Output[GetStacksCommit]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksCommitOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksCommit) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
+}
+
+type GetStacksCommitPtrOutput struct{ *pulumi.OutputState }
+
+func (GetStacksCommitPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksCommit)(nil)).Elem()
+}
+
+func (o GetStacksCommitPtrOutput) ToGetStacksCommitPtrOutput() GetStacksCommitPtrOutput {
+	return o
+}
+
+func (o GetStacksCommitPtrOutput) ToGetStacksCommitPtrOutputWithContext(ctx context.Context) GetStacksCommitPtrOutput {
+	return o
+}
+
+func (o GetStacksCommitPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksCommit] {
+	return pulumix.Output[*GetStacksCommit]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksCommitPtrOutput) Elem() GetStacksCommitOutput {
+	return o.ApplyT(func(v *GetStacksCommit) GetStacksCommit {
+		if v != nil {
+			return *v
+		}
+		var ret GetStacksCommit
+		return ret
+	}).(GetStacksCommitOutput)
+}
+
+func (o GetStacksCommitPtrOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetStacksCommit) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AnyOfs
+	}).(pulumi.StringArrayOutput)
+}
+
+type GetStacksLabel struct {
+	AnyOfs []string `pulumi:"anyOfs"`
+}
+
+// GetStacksLabelInput is an input type that accepts GetStacksLabelArgs and GetStacksLabelOutput values.
+// You can construct a concrete instance of `GetStacksLabelInput` via:
+//
+//	GetStacksLabelArgs{...}
+type GetStacksLabelInput interface {
+	pulumi.Input
+
+	ToGetStacksLabelOutput() GetStacksLabelOutput
+	ToGetStacksLabelOutputWithContext(context.Context) GetStacksLabelOutput
+}
+
+type GetStacksLabelArgs struct {
+	AnyOfs pulumi.StringArrayInput `pulumi:"anyOfs"`
+}
+
+func (GetStacksLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksLabel)(nil)).Elem()
+}
+
+func (i GetStacksLabelArgs) ToGetStacksLabelOutput() GetStacksLabelOutput {
+	return i.ToGetStacksLabelOutputWithContext(context.Background())
+}
+
+func (i GetStacksLabelArgs) ToGetStacksLabelOutputWithContext(ctx context.Context) GetStacksLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksLabelOutput)
+}
+
+func (i GetStacksLabelArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksLabel] {
+	return pulumix.Output[GetStacksLabel]{
+		OutputState: i.ToGetStacksLabelOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksLabelArrayInput is an input type that accepts GetStacksLabelArray and GetStacksLabelArrayOutput values.
+// You can construct a concrete instance of `GetStacksLabelArrayInput` via:
+//
+//	GetStacksLabelArray{ GetStacksLabelArgs{...} }
+type GetStacksLabelArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksLabelArrayOutput() GetStacksLabelArrayOutput
+	ToGetStacksLabelArrayOutputWithContext(context.Context) GetStacksLabelArrayOutput
+}
+
+type GetStacksLabelArray []GetStacksLabelInput
+
+func (GetStacksLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksLabel)(nil)).Elem()
+}
+
+func (i GetStacksLabelArray) ToGetStacksLabelArrayOutput() GetStacksLabelArrayOutput {
+	return i.ToGetStacksLabelArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksLabelArray) ToGetStacksLabelArrayOutputWithContext(ctx context.Context) GetStacksLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksLabelArrayOutput)
+}
+
+func (i GetStacksLabelArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksLabel] {
+	return pulumix.Output[[]GetStacksLabel]{
+		OutputState: i.ToGetStacksLabelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksLabelOutput struct{ *pulumi.OutputState }
+
+func (GetStacksLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksLabel)(nil)).Elem()
+}
+
+func (o GetStacksLabelOutput) ToGetStacksLabelOutput() GetStacksLabelOutput {
+	return o
+}
+
+func (o GetStacksLabelOutput) ToGetStacksLabelOutputWithContext(ctx context.Context) GetStacksLabelOutput {
+	return o
+}
+
+func (o GetStacksLabelOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksLabel] {
+	return pulumix.Output[GetStacksLabel]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksLabelOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksLabel) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
+}
+
+type GetStacksLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksLabel)(nil)).Elem()
+}
+
+func (o GetStacksLabelArrayOutput) ToGetStacksLabelArrayOutput() GetStacksLabelArrayOutput {
+	return o
+}
+
+func (o GetStacksLabelArrayOutput) ToGetStacksLabelArrayOutputWithContext(ctx context.Context) GetStacksLabelArrayOutput {
+	return o
+}
+
+func (o GetStacksLabelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksLabel] {
+	return pulumix.Output[[]GetStacksLabel]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksLabelArrayOutput) Index(i pulumi.IntInput) GetStacksLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksLabel {
+		return vs[0].([]GetStacksLabel)[vs[1].(int)]
+	}).(GetStacksLabelOutput)
+}
+
+type GetStacksLocked struct {
+	Equals *bool `pulumi:"equals"`
+}
+
+// GetStacksLockedInput is an input type that accepts GetStacksLockedArgs and GetStacksLockedOutput values.
+// You can construct a concrete instance of `GetStacksLockedInput` via:
+//
+//	GetStacksLockedArgs{...}
+type GetStacksLockedInput interface {
+	pulumi.Input
+
+	ToGetStacksLockedOutput() GetStacksLockedOutput
+	ToGetStacksLockedOutputWithContext(context.Context) GetStacksLockedOutput
+}
+
+type GetStacksLockedArgs struct {
+	Equals pulumi.BoolPtrInput `pulumi:"equals"`
+}
+
+func (GetStacksLockedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksLocked)(nil)).Elem()
+}
+
+func (i GetStacksLockedArgs) ToGetStacksLockedOutput() GetStacksLockedOutput {
+	return i.ToGetStacksLockedOutputWithContext(context.Background())
+}
+
+func (i GetStacksLockedArgs) ToGetStacksLockedOutputWithContext(ctx context.Context) GetStacksLockedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksLockedOutput)
+}
+
+func (i GetStacksLockedArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksLocked] {
+	return pulumix.Output[GetStacksLocked]{
+		OutputState: i.ToGetStacksLockedOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i GetStacksLockedArgs) ToGetStacksLockedPtrOutput() GetStacksLockedPtrOutput {
+	return i.ToGetStacksLockedPtrOutputWithContext(context.Background())
+}
+
+func (i GetStacksLockedArgs) ToGetStacksLockedPtrOutputWithContext(ctx context.Context) GetStacksLockedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksLockedOutput).ToGetStacksLockedPtrOutputWithContext(ctx)
+}
+
+// GetStacksLockedPtrInput is an input type that accepts GetStacksLockedArgs, GetStacksLockedPtr and GetStacksLockedPtrOutput values.
+// You can construct a concrete instance of `GetStacksLockedPtrInput` via:
+//
+//	        GetStacksLockedArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStacksLockedPtrInput interface {
+	pulumi.Input
+
+	ToGetStacksLockedPtrOutput() GetStacksLockedPtrOutput
+	ToGetStacksLockedPtrOutputWithContext(context.Context) GetStacksLockedPtrOutput
+}
+
+type getStacksLockedPtrType GetStacksLockedArgs
+
+func GetStacksLockedPtr(v *GetStacksLockedArgs) GetStacksLockedPtrInput {
+	return (*getStacksLockedPtrType)(v)
+}
+
+func (*getStacksLockedPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksLocked)(nil)).Elem()
+}
+
+func (i *getStacksLockedPtrType) ToGetStacksLockedPtrOutput() GetStacksLockedPtrOutput {
+	return i.ToGetStacksLockedPtrOutputWithContext(context.Background())
+}
+
+func (i *getStacksLockedPtrType) ToGetStacksLockedPtrOutputWithContext(ctx context.Context) GetStacksLockedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksLockedPtrOutput)
+}
+
+func (i *getStacksLockedPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksLocked] {
+	return pulumix.Output[*GetStacksLocked]{
+		OutputState: i.ToGetStacksLockedPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksLockedOutput struct{ *pulumi.OutputState }
+
+func (GetStacksLockedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksLocked)(nil)).Elem()
+}
+
+func (o GetStacksLockedOutput) ToGetStacksLockedOutput() GetStacksLockedOutput {
+	return o
+}
+
+func (o GetStacksLockedOutput) ToGetStacksLockedOutputWithContext(ctx context.Context) GetStacksLockedOutput {
+	return o
+}
+
+func (o GetStacksLockedOutput) ToGetStacksLockedPtrOutput() GetStacksLockedPtrOutput {
+	return o.ToGetStacksLockedPtrOutputWithContext(context.Background())
+}
+
+func (o GetStacksLockedOutput) ToGetStacksLockedPtrOutputWithContext(ctx context.Context) GetStacksLockedPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStacksLocked) *GetStacksLocked {
+		return &v
+	}).(GetStacksLockedPtrOutput)
+}
+
+func (o GetStacksLockedOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksLocked] {
+	return pulumix.Output[GetStacksLocked]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksLockedOutput) Equals() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetStacksLocked) *bool { return v.Equals }).(pulumi.BoolPtrOutput)
+}
+
+type GetStacksLockedPtrOutput struct{ *pulumi.OutputState }
+
+func (GetStacksLockedPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksLocked)(nil)).Elem()
+}
+
+func (o GetStacksLockedPtrOutput) ToGetStacksLockedPtrOutput() GetStacksLockedPtrOutput {
+	return o
+}
+
+func (o GetStacksLockedPtrOutput) ToGetStacksLockedPtrOutputWithContext(ctx context.Context) GetStacksLockedPtrOutput {
+	return o
+}
+
+func (o GetStacksLockedPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksLocked] {
+	return pulumix.Output[*GetStacksLocked]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksLockedPtrOutput) Elem() GetStacksLockedOutput {
+	return o.ApplyT(func(v *GetStacksLocked) GetStacksLocked {
+		if v != nil {
+			return *v
+		}
+		var ret GetStacksLocked
+		return ret
+	}).(GetStacksLockedOutput)
+}
+
+func (o GetStacksLockedPtrOutput) Equals() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetStacksLocked) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Equals
+	}).(pulumi.BoolPtrOutput)
+}
+
+type GetStacksName struct {
+	AnyOfs []string `pulumi:"anyOfs"`
+}
+
+// GetStacksNameInput is an input type that accepts GetStacksNameArgs and GetStacksNameOutput values.
+// You can construct a concrete instance of `GetStacksNameInput` via:
+//
+//	GetStacksNameArgs{...}
+type GetStacksNameInput interface {
+	pulumi.Input
+
+	ToGetStacksNameOutput() GetStacksNameOutput
+	ToGetStacksNameOutputWithContext(context.Context) GetStacksNameOutput
+}
+
+type GetStacksNameArgs struct {
+	AnyOfs pulumi.StringArrayInput `pulumi:"anyOfs"`
+}
+
+func (GetStacksNameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksName)(nil)).Elem()
+}
+
+func (i GetStacksNameArgs) ToGetStacksNameOutput() GetStacksNameOutput {
+	return i.ToGetStacksNameOutputWithContext(context.Background())
+}
+
+func (i GetStacksNameArgs) ToGetStacksNameOutputWithContext(ctx context.Context) GetStacksNameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksNameOutput)
+}
+
+func (i GetStacksNameArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksName] {
+	return pulumix.Output[GetStacksName]{
+		OutputState: i.ToGetStacksNameOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i GetStacksNameArgs) ToGetStacksNamePtrOutput() GetStacksNamePtrOutput {
+	return i.ToGetStacksNamePtrOutputWithContext(context.Background())
+}
+
+func (i GetStacksNameArgs) ToGetStacksNamePtrOutputWithContext(ctx context.Context) GetStacksNamePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksNameOutput).ToGetStacksNamePtrOutputWithContext(ctx)
+}
+
+// GetStacksNamePtrInput is an input type that accepts GetStacksNameArgs, GetStacksNamePtr and GetStacksNamePtrOutput values.
+// You can construct a concrete instance of `GetStacksNamePtrInput` via:
+//
+//	        GetStacksNameArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStacksNamePtrInput interface {
+	pulumi.Input
+
+	ToGetStacksNamePtrOutput() GetStacksNamePtrOutput
+	ToGetStacksNamePtrOutputWithContext(context.Context) GetStacksNamePtrOutput
+}
+
+type getStacksNamePtrType GetStacksNameArgs
+
+func GetStacksNamePtr(v *GetStacksNameArgs) GetStacksNamePtrInput {
+	return (*getStacksNamePtrType)(v)
+}
+
+func (*getStacksNamePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksName)(nil)).Elem()
+}
+
+func (i *getStacksNamePtrType) ToGetStacksNamePtrOutput() GetStacksNamePtrOutput {
+	return i.ToGetStacksNamePtrOutputWithContext(context.Background())
+}
+
+func (i *getStacksNamePtrType) ToGetStacksNamePtrOutputWithContext(ctx context.Context) GetStacksNamePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksNamePtrOutput)
+}
+
+func (i *getStacksNamePtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksName] {
+	return pulumix.Output[*GetStacksName]{
+		OutputState: i.ToGetStacksNamePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksNameOutput struct{ *pulumi.OutputState }
+
+func (GetStacksNameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksName)(nil)).Elem()
+}
+
+func (o GetStacksNameOutput) ToGetStacksNameOutput() GetStacksNameOutput {
+	return o
+}
+
+func (o GetStacksNameOutput) ToGetStacksNameOutputWithContext(ctx context.Context) GetStacksNameOutput {
+	return o
+}
+
+func (o GetStacksNameOutput) ToGetStacksNamePtrOutput() GetStacksNamePtrOutput {
+	return o.ToGetStacksNamePtrOutputWithContext(context.Background())
+}
+
+func (o GetStacksNameOutput) ToGetStacksNamePtrOutputWithContext(ctx context.Context) GetStacksNamePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStacksName) *GetStacksName {
+		return &v
+	}).(GetStacksNamePtrOutput)
+}
+
+func (o GetStacksNameOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksName] {
+	return pulumix.Output[GetStacksName]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksNameOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksName) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
+}
+
+type GetStacksNamePtrOutput struct{ *pulumi.OutputState }
+
+func (GetStacksNamePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksName)(nil)).Elem()
+}
+
+func (o GetStacksNamePtrOutput) ToGetStacksNamePtrOutput() GetStacksNamePtrOutput {
+	return o
+}
+
+func (o GetStacksNamePtrOutput) ToGetStacksNamePtrOutputWithContext(ctx context.Context) GetStacksNamePtrOutput {
+	return o
+}
+
+func (o GetStacksNamePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksName] {
+	return pulumix.Output[*GetStacksName]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksNamePtrOutput) Elem() GetStacksNameOutput {
+	return o.ApplyT(func(v *GetStacksName) GetStacksName {
+		if v != nil {
+			return *v
+		}
+		var ret GetStacksName
+		return ret
+	}).(GetStacksNameOutput)
+}
+
+func (o GetStacksNamePtrOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetStacksName) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AnyOfs
+	}).(pulumi.StringArrayOutput)
+}
+
+type GetStacksProjectRoot struct {
+	AnyOfs []string `pulumi:"anyOfs"`
+}
+
+// GetStacksProjectRootInput is an input type that accepts GetStacksProjectRootArgs and GetStacksProjectRootOutput values.
+// You can construct a concrete instance of `GetStacksProjectRootInput` via:
+//
+//	GetStacksProjectRootArgs{...}
+type GetStacksProjectRootInput interface {
+	pulumi.Input
+
+	ToGetStacksProjectRootOutput() GetStacksProjectRootOutput
+	ToGetStacksProjectRootOutputWithContext(context.Context) GetStacksProjectRootOutput
+}
+
+type GetStacksProjectRootArgs struct {
+	AnyOfs pulumi.StringArrayInput `pulumi:"anyOfs"`
+}
+
+func (GetStacksProjectRootArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksProjectRoot)(nil)).Elem()
+}
+
+func (i GetStacksProjectRootArgs) ToGetStacksProjectRootOutput() GetStacksProjectRootOutput {
+	return i.ToGetStacksProjectRootOutputWithContext(context.Background())
+}
+
+func (i GetStacksProjectRootArgs) ToGetStacksProjectRootOutputWithContext(ctx context.Context) GetStacksProjectRootOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksProjectRootOutput)
+}
+
+func (i GetStacksProjectRootArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksProjectRoot] {
+	return pulumix.Output[GetStacksProjectRoot]{
+		OutputState: i.ToGetStacksProjectRootOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i GetStacksProjectRootArgs) ToGetStacksProjectRootPtrOutput() GetStacksProjectRootPtrOutput {
+	return i.ToGetStacksProjectRootPtrOutputWithContext(context.Background())
+}
+
+func (i GetStacksProjectRootArgs) ToGetStacksProjectRootPtrOutputWithContext(ctx context.Context) GetStacksProjectRootPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksProjectRootOutput).ToGetStacksProjectRootPtrOutputWithContext(ctx)
+}
+
+// GetStacksProjectRootPtrInput is an input type that accepts GetStacksProjectRootArgs, GetStacksProjectRootPtr and GetStacksProjectRootPtrOutput values.
+// You can construct a concrete instance of `GetStacksProjectRootPtrInput` via:
+//
+//	        GetStacksProjectRootArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStacksProjectRootPtrInput interface {
+	pulumi.Input
+
+	ToGetStacksProjectRootPtrOutput() GetStacksProjectRootPtrOutput
+	ToGetStacksProjectRootPtrOutputWithContext(context.Context) GetStacksProjectRootPtrOutput
+}
+
+type getStacksProjectRootPtrType GetStacksProjectRootArgs
+
+func GetStacksProjectRootPtr(v *GetStacksProjectRootArgs) GetStacksProjectRootPtrInput {
+	return (*getStacksProjectRootPtrType)(v)
+}
+
+func (*getStacksProjectRootPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksProjectRoot)(nil)).Elem()
+}
+
+func (i *getStacksProjectRootPtrType) ToGetStacksProjectRootPtrOutput() GetStacksProjectRootPtrOutput {
+	return i.ToGetStacksProjectRootPtrOutputWithContext(context.Background())
+}
+
+func (i *getStacksProjectRootPtrType) ToGetStacksProjectRootPtrOutputWithContext(ctx context.Context) GetStacksProjectRootPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksProjectRootPtrOutput)
+}
+
+func (i *getStacksProjectRootPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksProjectRoot] {
+	return pulumix.Output[*GetStacksProjectRoot]{
+		OutputState: i.ToGetStacksProjectRootPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksProjectRootOutput struct{ *pulumi.OutputState }
+
+func (GetStacksProjectRootOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksProjectRoot)(nil)).Elem()
+}
+
+func (o GetStacksProjectRootOutput) ToGetStacksProjectRootOutput() GetStacksProjectRootOutput {
+	return o
+}
+
+func (o GetStacksProjectRootOutput) ToGetStacksProjectRootOutputWithContext(ctx context.Context) GetStacksProjectRootOutput {
+	return o
+}
+
+func (o GetStacksProjectRootOutput) ToGetStacksProjectRootPtrOutput() GetStacksProjectRootPtrOutput {
+	return o.ToGetStacksProjectRootPtrOutputWithContext(context.Background())
+}
+
+func (o GetStacksProjectRootOutput) ToGetStacksProjectRootPtrOutputWithContext(ctx context.Context) GetStacksProjectRootPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStacksProjectRoot) *GetStacksProjectRoot {
+		return &v
+	}).(GetStacksProjectRootPtrOutput)
+}
+
+func (o GetStacksProjectRootOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksProjectRoot] {
+	return pulumix.Output[GetStacksProjectRoot]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksProjectRootOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksProjectRoot) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
+}
+
+type GetStacksProjectRootPtrOutput struct{ *pulumi.OutputState }
+
+func (GetStacksProjectRootPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksProjectRoot)(nil)).Elem()
+}
+
+func (o GetStacksProjectRootPtrOutput) ToGetStacksProjectRootPtrOutput() GetStacksProjectRootPtrOutput {
+	return o
+}
+
+func (o GetStacksProjectRootPtrOutput) ToGetStacksProjectRootPtrOutputWithContext(ctx context.Context) GetStacksProjectRootPtrOutput {
+	return o
+}
+
+func (o GetStacksProjectRootPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksProjectRoot] {
+	return pulumix.Output[*GetStacksProjectRoot]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksProjectRootPtrOutput) Elem() GetStacksProjectRootOutput {
+	return o.ApplyT(func(v *GetStacksProjectRoot) GetStacksProjectRoot {
+		if v != nil {
+			return *v
+		}
+		var ret GetStacksProjectRoot
+		return ret
+	}).(GetStacksProjectRootOutput)
+}
+
+func (o GetStacksProjectRootPtrOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetStacksProjectRoot) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AnyOfs
+	}).(pulumi.StringArrayOutput)
+}
+
+type GetStacksRepository struct {
+	AnyOfs []string `pulumi:"anyOfs"`
+}
+
+// GetStacksRepositoryInput is an input type that accepts GetStacksRepositoryArgs and GetStacksRepositoryOutput values.
+// You can construct a concrete instance of `GetStacksRepositoryInput` via:
+//
+//	GetStacksRepositoryArgs{...}
+type GetStacksRepositoryInput interface {
+	pulumi.Input
+
+	ToGetStacksRepositoryOutput() GetStacksRepositoryOutput
+	ToGetStacksRepositoryOutputWithContext(context.Context) GetStacksRepositoryOutput
+}
+
+type GetStacksRepositoryArgs struct {
+	AnyOfs pulumi.StringArrayInput `pulumi:"anyOfs"`
+}
+
+func (GetStacksRepositoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksRepository)(nil)).Elem()
+}
+
+func (i GetStacksRepositoryArgs) ToGetStacksRepositoryOutput() GetStacksRepositoryOutput {
+	return i.ToGetStacksRepositoryOutputWithContext(context.Background())
+}
+
+func (i GetStacksRepositoryArgs) ToGetStacksRepositoryOutputWithContext(ctx context.Context) GetStacksRepositoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksRepositoryOutput)
+}
+
+func (i GetStacksRepositoryArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksRepository] {
+	return pulumix.Output[GetStacksRepository]{
+		OutputState: i.ToGetStacksRepositoryOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i GetStacksRepositoryArgs) ToGetStacksRepositoryPtrOutput() GetStacksRepositoryPtrOutput {
+	return i.ToGetStacksRepositoryPtrOutputWithContext(context.Background())
+}
+
+func (i GetStacksRepositoryArgs) ToGetStacksRepositoryPtrOutputWithContext(ctx context.Context) GetStacksRepositoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksRepositoryOutput).ToGetStacksRepositoryPtrOutputWithContext(ctx)
+}
+
+// GetStacksRepositoryPtrInput is an input type that accepts GetStacksRepositoryArgs, GetStacksRepositoryPtr and GetStacksRepositoryPtrOutput values.
+// You can construct a concrete instance of `GetStacksRepositoryPtrInput` via:
+//
+//	        GetStacksRepositoryArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStacksRepositoryPtrInput interface {
+	pulumi.Input
+
+	ToGetStacksRepositoryPtrOutput() GetStacksRepositoryPtrOutput
+	ToGetStacksRepositoryPtrOutputWithContext(context.Context) GetStacksRepositoryPtrOutput
+}
+
+type getStacksRepositoryPtrType GetStacksRepositoryArgs
+
+func GetStacksRepositoryPtr(v *GetStacksRepositoryArgs) GetStacksRepositoryPtrInput {
+	return (*getStacksRepositoryPtrType)(v)
+}
+
+func (*getStacksRepositoryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksRepository)(nil)).Elem()
+}
+
+func (i *getStacksRepositoryPtrType) ToGetStacksRepositoryPtrOutput() GetStacksRepositoryPtrOutput {
+	return i.ToGetStacksRepositoryPtrOutputWithContext(context.Background())
+}
+
+func (i *getStacksRepositoryPtrType) ToGetStacksRepositoryPtrOutputWithContext(ctx context.Context) GetStacksRepositoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksRepositoryPtrOutput)
+}
+
+func (i *getStacksRepositoryPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksRepository] {
+	return pulumix.Output[*GetStacksRepository]{
+		OutputState: i.ToGetStacksRepositoryPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksRepositoryOutput struct{ *pulumi.OutputState }
+
+func (GetStacksRepositoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksRepository)(nil)).Elem()
+}
+
+func (o GetStacksRepositoryOutput) ToGetStacksRepositoryOutput() GetStacksRepositoryOutput {
+	return o
+}
+
+func (o GetStacksRepositoryOutput) ToGetStacksRepositoryOutputWithContext(ctx context.Context) GetStacksRepositoryOutput {
+	return o
+}
+
+func (o GetStacksRepositoryOutput) ToGetStacksRepositoryPtrOutput() GetStacksRepositoryPtrOutput {
+	return o.ToGetStacksRepositoryPtrOutputWithContext(context.Background())
+}
+
+func (o GetStacksRepositoryOutput) ToGetStacksRepositoryPtrOutputWithContext(ctx context.Context) GetStacksRepositoryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStacksRepository) *GetStacksRepository {
+		return &v
+	}).(GetStacksRepositoryPtrOutput)
+}
+
+func (o GetStacksRepositoryOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksRepository] {
+	return pulumix.Output[GetStacksRepository]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksRepositoryOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksRepository) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
+}
+
+type GetStacksRepositoryPtrOutput struct{ *pulumi.OutputState }
+
+func (GetStacksRepositoryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksRepository)(nil)).Elem()
+}
+
+func (o GetStacksRepositoryPtrOutput) ToGetStacksRepositoryPtrOutput() GetStacksRepositoryPtrOutput {
+	return o
+}
+
+func (o GetStacksRepositoryPtrOutput) ToGetStacksRepositoryPtrOutputWithContext(ctx context.Context) GetStacksRepositoryPtrOutput {
+	return o
+}
+
+func (o GetStacksRepositoryPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksRepository] {
+	return pulumix.Output[*GetStacksRepository]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksRepositoryPtrOutput) Elem() GetStacksRepositoryOutput {
+	return o.ApplyT(func(v *GetStacksRepository) GetStacksRepository {
+		if v != nil {
+			return *v
+		}
+		var ret GetStacksRepository
+		return ret
+	}).(GetStacksRepositoryOutput)
+}
+
+func (o GetStacksRepositoryPtrOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetStacksRepository) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AnyOfs
+	}).(pulumi.StringArrayOutput)
+}
+
+type GetStacksStack struct {
+	Administrative               bool                                `pulumi:"administrative"`
+	AfterApplies                 []string                            `pulumi:"afterApplies"`
+	AfterDestroys                []string                            `pulumi:"afterDestroys"`
+	AfterInits                   []string                            `pulumi:"afterInits"`
+	AfterPerforms                []string                            `pulumi:"afterPerforms"`
+	AfterPlans                   []string                            `pulumi:"afterPlans"`
+	AfterRuns                    []string                            `pulumi:"afterRuns"`
+	Ansibles                     []GetStacksStackAnsible             `pulumi:"ansibles"`
+	Autodeploy                   bool                                `pulumi:"autodeploy"`
+	Autoretry                    bool                                `pulumi:"autoretry"`
+	AwsAssumeRolePolicyStatement string                              `pulumi:"awsAssumeRolePolicyStatement"`
+	AzureDevops                  []GetStacksStackAzureDevop          `pulumi:"azureDevops"`
+	BeforeApplies                []string                            `pulumi:"beforeApplies"`
+	BeforeDestroys               []string                            `pulumi:"beforeDestroys"`
+	BeforeInits                  []string                            `pulumi:"beforeInits"`
+	BeforePerforms               []string                            `pulumi:"beforePerforms"`
+	BeforePlans                  []string                            `pulumi:"beforePlans"`
+	BitbucketClouds              []GetStacksStackBitbucketCloud      `pulumi:"bitbucketClouds"`
+	BitbucketDatacenters         []GetStacksStackBitbucketDatacenter `pulumi:"bitbucketDatacenters"`
+	Branch                       string                              `pulumi:"branch"`
+	Cloudformations              []GetStacksStackCloudformation      `pulumi:"cloudformations"`
+	Description                  string                              `pulumi:"description"`
+	EnableLocalPreview           bool                                `pulumi:"enableLocalPreview"`
+	GithubEnterprises            []GetStacksStackGithubEnterprise    `pulumi:"githubEnterprises"`
+	Gitlabs                      []GetStacksStackGitlab              `pulumi:"gitlabs"`
+	Kubernetes                   []GetStacksStackKubernete           `pulumi:"kubernetes"`
+	Labels                       []string                            `pulumi:"labels"`
+	ManageState                  bool                                `pulumi:"manageState"`
+	Name                         string                              `pulumi:"name"`
+	ProjectRoot                  string                              `pulumi:"projectRoot"`
+	ProtectFromDeletion          bool                                `pulumi:"protectFromDeletion"`
+	Pulumis                      []GetStacksStackPulumi              `pulumi:"pulumis"`
+	RawGits                      []GetStacksStackRawGit              `pulumi:"rawGits"`
+	Repository                   string                              `pulumi:"repository"`
+	RunnerImage                  string                              `pulumi:"runnerImage"`
+	Showcases                    []GetStacksStackShowcase            `pulumi:"showcases"`
+	SpaceId                      string                              `pulumi:"spaceId"`
+	StackId                      string                              `pulumi:"stackId"`
+	TerraformExternalStateAccess bool                                `pulumi:"terraformExternalStateAccess"`
+	TerraformSmartSanitization   bool                                `pulumi:"terraformSmartSanitization"`
+	TerraformVersion             string                              `pulumi:"terraformVersion"`
+	TerraformWorkflowTool        string                              `pulumi:"terraformWorkflowTool"`
+	TerraformWorkspace           string                              `pulumi:"terraformWorkspace"`
+	WorkerPoolId                 string                              `pulumi:"workerPoolId"`
+}
+
+// GetStacksStackInput is an input type that accepts GetStacksStackArgs and GetStacksStackOutput values.
+// You can construct a concrete instance of `GetStacksStackInput` via:
+//
+//	GetStacksStackArgs{...}
+type GetStacksStackInput interface {
+	pulumi.Input
+
+	ToGetStacksStackOutput() GetStacksStackOutput
+	ToGetStacksStackOutputWithContext(context.Context) GetStacksStackOutput
+}
+
+type GetStacksStackArgs struct {
+	Administrative               pulumi.BoolInput                            `pulumi:"administrative"`
+	AfterApplies                 pulumi.StringArrayInput                     `pulumi:"afterApplies"`
+	AfterDestroys                pulumi.StringArrayInput                     `pulumi:"afterDestroys"`
+	AfterInits                   pulumi.StringArrayInput                     `pulumi:"afterInits"`
+	AfterPerforms                pulumi.StringArrayInput                     `pulumi:"afterPerforms"`
+	AfterPlans                   pulumi.StringArrayInput                     `pulumi:"afterPlans"`
+	AfterRuns                    pulumi.StringArrayInput                     `pulumi:"afterRuns"`
+	Ansibles                     GetStacksStackAnsibleArrayInput             `pulumi:"ansibles"`
+	Autodeploy                   pulumi.BoolInput                            `pulumi:"autodeploy"`
+	Autoretry                    pulumi.BoolInput                            `pulumi:"autoretry"`
+	AwsAssumeRolePolicyStatement pulumi.StringInput                          `pulumi:"awsAssumeRolePolicyStatement"`
+	AzureDevops                  GetStacksStackAzureDevopArrayInput          `pulumi:"azureDevops"`
+	BeforeApplies                pulumi.StringArrayInput                     `pulumi:"beforeApplies"`
+	BeforeDestroys               pulumi.StringArrayInput                     `pulumi:"beforeDestroys"`
+	BeforeInits                  pulumi.StringArrayInput                     `pulumi:"beforeInits"`
+	BeforePerforms               pulumi.StringArrayInput                     `pulumi:"beforePerforms"`
+	BeforePlans                  pulumi.StringArrayInput                     `pulumi:"beforePlans"`
+	BitbucketClouds              GetStacksStackBitbucketCloudArrayInput      `pulumi:"bitbucketClouds"`
+	BitbucketDatacenters         GetStacksStackBitbucketDatacenterArrayInput `pulumi:"bitbucketDatacenters"`
+	Branch                       pulumi.StringInput                          `pulumi:"branch"`
+	Cloudformations              GetStacksStackCloudformationArrayInput      `pulumi:"cloudformations"`
+	Description                  pulumi.StringInput                          `pulumi:"description"`
+	EnableLocalPreview           pulumi.BoolInput                            `pulumi:"enableLocalPreview"`
+	GithubEnterprises            GetStacksStackGithubEnterpriseArrayInput    `pulumi:"githubEnterprises"`
+	Gitlabs                      GetStacksStackGitlabArrayInput              `pulumi:"gitlabs"`
+	Kubernetes                   GetStacksStackKuberneteArrayInput           `pulumi:"kubernetes"`
+	Labels                       pulumi.StringArrayInput                     `pulumi:"labels"`
+	ManageState                  pulumi.BoolInput                            `pulumi:"manageState"`
+	Name                         pulumi.StringInput                          `pulumi:"name"`
+	ProjectRoot                  pulumi.StringInput                          `pulumi:"projectRoot"`
+	ProtectFromDeletion          pulumi.BoolInput                            `pulumi:"protectFromDeletion"`
+	Pulumis                      GetStacksStackPulumiArrayInput              `pulumi:"pulumis"`
+	RawGits                      GetStacksStackRawGitArrayInput              `pulumi:"rawGits"`
+	Repository                   pulumi.StringInput                          `pulumi:"repository"`
+	RunnerImage                  pulumi.StringInput                          `pulumi:"runnerImage"`
+	Showcases                    GetStacksStackShowcaseArrayInput            `pulumi:"showcases"`
+	SpaceId                      pulumi.StringInput                          `pulumi:"spaceId"`
+	StackId                      pulumi.StringInput                          `pulumi:"stackId"`
+	TerraformExternalStateAccess pulumi.BoolInput                            `pulumi:"terraformExternalStateAccess"`
+	TerraformSmartSanitization   pulumi.BoolInput                            `pulumi:"terraformSmartSanitization"`
+	TerraformVersion             pulumi.StringInput                          `pulumi:"terraformVersion"`
+	TerraformWorkflowTool        pulumi.StringInput                          `pulumi:"terraformWorkflowTool"`
+	TerraformWorkspace           pulumi.StringInput                          `pulumi:"terraformWorkspace"`
+	WorkerPoolId                 pulumi.StringInput                          `pulumi:"workerPoolId"`
+}
+
+func (GetStacksStackArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStack)(nil)).Elem()
+}
+
+func (i GetStacksStackArgs) ToGetStacksStackOutput() GetStacksStackOutput {
+	return i.ToGetStacksStackOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackArgs) ToGetStacksStackOutputWithContext(ctx context.Context) GetStacksStackOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackOutput)
+}
+
+func (i GetStacksStackArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStack] {
+	return pulumix.Output[GetStacksStack]{
+		OutputState: i.ToGetStacksStackOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackArrayInput is an input type that accepts GetStacksStackArray and GetStacksStackArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackArrayInput` via:
+//
+//	GetStacksStackArray{ GetStacksStackArgs{...} }
+type GetStacksStackArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackArrayOutput() GetStacksStackArrayOutput
+	ToGetStacksStackArrayOutputWithContext(context.Context) GetStacksStackArrayOutput
+}
+
+type GetStacksStackArray []GetStacksStackInput
+
+func (GetStacksStackArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStack)(nil)).Elem()
+}
+
+func (i GetStacksStackArray) ToGetStacksStackArrayOutput() GetStacksStackArrayOutput {
+	return i.ToGetStacksStackArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackArray) ToGetStacksStackArrayOutputWithContext(ctx context.Context) GetStacksStackArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackArrayOutput)
+}
+
+func (i GetStacksStackArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStack] {
+	return pulumix.Output[[]GetStacksStack]{
+		OutputState: i.ToGetStacksStackArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStack)(nil)).Elem()
+}
+
+func (o GetStacksStackOutput) ToGetStacksStackOutput() GetStacksStackOutput {
+	return o
+}
+
+func (o GetStacksStackOutput) ToGetStacksStackOutputWithContext(ctx context.Context) GetStacksStackOutput {
+	return o
+}
+
+func (o GetStacksStackOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStack] {
+	return pulumix.Output[GetStacksStack]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackOutput) Administrative() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStack) bool { return v.Administrative }).(pulumi.BoolOutput)
+}
+
+func (o GetStacksStackOutput) AfterApplies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterApplies }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) AfterDestroys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterDestroys }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) AfterInits() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterInits }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) AfterPerforms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterPerforms }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) AfterPlans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterPlans }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) AfterRuns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterRuns }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) Ansibles() GetStacksStackAnsibleArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackAnsible { return v.Ansibles }).(GetStacksStackAnsibleArrayOutput)
+}
+
+func (o GetStacksStackOutput) Autodeploy() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStack) bool { return v.Autodeploy }).(pulumi.BoolOutput)
+}
+
+func (o GetStacksStackOutput) Autoretry() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStack) bool { return v.Autoretry }).(pulumi.BoolOutput)
+}
+
+func (o GetStacksStackOutput) AwsAssumeRolePolicyStatement() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.AwsAssumeRolePolicyStatement }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) AzureDevops() GetStacksStackAzureDevopArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackAzureDevop { return v.AzureDevops }).(GetStacksStackAzureDevopArrayOutput)
+}
+
+func (o GetStacksStackOutput) BeforeApplies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.BeforeApplies }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) BeforeDestroys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.BeforeDestroys }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) BeforeInits() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.BeforeInits }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) BeforePerforms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.BeforePerforms }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) BeforePlans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.BeforePlans }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) BitbucketClouds() GetStacksStackBitbucketCloudArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackBitbucketCloud { return v.BitbucketClouds }).(GetStacksStackBitbucketCloudArrayOutput)
+}
+
+func (o GetStacksStackOutput) BitbucketDatacenters() GetStacksStackBitbucketDatacenterArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackBitbucketDatacenter { return v.BitbucketDatacenters }).(GetStacksStackBitbucketDatacenterArrayOutput)
+}
+
+func (o GetStacksStackOutput) Branch() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.Branch }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) Cloudformations() GetStacksStackCloudformationArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackCloudformation { return v.Cloudformations }).(GetStacksStackCloudformationArrayOutput)
+}
+
+func (o GetStacksStackOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) EnableLocalPreview() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStack) bool { return v.EnableLocalPreview }).(pulumi.BoolOutput)
+}
+
+func (o GetStacksStackOutput) GithubEnterprises() GetStacksStackGithubEnterpriseArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackGithubEnterprise { return v.GithubEnterprises }).(GetStacksStackGithubEnterpriseArrayOutput)
+}
+
+func (o GetStacksStackOutput) Gitlabs() GetStacksStackGitlabArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackGitlab { return v.Gitlabs }).(GetStacksStackGitlabArrayOutput)
+}
+
+func (o GetStacksStackOutput) Kubernetes() GetStacksStackKuberneteArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackKubernete { return v.Kubernetes }).(GetStacksStackKuberneteArrayOutput)
+}
+
+func (o GetStacksStackOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.Labels }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStacksStackOutput) ManageState() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStack) bool { return v.ManageState }).(pulumi.BoolOutput)
+}
+
+func (o GetStacksStackOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) ProjectRoot() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.ProjectRoot }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) ProtectFromDeletion() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStack) bool { return v.ProtectFromDeletion }).(pulumi.BoolOutput)
+}
+
+func (o GetStacksStackOutput) Pulumis() GetStacksStackPulumiArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackPulumi { return v.Pulumis }).(GetStacksStackPulumiArrayOutput)
+}
+
+func (o GetStacksStackOutput) RawGits() GetStacksStackRawGitArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackRawGit { return v.RawGits }).(GetStacksStackRawGitArrayOutput)
+}
+
+func (o GetStacksStackOutput) Repository() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.Repository }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) RunnerImage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.RunnerImage }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) Showcases() GetStacksStackShowcaseArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []GetStacksStackShowcase { return v.Showcases }).(GetStacksStackShowcaseArrayOutput)
+}
+
+func (o GetStacksStackOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.SpaceId }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) StackId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.StackId }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) TerraformExternalStateAccess() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStack) bool { return v.TerraformExternalStateAccess }).(pulumi.BoolOutput)
+}
+
+func (o GetStacksStackOutput) TerraformSmartSanitization() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStack) bool { return v.TerraformSmartSanitization }).(pulumi.BoolOutput)
+}
+
+func (o GetStacksStackOutput) TerraformVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.TerraformVersion }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) TerraformWorkflowTool() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.TerraformWorkflowTool }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) TerraformWorkspace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.TerraformWorkspace }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackOutput) WorkerPoolId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStack) string { return v.WorkerPoolId }).(pulumi.StringOutput)
+}
+
+type GetStacksStackArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStack)(nil)).Elem()
+}
+
+func (o GetStacksStackArrayOutput) ToGetStacksStackArrayOutput() GetStacksStackArrayOutput {
+	return o
+}
+
+func (o GetStacksStackArrayOutput) ToGetStacksStackArrayOutputWithContext(ctx context.Context) GetStacksStackArrayOutput {
+	return o
+}
+
+func (o GetStacksStackArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStack] {
+	return pulumix.Output[[]GetStacksStack]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackArrayOutput) Index(i pulumi.IntInput) GetStacksStackOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStack {
+		return vs[0].([]GetStacksStack)[vs[1].(int)]
+	}).(GetStacksStackOutput)
+}
+
+type GetStacksStackAnsible struct {
+	Playbook string `pulumi:"playbook"`
+}
+
+// GetStacksStackAnsibleInput is an input type that accepts GetStacksStackAnsibleArgs and GetStacksStackAnsibleOutput values.
+// You can construct a concrete instance of `GetStacksStackAnsibleInput` via:
+//
+//	GetStacksStackAnsibleArgs{...}
+type GetStacksStackAnsibleInput interface {
+	pulumi.Input
+
+	ToGetStacksStackAnsibleOutput() GetStacksStackAnsibleOutput
+	ToGetStacksStackAnsibleOutputWithContext(context.Context) GetStacksStackAnsibleOutput
+}
+
+type GetStacksStackAnsibleArgs struct {
+	Playbook pulumi.StringInput `pulumi:"playbook"`
+}
+
+func (GetStacksStackAnsibleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackAnsible)(nil)).Elem()
+}
+
+func (i GetStacksStackAnsibleArgs) ToGetStacksStackAnsibleOutput() GetStacksStackAnsibleOutput {
+	return i.ToGetStacksStackAnsibleOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackAnsibleArgs) ToGetStacksStackAnsibleOutputWithContext(ctx context.Context) GetStacksStackAnsibleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackAnsibleOutput)
+}
+
+func (i GetStacksStackAnsibleArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackAnsible] {
+	return pulumix.Output[GetStacksStackAnsible]{
+		OutputState: i.ToGetStacksStackAnsibleOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackAnsibleArrayInput is an input type that accepts GetStacksStackAnsibleArray and GetStacksStackAnsibleArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackAnsibleArrayInput` via:
+//
+//	GetStacksStackAnsibleArray{ GetStacksStackAnsibleArgs{...} }
+type GetStacksStackAnsibleArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackAnsibleArrayOutput() GetStacksStackAnsibleArrayOutput
+	ToGetStacksStackAnsibleArrayOutputWithContext(context.Context) GetStacksStackAnsibleArrayOutput
+}
+
+type GetStacksStackAnsibleArray []GetStacksStackAnsibleInput
+
+func (GetStacksStackAnsibleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackAnsible)(nil)).Elem()
+}
+
+func (i GetStacksStackAnsibleArray) ToGetStacksStackAnsibleArrayOutput() GetStacksStackAnsibleArrayOutput {
+	return i.ToGetStacksStackAnsibleArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackAnsibleArray) ToGetStacksStackAnsibleArrayOutputWithContext(ctx context.Context) GetStacksStackAnsibleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackAnsibleArrayOutput)
+}
+
+func (i GetStacksStackAnsibleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackAnsible] {
+	return pulumix.Output[[]GetStacksStackAnsible]{
+		OutputState: i.ToGetStacksStackAnsibleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackAnsibleOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackAnsibleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackAnsible)(nil)).Elem()
+}
+
+func (o GetStacksStackAnsibleOutput) ToGetStacksStackAnsibleOutput() GetStacksStackAnsibleOutput {
+	return o
+}
+
+func (o GetStacksStackAnsibleOutput) ToGetStacksStackAnsibleOutputWithContext(ctx context.Context) GetStacksStackAnsibleOutput {
+	return o
+}
+
+func (o GetStacksStackAnsibleOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackAnsible] {
+	return pulumix.Output[GetStacksStackAnsible]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackAnsibleOutput) Playbook() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackAnsible) string { return v.Playbook }).(pulumi.StringOutput)
+}
+
+type GetStacksStackAnsibleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackAnsibleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackAnsible)(nil)).Elem()
+}
+
+func (o GetStacksStackAnsibleArrayOutput) ToGetStacksStackAnsibleArrayOutput() GetStacksStackAnsibleArrayOutput {
+	return o
+}
+
+func (o GetStacksStackAnsibleArrayOutput) ToGetStacksStackAnsibleArrayOutputWithContext(ctx context.Context) GetStacksStackAnsibleArrayOutput {
+	return o
+}
+
+func (o GetStacksStackAnsibleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackAnsible] {
+	return pulumix.Output[[]GetStacksStackAnsible]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackAnsibleArrayOutput) Index(i pulumi.IntInput) GetStacksStackAnsibleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackAnsible {
+		return vs[0].([]GetStacksStackAnsible)[vs[1].(int)]
+	}).(GetStacksStackAnsibleOutput)
+}
+
+type GetStacksStackAzureDevop struct {
+	Project string `pulumi:"project"`
+}
+
+// GetStacksStackAzureDevopInput is an input type that accepts GetStacksStackAzureDevopArgs and GetStacksStackAzureDevopOutput values.
+// You can construct a concrete instance of `GetStacksStackAzureDevopInput` via:
+//
+//	GetStacksStackAzureDevopArgs{...}
+type GetStacksStackAzureDevopInput interface {
+	pulumi.Input
+
+	ToGetStacksStackAzureDevopOutput() GetStacksStackAzureDevopOutput
+	ToGetStacksStackAzureDevopOutputWithContext(context.Context) GetStacksStackAzureDevopOutput
+}
+
+type GetStacksStackAzureDevopArgs struct {
+	Project pulumi.StringInput `pulumi:"project"`
+}
+
+func (GetStacksStackAzureDevopArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackAzureDevop)(nil)).Elem()
+}
+
+func (i GetStacksStackAzureDevopArgs) ToGetStacksStackAzureDevopOutput() GetStacksStackAzureDevopOutput {
+	return i.ToGetStacksStackAzureDevopOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackAzureDevopArgs) ToGetStacksStackAzureDevopOutputWithContext(ctx context.Context) GetStacksStackAzureDevopOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackAzureDevopOutput)
+}
+
+func (i GetStacksStackAzureDevopArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackAzureDevop] {
+	return pulumix.Output[GetStacksStackAzureDevop]{
+		OutputState: i.ToGetStacksStackAzureDevopOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackAzureDevopArrayInput is an input type that accepts GetStacksStackAzureDevopArray and GetStacksStackAzureDevopArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackAzureDevopArrayInput` via:
+//
+//	GetStacksStackAzureDevopArray{ GetStacksStackAzureDevopArgs{...} }
+type GetStacksStackAzureDevopArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackAzureDevopArrayOutput() GetStacksStackAzureDevopArrayOutput
+	ToGetStacksStackAzureDevopArrayOutputWithContext(context.Context) GetStacksStackAzureDevopArrayOutput
+}
+
+type GetStacksStackAzureDevopArray []GetStacksStackAzureDevopInput
+
+func (GetStacksStackAzureDevopArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackAzureDevop)(nil)).Elem()
+}
+
+func (i GetStacksStackAzureDevopArray) ToGetStacksStackAzureDevopArrayOutput() GetStacksStackAzureDevopArrayOutput {
+	return i.ToGetStacksStackAzureDevopArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackAzureDevopArray) ToGetStacksStackAzureDevopArrayOutputWithContext(ctx context.Context) GetStacksStackAzureDevopArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackAzureDevopArrayOutput)
+}
+
+func (i GetStacksStackAzureDevopArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackAzureDevop] {
+	return pulumix.Output[[]GetStacksStackAzureDevop]{
+		OutputState: i.ToGetStacksStackAzureDevopArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackAzureDevopOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackAzureDevopOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackAzureDevop)(nil)).Elem()
+}
+
+func (o GetStacksStackAzureDevopOutput) ToGetStacksStackAzureDevopOutput() GetStacksStackAzureDevopOutput {
+	return o
+}
+
+func (o GetStacksStackAzureDevopOutput) ToGetStacksStackAzureDevopOutputWithContext(ctx context.Context) GetStacksStackAzureDevopOutput {
+	return o
+}
+
+func (o GetStacksStackAzureDevopOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackAzureDevop] {
+	return pulumix.Output[GetStacksStackAzureDevop]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackAzureDevopOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackAzureDevop) string { return v.Project }).(pulumi.StringOutput)
+}
+
+type GetStacksStackAzureDevopArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackAzureDevopArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackAzureDevop)(nil)).Elem()
+}
+
+func (o GetStacksStackAzureDevopArrayOutput) ToGetStacksStackAzureDevopArrayOutput() GetStacksStackAzureDevopArrayOutput {
+	return o
+}
+
+func (o GetStacksStackAzureDevopArrayOutput) ToGetStacksStackAzureDevopArrayOutputWithContext(ctx context.Context) GetStacksStackAzureDevopArrayOutput {
+	return o
+}
+
+func (o GetStacksStackAzureDevopArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackAzureDevop] {
+	return pulumix.Output[[]GetStacksStackAzureDevop]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackAzureDevopArrayOutput) Index(i pulumi.IntInput) GetStacksStackAzureDevopOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackAzureDevop {
+		return vs[0].([]GetStacksStackAzureDevop)[vs[1].(int)]
+	}).(GetStacksStackAzureDevopOutput)
+}
+
+type GetStacksStackBitbucketCloud struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetStacksStackBitbucketCloudInput is an input type that accepts GetStacksStackBitbucketCloudArgs and GetStacksStackBitbucketCloudOutput values.
+// You can construct a concrete instance of `GetStacksStackBitbucketCloudInput` via:
+//
+//	GetStacksStackBitbucketCloudArgs{...}
+type GetStacksStackBitbucketCloudInput interface {
+	pulumi.Input
+
+	ToGetStacksStackBitbucketCloudOutput() GetStacksStackBitbucketCloudOutput
+	ToGetStacksStackBitbucketCloudOutputWithContext(context.Context) GetStacksStackBitbucketCloudOutput
+}
+
+type GetStacksStackBitbucketCloudArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStacksStackBitbucketCloudArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackBitbucketCloud)(nil)).Elem()
+}
+
+func (i GetStacksStackBitbucketCloudArgs) ToGetStacksStackBitbucketCloudOutput() GetStacksStackBitbucketCloudOutput {
+	return i.ToGetStacksStackBitbucketCloudOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackBitbucketCloudArgs) ToGetStacksStackBitbucketCloudOutputWithContext(ctx context.Context) GetStacksStackBitbucketCloudOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackBitbucketCloudOutput)
+}
+
+func (i GetStacksStackBitbucketCloudArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackBitbucketCloud] {
+	return pulumix.Output[GetStacksStackBitbucketCloud]{
+		OutputState: i.ToGetStacksStackBitbucketCloudOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackBitbucketCloudArrayInput is an input type that accepts GetStacksStackBitbucketCloudArray and GetStacksStackBitbucketCloudArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackBitbucketCloudArrayInput` via:
+//
+//	GetStacksStackBitbucketCloudArray{ GetStacksStackBitbucketCloudArgs{...} }
+type GetStacksStackBitbucketCloudArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackBitbucketCloudArrayOutput() GetStacksStackBitbucketCloudArrayOutput
+	ToGetStacksStackBitbucketCloudArrayOutputWithContext(context.Context) GetStacksStackBitbucketCloudArrayOutput
+}
+
+type GetStacksStackBitbucketCloudArray []GetStacksStackBitbucketCloudInput
+
+func (GetStacksStackBitbucketCloudArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackBitbucketCloud)(nil)).Elem()
+}
+
+func (i GetStacksStackBitbucketCloudArray) ToGetStacksStackBitbucketCloudArrayOutput() GetStacksStackBitbucketCloudArrayOutput {
+	return i.ToGetStacksStackBitbucketCloudArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackBitbucketCloudArray) ToGetStacksStackBitbucketCloudArrayOutputWithContext(ctx context.Context) GetStacksStackBitbucketCloudArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackBitbucketCloudArrayOutput)
+}
+
+func (i GetStacksStackBitbucketCloudArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackBitbucketCloud] {
+	return pulumix.Output[[]GetStacksStackBitbucketCloud]{
+		OutputState: i.ToGetStacksStackBitbucketCloudArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackBitbucketCloudOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackBitbucketCloudOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackBitbucketCloud)(nil)).Elem()
+}
+
+func (o GetStacksStackBitbucketCloudOutput) ToGetStacksStackBitbucketCloudOutput() GetStacksStackBitbucketCloudOutput {
+	return o
+}
+
+func (o GetStacksStackBitbucketCloudOutput) ToGetStacksStackBitbucketCloudOutputWithContext(ctx context.Context) GetStacksStackBitbucketCloudOutput {
+	return o
+}
+
+func (o GetStacksStackBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackBitbucketCloud] {
+	return pulumix.Output[GetStacksStackBitbucketCloud]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStacksStackBitbucketCloudArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackBitbucketCloudArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackBitbucketCloud)(nil)).Elem()
+}
+
+func (o GetStacksStackBitbucketCloudArrayOutput) ToGetStacksStackBitbucketCloudArrayOutput() GetStacksStackBitbucketCloudArrayOutput {
+	return o
+}
+
+func (o GetStacksStackBitbucketCloudArrayOutput) ToGetStacksStackBitbucketCloudArrayOutputWithContext(ctx context.Context) GetStacksStackBitbucketCloudArrayOutput {
+	return o
+}
+
+func (o GetStacksStackBitbucketCloudArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackBitbucketCloud] {
+	return pulumix.Output[[]GetStacksStackBitbucketCloud]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetStacksStackBitbucketCloudOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackBitbucketCloud {
+		return vs[0].([]GetStacksStackBitbucketCloud)[vs[1].(int)]
+	}).(GetStacksStackBitbucketCloudOutput)
+}
+
+type GetStacksStackBitbucketDatacenter struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetStacksStackBitbucketDatacenterInput is an input type that accepts GetStacksStackBitbucketDatacenterArgs and GetStacksStackBitbucketDatacenterOutput values.
+// You can construct a concrete instance of `GetStacksStackBitbucketDatacenterInput` via:
+//
+//	GetStacksStackBitbucketDatacenterArgs{...}
+type GetStacksStackBitbucketDatacenterInput interface {
+	pulumi.Input
+
+	ToGetStacksStackBitbucketDatacenterOutput() GetStacksStackBitbucketDatacenterOutput
+	ToGetStacksStackBitbucketDatacenterOutputWithContext(context.Context) GetStacksStackBitbucketDatacenterOutput
+}
+
+type GetStacksStackBitbucketDatacenterArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStacksStackBitbucketDatacenterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (i GetStacksStackBitbucketDatacenterArgs) ToGetStacksStackBitbucketDatacenterOutput() GetStacksStackBitbucketDatacenterOutput {
+	return i.ToGetStacksStackBitbucketDatacenterOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackBitbucketDatacenterArgs) ToGetStacksStackBitbucketDatacenterOutputWithContext(ctx context.Context) GetStacksStackBitbucketDatacenterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackBitbucketDatacenterOutput)
+}
+
+func (i GetStacksStackBitbucketDatacenterArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackBitbucketDatacenter] {
+	return pulumix.Output[GetStacksStackBitbucketDatacenter]{
+		OutputState: i.ToGetStacksStackBitbucketDatacenterOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackBitbucketDatacenterArrayInput is an input type that accepts GetStacksStackBitbucketDatacenterArray and GetStacksStackBitbucketDatacenterArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackBitbucketDatacenterArrayInput` via:
+//
+//	GetStacksStackBitbucketDatacenterArray{ GetStacksStackBitbucketDatacenterArgs{...} }
+type GetStacksStackBitbucketDatacenterArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackBitbucketDatacenterArrayOutput() GetStacksStackBitbucketDatacenterArrayOutput
+	ToGetStacksStackBitbucketDatacenterArrayOutputWithContext(context.Context) GetStacksStackBitbucketDatacenterArrayOutput
+}
+
+type GetStacksStackBitbucketDatacenterArray []GetStacksStackBitbucketDatacenterInput
+
+func (GetStacksStackBitbucketDatacenterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (i GetStacksStackBitbucketDatacenterArray) ToGetStacksStackBitbucketDatacenterArrayOutput() GetStacksStackBitbucketDatacenterArrayOutput {
+	return i.ToGetStacksStackBitbucketDatacenterArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackBitbucketDatacenterArray) ToGetStacksStackBitbucketDatacenterArrayOutputWithContext(ctx context.Context) GetStacksStackBitbucketDatacenterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackBitbucketDatacenterArrayOutput)
+}
+
+func (i GetStacksStackBitbucketDatacenterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackBitbucketDatacenter] {
+	return pulumix.Output[[]GetStacksStackBitbucketDatacenter]{
+		OutputState: i.ToGetStacksStackBitbucketDatacenterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackBitbucketDatacenterOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackBitbucketDatacenterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (o GetStacksStackBitbucketDatacenterOutput) ToGetStacksStackBitbucketDatacenterOutput() GetStacksStackBitbucketDatacenterOutput {
+	return o
+}
+
+func (o GetStacksStackBitbucketDatacenterOutput) ToGetStacksStackBitbucketDatacenterOutputWithContext(ctx context.Context) GetStacksStackBitbucketDatacenterOutput {
+	return o
+}
+
+func (o GetStacksStackBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackBitbucketDatacenter] {
+	return pulumix.Output[GetStacksStackBitbucketDatacenter]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStacksStackBitbucketDatacenterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackBitbucketDatacenterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackBitbucketDatacenter)(nil)).Elem()
+}
+
+func (o GetStacksStackBitbucketDatacenterArrayOutput) ToGetStacksStackBitbucketDatacenterArrayOutput() GetStacksStackBitbucketDatacenterArrayOutput {
+	return o
+}
+
+func (o GetStacksStackBitbucketDatacenterArrayOutput) ToGetStacksStackBitbucketDatacenterArrayOutputWithContext(ctx context.Context) GetStacksStackBitbucketDatacenterArrayOutput {
+	return o
+}
+
+func (o GetStacksStackBitbucketDatacenterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackBitbucketDatacenter] {
+	return pulumix.Output[[]GetStacksStackBitbucketDatacenter]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetStacksStackBitbucketDatacenterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackBitbucketDatacenter {
+		return vs[0].([]GetStacksStackBitbucketDatacenter)[vs[1].(int)]
+	}).(GetStacksStackBitbucketDatacenterOutput)
+}
+
+type GetStacksStackCloudformation struct {
+	EntryTemplateFile string `pulumi:"entryTemplateFile"`
+	Region            string `pulumi:"region"`
+	StackName         string `pulumi:"stackName"`
+	TemplateBucket    string `pulumi:"templateBucket"`
+}
+
+// GetStacksStackCloudformationInput is an input type that accepts GetStacksStackCloudformationArgs and GetStacksStackCloudformationOutput values.
+// You can construct a concrete instance of `GetStacksStackCloudformationInput` via:
+//
+//	GetStacksStackCloudformationArgs{...}
+type GetStacksStackCloudformationInput interface {
+	pulumi.Input
+
+	ToGetStacksStackCloudformationOutput() GetStacksStackCloudformationOutput
+	ToGetStacksStackCloudformationOutputWithContext(context.Context) GetStacksStackCloudformationOutput
+}
+
+type GetStacksStackCloudformationArgs struct {
+	EntryTemplateFile pulumi.StringInput `pulumi:"entryTemplateFile"`
+	Region            pulumi.StringInput `pulumi:"region"`
+	StackName         pulumi.StringInput `pulumi:"stackName"`
+	TemplateBucket    pulumi.StringInput `pulumi:"templateBucket"`
+}
+
+func (GetStacksStackCloudformationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackCloudformation)(nil)).Elem()
+}
+
+func (i GetStacksStackCloudformationArgs) ToGetStacksStackCloudformationOutput() GetStacksStackCloudformationOutput {
+	return i.ToGetStacksStackCloudformationOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackCloudformationArgs) ToGetStacksStackCloudformationOutputWithContext(ctx context.Context) GetStacksStackCloudformationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackCloudformationOutput)
+}
+
+func (i GetStacksStackCloudformationArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackCloudformation] {
+	return pulumix.Output[GetStacksStackCloudformation]{
+		OutputState: i.ToGetStacksStackCloudformationOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackCloudformationArrayInput is an input type that accepts GetStacksStackCloudformationArray and GetStacksStackCloudformationArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackCloudformationArrayInput` via:
+//
+//	GetStacksStackCloudformationArray{ GetStacksStackCloudformationArgs{...} }
+type GetStacksStackCloudformationArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackCloudformationArrayOutput() GetStacksStackCloudformationArrayOutput
+	ToGetStacksStackCloudformationArrayOutputWithContext(context.Context) GetStacksStackCloudformationArrayOutput
+}
+
+type GetStacksStackCloudformationArray []GetStacksStackCloudformationInput
+
+func (GetStacksStackCloudformationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackCloudformation)(nil)).Elem()
+}
+
+func (i GetStacksStackCloudformationArray) ToGetStacksStackCloudformationArrayOutput() GetStacksStackCloudformationArrayOutput {
+	return i.ToGetStacksStackCloudformationArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackCloudformationArray) ToGetStacksStackCloudformationArrayOutputWithContext(ctx context.Context) GetStacksStackCloudformationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackCloudformationArrayOutput)
+}
+
+func (i GetStacksStackCloudformationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackCloudformation] {
+	return pulumix.Output[[]GetStacksStackCloudformation]{
+		OutputState: i.ToGetStacksStackCloudformationArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackCloudformationOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackCloudformationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackCloudformation)(nil)).Elem()
+}
+
+func (o GetStacksStackCloudformationOutput) ToGetStacksStackCloudformationOutput() GetStacksStackCloudformationOutput {
+	return o
+}
+
+func (o GetStacksStackCloudformationOutput) ToGetStacksStackCloudformationOutputWithContext(ctx context.Context) GetStacksStackCloudformationOutput {
+	return o
+}
+
+func (o GetStacksStackCloudformationOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackCloudformation] {
+	return pulumix.Output[GetStacksStackCloudformation]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackCloudformationOutput) EntryTemplateFile() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackCloudformation) string { return v.EntryTemplateFile }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackCloudformationOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackCloudformation) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackCloudformationOutput) StackName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackCloudformation) string { return v.StackName }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackCloudformationOutput) TemplateBucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackCloudformation) string { return v.TemplateBucket }).(pulumi.StringOutput)
+}
+
+type GetStacksStackCloudformationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackCloudformationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackCloudformation)(nil)).Elem()
+}
+
+func (o GetStacksStackCloudformationArrayOutput) ToGetStacksStackCloudformationArrayOutput() GetStacksStackCloudformationArrayOutput {
+	return o
+}
+
+func (o GetStacksStackCloudformationArrayOutput) ToGetStacksStackCloudformationArrayOutputWithContext(ctx context.Context) GetStacksStackCloudformationArrayOutput {
+	return o
+}
+
+func (o GetStacksStackCloudformationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackCloudformation] {
+	return pulumix.Output[[]GetStacksStackCloudformation]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackCloudformationArrayOutput) Index(i pulumi.IntInput) GetStacksStackCloudformationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackCloudformation {
+		return vs[0].([]GetStacksStackCloudformation)[vs[1].(int)]
+	}).(GetStacksStackCloudformationOutput)
+}
+
+type GetStacksStackGithubEnterprise struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetStacksStackGithubEnterpriseInput is an input type that accepts GetStacksStackGithubEnterpriseArgs and GetStacksStackGithubEnterpriseOutput values.
+// You can construct a concrete instance of `GetStacksStackGithubEnterpriseInput` via:
+//
+//	GetStacksStackGithubEnterpriseArgs{...}
+type GetStacksStackGithubEnterpriseInput interface {
+	pulumi.Input
+
+	ToGetStacksStackGithubEnterpriseOutput() GetStacksStackGithubEnterpriseOutput
+	ToGetStacksStackGithubEnterpriseOutputWithContext(context.Context) GetStacksStackGithubEnterpriseOutput
+}
+
+type GetStacksStackGithubEnterpriseArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStacksStackGithubEnterpriseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackGithubEnterprise)(nil)).Elem()
+}
+
+func (i GetStacksStackGithubEnterpriseArgs) ToGetStacksStackGithubEnterpriseOutput() GetStacksStackGithubEnterpriseOutput {
+	return i.ToGetStacksStackGithubEnterpriseOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackGithubEnterpriseArgs) ToGetStacksStackGithubEnterpriseOutputWithContext(ctx context.Context) GetStacksStackGithubEnterpriseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackGithubEnterpriseOutput)
+}
+
+func (i GetStacksStackGithubEnterpriseArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackGithubEnterprise] {
+	return pulumix.Output[GetStacksStackGithubEnterprise]{
+		OutputState: i.ToGetStacksStackGithubEnterpriseOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackGithubEnterpriseArrayInput is an input type that accepts GetStacksStackGithubEnterpriseArray and GetStacksStackGithubEnterpriseArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackGithubEnterpriseArrayInput` via:
+//
+//	GetStacksStackGithubEnterpriseArray{ GetStacksStackGithubEnterpriseArgs{...} }
+type GetStacksStackGithubEnterpriseArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackGithubEnterpriseArrayOutput() GetStacksStackGithubEnterpriseArrayOutput
+	ToGetStacksStackGithubEnterpriseArrayOutputWithContext(context.Context) GetStacksStackGithubEnterpriseArrayOutput
+}
+
+type GetStacksStackGithubEnterpriseArray []GetStacksStackGithubEnterpriseInput
+
+func (GetStacksStackGithubEnterpriseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackGithubEnterprise)(nil)).Elem()
+}
+
+func (i GetStacksStackGithubEnterpriseArray) ToGetStacksStackGithubEnterpriseArrayOutput() GetStacksStackGithubEnterpriseArrayOutput {
+	return i.ToGetStacksStackGithubEnterpriseArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackGithubEnterpriseArray) ToGetStacksStackGithubEnterpriseArrayOutputWithContext(ctx context.Context) GetStacksStackGithubEnterpriseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackGithubEnterpriseArrayOutput)
+}
+
+func (i GetStacksStackGithubEnterpriseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackGithubEnterprise] {
+	return pulumix.Output[[]GetStacksStackGithubEnterprise]{
+		OutputState: i.ToGetStacksStackGithubEnterpriseArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackGithubEnterpriseOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackGithubEnterpriseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackGithubEnterprise)(nil)).Elem()
+}
+
+func (o GetStacksStackGithubEnterpriseOutput) ToGetStacksStackGithubEnterpriseOutput() GetStacksStackGithubEnterpriseOutput {
+	return o
+}
+
+func (o GetStacksStackGithubEnterpriseOutput) ToGetStacksStackGithubEnterpriseOutputWithContext(ctx context.Context) GetStacksStackGithubEnterpriseOutput {
+	return o
+}
+
+func (o GetStacksStackGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackGithubEnterprise] {
+	return pulumix.Output[GetStacksStackGithubEnterprise]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStacksStackGithubEnterpriseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackGithubEnterpriseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackGithubEnterprise)(nil)).Elem()
+}
+
+func (o GetStacksStackGithubEnterpriseArrayOutput) ToGetStacksStackGithubEnterpriseArrayOutput() GetStacksStackGithubEnterpriseArrayOutput {
+	return o
+}
+
+func (o GetStacksStackGithubEnterpriseArrayOutput) ToGetStacksStackGithubEnterpriseArrayOutputWithContext(ctx context.Context) GetStacksStackGithubEnterpriseArrayOutput {
+	return o
+}
+
+func (o GetStacksStackGithubEnterpriseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackGithubEnterprise] {
+	return pulumix.Output[[]GetStacksStackGithubEnterprise]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetStacksStackGithubEnterpriseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackGithubEnterprise {
+		return vs[0].([]GetStacksStackGithubEnterprise)[vs[1].(int)]
+	}).(GetStacksStackGithubEnterpriseOutput)
+}
+
+type GetStacksStackGitlab struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetStacksStackGitlabInput is an input type that accepts GetStacksStackGitlabArgs and GetStacksStackGitlabOutput values.
+// You can construct a concrete instance of `GetStacksStackGitlabInput` via:
+//
+//	GetStacksStackGitlabArgs{...}
+type GetStacksStackGitlabInput interface {
+	pulumi.Input
+
+	ToGetStacksStackGitlabOutput() GetStacksStackGitlabOutput
+	ToGetStacksStackGitlabOutputWithContext(context.Context) GetStacksStackGitlabOutput
+}
+
+type GetStacksStackGitlabArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStacksStackGitlabArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackGitlab)(nil)).Elem()
+}
+
+func (i GetStacksStackGitlabArgs) ToGetStacksStackGitlabOutput() GetStacksStackGitlabOutput {
+	return i.ToGetStacksStackGitlabOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackGitlabArgs) ToGetStacksStackGitlabOutputWithContext(ctx context.Context) GetStacksStackGitlabOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackGitlabOutput)
+}
+
+func (i GetStacksStackGitlabArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackGitlab] {
+	return pulumix.Output[GetStacksStackGitlab]{
+		OutputState: i.ToGetStacksStackGitlabOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackGitlabArrayInput is an input type that accepts GetStacksStackGitlabArray and GetStacksStackGitlabArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackGitlabArrayInput` via:
+//
+//	GetStacksStackGitlabArray{ GetStacksStackGitlabArgs{...} }
+type GetStacksStackGitlabArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackGitlabArrayOutput() GetStacksStackGitlabArrayOutput
+	ToGetStacksStackGitlabArrayOutputWithContext(context.Context) GetStacksStackGitlabArrayOutput
+}
+
+type GetStacksStackGitlabArray []GetStacksStackGitlabInput
+
+func (GetStacksStackGitlabArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackGitlab)(nil)).Elem()
+}
+
+func (i GetStacksStackGitlabArray) ToGetStacksStackGitlabArrayOutput() GetStacksStackGitlabArrayOutput {
+	return i.ToGetStacksStackGitlabArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackGitlabArray) ToGetStacksStackGitlabArrayOutputWithContext(ctx context.Context) GetStacksStackGitlabArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackGitlabArrayOutput)
+}
+
+func (i GetStacksStackGitlabArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackGitlab] {
+	return pulumix.Output[[]GetStacksStackGitlab]{
+		OutputState: i.ToGetStacksStackGitlabArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackGitlabOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackGitlabOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackGitlab)(nil)).Elem()
+}
+
+func (o GetStacksStackGitlabOutput) ToGetStacksStackGitlabOutput() GetStacksStackGitlabOutput {
+	return o
+}
+
+func (o GetStacksStackGitlabOutput) ToGetStacksStackGitlabOutputWithContext(ctx context.Context) GetStacksStackGitlabOutput {
+	return o
+}
+
+func (o GetStacksStackGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackGitlab] {
+	return pulumix.Output[GetStacksStackGitlab]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackGitlabOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackGitlab) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStacksStackGitlabArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackGitlabArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackGitlab)(nil)).Elem()
+}
+
+func (o GetStacksStackGitlabArrayOutput) ToGetStacksStackGitlabArrayOutput() GetStacksStackGitlabArrayOutput {
+	return o
+}
+
+func (o GetStacksStackGitlabArrayOutput) ToGetStacksStackGitlabArrayOutputWithContext(ctx context.Context) GetStacksStackGitlabArrayOutput {
+	return o
+}
+
+func (o GetStacksStackGitlabArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackGitlab] {
+	return pulumix.Output[[]GetStacksStackGitlab]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackGitlabArrayOutput) Index(i pulumi.IntInput) GetStacksStackGitlabOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackGitlab {
+		return vs[0].([]GetStacksStackGitlab)[vs[1].(int)]
+	}).(GetStacksStackGitlabOutput)
+}
+
+type GetStacksStackKubernete struct {
+	KubectlVersion string `pulumi:"kubectlVersion"`
+	Namespace      string `pulumi:"namespace"`
+}
+
+// GetStacksStackKuberneteInput is an input type that accepts GetStacksStackKuberneteArgs and GetStacksStackKuberneteOutput values.
+// You can construct a concrete instance of `GetStacksStackKuberneteInput` via:
+//
+//	GetStacksStackKuberneteArgs{...}
+type GetStacksStackKuberneteInput interface {
+	pulumi.Input
+
+	ToGetStacksStackKuberneteOutput() GetStacksStackKuberneteOutput
+	ToGetStacksStackKuberneteOutputWithContext(context.Context) GetStacksStackKuberneteOutput
+}
+
+type GetStacksStackKuberneteArgs struct {
+	KubectlVersion pulumi.StringInput `pulumi:"kubectlVersion"`
+	Namespace      pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStacksStackKuberneteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackKubernete)(nil)).Elem()
+}
+
+func (i GetStacksStackKuberneteArgs) ToGetStacksStackKuberneteOutput() GetStacksStackKuberneteOutput {
+	return i.ToGetStacksStackKuberneteOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackKuberneteArgs) ToGetStacksStackKuberneteOutputWithContext(ctx context.Context) GetStacksStackKuberneteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackKuberneteOutput)
+}
+
+func (i GetStacksStackKuberneteArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackKubernete] {
+	return pulumix.Output[GetStacksStackKubernete]{
+		OutputState: i.ToGetStacksStackKuberneteOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackKuberneteArrayInput is an input type that accepts GetStacksStackKuberneteArray and GetStacksStackKuberneteArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackKuberneteArrayInput` via:
+//
+//	GetStacksStackKuberneteArray{ GetStacksStackKuberneteArgs{...} }
+type GetStacksStackKuberneteArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackKuberneteArrayOutput() GetStacksStackKuberneteArrayOutput
+	ToGetStacksStackKuberneteArrayOutputWithContext(context.Context) GetStacksStackKuberneteArrayOutput
+}
+
+type GetStacksStackKuberneteArray []GetStacksStackKuberneteInput
+
+func (GetStacksStackKuberneteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackKubernete)(nil)).Elem()
+}
+
+func (i GetStacksStackKuberneteArray) ToGetStacksStackKuberneteArrayOutput() GetStacksStackKuberneteArrayOutput {
+	return i.ToGetStacksStackKuberneteArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackKuberneteArray) ToGetStacksStackKuberneteArrayOutputWithContext(ctx context.Context) GetStacksStackKuberneteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackKuberneteArrayOutput)
+}
+
+func (i GetStacksStackKuberneteArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackKubernete] {
+	return pulumix.Output[[]GetStacksStackKubernete]{
+		OutputState: i.ToGetStacksStackKuberneteArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackKuberneteOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackKuberneteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackKubernete)(nil)).Elem()
+}
+
+func (o GetStacksStackKuberneteOutput) ToGetStacksStackKuberneteOutput() GetStacksStackKuberneteOutput {
+	return o
+}
+
+func (o GetStacksStackKuberneteOutput) ToGetStacksStackKuberneteOutputWithContext(ctx context.Context) GetStacksStackKuberneteOutput {
+	return o
+}
+
+func (o GetStacksStackKuberneteOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackKubernete] {
+	return pulumix.Output[GetStacksStackKubernete]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackKuberneteOutput) KubectlVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackKubernete) string { return v.KubectlVersion }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackKuberneteOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackKubernete) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStacksStackKuberneteArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackKuberneteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackKubernete)(nil)).Elem()
+}
+
+func (o GetStacksStackKuberneteArrayOutput) ToGetStacksStackKuberneteArrayOutput() GetStacksStackKuberneteArrayOutput {
+	return o
+}
+
+func (o GetStacksStackKuberneteArrayOutput) ToGetStacksStackKuberneteArrayOutputWithContext(ctx context.Context) GetStacksStackKuberneteArrayOutput {
+	return o
+}
+
+func (o GetStacksStackKuberneteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackKubernete] {
+	return pulumix.Output[[]GetStacksStackKubernete]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackKuberneteArrayOutput) Index(i pulumi.IntInput) GetStacksStackKuberneteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackKubernete {
+		return vs[0].([]GetStacksStackKubernete)[vs[1].(int)]
+	}).(GetStacksStackKuberneteOutput)
+}
+
+type GetStacksStackPulumi struct {
+	LoginUrl  string `pulumi:"loginUrl"`
+	StackName string `pulumi:"stackName"`
+}
+
+// GetStacksStackPulumiInput is an input type that accepts GetStacksStackPulumiArgs and GetStacksStackPulumiOutput values.
+// You can construct a concrete instance of `GetStacksStackPulumiInput` via:
+//
+//	GetStacksStackPulumiArgs{...}
+type GetStacksStackPulumiInput interface {
+	pulumi.Input
+
+	ToGetStacksStackPulumiOutput() GetStacksStackPulumiOutput
+	ToGetStacksStackPulumiOutputWithContext(context.Context) GetStacksStackPulumiOutput
+}
+
+type GetStacksStackPulumiArgs struct {
+	LoginUrl  pulumi.StringInput `pulumi:"loginUrl"`
+	StackName pulumi.StringInput `pulumi:"stackName"`
+}
+
+func (GetStacksStackPulumiArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackPulumi)(nil)).Elem()
+}
+
+func (i GetStacksStackPulumiArgs) ToGetStacksStackPulumiOutput() GetStacksStackPulumiOutput {
+	return i.ToGetStacksStackPulumiOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackPulumiArgs) ToGetStacksStackPulumiOutputWithContext(ctx context.Context) GetStacksStackPulumiOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackPulumiOutput)
+}
+
+func (i GetStacksStackPulumiArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackPulumi] {
+	return pulumix.Output[GetStacksStackPulumi]{
+		OutputState: i.ToGetStacksStackPulumiOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackPulumiArrayInput is an input type that accepts GetStacksStackPulumiArray and GetStacksStackPulumiArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackPulumiArrayInput` via:
+//
+//	GetStacksStackPulumiArray{ GetStacksStackPulumiArgs{...} }
+type GetStacksStackPulumiArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackPulumiArrayOutput() GetStacksStackPulumiArrayOutput
+	ToGetStacksStackPulumiArrayOutputWithContext(context.Context) GetStacksStackPulumiArrayOutput
+}
+
+type GetStacksStackPulumiArray []GetStacksStackPulumiInput
+
+func (GetStacksStackPulumiArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackPulumi)(nil)).Elem()
+}
+
+func (i GetStacksStackPulumiArray) ToGetStacksStackPulumiArrayOutput() GetStacksStackPulumiArrayOutput {
+	return i.ToGetStacksStackPulumiArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackPulumiArray) ToGetStacksStackPulumiArrayOutputWithContext(ctx context.Context) GetStacksStackPulumiArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackPulumiArrayOutput)
+}
+
+func (i GetStacksStackPulumiArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackPulumi] {
+	return pulumix.Output[[]GetStacksStackPulumi]{
+		OutputState: i.ToGetStacksStackPulumiArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackPulumiOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackPulumiOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackPulumi)(nil)).Elem()
+}
+
+func (o GetStacksStackPulumiOutput) ToGetStacksStackPulumiOutput() GetStacksStackPulumiOutput {
+	return o
+}
+
+func (o GetStacksStackPulumiOutput) ToGetStacksStackPulumiOutputWithContext(ctx context.Context) GetStacksStackPulumiOutput {
+	return o
+}
+
+func (o GetStacksStackPulumiOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackPulumi] {
+	return pulumix.Output[GetStacksStackPulumi]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackPulumiOutput) LoginUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackPulumi) string { return v.LoginUrl }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackPulumiOutput) StackName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackPulumi) string { return v.StackName }).(pulumi.StringOutput)
+}
+
+type GetStacksStackPulumiArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackPulumiArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackPulumi)(nil)).Elem()
+}
+
+func (o GetStacksStackPulumiArrayOutput) ToGetStacksStackPulumiArrayOutput() GetStacksStackPulumiArrayOutput {
+	return o
+}
+
+func (o GetStacksStackPulumiArrayOutput) ToGetStacksStackPulumiArrayOutputWithContext(ctx context.Context) GetStacksStackPulumiArrayOutput {
+	return o
+}
+
+func (o GetStacksStackPulumiArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackPulumi] {
+	return pulumix.Output[[]GetStacksStackPulumi]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackPulumiArrayOutput) Index(i pulumi.IntInput) GetStacksStackPulumiOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackPulumi {
+		return vs[0].([]GetStacksStackPulumi)[vs[1].(int)]
+	}).(GetStacksStackPulumiOutput)
+}
+
+type GetStacksStackRawGit struct {
+	Namespace string `pulumi:"namespace"`
+	Url       string `pulumi:"url"`
+}
+
+// GetStacksStackRawGitInput is an input type that accepts GetStacksStackRawGitArgs and GetStacksStackRawGitOutput values.
+// You can construct a concrete instance of `GetStacksStackRawGitInput` via:
+//
+//	GetStacksStackRawGitArgs{...}
+type GetStacksStackRawGitInput interface {
+	pulumi.Input
+
+	ToGetStacksStackRawGitOutput() GetStacksStackRawGitOutput
+	ToGetStacksStackRawGitOutputWithContext(context.Context) GetStacksStackRawGitOutput
+}
+
+type GetStacksStackRawGitArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+	Url       pulumi.StringInput `pulumi:"url"`
+}
+
+func (GetStacksStackRawGitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackRawGit)(nil)).Elem()
+}
+
+func (i GetStacksStackRawGitArgs) ToGetStacksStackRawGitOutput() GetStacksStackRawGitOutput {
+	return i.ToGetStacksStackRawGitOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackRawGitArgs) ToGetStacksStackRawGitOutputWithContext(ctx context.Context) GetStacksStackRawGitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackRawGitOutput)
+}
+
+func (i GetStacksStackRawGitArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackRawGit] {
+	return pulumix.Output[GetStacksStackRawGit]{
+		OutputState: i.ToGetStacksStackRawGitOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackRawGitArrayInput is an input type that accepts GetStacksStackRawGitArray and GetStacksStackRawGitArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackRawGitArrayInput` via:
+//
+//	GetStacksStackRawGitArray{ GetStacksStackRawGitArgs{...} }
+type GetStacksStackRawGitArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackRawGitArrayOutput() GetStacksStackRawGitArrayOutput
+	ToGetStacksStackRawGitArrayOutputWithContext(context.Context) GetStacksStackRawGitArrayOutput
+}
+
+type GetStacksStackRawGitArray []GetStacksStackRawGitInput
+
+func (GetStacksStackRawGitArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackRawGit)(nil)).Elem()
+}
+
+func (i GetStacksStackRawGitArray) ToGetStacksStackRawGitArrayOutput() GetStacksStackRawGitArrayOutput {
+	return i.ToGetStacksStackRawGitArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackRawGitArray) ToGetStacksStackRawGitArrayOutputWithContext(ctx context.Context) GetStacksStackRawGitArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackRawGitArrayOutput)
+}
+
+func (i GetStacksStackRawGitArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackRawGit] {
+	return pulumix.Output[[]GetStacksStackRawGit]{
+		OutputState: i.ToGetStacksStackRawGitArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackRawGitOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackRawGitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackRawGit)(nil)).Elem()
+}
+
+func (o GetStacksStackRawGitOutput) ToGetStacksStackRawGitOutput() GetStacksStackRawGitOutput {
+	return o
+}
+
+func (o GetStacksStackRawGitOutput) ToGetStacksStackRawGitOutputWithContext(ctx context.Context) GetStacksStackRawGitOutput {
+	return o
+}
+
+func (o GetStacksStackRawGitOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackRawGit] {
+	return pulumix.Output[GetStacksStackRawGit]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackRawGitOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackRawGit) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackRawGitOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackRawGit) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type GetStacksStackRawGitArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackRawGitArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackRawGit)(nil)).Elem()
+}
+
+func (o GetStacksStackRawGitArrayOutput) ToGetStacksStackRawGitArrayOutput() GetStacksStackRawGitArrayOutput {
+	return o
+}
+
+func (o GetStacksStackRawGitArrayOutput) ToGetStacksStackRawGitArrayOutputWithContext(ctx context.Context) GetStacksStackRawGitArrayOutput {
+	return o
+}
+
+func (o GetStacksStackRawGitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackRawGit] {
+	return pulumix.Output[[]GetStacksStackRawGit]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackRawGitArrayOutput) Index(i pulumi.IntInput) GetStacksStackRawGitOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackRawGit {
+		return vs[0].([]GetStacksStackRawGit)[vs[1].(int)]
+	}).(GetStacksStackRawGitOutput)
+}
+
+type GetStacksStackShowcase struct {
+	Namespace string `pulumi:"namespace"`
+}
+
+// GetStacksStackShowcaseInput is an input type that accepts GetStacksStackShowcaseArgs and GetStacksStackShowcaseOutput values.
+// You can construct a concrete instance of `GetStacksStackShowcaseInput` via:
+//
+//	GetStacksStackShowcaseArgs{...}
+type GetStacksStackShowcaseInput interface {
+	pulumi.Input
+
+	ToGetStacksStackShowcaseOutput() GetStacksStackShowcaseOutput
+	ToGetStacksStackShowcaseOutputWithContext(context.Context) GetStacksStackShowcaseOutput
+}
+
+type GetStacksStackShowcaseArgs struct {
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+}
+
+func (GetStacksStackShowcaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackShowcase)(nil)).Elem()
+}
+
+func (i GetStacksStackShowcaseArgs) ToGetStacksStackShowcaseOutput() GetStacksStackShowcaseOutput {
+	return i.ToGetStacksStackShowcaseOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackShowcaseArgs) ToGetStacksStackShowcaseOutputWithContext(ctx context.Context) GetStacksStackShowcaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackShowcaseOutput)
+}
+
+func (i GetStacksStackShowcaseArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackShowcase] {
+	return pulumix.Output[GetStacksStackShowcase]{
+		OutputState: i.ToGetStacksStackShowcaseOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetStacksStackShowcaseArrayInput is an input type that accepts GetStacksStackShowcaseArray and GetStacksStackShowcaseArrayOutput values.
+// You can construct a concrete instance of `GetStacksStackShowcaseArrayInput` via:
+//
+//	GetStacksStackShowcaseArray{ GetStacksStackShowcaseArgs{...} }
+type GetStacksStackShowcaseArrayInput interface {
+	pulumi.Input
+
+	ToGetStacksStackShowcaseArrayOutput() GetStacksStackShowcaseArrayOutput
+	ToGetStacksStackShowcaseArrayOutputWithContext(context.Context) GetStacksStackShowcaseArrayOutput
+}
+
+type GetStacksStackShowcaseArray []GetStacksStackShowcaseInput
+
+func (GetStacksStackShowcaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackShowcase)(nil)).Elem()
+}
+
+func (i GetStacksStackShowcaseArray) ToGetStacksStackShowcaseArrayOutput() GetStacksStackShowcaseArrayOutput {
+	return i.ToGetStacksStackShowcaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetStacksStackShowcaseArray) ToGetStacksStackShowcaseArrayOutputWithContext(ctx context.Context) GetStacksStackShowcaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackShowcaseArrayOutput)
+}
+
+func (i GetStacksStackShowcaseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackShowcase] {
+	return pulumix.Output[[]GetStacksStackShowcase]{
+		OutputState: i.ToGetStacksStackShowcaseArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStackShowcaseOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackShowcaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksStackShowcase)(nil)).Elem()
+}
+
+func (o GetStacksStackShowcaseOutput) ToGetStacksStackShowcaseOutput() GetStacksStackShowcaseOutput {
+	return o
+}
+
+func (o GetStacksStackShowcaseOutput) ToGetStacksStackShowcaseOutputWithContext(ctx context.Context) GetStacksStackShowcaseOutput {
+	return o
+}
+
+func (o GetStacksStackShowcaseOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackShowcase] {
+	return pulumix.Output[GetStacksStackShowcase]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackShowcaseOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackShowcase) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+type GetStacksStackShowcaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStackShowcaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStacksStackShowcase)(nil)).Elem()
+}
+
+func (o GetStacksStackShowcaseArrayOutput) ToGetStacksStackShowcaseArrayOutput() GetStacksStackShowcaseArrayOutput {
+	return o
+}
+
+func (o GetStacksStackShowcaseArrayOutput) ToGetStacksStackShowcaseArrayOutputWithContext(ctx context.Context) GetStacksStackShowcaseArrayOutput {
+	return o
+}
+
+func (o GetStacksStackShowcaseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackShowcase] {
+	return pulumix.Output[[]GetStacksStackShowcase]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStackShowcaseArrayOutput) Index(i pulumi.IntInput) GetStacksStackShowcaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackShowcase {
+		return vs[0].([]GetStacksStackShowcase)[vs[1].(int)]
+	}).(GetStacksStackShowcaseOutput)
+}
+
+type GetStacksState struct {
+	AnyOfs []string `pulumi:"anyOfs"`
+}
+
+// GetStacksStateInput is an input type that accepts GetStacksStateArgs and GetStacksStateOutput values.
+// You can construct a concrete instance of `GetStacksStateInput` via:
+//
+//	GetStacksStateArgs{...}
+type GetStacksStateInput interface {
+	pulumi.Input
+
+	ToGetStacksStateOutput() GetStacksStateOutput
+	ToGetStacksStateOutputWithContext(context.Context) GetStacksStateOutput
+}
+
+type GetStacksStateArgs struct {
+	AnyOfs pulumi.StringArrayInput `pulumi:"anyOfs"`
+}
+
+func (GetStacksStateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksState)(nil)).Elem()
+}
+
+func (i GetStacksStateArgs) ToGetStacksStateOutput() GetStacksStateOutput {
+	return i.ToGetStacksStateOutputWithContext(context.Background())
+}
+
+func (i GetStacksStateArgs) ToGetStacksStateOutputWithContext(ctx context.Context) GetStacksStateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStateOutput)
+}
+
+func (i GetStacksStateArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksState] {
+	return pulumix.Output[GetStacksState]{
+		OutputState: i.ToGetStacksStateOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i GetStacksStateArgs) ToGetStacksStatePtrOutput() GetStacksStatePtrOutput {
+	return i.ToGetStacksStatePtrOutputWithContext(context.Background())
+}
+
+func (i GetStacksStateArgs) ToGetStacksStatePtrOutputWithContext(ctx context.Context) GetStacksStatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStateOutput).ToGetStacksStatePtrOutputWithContext(ctx)
+}
+
+// GetStacksStatePtrInput is an input type that accepts GetStacksStateArgs, GetStacksStatePtr and GetStacksStatePtrOutput values.
+// You can construct a concrete instance of `GetStacksStatePtrInput` via:
+//
+//	        GetStacksStateArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStacksStatePtrInput interface {
+	pulumi.Input
+
+	ToGetStacksStatePtrOutput() GetStacksStatePtrOutput
+	ToGetStacksStatePtrOutputWithContext(context.Context) GetStacksStatePtrOutput
+}
+
+type getStacksStatePtrType GetStacksStateArgs
+
+func GetStacksStatePtr(v *GetStacksStateArgs) GetStacksStatePtrInput {
+	return (*getStacksStatePtrType)(v)
+}
+
+func (*getStacksStatePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksState)(nil)).Elem()
+}
+
+func (i *getStacksStatePtrType) ToGetStacksStatePtrOutput() GetStacksStatePtrOutput {
+	return i.ToGetStacksStatePtrOutputWithContext(context.Background())
+}
+
+func (i *getStacksStatePtrType) ToGetStacksStatePtrOutputWithContext(ctx context.Context) GetStacksStatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStatePtrOutput)
+}
+
+func (i *getStacksStatePtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksState] {
+	return pulumix.Output[*GetStacksState]{
+		OutputState: i.ToGetStacksStatePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksStateOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksState)(nil)).Elem()
+}
+
+func (o GetStacksStateOutput) ToGetStacksStateOutput() GetStacksStateOutput {
+	return o
+}
+
+func (o GetStacksStateOutput) ToGetStacksStateOutputWithContext(ctx context.Context) GetStacksStateOutput {
+	return o
+}
+
+func (o GetStacksStateOutput) ToGetStacksStatePtrOutput() GetStacksStatePtrOutput {
+	return o.ToGetStacksStatePtrOutputWithContext(context.Background())
+}
+
+func (o GetStacksStateOutput) ToGetStacksStatePtrOutputWithContext(ctx context.Context) GetStacksStatePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStacksState) *GetStacksState {
+		return &v
+	}).(GetStacksStatePtrOutput)
+}
+
+func (o GetStacksStateOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksState] {
+	return pulumix.Output[GetStacksState]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStateOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksState) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
+}
+
+type GetStacksStatePtrOutput struct{ *pulumi.OutputState }
+
+func (GetStacksStatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksState)(nil)).Elem()
+}
+
+func (o GetStacksStatePtrOutput) ToGetStacksStatePtrOutput() GetStacksStatePtrOutput {
+	return o
+}
+
+func (o GetStacksStatePtrOutput) ToGetStacksStatePtrOutputWithContext(ctx context.Context) GetStacksStatePtrOutput {
+	return o
+}
+
+func (o GetStacksStatePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksState] {
+	return pulumix.Output[*GetStacksState]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksStatePtrOutput) Elem() GetStacksStateOutput {
+	return o.ApplyT(func(v *GetStacksState) GetStacksState {
+		if v != nil {
+			return *v
+		}
+		var ret GetStacksState
+		return ret
+	}).(GetStacksStateOutput)
+}
+
+func (o GetStacksStatePtrOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetStacksState) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AnyOfs
+	}).(pulumi.StringArrayOutput)
+}
+
+type GetStacksVendor struct {
+	AnyOfs []string `pulumi:"anyOfs"`
+}
+
+// GetStacksVendorInput is an input type that accepts GetStacksVendorArgs and GetStacksVendorOutput values.
+// You can construct a concrete instance of `GetStacksVendorInput` via:
+//
+//	GetStacksVendorArgs{...}
+type GetStacksVendorInput interface {
+	pulumi.Input
+
+	ToGetStacksVendorOutput() GetStacksVendorOutput
+	ToGetStacksVendorOutputWithContext(context.Context) GetStacksVendorOutput
+}
+
+type GetStacksVendorArgs struct {
+	AnyOfs pulumi.StringArrayInput `pulumi:"anyOfs"`
+}
+
+func (GetStacksVendorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksVendor)(nil)).Elem()
+}
+
+func (i GetStacksVendorArgs) ToGetStacksVendorOutput() GetStacksVendorOutput {
+	return i.ToGetStacksVendorOutputWithContext(context.Background())
+}
+
+func (i GetStacksVendorArgs) ToGetStacksVendorOutputWithContext(ctx context.Context) GetStacksVendorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksVendorOutput)
+}
+
+func (i GetStacksVendorArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksVendor] {
+	return pulumix.Output[GetStacksVendor]{
+		OutputState: i.ToGetStacksVendorOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i GetStacksVendorArgs) ToGetStacksVendorPtrOutput() GetStacksVendorPtrOutput {
+	return i.ToGetStacksVendorPtrOutputWithContext(context.Background())
+}
+
+func (i GetStacksVendorArgs) ToGetStacksVendorPtrOutputWithContext(ctx context.Context) GetStacksVendorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksVendorOutput).ToGetStacksVendorPtrOutputWithContext(ctx)
+}
+
+// GetStacksVendorPtrInput is an input type that accepts GetStacksVendorArgs, GetStacksVendorPtr and GetStacksVendorPtrOutput values.
+// You can construct a concrete instance of `GetStacksVendorPtrInput` via:
+//
+//	        GetStacksVendorArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStacksVendorPtrInput interface {
+	pulumi.Input
+
+	ToGetStacksVendorPtrOutput() GetStacksVendorPtrOutput
+	ToGetStacksVendorPtrOutputWithContext(context.Context) GetStacksVendorPtrOutput
+}
+
+type getStacksVendorPtrType GetStacksVendorArgs
+
+func GetStacksVendorPtr(v *GetStacksVendorArgs) GetStacksVendorPtrInput {
+	return (*getStacksVendorPtrType)(v)
+}
+
+func (*getStacksVendorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksVendor)(nil)).Elem()
+}
+
+func (i *getStacksVendorPtrType) ToGetStacksVendorPtrOutput() GetStacksVendorPtrOutput {
+	return i.ToGetStacksVendorPtrOutputWithContext(context.Background())
+}
+
+func (i *getStacksVendorPtrType) ToGetStacksVendorPtrOutputWithContext(ctx context.Context) GetStacksVendorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksVendorPtrOutput)
+}
+
+func (i *getStacksVendorPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksVendor] {
+	return pulumix.Output[*GetStacksVendor]{
+		OutputState: i.ToGetStacksVendorPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksVendorOutput struct{ *pulumi.OutputState }
+
+func (GetStacksVendorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksVendor)(nil)).Elem()
+}
+
+func (o GetStacksVendorOutput) ToGetStacksVendorOutput() GetStacksVendorOutput {
+	return o
+}
+
+func (o GetStacksVendorOutput) ToGetStacksVendorOutputWithContext(ctx context.Context) GetStacksVendorOutput {
+	return o
+}
+
+func (o GetStacksVendorOutput) ToGetStacksVendorPtrOutput() GetStacksVendorPtrOutput {
+	return o.ToGetStacksVendorPtrOutputWithContext(context.Background())
+}
+
+func (o GetStacksVendorOutput) ToGetStacksVendorPtrOutputWithContext(ctx context.Context) GetStacksVendorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStacksVendor) *GetStacksVendor {
+		return &v
+	}).(GetStacksVendorPtrOutput)
+}
+
+func (o GetStacksVendorOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksVendor] {
+	return pulumix.Output[GetStacksVendor]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksVendorOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksVendor) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
+}
+
+type GetStacksVendorPtrOutput struct{ *pulumi.OutputState }
+
+func (GetStacksVendorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksVendor)(nil)).Elem()
+}
+
+func (o GetStacksVendorPtrOutput) ToGetStacksVendorPtrOutput() GetStacksVendorPtrOutput {
+	return o
+}
+
+func (o GetStacksVendorPtrOutput) ToGetStacksVendorPtrOutputWithContext(ctx context.Context) GetStacksVendorPtrOutput {
+	return o
+}
+
+func (o GetStacksVendorPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksVendor] {
+	return pulumix.Output[*GetStacksVendor]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksVendorPtrOutput) Elem() GetStacksVendorOutput {
+	return o.ApplyT(func(v *GetStacksVendor) GetStacksVendor {
+		if v != nil {
+			return *v
+		}
+		var ret GetStacksVendor
+		return ret
+	}).(GetStacksVendorOutput)
+}
+
+func (o GetStacksVendorPtrOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetStacksVendor) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AnyOfs
+	}).(pulumi.StringArrayOutput)
+}
+
+type GetStacksWorkerPool struct {
+	AnyOfs []string `pulumi:"anyOfs"`
+}
+
+// GetStacksWorkerPoolInput is an input type that accepts GetStacksWorkerPoolArgs and GetStacksWorkerPoolOutput values.
+// You can construct a concrete instance of `GetStacksWorkerPoolInput` via:
+//
+//	GetStacksWorkerPoolArgs{...}
+type GetStacksWorkerPoolInput interface {
+	pulumi.Input
+
+	ToGetStacksWorkerPoolOutput() GetStacksWorkerPoolOutput
+	ToGetStacksWorkerPoolOutputWithContext(context.Context) GetStacksWorkerPoolOutput
+}
+
+type GetStacksWorkerPoolArgs struct {
+	AnyOfs pulumi.StringArrayInput `pulumi:"anyOfs"`
+}
+
+func (GetStacksWorkerPoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksWorkerPool)(nil)).Elem()
+}
+
+func (i GetStacksWorkerPoolArgs) ToGetStacksWorkerPoolOutput() GetStacksWorkerPoolOutput {
+	return i.ToGetStacksWorkerPoolOutputWithContext(context.Background())
+}
+
+func (i GetStacksWorkerPoolArgs) ToGetStacksWorkerPoolOutputWithContext(ctx context.Context) GetStacksWorkerPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksWorkerPoolOutput)
+}
+
+func (i GetStacksWorkerPoolArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksWorkerPool] {
+	return pulumix.Output[GetStacksWorkerPool]{
+		OutputState: i.ToGetStacksWorkerPoolOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i GetStacksWorkerPoolArgs) ToGetStacksWorkerPoolPtrOutput() GetStacksWorkerPoolPtrOutput {
+	return i.ToGetStacksWorkerPoolPtrOutputWithContext(context.Background())
+}
+
+func (i GetStacksWorkerPoolArgs) ToGetStacksWorkerPoolPtrOutputWithContext(ctx context.Context) GetStacksWorkerPoolPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksWorkerPoolOutput).ToGetStacksWorkerPoolPtrOutputWithContext(ctx)
+}
+
+// GetStacksWorkerPoolPtrInput is an input type that accepts GetStacksWorkerPoolArgs, GetStacksWorkerPoolPtr and GetStacksWorkerPoolPtrOutput values.
+// You can construct a concrete instance of `GetStacksWorkerPoolPtrInput` via:
+//
+//	        GetStacksWorkerPoolArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStacksWorkerPoolPtrInput interface {
+	pulumi.Input
+
+	ToGetStacksWorkerPoolPtrOutput() GetStacksWorkerPoolPtrOutput
+	ToGetStacksWorkerPoolPtrOutputWithContext(context.Context) GetStacksWorkerPoolPtrOutput
+}
+
+type getStacksWorkerPoolPtrType GetStacksWorkerPoolArgs
+
+func GetStacksWorkerPoolPtr(v *GetStacksWorkerPoolArgs) GetStacksWorkerPoolPtrInput {
+	return (*getStacksWorkerPoolPtrType)(v)
+}
+
+func (*getStacksWorkerPoolPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksWorkerPool)(nil)).Elem()
+}
+
+func (i *getStacksWorkerPoolPtrType) ToGetStacksWorkerPoolPtrOutput() GetStacksWorkerPoolPtrOutput {
+	return i.ToGetStacksWorkerPoolPtrOutputWithContext(context.Background())
+}
+
+func (i *getStacksWorkerPoolPtrType) ToGetStacksWorkerPoolPtrOutputWithContext(ctx context.Context) GetStacksWorkerPoolPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStacksWorkerPoolPtrOutput)
+}
+
+func (i *getStacksWorkerPoolPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksWorkerPool] {
+	return pulumix.Output[*GetStacksWorkerPool]{
+		OutputState: i.ToGetStacksWorkerPoolPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetStacksWorkerPoolOutput struct{ *pulumi.OutputState }
+
+func (GetStacksWorkerPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStacksWorkerPool)(nil)).Elem()
+}
+
+func (o GetStacksWorkerPoolOutput) ToGetStacksWorkerPoolOutput() GetStacksWorkerPoolOutput {
+	return o
+}
+
+func (o GetStacksWorkerPoolOutput) ToGetStacksWorkerPoolOutputWithContext(ctx context.Context) GetStacksWorkerPoolOutput {
+	return o
+}
+
+func (o GetStacksWorkerPoolOutput) ToGetStacksWorkerPoolPtrOutput() GetStacksWorkerPoolPtrOutput {
+	return o.ToGetStacksWorkerPoolPtrOutputWithContext(context.Background())
+}
+
+func (o GetStacksWorkerPoolOutput) ToGetStacksWorkerPoolPtrOutputWithContext(ctx context.Context) GetStacksWorkerPoolPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStacksWorkerPool) *GetStacksWorkerPool {
+		return &v
+	}).(GetStacksWorkerPoolPtrOutput)
+}
+
+func (o GetStacksWorkerPoolOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksWorkerPool] {
+	return pulumix.Output[GetStacksWorkerPool]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksWorkerPoolOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksWorkerPool) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
+}
+
+type GetStacksWorkerPoolPtrOutput struct{ *pulumi.OutputState }
+
+func (GetStacksWorkerPoolPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStacksWorkerPool)(nil)).Elem()
+}
+
+func (o GetStacksWorkerPoolPtrOutput) ToGetStacksWorkerPoolPtrOutput() GetStacksWorkerPoolPtrOutput {
+	return o
+}
+
+func (o GetStacksWorkerPoolPtrOutput) ToGetStacksWorkerPoolPtrOutputWithContext(ctx context.Context) GetStacksWorkerPoolPtrOutput {
+	return o
+}
+
+func (o GetStacksWorkerPoolPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksWorkerPool] {
+	return pulumix.Output[*GetStacksWorkerPool]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetStacksWorkerPoolPtrOutput) Elem() GetStacksWorkerPoolOutput {
+	return o.ApplyT(func(v *GetStacksWorkerPool) GetStacksWorkerPool {
+		if v != nil {
+			return *v
+		}
+		var ret GetStacksWorkerPool
+		return ret
+	}).(GetStacksWorkerPoolOutput)
+}
+
+func (o GetStacksWorkerPoolPtrOutput) AnyOfs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetStacksWorkerPool) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AnyOfs
+	}).(pulumi.StringArrayOutput)
 }
 
 type GetVcsAgentPoolsVcsAgentPool struct {
@@ -3733,6 +9409,12 @@ func (i GetVcsAgentPoolsVcsAgentPoolArgs) ToGetVcsAgentPoolsVcsAgentPoolOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(GetVcsAgentPoolsVcsAgentPoolOutput)
 }
 
+func (i GetVcsAgentPoolsVcsAgentPoolArgs) ToOutput(ctx context.Context) pulumix.Output[GetVcsAgentPoolsVcsAgentPool] {
+	return pulumix.Output[GetVcsAgentPoolsVcsAgentPool]{
+		OutputState: i.ToGetVcsAgentPoolsVcsAgentPoolOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetVcsAgentPoolsVcsAgentPoolArrayInput is an input type that accepts GetVcsAgentPoolsVcsAgentPoolArray and GetVcsAgentPoolsVcsAgentPoolArrayOutput values.
 // You can construct a concrete instance of `GetVcsAgentPoolsVcsAgentPoolArrayInput` via:
 //
@@ -3758,6 +9440,12 @@ func (i GetVcsAgentPoolsVcsAgentPoolArray) ToGetVcsAgentPoolsVcsAgentPoolArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(GetVcsAgentPoolsVcsAgentPoolArrayOutput)
 }
 
+func (i GetVcsAgentPoolsVcsAgentPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]GetVcsAgentPoolsVcsAgentPool] {
+	return pulumix.Output[[]GetVcsAgentPoolsVcsAgentPool]{
+		OutputState: i.ToGetVcsAgentPoolsVcsAgentPoolArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetVcsAgentPoolsVcsAgentPoolOutput struct{ *pulumi.OutputState }
 
 func (GetVcsAgentPoolsVcsAgentPoolOutput) ElementType() reflect.Type {
@@ -3770,6 +9458,12 @@ func (o GetVcsAgentPoolsVcsAgentPoolOutput) ToGetVcsAgentPoolsVcsAgentPoolOutput
 
 func (o GetVcsAgentPoolsVcsAgentPoolOutput) ToGetVcsAgentPoolsVcsAgentPoolOutputWithContext(ctx context.Context) GetVcsAgentPoolsVcsAgentPoolOutput {
 	return o
+}
+
+func (o GetVcsAgentPoolsVcsAgentPoolOutput) ToOutput(ctx context.Context) pulumix.Output[GetVcsAgentPoolsVcsAgentPool] {
+	return pulumix.Output[GetVcsAgentPoolsVcsAgentPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetVcsAgentPoolsVcsAgentPoolOutput) Description() pulumi.StringOutput {
@@ -3796,6 +9490,12 @@ func (o GetVcsAgentPoolsVcsAgentPoolArrayOutput) ToGetVcsAgentPoolsVcsAgentPoolA
 
 func (o GetVcsAgentPoolsVcsAgentPoolArrayOutput) ToGetVcsAgentPoolsVcsAgentPoolArrayOutputWithContext(ctx context.Context) GetVcsAgentPoolsVcsAgentPoolArrayOutput {
 	return o
+}
+
+func (o GetVcsAgentPoolsVcsAgentPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetVcsAgentPoolsVcsAgentPool] {
+	return pulumix.Output[[]GetVcsAgentPoolsVcsAgentPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetVcsAgentPoolsVcsAgentPoolArrayOutput) Index(i pulumi.IntInput) GetVcsAgentPoolsVcsAgentPoolOutput {
@@ -3843,6 +9543,12 @@ func (i GetWorkerPoolsWorkerPoolArgs) ToGetWorkerPoolsWorkerPoolOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetWorkerPoolsWorkerPoolOutput)
 }
 
+func (i GetWorkerPoolsWorkerPoolArgs) ToOutput(ctx context.Context) pulumix.Output[GetWorkerPoolsWorkerPool] {
+	return pulumix.Output[GetWorkerPoolsWorkerPool]{
+		OutputState: i.ToGetWorkerPoolsWorkerPoolOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetWorkerPoolsWorkerPoolArrayInput is an input type that accepts GetWorkerPoolsWorkerPoolArray and GetWorkerPoolsWorkerPoolArrayOutput values.
 // You can construct a concrete instance of `GetWorkerPoolsWorkerPoolArrayInput` via:
 //
@@ -3868,6 +9574,12 @@ func (i GetWorkerPoolsWorkerPoolArray) ToGetWorkerPoolsWorkerPoolArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetWorkerPoolsWorkerPoolArrayOutput)
 }
 
+func (i GetWorkerPoolsWorkerPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]GetWorkerPoolsWorkerPool] {
+	return pulumix.Output[[]GetWorkerPoolsWorkerPool]{
+		OutputState: i.ToGetWorkerPoolsWorkerPoolArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetWorkerPoolsWorkerPoolOutput struct{ *pulumi.OutputState }
 
 func (GetWorkerPoolsWorkerPoolOutput) ElementType() reflect.Type {
@@ -3880,6 +9592,12 @@ func (o GetWorkerPoolsWorkerPoolOutput) ToGetWorkerPoolsWorkerPoolOutput() GetWo
 
 func (o GetWorkerPoolsWorkerPoolOutput) ToGetWorkerPoolsWorkerPoolOutputWithContext(ctx context.Context) GetWorkerPoolsWorkerPoolOutput {
 	return o
+}
+
+func (o GetWorkerPoolsWorkerPoolOutput) ToOutput(ctx context.Context) pulumix.Output[GetWorkerPoolsWorkerPool] {
+	return pulumix.Output[GetWorkerPoolsWorkerPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetWorkerPoolsWorkerPoolOutput) Config() pulumi.StringOutput {
@@ -3916,6 +9634,12 @@ func (o GetWorkerPoolsWorkerPoolArrayOutput) ToGetWorkerPoolsWorkerPoolArrayOutp
 	return o
 }
 
+func (o GetWorkerPoolsWorkerPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetWorkerPoolsWorkerPool] {
+	return pulumix.Output[[]GetWorkerPoolsWorkerPool]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetWorkerPoolsWorkerPoolArrayOutput) Index(i pulumi.IntInput) GetWorkerPoolsWorkerPoolOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWorkerPoolsWorkerPool {
 		return vs[0].([]GetWorkerPoolsWorkerPool)[vs[1].(int)]
@@ -3923,6 +9647,8 @@ func (o GetWorkerPoolsWorkerPoolArrayOutput) Index(i pulumi.IntInput) GetWorkerP
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IdpGroupMappingPolicyInput)(nil)).Elem(), IdpGroupMappingPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IdpGroupMappingPolicyArrayInput)(nil)).Elem(), IdpGroupMappingPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ModuleAzureDevopsInput)(nil)).Elem(), ModuleAzureDevopsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ModuleAzureDevopsPtrInput)(nil)).Elem(), ModuleAzureDevopsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ModuleBitbucketCloudInput)(nil)).Elem(), ModuleBitbucketCloudArgs{})
@@ -3951,8 +9677,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StackKubernetesPtrInput)(nil)).Elem(), StackKubernetesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StackPulumiInput)(nil)).Elem(), StackPulumiArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StackPulumiPtrInput)(nil)).Elem(), StackPulumiArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StackRawGitInput)(nil)).Elem(), StackRawGitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StackRawGitPtrInput)(nil)).Elem(), StackRawGitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StackShowcaseInput)(nil)).Elem(), StackShowcaseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StackShowcasePtrInput)(nil)).Elem(), StackShowcaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StackTerragruntInput)(nil)).Elem(), StackTerragruntArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StackTerragruntPtrInput)(nil)).Elem(), StackTerragruntArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPolicyInput)(nil)).Elem(), UserPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPolicyArrayInput)(nil)).Elem(), UserPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsIntegrationsIntegrationInput)(nil)).Elem(), GetAwsIntegrationsIntegrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAwsIntegrationsIntegrationArrayInput)(nil)).Elem(), GetAwsIntegrationsIntegrationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAzureIntegrationsIntegrationInput)(nil)).Elem(), GetAzureIntegrationsIntegrationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAzureIntegrationsIntegrationArrayInput)(nil)).Elem(), GetAzureIntegrationsIntegrationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContextsContextInput)(nil)).Elem(), GetContextsContextArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContextsContextArrayInput)(nil)).Elem(), GetContextsContextArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContextsLabelInput)(nil)).Elem(), GetContextsLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContextsLabelArrayInput)(nil)).Elem(), GetContextsLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetModuleAzureDevopInput)(nil)).Elem(), GetModuleAzureDevopArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetModuleAzureDevopArrayInput)(nil)).Elem(), GetModuleAzureDevopArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetModuleBitbucketCloudInput)(nil)).Elem(), GetModuleBitbucketCloudArgs{})
@@ -3965,6 +9705,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetModuleGitlabArrayInput)(nil)).Elem(), GetModuleGitlabArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoliciesPolicyInput)(nil)).Elem(), GetPoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoliciesPolicyArrayInput)(nil)).Elem(), GetPoliciesPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpacesSpaceInput)(nil)).Elem(), GetSpacesSpaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSpacesSpaceArrayInput)(nil)).Elem(), GetSpacesSpaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackAnsibleInput)(nil)).Elem(), GetStackAnsibleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackAnsibleArrayInput)(nil)).Elem(), GetStackAnsibleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackAzureDevopInput)(nil)).Elem(), GetStackAzureDevopArgs{})
@@ -3983,12 +9725,62 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackKuberneteArrayInput)(nil)).Elem(), GetStackKuberneteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackPulumiInput)(nil)).Elem(), GetStackPulumiArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackPulumiArrayInput)(nil)).Elem(), GetStackPulumiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStackRawGitInput)(nil)).Elem(), GetStackRawGitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStackRawGitArrayInput)(nil)).Elem(), GetStackRawGitArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackShowcaseInput)(nil)).Elem(), GetStackShowcaseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStackShowcaseArrayInput)(nil)).Elem(), GetStackShowcaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksAdministrativeInput)(nil)).Elem(), GetStacksAdministrativeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksAdministrativePtrInput)(nil)).Elem(), GetStacksAdministrativeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksBranchInput)(nil)).Elem(), GetStacksBranchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksBranchPtrInput)(nil)).Elem(), GetStacksBranchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksCommitInput)(nil)).Elem(), GetStacksCommitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksCommitPtrInput)(nil)).Elem(), GetStacksCommitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksLabelInput)(nil)).Elem(), GetStacksLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksLabelArrayInput)(nil)).Elem(), GetStacksLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksLockedInput)(nil)).Elem(), GetStacksLockedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksLockedPtrInput)(nil)).Elem(), GetStacksLockedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksNameInput)(nil)).Elem(), GetStacksNameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksNamePtrInput)(nil)).Elem(), GetStacksNameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksProjectRootInput)(nil)).Elem(), GetStacksProjectRootArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksProjectRootPtrInput)(nil)).Elem(), GetStacksProjectRootArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksRepositoryInput)(nil)).Elem(), GetStacksRepositoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksRepositoryPtrInput)(nil)).Elem(), GetStacksRepositoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackInput)(nil)).Elem(), GetStacksStackArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackArrayInput)(nil)).Elem(), GetStacksStackArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackAnsibleInput)(nil)).Elem(), GetStacksStackAnsibleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackAnsibleArrayInput)(nil)).Elem(), GetStacksStackAnsibleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackAzureDevopInput)(nil)).Elem(), GetStacksStackAzureDevopArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackAzureDevopArrayInput)(nil)).Elem(), GetStacksStackAzureDevopArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackBitbucketCloudInput)(nil)).Elem(), GetStacksStackBitbucketCloudArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackBitbucketCloudArrayInput)(nil)).Elem(), GetStacksStackBitbucketCloudArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackBitbucketDatacenterInput)(nil)).Elem(), GetStacksStackBitbucketDatacenterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackBitbucketDatacenterArrayInput)(nil)).Elem(), GetStacksStackBitbucketDatacenterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackCloudformationInput)(nil)).Elem(), GetStacksStackCloudformationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackCloudformationArrayInput)(nil)).Elem(), GetStacksStackCloudformationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackGithubEnterpriseInput)(nil)).Elem(), GetStacksStackGithubEnterpriseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackGithubEnterpriseArrayInput)(nil)).Elem(), GetStacksStackGithubEnterpriseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackGitlabInput)(nil)).Elem(), GetStacksStackGitlabArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackGitlabArrayInput)(nil)).Elem(), GetStacksStackGitlabArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackKuberneteInput)(nil)).Elem(), GetStacksStackKuberneteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackKuberneteArrayInput)(nil)).Elem(), GetStacksStackKuberneteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackPulumiInput)(nil)).Elem(), GetStacksStackPulumiArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackPulumiArrayInput)(nil)).Elem(), GetStacksStackPulumiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackRawGitInput)(nil)).Elem(), GetStacksStackRawGitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackRawGitArrayInput)(nil)).Elem(), GetStacksStackRawGitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackShowcaseInput)(nil)).Elem(), GetStacksStackShowcaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStackShowcaseArrayInput)(nil)).Elem(), GetStacksStackShowcaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStateInput)(nil)).Elem(), GetStacksStateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksStatePtrInput)(nil)).Elem(), GetStacksStateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksVendorInput)(nil)).Elem(), GetStacksVendorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksVendorPtrInput)(nil)).Elem(), GetStacksVendorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksWorkerPoolInput)(nil)).Elem(), GetStacksWorkerPoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStacksWorkerPoolPtrInput)(nil)).Elem(), GetStacksWorkerPoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVcsAgentPoolsVcsAgentPoolInput)(nil)).Elem(), GetVcsAgentPoolsVcsAgentPoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVcsAgentPoolsVcsAgentPoolArrayInput)(nil)).Elem(), GetVcsAgentPoolsVcsAgentPoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkerPoolsWorkerPoolInput)(nil)).Elem(), GetWorkerPoolsWorkerPoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkerPoolsWorkerPoolArrayInput)(nil)).Elem(), GetWorkerPoolsWorkerPoolArray{})
+	pulumi.RegisterOutputType(IdpGroupMappingPolicyOutput{})
+	pulumi.RegisterOutputType(IdpGroupMappingPolicyArrayOutput{})
 	pulumi.RegisterOutputType(ModuleAzureDevopsOutput{})
 	pulumi.RegisterOutputType(ModuleAzureDevopsPtrOutput{})
 	pulumi.RegisterOutputType(ModuleBitbucketCloudOutput{})
@@ -4017,8 +9809,22 @@ func init() {
 	pulumi.RegisterOutputType(StackKubernetesPtrOutput{})
 	pulumi.RegisterOutputType(StackPulumiOutput{})
 	pulumi.RegisterOutputType(StackPulumiPtrOutput{})
+	pulumi.RegisterOutputType(StackRawGitOutput{})
+	pulumi.RegisterOutputType(StackRawGitPtrOutput{})
 	pulumi.RegisterOutputType(StackShowcaseOutput{})
 	pulumi.RegisterOutputType(StackShowcasePtrOutput{})
+	pulumi.RegisterOutputType(StackTerragruntOutput{})
+	pulumi.RegisterOutputType(StackTerragruntPtrOutput{})
+	pulumi.RegisterOutputType(UserPolicyOutput{})
+	pulumi.RegisterOutputType(UserPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetAwsIntegrationsIntegrationOutput{})
+	pulumi.RegisterOutputType(GetAwsIntegrationsIntegrationArrayOutput{})
+	pulumi.RegisterOutputType(GetAzureIntegrationsIntegrationOutput{})
+	pulumi.RegisterOutputType(GetAzureIntegrationsIntegrationArrayOutput{})
+	pulumi.RegisterOutputType(GetContextsContextOutput{})
+	pulumi.RegisterOutputType(GetContextsContextArrayOutput{})
+	pulumi.RegisterOutputType(GetContextsLabelOutput{})
+	pulumi.RegisterOutputType(GetContextsLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetModuleAzureDevopOutput{})
 	pulumi.RegisterOutputType(GetModuleAzureDevopArrayOutput{})
 	pulumi.RegisterOutputType(GetModuleBitbucketCloudOutput{})
@@ -4031,6 +9837,8 @@ func init() {
 	pulumi.RegisterOutputType(GetModuleGitlabArrayOutput{})
 	pulumi.RegisterOutputType(GetPoliciesPolicyOutput{})
 	pulumi.RegisterOutputType(GetPoliciesPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetSpacesSpaceOutput{})
+	pulumi.RegisterOutputType(GetSpacesSpaceArrayOutput{})
 	pulumi.RegisterOutputType(GetStackAnsibleOutput{})
 	pulumi.RegisterOutputType(GetStackAnsibleArrayOutput{})
 	pulumi.RegisterOutputType(GetStackAzureDevopOutput{})
@@ -4049,8 +9857,56 @@ func init() {
 	pulumi.RegisterOutputType(GetStackKuberneteArrayOutput{})
 	pulumi.RegisterOutputType(GetStackPulumiOutput{})
 	pulumi.RegisterOutputType(GetStackPulumiArrayOutput{})
+	pulumi.RegisterOutputType(GetStackRawGitOutput{})
+	pulumi.RegisterOutputType(GetStackRawGitArrayOutput{})
 	pulumi.RegisterOutputType(GetStackShowcaseOutput{})
 	pulumi.RegisterOutputType(GetStackShowcaseArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksAdministrativeOutput{})
+	pulumi.RegisterOutputType(GetStacksAdministrativePtrOutput{})
+	pulumi.RegisterOutputType(GetStacksBranchOutput{})
+	pulumi.RegisterOutputType(GetStacksBranchPtrOutput{})
+	pulumi.RegisterOutputType(GetStacksCommitOutput{})
+	pulumi.RegisterOutputType(GetStacksCommitPtrOutput{})
+	pulumi.RegisterOutputType(GetStacksLabelOutput{})
+	pulumi.RegisterOutputType(GetStacksLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksLockedOutput{})
+	pulumi.RegisterOutputType(GetStacksLockedPtrOutput{})
+	pulumi.RegisterOutputType(GetStacksNameOutput{})
+	pulumi.RegisterOutputType(GetStacksNamePtrOutput{})
+	pulumi.RegisterOutputType(GetStacksProjectRootOutput{})
+	pulumi.RegisterOutputType(GetStacksProjectRootPtrOutput{})
+	pulumi.RegisterOutputType(GetStacksRepositoryOutput{})
+	pulumi.RegisterOutputType(GetStacksRepositoryPtrOutput{})
+	pulumi.RegisterOutputType(GetStacksStackOutput{})
+	pulumi.RegisterOutputType(GetStacksStackArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackAnsibleOutput{})
+	pulumi.RegisterOutputType(GetStacksStackAnsibleArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackAzureDevopOutput{})
+	pulumi.RegisterOutputType(GetStacksStackAzureDevopArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackBitbucketCloudOutput{})
+	pulumi.RegisterOutputType(GetStacksStackBitbucketCloudArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackBitbucketDatacenterOutput{})
+	pulumi.RegisterOutputType(GetStacksStackBitbucketDatacenterArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackCloudformationOutput{})
+	pulumi.RegisterOutputType(GetStacksStackCloudformationArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackGithubEnterpriseOutput{})
+	pulumi.RegisterOutputType(GetStacksStackGithubEnterpriseArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackGitlabOutput{})
+	pulumi.RegisterOutputType(GetStacksStackGitlabArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackKuberneteOutput{})
+	pulumi.RegisterOutputType(GetStacksStackKuberneteArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackPulumiOutput{})
+	pulumi.RegisterOutputType(GetStacksStackPulumiArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackRawGitOutput{})
+	pulumi.RegisterOutputType(GetStacksStackRawGitArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStackShowcaseOutput{})
+	pulumi.RegisterOutputType(GetStacksStackShowcaseArrayOutput{})
+	pulumi.RegisterOutputType(GetStacksStateOutput{})
+	pulumi.RegisterOutputType(GetStacksStatePtrOutput{})
+	pulumi.RegisterOutputType(GetStacksVendorOutput{})
+	pulumi.RegisterOutputType(GetStacksVendorPtrOutput{})
+	pulumi.RegisterOutputType(GetStacksWorkerPoolOutput{})
+	pulumi.RegisterOutputType(GetStacksWorkerPoolPtrOutput{})
 	pulumi.RegisterOutputType(GetVcsAgentPoolsVcsAgentPoolOutput{})
 	pulumi.RegisterOutputType(GetVcsAgentPoolsVcsAgentPoolArrayOutput{})
 	pulumi.RegisterOutputType(GetWorkerPoolsWorkerPoolOutput{})

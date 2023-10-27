@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `DriftDetection` represents a Drift Detection configuration for a Stack. It will trigger a proposed run on the given schedule, which you can listen for using run state webhooks. If reconcile is true, then a tracked run will be triggered when drift is detected.
@@ -20,13 +22,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupDriftDetection(ctx, &GetDriftDetectionArgs{
+//			_, err := spacelift.LookupDriftDetection(ctx, &spacelift.LookupDriftDetectionArgs{
 //				StackId: "core-infra-production",
 //			}, nil)
 //			if err != nil {
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupDriftDetection(ctx *pulumi.Context, args *LookupDriftDetectionArgs, opts ...pulumi.InvokeOption) (*LookupDriftDetectionResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDriftDetectionResult
 	err := ctx.Invoke("spacelift:index/getDriftDetection:getDriftDetection", args, &rv, opts...)
 	if err != nil {
@@ -49,6 +51,8 @@ func LookupDriftDetection(ctx *pulumi.Context, args *LookupDriftDetectionArgs, o
 
 // A collection of arguments for invoking getDriftDetection.
 type LookupDriftDetectionArgs struct {
+	// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+	IgnoreState *bool `pulumi:"ignoreState"`
 	// ID of the stack for which to set up drift detection
 	StackId string `pulumi:"stackId"`
 }
@@ -57,6 +61,8 @@ type LookupDriftDetectionArgs struct {
 type LookupDriftDetectionResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+	IgnoreState *bool `pulumi:"ignoreState"`
 	// Whether a tracked run should be triggered when drift is detected.
 	Reconcile bool `pulumi:"reconcile"`
 	// List of cron schedule expressions based on which drift detection should be triggered.
@@ -82,6 +88,8 @@ func LookupDriftDetectionOutput(ctx *pulumi.Context, args LookupDriftDetectionOu
 
 // A collection of arguments for invoking getDriftDetection.
 type LookupDriftDetectionOutputArgs struct {
+	// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+	IgnoreState pulumi.BoolPtrInput `pulumi:"ignoreState"`
 	// ID of the stack for which to set up drift detection
 	StackId pulumi.StringInput `pulumi:"stackId"`
 }
@@ -105,9 +113,20 @@ func (o LookupDriftDetectionResultOutput) ToLookupDriftDetectionResultOutputWith
 	return o
 }
 
+func (o LookupDriftDetectionResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDriftDetectionResult] {
+	return pulumix.Output[LookupDriftDetectionResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupDriftDetectionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDriftDetectionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+func (o LookupDriftDetectionResultOutput) IgnoreState() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupDriftDetectionResult) *bool { return v.IgnoreState }).(pulumi.BoolPtrOutput)
 }
 
 // Whether a tracked run should be triggered when drift is detected.

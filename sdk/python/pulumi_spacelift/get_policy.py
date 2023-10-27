@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -137,13 +137,13 @@ def get_policy(policy_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getPolicy:getPolicy', __args__, opts=opts, typ=GetPolicyResult).value
 
     return AwaitableGetPolicyResult(
-        body=__ret__.body,
-        id=__ret__.id,
-        labels=__ret__.labels,
-        name=__ret__.name,
-        policy_id=__ret__.policy_id,
-        space_id=__ret__.space_id,
-        type=__ret__.type)
+        body=pulumi.get(__ret__, 'body'),
+        id=pulumi.get(__ret__, 'id'),
+        labels=pulumi.get(__ret__, 'labels'),
+        name=pulumi.get(__ret__, 'name'),
+        policy_id=pulumi.get(__ret__, 'policy_id'),
+        space_id=pulumi.get(__ret__, 'space_id'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_policy)

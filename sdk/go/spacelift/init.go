@@ -8,6 +8,7 @@ import (
 
 	"github.com/blang/semver"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 type module struct {
@@ -30,6 +31,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AzureIntegration{}
 	case "spacelift:index/azureIntegrationAttachment:AzureIntegrationAttachment":
 		r = &AzureIntegrationAttachment{}
+	case "spacelift:index/blueprint:Blueprint":
+		r = &Blueprint{}
 	case "spacelift:index/context:Context":
 		r = &Context{}
 	case "spacelift:index/contextAttachment:ContextAttachment":
@@ -40,28 +43,50 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &EnvironmentVariable{}
 	case "spacelift:index/gcpServiceAccount:GcpServiceAccount":
 		r = &GcpServiceAccount{}
+	case "spacelift:index/idpGroupMapping:IdpGroupMapping":
+		r = &IdpGroupMapping{}
 	case "spacelift:index/module:Module":
 		r = &Module{}
 	case "spacelift:index/mountedfile:Mountedfile":
 		r = &Mountedfile{}
+	case "spacelift:index/namedWebhook:NamedWebhook":
+		r = &NamedWebhook{}
+	case "spacelift:index/namedWebhookSecretHeader:NamedWebhookSecretHeader":
+		r = &NamedWebhookSecretHeader{}
 	case "spacelift:index/policy:Policy":
 		r = &Policy{}
 	case "spacelift:index/policyAttachment:PolicyAttachment":
 		r = &PolicyAttachment{}
 	case "spacelift:index/run:Run":
 		r = &Run{}
+	case "spacelift:index/scheduledDeleteTask:ScheduledDeleteTask":
+		r = &ScheduledDeleteTask{}
+	case "spacelift:index/scheduledTask:ScheduledTask":
+		r = &ScheduledTask{}
 	case "spacelift:index/space:Space":
 		r = &Space{}
 	case "spacelift:index/stack:Stack":
 		r = &Stack{}
+	case "spacelift:index/stackActivator:StackActivator":
+		r = &StackActivator{}
 	case "spacelift:index/stackAwsRole:StackAwsRole":
 		r = &StackAwsRole{}
+	case "spacelift:index/stackDependency:StackDependency":
+		r = &StackDependency{}
+	case "spacelift:index/stackDependencyReference:StackDependencyReference":
+		r = &StackDependencyReference{}
 	case "spacelift:index/stackDestructor:StackDestructor":
 		r = &StackDestructor{}
 	case "spacelift:index/stackGcpServiceAccount:StackGcpServiceAccount":
 		r = &StackGcpServiceAccount{}
+	case "spacelift:index/terraformProvider:TerraformProvider":
+		r = &TerraformProvider{}
+	case "spacelift:index/user:User":
+		r = &User{}
 	case "spacelift:index/vcsAgentPool:VcsAgentPool":
 		r = &VcsAgentPool{}
+	case "spacelift:index/version:Version":
+		r = &Version{}
 	case "spacelift:index/webhook:Webhook":
 		r = &Webhook{}
 	case "spacelift:index/workerPool:WorkerPool":
@@ -93,7 +118,10 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 }
 
 func init() {
-	version, _ := PkgVersion()
+	version, err := internal.PkgVersion()
+	if err != nil {
+		version = semver.Version{Major: 1}
+	}
 	pulumi.RegisterResourceModule(
 		"spacelift",
 		"index/awsIntegration",
@@ -117,6 +145,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"spacelift",
 		"index/azureIntegrationAttachment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/blueprint",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -146,12 +179,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"spacelift",
+		"index/idpGroupMapping",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
 		"index/module",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"spacelift",
 		"index/mountedfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/namedWebhook",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/namedWebhookSecretHeader",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -171,6 +219,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"spacelift",
+		"index/scheduledDeleteTask",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/scheduledTask",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
 		"index/space",
 		&module{version},
 	)
@@ -181,7 +239,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"spacelift",
+		"index/stackActivator",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
 		"index/stackAwsRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/stackDependency",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/stackDependencyReference",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -196,7 +269,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"spacelift",
+		"index/terraformProvider",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/user",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
 		"index/vcsAgentPool",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/version",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

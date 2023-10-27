@@ -7,8 +7,9 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `EnvironmentVariable` defines an environment variable on the context (`Context`), stack (`Stack`) or a module (`Module`), thereby allowing to pass and share various secrets and configuration with Spacelift stacks.
@@ -21,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -89,9 +90,9 @@ type EnvironmentVariable struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ID of the stack on which the environment variable is defined
 	StackId pulumi.StringPtrOutput `pulumi:"stackId"`
-	// Value of the environment variable
-	Value pulumi.StringOutput `pulumi:"value"`
-	// Indicates whether the value can be read back outside a Run. Defaults to `true`.
+	// Value of the environment variable. Defaults to an empty string.
+	Value pulumi.StringPtrOutput `pulumi:"value"`
+	// Indicates whether the value is secret or not. Defaults to `true`.
 	WriteOnly pulumi.BoolPtrOutput `pulumi:"writeOnly"`
 }
 
@@ -99,13 +100,17 @@ type EnvironmentVariable struct {
 func NewEnvironmentVariable(ctx *pulumi.Context,
 	name string, args *EnvironmentVariableArgs, opts ...pulumi.ResourceOption) (*EnvironmentVariable, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &EnvironmentVariableArgs{}
 	}
 
-	if args.Value == nil {
-		return nil, errors.New("invalid value for required argument 'Value'")
+	if args.Value != nil {
+		args.Value = pulumi.ToSecret(args.Value).(pulumi.StringPtrInput)
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"value",
+	})
+	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EnvironmentVariable
 	err := ctx.RegisterResource("spacelift:index/environmentVariable:EnvironmentVariable", name, args, &resource, opts...)
 	if err != nil {
@@ -138,9 +143,9 @@ type environmentVariableState struct {
 	Name *string `pulumi:"name"`
 	// ID of the stack on which the environment variable is defined
 	StackId *string `pulumi:"stackId"`
-	// Value of the environment variable
+	// Value of the environment variable. Defaults to an empty string.
 	Value *string `pulumi:"value"`
-	// Indicates whether the value can be read back outside a Run. Defaults to `true`.
+	// Indicates whether the value is secret or not. Defaults to `true`.
 	WriteOnly *bool `pulumi:"writeOnly"`
 }
 
@@ -155,9 +160,9 @@ type EnvironmentVariableState struct {
 	Name pulumi.StringPtrInput
 	// ID of the stack on which the environment variable is defined
 	StackId pulumi.StringPtrInput
-	// Value of the environment variable
+	// Value of the environment variable. Defaults to an empty string.
 	Value pulumi.StringPtrInput
-	// Indicates whether the value can be read back outside a Run. Defaults to `true`.
+	// Indicates whether the value is secret or not. Defaults to `true`.
 	WriteOnly pulumi.BoolPtrInput
 }
 
@@ -174,9 +179,9 @@ type environmentVariableArgs struct {
 	Name *string `pulumi:"name"`
 	// ID of the stack on which the environment variable is defined
 	StackId *string `pulumi:"stackId"`
-	// Value of the environment variable
-	Value string `pulumi:"value"`
-	// Indicates whether the value can be read back outside a Run. Defaults to `true`.
+	// Value of the environment variable. Defaults to an empty string.
+	Value *string `pulumi:"value"`
+	// Indicates whether the value is secret or not. Defaults to `true`.
 	WriteOnly *bool `pulumi:"writeOnly"`
 }
 
@@ -190,9 +195,9 @@ type EnvironmentVariableArgs struct {
 	Name pulumi.StringPtrInput
 	// ID of the stack on which the environment variable is defined
 	StackId pulumi.StringPtrInput
-	// Value of the environment variable
-	Value pulumi.StringInput
-	// Indicates whether the value can be read back outside a Run. Defaults to `true`.
+	// Value of the environment variable. Defaults to an empty string.
+	Value pulumi.StringPtrInput
+	// Indicates whether the value is secret or not. Defaults to `true`.
 	WriteOnly pulumi.BoolPtrInput
 }
 
@@ -217,6 +222,12 @@ func (i *EnvironmentVariable) ToEnvironmentVariableOutput() EnvironmentVariableO
 
 func (i *EnvironmentVariable) ToEnvironmentVariableOutputWithContext(ctx context.Context) EnvironmentVariableOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentVariableOutput)
+}
+
+func (i *EnvironmentVariable) ToOutput(ctx context.Context) pulumix.Output[*EnvironmentVariable] {
+	return pulumix.Output[*EnvironmentVariable]{
+		OutputState: i.ToEnvironmentVariableOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EnvironmentVariableArrayInput is an input type that accepts EnvironmentVariableArray and EnvironmentVariableArrayOutput values.
@@ -244,6 +255,12 @@ func (i EnvironmentVariableArray) ToEnvironmentVariableArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentVariableArrayOutput)
 }
 
+func (i EnvironmentVariableArray) ToOutput(ctx context.Context) pulumix.Output[[]*EnvironmentVariable] {
+	return pulumix.Output[[]*EnvironmentVariable]{
+		OutputState: i.ToEnvironmentVariableArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EnvironmentVariableMapInput is an input type that accepts EnvironmentVariableMap and EnvironmentVariableMapOutput values.
 // You can construct a concrete instance of `EnvironmentVariableMapInput` via:
 //
@@ -269,6 +286,12 @@ func (i EnvironmentVariableMap) ToEnvironmentVariableMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentVariableMapOutput)
 }
 
+func (i EnvironmentVariableMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EnvironmentVariable] {
+	return pulumix.Output[map[string]*EnvironmentVariable]{
+		OutputState: i.ToEnvironmentVariableMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EnvironmentVariableOutput struct{ *pulumi.OutputState }
 
 func (EnvironmentVariableOutput) ElementType() reflect.Type {
@@ -281,6 +304,12 @@ func (o EnvironmentVariableOutput) ToEnvironmentVariableOutput() EnvironmentVari
 
 func (o EnvironmentVariableOutput) ToEnvironmentVariableOutputWithContext(ctx context.Context) EnvironmentVariableOutput {
 	return o
+}
+
+func (o EnvironmentVariableOutput) ToOutput(ctx context.Context) pulumix.Output[*EnvironmentVariable] {
+	return pulumix.Output[*EnvironmentVariable]{
+		OutputState: o.OutputState,
+	}
 }
 
 // SHA-256 checksum of the value
@@ -308,12 +337,12 @@ func (o EnvironmentVariableOutput) StackId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EnvironmentVariable) pulumi.StringPtrOutput { return v.StackId }).(pulumi.StringPtrOutput)
 }
 
-// Value of the environment variable
-func (o EnvironmentVariableOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v *EnvironmentVariable) pulumi.StringOutput { return v.Value }).(pulumi.StringOutput)
+// Value of the environment variable. Defaults to an empty string.
+func (o EnvironmentVariableOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvironmentVariable) pulumi.StringPtrOutput { return v.Value }).(pulumi.StringPtrOutput)
 }
 
-// Indicates whether the value can be read back outside a Run. Defaults to `true`.
+// Indicates whether the value is secret or not. Defaults to `true`.
 func (o EnvironmentVariableOutput) WriteOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EnvironmentVariable) pulumi.BoolPtrOutput { return v.WriteOnly }).(pulumi.BoolPtrOutput)
 }
@@ -330,6 +359,12 @@ func (o EnvironmentVariableArrayOutput) ToEnvironmentVariableArrayOutput() Envir
 
 func (o EnvironmentVariableArrayOutput) ToEnvironmentVariableArrayOutputWithContext(ctx context.Context) EnvironmentVariableArrayOutput {
 	return o
+}
+
+func (o EnvironmentVariableArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EnvironmentVariable] {
+	return pulumix.Output[[]*EnvironmentVariable]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EnvironmentVariableArrayOutput) Index(i pulumi.IntInput) EnvironmentVariableOutput {
@@ -350,6 +385,12 @@ func (o EnvironmentVariableMapOutput) ToEnvironmentVariableMapOutput() Environme
 
 func (o EnvironmentVariableMapOutput) ToEnvironmentVariableMapOutputWithContext(ctx context.Context) EnvironmentVariableMapOutput {
 	return o
+}
+
+func (o EnvironmentVariableMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EnvironmentVariable] {
+	return pulumix.Output[map[string]*EnvironmentVariable]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EnvironmentVariableMapOutput) MapIndex(k pulumi.StringInput) EnvironmentVariableOutput {

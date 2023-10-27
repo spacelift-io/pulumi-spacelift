@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `WorkerPool` represents a worker pool assigned to the Spacelift account.
@@ -20,14 +22,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupWorkerPool(ctx, &GetWorkerPoolArgs{
-//				WorkerPoolId: "k8s-core",
+//			_, err := spacelift.LookupWorkerPool(ctx, &spacelift.LookupWorkerPoolArgs{
+//				WorkerPoolId: "01G1KTZ4BA86RBN3XNN3YK9EWT",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupWorkerPool(ctx *pulumi.Context, args *LookupWorkerPoolArgs, opts ...pulumi.InvokeOption) (*LookupWorkerPoolResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupWorkerPoolResult
 	err := ctx.Invoke("spacelift:index/getWorkerPool:getWorkerPool", args, &rv, opts...)
 	if err != nil {
@@ -106,6 +108,12 @@ func (o LookupWorkerPoolResultOutput) ToLookupWorkerPoolResultOutput() LookupWor
 
 func (o LookupWorkerPoolResultOutput) ToLookupWorkerPoolResultOutputWithContext(ctx context.Context) LookupWorkerPoolResultOutput {
 	return o
+}
+
+func (o LookupWorkerPoolResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupWorkerPoolResult] {
+	return pulumix.Output[LookupWorkerPoolResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // credentials necessary to connect WorkerPool's workers to the control plane

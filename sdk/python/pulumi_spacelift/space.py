@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['SpaceArgs', 'Space']
@@ -16,23 +16,50 @@ class SpaceArgs:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  inherit_entities: Optional[pulumi.Input[bool]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parent_space_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Space resource.
         :param pulumi.Input[str] description: free-form space description for users
         :param pulumi.Input[bool] inherit_entities: indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] labels: list of labels describing a space
         :param pulumi.Input[str] name: name of the space
         :param pulumi.Input[str] parent_space_id: immutable ID (slug) of parent space. Defaults to `root`.
         """
+        SpaceArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            inherit_entities=inherit_entities,
+            labels=labels,
+            name=name,
+            parent_space_id=parent_space_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             inherit_entities: Optional[pulumi.Input[bool]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             parent_space_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if inherit_entities is None and 'inheritEntities' in kwargs:
+            inherit_entities = kwargs['inheritEntities']
+        if parent_space_id is None and 'parentSpaceId' in kwargs:
+            parent_space_id = kwargs['parentSpaceId']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if inherit_entities is not None:
-            pulumi.set(__self__, "inherit_entities", inherit_entities)
+            _setter("inherit_entities", inherit_entities)
+        if labels is not None:
+            _setter("labels", labels)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if parent_space_id is not None:
-            pulumi.set(__self__, "parent_space_id", parent_space_id)
+            _setter("parent_space_id", parent_space_id)
 
     @property
     @pulumi.getter
@@ -57,6 +84,18 @@ class SpaceArgs:
     @inherit_entities.setter
     def inherit_entities(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "inherit_entities", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        list of labels describing a space
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
 
     @property
     @pulumi.getter
@@ -88,23 +127,50 @@ class _SpaceState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  inherit_entities: Optional[pulumi.Input[bool]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parent_space_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Space resources.
         :param pulumi.Input[str] description: free-form space description for users
         :param pulumi.Input[bool] inherit_entities: indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] labels: list of labels describing a space
         :param pulumi.Input[str] name: name of the space
         :param pulumi.Input[str] parent_space_id: immutable ID (slug) of parent space. Defaults to `root`.
         """
+        _SpaceState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            inherit_entities=inherit_entities,
+            labels=labels,
+            name=name,
+            parent_space_id=parent_space_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             inherit_entities: Optional[pulumi.Input[bool]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             parent_space_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if inherit_entities is None and 'inheritEntities' in kwargs:
+            inherit_entities = kwargs['inheritEntities']
+        if parent_space_id is None and 'parentSpaceId' in kwargs:
+            parent_space_id = kwargs['parentSpaceId']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if inherit_entities is not None:
-            pulumi.set(__self__, "inherit_entities", inherit_entities)
+            _setter("inherit_entities", inherit_entities)
+        if labels is not None:
+            _setter("labels", labels)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if parent_space_id is not None:
-            pulumi.set(__self__, "parent_space_id", parent_space_id)
+            _setter("parent_space_id", parent_space_id)
 
     @property
     @pulumi.getter
@@ -129,6 +195,18 @@ class _SpaceState:
     @inherit_entities.setter
     def inherit_entities(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "inherit_entities", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        list of labels describing a space
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
 
     @property
     @pulumi.getter
@@ -162,6 +240,7 @@ class Space(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  inherit_entities: Optional[pulumi.Input[bool]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parent_space_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -192,6 +271,7 @@ class Space(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: free-form space description for users
         :param pulumi.Input[bool] inherit_entities: indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] labels: list of labels describing a space
         :param pulumi.Input[str] name: name of the space
         :param pulumi.Input[str] parent_space_id: immutable ID (slug) of parent space. Defaults to `root`.
         """
@@ -234,6 +314,10 @@ class Space(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            SpaceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -241,6 +325,7 @@ class Space(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  inherit_entities: Optional[pulumi.Input[bool]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parent_space_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -254,6 +339,7 @@ class Space(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["inherit_entities"] = inherit_entities
+            __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             __props__.__dict__["parent_space_id"] = parent_space_id
         super(Space, __self__).__init__(
@@ -268,6 +354,7 @@ class Space(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
             inherit_entities: Optional[pulumi.Input[bool]] = None,
+            labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             parent_space_id: Optional[pulumi.Input[str]] = None) -> 'Space':
         """
@@ -279,6 +366,7 @@ class Space(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: free-form space description for users
         :param pulumi.Input[bool] inherit_entities: indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] labels: list of labels describing a space
         :param pulumi.Input[str] name: name of the space
         :param pulumi.Input[str] parent_space_id: immutable ID (slug) of parent space. Defaults to `root`.
         """
@@ -288,6 +376,7 @@ class Space(pulumi.CustomResource):
 
         __props__.__dict__["description"] = description
         __props__.__dict__["inherit_entities"] = inherit_entities
+        __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["parent_space_id"] = parent_space_id
         return Space(resource_name, opts=opts, __props__=__props__)
@@ -307,6 +396,14 @@ class Space(pulumi.CustomResource):
         indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
         """
         return pulumi.get(self, "inherit_entities")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        list of labels describing a space
+        """
+        return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter

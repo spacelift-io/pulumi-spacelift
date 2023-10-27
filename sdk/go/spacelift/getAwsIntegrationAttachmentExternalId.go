@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getAwsIntegrationAttachmentExternalId` is used to generate the external ID that would be used for role assumption when an AWS integration is attached to a stack or module.
@@ -20,13 +22,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.GetAwsIntegrationAttachmentExternalId(ctx, &GetAwsIntegrationAttachmentExternalIdArgs{
+//			_, err := spacelift.GetAwsIntegrationAttachmentExternalId(ctx, &spacelift.GetAwsIntegrationAttachmentExternalIdArgs{
 //				IntegrationId: spacelift_aws_integration.This.Id,
 //				StackId:       pulumi.StringRef("my-stack-id"),
 //				Read:          pulumi.BoolRef(true),
@@ -35,7 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = spacelift.GetAwsIntegrationAttachmentExternalId(ctx, &GetAwsIntegrationAttachmentExternalIdArgs{
+//			_, err = spacelift.GetAwsIntegrationAttachmentExternalId(ctx, &spacelift.GetAwsIntegrationAttachmentExternalIdArgs{
 //				IntegrationId: spacelift_aws_integration.This.Id,
 //				ModuleId:      pulumi.StringRef("my-module-id"),
 //				Read:          pulumi.BoolRef(true),
@@ -50,7 +52,7 @@ import (
 //
 // ```
 func GetAwsIntegrationAttachmentExternalId(ctx *pulumi.Context, args *GetAwsIntegrationAttachmentExternalIdArgs, opts ...pulumi.InvokeOption) (*GetAwsIntegrationAttachmentExternalIdResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAwsIntegrationAttachmentExternalIdResult
 	err := ctx.Invoke("spacelift:index/getAwsIntegrationAttachmentExternalId:getAwsIntegrationAttachmentExternalId", args, &rv, opts...)
 	if err != nil {
@@ -137,6 +139,12 @@ func (o GetAwsIntegrationAttachmentExternalIdResultOutput) ToGetAwsIntegrationAt
 
 func (o GetAwsIntegrationAttachmentExternalIdResultOutput) ToGetAwsIntegrationAttachmentExternalIdResultOutputWithContext(ctx context.Context) GetAwsIntegrationAttachmentExternalIdResultOutput {
 	return o
+}
+
+func (o GetAwsIntegrationAttachmentExternalIdResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAwsIntegrationAttachmentExternalIdResult] {
+	return pulumix.Output[GetAwsIntegrationAttachmentExternalIdResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An assume role policy statement that can be attached to your role to allow Spacelift to assume it

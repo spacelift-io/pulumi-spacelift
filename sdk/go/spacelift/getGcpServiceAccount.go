@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // ## Example Usage
@@ -18,19 +20,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupGcpServiceAccount(ctx, &GetGcpServiceAccountArgs{
+//			_, err := spacelift.LookupGcpServiceAccount(ctx, &spacelift.LookupGcpServiceAccountArgs{
 //				ModuleId: pulumi.StringRef("k8s-module"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = spacelift.LookupGcpServiceAccount(ctx, &GetGcpServiceAccountArgs{
+//			_, err = spacelift.LookupGcpServiceAccount(ctx, &spacelift.LookupGcpServiceAccountArgs{
 //				StackId: pulumi.StringRef("k8s-core"),
 //			}, nil)
 //			if err != nil {
@@ -42,7 +44,7 @@ import (
 //
 // ```
 func LookupGcpServiceAccount(ctx *pulumi.Context, args *LookupGcpServiceAccountArgs, opts ...pulumi.InvokeOption) (*LookupGcpServiceAccountResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupGcpServiceAccountResult
 	err := ctx.Invoke("spacelift:index/getGcpServiceAccount:getGcpServiceAccount", args, &rv, opts...)
 	if err != nil {
@@ -111,6 +113,12 @@ func (o LookupGcpServiceAccountResultOutput) ToLookupGcpServiceAccountResultOutp
 
 func (o LookupGcpServiceAccountResultOutput) ToLookupGcpServiceAccountResultOutputWithContext(ctx context.Context) LookupGcpServiceAccountResultOutput {
 	return o
+}
+
+func (o LookupGcpServiceAccountResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupGcpServiceAccountResult] {
+	return pulumix.Output[LookupGcpServiceAccountResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

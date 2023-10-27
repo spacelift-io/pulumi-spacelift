@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -147,13 +147,13 @@ def get_aws_role(module_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getAwsRole:getAwsRole', __args__, opts=opts, typ=GetAwsRoleResult).value
 
     return AwaitableGetAwsRoleResult(
-        duration_seconds=__ret__.duration_seconds,
-        external_id=__ret__.external_id,
-        generate_credentials_in_worker=__ret__.generate_credentials_in_worker,
-        id=__ret__.id,
-        module_id=__ret__.module_id,
-        role_arn=__ret__.role_arn,
-        stack_id=__ret__.stack_id)
+        duration_seconds=pulumi.get(__ret__, 'duration_seconds'),
+        external_id=pulumi.get(__ret__, 'external_id'),
+        generate_credentials_in_worker=pulumi.get(__ret__, 'generate_credentials_in_worker'),
+        id=pulumi.get(__ret__, 'id'),
+        module_id=pulumi.get(__ret__, 'module_id'),
+        role_arn=pulumi.get(__ret__, 'role_arn'),
+        stack_id=pulumi.get(__ret__, 'stack_id'))
 
 
 @_utilities.lift_output_func(get_aws_role)

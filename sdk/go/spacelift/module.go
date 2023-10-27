@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // ## Example Usage
@@ -19,7 +21,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -75,6 +77,8 @@ type Module struct {
 	Branch pulumi.StringOutput `pulumi:"branch"`
 	// Free-form module description for users
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+	EnableLocalPreview pulumi.BoolPtrOutput `pulumi:"enableLocalPreview"`
 	// GitHub Enterprise (self-hosted) VCS settings
 	GithubEnterprise ModuleGithubEnterprisePtrOutput `pulumi:"githubEnterprise"`
 	// GitLab VCS settings
@@ -98,8 +102,10 @@ type Module struct {
 	// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
 	// can provide the provider name here.
 	TerraformProvider pulumi.StringOutput `pulumi:"terraformProvider"`
-	// ID of the worker pool to use
+	// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 	WorkerPoolId pulumi.StringPtrOutput `pulumi:"workerPoolId"`
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+	WorkflowTool pulumi.StringOutput `pulumi:"workflowTool"`
 }
 
 // NewModule registers a new resource with the given unique name, arguments, and options.
@@ -115,7 +121,7 @@ func NewModule(ctx *pulumi.Context,
 	if args.Repository == nil {
 		return nil, errors.New("invalid value for required argument 'Repository'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Module
 	err := ctx.RegisterResource("spacelift:index/module:Module", name, args, &resource, opts...)
 	if err != nil {
@@ -152,6 +158,8 @@ type moduleState struct {
 	Branch *string `pulumi:"branch"`
 	// Free-form module description for users
 	Description *string `pulumi:"description"`
+	// Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+	EnableLocalPreview *bool `pulumi:"enableLocalPreview"`
 	// GitHub Enterprise (self-hosted) VCS settings
 	GithubEnterprise *ModuleGithubEnterprise `pulumi:"githubEnterprise"`
 	// GitLab VCS settings
@@ -175,8 +183,10 @@ type moduleState struct {
 	// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
 	// can provide the provider name here.
 	TerraformProvider *string `pulumi:"terraformProvider"`
-	// ID of the worker pool to use
+	// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 	WorkerPoolId *string `pulumi:"workerPoolId"`
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+	WorkflowTool *string `pulumi:"workflowTool"`
 }
 
 type ModuleState struct {
@@ -194,6 +204,8 @@ type ModuleState struct {
 	Branch pulumi.StringPtrInput
 	// Free-form module description for users
 	Description pulumi.StringPtrInput
+	// Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+	EnableLocalPreview pulumi.BoolPtrInput
 	// GitHub Enterprise (self-hosted) VCS settings
 	GithubEnterprise ModuleGithubEnterprisePtrInput
 	// GitLab VCS settings
@@ -217,8 +229,10 @@ type ModuleState struct {
 	// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
 	// can provide the provider name here.
 	TerraformProvider pulumi.StringPtrInput
-	// ID of the worker pool to use
+	// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 	WorkerPoolId pulumi.StringPtrInput
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+	WorkflowTool pulumi.StringPtrInput
 }
 
 func (ModuleState) ElementType() reflect.Type {
@@ -238,6 +252,8 @@ type moduleArgs struct {
 	Branch string `pulumi:"branch"`
 	// Free-form module description for users
 	Description *string `pulumi:"description"`
+	// Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+	EnableLocalPreview *bool `pulumi:"enableLocalPreview"`
 	// GitHub Enterprise (self-hosted) VCS settings
 	GithubEnterprise *ModuleGithubEnterprise `pulumi:"githubEnterprise"`
 	// GitLab VCS settings
@@ -261,8 +277,10 @@ type moduleArgs struct {
 	// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
 	// can provide the provider name here.
 	TerraformProvider *string `pulumi:"terraformProvider"`
-	// ID of the worker pool to use
+	// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 	WorkerPoolId *string `pulumi:"workerPoolId"`
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+	WorkflowTool *string `pulumi:"workflowTool"`
 }
 
 // The set of arguments for constructing a Module resource.
@@ -279,6 +297,8 @@ type ModuleArgs struct {
 	Branch pulumi.StringInput
 	// Free-form module description for users
 	Description pulumi.StringPtrInput
+	// Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+	EnableLocalPreview pulumi.BoolPtrInput
 	// GitHub Enterprise (self-hosted) VCS settings
 	GithubEnterprise ModuleGithubEnterprisePtrInput
 	// GitLab VCS settings
@@ -302,8 +322,10 @@ type ModuleArgs struct {
 	// naming convention. However, if the repository doesn't follow this convention, or you gave the module a custom name, you
 	// can provide the provider name here.
 	TerraformProvider pulumi.StringPtrInput
-	// ID of the worker pool to use
+	// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 	WorkerPoolId pulumi.StringPtrInput
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+	WorkflowTool pulumi.StringPtrInput
 }
 
 func (ModuleArgs) ElementType() reflect.Type {
@@ -327,6 +349,12 @@ func (i *Module) ToModuleOutput() ModuleOutput {
 
 func (i *Module) ToModuleOutputWithContext(ctx context.Context) ModuleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleOutput)
+}
+
+func (i *Module) ToOutput(ctx context.Context) pulumix.Output[*Module] {
+	return pulumix.Output[*Module]{
+		OutputState: i.ToModuleOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ModuleArrayInput is an input type that accepts ModuleArray and ModuleArrayOutput values.
@@ -354,6 +382,12 @@ func (i ModuleArray) ToModuleArrayOutputWithContext(ctx context.Context) ModuleA
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleArrayOutput)
 }
 
+func (i ModuleArray) ToOutput(ctx context.Context) pulumix.Output[[]*Module] {
+	return pulumix.Output[[]*Module]{
+		OutputState: i.ToModuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ModuleMapInput is an input type that accepts ModuleMap and ModuleMapOutput values.
 // You can construct a concrete instance of `ModuleMapInput` via:
 //
@@ -379,6 +413,12 @@ func (i ModuleMap) ToModuleMapOutputWithContext(ctx context.Context) ModuleMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleMapOutput)
 }
 
+func (i ModuleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Module] {
+	return pulumix.Output[map[string]*Module]{
+		OutputState: i.ToModuleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ModuleOutput struct{ *pulumi.OutputState }
 
 func (ModuleOutput) ElementType() reflect.Type {
@@ -391,6 +431,12 @@ func (o ModuleOutput) ToModuleOutput() ModuleOutput {
 
 func (o ModuleOutput) ToModuleOutputWithContext(ctx context.Context) ModuleOutput {
 	return o
+}
+
+func (o ModuleOutput) ToOutput(ctx context.Context) pulumix.Output[*Module] {
+	return pulumix.Output[*Module]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates whether this module can manage others. Defaults to `false`.
@@ -426,6 +472,11 @@ func (o ModuleOutput) Branch() pulumi.StringOutput {
 // Free-form module description for users
 func (o ModuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Module) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+func (o ModuleOutput) EnableLocalPreview() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Module) pulumi.BoolPtrOutput { return v.EnableLocalPreview }).(pulumi.BoolPtrOutput)
 }
 
 // GitHub Enterprise (self-hosted) VCS settings
@@ -481,9 +532,14 @@ func (o ModuleOutput) TerraformProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v *Module) pulumi.StringOutput { return v.TerraformProvider }).(pulumi.StringOutput)
 }
 
-// ID of the worker pool to use
+// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 func (o ModuleOutput) WorkerPoolId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Module) pulumi.StringPtrOutput { return v.WorkerPoolId }).(pulumi.StringPtrOutput)
+}
+
+// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+func (o ModuleOutput) WorkflowTool() pulumi.StringOutput {
+	return o.ApplyT(func(v *Module) pulumi.StringOutput { return v.WorkflowTool }).(pulumi.StringOutput)
 }
 
 type ModuleArrayOutput struct{ *pulumi.OutputState }
@@ -498,6 +554,12 @@ func (o ModuleArrayOutput) ToModuleArrayOutput() ModuleArrayOutput {
 
 func (o ModuleArrayOutput) ToModuleArrayOutputWithContext(ctx context.Context) ModuleArrayOutput {
 	return o
+}
+
+func (o ModuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Module] {
+	return pulumix.Output[[]*Module]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ModuleArrayOutput) Index(i pulumi.IntInput) ModuleOutput {
@@ -518,6 +580,12 @@ func (o ModuleMapOutput) ToModuleMapOutput() ModuleMapOutput {
 
 func (o ModuleMapOutput) ToModuleMapOutputWithContext(ctx context.Context) ModuleMapOutput {
 	return o
+}
+
+func (o ModuleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Module] {
+	return pulumix.Output[map[string]*Module]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ModuleMapOutput) MapIndex(k pulumi.StringInput) ModuleOutput {

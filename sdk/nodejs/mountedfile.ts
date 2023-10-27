@@ -133,7 +133,7 @@ export class Mountedfile extends pulumi.CustomResource {
             if ((!args || args.relativePath === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'relativePath'");
             }
-            resourceInputs["content"] = args ? args.content : undefined;
+            resourceInputs["content"] = args?.content ? pulumi.secret(args.content) : undefined;
             resourceInputs["contextId"] = args ? args.contextId : undefined;
             resourceInputs["moduleId"] = args ? args.moduleId : undefined;
             resourceInputs["relativePath"] = args ? args.relativePath : undefined;
@@ -142,6 +142,8 @@ export class Mountedfile extends pulumi.CustomResource {
             resourceInputs["checksum"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["content"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Mountedfile.__pulumiType, name, resourceInputs, opts);
     }
 }

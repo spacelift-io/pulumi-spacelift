@@ -5,6 +5,113 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface GetContextsLabel {
+    anyOfs: string[];
+}
+
+export interface GetContextsLabelArgs {
+    anyOfs: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetStacksAdministrative {
+    equals?: boolean;
+}
+
+export interface GetStacksAdministrativeArgs {
+    equals?: pulumi.Input<boolean>;
+}
+
+export interface GetStacksBranch {
+    anyOfs: string[];
+}
+
+export interface GetStacksBranchArgs {
+    anyOfs: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetStacksCommit {
+    anyOfs: string[];
+}
+
+export interface GetStacksCommitArgs {
+    anyOfs: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetStacksLabel {
+    anyOfs: string[];
+}
+
+export interface GetStacksLabelArgs {
+    anyOfs: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetStacksLocked {
+    equals?: boolean;
+}
+
+export interface GetStacksLockedArgs {
+    equals?: pulumi.Input<boolean>;
+}
+
+export interface GetStacksName {
+    anyOfs: string[];
+}
+
+export interface GetStacksNameArgs {
+    anyOfs: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetStacksProjectRoot {
+    anyOfs: string[];
+}
+
+export interface GetStacksProjectRootArgs {
+    anyOfs: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetStacksRepository {
+    anyOfs: string[];
+}
+
+export interface GetStacksRepositoryArgs {
+    anyOfs: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetStacksState {
+    anyOfs: string[];
+}
+
+export interface GetStacksStateArgs {
+    anyOfs: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetStacksVendor {
+    anyOfs: string[];
+}
+
+export interface GetStacksVendorArgs {
+    anyOfs: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetStacksWorkerPool {
+    anyOfs: string[];
+}
+
+export interface GetStacksWorkerPoolArgs {
+    anyOfs: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface IdpGroupMappingPolicy {
+    /**
+     * Type of access to the space. Possible values are: READ, WRITE, ADMIN
+     */
+    role: pulumi.Input<string>;
+    /**
+     * ID (slug) of the space the user group has access to
+     */
+    spaceId: pulumi.Input<string>;
+}
+
 export interface ModuleAzureDevops {
     /**
      * The name of the Azure DevOps project
@@ -103,6 +210,10 @@ export interface StackGitlab {
 
 export interface StackKubernetes {
     /**
+     * Kubectl version.
+     */
+    kubectlVersion?: pulumi.Input<string>;
+    /**
      * Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
      */
     namespace?: pulumi.Input<string>;
@@ -119,6 +230,41 @@ export interface StackPulumi {
     stackName: pulumi.Input<string>;
 }
 
+export interface StackRawGit {
+    /**
+     * User-friendly namespace for the repository, this is for cosmetic purposes only
+     */
+    namespace: pulumi.Input<string>;
+    /**
+     * HTTPS URL of the Git repository
+     */
+    url: pulumi.Input<string>;
+}
+
 export interface StackShowcase {
     namespace: pulumi.Input<string>;
+}
+
+export interface StackTerragrunt {
+    terraformVersion?: pulumi.Input<string>;
+    /**
+     * Terragrunt version.
+     */
+    terragruntVersion?: pulumi.Input<string>;
+    /**
+     * Whether to use `terragrunt run-all` instead of `terragrunt`.
+     */
+    useRunAll?: pulumi.Input<boolean>;
+    useSmartSanitization?: pulumi.Input<boolean>;
+}
+
+export interface UserPolicy {
+    /**
+     * Type of access to the space. Possible values are: READ, WRITE, ADMIN
+     */
+    role: pulumi.Input<string>;
+    /**
+     * ID (slug) of the space the user has access to
+     */
+    spaceId: pulumi.Input<string>;
 }

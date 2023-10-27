@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const bitbucketCloudIntegration = pulumi.output(spacelift.getBitbucketCloudIntegration());
+ * const bitbucketCloudIntegration = spacelift.getBitbucketCloudIntegration({});
  * ```
  */
 export function getBitbucketCloudIntegration(opts?: pulumi.InvokeOptions): Promise<GetBitbucketCloudIntegrationResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", {
     }, opts);
 }
@@ -38,4 +35,19 @@ export interface GetBitbucketCloudIntegrationResult {
      * Bitbucket Cloud username
      */
     readonly username: string;
+}
+/**
+ * `spacelift.getBitbucketCloudIntegration` returns details about Bitbucket Cloud integration
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const bitbucketCloudIntegration = spacelift.getBitbucketCloudIntegration({});
+ * ```
+ */
+export function getBitbucketCloudIntegrationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetBitbucketCloudIntegrationResult> {
+    return pulumi.output(getBitbucketCloudIntegration(opts))
 }

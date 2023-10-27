@@ -13,29 +13,23 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * // For a context
- * const ireland_kubeconfig = pulumi.output(spacelift.getMountedfile({
+ * const ireland-kubeconfig = spacelift.getMountedfile({
  *     contextId: "prod-k8s-ie",
  *     relativePath: "kubeconfig",
- * }));
- * // For a module
- * const module_kubeconfig = pulumi.output(spacelift.getMountedfile({
+ * });
+ * const module-kubeconfig = spacelift.getMountedfile({
  *     moduleId: "k8s-module",
  *     relativePath: "kubeconfig",
- * }));
- * // For a stack
- * const core_kubeconfig = pulumi.output(spacelift.getMountedfile({
+ * });
+ * const core-kubeconfig = spacelift.getMountedfile({
  *     relativePath: "kubeconfig",
  *     stackId: "k8s-core",
- * }));
+ * });
  * ```
  */
 export function getMountedfile(args: GetMountedfileArgs, opts?: pulumi.InvokeOptions): Promise<GetMountedfileResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getMountedfile:getMountedfile", {
         "contextId": args.contextId,
         "moduleId": args.moduleId,
@@ -103,9 +97,31 @@ export interface GetMountedfileResult {
      */
     readonly writeOnly: boolean;
 }
-
+/**
+ * `spacelift.Mountedfile` represents a file mounted in each Run's workspace that is part of a configuration of a context (`spacelift.Context`), stack (`spacelift.Stack`) or a module (`spacelift.Module`). In principle, it's very similar to an environment variable (`spacelift.EnvironmentVariable`) except that the value is written to the filesystem rather than passed to the environment.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const ireland-kubeconfig = spacelift.getMountedfile({
+ *     contextId: "prod-k8s-ie",
+ *     relativePath: "kubeconfig",
+ * });
+ * const module-kubeconfig = spacelift.getMountedfile({
+ *     moduleId: "k8s-module",
+ *     relativePath: "kubeconfig",
+ * });
+ * const core-kubeconfig = spacelift.getMountedfile({
+ *     relativePath: "kubeconfig",
+ *     stackId: "k8s-core",
+ * });
+ * ```
+ */
 export function getMountedfileOutput(args: GetMountedfileOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMountedfileResult> {
-    return pulumi.output(args).apply(a => getMountedfile(a, opts))
+    return pulumi.output(args).apply((a: any) => getMountedfile(a, opts))
 }
 
 /**

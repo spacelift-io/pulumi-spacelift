@@ -13,11 +13,16 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStackKuberneteResult
     {
+        public readonly string KubectlVersion;
         public readonly string Namespace;
 
         [OutputConstructor]
-        private GetStackKuberneteResult(string @namespace)
+        private GetStackKuberneteResult(
+            string kubectlVersion,
+
+            string @namespace)
         {
+            KubectlVersion = kubectlVersion;
             Namespace = @namespace;
         }
     }

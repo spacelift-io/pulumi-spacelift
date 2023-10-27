@@ -6,24 +6,10 @@ import * as utilities from "./utilities";
 
 /**
  * `spacelift.VcsAgentPool` represents a Spacelift **VCS agent pool** - a logical group of proxies allowing Spacelift to access private VCS installations
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as spacelift from "@pulumi/spacelift";
- *
- * const ghe = pulumi.output(spacelift.getContext({
- *     vcsAgentPoolId: "01FMQWT1P8BKRZF364SWVF9XYG",
- * }));
- * ```
  */
 export function getVcsAgentPool(args: GetVcsAgentPoolArgs, opts?: pulumi.InvokeOptions): Promise<GetVcsAgentPoolResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getVcsAgentPool:getVcsAgentPool", {
         "vcsAgentPoolId": args.vcsAgentPoolId,
     }, opts);
@@ -60,9 +46,11 @@ export interface GetVcsAgentPoolResult {
      */
     readonly vcsAgentPoolId: string;
 }
-
+/**
+ * `spacelift.VcsAgentPool` represents a Spacelift **VCS agent pool** - a logical group of proxies allowing Spacelift to access private VCS installations
+ */
 export function getVcsAgentPoolOutput(args: GetVcsAgentPoolOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVcsAgentPoolResult> {
-    return pulumi.output(args).apply(a => getVcsAgentPool(a, opts))
+    return pulumi.output(args).apply((a: any) => getVcsAgentPool(a, opts))
 }
 
 /**

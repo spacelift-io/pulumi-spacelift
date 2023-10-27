@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `EnvironmentVariable` defines an environment variable on the context (`Context`), stack (`Stack`) or a module (`Module`), thereby allowing to pass and share various secrets and configuration with Spacelift stacks.
@@ -20,27 +22,27 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupEnvironmentVariable(ctx, &GetEnvironmentVariableArgs{
+//			_, err := spacelift.LookupEnvironmentVariable(ctx, &spacelift.LookupEnvironmentVariableArgs{
 //				ContextId: pulumi.StringRef("prod-k8s-ie"),
 //				Name:      "KUBECONFIG",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = spacelift.LookupEnvironmentVariable(ctx, &GetEnvironmentVariableArgs{
+//			_, err = spacelift.LookupEnvironmentVariable(ctx, &spacelift.LookupEnvironmentVariableArgs{
 //				ModuleId: pulumi.StringRef("k8s-module"),
 //				Name:     "KUBECONFIG",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = spacelift.LookupEnvironmentVariable(ctx, &GetEnvironmentVariableArgs{
+//			_, err = spacelift.LookupEnvironmentVariable(ctx, &spacelift.LookupEnvironmentVariableArgs{
 //				Name:    "KUBECONFIG",
 //				StackId: pulumi.StringRef("k8s-core"),
 //			}, nil)
@@ -53,7 +55,7 @@ import (
 //
 // ```
 func LookupEnvironmentVariable(ctx *pulumi.Context, args *LookupEnvironmentVariableArgs, opts ...pulumi.InvokeOption) (*LookupEnvironmentVariableResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupEnvironmentVariableResult
 	err := ctx.Invoke("spacelift:index/getEnvironmentVariable:getEnvironmentVariable", args, &rv, opts...)
 	if err != nil {
@@ -136,6 +138,12 @@ func (o LookupEnvironmentVariableResultOutput) ToLookupEnvironmentVariableResult
 
 func (o LookupEnvironmentVariableResultOutput) ToLookupEnvironmentVariableResultOutputWithContext(ctx context.Context) LookupEnvironmentVariableResultOutput {
 	return o
+}
+
+func (o LookupEnvironmentVariableResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupEnvironmentVariableResult] {
+	return pulumix.Output[LookupEnvironmentVariableResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // SHA-256 checksum of the value

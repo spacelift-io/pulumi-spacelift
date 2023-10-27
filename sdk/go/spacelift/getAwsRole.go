@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `AwsRole` represents [cross-account IAM role delegation](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) between the Spacelift worker and an individual stack or module. If this is set, Spacelift will use AWS STS to assume the supplied IAM role and put its temporary credentials in the runtime environment.
@@ -24,19 +26,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupAwsRole(ctx, &GetAwsRoleArgs{
+//			_, err := spacelift.LookupAwsRole(ctx, &spacelift.LookupAwsRoleArgs{
 //				ModuleId: pulumi.StringRef("k8s-module"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = spacelift.LookupAwsRole(ctx, &GetAwsRoleArgs{
+//			_, err = spacelift.LookupAwsRole(ctx, &spacelift.LookupAwsRoleArgs{
 //				StackId: pulumi.StringRef("k8s-core"),
 //			}, nil)
 //			if err != nil {
@@ -48,7 +50,7 @@ import (
 //
 // ```
 func LookupAwsRole(ctx *pulumi.Context, args *LookupAwsRoleArgs, opts ...pulumi.InvokeOption) (*LookupAwsRoleResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAwsRoleResult
 	err := ctx.Invoke("spacelift:index/getAwsRole:getAwsRole", args, &rv, opts...)
 	if err != nil {
@@ -121,6 +123,12 @@ func (o LookupAwsRoleResultOutput) ToLookupAwsRoleResultOutput() LookupAwsRoleRe
 
 func (o LookupAwsRoleResultOutput) ToLookupAwsRoleResultOutputWithContext(ctx context.Context) LookupAwsRoleResultOutput {
 	return o
+}
+
+func (o LookupAwsRoleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAwsRoleResult] {
+	return pulumix.Output[LookupAwsRoleResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // AWS IAM role session duration in seconds

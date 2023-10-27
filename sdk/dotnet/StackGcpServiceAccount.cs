@@ -14,8 +14,9 @@ namespace Pulumi.Spacelift
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Gcp = Pulumi.Gcp;
+    /// using Google = Pulumi.Google;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -37,17 +38,18 @@ namespace Pulumi.Spacelift
     ///         },
     ///     });
     /// 
-    ///     var k8s_coreProject = new Gcp.Organizations.Project("k8s-coreProject", new()
+    ///     var k8s_coregoogle_project = new Google.Index.Google_project("k8s-coregoogle_project", new()
     ///     {
+    ///         Name = "Kubernetes code",
     ///         ProjectId = "unicorn-k8s-core",
     ///         OrgId = @var.Gcp_organization_id,
     ///     });
     /// 
-    ///     var k8s_coreIAMMember = new Gcp.Projects.IAMMember("k8s-coreIAMMember", new()
+    ///     var k8s_coregoogle_project_iam_member = new Google.Index.Google_project_iam_member("k8s-coregoogle_project_iam_member", new()
     ///     {
-    ///         Project = k8s_coreProject.Id,
+    ///         Project = k8s_coregoogle_project.Id,
     ///         Role = "roles/owner",
-    ///         Member = k8s_coreStackGcpServiceAccount.ServiceAccountEmail.Apply(serviceAccountEmail =&gt; $"serviceAccount:{serviceAccountEmail}"),
+    ///         Member = $"serviceAccount:{k8s_coreStackGcpServiceAccount.ServiceAccountEmail}",
     ///     });
     /// 
     /// });

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -21,7 +21,7 @@ class GetSpaceResult:
     """
     A collection of values returned by getSpace.
     """
-    def __init__(__self__, description=None, id=None, inherit_entities=None, name=None, parent_space_id=None, space_id=None):
+    def __init__(__self__, description=None, id=None, inherit_entities=None, labels=None, name=None, parent_space_id=None, space_id=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -31,6 +31,9 @@ class GetSpaceResult:
         if inherit_entities and not isinstance(inherit_entities, bool):
             raise TypeError("Expected argument 'inherit_entities' to be a bool")
         pulumi.set(__self__, "inherit_entities", inherit_entities)
+        if labels and not isinstance(labels, list):
+            raise TypeError("Expected argument 'labels' to be a list")
+        pulumi.set(__self__, "labels", labels)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -67,6 +70,14 @@ class GetSpaceResult:
 
     @property
     @pulumi.getter
+    def labels(self) -> Sequence[str]:
+        """
+        list of labels describing a space
+        """
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
     def name(self) -> str:
         """
         name of the space
@@ -99,6 +110,7 @@ class AwaitableGetSpaceResult(GetSpaceResult):
             description=self.description,
             id=self.id,
             inherit_entities=self.inherit_entities,
+            labels=self.labels,
             name=self.name,
             parent_space_id=self.parent_space_id,
             space_id=self.space_id)
@@ -128,12 +140,13 @@ def get_space(space_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getSpace:getSpace', __args__, opts=opts, typ=GetSpaceResult).value
 
     return AwaitableGetSpaceResult(
-        description=__ret__.description,
-        id=__ret__.id,
-        inherit_entities=__ret__.inherit_entities,
-        name=__ret__.name,
-        parent_space_id=__ret__.parent_space_id,
-        space_id=__ret__.space_id)
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        inherit_entities=pulumi.get(__ret__, 'inherit_entities'),
+        labels=pulumi.get(__ret__, 'labels'),
+        name=pulumi.get(__ret__, 'name'),
+        parent_space_id=pulumi.get(__ret__, 'parent_space_id'),
+        space_id=pulumi.get(__ret__, 'space_id'))
 
 
 @_utilities.lift_output_func(get_space)

@@ -14,6 +14,7 @@ namespace Pulumi.Spacelift
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
@@ -94,6 +95,12 @@ namespace Pulumi.Spacelift
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+        /// </summary>
+        [Output("enableLocalPreview")]
+        public Output<bool?> EnableLocalPreview { get; private set; } = null!;
+
+        /// <summary>
         /// GitHub Enterprise (self-hosted) VCS settings
         /// </summary>
         [Output("githubEnterprise")]
@@ -155,10 +162,16 @@ namespace Pulumi.Spacelift
         public Output<string> TerraformProvider { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the worker pool to use
+        /// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         /// </summary>
         [Output("workerPoolId")]
         public Output<string?> WorkerPoolId { get; private set; } = null!;
+
+        /// <summary>
+        /// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+        /// </summary>
+        [Output("workflowTool")]
+        public Output<string> WorkflowTool { get; private set; } = null!;
 
 
         /// <summary>
@@ -244,6 +257,12 @@ namespace Pulumi.Spacelift
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+        /// </summary>
+        [Input("enableLocalPreview")]
+        public Input<bool>? EnableLocalPreview { get; set; }
+
+        /// <summary>
         /// GitHub Enterprise (self-hosted) VCS settings
         /// </summary>
         [Input("githubEnterprise")]
@@ -316,10 +335,16 @@ namespace Pulumi.Spacelift
         public Input<string>? TerraformProvider { get; set; }
 
         /// <summary>
-        /// ID of the worker pool to use
+        /// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         /// </summary>
         [Input("workerPoolId")]
         public Input<string>? WorkerPoolId { get; set; }
+
+        /// <summary>
+        /// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+        /// </summary>
+        [Input("workflowTool")]
+        public Input<string>? WorkflowTool { get; set; }
 
         public ModuleArgs()
         {
@@ -370,6 +395,12 @@ namespace Pulumi.Spacelift
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Indicates whether local preview versions can be triggered on this Module. Defaults to `false`.
+        /// </summary>
+        [Input("enableLocalPreview")]
+        public Input<bool>? EnableLocalPreview { get; set; }
 
         /// <summary>
         /// GitHub Enterprise (self-hosted) VCS settings
@@ -444,10 +475,16 @@ namespace Pulumi.Spacelift
         public Input<string>? TerraformProvider { get; set; }
 
         /// <summary>
-        /// ID of the worker pool to use
+        /// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         /// </summary>
         [Input("workerPoolId")]
         public Input<string>? WorkerPoolId { get; set; }
+
+        /// <summary>
+        /// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+        /// </summary>
+        [Input("workflowTool")]
+        public Input<string>? WorkflowTool { get; set; }
 
         public ModuleState()
         {

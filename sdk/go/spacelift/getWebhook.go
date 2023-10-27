@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `Webhook` represents a webhook endpoint to which Spacelift sends the POST request about run state changes.
@@ -20,13 +22,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupWebhook(ctx, &GetWebhookArgs{
+//			_, err := spacelift.LookupWebhook(ctx, &spacelift.LookupWebhookArgs{
 //				WebhookId: spacelift_webhook.Webhook.Id,
 //			}, nil)
 //			if err != nil {
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupWebhook(ctx *pulumi.Context, args *LookupWebhookArgs, opts ...pulumi.InvokeOption) (*LookupWebhookResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupWebhookResult
 	err := ctx.Invoke("spacelift:index/getWebhook:getWebhook", args, &rv, opts...)
 	if err != nil {
@@ -115,6 +117,12 @@ func (o LookupWebhookResultOutput) ToLookupWebhookResultOutput() LookupWebhookRe
 
 func (o LookupWebhookResultOutput) ToLookupWebhookResultOutputWithContext(ctx context.Context) LookupWebhookResultOutput {
 	return o
+}
+
+func (o LookupWebhookResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupWebhookResult] {
+	return pulumix.Output[LookupWebhookResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // enables or disables sending webhooks

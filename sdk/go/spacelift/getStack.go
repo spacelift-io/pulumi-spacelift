@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `Stack` combines source code and configuration to create a runtime environment where resources are managed. In this way it's similar to a stack in AWS CloudFormation, or a project on generic CI/CD platforms.
@@ -20,13 +22,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupStack(ctx, &GetStackArgs{
+//			_, err := spacelift.LookupStack(ctx, &spacelift.LookupStackArgs{
 //				StackId: "k8s-core",
 //			}, nil)
 //			if err != nil {
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupStack(ctx *pulumi.Context, args *LookupStackArgs, opts ...pulumi.InvokeOption) (*LookupStackResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStackResult
 	err := ctx.Invoke("spacelift:index/getStack:getStack", args, &rv, opts...)
 	if err != nil {
@@ -59,6 +61,8 @@ type LookupStackArgs struct {
 	AfterPerforms []string `pulumi:"afterPerforms"`
 	// List of after-plan scripts
 	AfterPlans []string `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns []string `pulumi:"afterRuns"`
 	// List of before-apply scripts
 	BeforeApplies []string `pulumi:"beforeApplies"`
 	// List of before-destroy scripts
@@ -87,6 +91,8 @@ type LookupStackResult struct {
 	AfterPerforms []string `pulumi:"afterPerforms"`
 	// List of after-plan scripts
 	AfterPlans []string `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns []string `pulumi:"afterRuns"`
 	// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
 	Ansibles []GetStackAnsible `pulumi:"ansibles"`
 	// indicates whether changes to this stack can be automatically deployed
@@ -138,6 +144,8 @@ type LookupStackResult struct {
 	ProtectFromDeletion bool `pulumi:"protectFromDeletion"`
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumis []GetStackPulumi `pulumi:"pulumis"`
+	// One-way VCS integration using a raw Git repository link
+	RawGits []GetStackRawGit `pulumi:"rawGits"`
 	// Name of the repository, without the owner part
 	Repository string `pulumi:"repository"`
 	// Name of the Docker image used to process Runs
@@ -147,10 +155,14 @@ type LookupStackResult struct {
 	// ID (slug) of the space the stack is in
 	SpaceId string `pulumi:"spaceId"`
 	// ID (slug) of the stack
-	StackId                    string `pulumi:"stackId"`
-	TerraformSmartSanitization bool   `pulumi:"terraformSmartSanitization"`
-	TerraformVersion           string `pulumi:"terraformVersion"`
-	TerraformWorkspace         string `pulumi:"terraformWorkspace"`
+	StackId string `pulumi:"stackId"`
+	// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift.
+	TerraformExternalStateAccess bool   `pulumi:"terraformExternalStateAccess"`
+	TerraformSmartSanitization   bool   `pulumi:"terraformSmartSanitization"`
+	TerraformVersion             string `pulumi:"terraformVersion"`
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+	TerraformWorkflowTool string `pulumi:"terraformWorkflowTool"`
+	TerraformWorkspace    string `pulumi:"terraformWorkspace"`
 	// ID of the worker pool to use
 	WorkerPoolId string `pulumi:"workerPoolId"`
 }
@@ -180,6 +192,8 @@ type LookupStackOutputArgs struct {
 	AfterPerforms pulumi.StringArrayInput `pulumi:"afterPerforms"`
 	// List of after-plan scripts
 	AfterPlans pulumi.StringArrayInput `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns pulumi.StringArrayInput `pulumi:"afterRuns"`
 	// List of before-apply scripts
 	BeforeApplies pulumi.StringArrayInput `pulumi:"beforeApplies"`
 	// List of before-destroy scripts
@@ -213,6 +227,12 @@ func (o LookupStackResultOutput) ToLookupStackResultOutputWithContext(ctx contex
 	return o
 }
 
+func (o LookupStackResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupStackResult] {
+	return pulumix.Output[LookupStackResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 // indicates whether this stack can administer others
 func (o LookupStackResultOutput) Administrative() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupStackResult) bool { return v.Administrative }).(pulumi.BoolOutput)
@@ -241,6 +261,11 @@ func (o LookupStackResultOutput) AfterPerforms() pulumi.StringArrayOutput {
 // List of after-plan scripts
 func (o LookupStackResultOutput) AfterPlans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []string { return v.AfterPlans }).(pulumi.StringArrayOutput)
+}
+
+// List of after-run scripts
+func (o LookupStackResultOutput) AfterRuns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.AfterRuns }).(pulumi.StringArrayOutput)
 }
 
 // Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
@@ -372,6 +397,11 @@ func (o LookupStackResultOutput) Pulumis() GetStackPulumiArrayOutput {
 	return o.ApplyT(func(v LookupStackResult) []GetStackPulumi { return v.Pulumis }).(GetStackPulumiArrayOutput)
 }
 
+// One-way VCS integration using a raw Git repository link
+func (o LookupStackResultOutput) RawGits() GetStackRawGitArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []GetStackRawGit { return v.RawGits }).(GetStackRawGitArrayOutput)
+}
+
 // Name of the repository, without the owner part
 func (o LookupStackResultOutput) Repository() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.Repository }).(pulumi.StringOutput)
@@ -397,12 +427,22 @@ func (o LookupStackResultOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.StackId }).(pulumi.StringOutput)
 }
 
+// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift.
+func (o LookupStackResultOutput) TerraformExternalStateAccess() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupStackResult) bool { return v.TerraformExternalStateAccess }).(pulumi.BoolOutput)
+}
+
 func (o LookupStackResultOutput) TerraformSmartSanitization() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupStackResult) bool { return v.TerraformSmartSanitization }).(pulumi.BoolOutput)
 }
 
 func (o LookupStackResultOutput) TerraformVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.TerraformVersion }).(pulumi.StringOutput)
+}
+
+// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+func (o LookupStackResultOutput) TerraformWorkflowTool() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStackResult) string { return v.TerraformWorkflowTool }).(pulumi.StringOutput)
 }
 
 func (o LookupStackResultOutput) TerraformWorkspace() pulumi.StringOutput {

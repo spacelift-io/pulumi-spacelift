@@ -25,11 +25,8 @@ import * as utilities from "./utilities";
  */
 export function getPolicies(args?: GetPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<GetPoliciesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getPolicies:getPolicies", {
         "labels": args.labels,
         "type": args.type,
@@ -40,13 +37,7 @@ export function getPolicies(args?: GetPoliciesArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getPolicies.
  */
 export interface GetPoliciesArgs {
-    /**
-     * required labels to match
-     */
     labels?: string[];
-    /**
-     * required policy type
-     */
     type?: string;
 }
 
@@ -68,21 +59,31 @@ export interface GetPoliciesResult {
      */
     readonly type?: string;
 }
-
+/**
+ * `spacelift.getPolicies` can find all policies that have certain labels.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const all = spacelift.getPolicies({});
+ * const planAutoattach = spacelift.getPolicies({
+ *     type: "PLAN",
+ *     labels: ["autoattach"],
+ * });
+ * export const policyIds = data.spacelift_policies["this"].policies.map(__item => __item.id);
+ * ```
+ */
 export function getPoliciesOutput(args?: GetPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPoliciesResult> {
-    return pulumi.output(args).apply(a => getPolicies(a, opts))
+    return pulumi.output(args).apply((a: any) => getPolicies(a, opts))
 }
 
 /**
  * A collection of arguments for invoking getPolicies.
  */
 export interface GetPoliciesOutputArgs {
-    /**
-     * required labels to match
-     */
     labels?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * required policy type
-     */
     type?: pulumi.Input<string>;
 }

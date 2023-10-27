@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `Stack` combines source code and configuration to create a runtime environment where resources are managed. In this way it's similar to a stack in AWS CloudFormation, or a project on generic CI/CD platforms.
@@ -21,7 +23,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -30,14 +32,14 @@ import (
 //			_, err := spacelift.NewStack(ctx, "k8s-cluster-bitbucket-cloud", &spacelift.StackArgs{
 //				Administrative: pulumi.Bool(true),
 //				Autodeploy:     pulumi.Bool(true),
-//				BitbucketCloud: &StackBitbucketCloudArgs{
+//				BitbucketCloud: &spacelift.StackBitbucketCloudArgs{
 //					Namespace: pulumi.String("SPACELIFT"),
 //				},
 //				Branch:           pulumi.String("master"),
 //				Description:      pulumi.String("Provisions a Kubernetes cluster"),
 //				ProjectRoot:      pulumi.String("cluster"),
 //				Repository:       pulumi.String("core-infra"),
-//				TerraformVersion: pulumi.String("0.12.6"),
+//				TerraformVersion: pulumi.String("1.3.0"),
 //			})
 //			if err != nil {
 //				return err
@@ -45,14 +47,14 @@ import (
 //			_, err = spacelift.NewStack(ctx, "k8s-cluster-bitbucket-datacenter", &spacelift.StackArgs{
 //				Administrative: pulumi.Bool(true),
 //				Autodeploy:     pulumi.Bool(true),
-//				BitbucketDatacenter: &StackBitbucketDatacenterArgs{
+//				BitbucketDatacenter: &spacelift.StackBitbucketDatacenterArgs{
 //					Namespace: pulumi.String("SPACELIFT"),
 //				},
 //				Branch:           pulumi.String("master"),
 //				Description:      pulumi.String("Provisions a Kubernetes cluster"),
 //				ProjectRoot:      pulumi.String("cluster"),
 //				Repository:       pulumi.String("core-infra"),
-//				TerraformVersion: pulumi.String("0.12.6"),
+//				TerraformVersion: pulumi.String("1.3.0"),
 //			})
 //			if err != nil {
 //				return err
@@ -62,12 +64,12 @@ import (
 //				Autodeploy:     pulumi.Bool(true),
 //				Branch:         pulumi.String("master"),
 //				Description:    pulumi.String("Provisions a Kubernetes cluster"),
-//				GithubEnterprise: &StackGithubEnterpriseArgs{
+//				GithubEnterprise: &spacelift.StackGithubEnterpriseArgs{
 //					Namespace: pulumi.String("spacelift"),
 //				},
 //				ProjectRoot:      pulumi.String("cluster"),
 //				Repository:       pulumi.String("core-infra"),
-//				TerraformVersion: pulumi.String("0.12.6"),
+//				TerraformVersion: pulumi.String("1.3.0"),
 //			})
 //			if err != nil {
 //				return err
@@ -77,25 +79,25 @@ import (
 //				Autodeploy:     pulumi.Bool(true),
 //				Branch:         pulumi.String("master"),
 //				Description:    pulumi.String("Provisions a Kubernetes cluster"),
-//				Gitlab: &StackGitlabArgs{
+//				Gitlab: &spacelift.StackGitlabArgs{
 //					Namespace: pulumi.String("spacelift"),
 //				},
 //				ProjectRoot:      pulumi.String("cluster"),
 //				Repository:       pulumi.String("core-infra"),
-//				TerraformVersion: pulumi.String("0.12.6"),
+//				TerraformVersion: pulumi.String("1.3.0"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = spacelift.NewStack(ctx, "k8s-cluster", &spacelift.StackArgs{
-//				Administrative:             pulumi.Bool(true),
-//				Autodeploy:                 pulumi.Bool(true),
-//				Branch:                     pulumi.String("master"),
-//				Description:                pulumi.String("Provisions a Kubernetes cluster"),
-//				ProjectRoot:                pulumi.String("cluster"),
-//				Repository:                 pulumi.String("core-infra"),
-//				TerraformSmartSanitization: pulumi.Bool(true),
-//				TerraformVersion:           pulumi.String("1.2.6"),
+//				Administrative:               pulumi.Bool(true),
+//				Autodeploy:                   pulumi.Bool(true),
+//				Branch:                       pulumi.String("master"),
+//				Description:                  pulumi.String("Provisions a Kubernetes cluster"),
+//				ProjectRoot:                  pulumi.String("cluster"),
+//				Repository:                   pulumi.String("core-infra"),
+//				TerraformExternalStateAccess: pulumi.Bool(true),
+//				TerraformVersion:             pulumi.String("1.3.0"),
 //			})
 //			if err != nil {
 //				return err
@@ -103,7 +105,7 @@ import (
 //			_, err = spacelift.NewStack(ctx, "k8s-cluster-cloudformation", &spacelift.StackArgs{
 //				Autodeploy: pulumi.Bool(true),
 //				Branch:     pulumi.String("master"),
-//				Cloudformation: &StackCloudformationArgs{
+//				Cloudformation: &spacelift.StackCloudformationArgs{
 //					EntryTemplateFile: pulumi.String("main.yaml"),
 //					Region:            pulumi.String("eu-central-1"),
 //					StackName:         pulumi.String("k8s-cluster"),
@@ -121,7 +123,7 @@ import (
 //				Branch:      pulumi.String("master"),
 //				Description: pulumi.String("Provisions a Kubernetes cluster"),
 //				ProjectRoot: pulumi.String("cluster"),
-//				Pulumi: &StackPulumiArgs{
+//				Pulumi: &spacelift.StackPulumiArgs{
 //					LoginUrl:  pulumi.String("s3://pulumi-state-bucket"),
 //					StackName: pulumi.String("kubernetes-core-services"),
 //				},
@@ -138,8 +140,9 @@ import (
 //				},
 //				Branch:      pulumi.String("master"),
 //				Description: pulumi.String("Shared cluster services (Datadog, Istio etc.)"),
-//				Kubernetes: &StackKubernetesArgs{
-//					Namespace: pulumi.String("core"),
+//				Kubernetes: &spacelift.StackKubernetesArgs{
+//					KubectlVersion: pulumi.String("1.26.1"),
+//					Namespace:      pulumi.String("core"),
 //				},
 //				ProjectRoot: pulumi.String("core-services"),
 //				Repository:  pulumi.String("core-infra"),
@@ -148,7 +151,7 @@ import (
 //				return err
 //			}
 //			_, err = spacelift.NewStack(ctx, "ansible-stack", &spacelift.StackArgs{
-//				Ansible: &StackAnsibleArgs{
+//				Ansible: &spacelift.StackAnsibleArgs{
 //					Playbook: pulumi.String("main.yml"),
 //				},
 //				Autodeploy:  pulumi.Bool(true),
@@ -188,6 +191,8 @@ type Stack struct {
 	AfterPerforms pulumi.StringArrayOutput `pulumi:"afterPerforms"`
 	// List of after-plan scripts
 	AfterPlans pulumi.StringArrayOutput `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns pulumi.StringArrayOutput `pulumi:"afterRuns"`
 	// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
 	Ansible StackAnsiblePtrOutput `pulumi:"ansible"`
 	// Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
@@ -220,9 +225,9 @@ type Stack struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
 	EnableLocalPreview pulumi.BoolPtrOutput `pulumi:"enableLocalPreview"`
-	// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+	// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
 	GithubActionDeploy pulumi.BoolPtrOutput `pulumi:"githubActionDeploy"`
-	// GitHub Enterprise (self-hosted) VCS settings
+	// VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
 	GithubEnterprise StackGithubEnterprisePtrOutput `pulumi:"githubEnterprise"`
 	// GitLab VCS settings
 	Gitlab StackGitlabPtrOutput `pulumi:"gitlab"`
@@ -243,6 +248,8 @@ type Stack struct {
 	ProtectFromDeletion pulumi.BoolPtrOutput `pulumi:"protectFromDeletion"`
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumi StackPulumiPtrOutput `pulumi:"pulumi"`
+	// One-way VCS integration using a raw Git repository link
+	RawGit StackRawGitPtrOutput `pulumi:"rawGit"`
 	// Name of the repository, without the owner part
 	Repository pulumi.StringOutput `pulumi:"repository"`
 	// Name of the Docker image used to process Runs
@@ -250,17 +257,23 @@ type Stack struct {
 	Showcase    StackShowcasePtrOutput `pulumi:"showcase"`
 	// Allows setting the custom ID (slug) for the stack
 	Slug pulumi.StringOutput `pulumi:"slug"`
-	// ID (slug) of the space the stack is in
+	// ID (slug) of the space the stack is in. Defaults to `legacy`.
 	SpaceId pulumi.StringOutput `pulumi:"spaceId"`
+	// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+	TerraformExternalStateAccess pulumi.BoolPtrOutput `pulumi:"terraformExternalStateAccess"`
 	// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
 	// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
 	// Defaults to `false`.
 	TerraformSmartSanitization pulumi.BoolPtrOutput `pulumi:"terraformSmartSanitization"`
 	// Terraform version to use
 	TerraformVersion pulumi.StringPtrOutput `pulumi:"terraformVersion"`
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+	TerraformWorkflowTool pulumi.StringOutput `pulumi:"terraformWorkflowTool"`
 	// Terraform workspace to select
 	TerraformWorkspace pulumi.StringPtrOutput `pulumi:"terraformWorkspace"`
-	// ID of the worker pool to use
+	// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+	Terragrunt StackTerragruntPtrOutput `pulumi:"terragrunt"`
+	// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 	WorkerPoolId pulumi.StringPtrOutput `pulumi:"workerPoolId"`
 }
 
@@ -277,7 +290,14 @@ func NewStack(ctx *pulumi.Context,
 	if args.Repository == nil {
 		return nil, errors.New("invalid value for required argument 'Repository'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	if args.ImportState != nil {
+		args.ImportState = pulumi.ToSecret(args.ImportState).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"importState",
+	})
+	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Stack
 	err := ctx.RegisterResource("spacelift:index/stack:Stack", name, args, &resource, opts...)
 	if err != nil {
@@ -312,6 +332,8 @@ type stackState struct {
 	AfterPerforms []string `pulumi:"afterPerforms"`
 	// List of after-plan scripts
 	AfterPlans []string `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns []string `pulumi:"afterRuns"`
 	// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
 	Ansible *StackAnsible `pulumi:"ansible"`
 	// Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
@@ -344,9 +366,9 @@ type stackState struct {
 	Description *string `pulumi:"description"`
 	// Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
 	EnableLocalPreview *bool `pulumi:"enableLocalPreview"`
-	// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+	// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
 	GithubActionDeploy *bool `pulumi:"githubActionDeploy"`
-	// GitHub Enterprise (self-hosted) VCS settings
+	// VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
 	GithubEnterprise *StackGithubEnterprise `pulumi:"githubEnterprise"`
 	// GitLab VCS settings
 	Gitlab *StackGitlab `pulumi:"gitlab"`
@@ -367,6 +389,8 @@ type stackState struct {
 	ProtectFromDeletion *bool `pulumi:"protectFromDeletion"`
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumi *StackPulumi `pulumi:"pulumi"`
+	// One-way VCS integration using a raw Git repository link
+	RawGit *StackRawGit `pulumi:"rawGit"`
 	// Name of the repository, without the owner part
 	Repository *string `pulumi:"repository"`
 	// Name of the Docker image used to process Runs
@@ -374,17 +398,23 @@ type stackState struct {
 	Showcase    *StackShowcase `pulumi:"showcase"`
 	// Allows setting the custom ID (slug) for the stack
 	Slug *string `pulumi:"slug"`
-	// ID (slug) of the space the stack is in
+	// ID (slug) of the space the stack is in. Defaults to `legacy`.
 	SpaceId *string `pulumi:"spaceId"`
+	// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+	TerraformExternalStateAccess *bool `pulumi:"terraformExternalStateAccess"`
 	// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
 	// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
 	// Defaults to `false`.
 	TerraformSmartSanitization *bool `pulumi:"terraformSmartSanitization"`
 	// Terraform version to use
 	TerraformVersion *string `pulumi:"terraformVersion"`
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+	TerraformWorkflowTool *string `pulumi:"terraformWorkflowTool"`
 	// Terraform workspace to select
 	TerraformWorkspace *string `pulumi:"terraformWorkspace"`
-	// ID of the worker pool to use
+	// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+	Terragrunt *StackTerragrunt `pulumi:"terragrunt"`
+	// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 	WorkerPoolId *string `pulumi:"workerPoolId"`
 }
 
@@ -401,6 +431,8 @@ type StackState struct {
 	AfterPerforms pulumi.StringArrayInput
 	// List of after-plan scripts
 	AfterPlans pulumi.StringArrayInput
+	// List of after-run scripts
+	AfterRuns pulumi.StringArrayInput
 	// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
 	Ansible StackAnsiblePtrInput
 	// Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
@@ -433,9 +465,9 @@ type StackState struct {
 	Description pulumi.StringPtrInput
 	// Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
 	EnableLocalPreview pulumi.BoolPtrInput
-	// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+	// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
 	GithubActionDeploy pulumi.BoolPtrInput
-	// GitHub Enterprise (self-hosted) VCS settings
+	// VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
 	GithubEnterprise StackGithubEnterprisePtrInput
 	// GitLab VCS settings
 	Gitlab StackGitlabPtrInput
@@ -456,6 +488,8 @@ type StackState struct {
 	ProtectFromDeletion pulumi.BoolPtrInput
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumi StackPulumiPtrInput
+	// One-way VCS integration using a raw Git repository link
+	RawGit StackRawGitPtrInput
 	// Name of the repository, without the owner part
 	Repository pulumi.StringPtrInput
 	// Name of the Docker image used to process Runs
@@ -463,17 +497,23 @@ type StackState struct {
 	Showcase    StackShowcasePtrInput
 	// Allows setting the custom ID (slug) for the stack
 	Slug pulumi.StringPtrInput
-	// ID (slug) of the space the stack is in
+	// ID (slug) of the space the stack is in. Defaults to `legacy`.
 	SpaceId pulumi.StringPtrInput
+	// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+	TerraformExternalStateAccess pulumi.BoolPtrInput
 	// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
 	// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
 	// Defaults to `false`.
 	TerraformSmartSanitization pulumi.BoolPtrInput
 	// Terraform version to use
 	TerraformVersion pulumi.StringPtrInput
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+	TerraformWorkflowTool pulumi.StringPtrInput
 	// Terraform workspace to select
 	TerraformWorkspace pulumi.StringPtrInput
-	// ID of the worker pool to use
+	// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+	Terragrunt StackTerragruntPtrInput
+	// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 	WorkerPoolId pulumi.StringPtrInput
 }
 
@@ -494,6 +534,8 @@ type stackArgs struct {
 	AfterPerforms []string `pulumi:"afterPerforms"`
 	// List of after-plan scripts
 	AfterPlans []string `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns []string `pulumi:"afterRuns"`
 	// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
 	Ansible *StackAnsible `pulumi:"ansible"`
 	// Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
@@ -524,9 +566,9 @@ type stackArgs struct {
 	Description *string `pulumi:"description"`
 	// Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
 	EnableLocalPreview *bool `pulumi:"enableLocalPreview"`
-	// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+	// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
 	GithubActionDeploy *bool `pulumi:"githubActionDeploy"`
-	// GitHub Enterprise (self-hosted) VCS settings
+	// VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
 	GithubEnterprise *StackGithubEnterprise `pulumi:"githubEnterprise"`
 	// GitLab VCS settings
 	Gitlab *StackGitlab `pulumi:"gitlab"`
@@ -547,6 +589,8 @@ type stackArgs struct {
 	ProtectFromDeletion *bool `pulumi:"protectFromDeletion"`
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumi *StackPulumi `pulumi:"pulumi"`
+	// One-way VCS integration using a raw Git repository link
+	RawGit *StackRawGit `pulumi:"rawGit"`
 	// Name of the repository, without the owner part
 	Repository string `pulumi:"repository"`
 	// Name of the Docker image used to process Runs
@@ -554,17 +598,23 @@ type stackArgs struct {
 	Showcase    *StackShowcase `pulumi:"showcase"`
 	// Allows setting the custom ID (slug) for the stack
 	Slug *string `pulumi:"slug"`
-	// ID (slug) of the space the stack is in
+	// ID (slug) of the space the stack is in. Defaults to `legacy`.
 	SpaceId *string `pulumi:"spaceId"`
+	// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+	TerraformExternalStateAccess *bool `pulumi:"terraformExternalStateAccess"`
 	// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
 	// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
 	// Defaults to `false`.
 	TerraformSmartSanitization *bool `pulumi:"terraformSmartSanitization"`
 	// Terraform version to use
 	TerraformVersion *string `pulumi:"terraformVersion"`
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+	TerraformWorkflowTool *string `pulumi:"terraformWorkflowTool"`
 	// Terraform workspace to select
 	TerraformWorkspace *string `pulumi:"terraformWorkspace"`
-	// ID of the worker pool to use
+	// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+	Terragrunt *StackTerragrunt `pulumi:"terragrunt"`
+	// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 	WorkerPoolId *string `pulumi:"workerPoolId"`
 }
 
@@ -582,6 +632,8 @@ type StackArgs struct {
 	AfterPerforms pulumi.StringArrayInput
 	// List of after-plan scripts
 	AfterPlans pulumi.StringArrayInput
+	// List of after-run scripts
+	AfterRuns pulumi.StringArrayInput
 	// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
 	Ansible StackAnsiblePtrInput
 	// Indicates whether changes to this stack can be automatically deployed. Defaults to `false`.
@@ -612,9 +664,9 @@ type StackArgs struct {
 	Description pulumi.StringPtrInput
 	// Indicates whether local preview runs can be triggered on this Stack. Defaults to `false`.
 	EnableLocalPreview pulumi.BoolPtrInput
-	// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+	// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
 	GithubActionDeploy pulumi.BoolPtrInput
-	// GitHub Enterprise (self-hosted) VCS settings
+	// VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
 	GithubEnterprise StackGithubEnterprisePtrInput
 	// GitLab VCS settings
 	Gitlab StackGitlabPtrInput
@@ -635,6 +687,8 @@ type StackArgs struct {
 	ProtectFromDeletion pulumi.BoolPtrInput
 	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 	Pulumi StackPulumiPtrInput
+	// One-way VCS integration using a raw Git repository link
+	RawGit StackRawGitPtrInput
 	// Name of the repository, without the owner part
 	Repository pulumi.StringInput
 	// Name of the Docker image used to process Runs
@@ -642,17 +696,23 @@ type StackArgs struct {
 	Showcase    StackShowcasePtrInput
 	// Allows setting the custom ID (slug) for the stack
 	Slug pulumi.StringPtrInput
-	// ID (slug) of the space the stack is in
+	// ID (slug) of the space the stack is in. Defaults to `legacy`.
 	SpaceId pulumi.StringPtrInput
+	// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+	TerraformExternalStateAccess pulumi.BoolPtrInput
 	// Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
 	// and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above.
 	// Defaults to `false`.
 	TerraformSmartSanitization pulumi.BoolPtrInput
 	// Terraform version to use
 	TerraformVersion pulumi.StringPtrInput
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+	TerraformWorkflowTool pulumi.StringPtrInput
 	// Terraform workspace to select
 	TerraformWorkspace pulumi.StringPtrInput
-	// ID of the worker pool to use
+	// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+	Terragrunt StackTerragruntPtrInput
+	// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 	WorkerPoolId pulumi.StringPtrInput
 }
 
@@ -677,6 +737,12 @@ func (i *Stack) ToStackOutput() StackOutput {
 
 func (i *Stack) ToStackOutputWithContext(ctx context.Context) StackOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StackOutput)
+}
+
+func (i *Stack) ToOutput(ctx context.Context) pulumix.Output[*Stack] {
+	return pulumix.Output[*Stack]{
+		OutputState: i.ToStackOutputWithContext(ctx).OutputState,
+	}
 }
 
 // StackArrayInput is an input type that accepts StackArray and StackArrayOutput values.
@@ -704,6 +770,12 @@ func (i StackArray) ToStackArrayOutputWithContext(ctx context.Context) StackArra
 	return pulumi.ToOutputWithContext(ctx, i).(StackArrayOutput)
 }
 
+func (i StackArray) ToOutput(ctx context.Context) pulumix.Output[[]*Stack] {
+	return pulumix.Output[[]*Stack]{
+		OutputState: i.ToStackArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // StackMapInput is an input type that accepts StackMap and StackMapOutput values.
 // You can construct a concrete instance of `StackMapInput` via:
 //
@@ -729,6 +801,12 @@ func (i StackMap) ToStackMapOutputWithContext(ctx context.Context) StackMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(StackMapOutput)
 }
 
+func (i StackMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Stack] {
+	return pulumix.Output[map[string]*Stack]{
+		OutputState: i.ToStackMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type StackOutput struct{ *pulumi.OutputState }
 
 func (StackOutput) ElementType() reflect.Type {
@@ -741,6 +819,12 @@ func (o StackOutput) ToStackOutput() StackOutput {
 
 func (o StackOutput) ToStackOutputWithContext(ctx context.Context) StackOutput {
 	return o
+}
+
+func (o StackOutput) ToOutput(ctx context.Context) pulumix.Output[*Stack] {
+	return pulumix.Output[*Stack]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Indicates whether this stack can manage others. Defaults to `false`.
@@ -771,6 +855,11 @@ func (o StackOutput) AfterPerforms() pulumi.StringArrayOutput {
 // List of after-plan scripts
 func (o StackOutput) AfterPlans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringArrayOutput { return v.AfterPlans }).(pulumi.StringArrayOutput)
+}
+
+// List of after-run scripts
+func (o StackOutput) AfterRuns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Stack) pulumi.StringArrayOutput { return v.AfterRuns }).(pulumi.StringArrayOutput)
 }
 
 // Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
@@ -853,12 +942,12 @@ func (o StackOutput) EnableLocalPreview() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Stack) pulumi.BoolPtrOutput { return v.EnableLocalPreview }).(pulumi.BoolPtrOutput)
 }
 
-// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`.
+// Indicates whether GitHub users can deploy from the Checks API. Defaults to `true`. This is called allow run promotion in the UI.
 func (o StackOutput) GithubActionDeploy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Stack) pulumi.BoolPtrOutput { return v.GithubActionDeploy }).(pulumi.BoolPtrOutput)
 }
 
-// GitHub Enterprise (self-hosted) VCS settings
+// VCS settings for [GitHub custom application](https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application)
 func (o StackOutput) GithubEnterprise() StackGithubEnterprisePtrOutput {
 	return o.ApplyT(func(v *Stack) StackGithubEnterprisePtrOutput { return v.GithubEnterprise }).(StackGithubEnterprisePtrOutput)
 }
@@ -912,6 +1001,11 @@ func (o StackOutput) Pulumi() StackPulumiPtrOutput {
 	return o.ApplyT(func(v *Stack) StackPulumiPtrOutput { return v.Pulumi }).(StackPulumiPtrOutput)
 }
 
+// One-way VCS integration using a raw Git repository link
+func (o StackOutput) RawGit() StackRawGitPtrOutput {
+	return o.ApplyT(func(v *Stack) StackRawGitPtrOutput { return v.RawGit }).(StackRawGitPtrOutput)
+}
+
 // Name of the repository, without the owner part
 func (o StackOutput) Repository() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.Repository }).(pulumi.StringOutput)
@@ -931,9 +1025,14 @@ func (o StackOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
 }
 
-// ID (slug) of the space the stack is in
+// ID (slug) of the space the stack is in. Defaults to `legacy`.
 func (o StackOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.SpaceId }).(pulumi.StringOutput)
+}
+
+// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift. Defaults to `false`.
+func (o StackOutput) TerraformExternalStateAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Stack) pulumi.BoolPtrOutput { return v.TerraformExternalStateAccess }).(pulumi.BoolPtrOutput)
 }
 
 // Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state
@@ -948,12 +1047,22 @@ func (o StackOutput) TerraformVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringPtrOutput { return v.TerraformVersion }).(pulumi.StringPtrOutput)
 }
 
+// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
+func (o StackOutput) TerraformWorkflowTool() pulumi.StringOutput {
+	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.TerraformWorkflowTool }).(pulumi.StringOutput)
+}
+
 // Terraform workspace to select
 func (o StackOutput) TerraformWorkspace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringPtrOutput { return v.TerraformWorkspace }).(pulumi.StringPtrOutput)
 }
 
-// ID of the worker pool to use
+// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
+func (o StackOutput) Terragrunt() StackTerragruntPtrOutput {
+	return o.ApplyT(func(v *Stack) StackTerragruntPtrOutput { return v.Terragrunt }).(StackTerragruntPtrOutput)
+}
+
+// ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
 func (o StackOutput) WorkerPoolId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringPtrOutput { return v.WorkerPoolId }).(pulumi.StringPtrOutput)
 }
@@ -970,6 +1079,12 @@ func (o StackArrayOutput) ToStackArrayOutput() StackArrayOutput {
 
 func (o StackArrayOutput) ToStackArrayOutputWithContext(ctx context.Context) StackArrayOutput {
 	return o
+}
+
+func (o StackArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Stack] {
+	return pulumix.Output[[]*Stack]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackArrayOutput) Index(i pulumi.IntInput) StackOutput {
@@ -990,6 +1105,12 @@ func (o StackMapOutput) ToStackMapOutput() StackMapOutput {
 
 func (o StackMapOutput) ToStackMapOutputWithContext(ctx context.Context) StackMapOutput {
 	return o
+}
+
+func (o StackMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Stack] {
+	return pulumix.Output[map[string]*Stack]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StackMapOutput) MapIndex(k pulumi.StringInput) StackOutput {

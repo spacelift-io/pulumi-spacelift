@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `Space` represents a Spacelift **space** - a collection of resources such as stacks, modules, policies, etc. Allows for more granular access control. Can have a parent space.
@@ -20,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -60,6 +62,8 @@ type Space struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
 	InheritEntities pulumi.BoolPtrOutput `pulumi:"inheritEntities"`
+	// list of labels describing a space
+	Labels pulumi.StringArrayOutput `pulumi:"labels"`
 	// name of the space
 	Name pulumi.StringOutput `pulumi:"name"`
 	// immutable ID (slug) of parent space. Defaults to `root`.
@@ -73,7 +77,7 @@ func NewSpace(ctx *pulumi.Context,
 		args = &SpaceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Space
 	err := ctx.RegisterResource("spacelift:index/space:Space", name, args, &resource, opts...)
 	if err != nil {
@@ -100,6 +104,8 @@ type spaceState struct {
 	Description *string `pulumi:"description"`
 	// indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
 	InheritEntities *bool `pulumi:"inheritEntities"`
+	// list of labels describing a space
+	Labels []string `pulumi:"labels"`
 	// name of the space
 	Name *string `pulumi:"name"`
 	// immutable ID (slug) of parent space. Defaults to `root`.
@@ -111,6 +117,8 @@ type SpaceState struct {
 	Description pulumi.StringPtrInput
 	// indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
 	InheritEntities pulumi.BoolPtrInput
+	// list of labels describing a space
+	Labels pulumi.StringArrayInput
 	// name of the space
 	Name pulumi.StringPtrInput
 	// immutable ID (slug) of parent space. Defaults to `root`.
@@ -126,6 +134,8 @@ type spaceArgs struct {
 	Description *string `pulumi:"description"`
 	// indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
 	InheritEntities *bool `pulumi:"inheritEntities"`
+	// list of labels describing a space
+	Labels []string `pulumi:"labels"`
 	// name of the space
 	Name *string `pulumi:"name"`
 	// immutable ID (slug) of parent space. Defaults to `root`.
@@ -138,6 +148,8 @@ type SpaceArgs struct {
 	Description pulumi.StringPtrInput
 	// indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
 	InheritEntities pulumi.BoolPtrInput
+	// list of labels describing a space
+	Labels pulumi.StringArrayInput
 	// name of the space
 	Name pulumi.StringPtrInput
 	// immutable ID (slug) of parent space. Defaults to `root`.
@@ -167,6 +179,12 @@ func (i *Space) ToSpaceOutputWithContext(ctx context.Context) SpaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SpaceOutput)
 }
 
+func (i *Space) ToOutput(ctx context.Context) pulumix.Output[*Space] {
+	return pulumix.Output[*Space]{
+		OutputState: i.ToSpaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SpaceArrayInput is an input type that accepts SpaceArray and SpaceArrayOutput values.
 // You can construct a concrete instance of `SpaceArrayInput` via:
 //
@@ -190,6 +208,12 @@ func (i SpaceArray) ToSpaceArrayOutput() SpaceArrayOutput {
 
 func (i SpaceArray) ToSpaceArrayOutputWithContext(ctx context.Context) SpaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SpaceArrayOutput)
+}
+
+func (i SpaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*Space] {
+	return pulumix.Output[[]*Space]{
+		OutputState: i.ToSpaceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SpaceMapInput is an input type that accepts SpaceMap and SpaceMapOutput values.
@@ -217,6 +241,12 @@ func (i SpaceMap) ToSpaceMapOutputWithContext(ctx context.Context) SpaceMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(SpaceMapOutput)
 }
 
+func (i SpaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Space] {
+	return pulumix.Output[map[string]*Space]{
+		OutputState: i.ToSpaceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SpaceOutput struct{ *pulumi.OutputState }
 
 func (SpaceOutput) ElementType() reflect.Type {
@@ -231,6 +261,12 @@ func (o SpaceOutput) ToSpaceOutputWithContext(ctx context.Context) SpaceOutput {
 	return o
 }
 
+func (o SpaceOutput) ToOutput(ctx context.Context) pulumix.Output[*Space] {
+	return pulumix.Output[*Space]{
+		OutputState: o.OutputState,
+	}
+}
+
 // free-form space description for users
 func (o SpaceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Space) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -239,6 +275,11 @@ func (o SpaceOutput) Description() pulumi.StringPtrOutput {
 // indication whether access to this space inherits read access to entities from the parent space. Defaults to `false`.
 func (o SpaceOutput) InheritEntities() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Space) pulumi.BoolPtrOutput { return v.InheritEntities }).(pulumi.BoolPtrOutput)
+}
+
+// list of labels describing a space
+func (o SpaceOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Space) pulumi.StringArrayOutput { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
 // name of the space
@@ -265,6 +306,12 @@ func (o SpaceArrayOutput) ToSpaceArrayOutputWithContext(ctx context.Context) Spa
 	return o
 }
 
+func (o SpaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Space] {
+	return pulumix.Output[[]*Space]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SpaceArrayOutput) Index(i pulumi.IntInput) SpaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Space {
 		return vs[0].([]*Space)[vs[1].(int)]
@@ -283,6 +330,12 @@ func (o SpaceMapOutput) ToSpaceMapOutput() SpaceMapOutput {
 
 func (o SpaceMapOutput) ToSpaceMapOutputWithContext(ctx context.Context) SpaceMapOutput {
 	return o
+}
+
+func (o SpaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Space] {
+	return pulumix.Output[map[string]*Space]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SpaceMapOutput) MapIndex(k pulumi.StringInput) SpaceOutput {

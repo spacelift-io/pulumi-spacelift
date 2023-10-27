@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -190,17 +190,17 @@ def get_azure_integration(integration_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getAzureIntegration:getAzureIntegration', __args__, opts=opts, typ=GetAzureIntegrationResult).value
 
     return AwaitableGetAzureIntegrationResult(
-        admin_consent_provided=__ret__.admin_consent_provided,
-        admin_consent_url=__ret__.admin_consent_url,
-        application_id=__ret__.application_id,
-        default_subscription_id=__ret__.default_subscription_id,
-        display_name=__ret__.display_name,
-        id=__ret__.id,
-        integration_id=__ret__.integration_id,
-        labels=__ret__.labels,
-        name=__ret__.name,
-        space_id=__ret__.space_id,
-        tenant_id=__ret__.tenant_id)
+        admin_consent_provided=pulumi.get(__ret__, 'admin_consent_provided'),
+        admin_consent_url=pulumi.get(__ret__, 'admin_consent_url'),
+        application_id=pulumi.get(__ret__, 'application_id'),
+        default_subscription_id=pulumi.get(__ret__, 'default_subscription_id'),
+        display_name=pulumi.get(__ret__, 'display_name'),
+        id=pulumi.get(__ret__, 'id'),
+        integration_id=pulumi.get(__ret__, 'integration_id'),
+        labels=pulumi.get(__ret__, 'labels'),
+        name=pulumi.get(__ret__, 'name'),
+        space_id=pulumi.get(__ret__, 'space_id'),
+        tenant_id=pulumi.get(__ret__, 'tenant_id'))
 
 
 @_utilities.lift_output_func(get_azure_integration)

@@ -4,7 +4,12 @@
 package spacelift
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getAccount` represents the currently used Spacelift **account**
@@ -17,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -33,7 +38,7 @@ import (
 //
 // ```
 func GetAccount(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccountResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAccountResult
 	err := ctx.Invoke("spacelift:index/getAccount:getAccount", nil, &rv, opts...)
 	if err != nil {
@@ -52,4 +57,60 @@ type GetAccountResult struct {
 	Name string `pulumi:"name"`
 	// account billing tier
 	Tier string `pulumi:"tier"`
+}
+
+func GetAccountOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetAccountResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetAccountResult, error) {
+		r, err := GetAccount(ctx, opts...)
+		var s GetAccountResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetAccountResultOutput)
+}
+
+// A collection of values returned by getAccount.
+type GetAccountResultOutput struct{ *pulumi.OutputState }
+
+func (GetAccountResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountResult)(nil)).Elem()
+}
+
+func (o GetAccountResultOutput) ToGetAccountResultOutput() GetAccountResultOutput {
+	return o
+}
+
+func (o GetAccountResultOutput) ToGetAccountResultOutputWithContext(ctx context.Context) GetAccountResultOutput {
+	return o
+}
+
+func (o GetAccountResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAccountResult] {
+	return pulumix.Output[GetAccountResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// the ID of the AWS account used by Spacelift for role assumption
+func (o GetAccountResultOutput) AwsAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountResult) string { return v.AwsAccountId }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAccountResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// name of the account
+func (o GetAccountResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// account billing tier
+func (o GetAccountResultOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountResult) string { return v.Tier }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAccountResultOutput{})
 }

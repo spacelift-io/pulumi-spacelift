@@ -4,7 +4,12 @@
 package spacelift
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getCurrentStack` is a data source that provides information about the current administrative stack if the run is executed within Spacelift by a stack or module. This allows clever tricks like attaching contexts or policies to the stack that manages them.
@@ -17,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -28,7 +33,7 @@ import (
 //				return err
 //			}
 //			_, err = spacelift.NewEnvironmentVariable(ctx, "core-kubeconfig", &spacelift.EnvironmentVariableArgs{
-//				StackId: pulumi.String(this.Id),
+//				StackId: *pulumi.String(this.Id),
 //				Value:   pulumi.String("bacon"),
 //			})
 //			if err != nil {
@@ -40,7 +45,7 @@ import (
 //
 // ```
 func GetCurrentStack(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetCurrentStackResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCurrentStackResult
 	err := ctx.Invoke("spacelift:index/getCurrentStack:getCurrentStack", nil, &rv, opts...)
 	if err != nil {
@@ -53,4 +58,45 @@ func GetCurrentStack(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetCurr
 type GetCurrentStackResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+}
+
+func GetCurrentStackOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetCurrentStackResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetCurrentStackResult, error) {
+		r, err := GetCurrentStack(ctx, opts...)
+		var s GetCurrentStackResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetCurrentStackResultOutput)
+}
+
+// A collection of values returned by getCurrentStack.
+type GetCurrentStackResultOutput struct{ *pulumi.OutputState }
+
+func (GetCurrentStackResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCurrentStackResult)(nil)).Elem()
+}
+
+func (o GetCurrentStackResultOutput) ToGetCurrentStackResultOutput() GetCurrentStackResultOutput {
+	return o
+}
+
+func (o GetCurrentStackResultOutput) ToGetCurrentStackResultOutputWithContext(ctx context.Context) GetCurrentStackResultOutput {
+	return o
+}
+
+func (o GetCurrentStackResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetCurrentStackResult] {
+	return pulumix.Output[GetCurrentStackResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetCurrentStackResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCurrentStackResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetCurrentStackResultOutput{})
 }

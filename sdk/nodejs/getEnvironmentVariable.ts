@@ -13,29 +13,23 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * // For a context
- * const ireland_kubeconfig = pulumi.output(spacelift.getEnvironmentVariable({
+ * const ireland-kubeconfig = spacelift.getEnvironmentVariable({
  *     contextId: "prod-k8s-ie",
  *     name: "KUBECONFIG",
- * }));
- * // For a module
- * const module_kubeconfig = pulumi.output(spacelift.getEnvironmentVariable({
+ * });
+ * const module-kubeconfig = spacelift.getEnvironmentVariable({
  *     moduleId: "k8s-module",
  *     name: "KUBECONFIG",
- * }));
- * // For a stack
- * const core_kubeconfig = pulumi.output(spacelift.getEnvironmentVariable({
+ * });
+ * const core-kubeconfig = spacelift.getEnvironmentVariable({
  *     name: "KUBECONFIG",
  *     stackId: "k8s-core",
- * }));
+ * });
  * ```
  */
 export function getEnvironmentVariable(args: GetEnvironmentVariableArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvironmentVariableResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getEnvironmentVariable:getEnvironmentVariable", {
         "contextId": args.contextId,
         "moduleId": args.moduleId,
@@ -103,9 +97,31 @@ export interface GetEnvironmentVariableResult {
      */
     readonly writeOnly: boolean;
 }
-
+/**
+ * `spacelift.EnvironmentVariable` defines an environment variable on the context (`spacelift.Context`), stack (`spacelift.Stack`) or a module (`spacelift.Module`), thereby allowing to pass and share various secrets and configuration with Spacelift stacks.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const ireland-kubeconfig = spacelift.getEnvironmentVariable({
+ *     contextId: "prod-k8s-ie",
+ *     name: "KUBECONFIG",
+ * });
+ * const module-kubeconfig = spacelift.getEnvironmentVariable({
+ *     moduleId: "k8s-module",
+ *     name: "KUBECONFIG",
+ * });
+ * const core-kubeconfig = spacelift.getEnvironmentVariable({
+ *     name: "KUBECONFIG",
+ *     stackId: "k8s-core",
+ * });
+ * ```
+ */
 export function getEnvironmentVariableOutput(args: GetEnvironmentVariableOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvironmentVariableResult> {
-    return pulumi.output(args).apply(a => getEnvironmentVariable(a, opts))
+    return pulumi.output(args).apply((a: any) => getEnvironmentVariable(a, opts))
 }
 
 /**

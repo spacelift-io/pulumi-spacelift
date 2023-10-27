@@ -15,23 +15,21 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const k8s_core = pulumi.output(spacelift.getStack({
+ * const k8s-core = spacelift.getStack({
  *     stackId: "k8s-core",
- * }));
+ * });
  * ```
  */
 export function getStack(args: GetStackArgs, opts?: pulumi.InvokeOptions): Promise<GetStackResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getStack:getStack", {
         "afterApplies": args.afterApplies,
         "afterDestroys": args.afterDestroys,
         "afterInits": args.afterInits,
         "afterPerforms": args.afterPerforms,
         "afterPlans": args.afterPlans,
+        "afterRuns": args.afterRuns,
         "beforeApplies": args.beforeApplies,
         "beforeDestroys": args.beforeDestroys,
         "beforeInits": args.beforeInits,
@@ -65,6 +63,10 @@ export interface GetStackArgs {
      * List of after-plan scripts
      */
     afterPlans?: string[];
+    /**
+     * List of after-run scripts
+     */
+    afterRuns?: string[];
     /**
      * List of before-apply scripts
      */
@@ -102,23 +104,27 @@ export interface GetStackResult {
     /**
      * List of after-apply scripts
      */
-    readonly afterApplies?: string[];
+    readonly afterApplies: string[];
     /**
      * List of after-destroy scripts
      */
-    readonly afterDestroys?: string[];
+    readonly afterDestroys: string[];
     /**
      * List of after-init scripts
      */
-    readonly afterInits?: string[];
+    readonly afterInits: string[];
     /**
      * List of after-perform scripts
      */
-    readonly afterPerforms?: string[];
+    readonly afterPerforms: string[];
     /**
      * List of after-plan scripts
      */
-    readonly afterPlans?: string[];
+    readonly afterPlans: string[];
+    /**
+     * List of after-run scripts
+     */
+    readonly afterRuns?: string[];
     /**
      * Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
      */
@@ -142,23 +148,23 @@ export interface GetStackResult {
     /**
      * List of before-apply scripts
      */
-    readonly beforeApplies?: string[];
+    readonly beforeApplies: string[];
     /**
      * List of before-destroy scripts
      */
-    readonly beforeDestroys?: string[];
+    readonly beforeDestroys: string[];
     /**
      * List of before-init scripts
      */
-    readonly beforeInits?: string[];
+    readonly beforeInits: string[];
     /**
      * List of before-perform scripts
      */
-    readonly beforePerforms?: string[];
+    readonly beforePerforms: string[];
     /**
      * List of before-plan scripts
      */
-    readonly beforePlans?: string[];
+    readonly beforePlans: string[];
     /**
      * Bitbucket Cloud VCS settings
      */
@@ -221,6 +227,10 @@ export interface GetStackResult {
      */
     readonly pulumis: outputs.GetStackPulumi[];
     /**
+     * One-way VCS integration using a raw Git repository link
+     */
+    readonly rawGits: outputs.GetStackRawGit[];
+    /**
      * Name of the repository, without the owner part
      */
     readonly repository: string;
@@ -240,17 +250,38 @@ export interface GetStackResult {
      * ID (slug) of the stack
      */
     readonly stackId: string;
+    /**
+     * Indicates whether you can access the Stack state file from other stacks or outside of Spacelift.
+     */
+    readonly terraformExternalStateAccess: boolean;
     readonly terraformSmartSanitization: boolean;
     readonly terraformVersion: string;
+    /**
+     * Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+     */
+    readonly terraformWorkflowTool: string;
     readonly terraformWorkspace: string;
     /**
      * ID of the worker pool to use
      */
     readonly workerPoolId: string;
 }
-
+/**
+ * `spacelift.Stack` combines source code and configuration to create a runtime environment where resources are managed. In this way it's similar to a stack in AWS CloudFormation, or a project on generic CI/CD platforms.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const k8s-core = spacelift.getStack({
+ *     stackId: "k8s-core",
+ * });
+ * ```
+ */
 export function getStackOutput(args: GetStackOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStackResult> {
-    return pulumi.output(args).apply(a => getStack(a, opts))
+    return pulumi.output(args).apply((a: any) => getStack(a, opts))
 }
 
 /**
@@ -277,6 +308,10 @@ export interface GetStackOutputArgs {
      * List of after-plan scripts
      */
     afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-run scripts
+     */
+    afterRuns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of before-apply scripts
      */

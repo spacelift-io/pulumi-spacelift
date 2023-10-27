@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const githubEnterpriseIntegration = pulumi.output(spacelift.getGithubEnterpriseIntegration());
+ * const githubEnterpriseIntegration = spacelift.getGithubEnterpriseIntegration({});
  * ```
  */
 export function getGithubEnterpriseIntegration(opts?: pulumi.InvokeOptions): Promise<GetGithubEnterpriseIntegrationResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", {
     }, opts);
 }
@@ -46,4 +43,19 @@ export interface GetGithubEnterpriseIntegrationResult {
      * Github integration webhook secret
      */
     readonly webhookSecret: string;
+}
+/**
+ * `spacelift.getGithubEnterpriseIntegration` returns details about Github Enterprise integration
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const githubEnterpriseIntegration = spacelift.getGithubEnterpriseIntegration({});
+ * ```
+ */
+export function getGithubEnterpriseIntegrationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetGithubEnterpriseIntegrationResult> {
+    return pulumi.output(getGithubEnterpriseIntegration(opts))
 }

@@ -8,273 +8,398 @@ import * as utilities from "./utilities";
 export { AwsIntegrationArgs, AwsIntegrationState } from "./awsIntegration";
 export type AwsIntegration = import("./awsIntegration").AwsIntegration;
 export const AwsIntegration: typeof import("./awsIntegration").AwsIntegration = null as any;
+utilities.lazyLoad(exports, ["AwsIntegration"], () => require("./awsIntegration"));
 
 export { AwsIntegrationAttachmentArgs, AwsIntegrationAttachmentState } from "./awsIntegrationAttachment";
 export type AwsIntegrationAttachment = import("./awsIntegrationAttachment").AwsIntegrationAttachment;
 export const AwsIntegrationAttachment: typeof import("./awsIntegrationAttachment").AwsIntegrationAttachment = null as any;
+utilities.lazyLoad(exports, ["AwsIntegrationAttachment"], () => require("./awsIntegrationAttachment"));
 
 export { AwsRoleArgs, AwsRoleState } from "./awsRole";
 export type AwsRole = import("./awsRole").AwsRole;
 export const AwsRole: typeof import("./awsRole").AwsRole = null as any;
+utilities.lazyLoad(exports, ["AwsRole"], () => require("./awsRole"));
 
 export { AzureIntegrationArgs, AzureIntegrationState } from "./azureIntegration";
 export type AzureIntegration = import("./azureIntegration").AzureIntegration;
 export const AzureIntegration: typeof import("./azureIntegration").AzureIntegration = null as any;
+utilities.lazyLoad(exports, ["AzureIntegration"], () => require("./azureIntegration"));
 
 export { AzureIntegrationAttachmentArgs, AzureIntegrationAttachmentState } from "./azureIntegrationAttachment";
 export type AzureIntegrationAttachment = import("./azureIntegrationAttachment").AzureIntegrationAttachment;
 export const AzureIntegrationAttachment: typeof import("./azureIntegrationAttachment").AzureIntegrationAttachment = null as any;
+utilities.lazyLoad(exports, ["AzureIntegrationAttachment"], () => require("./azureIntegrationAttachment"));
+
+export { BlueprintArgs, BlueprintState } from "./blueprint";
+export type Blueprint = import("./blueprint").Blueprint;
+export const Blueprint: typeof import("./blueprint").Blueprint = null as any;
+utilities.lazyLoad(exports, ["Blueprint"], () => require("./blueprint"));
 
 export { ContextArgs, ContextState } from "./context";
 export type Context = import("./context").Context;
 export const Context: typeof import("./context").Context = null as any;
+utilities.lazyLoad(exports, ["Context"], () => require("./context"));
 
 export { ContextAttachmentArgs, ContextAttachmentState } from "./contextAttachment";
 export type ContextAttachment = import("./contextAttachment").ContextAttachment;
 export const ContextAttachment: typeof import("./contextAttachment").ContextAttachment = null as any;
+utilities.lazyLoad(exports, ["ContextAttachment"], () => require("./contextAttachment"));
 
 export { DriftDetectionArgs, DriftDetectionState } from "./driftDetection";
 export type DriftDetection = import("./driftDetection").DriftDetection;
 export const DriftDetection: typeof import("./driftDetection").DriftDetection = null as any;
+utilities.lazyLoad(exports, ["DriftDetection"], () => require("./driftDetection"));
 
 export { EnvironmentVariableArgs, EnvironmentVariableState } from "./environmentVariable";
 export type EnvironmentVariable = import("./environmentVariable").EnvironmentVariable;
 export const EnvironmentVariable: typeof import("./environmentVariable").EnvironmentVariable = null as any;
+utilities.lazyLoad(exports, ["EnvironmentVariable"], () => require("./environmentVariable"));
 
 export { GcpServiceAccountArgs, GcpServiceAccountState } from "./gcpServiceAccount";
 export type GcpServiceAccount = import("./gcpServiceAccount").GcpServiceAccount;
 export const GcpServiceAccount: typeof import("./gcpServiceAccount").GcpServiceAccount = null as any;
+utilities.lazyLoad(exports, ["GcpServiceAccount"], () => require("./gcpServiceAccount"));
 
 export { GetAccountResult } from "./getAccount";
 export const getAccount: typeof import("./getAccount").getAccount = null as any;
+export const getAccountOutput: typeof import("./getAccount").getAccountOutput = null as any;
+utilities.lazyLoad(exports, ["getAccount","getAccountOutput"], () => require("./getAccount"));
 
 export { GetAwsIntegrationArgs, GetAwsIntegrationResult, GetAwsIntegrationOutputArgs } from "./getAwsIntegration";
 export const getAwsIntegration: typeof import("./getAwsIntegration").getAwsIntegration = null as any;
 export const getAwsIntegrationOutput: typeof import("./getAwsIntegration").getAwsIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getAwsIntegration","getAwsIntegrationOutput"], () => require("./getAwsIntegration"));
 
 export { GetAwsIntegrationAttachmentArgs, GetAwsIntegrationAttachmentResult, GetAwsIntegrationAttachmentOutputArgs } from "./getAwsIntegrationAttachment";
 export const getAwsIntegrationAttachment: typeof import("./getAwsIntegrationAttachment").getAwsIntegrationAttachment = null as any;
 export const getAwsIntegrationAttachmentOutput: typeof import("./getAwsIntegrationAttachment").getAwsIntegrationAttachmentOutput = null as any;
+utilities.lazyLoad(exports, ["getAwsIntegrationAttachment","getAwsIntegrationAttachmentOutput"], () => require("./getAwsIntegrationAttachment"));
 
 export { GetAwsIntegrationAttachmentExternalIdArgs, GetAwsIntegrationAttachmentExternalIdResult, GetAwsIntegrationAttachmentExternalIdOutputArgs } from "./getAwsIntegrationAttachmentExternalId";
 export const getAwsIntegrationAttachmentExternalId: typeof import("./getAwsIntegrationAttachmentExternalId").getAwsIntegrationAttachmentExternalId = null as any;
 export const getAwsIntegrationAttachmentExternalIdOutput: typeof import("./getAwsIntegrationAttachmentExternalId").getAwsIntegrationAttachmentExternalIdOutput = null as any;
+utilities.lazyLoad(exports, ["getAwsIntegrationAttachmentExternalId","getAwsIntegrationAttachmentExternalIdOutput"], () => require("./getAwsIntegrationAttachmentExternalId"));
+
+export { GetAwsIntegrationsResult } from "./getAwsIntegrations";
+export const getAwsIntegrations: typeof import("./getAwsIntegrations").getAwsIntegrations = null as any;
+export const getAwsIntegrationsOutput: typeof import("./getAwsIntegrations").getAwsIntegrationsOutput = null as any;
+utilities.lazyLoad(exports, ["getAwsIntegrations","getAwsIntegrationsOutput"], () => require("./getAwsIntegrations"));
 
 export { GetAwsRoleArgs, GetAwsRoleResult, GetAwsRoleOutputArgs } from "./getAwsRole";
 export const getAwsRole: typeof import("./getAwsRole").getAwsRole = null as any;
 export const getAwsRoleOutput: typeof import("./getAwsRole").getAwsRoleOutput = null as any;
+utilities.lazyLoad(exports, ["getAwsRole","getAwsRoleOutput"], () => require("./getAwsRole"));
 
 export { GetAzureDevopsIntegrationResult } from "./getAzureDevopsIntegration";
 export const getAzureDevopsIntegration: typeof import("./getAzureDevopsIntegration").getAzureDevopsIntegration = null as any;
+export const getAzureDevopsIntegrationOutput: typeof import("./getAzureDevopsIntegration").getAzureDevopsIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getAzureDevopsIntegration","getAzureDevopsIntegrationOutput"], () => require("./getAzureDevopsIntegration"));
 
 export { GetAzureIntegrationArgs, GetAzureIntegrationResult, GetAzureIntegrationOutputArgs } from "./getAzureIntegration";
 export const getAzureIntegration: typeof import("./getAzureIntegration").getAzureIntegration = null as any;
 export const getAzureIntegrationOutput: typeof import("./getAzureIntegration").getAzureIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getAzureIntegration","getAzureIntegrationOutput"], () => require("./getAzureIntegration"));
 
 export { GetAzureIntegrationAttachmentArgs, GetAzureIntegrationAttachmentResult, GetAzureIntegrationAttachmentOutputArgs } from "./getAzureIntegrationAttachment";
 export const getAzureIntegrationAttachment: typeof import("./getAzureIntegrationAttachment").getAzureIntegrationAttachment = null as any;
 export const getAzureIntegrationAttachmentOutput: typeof import("./getAzureIntegrationAttachment").getAzureIntegrationAttachmentOutput = null as any;
+utilities.lazyLoad(exports, ["getAzureIntegrationAttachment","getAzureIntegrationAttachmentOutput"], () => require("./getAzureIntegrationAttachment"));
+
+export { GetAzureIntegrationsResult } from "./getAzureIntegrations";
+export const getAzureIntegrations: typeof import("./getAzureIntegrations").getAzureIntegrations = null as any;
+export const getAzureIntegrationsOutput: typeof import("./getAzureIntegrations").getAzureIntegrationsOutput = null as any;
+utilities.lazyLoad(exports, ["getAzureIntegrations","getAzureIntegrationsOutput"], () => require("./getAzureIntegrations"));
 
 export { GetBitbucketCloudIntegrationResult } from "./getBitbucketCloudIntegration";
 export const getBitbucketCloudIntegration: typeof import("./getBitbucketCloudIntegration").getBitbucketCloudIntegration = null as any;
+export const getBitbucketCloudIntegrationOutput: typeof import("./getBitbucketCloudIntegration").getBitbucketCloudIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getBitbucketCloudIntegration","getBitbucketCloudIntegrationOutput"], () => require("./getBitbucketCloudIntegration"));
 
 export { GetBitbucketDatacenterIntegrationResult } from "./getBitbucketDatacenterIntegration";
 export const getBitbucketDatacenterIntegration: typeof import("./getBitbucketDatacenterIntegration").getBitbucketDatacenterIntegration = null as any;
+export const getBitbucketDatacenterIntegrationOutput: typeof import("./getBitbucketDatacenterIntegration").getBitbucketDatacenterIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getBitbucketDatacenterIntegration","getBitbucketDatacenterIntegrationOutput"], () => require("./getBitbucketDatacenterIntegration"));
 
 export { GetContextArgs, GetContextResult, GetContextOutputArgs } from "./getContext";
 export const getContext: typeof import("./getContext").getContext = null as any;
 export const getContextOutput: typeof import("./getContext").getContextOutput = null as any;
+utilities.lazyLoad(exports, ["getContext","getContextOutput"], () => require("./getContext"));
 
 export { GetContextAttachmentArgs, GetContextAttachmentResult, GetContextAttachmentOutputArgs } from "./getContextAttachment";
 export const getContextAttachment: typeof import("./getContextAttachment").getContextAttachment = null as any;
 export const getContextAttachmentOutput: typeof import("./getContextAttachment").getContextAttachmentOutput = null as any;
+utilities.lazyLoad(exports, ["getContextAttachment","getContextAttachmentOutput"], () => require("./getContextAttachment"));
+
+export { GetContextsArgs, GetContextsResult, GetContextsOutputArgs } from "./getContexts";
+export const getContexts: typeof import("./getContexts").getContexts = null as any;
+export const getContextsOutput: typeof import("./getContexts").getContextsOutput = null as any;
+utilities.lazyLoad(exports, ["getContexts","getContextsOutput"], () => require("./getContexts"));
+
+export { GetCurrentSpaceResult } from "./getCurrentSpace";
+export const getCurrentSpace: typeof import("./getCurrentSpace").getCurrentSpace = null as any;
+export const getCurrentSpaceOutput: typeof import("./getCurrentSpace").getCurrentSpaceOutput = null as any;
+utilities.lazyLoad(exports, ["getCurrentSpace","getCurrentSpaceOutput"], () => require("./getCurrentSpace"));
 
 export { GetCurrentStackResult } from "./getCurrentStack";
 export const getCurrentStack: typeof import("./getCurrentStack").getCurrentStack = null as any;
+export const getCurrentStackOutput: typeof import("./getCurrentStack").getCurrentStackOutput = null as any;
+utilities.lazyLoad(exports, ["getCurrentStack","getCurrentStackOutput"], () => require("./getCurrentStack"));
 
 export { GetDriftDetectionArgs, GetDriftDetectionResult, GetDriftDetectionOutputArgs } from "./getDriftDetection";
 export const getDriftDetection: typeof import("./getDriftDetection").getDriftDetection = null as any;
 export const getDriftDetectionOutput: typeof import("./getDriftDetection").getDriftDetectionOutput = null as any;
+utilities.lazyLoad(exports, ["getDriftDetection","getDriftDetectionOutput"], () => require("./getDriftDetection"));
 
 export { GetEnvironmentVariableArgs, GetEnvironmentVariableResult, GetEnvironmentVariableOutputArgs } from "./getEnvironmentVariable";
 export const getEnvironmentVariable: typeof import("./getEnvironmentVariable").getEnvironmentVariable = null as any;
 export const getEnvironmentVariableOutput: typeof import("./getEnvironmentVariable").getEnvironmentVariableOutput = null as any;
+utilities.lazyLoad(exports, ["getEnvironmentVariable","getEnvironmentVariableOutput"], () => require("./getEnvironmentVariable"));
 
 export { GetGcpServiceAccountArgs, GetGcpServiceAccountResult, GetGcpServiceAccountOutputArgs } from "./getGcpServiceAccount";
 export const getGcpServiceAccount: typeof import("./getGcpServiceAccount").getGcpServiceAccount = null as any;
 export const getGcpServiceAccountOutput: typeof import("./getGcpServiceAccount").getGcpServiceAccountOutput = null as any;
+utilities.lazyLoad(exports, ["getGcpServiceAccount","getGcpServiceAccountOutput"], () => require("./getGcpServiceAccount"));
 
 export { GetGithubEnterpriseIntegrationResult } from "./getGithubEnterpriseIntegration";
 export const getGithubEnterpriseIntegration: typeof import("./getGithubEnterpriseIntegration").getGithubEnterpriseIntegration = null as any;
+export const getGithubEnterpriseIntegrationOutput: typeof import("./getGithubEnterpriseIntegration").getGithubEnterpriseIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getGithubEnterpriseIntegration","getGithubEnterpriseIntegrationOutput"], () => require("./getGithubEnterpriseIntegration"));
 
 export { GetGitlabIntegrationResult } from "./getGitlabIntegration";
 export const getGitlabIntegration: typeof import("./getGitlabIntegration").getGitlabIntegration = null as any;
+export const getGitlabIntegrationOutput: typeof import("./getGitlabIntegration").getGitlabIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getGitlabIntegration","getGitlabIntegrationOutput"], () => require("./getGitlabIntegration"));
+
+export { GetGitlabWebhookEndpointResult } from "./getGitlabWebhookEndpoint";
+export const getGitlabWebhookEndpoint: typeof import("./getGitlabWebhookEndpoint").getGitlabWebhookEndpoint = null as any;
+export const getGitlabWebhookEndpointOutput: typeof import("./getGitlabWebhookEndpoint").getGitlabWebhookEndpointOutput = null as any;
+utilities.lazyLoad(exports, ["getGitlabWebhookEndpoint","getGitlabWebhookEndpointOutput"], () => require("./getGitlabWebhookEndpoint"));
 
 export { GetIPsResult } from "./getIPs";
 export const getIPs: typeof import("./getIPs").getIPs = null as any;
+export const getIPsOutput: typeof import("./getIPs").getIPsOutput = null as any;
+utilities.lazyLoad(exports, ["getIPs","getIPsOutput"], () => require("./getIPs"));
 
 export { GetModuleArgs, GetModuleResult, GetModuleOutputArgs } from "./getModule";
 export const getModule: typeof import("./getModule").getModule = null as any;
 export const getModuleOutput: typeof import("./getModule").getModuleOutput = null as any;
+utilities.lazyLoad(exports, ["getModule","getModuleOutput"], () => require("./getModule"));
 
 export { GetMountedfileArgs, GetMountedfileResult, GetMountedfileOutputArgs } from "./getMountedfile";
 export const getMountedfile: typeof import("./getMountedfile").getMountedfile = null as any;
 export const getMountedfileOutput: typeof import("./getMountedfile").getMountedfileOutput = null as any;
+utilities.lazyLoad(exports, ["getMountedfile","getMountedfileOutput"], () => require("./getMountedfile"));
+
+export { GetNamedWebhookArgs, GetNamedWebhookResult, GetNamedWebhookOutputArgs } from "./getNamedWebhook";
+export const getNamedWebhook: typeof import("./getNamedWebhook").getNamedWebhook = null as any;
+export const getNamedWebhookOutput: typeof import("./getNamedWebhook").getNamedWebhookOutput = null as any;
+utilities.lazyLoad(exports, ["getNamedWebhook","getNamedWebhookOutput"], () => require("./getNamedWebhook"));
 
 export { GetPoliciesArgs, GetPoliciesResult, GetPoliciesOutputArgs } from "./getPolicies";
 export const getPolicies: typeof import("./getPolicies").getPolicies = null as any;
 export const getPoliciesOutput: typeof import("./getPolicies").getPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getPolicies","getPoliciesOutput"], () => require("./getPolicies"));
 
 export { GetPolicyArgs, GetPolicyResult, GetPolicyOutputArgs } from "./getPolicy";
 export const getPolicy: typeof import("./getPolicy").getPolicy = null as any;
 export const getPolicyOutput: typeof import("./getPolicy").getPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getPolicy","getPolicyOutput"], () => require("./getPolicy"));
+
+export { GetScheduledDeleteStackArgs, GetScheduledDeleteStackResult, GetScheduledDeleteStackOutputArgs } from "./getScheduledDeleteStack";
+export const getScheduledDeleteStack: typeof import("./getScheduledDeleteStack").getScheduledDeleteStack = null as any;
+export const getScheduledDeleteStackOutput: typeof import("./getScheduledDeleteStack").getScheduledDeleteStackOutput = null as any;
+utilities.lazyLoad(exports, ["getScheduledDeleteStack","getScheduledDeleteStackOutput"], () => require("./getScheduledDeleteStack"));
+
+export { GetScheduledTaskArgs, GetScheduledTaskResult, GetScheduledTaskOutputArgs } from "./getScheduledTask";
+export const getScheduledTask: typeof import("./getScheduledTask").getScheduledTask = null as any;
+export const getScheduledTaskOutput: typeof import("./getScheduledTask").getScheduledTaskOutput = null as any;
+utilities.lazyLoad(exports, ["getScheduledTask","getScheduledTaskOutput"], () => require("./getScheduledTask"));
 
 export { GetSpaceArgs, GetSpaceResult, GetSpaceOutputArgs } from "./getSpace";
 export const getSpace: typeof import("./getSpace").getSpace = null as any;
 export const getSpaceOutput: typeof import("./getSpace").getSpaceOutput = null as any;
+utilities.lazyLoad(exports, ["getSpace","getSpaceOutput"], () => require("./getSpace"));
+
+export { GetSpaceByPathArgs, GetSpaceByPathResult, GetSpaceByPathOutputArgs } from "./getSpaceByPath";
+export const getSpaceByPath: typeof import("./getSpaceByPath").getSpaceByPath = null as any;
+export const getSpaceByPathOutput: typeof import("./getSpaceByPath").getSpaceByPathOutput = null as any;
+utilities.lazyLoad(exports, ["getSpaceByPath","getSpaceByPathOutput"], () => require("./getSpaceByPath"));
+
+export { GetSpacesResult } from "./getSpaces";
+export const getSpaces: typeof import("./getSpaces").getSpaces = null as any;
+export const getSpacesOutput: typeof import("./getSpaces").getSpacesOutput = null as any;
+utilities.lazyLoad(exports, ["getSpaces","getSpacesOutput"], () => require("./getSpaces"));
 
 export { GetStackArgs, GetStackResult, GetStackOutputArgs } from "./getStack";
 export const getStack: typeof import("./getStack").getStack = null as any;
 export const getStackOutput: typeof import("./getStack").getStackOutput = null as any;
+utilities.lazyLoad(exports, ["getStack","getStackOutput"], () => require("./getStack"));
 
 export { GetStackAwsRoleArgs, GetStackAwsRoleResult, GetStackAwsRoleOutputArgs } from "./getStackAwsRole";
 export const getStackAwsRole: typeof import("./getStackAwsRole").getStackAwsRole = null as any;
 export const getStackAwsRoleOutput: typeof import("./getStackAwsRole").getStackAwsRoleOutput = null as any;
+utilities.lazyLoad(exports, ["getStackAwsRole","getStackAwsRoleOutput"], () => require("./getStackAwsRole"));
 
 export { GetStackGcpServiceAccountArgs, GetStackGcpServiceAccountResult, GetStackGcpServiceAccountOutputArgs } from "./getStackGcpServiceAccount";
 export const getStackGcpServiceAccount: typeof import("./getStackGcpServiceAccount").getStackGcpServiceAccount = null as any;
 export const getStackGcpServiceAccountOutput: typeof import("./getStackGcpServiceAccount").getStackGcpServiceAccountOutput = null as any;
+utilities.lazyLoad(exports, ["getStackGcpServiceAccount","getStackGcpServiceAccountOutput"], () => require("./getStackGcpServiceAccount"));
+
+export { GetStacksArgs, GetStacksResult, GetStacksOutputArgs } from "./getStacks";
+export const getStacks: typeof import("./getStacks").getStacks = null as any;
+export const getStacksOutput: typeof import("./getStacks").getStacksOutput = null as any;
+utilities.lazyLoad(exports, ["getStacks","getStacksOutput"], () => require("./getStacks"));
 
 export { GetVcsAgentPoolArgs, GetVcsAgentPoolResult, GetVcsAgentPoolOutputArgs } from "./getVcsAgentPool";
 export const getVcsAgentPool: typeof import("./getVcsAgentPool").getVcsAgentPool = null as any;
 export const getVcsAgentPoolOutput: typeof import("./getVcsAgentPool").getVcsAgentPoolOutput = null as any;
+utilities.lazyLoad(exports, ["getVcsAgentPool","getVcsAgentPoolOutput"], () => require("./getVcsAgentPool"));
 
 export { GetVcsAgentPoolsResult } from "./getVcsAgentPools";
 export const getVcsAgentPools: typeof import("./getVcsAgentPools").getVcsAgentPools = null as any;
+export const getVcsAgentPoolsOutput: typeof import("./getVcsAgentPools").getVcsAgentPoolsOutput = null as any;
+utilities.lazyLoad(exports, ["getVcsAgentPools","getVcsAgentPoolsOutput"], () => require("./getVcsAgentPools"));
 
 export { GetWebhookArgs, GetWebhookResult, GetWebhookOutputArgs } from "./getWebhook";
 export const getWebhook: typeof import("./getWebhook").getWebhook = null as any;
 export const getWebhookOutput: typeof import("./getWebhook").getWebhookOutput = null as any;
+utilities.lazyLoad(exports, ["getWebhook","getWebhookOutput"], () => require("./getWebhook"));
 
 export { GetWorkerPoolArgs, GetWorkerPoolResult, GetWorkerPoolOutputArgs } from "./getWorkerPool";
 export const getWorkerPool: typeof import("./getWorkerPool").getWorkerPool = null as any;
 export const getWorkerPoolOutput: typeof import("./getWorkerPool").getWorkerPoolOutput = null as any;
+utilities.lazyLoad(exports, ["getWorkerPool","getWorkerPoolOutput"], () => require("./getWorkerPool"));
 
 export { GetWorkerPoolsResult } from "./getWorkerPools";
 export const getWorkerPools: typeof import("./getWorkerPools").getWorkerPools = null as any;
+export const getWorkerPoolsOutput: typeof import("./getWorkerPools").getWorkerPoolsOutput = null as any;
+utilities.lazyLoad(exports, ["getWorkerPools","getWorkerPoolsOutput"], () => require("./getWorkerPools"));
+
+export { IdpGroupMappingArgs, IdpGroupMappingState } from "./idpGroupMapping";
+export type IdpGroupMapping = import("./idpGroupMapping").IdpGroupMapping;
+export const IdpGroupMapping: typeof import("./idpGroupMapping").IdpGroupMapping = null as any;
+utilities.lazyLoad(exports, ["IdpGroupMapping"], () => require("./idpGroupMapping"));
 
 export { ModuleArgs, ModuleState } from "./module";
 export type Module = import("./module").Module;
 export const Module: typeof import("./module").Module = null as any;
+utilities.lazyLoad(exports, ["Module"], () => require("./module"));
 
 export { MountedfileArgs, MountedfileState } from "./mountedfile";
 export type Mountedfile = import("./mountedfile").Mountedfile;
 export const Mountedfile: typeof import("./mountedfile").Mountedfile = null as any;
+utilities.lazyLoad(exports, ["Mountedfile"], () => require("./mountedfile"));
+
+export { NamedWebhookArgs, NamedWebhookState } from "./namedWebhook";
+export type NamedWebhook = import("./namedWebhook").NamedWebhook;
+export const NamedWebhook: typeof import("./namedWebhook").NamedWebhook = null as any;
+utilities.lazyLoad(exports, ["NamedWebhook"], () => require("./namedWebhook"));
+
+export { NamedWebhookSecretHeaderArgs, NamedWebhookSecretHeaderState } from "./namedWebhookSecretHeader";
+export type NamedWebhookSecretHeader = import("./namedWebhookSecretHeader").NamedWebhookSecretHeader;
+export const NamedWebhookSecretHeader: typeof import("./namedWebhookSecretHeader").NamedWebhookSecretHeader = null as any;
+utilities.lazyLoad(exports, ["NamedWebhookSecretHeader"], () => require("./namedWebhookSecretHeader"));
 
 export { PolicyArgs, PolicyState } from "./policy";
 export type Policy = import("./policy").Policy;
 export const Policy: typeof import("./policy").Policy = null as any;
+utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
 
 export { PolicyAttachmentArgs, PolicyAttachmentState } from "./policyAttachment";
 export type PolicyAttachment = import("./policyAttachment").PolicyAttachment;
 export const PolicyAttachment: typeof import("./policyAttachment").PolicyAttachment = null as any;
+utilities.lazyLoad(exports, ["PolicyAttachment"], () => require("./policyAttachment"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
 export { RunArgs, RunState } from "./run";
 export type Run = import("./run").Run;
 export const Run: typeof import("./run").Run = null as any;
+utilities.lazyLoad(exports, ["Run"], () => require("./run"));
+
+export { ScheduledDeleteTaskArgs, ScheduledDeleteTaskState } from "./scheduledDeleteTask";
+export type ScheduledDeleteTask = import("./scheduledDeleteTask").ScheduledDeleteTask;
+export const ScheduledDeleteTask: typeof import("./scheduledDeleteTask").ScheduledDeleteTask = null as any;
+utilities.lazyLoad(exports, ["ScheduledDeleteTask"], () => require("./scheduledDeleteTask"));
+
+export { ScheduledTaskArgs, ScheduledTaskState } from "./scheduledTask";
+export type ScheduledTask = import("./scheduledTask").ScheduledTask;
+export const ScheduledTask: typeof import("./scheduledTask").ScheduledTask = null as any;
+utilities.lazyLoad(exports, ["ScheduledTask"], () => require("./scheduledTask"));
 
 export { SpaceArgs, SpaceState } from "./space";
 export type Space = import("./space").Space;
 export const Space: typeof import("./space").Space = null as any;
+utilities.lazyLoad(exports, ["Space"], () => require("./space"));
 
 export { StackArgs, StackState } from "./stack";
 export type Stack = import("./stack").Stack;
 export const Stack: typeof import("./stack").Stack = null as any;
+utilities.lazyLoad(exports, ["Stack"], () => require("./stack"));
+
+export { StackActivatorArgs, StackActivatorState } from "./stackActivator";
+export type StackActivator = import("./stackActivator").StackActivator;
+export const StackActivator: typeof import("./stackActivator").StackActivator = null as any;
+utilities.lazyLoad(exports, ["StackActivator"], () => require("./stackActivator"));
 
 export { StackAwsRoleArgs, StackAwsRoleState } from "./stackAwsRole";
 export type StackAwsRole = import("./stackAwsRole").StackAwsRole;
 export const StackAwsRole: typeof import("./stackAwsRole").StackAwsRole = null as any;
+utilities.lazyLoad(exports, ["StackAwsRole"], () => require("./stackAwsRole"));
+
+export { StackDependencyArgs, StackDependencyState } from "./stackDependency";
+export type StackDependency = import("./stackDependency").StackDependency;
+export const StackDependency: typeof import("./stackDependency").StackDependency = null as any;
+utilities.lazyLoad(exports, ["StackDependency"], () => require("./stackDependency"));
+
+export { StackDependencyReferenceArgs, StackDependencyReferenceState } from "./stackDependencyReference";
+export type StackDependencyReference = import("./stackDependencyReference").StackDependencyReference;
+export const StackDependencyReference: typeof import("./stackDependencyReference").StackDependencyReference = null as any;
+utilities.lazyLoad(exports, ["StackDependencyReference"], () => require("./stackDependencyReference"));
 
 export { StackDestructorArgs, StackDestructorState } from "./stackDestructor";
 export type StackDestructor = import("./stackDestructor").StackDestructor;
 export const StackDestructor: typeof import("./stackDestructor").StackDestructor = null as any;
+utilities.lazyLoad(exports, ["StackDestructor"], () => require("./stackDestructor"));
 
 export { StackGcpServiceAccountArgs, StackGcpServiceAccountState } from "./stackGcpServiceAccount";
 export type StackGcpServiceAccount = import("./stackGcpServiceAccount").StackGcpServiceAccount;
 export const StackGcpServiceAccount: typeof import("./stackGcpServiceAccount").StackGcpServiceAccount = null as any;
+utilities.lazyLoad(exports, ["StackGcpServiceAccount"], () => require("./stackGcpServiceAccount"));
+
+export { TerraformProviderArgs, TerraformProviderState } from "./terraformProvider";
+export type TerraformProvider = import("./terraformProvider").TerraformProvider;
+export const TerraformProvider: typeof import("./terraformProvider").TerraformProvider = null as any;
+utilities.lazyLoad(exports, ["TerraformProvider"], () => require("./terraformProvider"));
+
+export { UserArgs, UserState } from "./user";
+export type User = import("./user").User;
+export const User: typeof import("./user").User = null as any;
+utilities.lazyLoad(exports, ["User"], () => require("./user"));
 
 export { VcsAgentPoolArgs, VcsAgentPoolState } from "./vcsAgentPool";
 export type VcsAgentPool = import("./vcsAgentPool").VcsAgentPool;
 export const VcsAgentPool: typeof import("./vcsAgentPool").VcsAgentPool = null as any;
+utilities.lazyLoad(exports, ["VcsAgentPool"], () => require("./vcsAgentPool"));
+
+export { VersionArgs, VersionState } from "./version";
+export type Version = import("./version").Version;
+export const Version: typeof import("./version").Version = null as any;
+utilities.lazyLoad(exports, ["Version"], () => require("./version"));
 
 export { WebhookArgs, WebhookState } from "./webhook";
 export type Webhook = import("./webhook").Webhook;
 export const Webhook: typeof import("./webhook").Webhook = null as any;
+utilities.lazyLoad(exports, ["Webhook"], () => require("./webhook"));
 
 export { WorkerPoolArgs, WorkerPoolState } from "./workerPool";
 export type WorkerPool = import("./workerPool").WorkerPool;
 export const WorkerPool: typeof import("./workerPool").WorkerPool = null as any;
-
-utilities.lazyLoad(exports, ["AwsIntegration"], () => require("./awsIntegration"));
-utilities.lazyLoad(exports, ["AwsIntegrationAttachment"], () => require("./awsIntegrationAttachment"));
-utilities.lazyLoad(exports, ["AwsRole"], () => require("./awsRole"));
-utilities.lazyLoad(exports, ["AzureIntegration"], () => require("./azureIntegration"));
-utilities.lazyLoad(exports, ["AzureIntegrationAttachment"], () => require("./azureIntegrationAttachment"));
-utilities.lazyLoad(exports, ["Context"], () => require("./context"));
-utilities.lazyLoad(exports, ["ContextAttachment"], () => require("./contextAttachment"));
-utilities.lazyLoad(exports, ["DriftDetection"], () => require("./driftDetection"));
-utilities.lazyLoad(exports, ["EnvironmentVariable"], () => require("./environmentVariable"));
-utilities.lazyLoad(exports, ["GcpServiceAccount"], () => require("./gcpServiceAccount"));
-utilities.lazyLoad(exports, ["getAccount"], () => require("./getAccount"));
-utilities.lazyLoad(exports, ["getAwsIntegration","getAwsIntegrationOutput"], () => require("./getAwsIntegration"));
-utilities.lazyLoad(exports, ["getAwsIntegrationAttachment","getAwsIntegrationAttachmentOutput"], () => require("./getAwsIntegrationAttachment"));
-utilities.lazyLoad(exports, ["getAwsIntegrationAttachmentExternalId","getAwsIntegrationAttachmentExternalIdOutput"], () => require("./getAwsIntegrationAttachmentExternalId"));
-utilities.lazyLoad(exports, ["getAwsRole","getAwsRoleOutput"], () => require("./getAwsRole"));
-utilities.lazyLoad(exports, ["getAzureDevopsIntegration"], () => require("./getAzureDevopsIntegration"));
-utilities.lazyLoad(exports, ["getAzureIntegration","getAzureIntegrationOutput"], () => require("./getAzureIntegration"));
-utilities.lazyLoad(exports, ["getAzureIntegrationAttachment","getAzureIntegrationAttachmentOutput"], () => require("./getAzureIntegrationAttachment"));
-utilities.lazyLoad(exports, ["getBitbucketCloudIntegration"], () => require("./getBitbucketCloudIntegration"));
-utilities.lazyLoad(exports, ["getBitbucketDatacenterIntegration"], () => require("./getBitbucketDatacenterIntegration"));
-utilities.lazyLoad(exports, ["getContext","getContextOutput"], () => require("./getContext"));
-utilities.lazyLoad(exports, ["getContextAttachment","getContextAttachmentOutput"], () => require("./getContextAttachment"));
-utilities.lazyLoad(exports, ["getCurrentStack"], () => require("./getCurrentStack"));
-utilities.lazyLoad(exports, ["getDriftDetection","getDriftDetectionOutput"], () => require("./getDriftDetection"));
-utilities.lazyLoad(exports, ["getEnvironmentVariable","getEnvironmentVariableOutput"], () => require("./getEnvironmentVariable"));
-utilities.lazyLoad(exports, ["getGcpServiceAccount","getGcpServiceAccountOutput"], () => require("./getGcpServiceAccount"));
-utilities.lazyLoad(exports, ["getGithubEnterpriseIntegration"], () => require("./getGithubEnterpriseIntegration"));
-utilities.lazyLoad(exports, ["getGitlabIntegration"], () => require("./getGitlabIntegration"));
-utilities.lazyLoad(exports, ["getIPs"], () => require("./getIPs"));
-utilities.lazyLoad(exports, ["getModule","getModuleOutput"], () => require("./getModule"));
-utilities.lazyLoad(exports, ["getMountedfile","getMountedfileOutput"], () => require("./getMountedfile"));
-utilities.lazyLoad(exports, ["getPolicies","getPoliciesOutput"], () => require("./getPolicies"));
-utilities.lazyLoad(exports, ["getPolicy","getPolicyOutput"], () => require("./getPolicy"));
-utilities.lazyLoad(exports, ["getSpace","getSpaceOutput"], () => require("./getSpace"));
-utilities.lazyLoad(exports, ["getStack","getStackOutput"], () => require("./getStack"));
-utilities.lazyLoad(exports, ["getStackAwsRole","getStackAwsRoleOutput"], () => require("./getStackAwsRole"));
-utilities.lazyLoad(exports, ["getStackGcpServiceAccount","getStackGcpServiceAccountOutput"], () => require("./getStackGcpServiceAccount"));
-utilities.lazyLoad(exports, ["getVcsAgentPool","getVcsAgentPoolOutput"], () => require("./getVcsAgentPool"));
-utilities.lazyLoad(exports, ["getVcsAgentPools"], () => require("./getVcsAgentPools"));
-utilities.lazyLoad(exports, ["getWebhook","getWebhookOutput"], () => require("./getWebhook"));
-utilities.lazyLoad(exports, ["getWorkerPool","getWorkerPoolOutput"], () => require("./getWorkerPool"));
-utilities.lazyLoad(exports, ["getWorkerPools"], () => require("./getWorkerPools"));
-utilities.lazyLoad(exports, ["Module"], () => require("./module"));
-utilities.lazyLoad(exports, ["Mountedfile"], () => require("./mountedfile"));
-utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
-utilities.lazyLoad(exports, ["PolicyAttachment"], () => require("./policyAttachment"));
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
-utilities.lazyLoad(exports, ["Run"], () => require("./run"));
-utilities.lazyLoad(exports, ["Space"], () => require("./space"));
-utilities.lazyLoad(exports, ["Stack"], () => require("./stack"));
-utilities.lazyLoad(exports, ["StackAwsRole"], () => require("./stackAwsRole"));
-utilities.lazyLoad(exports, ["StackDestructor"], () => require("./stackDestructor"));
-utilities.lazyLoad(exports, ["StackGcpServiceAccount"], () => require("./stackGcpServiceAccount"));
-utilities.lazyLoad(exports, ["VcsAgentPool"], () => require("./vcsAgentPool"));
-utilities.lazyLoad(exports, ["Webhook"], () => require("./webhook"));
 utilities.lazyLoad(exports, ["WorkerPool"], () => require("./workerPool"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -299,6 +424,8 @@ const _module = {
                 return new AzureIntegration(name, <any>undefined, { urn })
             case "spacelift:index/azureIntegrationAttachment:AzureIntegrationAttachment":
                 return new AzureIntegrationAttachment(name, <any>undefined, { urn })
+            case "spacelift:index/blueprint:Blueprint":
+                return new Blueprint(name, <any>undefined, { urn })
             case "spacelift:index/context:Context":
                 return new Context(name, <any>undefined, { urn })
             case "spacelift:index/contextAttachment:ContextAttachment":
@@ -309,28 +436,50 @@ const _module = {
                 return new EnvironmentVariable(name, <any>undefined, { urn })
             case "spacelift:index/gcpServiceAccount:GcpServiceAccount":
                 return new GcpServiceAccount(name, <any>undefined, { urn })
+            case "spacelift:index/idpGroupMapping:IdpGroupMapping":
+                return new IdpGroupMapping(name, <any>undefined, { urn })
             case "spacelift:index/module:Module":
                 return new Module(name, <any>undefined, { urn })
             case "spacelift:index/mountedfile:Mountedfile":
                 return new Mountedfile(name, <any>undefined, { urn })
+            case "spacelift:index/namedWebhook:NamedWebhook":
+                return new NamedWebhook(name, <any>undefined, { urn })
+            case "spacelift:index/namedWebhookSecretHeader:NamedWebhookSecretHeader":
+                return new NamedWebhookSecretHeader(name, <any>undefined, { urn })
             case "spacelift:index/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
             case "spacelift:index/policyAttachment:PolicyAttachment":
                 return new PolicyAttachment(name, <any>undefined, { urn })
             case "spacelift:index/run:Run":
                 return new Run(name, <any>undefined, { urn })
+            case "spacelift:index/scheduledDeleteTask:ScheduledDeleteTask":
+                return new ScheduledDeleteTask(name, <any>undefined, { urn })
+            case "spacelift:index/scheduledTask:ScheduledTask":
+                return new ScheduledTask(name, <any>undefined, { urn })
             case "spacelift:index/space:Space":
                 return new Space(name, <any>undefined, { urn })
             case "spacelift:index/stack:Stack":
                 return new Stack(name, <any>undefined, { urn })
+            case "spacelift:index/stackActivator:StackActivator":
+                return new StackActivator(name, <any>undefined, { urn })
             case "spacelift:index/stackAwsRole:StackAwsRole":
                 return new StackAwsRole(name, <any>undefined, { urn })
+            case "spacelift:index/stackDependency:StackDependency":
+                return new StackDependency(name, <any>undefined, { urn })
+            case "spacelift:index/stackDependencyReference:StackDependencyReference":
+                return new StackDependencyReference(name, <any>undefined, { urn })
             case "spacelift:index/stackDestructor:StackDestructor":
                 return new StackDestructor(name, <any>undefined, { urn })
             case "spacelift:index/stackGcpServiceAccount:StackGcpServiceAccount":
                 return new StackGcpServiceAccount(name, <any>undefined, { urn })
+            case "spacelift:index/terraformProvider:TerraformProvider":
+                return new TerraformProvider(name, <any>undefined, { urn })
+            case "spacelift:index/user:User":
+                return new User(name, <any>undefined, { urn })
             case "spacelift:index/vcsAgentPool:VcsAgentPool":
                 return new VcsAgentPool(name, <any>undefined, { urn })
+            case "spacelift:index/version:Version":
+                return new Version(name, <any>undefined, { urn })
             case "spacelift:index/webhook:Webhook":
                 return new Webhook(name, <any>undefined, { urn })
             case "spacelift:index/workerPool:WorkerPool":
@@ -345,22 +494,34 @@ pulumi.runtime.registerResourceModule("spacelift", "index/awsIntegrationAttachme
 pulumi.runtime.registerResourceModule("spacelift", "index/awsRole", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/azureIntegration", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/azureIntegrationAttachment", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/blueprint", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/context", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/contextAttachment", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/driftDetection", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/environmentVariable", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/gcpServiceAccount", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/idpGroupMapping", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/module", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/mountedfile", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/namedWebhook", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/namedWebhookSecretHeader", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/policy", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/policyAttachment", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/run", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/scheduledDeleteTask", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/scheduledTask", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/space", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stack", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/stackActivator", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stackAwsRole", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/stackDependency", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/stackDependencyReference", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stackDestructor", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stackGcpServiceAccount", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/terraformProvider", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/user", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/vcsAgentPool", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/version", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/webhook", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/workerPool", _module)
 pulumi.runtime.registerResourcePackage("spacelift", {

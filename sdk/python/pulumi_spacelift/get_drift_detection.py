@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -21,10 +21,13 @@ class GetDriftDetectionResult:
     """
     A collection of values returned by getDriftDetection.
     """
-    def __init__(__self__, id=None, reconcile=None, schedules=None, stack_id=None, timezone=None):
+    def __init__(__self__, id=None, ignore_state=None, reconcile=None, schedules=None, stack_id=None, timezone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if ignore_state and not isinstance(ignore_state, bool):
+            raise TypeError("Expected argument 'ignore_state' to be a bool")
+        pulumi.set(__self__, "ignore_state", ignore_state)
         if reconcile and not isinstance(reconcile, bool):
             raise TypeError("Expected argument 'reconcile' to be a bool")
         pulumi.set(__self__, "reconcile", reconcile)
@@ -45,6 +48,14 @@ class GetDriftDetectionResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ignoreState")
+    def ignore_state(self) -> Optional[bool]:
+        """
+        Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+        """
+        return pulumi.get(self, "ignore_state")
 
     @property
     @pulumi.getter
@@ -86,13 +97,15 @@ class AwaitableGetDriftDetectionResult(GetDriftDetectionResult):
             yield self
         return GetDriftDetectionResult(
             id=self.id,
+            ignore_state=self.ignore_state,
             reconcile=self.reconcile,
             schedules=self.schedules,
             stack_id=self.stack_id,
             timezone=self.timezone)
 
 
-def get_drift_detection(stack_id: Optional[str] = None,
+def get_drift_detection(ignore_state: Optional[bool] = None,
+                        stack_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDriftDetectionResult:
     """
     `DriftDetection` represents a Drift Detection configuration for a Stack. It will trigger a proposed run on the given schedule, which you can listen for using run state webhooks. If reconcile is true, then a tracked run will be triggered when drift is detected.
@@ -107,23 +120,27 @@ def get_drift_detection(stack_id: Optional[str] = None,
     ```
 
 
+    :param bool ignore_state: Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
     :param str stack_id: ID of the stack for which to set up drift detection
     """
     __args__ = dict()
+    __args__['ignoreState'] = ignore_state
     __args__['stackId'] = stack_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('spacelift:index/getDriftDetection:getDriftDetection', __args__, opts=opts, typ=GetDriftDetectionResult).value
 
     return AwaitableGetDriftDetectionResult(
-        id=__ret__.id,
-        reconcile=__ret__.reconcile,
-        schedules=__ret__.schedules,
-        stack_id=__ret__.stack_id,
-        timezone=__ret__.timezone)
+        id=pulumi.get(__ret__, 'id'),
+        ignore_state=pulumi.get(__ret__, 'ignore_state'),
+        reconcile=pulumi.get(__ret__, 'reconcile'),
+        schedules=pulumi.get(__ret__, 'schedules'),
+        stack_id=pulumi.get(__ret__, 'stack_id'),
+        timezone=pulumi.get(__ret__, 'timezone'))
 
 
 @_utilities.lift_output_func(get_drift_detection)
-def get_drift_detection_output(stack_id: Optional[pulumi.Input[str]] = None,
+def get_drift_detection_output(ignore_state: Optional[pulumi.Input[Optional[bool]]] = None,
+                               stack_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDriftDetectionResult]:
     """
     `DriftDetection` represents a Drift Detection configuration for a Stack. It will trigger a proposed run on the given schedule, which you can listen for using run state webhooks. If reconcile is true, then a tracked run will be triggered when drift is detected.
@@ -138,6 +155,7 @@ def get_drift_detection_output(stack_id: Optional[pulumi.Input[str]] = None,
     ```
 
 
+    :param bool ignore_state: Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
     :param str stack_id: ID of the stack for which to set up drift detection
     """
     ...

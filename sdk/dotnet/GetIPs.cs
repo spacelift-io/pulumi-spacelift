@@ -12,7 +12,7 @@ namespace Pulumi.Spacelift
     public static class GetIPs
     {
         /// <summary>
-        /// `spacelift.getIPs` returns the list of Spacelift's outgoing IP addresses, which you can use to whitelist connections coming from the Spacelift's "mothership".
+        /// `spacelift.getIPs` returns the list of Spacelift's outgoing IP addresses, which you can use to whitelist connections coming from the Spacelift's "mothership". **NOTE:** this does not include the IP addresses of the workers in Spacelift's public worker pool. If you need to ensure that requests made during runs originate from a known set of IP addresses, please consider setting up a [private worker pool](https://docs.spacelift.io/concepts/worker-pools).
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -20,6 +20,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -34,6 +35,31 @@ namespace Pulumi.Spacelift
         /// </summary>
         public static Task<GetIPsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIPsResult>("spacelift:index/getIPs:getIPs", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// `spacelift.getIPs` returns the list of Spacelift's outgoing IP addresses, which you can use to whitelist connections coming from the Spacelift's "mothership". **NOTE:** this does not include the IP addresses of the workers in Spacelift's public worker pool. If you need to ensure that requests made during runs originate from a known set of IP addresses, please consider setting up a [private worker pool](https://docs.spacelift.io/concepts/worker-pools).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Spacelift = Pulumi.Spacelift;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var ips = Spacelift.GetIPs.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetIPsResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIPsResult>("spacelift:index/getIPs:getIPs", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

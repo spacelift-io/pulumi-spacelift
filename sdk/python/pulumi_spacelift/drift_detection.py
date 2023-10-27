@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DriftDetectionArgs', 'DriftDetection']
@@ -16,21 +16,52 @@ class DriftDetectionArgs:
     def __init__(__self__, *,
                  schedules: pulumi.Input[Sequence[pulumi.Input[str]]],
                  stack_id: pulumi.Input[str],
+                 ignore_state: Optional[pulumi.Input[bool]] = None,
                  reconcile: Optional[pulumi.Input[bool]] = None,
                  timezone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DriftDetection resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] schedules: List of cron schedule expressions based on which drift detection should be triggered.
         :param pulumi.Input[str] stack_id: ID of the stack for which to set up drift detection
+        :param pulumi.Input[bool] ignore_state: Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
         :param pulumi.Input[bool] reconcile: Whether a tracked run should be triggered when drift is detected.
         :param pulumi.Input[str] timezone: Timezone in which the schedule is expressed. Defaults to `UTC`.
         """
-        pulumi.set(__self__, "schedules", schedules)
-        pulumi.set(__self__, "stack_id", stack_id)
+        DriftDetectionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            schedules=schedules,
+            stack_id=stack_id,
+            ignore_state=ignore_state,
+            reconcile=reconcile,
+            timezone=timezone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             schedules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             ignore_state: Optional[pulumi.Input[bool]] = None,
+             reconcile: Optional[pulumi.Input[bool]] = None,
+             timezone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if schedules is None:
+            raise TypeError("Missing 'schedules' argument")
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+        if stack_id is None:
+            raise TypeError("Missing 'stack_id' argument")
+        if ignore_state is None and 'ignoreState' in kwargs:
+            ignore_state = kwargs['ignoreState']
+
+        _setter("schedules", schedules)
+        _setter("stack_id", stack_id)
+        if ignore_state is not None:
+            _setter("ignore_state", ignore_state)
         if reconcile is not None:
-            pulumi.set(__self__, "reconcile", reconcile)
+            _setter("reconcile", reconcile)
         if timezone is not None:
-            pulumi.set(__self__, "timezone", timezone)
+            _setter("timezone", timezone)
 
     @property
     @pulumi.getter
@@ -55,6 +86,18 @@ class DriftDetectionArgs:
     @stack_id.setter
     def stack_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "stack_id", value)
+
+    @property
+    @pulumi.getter(name="ignoreState")
+    def ignore_state(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+        """
+        return pulumi.get(self, "ignore_state")
+
+    @ignore_state.setter
+    def ignore_state(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ignore_state", value)
 
     @property
     @pulumi.getter
@@ -84,25 +127,64 @@ class DriftDetectionArgs:
 @pulumi.input_type
 class _DriftDetectionState:
     def __init__(__self__, *,
+                 ignore_state: Optional[pulumi.Input[bool]] = None,
                  reconcile: Optional[pulumi.Input[bool]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DriftDetection resources.
+        :param pulumi.Input[bool] ignore_state: Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
         :param pulumi.Input[bool] reconcile: Whether a tracked run should be triggered when drift is detected.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] schedules: List of cron schedule expressions based on which drift detection should be triggered.
         :param pulumi.Input[str] stack_id: ID of the stack for which to set up drift detection
         :param pulumi.Input[str] timezone: Timezone in which the schedule is expressed. Defaults to `UTC`.
         """
+        _DriftDetectionState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ignore_state=ignore_state,
+            reconcile=reconcile,
+            schedules=schedules,
+            stack_id=stack_id,
+            timezone=timezone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ignore_state: Optional[pulumi.Input[bool]] = None,
+             reconcile: Optional[pulumi.Input[bool]] = None,
+             schedules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             timezone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if ignore_state is None and 'ignoreState' in kwargs:
+            ignore_state = kwargs['ignoreState']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+
+        if ignore_state is not None:
+            _setter("ignore_state", ignore_state)
         if reconcile is not None:
-            pulumi.set(__self__, "reconcile", reconcile)
+            _setter("reconcile", reconcile)
         if schedules is not None:
-            pulumi.set(__self__, "schedules", schedules)
+            _setter("schedules", schedules)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
         if timezone is not None:
-            pulumi.set(__self__, "timezone", timezone)
+            _setter("timezone", timezone)
+
+    @property
+    @pulumi.getter(name="ignoreState")
+    def ignore_state(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+        """
+        return pulumi.get(self, "ignore_state")
+
+    @ignore_state.setter
+    def ignore_state(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ignore_state", value)
 
     @property
     @pulumi.getter
@@ -158,6 +240,7 @@ class DriftDetection(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 ignore_state: Optional[pulumi.Input[bool]] = None,
                  reconcile: Optional[pulumi.Input[bool]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
@@ -194,6 +277,7 @@ class DriftDetection(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] ignore_state: Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
         :param pulumi.Input[bool] reconcile: Whether a tracked run should be triggered when drift is detected.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] schedules: List of cron schedule expressions based on which drift detection should be triggered.
         :param pulumi.Input[str] stack_id: ID of the stack for which to set up drift detection
@@ -244,11 +328,16 @@ class DriftDetection(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DriftDetectionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 ignore_state: Optional[pulumi.Input[bool]] = None,
                  reconcile: Optional[pulumi.Input[bool]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  stack_id: Optional[pulumi.Input[str]] = None,
@@ -262,6 +351,7 @@ class DriftDetection(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DriftDetectionArgs.__new__(DriftDetectionArgs)
 
+            __props__.__dict__["ignore_state"] = ignore_state
             __props__.__dict__["reconcile"] = reconcile
             if schedules is None and not opts.urn:
                 raise TypeError("Missing required property 'schedules'")
@@ -280,6 +370,7 @@ class DriftDetection(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            ignore_state: Optional[pulumi.Input[bool]] = None,
             reconcile: Optional[pulumi.Input[bool]] = None,
             schedules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             stack_id: Optional[pulumi.Input[str]] = None,
@@ -291,6 +382,7 @@ class DriftDetection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] ignore_state: Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
         :param pulumi.Input[bool] reconcile: Whether a tracked run should be triggered when drift is detected.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] schedules: List of cron schedule expressions based on which drift detection should be triggered.
         :param pulumi.Input[str] stack_id: ID of the stack for which to set up drift detection
@@ -300,11 +392,20 @@ class DriftDetection(pulumi.CustomResource):
 
         __props__ = _DriftDetectionState.__new__(_DriftDetectionState)
 
+        __props__.__dict__["ignore_state"] = ignore_state
         __props__.__dict__["reconcile"] = reconcile
         __props__.__dict__["schedules"] = schedules
         __props__.__dict__["stack_id"] = stack_id
         __props__.__dict__["timezone"] = timezone
         return DriftDetection(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="ignoreState")
+    def ignore_state(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+        """
+        return pulumi.get(self, "ignore_state")
 
     @property
     @pulumi.getter

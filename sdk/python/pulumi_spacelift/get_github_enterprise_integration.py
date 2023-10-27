@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetGithubEnterpriseIntegrationResult',
     'AwaitableGetGithubEnterpriseIntegrationResult',
     'get_github_enterprise_integration',
+    'get_github_enterprise_integration_output',
 ]
 
 @pulumi.output_type
@@ -97,7 +98,24 @@ def get_github_enterprise_integration(opts: Optional[pulumi.InvokeOptions] = Non
     __ret__ = pulumi.runtime.invoke('spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration', __args__, opts=opts, typ=GetGithubEnterpriseIntegrationResult).value
 
     return AwaitableGetGithubEnterpriseIntegrationResult(
-        api_host=__ret__.api_host,
-        app_id=__ret__.app_id,
-        id=__ret__.id,
-        webhook_secret=__ret__.webhook_secret)
+        api_host=pulumi.get(__ret__, 'api_host'),
+        app_id=pulumi.get(__ret__, 'app_id'),
+        id=pulumi.get(__ret__, 'id'),
+        webhook_secret=pulumi.get(__ret__, 'webhook_secret'))
+
+
+@_utilities.lift_output_func(get_github_enterprise_integration)
+def get_github_enterprise_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGithubEnterpriseIntegrationResult]:
+    """
+    `get_github_enterprise_integration` returns details about Github Enterprise integration
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    github_enterprise_integration = spacelift.get_github_enterprise_integration()
+    ```
+    """
+    ...

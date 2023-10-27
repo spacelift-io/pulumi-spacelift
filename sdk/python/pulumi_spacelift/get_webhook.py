@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -145,13 +145,13 @@ def get_webhook(module_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getWebhook:getWebhook', __args__, opts=opts, typ=GetWebhookResult).value
 
     return AwaitableGetWebhookResult(
-        enabled=__ret__.enabled,
-        endpoint=__ret__.endpoint,
-        id=__ret__.id,
-        module_id=__ret__.module_id,
-        secret=__ret__.secret,
-        stack_id=__ret__.stack_id,
-        webhook_id=__ret__.webhook_id)
+        enabled=pulumi.get(__ret__, 'enabled'),
+        endpoint=pulumi.get(__ret__, 'endpoint'),
+        id=pulumi.get(__ret__, 'id'),
+        module_id=pulumi.get(__ret__, 'module_id'),
+        secret=pulumi.get(__ret__, 'secret'),
+        stack_id=pulumi.get(__ret__, 'stack_id'),
+        webhook_id=pulumi.get(__ret__, 'webhook_id'))
 
 
 @_utilities.lift_output_func(get_webhook)

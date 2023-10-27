@@ -18,6 +18,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 
@@ -48,6 +49,7 @@ namespace Pulumi.Spacelift
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Spacelift = Pulumi.Spacelift;
         /// 

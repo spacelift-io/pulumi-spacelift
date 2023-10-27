@@ -5,6 +5,42 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface GetAwsIntegrationsIntegration {
+    durationSeconds: number;
+    externalId: string;
+    generateCredentialsInWorker: boolean;
+    integrationId: string;
+    labels: string[];
+    name: string;
+    roleArn: string;
+    spaceId: string;
+}
+
+export interface GetAzureIntegrationsIntegration {
+    adminConsentProvided: boolean;
+    adminConsentUrl: string;
+    applicationId: string;
+    defaultSubscriptionId: string;
+    displayName: string;
+    integrationId: string;
+    labels: string[];
+    name: string;
+    spaceId: string;
+    tenantId: string;
+}
+
+export interface GetContextsContext {
+    contextId: string;
+    description: string;
+    labels: string[];
+    name: string;
+    spaceId: string;
+}
+
+export interface GetContextsLabel {
+    anyOfs: string[];
+}
+
 export interface GetModuleAzureDevop {
     project: string;
 }
@@ -26,20 +62,20 @@ export interface GetModuleGitlab {
 }
 
 export interface GetPoliciesPolicy {
-    /**
-     * The ID of this resource.
-     */
     id: string;
-    /**
-     * required labels to match
-     */
     labels: string[];
     name: string;
     spaceId: string;
-    /**
-     * required policy type
-     */
     type: string;
+}
+
+export interface GetSpacesSpace {
+    description: string;
+    inheritEntities: boolean;
+    labels: string[];
+    name: string;
+    parentSpaceId: string;
+    spaceId: string;
 }
 
 export interface GetStackAnsible {
@@ -74,6 +110,7 @@ export interface GetStackGitlab {
 }
 
 export interface GetStackKubernete {
+    kubectlVersion: string;
     namespace: string;
 }
 
@@ -82,8 +119,154 @@ export interface GetStackPulumi {
     stackName: string;
 }
 
+export interface GetStackRawGit {
+    namespace: string;
+    url: string;
+}
+
 export interface GetStackShowcase {
     namespace: string;
+}
+
+export interface GetStacksAdministrative {
+    equals?: boolean;
+}
+
+export interface GetStacksBranch {
+    anyOfs: string[];
+}
+
+export interface GetStacksCommit {
+    anyOfs: string[];
+}
+
+export interface GetStacksLabel {
+    anyOfs: string[];
+}
+
+export interface GetStacksLocked {
+    equals?: boolean;
+}
+
+export interface GetStacksName {
+    anyOfs: string[];
+}
+
+export interface GetStacksProjectRoot {
+    anyOfs: string[];
+}
+
+export interface GetStacksRepository {
+    anyOfs: string[];
+}
+
+export interface GetStacksStack {
+    administrative: boolean;
+    afterApplies: string[];
+    afterDestroys: string[];
+    afterInits: string[];
+    afterPerforms: string[];
+    afterPlans: string[];
+    afterRuns?: string[];
+    ansibles: outputs.GetStacksStackAnsible[];
+    autodeploy: boolean;
+    autoretry: boolean;
+    awsAssumeRolePolicyStatement: string;
+    azureDevops: outputs.GetStacksStackAzureDevop[];
+    beforeApplies: string[];
+    beforeDestroys: string[];
+    beforeInits: string[];
+    beforePerforms: string[];
+    beforePlans: string[];
+    bitbucketClouds: outputs.GetStacksStackBitbucketCloud[];
+    bitbucketDatacenters: outputs.GetStacksStackBitbucketDatacenter[];
+    branch: string;
+    cloudformations: outputs.GetStacksStackCloudformation[];
+    description: string;
+    enableLocalPreview: boolean;
+    githubEnterprises: outputs.GetStacksStackGithubEnterprise[];
+    gitlabs: outputs.GetStacksStackGitlab[];
+    kubernetes: outputs.GetStacksStackKubernete[];
+    labels: string[];
+    manageState: boolean;
+    name: string;
+    projectRoot: string;
+    protectFromDeletion: boolean;
+    pulumis: outputs.GetStacksStackPulumi[];
+    rawGits: outputs.GetStacksStackRawGit[];
+    repository: string;
+    runnerImage: string;
+    showcases: outputs.GetStacksStackShowcase[];
+    spaceId: string;
+    stackId: string;
+    terraformExternalStateAccess: boolean;
+    terraformSmartSanitization: boolean;
+    terraformVersion: string;
+    terraformWorkflowTool: string;
+    terraformWorkspace: string;
+    workerPoolId: string;
+}
+
+export interface GetStacksStackAnsible {
+    playbook: string;
+}
+
+export interface GetStacksStackAzureDevop {
+    project: string;
+}
+
+export interface GetStacksStackBitbucketCloud {
+    namespace: string;
+}
+
+export interface GetStacksStackBitbucketDatacenter {
+    namespace: string;
+}
+
+export interface GetStacksStackCloudformation {
+    entryTemplateFile: string;
+    region: string;
+    stackName: string;
+    templateBucket: string;
+}
+
+export interface GetStacksStackGithubEnterprise {
+    namespace: string;
+}
+
+export interface GetStacksStackGitlab {
+    namespace: string;
+}
+
+export interface GetStacksStackKubernete {
+    kubectlVersion: string;
+    namespace: string;
+}
+
+export interface GetStacksStackPulumi {
+    loginUrl: string;
+    stackName: string;
+}
+
+export interface GetStacksStackRawGit {
+    namespace: string;
+    url: string;
+}
+
+export interface GetStacksStackShowcase {
+    namespace: string;
+}
+
+export interface GetStacksState {
+    anyOfs: string[];
+}
+
+export interface GetStacksVendor {
+    anyOfs: string[];
+}
+
+export interface GetStacksWorkerPool {
+    anyOfs: string[];
 }
 
 export interface GetVcsAgentPoolsVcsAgentPool {
@@ -98,6 +281,17 @@ export interface GetWorkerPoolsWorkerPool {
     name: string;
     spaceId: string;
     workerPoolId: string;
+}
+
+export interface IdpGroupMappingPolicy {
+    /**
+     * Type of access to the space. Possible values are: READ, WRITE, ADMIN
+     */
+    role: string;
+    /**
+     * ID (slug) of the space the user group has access to
+     */
+    spaceId: string;
 }
 
 export interface ModuleAzureDevops {
@@ -198,6 +392,10 @@ export interface StackGitlab {
 
 export interface StackKubernetes {
     /**
+     * Kubectl version.
+     */
+    kubectlVersion: string;
+    /**
      * Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
      */
     namespace?: string;
@@ -214,7 +412,42 @@ export interface StackPulumi {
     stackName: string;
 }
 
+export interface StackRawGit {
+    /**
+     * User-friendly namespace for the repository, this is for cosmetic purposes only
+     */
+    namespace: string;
+    /**
+     * HTTPS URL of the Git repository
+     */
+    url: string;
+}
+
 export interface StackShowcase {
     namespace: string;
+}
+
+export interface StackTerragrunt {
+    terraformVersion: string;
+    /**
+     * Terragrunt version.
+     */
+    terragruntVersion: string;
+    /**
+     * Whether to use `terragrunt run-all` instead of `terragrunt`.
+     */
+    useRunAll?: boolean;
+    useSmartSanitization?: boolean;
+}
+
+export interface UserPolicy {
+    /**
+     * Type of access to the space. Possible values are: READ, WRITE, ADMIN
+     */
+    role: string;
+    /**
+     * ID (slug) of the space the user has access to
+     */
+    spaceId: string;
 }
 

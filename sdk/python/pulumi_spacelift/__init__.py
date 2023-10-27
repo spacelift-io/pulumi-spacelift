@@ -10,6 +10,7 @@ from .aws_integration_attachment import *
 from .aws_role import *
 from .azure_integration import *
 from .azure_integration_attachment import *
+from .blueprint import *
 from .context import *
 from .context_attachment import *
 from .drift_detection import *
@@ -19,46 +20,68 @@ from .get_account import *
 from .get_aws_integration import *
 from .get_aws_integration_attachment import *
 from .get_aws_integration_attachment_external_id import *
+from .get_aws_integrations import *
 from .get_aws_role import *
 from .get_azure_devops_integration import *
 from .get_azure_integration import *
 from .get_azure_integration_attachment import *
+from .get_azure_integrations import *
 from .get_bitbucket_cloud_integration import *
 from .get_bitbucket_datacenter_integration import *
 from .get_context import *
 from .get_context_attachment import *
+from .get_contexts import *
+from .get_current_space import *
 from .get_current_stack import *
 from .get_drift_detection import *
 from .get_environment_variable import *
 from .get_gcp_service_account import *
 from .get_github_enterprise_integration import *
 from .get_gitlab_integration import *
+from .get_gitlab_webhook_endpoint import *
 from .get_ips import *
 from .get_module import *
 from .get_mountedfile import *
+from .get_named_webhook import *
 from .get_policies import *
 from .get_policy import *
+from .get_scheduled_delete_stack import *
+from .get_scheduled_task import *
 from .get_space import *
+from .get_space_by_path import *
+from .get_spaces import *
 from .get_stack import *
 from .get_stack_aws_role import *
 from .get_stack_gcp_service_account import *
+from .get_stacks import *
 from .get_vcs_agent_pool import *
 from .get_vcs_agent_pools import *
 from .get_webhook import *
 from .get_worker_pool import *
 from .get_worker_pools import *
+from .idp_group_mapping import *
 from .module import *
 from .mountedfile import *
+from .named_webhook import *
+from .named_webhook_secret_header import *
 from .policy import *
 from .policy_attachment import *
 from .provider import *
 from .run import *
+from .scheduled_delete_task import *
+from .scheduled_task import *
 from .space import *
 from .stack import *
+from .stack_activator import *
 from .stack_aws_role import *
+from .stack_dependency import *
+from .stack_dependency_reference import *
 from .stack_destructor import *
 from .stack_gcp_service_account import *
+from .terraform_provider import *
+from .user import *
 from .vcs_agent_pool import *
+from .version import *
 from .webhook import *
 from .worker_pool import *
 from ._inputs import *
@@ -116,6 +139,14 @@ _utilities.register(
  },
  {
   "pkg": "spacelift",
+  "mod": "index/blueprint",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/blueprint:Blueprint": "Blueprint"
+  }
+ },
+ {
+  "pkg": "spacelift",
   "mod": "index/context",
   "fqn": "pulumi_spacelift",
   "classes": {
@@ -156,6 +187,14 @@ _utilities.register(
  },
  {
   "pkg": "spacelift",
+  "mod": "index/idpGroupMapping",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/idpGroupMapping:IdpGroupMapping": "IdpGroupMapping"
+  }
+ },
+ {
+  "pkg": "spacelift",
   "mod": "index/module",
   "fqn": "pulumi_spacelift",
   "classes": {
@@ -168,6 +207,22 @@ _utilities.register(
   "fqn": "pulumi_spacelift",
   "classes": {
    "spacelift:index/mountedfile:Mountedfile": "Mountedfile"
+  }
+ },
+ {
+  "pkg": "spacelift",
+  "mod": "index/namedWebhook",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/namedWebhook:NamedWebhook": "NamedWebhook"
+  }
+ },
+ {
+  "pkg": "spacelift",
+  "mod": "index/namedWebhookSecretHeader",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/namedWebhookSecretHeader:NamedWebhookSecretHeader": "NamedWebhookSecretHeader"
   }
  },
  {
@@ -196,6 +251,22 @@ _utilities.register(
  },
  {
   "pkg": "spacelift",
+  "mod": "index/scheduledDeleteTask",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/scheduledDeleteTask:ScheduledDeleteTask": "ScheduledDeleteTask"
+  }
+ },
+ {
+  "pkg": "spacelift",
+  "mod": "index/scheduledTask",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/scheduledTask:ScheduledTask": "ScheduledTask"
+  }
+ },
+ {
+  "pkg": "spacelift",
   "mod": "index/space",
   "fqn": "pulumi_spacelift",
   "classes": {
@@ -212,10 +283,34 @@ _utilities.register(
  },
  {
   "pkg": "spacelift",
+  "mod": "index/stackActivator",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/stackActivator:StackActivator": "StackActivator"
+  }
+ },
+ {
+  "pkg": "spacelift",
   "mod": "index/stackAwsRole",
   "fqn": "pulumi_spacelift",
   "classes": {
    "spacelift:index/stackAwsRole:StackAwsRole": "StackAwsRole"
+  }
+ },
+ {
+  "pkg": "spacelift",
+  "mod": "index/stackDependency",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/stackDependency:StackDependency": "StackDependency"
+  }
+ },
+ {
+  "pkg": "spacelift",
+  "mod": "index/stackDependencyReference",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/stackDependencyReference:StackDependencyReference": "StackDependencyReference"
   }
  },
  {
@@ -236,10 +331,34 @@ _utilities.register(
  },
  {
   "pkg": "spacelift",
+  "mod": "index/terraformProvider",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/terraformProvider:TerraformProvider": "TerraformProvider"
+  }
+ },
+ {
+  "pkg": "spacelift",
+  "mod": "index/user",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/user:User": "User"
+  }
+ },
+ {
+  "pkg": "spacelift",
   "mod": "index/vcsAgentPool",
   "fqn": "pulumi_spacelift",
   "classes": {
    "spacelift:index/vcsAgentPool:VcsAgentPool": "VcsAgentPool"
+  }
+ },
+ {
+  "pkg": "spacelift",
+  "mod": "index/version",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/version:Version": "Version"
   }
  },
  {

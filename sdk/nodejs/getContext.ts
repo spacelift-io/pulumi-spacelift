@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const prod_k8s_ie = pulumi.output(spacelift.getContext({
+ * const prod-k8s-ie = spacelift.getContext({
  *     contextId: "prod-k8s-ie",
- * }));
+ * });
  * ```
  */
 export function getContext(args: GetContextArgs, opts?: pulumi.InvokeOptions): Promise<GetContextResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getContext:getContext", {
         "contextId": args.contextId,
     }, opts);
@@ -65,9 +62,22 @@ export interface GetContextResult {
      */
     readonly spaceId: string;
 }
-
+/**
+ * `spacelift.Context` represents a Spacelift **context** - a collection of configuration elements (either environment variables or mounted files) that can be administratively attached to multiple stacks (`spacelift.Stack`) or modules (`spacelift.Module`) using a context attachment (`spacelift.ContextAttachment`)`
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const prod-k8s-ie = spacelift.getContext({
+ *     contextId: "prod-k8s-ie",
+ * });
+ * ```
+ */
 export function getContextOutput(args: GetContextOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContextResult> {
-    return pulumi.output(args).apply(a => getContext(a, opts))
+    return pulumi.output(args).apply((a: any) => getContext(a, opts))
 }
 
 /**

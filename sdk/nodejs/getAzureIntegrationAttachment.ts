@@ -13,18 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const example = pulumi.output(spacelift.getAzureIntegrationAttachment({
+ * const example = spacelift.getAzureIntegrationAttachment({
  *     integrationId: "some-integration-id",
  *     stackId: "some-stack-id",
- * }));
+ * });
  * ```
  */
 export function getAzureIntegrationAttachment(args: GetAzureIntegrationAttachmentArgs, opts?: pulumi.InvokeOptions): Promise<GetAzureIntegrationAttachmentResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getAzureIntegrationAttachment:getAzureIntegrationAttachment", {
         "integrationId": args.integrationId,
         "moduleId": args.moduleId,
@@ -87,9 +84,23 @@ export interface GetAzureIntegrationAttachmentResult {
      */
     readonly write: boolean;
 }
-
+/**
+ * `spacelift.AzureIntegrationAttachment` represents the attachment between a reusable Azure integration and a single stack or module.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const example = spacelift.getAzureIntegrationAttachment({
+ *     integrationId: "some-integration-id",
+ *     stackId: "some-stack-id",
+ * });
+ * ```
+ */
 export function getAzureIntegrationAttachmentOutput(args: GetAzureIntegrationAttachmentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAzureIntegrationAttachmentResult> {
-    return pulumi.output(args).apply(a => getAzureIntegrationAttachment(a, opts))
+    return pulumi.output(args).apply((a: any) => getAzureIntegrationAttachment(a, opts))
 }
 
 /**

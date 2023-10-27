@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -124,7 +124,7 @@ def get_worker_pool(worker_pool_id: Optional[str] = None,
     import pulumi
     import pulumi_spacelift as spacelift
 
-    k8s_core = spacelift.get_worker_pool(worker_pool_id="k8s-core")
+    k8s_core = spacelift.get_worker_pool(worker_pool_id="01G1KTZ4BA86RBN3XNN3YK9EWT")
     ```
 
 
@@ -136,13 +136,13 @@ def get_worker_pool(worker_pool_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getWorkerPool:getWorkerPool', __args__, opts=opts, typ=GetWorkerPoolResult).value
 
     return AwaitableGetWorkerPoolResult(
-        config=__ret__.config,
-        description=__ret__.description,
-        id=__ret__.id,
-        labels=__ret__.labels,
-        name=__ret__.name,
-        space_id=__ret__.space_id,
-        worker_pool_id=__ret__.worker_pool_id)
+        config=pulumi.get(__ret__, 'config'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        labels=pulumi.get(__ret__, 'labels'),
+        name=pulumi.get(__ret__, 'name'),
+        space_id=pulumi.get(__ret__, 'space_id'),
+        worker_pool_id=pulumi.get(__ret__, 'worker_pool_id'))
 
 
 @_utilities.lift_output_func(get_worker_pool)
@@ -157,7 +157,7 @@ def get_worker_pool_output(worker_pool_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_spacelift as spacelift
 
-    k8s_core = spacelift.get_worker_pool(worker_pool_id="k8s-core")
+    k8s_core = spacelift.get_worker_pool(worker_pool_id="01G1KTZ4BA86RBN3XNN3YK9EWT")
     ```
 
 

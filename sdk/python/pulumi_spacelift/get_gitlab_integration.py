@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetGitlabIntegrationResult',
     'AwaitableGetGitlabIntegrationResult',
     'get_gitlab_integration',
+    'get_gitlab_integration_output',
 ]
 
 @pulumi.output_type
@@ -85,6 +86,23 @@ def get_gitlab_integration(opts: Optional[pulumi.InvokeOptions] = None) -> Await
     __ret__ = pulumi.runtime.invoke('spacelift:index/getGitlabIntegration:getGitlabIntegration', __args__, opts=opts, typ=GetGitlabIntegrationResult).value
 
     return AwaitableGetGitlabIntegrationResult(
-        api_host=__ret__.api_host,
-        id=__ret__.id,
-        webhook_secret=__ret__.webhook_secret)
+        api_host=pulumi.get(__ret__, 'api_host'),
+        id=pulumi.get(__ret__, 'id'),
+        webhook_secret=pulumi.get(__ret__, 'webhook_secret'))
+
+
+@_utilities.lift_output_func(get_gitlab_integration)
+def get_gitlab_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGitlabIntegrationResult]:
+    """
+    `get_gitlab_integration` returns details about Gitlab integration
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_spacelift as spacelift
+
+    gitlab_integration = spacelift.get_gitlab_integration()
+    ```
+    """
+    ...

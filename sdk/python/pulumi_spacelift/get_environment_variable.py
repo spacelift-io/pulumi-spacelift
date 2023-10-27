@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -165,14 +165,14 @@ def get_environment_variable(context_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getEnvironmentVariable:getEnvironmentVariable', __args__, opts=opts, typ=GetEnvironmentVariableResult).value
 
     return AwaitableGetEnvironmentVariableResult(
-        checksum=__ret__.checksum,
-        context_id=__ret__.context_id,
-        id=__ret__.id,
-        module_id=__ret__.module_id,
-        name=__ret__.name,
-        stack_id=__ret__.stack_id,
-        value=__ret__.value,
-        write_only=__ret__.write_only)
+        checksum=pulumi.get(__ret__, 'checksum'),
+        context_id=pulumi.get(__ret__, 'context_id'),
+        id=pulumi.get(__ret__, 'id'),
+        module_id=pulumi.get(__ret__, 'module_id'),
+        name=pulumi.get(__ret__, 'name'),
+        stack_id=pulumi.get(__ret__, 'stack_id'),
+        value=pulumi.get(__ret__, 'value'),
+        write_only=pulumi.get(__ret__, 'write_only'))
 
 
 @_utilities.lift_output_func(get_environment_variable)

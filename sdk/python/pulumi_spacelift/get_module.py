@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -22,7 +22,7 @@ class GetModuleResult:
     """
     A collection of values returned by getModule.
     """
-    def __init__(__self__, administrative=None, aws_assume_role_policy_statement=None, azure_devops=None, bitbucket_clouds=None, bitbucket_datacenters=None, branch=None, description=None, github_enterprises=None, gitlabs=None, id=None, labels=None, module_id=None, name=None, project_root=None, protect_from_deletion=None, repository=None, shared_accounts=None, space_id=None, terraform_provider=None, worker_pool_id=None):
+    def __init__(__self__, administrative=None, aws_assume_role_policy_statement=None, azure_devops=None, bitbucket_clouds=None, bitbucket_datacenters=None, branch=None, description=None, enable_local_preview=None, github_enterprises=None, gitlabs=None, id=None, labels=None, module_id=None, name=None, project_root=None, protect_from_deletion=None, repository=None, shared_accounts=None, space_id=None, terraform_provider=None, worker_pool_id=None, workflow_tool=None):
         if administrative and not isinstance(administrative, bool):
             raise TypeError("Expected argument 'administrative' to be a bool")
         pulumi.set(__self__, "administrative", administrative)
@@ -44,6 +44,9 @@ class GetModuleResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if enable_local_preview and not isinstance(enable_local_preview, bool):
+            raise TypeError("Expected argument 'enable_local_preview' to be a bool")
+        pulumi.set(__self__, "enable_local_preview", enable_local_preview)
         if github_enterprises and not isinstance(github_enterprises, list):
             raise TypeError("Expected argument 'github_enterprises' to be a list")
         pulumi.set(__self__, "github_enterprises", github_enterprises)
@@ -83,6 +86,9 @@ class GetModuleResult:
         if worker_pool_id and not isinstance(worker_pool_id, str):
             raise TypeError("Expected argument 'worker_pool_id' to be a str")
         pulumi.set(__self__, "worker_pool_id", worker_pool_id)
+        if workflow_tool and not isinstance(workflow_tool, str):
+            raise TypeError("Expected argument 'workflow_tool' to be a str")
+        pulumi.set(__self__, "workflow_tool", workflow_tool)
 
     @property
     @pulumi.getter
@@ -139,6 +145,14 @@ class GetModuleResult:
         free-form module description for human users (supports Markdown)
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enableLocalPreview")
+    def enable_local_preview(self) -> bool:
+        """
+        Indicates whether local preview versions can be triggered on this Module.
+        """
+        return pulumi.get(self, "enable_local_preview")
 
     @property
     @pulumi.getter(name="githubEnterprises")
@@ -235,6 +249,14 @@ class GetModuleResult:
         """
         return pulumi.get(self, "worker_pool_id")
 
+    @property
+    @pulumi.getter(name="workflowTool")
+    def workflow_tool(self) -> str:
+        """
+        Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+        """
+        return pulumi.get(self, "workflow_tool")
+
 
 class AwaitableGetModuleResult(GetModuleResult):
     # pylint: disable=using-constant-test
@@ -249,6 +271,7 @@ class AwaitableGetModuleResult(GetModuleResult):
             bitbucket_datacenters=self.bitbucket_datacenters,
             branch=self.branch,
             description=self.description,
+            enable_local_preview=self.enable_local_preview,
             github_enterprises=self.github_enterprises,
             gitlabs=self.gitlabs,
             id=self.id,
@@ -261,7 +284,8 @@ class AwaitableGetModuleResult(GetModuleResult):
             shared_accounts=self.shared_accounts,
             space_id=self.space_id,
             terraform_provider=self.terraform_provider,
-            worker_pool_id=self.worker_pool_id)
+            worker_pool_id=self.worker_pool_id,
+            workflow_tool=self.workflow_tool)
 
 
 def get_module(module_id: Optional[str] = None,
@@ -285,26 +309,28 @@ def get_module(module_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getModule:getModule', __args__, opts=opts, typ=GetModuleResult).value
 
     return AwaitableGetModuleResult(
-        administrative=__ret__.administrative,
-        aws_assume_role_policy_statement=__ret__.aws_assume_role_policy_statement,
-        azure_devops=__ret__.azure_devops,
-        bitbucket_clouds=__ret__.bitbucket_clouds,
-        bitbucket_datacenters=__ret__.bitbucket_datacenters,
-        branch=__ret__.branch,
-        description=__ret__.description,
-        github_enterprises=__ret__.github_enterprises,
-        gitlabs=__ret__.gitlabs,
-        id=__ret__.id,
-        labels=__ret__.labels,
-        module_id=__ret__.module_id,
-        name=__ret__.name,
-        project_root=__ret__.project_root,
-        protect_from_deletion=__ret__.protect_from_deletion,
-        repository=__ret__.repository,
-        shared_accounts=__ret__.shared_accounts,
-        space_id=__ret__.space_id,
-        terraform_provider=__ret__.terraform_provider,
-        worker_pool_id=__ret__.worker_pool_id)
+        administrative=pulumi.get(__ret__, 'administrative'),
+        aws_assume_role_policy_statement=pulumi.get(__ret__, 'aws_assume_role_policy_statement'),
+        azure_devops=pulumi.get(__ret__, 'azure_devops'),
+        bitbucket_clouds=pulumi.get(__ret__, 'bitbucket_clouds'),
+        bitbucket_datacenters=pulumi.get(__ret__, 'bitbucket_datacenters'),
+        branch=pulumi.get(__ret__, 'branch'),
+        description=pulumi.get(__ret__, 'description'),
+        enable_local_preview=pulumi.get(__ret__, 'enable_local_preview'),
+        github_enterprises=pulumi.get(__ret__, 'github_enterprises'),
+        gitlabs=pulumi.get(__ret__, 'gitlabs'),
+        id=pulumi.get(__ret__, 'id'),
+        labels=pulumi.get(__ret__, 'labels'),
+        module_id=pulumi.get(__ret__, 'module_id'),
+        name=pulumi.get(__ret__, 'name'),
+        project_root=pulumi.get(__ret__, 'project_root'),
+        protect_from_deletion=pulumi.get(__ret__, 'protect_from_deletion'),
+        repository=pulumi.get(__ret__, 'repository'),
+        shared_accounts=pulumi.get(__ret__, 'shared_accounts'),
+        space_id=pulumi.get(__ret__, 'space_id'),
+        terraform_provider=pulumi.get(__ret__, 'terraform_provider'),
+        worker_pool_id=pulumi.get(__ret__, 'worker_pool_id'),
+        workflow_tool=pulumi.get(__ret__, 'workflow_tool'))
 
 
 @_utilities.lift_output_func(get_module)

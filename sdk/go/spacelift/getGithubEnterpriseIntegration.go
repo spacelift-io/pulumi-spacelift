@@ -4,7 +4,12 @@
 package spacelift
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `getGithubEnterpriseIntegration` returns details about Github Enterprise integration
@@ -17,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
@@ -33,7 +38,7 @@ import (
 //
 // ```
 func GetGithubEnterpriseIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetGithubEnterpriseIntegrationResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetGithubEnterpriseIntegrationResult
 	err := ctx.Invoke("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", nil, &rv, opts...)
 	if err != nil {
@@ -52,4 +57,60 @@ type GetGithubEnterpriseIntegrationResult struct {
 	Id string `pulumi:"id"`
 	// Github integration webhook secret
 	WebhookSecret string `pulumi:"webhookSecret"`
+}
+
+func GetGithubEnterpriseIntegrationOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetGithubEnterpriseIntegrationResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetGithubEnterpriseIntegrationResult, error) {
+		r, err := GetGithubEnterpriseIntegration(ctx, opts...)
+		var s GetGithubEnterpriseIntegrationResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetGithubEnterpriseIntegrationResultOutput)
+}
+
+// A collection of values returned by getGithubEnterpriseIntegration.
+type GetGithubEnterpriseIntegrationResultOutput struct{ *pulumi.OutputState }
+
+func (GetGithubEnterpriseIntegrationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGithubEnterpriseIntegrationResult)(nil)).Elem()
+}
+
+func (o GetGithubEnterpriseIntegrationResultOutput) ToGetGithubEnterpriseIntegrationResultOutput() GetGithubEnterpriseIntegrationResultOutput {
+	return o
+}
+
+func (o GetGithubEnterpriseIntegrationResultOutput) ToGetGithubEnterpriseIntegrationResultOutputWithContext(ctx context.Context) GetGithubEnterpriseIntegrationResultOutput {
+	return o
+}
+
+func (o GetGithubEnterpriseIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetGithubEnterpriseIntegrationResult] {
+	return pulumix.Output[GetGithubEnterpriseIntegrationResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Github integration api host
+func (o GetGithubEnterpriseIntegrationResultOutput) ApiHost() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.ApiHost }).(pulumi.StringOutput)
+}
+
+// Github integration app id
+func (o GetGithubEnterpriseIntegrationResultOutput) AppId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.AppId }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetGithubEnterpriseIntegrationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Github integration webhook secret
+func (o GetGithubEnterpriseIntegrationResultOutput) WebhookSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.WebhookSecret }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetGithubEnterpriseIntegrationResultOutput{})
 }

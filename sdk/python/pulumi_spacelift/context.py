@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ContextArgs', 'Context']
@@ -24,14 +24,33 @@ class ContextArgs:
         :param pulumi.Input[str] name: Name of the context - should be unique in one account
         :param pulumi.Input[str] space_id: ID (slug) of the space the context is in
         """
+        ContextArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            labels=labels,
+            name=name,
+            space_id=space_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             space_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if space_id is None and 'spaceId' in kwargs:
+            space_id = kwargs['spaceId']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if space_id is not None:
-            pulumi.set(__self__, "space_id", space_id)
+            _setter("space_id", space_id)
 
     @property
     @pulumi.getter
@@ -92,14 +111,33 @@ class _ContextState:
         :param pulumi.Input[str] name: Name of the context - should be unique in one account
         :param pulumi.Input[str] space_id: ID (slug) of the space the context is in
         """
+        _ContextState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            labels=labels,
+            name=name,
+            space_id=space_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             space_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if space_id is None and 'spaceId' in kwargs:
+            space_id = kwargs['spaceId']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if labels is not None:
-            pulumi.set(__self__, "labels", labels)
+            _setter("labels", labels)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if space_id is not None:
-            pulumi.set(__self__, "space_id", space_id)
+            _setter("space_id", space_id)
 
     @property
     @pulumi.getter
@@ -215,6 +253,10 @@ class Context(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ContextArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

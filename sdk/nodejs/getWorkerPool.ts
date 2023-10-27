@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as spacelift from "@pulumi/spacelift";
  *
- * const k8s_core = pulumi.output(spacelift.getWorkerPool({
- *     workerPoolId: "k8s-core",
- * }));
+ * const k8s-core = spacelift.getWorkerPool({
+ *     workerPoolId: "01G1KTZ4BA86RBN3XNN3YK9EWT",
+ * });
  * ```
  */
 export function getWorkerPool(args: GetWorkerPoolArgs, opts?: pulumi.InvokeOptions): Promise<GetWorkerPoolResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getWorkerPool:getWorkerPool", {
         "workerPoolId": args.workerPoolId,
     }, opts);
@@ -69,9 +66,22 @@ export interface GetWorkerPoolResult {
      */
     readonly workerPoolId: string;
 }
-
+/**
+ * `spacelift.WorkerPool` represents a worker pool assigned to the Spacelift account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as spacelift from "@pulumi/spacelift";
+ *
+ * const k8s-core = spacelift.getWorkerPool({
+ *     workerPoolId: "01G1KTZ4BA86RBN3XNN3YK9EWT",
+ * });
+ * ```
+ */
 export function getWorkerPoolOutput(args: GetWorkerPoolOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWorkerPoolResult> {
-    return pulumi.output(args).apply(a => getWorkerPool(a, opts))
+    return pulumi.output(args).apply((a: any) => getWorkerPool(a, opts))
 }
 
 /**

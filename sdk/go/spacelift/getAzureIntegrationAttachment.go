@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `AzureIntegrationAttachment` represents the attachment between a reusable Azure integration and a single stack or module.
@@ -20,13 +22,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupAzureIntegrationAttachment(ctx, &GetAzureIntegrationAttachmentArgs{
+//			_, err := spacelift.LookupAzureIntegrationAttachment(ctx, &spacelift.LookupAzureIntegrationAttachmentArgs{
 //				IntegrationId: "some-integration-id",
 //				StackId:       pulumi.StringRef("some-stack-id"),
 //			}, nil)
@@ -39,7 +41,7 @@ import (
 //
 // ```
 func LookupAzureIntegrationAttachment(ctx *pulumi.Context, args *LookupAzureIntegrationAttachmentArgs, opts ...pulumi.InvokeOption) (*LookupAzureIntegrationAttachmentResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAzureIntegrationAttachmentResult
 	err := ctx.Invoke("spacelift:index/getAzureIntegrationAttachment:getAzureIntegrationAttachment", args, &rv, opts...)
 	if err != nil {
@@ -118,6 +120,12 @@ func (o LookupAzureIntegrationAttachmentResultOutput) ToLookupAzureIntegrationAt
 
 func (o LookupAzureIntegrationAttachmentResultOutput) ToLookupAzureIntegrationAttachmentResultOutputWithContext(ctx context.Context) LookupAzureIntegrationAttachmentResultOutput {
 	return o
+}
+
+func (o LookupAzureIntegrationAttachmentResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAzureIntegrationAttachmentResult] {
+	return pulumix.Output[LookupAzureIntegrationAttachmentResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Internal ID of the attachment entity

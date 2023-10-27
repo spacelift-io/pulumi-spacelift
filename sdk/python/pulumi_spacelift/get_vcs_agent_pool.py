@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -94,10 +94,10 @@ def get_vcs_agent_pool(vcs_agent_pool_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getVcsAgentPool:getVcsAgentPool', __args__, opts=opts, typ=GetVcsAgentPoolResult).value
 
     return AwaitableGetVcsAgentPoolResult(
-        description=__ret__.description,
-        id=__ret__.id,
-        name=__ret__.name,
-        vcs_agent_pool_id=__ret__.vcs_agent_pool_id)
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        vcs_agent_pool_id=pulumi.get(__ret__, 'vcs_agent_pool_id'))
 
 
 @_utilities.lift_output_func(get_vcs_agent_pool)

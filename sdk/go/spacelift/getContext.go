@@ -8,6 +8,8 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
+	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
 // `Context` represents a Spacelift **context** - a collection of configuration elements (either environment variables or mounted files) that can be administratively attached to multiple stacks (`Stack`) or modules (`Module`) using a context attachment (`ContextAttachment`)`
@@ -20,13 +22,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/spacelift-io/pulumi-spacelift/sdk/go/spacelift"
+//	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := spacelift.LookupContext(ctx, &GetContextArgs{
+//			_, err := spacelift.LookupContext(ctx, &spacelift.LookupContextArgs{
 //				ContextId: "prod-k8s-ie",
 //			}, nil)
 //			if err != nil {
@@ -38,7 +40,7 @@ import (
 //
 // ```
 func LookupContext(ctx *pulumi.Context, args *LookupContextArgs, opts ...pulumi.InvokeOption) (*LookupContextResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupContextResult
 	err := ctx.Invoke("spacelift:index/getContext:getContext", args, &rv, opts...)
 	if err != nil {
@@ -104,6 +106,12 @@ func (o LookupContextResultOutput) ToLookupContextResultOutput() LookupContextRe
 
 func (o LookupContextResultOutput) ToLookupContextResultOutputWithContext(ctx context.Context) LookupContextResultOutput {
 	return o
+}
+
+func (o LookupContextResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupContextResult] {
+	return pulumix.Output[LookupContextResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // immutable ID (slug) of the context

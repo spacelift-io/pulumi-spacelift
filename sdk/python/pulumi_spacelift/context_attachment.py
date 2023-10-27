@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ContextAttachmentArgs', 'ContextAttachment']
@@ -25,13 +25,38 @@ class ContextAttachmentArgs:
         :param pulumi.Input[int] priority: Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
         :param pulumi.Input[str] stack_id: ID of the stack to attach the context to
         """
-        pulumi.set(__self__, "context_id", context_id)
+        ContextAttachmentArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            context_id=context_id,
+            module_id=module_id,
+            priority=priority,
+            stack_id=stack_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             context_id: Optional[pulumi.Input[str]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if context_id is None and 'contextId' in kwargs:
+            context_id = kwargs['contextId']
+        if context_id is None:
+            raise TypeError("Missing 'context_id' argument")
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+
+        _setter("context_id", context_id)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
 
     @property
     @pulumi.getter(name="contextId")
@@ -96,14 +121,37 @@ class _ContextAttachmentState:
         :param pulumi.Input[int] priority: Priority of the context attachment. All the contexts attached to a stack are sorted by priority (lowest first), though values don't need to be unique. This ordering establishes precedence rules between contexts should there be a conflict and multiple contexts define the same value. Defaults to `0`.
         :param pulumi.Input[str] stack_id: ID of the stack to attach the context to
         """
+        _ContextAttachmentState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            context_id=context_id,
+            module_id=module_id,
+            priority=priority,
+            stack_id=stack_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             context_id: Optional[pulumi.Input[str]] = None,
+             module_id: Optional[pulumi.Input[str]] = None,
+             priority: Optional[pulumi.Input[int]] = None,
+             stack_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if context_id is None and 'contextId' in kwargs:
+            context_id = kwargs['contextId']
+        if module_id is None and 'moduleId' in kwargs:
+            module_id = kwargs['moduleId']
+        if stack_id is None and 'stackId' in kwargs:
+            stack_id = kwargs['stackId']
+
         if context_id is not None:
-            pulumi.set(__self__, "context_id", context_id)
+            _setter("context_id", context_id)
         if module_id is not None:
-            pulumi.set(__self__, "module_id", module_id)
+            _setter("module_id", module_id)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if stack_id is not None:
-            pulumi.set(__self__, "stack_id", stack_id)
+            _setter("stack_id", stack_id)
 
     @property
     @pulumi.getter(name="contextId")
@@ -231,6 +279,10 @@ class ContextAttachment(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ContextAttachmentArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

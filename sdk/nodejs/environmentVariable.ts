@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as spacelift from "@pulumi/spacelift";
+ * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * // For a context
  * const ireland_kubeconfig = new spacelift.EnvironmentVariable("ireland-kubeconfig", {
@@ -96,11 +96,11 @@ export class EnvironmentVariable extends pulumi.CustomResource {
      */
     public readonly stackId!: pulumi.Output<string | undefined>;
     /**
-     * Value of the environment variable
+     * Value of the environment variable. Defaults to an empty string.
      */
-    public readonly value!: pulumi.Output<string>;
+    public readonly value!: pulumi.Output<string | undefined>;
     /**
-     * Indicates whether the value can be read back outside a Run. Defaults to `true`.
+     * Indicates whether the value is secret or not. Defaults to `true`.
      */
     public readonly writeOnly!: pulumi.Output<boolean | undefined>;
 
@@ -111,7 +111,7 @@ export class EnvironmentVariable extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: EnvironmentVariableArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: EnvironmentVariableArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EnvironmentVariableArgs | EnvironmentVariableState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -126,18 +126,17 @@ export class EnvironmentVariable extends pulumi.CustomResource {
             resourceInputs["writeOnly"] = state ? state.writeOnly : undefined;
         } else {
             const args = argsOrState as EnvironmentVariableArgs | undefined;
-            if ((!args || args.value === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'value'");
-            }
             resourceInputs["contextId"] = args ? args.contextId : undefined;
             resourceInputs["moduleId"] = args ? args.moduleId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["stackId"] = args ? args.stackId : undefined;
-            resourceInputs["value"] = args ? args.value : undefined;
+            resourceInputs["value"] = args?.value ? pulumi.secret(args.value) : undefined;
             resourceInputs["writeOnly"] = args ? args.writeOnly : undefined;
             resourceInputs["checksum"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["value"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(EnvironmentVariable.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -167,11 +166,11 @@ export interface EnvironmentVariableState {
      */
     stackId?: pulumi.Input<string>;
     /**
-     * Value of the environment variable
+     * Value of the environment variable. Defaults to an empty string.
      */
     value?: pulumi.Input<string>;
     /**
-     * Indicates whether the value can be read back outside a Run. Defaults to `true`.
+     * Indicates whether the value is secret or not. Defaults to `true`.
      */
     writeOnly?: pulumi.Input<boolean>;
 }
@@ -197,11 +196,11 @@ export interface EnvironmentVariableArgs {
      */
     stackId?: pulumi.Input<string>;
     /**
-     * Value of the environment variable
+     * Value of the environment variable. Defaults to an empty string.
      */
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
     /**
-     * Indicates whether the value can be read back outside a Run. Defaults to `true`.
+     * Indicates whether the value is secret or not. Defaults to `true`.
      */
     writeOnly?: pulumi.Input<boolean>;
 }

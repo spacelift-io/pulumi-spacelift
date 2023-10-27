@@ -16,6 +16,7 @@ namespace Pulumi.Spacelift
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
@@ -54,6 +55,12 @@ namespace Pulumi.Spacelift
     [SpaceliftResourceType("spacelift:index/driftDetection:DriftDetection")]
     public partial class DriftDetection : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+        /// </summary>
+        [Output("ignoreState")]
+        public Output<bool?> IgnoreState { get; private set; } = null!;
+
         /// <summary>
         /// Whether a tracked run should be triggered when drift is detected.
         /// </summary>
@@ -126,6 +133,12 @@ namespace Pulumi.Spacelift
     public sealed class DriftDetectionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+        /// </summary>
+        [Input("ignoreState")]
+        public Input<bool>? IgnoreState { get; set; }
+
+        /// <summary>
         /// Whether a tracked run should be triggered when drift is detected.
         /// </summary>
         [Input("reconcile")]
@@ -163,6 +176,12 @@ namespace Pulumi.Spacelift
 
     public sealed class DriftDetectionState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
+        /// </summary>
+        [Input("ignoreState")]
+        public Input<bool>? IgnoreState { get; set; }
+
         /// <summary>
         /// Whether a tracked run should be triggered when drift is detected.
         /// </summary>

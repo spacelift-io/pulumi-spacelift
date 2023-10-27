@@ -16,6 +16,7 @@ namespace Pulumi.Spacelift
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Spacelift = Pulumi.Spacelift;
     /// 
@@ -80,6 +81,10 @@ namespace Pulumi.Spacelift
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://downloads.spacelift.io/pulumi-plugins",
+                AdditionalSecretOutputs =
+                {
+                    "config",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -123,11 +128,21 @@ namespace Pulumi.Spacelift
 
     public sealed class VcsAgentPoolState : global::Pulumi.ResourceArgs
     {
+        [Input("config")]
+        private Input<string>? _config;
+
         /// <summary>
         /// VCS agent pool configuration, encoded using base64
         /// </summary>
-        [Input("config")]
-        public Input<string>? Config { get; set; }
+        public Input<string>? Config
+        {
+            get => _config;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _config = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Free-form VCS agent pool description for users
