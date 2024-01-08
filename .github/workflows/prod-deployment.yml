@@ -13,10 +13,7 @@ jobs:
       contents: read
     steps:
       - name: Install build dependencies
-        run: |
-          apk add --no-cache alpine-sdk git python3 py3-pip bash
-          pip3 install --upgrade pip
-          pip3 install awscli
+        run: apk add --no-cache alpine-sdk git aws-cli bash
 
       - name: Check out repository code
         uses: actions/checkout@main
