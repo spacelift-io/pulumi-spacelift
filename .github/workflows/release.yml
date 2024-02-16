@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - 'v*'
-    workflow_dispatch: # This is needed to trigger the workflow manually
+  workflow_dispatch: # This is needed to trigger the workflow manually
 
 
 jobs:
