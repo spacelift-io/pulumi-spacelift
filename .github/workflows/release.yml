@@ -65,21 +65,18 @@ jobs:
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
-        if: github.ref == 'refs/heads/main'
         with:
           aws-region: ${{ secrets.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           role-duration-seconds: 900
 
       - name: Upload the provider binary to downloads.spacelift.io
-        if: github.ref == 'refs/heads/main'
         run: >-
           aws s3 sync
           upload/ s3://${{ secrets.AWS_S3_BUCKET }}/
           --no-progress
 
       - name: Invalidate downloads.spacelift.io cache
-        if: github.ref == 'refs/heads/main'
         run: >-
           aws cloudfront create-invalidation
           --distribution-id ${{ secrets.DISTRIBUTION }}
