@@ -1,0 +1,93 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+    workflow_dispatch: # This is needed to trigger the workflow manually
+
+
+jobs:
+  release:
+    name: 🚀 Release new pulumi provider version
+    runs-on: ubuntu-latest
+    container: golang:1.21-alpine
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Install build dependencies
+        run: apk add --no-cache alpine-sdk git aws-cli bash
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Treat repo as safe
+        run: git config --global --add safe.directory /__w/pulumi-spacelift/pulumi-spacelift
+
+      - name: Remove Pulumi directory
+        run: rm -rf /github/home/.pulumi
+
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1
+        with:
+          repo: pulumi/pulumictl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install pulumi
+        uses: pulumi/actions@v4
+
+      - name: Print pulumictl version
+        run: pulumictl get version
+
+      - name: Build provider
+        run: make provider
+        env:
+          PROVIDER_OS: ${{ matrix.provider_os }}
+
+      - name: Create package directory
+        run: |
+          mkdir -p package/arm64 package/amd64
+          mv bin/pulumi-resource-*amd64* package/amd64/pulumi-resource-spacelift
+          mv bin/pulumi-resource-*arm64* package/arm64/pulumi-resource-spacelift
+
+      - name: Create package
+        run: |
+          cd package/amd64
+          tar -zcvf pulumi-resource-spacelift-${{ github.ref_name }}-${{matrix.provider_os}}-amd64.tar.gz pulumi-resource-*
+          cd ../arm64
+          tar -zcvf pulumi-resource-spacelift-${{ github.ref_name }}-${{matrix.provider_os}}-arm64.tar.gz pulumi-resource-*
+
+      - name: Create upload directory
+        run: mkdir -p upload/pulumi-plugins && mv package/*/*.tar.gz upload/pulumi-plugins/ && ls -la upload/pulumi-plugins/
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-duration-seconds: 900
+
+      - name: Upload the provider binary to downloads.spacelift.io
+        if: github.ref == 'refs/heads/main'
+        run: >-
+          aws s3 sync
+          upload/ s3://${{ secrets.AWS_S3_BUCKET }}/
+          --no-progress
+
+      - name: Invalidate downloads.spacelift.io cache
+        if: github.ref == 'refs/heads/main'
+        run: >-
+          aws cloudfront create-invalidation
+          --distribution-id ${{ secrets.DISTRIBUTION }}
+          --paths "/*"
+
+    strategy:
+      matrix:
+        provider_os:
+          - darwin
+          - linux
+          - windows
