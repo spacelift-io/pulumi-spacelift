@@ -14,6 +14,8 @@ import (
 
 // `Space` represents a Spacelift **space** - a collection of resources such as stacks, modules, policies, etc. Allows for more granular access control. Can have a parent space.
 //
+// **Please note:** the `Space` resource requires root Admin permissions, and can only be used by administrative stacks in the root space, or using an API key or user session that has root space access.
+//
 // ## Example Usage
 //
 // ```go

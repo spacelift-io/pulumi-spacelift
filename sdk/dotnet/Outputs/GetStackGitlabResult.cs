@@ -13,11 +13,20 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStackGitlabResult
     {
+        public readonly string Id;
+        public readonly bool IsDefault;
         public readonly string Namespace;
 
         [OutputConstructor]
-        private GetStackGitlabResult(string @namespace)
+        private GetStackGitlabResult(
+            string id,
+
+            bool isDefault,
+
+            string @namespace)
         {
+            Id = id;
+            IsDefault = isDefault;
             Namespace = @namespace;
         }
     }

@@ -16,11 +16,23 @@ import * as utilities from "./utilities";
  * const gitlabIntegration = spacelift.getGitlabIntegration({});
  * ```
  */
-export function getGitlabIntegration(opts?: pulumi.InvokeOptions): Promise<GetGitlabIntegrationResult> {
+export function getGitlabIntegration(args?: GetGitlabIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetGitlabIntegrationResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getGitlabIntegration:getGitlabIntegration", {
+        "id": args.id,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getGitlabIntegration.
+ */
+export interface GetGitlabIntegrationArgs {
+    /**
+     * Gitlab integration id. If not provided, the default integration will be returned
+     */
+    id?: string;
 }
 
 /**
@@ -32,13 +44,37 @@ export interface GetGitlabIntegrationResult {
      */
     readonly apiHost: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Gitlab integration description
      */
-    readonly id: string;
+    readonly description: string;
+    /**
+     * Gitlab integration id. If not provided, the default integration will be returned
+     */
+    readonly id?: string;
+    /**
+     * Gitlab integration is default
+     */
+    readonly isDefault: boolean;
+    /**
+     * Gitlab integration labels
+     */
+    readonly labels: string[];
+    /**
+     * Gitlab integration name
+     */
+    readonly name: string;
+    /**
+     * Gitlab integration space id
+     */
+    readonly spaceId: string;
     /**
      * Gitlab integration webhook secret
      */
     readonly webhookSecret: string;
+    /**
+     * Gitlab integration webhook url
+     */
+    readonly webhookUrl: string;
 }
 /**
  * `spacelift.getGitlabIntegration` returns details about Gitlab integration
@@ -52,6 +88,16 @@ export interface GetGitlabIntegrationResult {
  * const gitlabIntegration = spacelift.getGitlabIntegration({});
  * ```
  */
-export function getGitlabIntegrationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetGitlabIntegrationResult> {
-    return pulumi.output(getGitlabIntegration(opts))
+export function getGitlabIntegrationOutput(args?: GetGitlabIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGitlabIntegrationResult> {
+    return pulumi.output(args).apply((a: any) => getGitlabIntegration(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getGitlabIntegration.
+ */
+export interface GetGitlabIntegrationOutputArgs {
+    /**
+     * Gitlab integration id. If not provided, the default integration will be returned
+     */
+    id?: pulumi.Input<string>;
 }

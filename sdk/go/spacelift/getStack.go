@@ -51,6 +51,8 @@ func LookupStack(ctx *pulumi.Context, args *LookupStackArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getStack.
 type LookupStackArgs struct {
+	// Project globs is an optional list of paths to track changes of in addition to the project root.
+	AdditionalProjectGlobs []string `pulumi:"additionalProjectGlobs"`
 	// List of after-apply scripts
 	AfterApplies []string `pulumi:"afterApplies"`
 	// List of after-destroy scripts
@@ -79,6 +81,8 @@ type LookupStackArgs struct {
 
 // A collection of values returned by getStack.
 type LookupStackResult struct {
+	// Project globs is an optional list of paths to track changes of in addition to the project root.
+	AdditionalProjectGlobs []string `pulumi:"additionalProjectGlobs"`
 	// indicates whether this stack can administer others
 	Administrative bool `pulumi:"administrative"`
 	// List of after-apply scripts
@@ -182,6 +186,8 @@ func LookupStackOutput(ctx *pulumi.Context, args LookupStackOutputArgs, opts ...
 
 // A collection of arguments for invoking getStack.
 type LookupStackOutputArgs struct {
+	// Project globs is an optional list of paths to track changes of in addition to the project root.
+	AdditionalProjectGlobs pulumi.StringArrayInput `pulumi:"additionalProjectGlobs"`
 	// List of after-apply scripts
 	AfterApplies pulumi.StringArrayInput `pulumi:"afterApplies"`
 	// List of after-destroy scripts
@@ -231,6 +237,11 @@ func (o LookupStackResultOutput) ToOutput(ctx context.Context) pulumix.Output[Lo
 	return pulumix.Output[LookupStackResult]{
 		OutputState: o.OutputState,
 	}
+}
+
+// Project globs is an optional list of paths to track changes of in addition to the project root.
+func (o LookupStackResultOutput) AdditionalProjectGlobs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStackResult) []string { return v.AdditionalProjectGlobs }).(pulumi.StringArrayOutput)
 }
 
 // indicates whether this stack can administer others

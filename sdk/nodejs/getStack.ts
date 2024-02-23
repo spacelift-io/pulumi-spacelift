@@ -24,6 +24,7 @@ export function getStack(args: GetStackArgs, opts?: pulumi.InvokeOptions): Promi
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getStack:getStack", {
+        "additionalProjectGlobs": args.additionalProjectGlobs,
         "afterApplies": args.afterApplies,
         "afterDestroys": args.afterDestroys,
         "afterInits": args.afterInits,
@@ -43,6 +44,10 @@ export function getStack(args: GetStackArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getStack.
  */
 export interface GetStackArgs {
+    /**
+     * Project globs is an optional list of paths to track changes of in addition to the project root.
+     */
+    additionalProjectGlobs?: string[];
     /**
      * List of after-apply scripts
      */
@@ -97,6 +102,10 @@ export interface GetStackArgs {
  * A collection of values returned by getStack.
  */
 export interface GetStackResult {
+    /**
+     * Project globs is an optional list of paths to track changes of in addition to the project root.
+     */
+    readonly additionalProjectGlobs?: string[];
     /**
      * indicates whether this stack can administer others
      */
@@ -288,6 +297,10 @@ export function getStackOutput(args: GetStackOutputArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getStack.
  */
 export interface GetStackOutputArgs {
+    /**
+     * Project globs is an optional list of paths to track changes of in addition to the project root.
+     */
+    additionalProjectGlobs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of after-apply scripts
      */

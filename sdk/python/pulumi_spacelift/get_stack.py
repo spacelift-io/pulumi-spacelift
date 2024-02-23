@@ -22,7 +22,10 @@ class GetStackResult:
     """
     A collection of values returned by getStack.
     """
-    def __init__(__self__, administrative=None, after_applies=None, after_destroys=None, after_inits=None, after_performs=None, after_plans=None, after_runs=None, ansibles=None, autodeploy=None, autoretry=None, aws_assume_role_policy_statement=None, azure_devops=None, before_applies=None, before_destroys=None, before_inits=None, before_performs=None, before_plans=None, bitbucket_clouds=None, bitbucket_datacenters=None, branch=None, cloudformations=None, description=None, enable_local_preview=None, github_enterprises=None, gitlabs=None, id=None, kubernetes=None, labels=None, manage_state=None, name=None, project_root=None, protect_from_deletion=None, pulumis=None, raw_gits=None, repository=None, runner_image=None, showcases=None, space_id=None, stack_id=None, terraform_external_state_access=None, terraform_smart_sanitization=None, terraform_version=None, terraform_workflow_tool=None, terraform_workspace=None, worker_pool_id=None):
+    def __init__(__self__, additional_project_globs=None, administrative=None, after_applies=None, after_destroys=None, after_inits=None, after_performs=None, after_plans=None, after_runs=None, ansibles=None, autodeploy=None, autoretry=None, aws_assume_role_policy_statement=None, azure_devops=None, before_applies=None, before_destroys=None, before_inits=None, before_performs=None, before_plans=None, bitbucket_clouds=None, bitbucket_datacenters=None, branch=None, cloudformations=None, description=None, enable_local_preview=None, github_enterprises=None, gitlabs=None, id=None, kubernetes=None, labels=None, manage_state=None, name=None, project_root=None, protect_from_deletion=None, pulumis=None, raw_gits=None, repository=None, runner_image=None, showcases=None, space_id=None, stack_id=None, terraform_external_state_access=None, terraform_smart_sanitization=None, terraform_version=None, terraform_workflow_tool=None, terraform_workspace=None, worker_pool_id=None):
+        if additional_project_globs and not isinstance(additional_project_globs, list):
+            raise TypeError("Expected argument 'additional_project_globs' to be a list")
+        pulumi.set(__self__, "additional_project_globs", additional_project_globs)
         if administrative and not isinstance(administrative, bool):
             raise TypeError("Expected argument 'administrative' to be a bool")
         pulumi.set(__self__, "administrative", administrative)
@@ -158,6 +161,14 @@ class GetStackResult:
         if worker_pool_id and not isinstance(worker_pool_id, str):
             raise TypeError("Expected argument 'worker_pool_id' to be a str")
         pulumi.set(__self__, "worker_pool_id", worker_pool_id)
+
+    @property
+    @pulumi.getter(name="additionalProjectGlobs")
+    def additional_project_globs(self) -> Optional[Sequence[str]]:
+        """
+        Project globs is an optional list of paths to track changes of in addition to the project root.
+        """
+        return pulumi.get(self, "additional_project_globs")
 
     @property
     @pulumi.getter
@@ -514,6 +525,7 @@ class AwaitableGetStackResult(GetStackResult):
         if False:
             yield self
         return GetStackResult(
+            additional_project_globs=self.additional_project_globs,
             administrative=self.administrative,
             after_applies=self.after_applies,
             after_destroys=self.after_destroys,
@@ -561,7 +573,8 @@ class AwaitableGetStackResult(GetStackResult):
             worker_pool_id=self.worker_pool_id)
 
 
-def get_stack(after_applies: Optional[Sequence[str]] = None,
+def get_stack(additional_project_globs: Optional[Sequence[str]] = None,
+              after_applies: Optional[Sequence[str]] = None,
               after_destroys: Optional[Sequence[str]] = None,
               after_inits: Optional[Sequence[str]] = None,
               after_performs: Optional[Sequence[str]] = None,
@@ -587,6 +600,7 @@ def get_stack(after_applies: Optional[Sequence[str]] = None,
     ```
 
 
+    :param Sequence[str] additional_project_globs: Project globs is an optional list of paths to track changes of in addition to the project root.
     :param Sequence[str] after_applies: List of after-apply scripts
     :param Sequence[str] after_destroys: List of after-destroy scripts
     :param Sequence[str] after_inits: List of after-init scripts
@@ -601,6 +615,7 @@ def get_stack(after_applies: Optional[Sequence[str]] = None,
     :param str stack_id: ID (slug) of the stack
     """
     __args__ = dict()
+    __args__['additionalProjectGlobs'] = additional_project_globs
     __args__['afterApplies'] = after_applies
     __args__['afterDestroys'] = after_destroys
     __args__['afterInits'] = after_inits
@@ -617,6 +632,7 @@ def get_stack(after_applies: Optional[Sequence[str]] = None,
     __ret__ = pulumi.runtime.invoke('spacelift:index/getStack:getStack', __args__, opts=opts, typ=GetStackResult).value
 
     return AwaitableGetStackResult(
+        additional_project_globs=pulumi.get(__ret__, 'additional_project_globs'),
         administrative=pulumi.get(__ret__, 'administrative'),
         after_applies=pulumi.get(__ret__, 'after_applies'),
         after_destroys=pulumi.get(__ret__, 'after_destroys'),
@@ -665,7 +681,8 @@ def get_stack(after_applies: Optional[Sequence[str]] = None,
 
 
 @_utilities.lift_output_func(get_stack)
-def get_stack_output(after_applies: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+def get_stack_output(additional_project_globs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                     after_applies: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      after_destroys: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      after_inits: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      after_performs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -691,6 +708,7 @@ def get_stack_output(after_applies: Optional[pulumi.Input[Optional[Sequence[str]
     ```
 
 
+    :param Sequence[str] additional_project_globs: Project globs is an optional list of paths to track changes of in addition to the project root.
     :param Sequence[str] after_applies: List of after-apply scripts
     :param Sequence[str] after_destroys: List of after-destroy scripts
     :param Sequence[str] after_inits: List of after-init scripts

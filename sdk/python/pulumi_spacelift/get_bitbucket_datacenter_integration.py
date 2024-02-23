@@ -21,16 +21,34 @@ class GetBitbucketDatacenterIntegrationResult:
     """
     A collection of values returned by getBitbucketDatacenterIntegration.
     """
-    def __init__(__self__, api_host=None, id=None, user_facing_host=None, webhook_secret=None, webhook_url=None):
+    def __init__(__self__, api_host=None, description=None, id=None, is_default=None, labels=None, name=None, space_id=None, user_facing_host=None, username=None, webhook_secret=None, webhook_url=None):
         if api_host and not isinstance(api_host, str):
             raise TypeError("Expected argument 'api_host' to be a str")
         pulumi.set(__self__, "api_host", api_host)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if is_default and not isinstance(is_default, bool):
+            raise TypeError("Expected argument 'is_default' to be a bool")
+        pulumi.set(__self__, "is_default", is_default)
+        if labels and not isinstance(labels, list):
+            raise TypeError("Expected argument 'labels' to be a list")
+        pulumi.set(__self__, "labels", labels)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if space_id and not isinstance(space_id, str):
+            raise TypeError("Expected argument 'space_id' to be a str")
+        pulumi.set(__self__, "space_id", space_id)
         if user_facing_host and not isinstance(user_facing_host, str):
             raise TypeError("Expected argument 'user_facing_host' to be a str")
         pulumi.set(__self__, "user_facing_host", user_facing_host)
+        if username and not isinstance(username, str):
+            raise TypeError("Expected argument 'username' to be a str")
+        pulumi.set(__self__, "username", username)
         if webhook_secret and not isinstance(webhook_secret, str):
             raise TypeError("Expected argument 'webhook_secret' to be a str")
         pulumi.set(__self__, "webhook_secret", webhook_secret)
@@ -48,11 +66,51 @@ class GetBitbucketDatacenterIntegrationResult:
 
     @property
     @pulumi.getter
-    def id(self) -> str:
+    def description(self) -> str:
         """
-        The provider-assigned unique ID for this managed resource.
+        Bitbucket Datacenter integration description
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        Bitbucket Datacenter integration id. If not provided, the default integration will be returned
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        """
+        Bitbucket Datacenter integration is default
+        """
+        return pulumi.get(self, "is_default")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Sequence[str]:
+        """
+        Bitbucket Datacenter integration labels
+        """
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Bitbucket Datacenter integration name
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="spaceId")
+    def space_id(self) -> str:
+        """
+        Bitbucket Datacenter integration space id
+        """
+        return pulumi.get(self, "space_id")
 
     @property
     @pulumi.getter(name="userFacingHost")
@@ -61,6 +119,14 @@ class GetBitbucketDatacenterIntegrationResult:
         Bitbucket Datacenter integration user facing host
         """
         return pulumi.get(self, "user_facing_host")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        Bitbucket Datacenter username
+        """
+        return pulumi.get(self, "username")
 
     @property
     @pulumi.getter(name="webhookSecret")
@@ -86,13 +152,20 @@ class AwaitableGetBitbucketDatacenterIntegrationResult(GetBitbucketDatacenterInt
             yield self
         return GetBitbucketDatacenterIntegrationResult(
             api_host=self.api_host,
+            description=self.description,
             id=self.id,
+            is_default=self.is_default,
+            labels=self.labels,
+            name=self.name,
+            space_id=self.space_id,
             user_facing_host=self.user_facing_host,
+            username=self.username,
             webhook_secret=self.webhook_secret,
             webhook_url=self.webhook_url)
 
 
-def get_bitbucket_datacenter_integration(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBitbucketDatacenterIntegrationResult:
+def get_bitbucket_datacenter_integration(id: Optional[str] = None,
+                                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBitbucketDatacenterIntegrationResult:
     """
     `get_bitbucket_datacenter_integration` returns details about Bitbucket Datacenter integration
 
@@ -104,21 +177,32 @@ def get_bitbucket_datacenter_integration(opts: Optional[pulumi.InvokeOptions] = 
 
     bitbucket_datacenter_integration = spacelift.get_bitbucket_datacenter_integration()
     ```
+
+
+    :param str id: Bitbucket Datacenter integration id. If not provided, the default integration will be returned
     """
     __args__ = dict()
+    __args__['id'] = id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration', __args__, opts=opts, typ=GetBitbucketDatacenterIntegrationResult).value
 
     return AwaitableGetBitbucketDatacenterIntegrationResult(
         api_host=pulumi.get(__ret__, 'api_host'),
+        description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
+        is_default=pulumi.get(__ret__, 'is_default'),
+        labels=pulumi.get(__ret__, 'labels'),
+        name=pulumi.get(__ret__, 'name'),
+        space_id=pulumi.get(__ret__, 'space_id'),
         user_facing_host=pulumi.get(__ret__, 'user_facing_host'),
+        username=pulumi.get(__ret__, 'username'),
         webhook_secret=pulumi.get(__ret__, 'webhook_secret'),
         webhook_url=pulumi.get(__ret__, 'webhook_url'))
 
 
 @_utilities.lift_output_func(get_bitbucket_datacenter_integration)
-def get_bitbucket_datacenter_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBitbucketDatacenterIntegrationResult]:
+def get_bitbucket_datacenter_integration_output(id: Optional[pulumi.Input[Optional[str]]] = None,
+                                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBitbucketDatacenterIntegrationResult]:
     """
     `get_bitbucket_datacenter_integration` returns details about Bitbucket Datacenter integration
 
@@ -130,5 +214,8 @@ def get_bitbucket_datacenter_integration_output(opts: Optional[pulumi.InvokeOpti
 
     bitbucket_datacenter_integration = spacelift.get_bitbucket_datacenter_integration()
     ```
+
+
+    :param str id: Bitbucket Datacenter integration id. If not provided, the default integration will be returned
     """
     ...

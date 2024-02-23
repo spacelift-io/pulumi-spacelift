@@ -50,6 +50,28 @@ import (
 type Context struct {
 	pulumi.CustomResourceState
 
+	// List of after-apply scripts
+	AfterApplies pulumi.StringArrayOutput `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys pulumi.StringArrayOutput `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits pulumi.StringArrayOutput `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms pulumi.StringArrayOutput `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans pulumi.StringArrayOutput `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns pulumi.StringArrayOutput `pulumi:"afterRuns"`
+	// List of before-apply scripts
+	BeforeApplies pulumi.StringArrayOutput `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys pulumi.StringArrayOutput `pulumi:"beforeDestroys"`
+	// List of before-init scripts
+	BeforeInits pulumi.StringArrayOutput `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms pulumi.StringArrayOutput `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans pulumi.StringArrayOutput `pulumi:"beforePlans"`
 	// Free-form context description for users
 	Description pulumi.StringPtrOutput   `pulumi:"description"`
 	Labels      pulumi.StringArrayOutput `pulumi:"labels"`
@@ -89,6 +111,28 @@ func GetContext(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Context resources.
 type contextState struct {
+	// List of after-apply scripts
+	AfterApplies []string `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys []string `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits []string `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms []string `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans []string `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns []string `pulumi:"afterRuns"`
+	// List of before-apply scripts
+	BeforeApplies []string `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys []string `pulumi:"beforeDestroys"`
+	// List of before-init scripts
+	BeforeInits []string `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms []string `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans []string `pulumi:"beforePlans"`
 	// Free-form context description for users
 	Description *string  `pulumi:"description"`
 	Labels      []string `pulumi:"labels"`
@@ -99,6 +143,28 @@ type contextState struct {
 }
 
 type ContextState struct {
+	// List of after-apply scripts
+	AfterApplies pulumi.StringArrayInput
+	// List of after-destroy scripts
+	AfterDestroys pulumi.StringArrayInput
+	// List of after-init scripts
+	AfterInits pulumi.StringArrayInput
+	// List of after-perform scripts
+	AfterPerforms pulumi.StringArrayInput
+	// List of after-plan scripts
+	AfterPlans pulumi.StringArrayInput
+	// List of after-run scripts
+	AfterRuns pulumi.StringArrayInput
+	// List of before-apply scripts
+	BeforeApplies pulumi.StringArrayInput
+	// List of before-destroy scripts
+	BeforeDestroys pulumi.StringArrayInput
+	// List of before-init scripts
+	BeforeInits pulumi.StringArrayInput
+	// List of before-perform scripts
+	BeforePerforms pulumi.StringArrayInput
+	// List of before-plan scripts
+	BeforePlans pulumi.StringArrayInput
 	// Free-form context description for users
 	Description pulumi.StringPtrInput
 	Labels      pulumi.StringArrayInput
@@ -113,6 +179,28 @@ func (ContextState) ElementType() reflect.Type {
 }
 
 type contextArgs struct {
+	// List of after-apply scripts
+	AfterApplies []string `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys []string `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits []string `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms []string `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans []string `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns []string `pulumi:"afterRuns"`
+	// List of before-apply scripts
+	BeforeApplies []string `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys []string `pulumi:"beforeDestroys"`
+	// List of before-init scripts
+	BeforeInits []string `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms []string `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans []string `pulumi:"beforePlans"`
 	// Free-form context description for users
 	Description *string  `pulumi:"description"`
 	Labels      []string `pulumi:"labels"`
@@ -124,6 +212,28 @@ type contextArgs struct {
 
 // The set of arguments for constructing a Context resource.
 type ContextArgs struct {
+	// List of after-apply scripts
+	AfterApplies pulumi.StringArrayInput
+	// List of after-destroy scripts
+	AfterDestroys pulumi.StringArrayInput
+	// List of after-init scripts
+	AfterInits pulumi.StringArrayInput
+	// List of after-perform scripts
+	AfterPerforms pulumi.StringArrayInput
+	// List of after-plan scripts
+	AfterPlans pulumi.StringArrayInput
+	// List of after-run scripts
+	AfterRuns pulumi.StringArrayInput
+	// List of before-apply scripts
+	BeforeApplies pulumi.StringArrayInput
+	// List of before-destroy scripts
+	BeforeDestroys pulumi.StringArrayInput
+	// List of before-init scripts
+	BeforeInits pulumi.StringArrayInput
+	// List of before-perform scripts
+	BeforePerforms pulumi.StringArrayInput
+	// List of before-plan scripts
+	BeforePlans pulumi.StringArrayInput
 	// Free-form context description for users
 	Description pulumi.StringPtrInput
 	Labels      pulumi.StringArrayInput
@@ -242,6 +352,61 @@ func (o ContextOutput) ToOutput(ctx context.Context) pulumix.Output[*Context] {
 	return pulumix.Output[*Context]{
 		OutputState: o.OutputState,
 	}
+}
+
+// List of after-apply scripts
+func (o ContextOutput) AfterApplies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.AfterApplies }).(pulumi.StringArrayOutput)
+}
+
+// List of after-destroy scripts
+func (o ContextOutput) AfterDestroys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.AfterDestroys }).(pulumi.StringArrayOutput)
+}
+
+// List of after-init scripts
+func (o ContextOutput) AfterInits() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.AfterInits }).(pulumi.StringArrayOutput)
+}
+
+// List of after-perform scripts
+func (o ContextOutput) AfterPerforms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.AfterPerforms }).(pulumi.StringArrayOutput)
+}
+
+// List of after-plan scripts
+func (o ContextOutput) AfterPlans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.AfterPlans }).(pulumi.StringArrayOutput)
+}
+
+// List of after-run scripts
+func (o ContextOutput) AfterRuns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.AfterRuns }).(pulumi.StringArrayOutput)
+}
+
+// List of before-apply scripts
+func (o ContextOutput) BeforeApplies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.BeforeApplies }).(pulumi.StringArrayOutput)
+}
+
+// List of before-destroy scripts
+func (o ContextOutput) BeforeDestroys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.BeforeDestroys }).(pulumi.StringArrayOutput)
+}
+
+// List of before-init scripts
+func (o ContextOutput) BeforeInits() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.BeforeInits }).(pulumi.StringArrayOutput)
+}
+
+// List of before-perform scripts
+func (o ContextOutput) BeforePerforms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.BeforePerforms }).(pulumi.StringArrayOutput)
+}
+
+// List of before-plan scripts
+func (o ContextOutput) BeforePlans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Context) pulumi.StringArrayOutput { return v.BeforePlans }).(pulumi.StringArrayOutput)
 }
 
 // Free-form context description for users

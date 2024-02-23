@@ -33,8 +33,8 @@ namespace Pulumi.Spacelift
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetGitlabIntegrationResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetGitlabIntegrationResult>("spacelift:index/getGitlabIntegration:getGitlabIntegration", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetGitlabIntegrationResult> InvokeAsync(GetGitlabIntegrationArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetGitlabIntegrationResult>("spacelift:index/getGitlabIntegration:getGitlabIntegration", args ?? new GetGitlabIntegrationArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.getGitlabIntegration` returns details about Gitlab integration
@@ -58,8 +58,37 @@ namespace Pulumi.Spacelift
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetGitlabIntegrationResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetGitlabIntegrationResult>("spacelift:index/getGitlabIntegration:getGitlabIntegration", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetGitlabIntegrationResult> Invoke(GetGitlabIntegrationInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetGitlabIntegrationResult>("spacelift:index/getGitlabIntegration:getGitlabIntegration", args ?? new GetGitlabIntegrationInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetGitlabIntegrationArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Gitlab integration id. If not provided, the default integration will be returned
+        /// </summary>
+        [Input("id")]
+        public string? Id { get; set; }
+
+        public GetGitlabIntegrationArgs()
+        {
+        }
+        public static new GetGitlabIntegrationArgs Empty => new GetGitlabIntegrationArgs();
+    }
+
+    public sealed class GetGitlabIntegrationInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Gitlab integration id. If not provided, the default integration will be returned
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        public GetGitlabIntegrationInvokeArgs()
+        {
+        }
+        public static new GetGitlabIntegrationInvokeArgs Empty => new GetGitlabIntegrationInvokeArgs();
     }
 
 
@@ -71,25 +100,67 @@ namespace Pulumi.Spacelift
         /// </summary>
         public readonly string ApiHost;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// Gitlab integration description
         /// </summary>
-        public readonly string Id;
+        public readonly string Description;
+        /// <summary>
+        /// Gitlab integration id. If not provided, the default integration will be returned
+        /// </summary>
+        public readonly string? Id;
+        /// <summary>
+        /// Gitlab integration is default
+        /// </summary>
+        public readonly bool IsDefault;
+        /// <summary>
+        /// Gitlab integration labels
+        /// </summary>
+        public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// Gitlab integration name
+        /// </summary>
+        public readonly string Name;
+        /// <summary>
+        /// Gitlab integration space id
+        /// </summary>
+        public readonly string SpaceId;
         /// <summary>
         /// Gitlab integration webhook secret
         /// </summary>
         public readonly string WebhookSecret;
+        /// <summary>
+        /// Gitlab integration webhook url
+        /// </summary>
+        public readonly string WebhookUrl;
 
         [OutputConstructor]
         private GetGitlabIntegrationResult(
             string apiHost,
 
-            string id,
+            string description,
 
-            string webhookSecret)
+            string? id,
+
+            bool isDefault,
+
+            ImmutableArray<string> labels,
+
+            string name,
+
+            string spaceId,
+
+            string webhookSecret,
+
+            string webhookUrl)
         {
             ApiHost = apiHost;
+            Description = description;
             Id = id;
+            IsDefault = isDefault;
+            Labels = labels;
+            Name = name;
+            SpaceId = spaceId;
             WebhookSecret = webhookSecret;
+            WebhookUrl = webhookUrl;
         }
     }
 }

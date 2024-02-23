@@ -13,6 +13,7 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStacksStackResult
     {
+        public readonly ImmutableArray<string> AdditionalProjectGlobs;
         public readonly bool Administrative;
         public readonly ImmutableArray<string> AfterApplies;
         public readonly ImmutableArray<string> AfterDestroys;
@@ -60,6 +61,8 @@ namespace Pulumi.Spacelift.Outputs
 
         [OutputConstructor]
         private GetStacksStackResult(
+            ImmutableArray<string> additionalProjectGlobs,
+
             bool administrative,
 
             ImmutableArray<string> afterApplies,
@@ -148,6 +151,7 @@ namespace Pulumi.Spacelift.Outputs
 
             string workerPoolId)
         {
+            AdditionalProjectGlobs = additionalProjectGlobs;
             Administrative = administrative;
             AfterApplies = afterApplies;
             AfterDestroys = afterDestroys;

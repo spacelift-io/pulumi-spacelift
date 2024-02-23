@@ -13,11 +13,20 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStacksStackAzureDevopResult
     {
+        public readonly string Id;
+        public readonly bool IsDefault;
         public readonly string Project;
 
         [OutputConstructor]
-        private GetStacksStackAzureDevopResult(string project)
+        private GetStacksStackAzureDevopResult(
+            string id,
+
+            bool isDefault,
+
+            string project)
         {
+            Id = id;
+            IsDefault = isDefault;
             Project = project;
         }
     }

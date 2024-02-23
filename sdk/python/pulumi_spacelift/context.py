@@ -14,18 +14,51 @@ __all__ = ['ContextArgs', 'Context']
 @pulumi.input_type
 class ContextArgs:
     def __init__(__self__, *,
+                 after_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_runs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  space_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Context resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_applies: List of after-apply scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_destroys: List of after-destroy scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_inits: List of after-init scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_performs: List of after-perform scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_plans: List of after-plan scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_runs: List of after-run scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_applies: List of before-apply scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_destroys: List of before-destroy scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_inits: List of before-init scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_performs: List of before-perform scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_plans: List of before-plan scripts
         :param pulumi.Input[str] description: Free-form context description for users
         :param pulumi.Input[str] name: Name of the context - should be unique in one account
         :param pulumi.Input[str] space_id: ID (slug) of the space the context is in
         """
         ContextArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            after_applies=after_applies,
+            after_destroys=after_destroys,
+            after_inits=after_inits,
+            after_performs=after_performs,
+            after_plans=after_plans,
+            after_runs=after_runs,
+            before_applies=before_applies,
+            before_destroys=before_destroys,
+            before_inits=before_inits,
+            before_performs=before_performs,
+            before_plans=before_plans,
             description=description,
             labels=labels,
             name=name,
@@ -34,15 +67,70 @@ class ContextArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             after_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             after_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             after_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             after_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             after_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             after_runs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             before_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             before_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             before_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             before_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              description: Optional[pulumi.Input[str]] = None,
              labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              name: Optional[pulumi.Input[str]] = None,
              space_id: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if after_applies is None and 'afterApplies' in kwargs:
+            after_applies = kwargs['afterApplies']
+        if after_destroys is None and 'afterDestroys' in kwargs:
+            after_destroys = kwargs['afterDestroys']
+        if after_inits is None and 'afterInits' in kwargs:
+            after_inits = kwargs['afterInits']
+        if after_performs is None and 'afterPerforms' in kwargs:
+            after_performs = kwargs['afterPerforms']
+        if after_plans is None and 'afterPlans' in kwargs:
+            after_plans = kwargs['afterPlans']
+        if after_runs is None and 'afterRuns' in kwargs:
+            after_runs = kwargs['afterRuns']
+        if before_applies is None and 'beforeApplies' in kwargs:
+            before_applies = kwargs['beforeApplies']
+        if before_destroys is None and 'beforeDestroys' in kwargs:
+            before_destroys = kwargs['beforeDestroys']
+        if before_inits is None and 'beforeInits' in kwargs:
+            before_inits = kwargs['beforeInits']
+        if before_performs is None and 'beforePerforms' in kwargs:
+            before_performs = kwargs['beforePerforms']
+        if before_plans is None and 'beforePlans' in kwargs:
+            before_plans = kwargs['beforePlans']
         if space_id is None and 'spaceId' in kwargs:
             space_id = kwargs['spaceId']
 
+        if after_applies is not None:
+            _setter("after_applies", after_applies)
+        if after_destroys is not None:
+            _setter("after_destroys", after_destroys)
+        if after_inits is not None:
+            _setter("after_inits", after_inits)
+        if after_performs is not None:
+            _setter("after_performs", after_performs)
+        if after_plans is not None:
+            _setter("after_plans", after_plans)
+        if after_runs is not None:
+            _setter("after_runs", after_runs)
+        if before_applies is not None:
+            _setter("before_applies", before_applies)
+        if before_destroys is not None:
+            _setter("before_destroys", before_destroys)
+        if before_inits is not None:
+            _setter("before_inits", before_inits)
+        if before_performs is not None:
+            _setter("before_performs", before_performs)
+        if before_plans is not None:
+            _setter("before_plans", before_plans)
         if description is not None:
             _setter("description", description)
         if labels is not None:
@@ -51,6 +139,138 @@ class ContextArgs:
             _setter("name", name)
         if space_id is not None:
             _setter("space_id", space_id)
+
+    @property
+    @pulumi.getter(name="afterApplies")
+    def after_applies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-apply scripts
+        """
+        return pulumi.get(self, "after_applies")
+
+    @after_applies.setter
+    def after_applies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_applies", value)
+
+    @property
+    @pulumi.getter(name="afterDestroys")
+    def after_destroys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-destroy scripts
+        """
+        return pulumi.get(self, "after_destroys")
+
+    @after_destroys.setter
+    def after_destroys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_destroys", value)
+
+    @property
+    @pulumi.getter(name="afterInits")
+    def after_inits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-init scripts
+        """
+        return pulumi.get(self, "after_inits")
+
+    @after_inits.setter
+    def after_inits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_inits", value)
+
+    @property
+    @pulumi.getter(name="afterPerforms")
+    def after_performs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-perform scripts
+        """
+        return pulumi.get(self, "after_performs")
+
+    @after_performs.setter
+    def after_performs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_performs", value)
+
+    @property
+    @pulumi.getter(name="afterPlans")
+    def after_plans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-plan scripts
+        """
+        return pulumi.get(self, "after_plans")
+
+    @after_plans.setter
+    def after_plans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_plans", value)
+
+    @property
+    @pulumi.getter(name="afterRuns")
+    def after_runs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-run scripts
+        """
+        return pulumi.get(self, "after_runs")
+
+    @after_runs.setter
+    def after_runs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_runs", value)
+
+    @property
+    @pulumi.getter(name="beforeApplies")
+    def before_applies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of before-apply scripts
+        """
+        return pulumi.get(self, "before_applies")
+
+    @before_applies.setter
+    def before_applies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "before_applies", value)
+
+    @property
+    @pulumi.getter(name="beforeDestroys")
+    def before_destroys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of before-destroy scripts
+        """
+        return pulumi.get(self, "before_destroys")
+
+    @before_destroys.setter
+    def before_destroys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "before_destroys", value)
+
+    @property
+    @pulumi.getter(name="beforeInits")
+    def before_inits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of before-init scripts
+        """
+        return pulumi.get(self, "before_inits")
+
+    @before_inits.setter
+    def before_inits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "before_inits", value)
+
+    @property
+    @pulumi.getter(name="beforePerforms")
+    def before_performs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of before-perform scripts
+        """
+        return pulumi.get(self, "before_performs")
+
+    @before_performs.setter
+    def before_performs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "before_performs", value)
+
+    @property
+    @pulumi.getter(name="beforePlans")
+    def before_plans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of before-plan scripts
+        """
+        return pulumi.get(self, "before_plans")
+
+    @before_plans.setter
+    def before_plans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "before_plans", value)
 
     @property
     @pulumi.getter
@@ -101,18 +321,51 @@ class ContextArgs:
 @pulumi.input_type
 class _ContextState:
     def __init__(__self__, *,
+                 after_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_runs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  space_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Context resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_applies: List of after-apply scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_destroys: List of after-destroy scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_inits: List of after-init scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_performs: List of after-perform scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_plans: List of after-plan scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_runs: List of after-run scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_applies: List of before-apply scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_destroys: List of before-destroy scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_inits: List of before-init scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_performs: List of before-perform scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_plans: List of before-plan scripts
         :param pulumi.Input[str] description: Free-form context description for users
         :param pulumi.Input[str] name: Name of the context - should be unique in one account
         :param pulumi.Input[str] space_id: ID (slug) of the space the context is in
         """
         _ContextState._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            after_applies=after_applies,
+            after_destroys=after_destroys,
+            after_inits=after_inits,
+            after_performs=after_performs,
+            after_plans=after_plans,
+            after_runs=after_runs,
+            before_applies=before_applies,
+            before_destroys=before_destroys,
+            before_inits=before_inits,
+            before_performs=before_performs,
+            before_plans=before_plans,
             description=description,
             labels=labels,
             name=name,
@@ -121,15 +374,70 @@ class _ContextState:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             after_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             after_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             after_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             after_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             after_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             after_runs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             before_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             before_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             before_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             before_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              description: Optional[pulumi.Input[str]] = None,
              labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              name: Optional[pulumi.Input[str]] = None,
              space_id: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if after_applies is None and 'afterApplies' in kwargs:
+            after_applies = kwargs['afterApplies']
+        if after_destroys is None and 'afterDestroys' in kwargs:
+            after_destroys = kwargs['afterDestroys']
+        if after_inits is None and 'afterInits' in kwargs:
+            after_inits = kwargs['afterInits']
+        if after_performs is None and 'afterPerforms' in kwargs:
+            after_performs = kwargs['afterPerforms']
+        if after_plans is None and 'afterPlans' in kwargs:
+            after_plans = kwargs['afterPlans']
+        if after_runs is None and 'afterRuns' in kwargs:
+            after_runs = kwargs['afterRuns']
+        if before_applies is None and 'beforeApplies' in kwargs:
+            before_applies = kwargs['beforeApplies']
+        if before_destroys is None and 'beforeDestroys' in kwargs:
+            before_destroys = kwargs['beforeDestroys']
+        if before_inits is None and 'beforeInits' in kwargs:
+            before_inits = kwargs['beforeInits']
+        if before_performs is None and 'beforePerforms' in kwargs:
+            before_performs = kwargs['beforePerforms']
+        if before_plans is None and 'beforePlans' in kwargs:
+            before_plans = kwargs['beforePlans']
         if space_id is None and 'spaceId' in kwargs:
             space_id = kwargs['spaceId']
 
+        if after_applies is not None:
+            _setter("after_applies", after_applies)
+        if after_destroys is not None:
+            _setter("after_destroys", after_destroys)
+        if after_inits is not None:
+            _setter("after_inits", after_inits)
+        if after_performs is not None:
+            _setter("after_performs", after_performs)
+        if after_plans is not None:
+            _setter("after_plans", after_plans)
+        if after_runs is not None:
+            _setter("after_runs", after_runs)
+        if before_applies is not None:
+            _setter("before_applies", before_applies)
+        if before_destroys is not None:
+            _setter("before_destroys", before_destroys)
+        if before_inits is not None:
+            _setter("before_inits", before_inits)
+        if before_performs is not None:
+            _setter("before_performs", before_performs)
+        if before_plans is not None:
+            _setter("before_plans", before_plans)
         if description is not None:
             _setter("description", description)
         if labels is not None:
@@ -138,6 +446,138 @@ class _ContextState:
             _setter("name", name)
         if space_id is not None:
             _setter("space_id", space_id)
+
+    @property
+    @pulumi.getter(name="afterApplies")
+    def after_applies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-apply scripts
+        """
+        return pulumi.get(self, "after_applies")
+
+    @after_applies.setter
+    def after_applies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_applies", value)
+
+    @property
+    @pulumi.getter(name="afterDestroys")
+    def after_destroys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-destroy scripts
+        """
+        return pulumi.get(self, "after_destroys")
+
+    @after_destroys.setter
+    def after_destroys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_destroys", value)
+
+    @property
+    @pulumi.getter(name="afterInits")
+    def after_inits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-init scripts
+        """
+        return pulumi.get(self, "after_inits")
+
+    @after_inits.setter
+    def after_inits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_inits", value)
+
+    @property
+    @pulumi.getter(name="afterPerforms")
+    def after_performs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-perform scripts
+        """
+        return pulumi.get(self, "after_performs")
+
+    @after_performs.setter
+    def after_performs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_performs", value)
+
+    @property
+    @pulumi.getter(name="afterPlans")
+    def after_plans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-plan scripts
+        """
+        return pulumi.get(self, "after_plans")
+
+    @after_plans.setter
+    def after_plans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_plans", value)
+
+    @property
+    @pulumi.getter(name="afterRuns")
+    def after_runs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of after-run scripts
+        """
+        return pulumi.get(self, "after_runs")
+
+    @after_runs.setter
+    def after_runs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "after_runs", value)
+
+    @property
+    @pulumi.getter(name="beforeApplies")
+    def before_applies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of before-apply scripts
+        """
+        return pulumi.get(self, "before_applies")
+
+    @before_applies.setter
+    def before_applies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "before_applies", value)
+
+    @property
+    @pulumi.getter(name="beforeDestroys")
+    def before_destroys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of before-destroy scripts
+        """
+        return pulumi.get(self, "before_destroys")
+
+    @before_destroys.setter
+    def before_destroys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "before_destroys", value)
+
+    @property
+    @pulumi.getter(name="beforeInits")
+    def before_inits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of before-init scripts
+        """
+        return pulumi.get(self, "before_inits")
+
+    @before_inits.setter
+    def before_inits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "before_inits", value)
+
+    @property
+    @pulumi.getter(name="beforePerforms")
+    def before_performs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of before-perform scripts
+        """
+        return pulumi.get(self, "before_performs")
+
+    @before_performs.setter
+    def before_performs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "before_performs", value)
+
+    @property
+    @pulumi.getter(name="beforePlans")
+    def before_plans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of before-plan scripts
+        """
+        return pulumi.get(self, "before_plans")
+
+    @before_plans.setter
+    def before_plans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "before_plans", value)
 
     @property
     @pulumi.getter
@@ -190,6 +630,17 @@ class Context(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 after_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_runs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -215,6 +666,17 @@ class Context(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_applies: List of after-apply scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_destroys: List of after-destroy scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_inits: List of after-init scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_performs: List of after-perform scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_plans: List of after-plan scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_runs: List of after-run scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_applies: List of before-apply scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_destroys: List of before-destroy scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_inits: List of before-init scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_performs: List of before-perform scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_plans: List of before-plan scripts
         :param pulumi.Input[str] description: Free-form context description for users
         :param pulumi.Input[str] name: Name of the context - should be unique in one account
         :param pulumi.Input[str] space_id: ID (slug) of the space the context is in
@@ -262,6 +724,17 @@ class Context(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 after_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 after_runs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 before_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -275,6 +748,17 @@ class Context(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ContextArgs.__new__(ContextArgs)
 
+            __props__.__dict__["after_applies"] = after_applies
+            __props__.__dict__["after_destroys"] = after_destroys
+            __props__.__dict__["after_inits"] = after_inits
+            __props__.__dict__["after_performs"] = after_performs
+            __props__.__dict__["after_plans"] = after_plans
+            __props__.__dict__["after_runs"] = after_runs
+            __props__.__dict__["before_applies"] = before_applies
+            __props__.__dict__["before_destroys"] = before_destroys
+            __props__.__dict__["before_inits"] = before_inits
+            __props__.__dict__["before_performs"] = before_performs
+            __props__.__dict__["before_plans"] = before_plans
             __props__.__dict__["description"] = description
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
@@ -289,6 +773,17 @@ class Context(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            after_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            after_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            after_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            after_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            after_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            after_runs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            before_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            before_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            before_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            before_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -300,6 +795,17 @@ class Context(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_applies: List of after-apply scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_destroys: List of after-destroy scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_inits: List of after-init scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_performs: List of after-perform scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_plans: List of after-plan scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] after_runs: List of after-run scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_applies: List of before-apply scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_destroys: List of before-destroy scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_inits: List of before-init scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_performs: List of before-perform scripts
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] before_plans: List of before-plan scripts
         :param pulumi.Input[str] description: Free-form context description for users
         :param pulumi.Input[str] name: Name of the context - should be unique in one account
         :param pulumi.Input[str] space_id: ID (slug) of the space the context is in
@@ -308,11 +814,110 @@ class Context(pulumi.CustomResource):
 
         __props__ = _ContextState.__new__(_ContextState)
 
+        __props__.__dict__["after_applies"] = after_applies
+        __props__.__dict__["after_destroys"] = after_destroys
+        __props__.__dict__["after_inits"] = after_inits
+        __props__.__dict__["after_performs"] = after_performs
+        __props__.__dict__["after_plans"] = after_plans
+        __props__.__dict__["after_runs"] = after_runs
+        __props__.__dict__["before_applies"] = before_applies
+        __props__.__dict__["before_destroys"] = before_destroys
+        __props__.__dict__["before_inits"] = before_inits
+        __props__.__dict__["before_performs"] = before_performs
+        __props__.__dict__["before_plans"] = before_plans
         __props__.__dict__["description"] = description
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["space_id"] = space_id
         return Context(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="afterApplies")
+    def after_applies(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of after-apply scripts
+        """
+        return pulumi.get(self, "after_applies")
+
+    @property
+    @pulumi.getter(name="afterDestroys")
+    def after_destroys(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of after-destroy scripts
+        """
+        return pulumi.get(self, "after_destroys")
+
+    @property
+    @pulumi.getter(name="afterInits")
+    def after_inits(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of after-init scripts
+        """
+        return pulumi.get(self, "after_inits")
+
+    @property
+    @pulumi.getter(name="afterPerforms")
+    def after_performs(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of after-perform scripts
+        """
+        return pulumi.get(self, "after_performs")
+
+    @property
+    @pulumi.getter(name="afterPlans")
+    def after_plans(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of after-plan scripts
+        """
+        return pulumi.get(self, "after_plans")
+
+    @property
+    @pulumi.getter(name="afterRuns")
+    def after_runs(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of after-run scripts
+        """
+        return pulumi.get(self, "after_runs")
+
+    @property
+    @pulumi.getter(name="beforeApplies")
+    def before_applies(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of before-apply scripts
+        """
+        return pulumi.get(self, "before_applies")
+
+    @property
+    @pulumi.getter(name="beforeDestroys")
+    def before_destroys(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of before-destroy scripts
+        """
+        return pulumi.get(self, "before_destroys")
+
+    @property
+    @pulumi.getter(name="beforeInits")
+    def before_inits(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of before-init scripts
+        """
+        return pulumi.get(self, "before_inits")
+
+    @property
+    @pulumi.getter(name="beforePerforms")
+    def before_performs(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of before-perform scripts
+        """
+        return pulumi.get(self, "before_performs")
+
+    @property
+    @pulumi.getter(name="beforePlans")
+    def before_plans(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of before-plan scripts
+        """
+        return pulumi.get(self, "before_plans")
 
     @property
     @pulumi.getter

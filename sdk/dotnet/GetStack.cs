@@ -71,6 +71,18 @@ namespace Pulumi.Spacelift
 
     public sealed class GetStackArgs : global::Pulumi.InvokeArgs
     {
+        [Input("additionalProjectGlobs")]
+        private List<string>? _additionalProjectGlobs;
+
+        /// <summary>
+        /// Project globs is an optional list of paths to track changes of in addition to the project root.
+        /// </summary>
+        public List<string> AdditionalProjectGlobs
+        {
+            get => _additionalProjectGlobs ?? (_additionalProjectGlobs = new List<string>());
+            set => _additionalProjectGlobs = value;
+        }
+
         [Input("afterApplies")]
         private List<string>? _afterApplies;
 
@@ -217,6 +229,18 @@ namespace Pulumi.Spacelift
 
     public sealed class GetStackInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("additionalProjectGlobs")]
+        private InputList<string>? _additionalProjectGlobs;
+
+        /// <summary>
+        /// Project globs is an optional list of paths to track changes of in addition to the project root.
+        /// </summary>
+        public InputList<string> AdditionalProjectGlobs
+        {
+            get => _additionalProjectGlobs ?? (_additionalProjectGlobs = new InputList<string>());
+            set => _additionalProjectGlobs = value;
+        }
+
         [Input("afterApplies")]
         private InputList<string>? _afterApplies;
 
@@ -365,6 +389,10 @@ namespace Pulumi.Spacelift
     [OutputType]
     public sealed class GetStackResult
     {
+        /// <summary>
+        /// Project globs is an optional list of paths to track changes of in addition to the project root.
+        /// </summary>
+        public readonly ImmutableArray<string> AdditionalProjectGlobs;
         /// <summary>
         /// indicates whether this stack can administer others
         /// </summary>
@@ -536,6 +564,8 @@ namespace Pulumi.Spacelift
 
         [OutputConstructor]
         private GetStackResult(
+            ImmutableArray<string> additionalProjectGlobs,
+
             bool administrative,
 
             ImmutableArray<string> afterApplies,
@@ -626,6 +656,7 @@ namespace Pulumi.Spacelift
 
             string workerPoolId)
         {
+            AdditionalProjectGlobs = additionalProjectGlobs;
             Administrative = administrative;
             AfterApplies = afterApplies;
             AfterDestroys = afterDestroys;

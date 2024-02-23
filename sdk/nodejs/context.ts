@@ -51,6 +51,50 @@ export class Context extends pulumi.CustomResource {
     }
 
     /**
+     * List of after-apply scripts
+     */
+    public readonly afterApplies!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of after-destroy scripts
+     */
+    public readonly afterDestroys!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of after-init scripts
+     */
+    public readonly afterInits!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of after-perform scripts
+     */
+    public readonly afterPerforms!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of after-plan scripts
+     */
+    public readonly afterPlans!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of after-run scripts
+     */
+    public readonly afterRuns!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of before-apply scripts
+     */
+    public readonly beforeApplies!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of before-destroy scripts
+     */
+    public readonly beforeDestroys!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of before-init scripts
+     */
+    public readonly beforeInits!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of before-perform scripts
+     */
+    public readonly beforePerforms!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of before-plan scripts
+     */
+    public readonly beforePlans!: pulumi.Output<string[] | undefined>;
+    /**
      * Free-form context description for users
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -77,12 +121,34 @@ export class Context extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ContextState | undefined;
+            resourceInputs["afterApplies"] = state ? state.afterApplies : undefined;
+            resourceInputs["afterDestroys"] = state ? state.afterDestroys : undefined;
+            resourceInputs["afterInits"] = state ? state.afterInits : undefined;
+            resourceInputs["afterPerforms"] = state ? state.afterPerforms : undefined;
+            resourceInputs["afterPlans"] = state ? state.afterPlans : undefined;
+            resourceInputs["afterRuns"] = state ? state.afterRuns : undefined;
+            resourceInputs["beforeApplies"] = state ? state.beforeApplies : undefined;
+            resourceInputs["beforeDestroys"] = state ? state.beforeDestroys : undefined;
+            resourceInputs["beforeInits"] = state ? state.beforeInits : undefined;
+            resourceInputs["beforePerforms"] = state ? state.beforePerforms : undefined;
+            resourceInputs["beforePlans"] = state ? state.beforePlans : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["spaceId"] = state ? state.spaceId : undefined;
         } else {
             const args = argsOrState as ContextArgs | undefined;
+            resourceInputs["afterApplies"] = args ? args.afterApplies : undefined;
+            resourceInputs["afterDestroys"] = args ? args.afterDestroys : undefined;
+            resourceInputs["afterInits"] = args ? args.afterInits : undefined;
+            resourceInputs["afterPerforms"] = args ? args.afterPerforms : undefined;
+            resourceInputs["afterPlans"] = args ? args.afterPlans : undefined;
+            resourceInputs["afterRuns"] = args ? args.afterRuns : undefined;
+            resourceInputs["beforeApplies"] = args ? args.beforeApplies : undefined;
+            resourceInputs["beforeDestroys"] = args ? args.beforeDestroys : undefined;
+            resourceInputs["beforeInits"] = args ? args.beforeInits : undefined;
+            resourceInputs["beforePerforms"] = args ? args.beforePerforms : undefined;
+            resourceInputs["beforePlans"] = args ? args.beforePlans : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -97,6 +163,50 @@ export class Context extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Context resources.
  */
 export interface ContextState {
+    /**
+     * List of after-apply scripts
+     */
+    afterApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-destroy scripts
+     */
+    afterDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-init scripts
+     */
+    afterInits?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-perform scripts
+     */
+    afterPerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-plan scripts
+     */
+    afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-run scripts
+     */
+    afterRuns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-apply scripts
+     */
+    beforeApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-destroy scripts
+     */
+    beforeDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-init scripts
+     */
+    beforeInits?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-perform scripts
+     */
+    beforePerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-plan scripts
+     */
+    beforePlans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Free-form context description for users
      */
@@ -116,6 +226,50 @@ export interface ContextState {
  * The set of arguments for constructing a Context resource.
  */
 export interface ContextArgs {
+    /**
+     * List of after-apply scripts
+     */
+    afterApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-destroy scripts
+     */
+    afterDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-init scripts
+     */
+    afterInits?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-perform scripts
+     */
+    afterPerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-plan scripts
+     */
+    afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-run scripts
+     */
+    afterRuns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-apply scripts
+     */
+    beforeApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-destroy scripts
+     */
+    beforeDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-init scripts
+     */
+    beforeInits?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-perform scripts
+     */
+    beforePerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-plan scripts
+     */
+    beforePlans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Free-form context description for users
      */

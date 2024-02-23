@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AuditTrailWebhookArgs, AuditTrailWebhookState } from "./auditTrailWebhook";
+export type AuditTrailWebhook = import("./auditTrailWebhook").AuditTrailWebhook;
+export const AuditTrailWebhook: typeof import("./auditTrailWebhook").AuditTrailWebhook = null as any;
+utilities.lazyLoad(exports, ["AuditTrailWebhook"], () => require("./auditTrailWebhook"));
+
 export { AwsIntegrationArgs, AwsIntegrationState } from "./awsIntegration";
 export type AwsIntegration = import("./awsIntegration").AwsIntegration;
 export const AwsIntegration: typeof import("./awsIntegration").AwsIntegration = null as any;
@@ -90,7 +95,7 @@ export const getAwsRole: typeof import("./getAwsRole").getAwsRole = null as any;
 export const getAwsRoleOutput: typeof import("./getAwsRole").getAwsRoleOutput = null as any;
 utilities.lazyLoad(exports, ["getAwsRole","getAwsRoleOutput"], () => require("./getAwsRole"));
 
-export { GetAzureDevopsIntegrationResult } from "./getAzureDevopsIntegration";
+export { GetAzureDevopsIntegrationArgs, GetAzureDevopsIntegrationResult, GetAzureDevopsIntegrationOutputArgs } from "./getAzureDevopsIntegration";
 export const getAzureDevopsIntegration: typeof import("./getAzureDevopsIntegration").getAzureDevopsIntegration = null as any;
 export const getAzureDevopsIntegrationOutput: typeof import("./getAzureDevopsIntegration").getAzureDevopsIntegrationOutput = null as any;
 utilities.lazyLoad(exports, ["getAzureDevopsIntegration","getAzureDevopsIntegrationOutput"], () => require("./getAzureDevopsIntegration"));
@@ -110,12 +115,12 @@ export const getAzureIntegrations: typeof import("./getAzureIntegrations").getAz
 export const getAzureIntegrationsOutput: typeof import("./getAzureIntegrations").getAzureIntegrationsOutput = null as any;
 utilities.lazyLoad(exports, ["getAzureIntegrations","getAzureIntegrationsOutput"], () => require("./getAzureIntegrations"));
 
-export { GetBitbucketCloudIntegrationResult } from "./getBitbucketCloudIntegration";
+export { GetBitbucketCloudIntegrationArgs, GetBitbucketCloudIntegrationResult, GetBitbucketCloudIntegrationOutputArgs } from "./getBitbucketCloudIntegration";
 export const getBitbucketCloudIntegration: typeof import("./getBitbucketCloudIntegration").getBitbucketCloudIntegration = null as any;
 export const getBitbucketCloudIntegrationOutput: typeof import("./getBitbucketCloudIntegration").getBitbucketCloudIntegrationOutput = null as any;
 utilities.lazyLoad(exports, ["getBitbucketCloudIntegration","getBitbucketCloudIntegrationOutput"], () => require("./getBitbucketCloudIntegration"));
 
-export { GetBitbucketDatacenterIntegrationResult } from "./getBitbucketDatacenterIntegration";
+export { GetBitbucketDatacenterIntegrationArgs, GetBitbucketDatacenterIntegrationResult, GetBitbucketDatacenterIntegrationOutputArgs } from "./getBitbucketDatacenterIntegration";
 export const getBitbucketDatacenterIntegration: typeof import("./getBitbucketDatacenterIntegration").getBitbucketDatacenterIntegration = null as any;
 export const getBitbucketDatacenterIntegrationOutput: typeof import("./getBitbucketDatacenterIntegration").getBitbucketDatacenterIntegrationOutput = null as any;
 utilities.lazyLoad(exports, ["getBitbucketDatacenterIntegration","getBitbucketDatacenterIntegrationOutput"], () => require("./getBitbucketDatacenterIntegration"));
@@ -160,12 +165,12 @@ export const getGcpServiceAccount: typeof import("./getGcpServiceAccount").getGc
 export const getGcpServiceAccountOutput: typeof import("./getGcpServiceAccount").getGcpServiceAccountOutput = null as any;
 utilities.lazyLoad(exports, ["getGcpServiceAccount","getGcpServiceAccountOutput"], () => require("./getGcpServiceAccount"));
 
-export { GetGithubEnterpriseIntegrationResult } from "./getGithubEnterpriseIntegration";
+export { GetGithubEnterpriseIntegrationArgs, GetGithubEnterpriseIntegrationResult, GetGithubEnterpriseIntegrationOutputArgs } from "./getGithubEnterpriseIntegration";
 export const getGithubEnterpriseIntegration: typeof import("./getGithubEnterpriseIntegration").getGithubEnterpriseIntegration = null as any;
 export const getGithubEnterpriseIntegrationOutput: typeof import("./getGithubEnterpriseIntegration").getGithubEnterpriseIntegrationOutput = null as any;
 utilities.lazyLoad(exports, ["getGithubEnterpriseIntegration","getGithubEnterpriseIntegrationOutput"], () => require("./getGithubEnterpriseIntegration"));
 
-export { GetGitlabIntegrationResult } from "./getGitlabIntegration";
+export { GetGitlabIntegrationArgs, GetGitlabIntegrationResult, GetGitlabIntegrationOutputArgs } from "./getGitlabIntegration";
 export const getGitlabIntegration: typeof import("./getGitlabIntegration").getGitlabIntegration = null as any;
 export const getGitlabIntegrationOutput: typeof import("./getGitlabIntegration").getGitlabIntegrationOutput = null as any;
 utilities.lazyLoad(exports, ["getGitlabIntegration","getGitlabIntegrationOutput"], () => require("./getGitlabIntegration"));
@@ -330,6 +335,11 @@ export type ScheduledTask = import("./scheduledTask").ScheduledTask;
 export const ScheduledTask: typeof import("./scheduledTask").ScheduledTask = null as any;
 utilities.lazyLoad(exports, ["ScheduledTask"], () => require("./scheduledTask"));
 
+export { SecurityEmailArgs, SecurityEmailState } from "./securityEmail";
+export type SecurityEmail = import("./securityEmail").SecurityEmail;
+export const SecurityEmail: typeof import("./securityEmail").SecurityEmail = null as any;
+utilities.lazyLoad(exports, ["SecurityEmail"], () => require("./securityEmail"));
+
 export { SpaceArgs, SpaceState } from "./space";
 export type Space = import("./space").Space;
 export const Space: typeof import("./space").Space = null as any;
@@ -414,6 +424,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "spacelift:index/auditTrailWebhook:AuditTrailWebhook":
+                return new AuditTrailWebhook(name, <any>undefined, { urn })
             case "spacelift:index/awsIntegration:AwsIntegration":
                 return new AwsIntegration(name, <any>undefined, { urn })
             case "spacelift:index/awsIntegrationAttachment:AwsIntegrationAttachment":
@@ -456,6 +468,8 @@ const _module = {
                 return new ScheduledDeleteTask(name, <any>undefined, { urn })
             case "spacelift:index/scheduledTask:ScheduledTask":
                 return new ScheduledTask(name, <any>undefined, { urn })
+            case "spacelift:index/securityEmail:SecurityEmail":
+                return new SecurityEmail(name, <any>undefined, { urn })
             case "spacelift:index/space:Space":
                 return new Space(name, <any>undefined, { urn })
             case "spacelift:index/stack:Stack":
@@ -489,6 +503,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("spacelift", "index/auditTrailWebhook", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/awsIntegration", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/awsIntegrationAttachment", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/awsRole", _module)
@@ -510,6 +525,7 @@ pulumi.runtime.registerResourceModule("spacelift", "index/policyAttachment", _mo
 pulumi.runtime.registerResourceModule("spacelift", "index/run", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/scheduledDeleteTask", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/scheduledTask", _module)
+pulumi.runtime.registerResourceModule("spacelift", "index/securityEmail", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/space", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stack", _module)
 pulumi.runtime.registerResourceModule("spacelift", "index/stackActivator", _module)

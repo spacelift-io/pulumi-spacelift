@@ -18,6 +18,7 @@ class StackArgs:
     def __init__(__self__, *,
                  branch: pulumilib.Input[str],
                  repository: pulumilib.Input[str],
+                 additional_project_globs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  administrative: Optional[pulumilib.Input[bool]] = None,
                  after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
@@ -67,6 +68,7 @@ class StackArgs:
         The set of arguments for constructing a Stack resource.
         :param pulumilib.Input[str] branch: GitHub branch to apply changes to
         :param pulumilib.Input[str] repository: Name of the repository, without the owner part
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] additional_project_globs: Project globs is an optional list of paths to track changes of in addition to the project root.
         :param pulumilib.Input[bool] administrative: Indicates whether this stack can manage others. Defaults to `false`.
         :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_applies: List of after-apply scripts
         :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_destroys: List of after-destroy scripts
@@ -117,6 +119,7 @@ class StackArgs:
             lambda key, value: pulumilib.set(__self__, key, value),
             branch=branch,
             repository=repository,
+            additional_project_globs=additional_project_globs,
             administrative=administrative,
             after_applies=after_applies,
             after_destroys=after_destroys,
@@ -168,6 +171,7 @@ class StackArgs:
              _setter: Callable[[Any, Any], None],
              branch: Optional[pulumilib.Input[str]] = None,
              repository: Optional[pulumilib.Input[str]] = None,
+             additional_project_globs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
              administrative: Optional[pulumilib.Input[bool]] = None,
              after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
              after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
@@ -219,6 +223,8 @@ class StackArgs:
             raise TypeError("Missing 'branch' argument")
         if repository is None:
             raise TypeError("Missing 'repository' argument")
+        if additional_project_globs is None and 'additionalProjectGlobs' in kwargs:
+            additional_project_globs = kwargs['additionalProjectGlobs']
         if after_applies is None and 'afterApplies' in kwargs:
             after_applies = kwargs['afterApplies']
         if after_destroys is None and 'afterDestroys' in kwargs:
@@ -284,6 +290,8 @@ class StackArgs:
 
         _setter("branch", branch)
         _setter("repository", repository)
+        if additional_project_globs is not None:
+            _setter("additional_project_globs", additional_project_globs)
         if administrative is not None:
             _setter("administrative", administrative)
         if after_applies is not None:
@@ -398,6 +406,18 @@ class StackArgs:
     @repository.setter
     def repository(self, value: pulumilib.Input[str]):
         pulumilib.set(self, "repository", value)
+
+    @property
+    @pulumilib.getter(name="additionalProjectGlobs")
+    def additional_project_globs(self) -> Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]]:
+        """
+        Project globs is an optional list of paths to track changes of in addition to the project root.
+        """
+        return pulumilib.get(self, "additional_project_globs")
+
+    @additional_project_globs.setter
+    def additional_project_globs(self, value: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]]):
+        pulumilib.set(self, "additional_project_globs", value)
 
     @property
     @pulumilib.getter
@@ -939,6 +959,7 @@ class StackArgs:
 @pulumilib.input_type
 class _StackState:
     def __init__(__self__, *,
+                 additional_project_globs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  administrative: Optional[pulumilib.Input[bool]] = None,
                  after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
@@ -989,6 +1010,7 @@ class _StackState:
                  worker_pool_id: Optional[pulumilib.Input[str]] = None):
         """
         Input properties used for looking up and filtering Stack resources.
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] additional_project_globs: Project globs is an optional list of paths to track changes of in addition to the project root.
         :param pulumilib.Input[bool] administrative: Indicates whether this stack can manage others. Defaults to `false`.
         :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_applies: List of after-apply scripts
         :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_destroys: List of after-destroy scripts
@@ -1040,6 +1062,7 @@ class _StackState:
         """
         _StackState._configure(
             lambda key, value: pulumilib.set(__self__, key, value),
+            additional_project_globs=additional_project_globs,
             administrative=administrative,
             after_applies=after_applies,
             after_destroys=after_destroys,
@@ -1092,6 +1115,7 @@ class _StackState:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             additional_project_globs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
              administrative: Optional[pulumilib.Input[bool]] = None,
              after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
              after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
@@ -1142,6 +1166,8 @@ class _StackState:
              worker_pool_id: Optional[pulumilib.Input[str]] = None,
              opts: Optional[pulumilib.ResourceOptions] = None,
              **kwargs):
+        if additional_project_globs is None and 'additionalProjectGlobs' in kwargs:
+            additional_project_globs = kwargs['additionalProjectGlobs']
         if after_applies is None and 'afterApplies' in kwargs:
             after_applies = kwargs['afterApplies']
         if after_destroys is None and 'afterDestroys' in kwargs:
@@ -1207,6 +1233,8 @@ class _StackState:
         if worker_pool_id is None and 'workerPoolId' in kwargs:
             worker_pool_id = kwargs['workerPoolId']
 
+        if additional_project_globs is not None:
+            _setter("additional_project_globs", additional_project_globs)
         if administrative is not None:
             _setter("administrative", administrative)
         if after_applies is not None:
@@ -1303,6 +1331,18 @@ class _StackState:
             _setter("terragrunt", terragrunt)
         if worker_pool_id is not None:
             _setter("worker_pool_id", worker_pool_id)
+
+    @property
+    @pulumilib.getter(name="additionalProjectGlobs")
+    def additional_project_globs(self) -> Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]]:
+        """
+        Project globs is an optional list of paths to track changes of in addition to the project root.
+        """
+        return pulumilib.get(self, "additional_project_globs")
+
+    @additional_project_globs.setter
+    def additional_project_globs(self, value: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]]):
+        pulumilib.set(self, "additional_project_globs", value)
 
     @property
     @pulumilib.getter
@@ -1882,6 +1922,7 @@ class Stack(pulumilib.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumilib.ResourceOptions] = None,
+                 additional_project_globs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  administrative: Optional[pulumilib.Input[bool]] = None,
                  after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
@@ -2054,6 +2095,7 @@ class Stack(pulumilib.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumilib.ResourceOptions opts: Options for the resource.
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] additional_project_globs: Project globs is an optional list of paths to track changes of in addition to the project root.
         :param pulumilib.Input[bool] administrative: Indicates whether this stack can manage others. Defaults to `false`.
         :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_applies: List of after-apply scripts
         :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_destroys: List of after-destroy scripts
@@ -2249,6 +2291,7 @@ class Stack(pulumilib.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumilib.ResourceOptions] = None,
+                 additional_project_globs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  administrative: Optional[pulumilib.Input[bool]] = None,
                  after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
                  after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
@@ -2305,6 +2348,7 @@ class Stack(pulumilib.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = StackArgs.__new__(StackArgs)
 
+            __props__.__dict__["additional_project_globs"] = additional_project_globs
             __props__.__dict__["administrative"] = administrative
             __props__.__dict__["after_applies"] = after_applies
             __props__.__dict__["after_destroys"] = after_destroys
@@ -2381,6 +2425,7 @@ class Stack(pulumilib.CustomResource):
     def get(resource_name: str,
             id: pulumilib.Input[str],
             opts: Optional[pulumilib.ResourceOptions] = None,
+            additional_project_globs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
             administrative: Optional[pulumilib.Input[bool]] = None,
             after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
             after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
@@ -2436,6 +2481,7 @@ class Stack(pulumilib.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumilib.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumilib.ResourceOptions opts: Options for the resource.
+        :param pulumilib.Input[Sequence[pulumilib.Input[str]]] additional_project_globs: Project globs is an optional list of paths to track changes of in addition to the project root.
         :param pulumilib.Input[bool] administrative: Indicates whether this stack can manage others. Defaults to `false`.
         :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_applies: List of after-apply scripts
         :param pulumilib.Input[Sequence[pulumilib.Input[str]]] after_destroys: List of after-destroy scripts
@@ -2489,6 +2535,7 @@ class Stack(pulumilib.CustomResource):
 
         __props__ = _StackState.__new__(_StackState)
 
+        __props__.__dict__["additional_project_globs"] = additional_project_globs
         __props__.__dict__["administrative"] = administrative
         __props__.__dict__["after_applies"] = after_applies
         __props__.__dict__["after_destroys"] = after_destroys
@@ -2538,6 +2585,14 @@ class Stack(pulumilib.CustomResource):
         __props__.__dict__["terragrunt"] = terragrunt
         __props__.__dict__["worker_pool_id"] = worker_pool_id
         return Stack(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumilib.getter(name="additionalProjectGlobs")
+    def additional_project_globs(self) -> pulumilib.Output[Optional[Sequence[str]]]:
+        """
+        Project globs is an optional list of paths to track changes of in addition to the project root.
+        """
+        return pulumilib.get(self, "additional_project_globs")
 
     @property
     @pulumilib.getter

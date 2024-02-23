@@ -21,16 +21,34 @@ class GetGitlabIntegrationResult:
     """
     A collection of values returned by getGitlabIntegration.
     """
-    def __init__(__self__, api_host=None, id=None, webhook_secret=None):
+    def __init__(__self__, api_host=None, description=None, id=None, is_default=None, labels=None, name=None, space_id=None, webhook_secret=None, webhook_url=None):
         if api_host and not isinstance(api_host, str):
             raise TypeError("Expected argument 'api_host' to be a str")
         pulumi.set(__self__, "api_host", api_host)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if is_default and not isinstance(is_default, bool):
+            raise TypeError("Expected argument 'is_default' to be a bool")
+        pulumi.set(__self__, "is_default", is_default)
+        if labels and not isinstance(labels, list):
+            raise TypeError("Expected argument 'labels' to be a list")
+        pulumi.set(__self__, "labels", labels)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if space_id and not isinstance(space_id, str):
+            raise TypeError("Expected argument 'space_id' to be a str")
+        pulumi.set(__self__, "space_id", space_id)
         if webhook_secret and not isinstance(webhook_secret, str):
             raise TypeError("Expected argument 'webhook_secret' to be a str")
         pulumi.set(__self__, "webhook_secret", webhook_secret)
+        if webhook_url and not isinstance(webhook_url, str):
+            raise TypeError("Expected argument 'webhook_url' to be a str")
+        pulumi.set(__self__, "webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="apiHost")
@@ -42,11 +60,51 @@ class GetGitlabIntegrationResult:
 
     @property
     @pulumi.getter
-    def id(self) -> str:
+    def description(self) -> str:
         """
-        The provider-assigned unique ID for this managed resource.
+        Gitlab integration description
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        Gitlab integration id. If not provided, the default integration will be returned
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        """
+        Gitlab integration is default
+        """
+        return pulumi.get(self, "is_default")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Sequence[str]:
+        """
+        Gitlab integration labels
+        """
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Gitlab integration name
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="spaceId")
+    def space_id(self) -> str:
+        """
+        Gitlab integration space id
+        """
+        return pulumi.get(self, "space_id")
 
     @property
     @pulumi.getter(name="webhookSecret")
@@ -56,6 +114,14 @@ class GetGitlabIntegrationResult:
         """
         return pulumi.get(self, "webhook_secret")
 
+    @property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> str:
+        """
+        Gitlab integration webhook url
+        """
+        return pulumi.get(self, "webhook_url")
+
 
 class AwaitableGetGitlabIntegrationResult(GetGitlabIntegrationResult):
     # pylint: disable=using-constant-test
@@ -64,11 +130,18 @@ class AwaitableGetGitlabIntegrationResult(GetGitlabIntegrationResult):
             yield self
         return GetGitlabIntegrationResult(
             api_host=self.api_host,
+            description=self.description,
             id=self.id,
-            webhook_secret=self.webhook_secret)
+            is_default=self.is_default,
+            labels=self.labels,
+            name=self.name,
+            space_id=self.space_id,
+            webhook_secret=self.webhook_secret,
+            webhook_url=self.webhook_url)
 
 
-def get_gitlab_integration(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGitlabIntegrationResult:
+def get_gitlab_integration(id: Optional[str] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGitlabIntegrationResult:
     """
     `get_gitlab_integration` returns details about Gitlab integration
 
@@ -80,19 +153,30 @@ def get_gitlab_integration(opts: Optional[pulumi.InvokeOptions] = None) -> Await
 
     gitlab_integration = spacelift.get_gitlab_integration()
     ```
+
+
+    :param str id: Gitlab integration id. If not provided, the default integration will be returned
     """
     __args__ = dict()
+    __args__['id'] = id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('spacelift:index/getGitlabIntegration:getGitlabIntegration', __args__, opts=opts, typ=GetGitlabIntegrationResult).value
 
     return AwaitableGetGitlabIntegrationResult(
         api_host=pulumi.get(__ret__, 'api_host'),
+        description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
-        webhook_secret=pulumi.get(__ret__, 'webhook_secret'))
+        is_default=pulumi.get(__ret__, 'is_default'),
+        labels=pulumi.get(__ret__, 'labels'),
+        name=pulumi.get(__ret__, 'name'),
+        space_id=pulumi.get(__ret__, 'space_id'),
+        webhook_secret=pulumi.get(__ret__, 'webhook_secret'),
+        webhook_url=pulumi.get(__ret__, 'webhook_url'))
 
 
 @_utilities.lift_output_func(get_gitlab_integration)
-def get_gitlab_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGitlabIntegrationResult]:
+def get_gitlab_integration_output(id: Optional[pulumi.Input[Optional[str]]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGitlabIntegrationResult]:
     """
     `get_gitlab_integration` returns details about Gitlab integration
 
@@ -104,5 +188,8 @@ def get_gitlab_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -
 
     gitlab_integration = spacelift.get_gitlab_integration()
     ```
+
+
+    :param str id: Gitlab integration id. If not provided, the default integration will be returned
     """
     ...

@@ -146,25 +146,56 @@ class IdpGroupMappingPolicy(dict):
 
 @pulumi.output_type
 class ModuleAzureDevops(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModuleAzureDevops. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModuleAzureDevops.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModuleAzureDevops.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 project: str):
+                 project: str,
+                 id: Optional[str] = None,
+                 is_default: Optional[bool] = None):
         """
         :param str project: The name of the Azure DevOps project
+        :param str id: ID of the Azure Devops integration. If not specified, the default integration will be used.
+        :param bool is_default: Indicates whether this is the default Azure DevOps integration
         """
         ModuleAzureDevops._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             project=project,
+            id=id,
+            is_default=is_default,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
              project: Optional[str] = None,
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
         if project is None:
             raise TypeError("Missing 'project' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
 
         _setter("project", project)
+        if id is not None:
+            _setter("id", id)
+        if is_default is not None:
+            _setter("is_default", is_default)
 
     @property
     @pulumi.getter
@@ -174,28 +205,75 @@ class ModuleAzureDevops(dict):
         """
         return pulumi.get(self, "project")
 
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        ID of the Azure Devops integration. If not specified, the default integration will be used.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        """
+        Indicates whether this is the default Azure DevOps integration
+        """
+        return pulumi.get(self, "is_default")
+
 
 @pulumi.output_type
 class ModuleBitbucketCloud(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModuleBitbucketCloud. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModuleBitbucketCloud.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModuleBitbucketCloud.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 namespace: str):
+                 namespace: str,
+                 id: Optional[str] = None,
+                 is_default: Optional[bool] = None):
         """
         :param str namespace: The Bitbucket project containing the repository
+        :param str id: The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+        :param bool is_default: Indicates whether this is the default Bitbucket Cloud integration
         """
         ModuleBitbucketCloud._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             namespace=namespace,
+            id=id,
+            is_default=is_default,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
              namespace: Optional[str] = None,
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
 
         _setter("namespace", namespace)
+        if id is not None:
+            _setter("id", id)
+        if is_default is not None:
+            _setter("is_default", is_default)
 
     @property
     @pulumi.getter
@@ -204,29 +282,76 @@ class ModuleBitbucketCloud(dict):
         The Bitbucket project containing the repository
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        """
+        Indicates whether this is the default Bitbucket Cloud integration
+        """
+        return pulumi.get(self, "is_default")
 
 
 @pulumi.output_type
 class ModuleBitbucketDatacenter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModuleBitbucketDatacenter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModuleBitbucketDatacenter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModuleBitbucketDatacenter.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 namespace: str):
+                 namespace: str,
+                 id: Optional[str] = None,
+                 is_default: Optional[bool] = None):
         """
         :param str namespace: The Bitbucket project containing the repository
+        :param str id: The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+        :param bool is_default: Indicates whether this is the default Bitbucket Datacenter integration
         """
         ModuleBitbucketDatacenter._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             namespace=namespace,
+            id=id,
+            is_default=is_default,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
              namespace: Optional[str] = None,
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
 
         _setter("namespace", namespace)
+        if id is not None:
+            _setter("id", id)
+        if is_default is not None:
+            _setter("is_default", is_default)
 
     @property
     @pulumi.getter
@@ -236,28 +361,75 @@ class ModuleBitbucketDatacenter(dict):
         """
         return pulumi.get(self, "namespace")
 
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        """
+        Indicates whether this is the default Bitbucket Datacenter integration
+        """
+        return pulumi.get(self, "is_default")
+
 
 @pulumi.output_type
 class ModuleGithubEnterprise(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModuleGithubEnterprise. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModuleGithubEnterprise.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModuleGithubEnterprise.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 namespace: str):
+                 namespace: str,
+                 id: Optional[str] = None,
+                 is_default: Optional[bool] = None):
         """
         :param str namespace: The GitHub organization / user the repository belongs to
+        :param str id: The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+        :param bool is_default: Indicates whether this is the default GitHub Enterprise integration
         """
         ModuleGithubEnterprise._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             namespace=namespace,
+            id=id,
+            is_default=is_default,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
              namespace: Optional[str] = None,
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
 
         _setter("namespace", namespace)
+        if id is not None:
+            _setter("id", id)
+        if is_default is not None:
+            _setter("is_default", is_default)
 
     @property
     @pulumi.getter
@@ -267,28 +439,75 @@ class ModuleGithubEnterprise(dict):
         """
         return pulumi.get(self, "namespace")
 
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        """
+        Indicates whether this is the default GitHub Enterprise integration
+        """
+        return pulumi.get(self, "is_default")
+
 
 @pulumi.output_type
 class ModuleGitlab(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModuleGitlab. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModuleGitlab.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModuleGitlab.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 namespace: str):
+                 namespace: str,
+                 id: Optional[str] = None,
+                 is_default: Optional[bool] = None):
         """
         :param str namespace: The GitLab namespace containing the repository
+        :param str id: ID of the Gitlab integration. If not specified, the default integration will be used.
+        :param bool is_default: Indicates whether this is the default GitLab integration
         """
         ModuleGitlab._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             namespace=namespace,
+            id=id,
+            is_default=is_default,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
              namespace: Optional[str] = None,
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
 
         _setter("namespace", namespace)
+        if id is not None:
+            _setter("id", id)
+        if is_default is not None:
+            _setter("is_default", is_default)
 
     @property
     @pulumi.getter
@@ -297,6 +516,22 @@ class ModuleGitlab(dict):
         The GitLab namespace containing the repository
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        ID of the Gitlab integration. If not specified, the default integration will be used.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        """
+        Indicates whether this is the default GitLab integration
+        """
+        return pulumi.get(self, "is_default")
 
 
 @pulumi.output_type
@@ -332,25 +567,56 @@ class StackAnsible(dict):
 
 @pulumi.output_type
 class StackAzureDevops(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StackAzureDevops. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StackAzureDevops.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StackAzureDevops.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 project: str):
+                 project: str,
+                 id: Optional[str] = None,
+                 is_default: Optional[bool] = None):
         """
         :param str project: The name of the Azure DevOps project
+        :param str id: The ID of the Azure Devops integration. If not specified, the default integration will be used.
+        :param bool is_default: Indicates whether this is the default Azure DevOps integration
         """
         StackAzureDevops._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             project=project,
+            id=id,
+            is_default=is_default,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
              project: Optional[str] = None,
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
         if project is None:
             raise TypeError("Missing 'project' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
 
         _setter("project", project)
+        if id is not None:
+            _setter("id", id)
+        if is_default is not None:
+            _setter("is_default", is_default)
 
     @property
     @pulumi.getter
@@ -360,28 +626,75 @@ class StackAzureDevops(dict):
         """
         return pulumi.get(self, "project")
 
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the Azure Devops integration. If not specified, the default integration will be used.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        """
+        Indicates whether this is the default Azure DevOps integration
+        """
+        return pulumi.get(self, "is_default")
+
 
 @pulumi.output_type
 class StackBitbucketCloud(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StackBitbucketCloud. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StackBitbucketCloud.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StackBitbucketCloud.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 namespace: str):
+                 namespace: str,
+                 id: Optional[str] = None,
+                 is_default: Optional[bool] = None):
         """
         :param str namespace: The Bitbucket project containing the repository
+        :param str id: The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+        :param bool is_default: Indicates whether this is the default Bitbucket Cloud integration
         """
         StackBitbucketCloud._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             namespace=namespace,
+            id=id,
+            is_default=is_default,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
              namespace: Optional[str] = None,
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
 
         _setter("namespace", namespace)
+        if id is not None:
+            _setter("id", id)
+        if is_default is not None:
+            _setter("is_default", is_default)
 
     @property
     @pulumi.getter
@@ -390,29 +703,76 @@ class StackBitbucketCloud(dict):
         The Bitbucket project containing the repository
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        """
+        Indicates whether this is the default Bitbucket Cloud integration
+        """
+        return pulumi.get(self, "is_default")
 
 
 @pulumi.output_type
 class StackBitbucketDatacenter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StackBitbucketDatacenter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StackBitbucketDatacenter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StackBitbucketDatacenter.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 namespace: str):
+                 namespace: str,
+                 id: Optional[str] = None,
+                 is_default: Optional[bool] = None):
         """
         :param str namespace: The Bitbucket project containing the repository
+        :param str id: The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+        :param bool is_default: Indicates whether this is the default Bitbucket Datacenter integration
         """
         StackBitbucketDatacenter._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             namespace=namespace,
+            id=id,
+            is_default=is_default,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
              namespace: Optional[str] = None,
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
 
         _setter("namespace", namespace)
+        if id is not None:
+            _setter("id", id)
+        if is_default is not None:
+            _setter("is_default", is_default)
 
     @property
     @pulumi.getter
@@ -421,6 +781,22 @@ class StackBitbucketDatacenter(dict):
         The Bitbucket project containing the repository
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        """
+        Indicates whether this is the default Bitbucket Datacenter integration
+        """
+        return pulumi.get(self, "is_default")
 
 
 @pulumi.output_type
@@ -528,25 +904,56 @@ class StackCloudformation(dict):
 
 @pulumi.output_type
 class StackGithubEnterprise(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StackGithubEnterprise. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StackGithubEnterprise.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StackGithubEnterprise.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 namespace: str):
+                 namespace: str,
+                 id: Optional[str] = None,
+                 is_default: Optional[bool] = None):
         """
         :param str namespace: The GitHub organization / user the repository belongs to
+        :param str id: The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+        :param bool is_default: Indicates whether this is the default GitHub Enterprise integration
         """
         StackGithubEnterprise._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             namespace=namespace,
+            id=id,
+            is_default=is_default,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
              namespace: Optional[str] = None,
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
 
         _setter("namespace", namespace)
+        if id is not None:
+            _setter("id", id)
+        if is_default is not None:
+            _setter("is_default", is_default)
 
     @property
     @pulumi.getter
@@ -556,28 +963,75 @@ class StackGithubEnterprise(dict):
         """
         return pulumi.get(self, "namespace")
 
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        """
+        Indicates whether this is the default GitHub Enterprise integration
+        """
+        return pulumi.get(self, "is_default")
+
 
 @pulumi.output_type
 class StackGitlab(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isDefault":
+            suggest = "is_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StackGitlab. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StackGitlab.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StackGitlab.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 namespace: str):
+                 namespace: str,
+                 id: Optional[str] = None,
+                 is_default: Optional[bool] = None):
         """
         :param str namespace: The GitLab namespace containing the repository
+        :param str id: The ID of the Gitlab integration. If not specified, the default integration will be used.
+        :param bool is_default: Indicates whether this is the default GitLab integration
         """
         StackGitlab._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             namespace=namespace,
+            id=id,
+            is_default=is_default,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
              namespace: Optional[str] = None,
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
 
         _setter("namespace", namespace)
+        if id is not None:
+            _setter("id", id)
+        if is_default is not None:
+            _setter("is_default", is_default)
 
     @property
     @pulumi.getter
@@ -586,6 +1040,22 @@ class StackGitlab(dict):
         The GitLab namespace containing the repository
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the Gitlab integration. If not specified, the default integration will be used.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[bool]:
+        """
+        Indicates whether this is the default GitLab integration
+        """
+        return pulumi.get(self, "is_default")
 
 
 @pulumi.output_type
@@ -1308,21 +1778,45 @@ class GetContextsLabelResult(dict):
 @pulumi.output_type
 class GetModuleAzureDevopResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  project: str):
         GetModuleAzureDevopResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             project=project,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              project: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if project is None:
             raise TypeError("Missing 'project' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("project", project)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -1333,21 +1827,45 @@ class GetModuleAzureDevopResult(dict):
 @pulumi.output_type
 class GetModuleBitbucketCloudResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetModuleBitbucketCloudResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -1358,21 +1876,45 @@ class GetModuleBitbucketCloudResult(dict):
 @pulumi.output_type
 class GetModuleBitbucketDatacenterResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetModuleBitbucketDatacenterResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -1383,21 +1925,45 @@ class GetModuleBitbucketDatacenterResult(dict):
 @pulumi.output_type
 class GetModuleGithubEnterpriseResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetModuleGithubEnterpriseResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -1408,21 +1974,45 @@ class GetModuleGithubEnterpriseResult(dict):
 @pulumi.output_type
 class GetModuleGitlabResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetModuleGitlabResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -1615,21 +2205,45 @@ class GetStackAnsibleResult(dict):
 @pulumi.output_type
 class GetStackAzureDevopResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  project: str):
         GetStackAzureDevopResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             project=project,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              project: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if project is None:
             raise TypeError("Missing 'project' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("project", project)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -1640,21 +2254,45 @@ class GetStackAzureDevopResult(dict):
 @pulumi.output_type
 class GetStackBitbucketCloudResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetStackBitbucketCloudResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -1665,21 +2303,45 @@ class GetStackBitbucketCloudResult(dict):
 @pulumi.output_type
 class GetStackBitbucketDatacenterResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetStackBitbucketDatacenterResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -1754,21 +2416,45 @@ class GetStackCloudformationResult(dict):
 @pulumi.output_type
 class GetStackGithubEnterpriseResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetStackGithubEnterpriseResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -1779,21 +2465,45 @@ class GetStackGithubEnterpriseResult(dict):
 @pulumi.output_type
 class GetStackGitlabResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetStackGitlabResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -2196,6 +2906,7 @@ class GetStacksStackResult(dict):
                  terraform_workflow_tool: str,
                  terraform_workspace: str,
                  worker_pool_id: str,
+                 additional_project_globs: Optional[Sequence[str]] = None,
                  after_runs: Optional[Sequence[str]] = None):
         GetStacksStackResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -2242,6 +2953,7 @@ class GetStacksStackResult(dict):
             terraform_workflow_tool=terraform_workflow_tool,
             terraform_workspace=terraform_workspace,
             worker_pool_id=worker_pool_id,
+            additional_project_globs=additional_project_globs,
             after_runs=after_runs,
         )
     @staticmethod
@@ -2290,6 +3002,7 @@ class GetStacksStackResult(dict):
              terraform_workflow_tool: Optional[str] = None,
              terraform_workspace: Optional[str] = None,
              worker_pool_id: Optional[str] = None,
+             additional_project_globs: Optional[Sequence[str]] = None,
              after_runs: Optional[Sequence[str]] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
@@ -2437,6 +3150,8 @@ class GetStacksStackResult(dict):
             worker_pool_id = kwargs['workerPoolId']
         if worker_pool_id is None:
             raise TypeError("Missing 'worker_pool_id' argument")
+        if additional_project_globs is None and 'additionalProjectGlobs' in kwargs:
+            additional_project_globs = kwargs['additionalProjectGlobs']
         if after_runs is None and 'afterRuns' in kwargs:
             after_runs = kwargs['afterRuns']
 
@@ -2483,6 +3198,8 @@ class GetStacksStackResult(dict):
         _setter("terraform_workflow_tool", terraform_workflow_tool)
         _setter("terraform_workspace", terraform_workspace)
         _setter("worker_pool_id", worker_pool_id)
+        if additional_project_globs is not None:
+            _setter("additional_project_globs", additional_project_globs)
         if after_runs is not None:
             _setter("after_runs", after_runs)
 
@@ -2702,6 +3419,11 @@ class GetStacksStackResult(dict):
         return pulumi.get(self, "worker_pool_id")
 
     @property
+    @pulumi.getter(name="additionalProjectGlobs")
+    def additional_project_globs(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "additional_project_globs")
+
+    @property
     @pulumi.getter(name="afterRuns")
     def after_runs(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "after_runs")
@@ -2735,21 +3457,45 @@ class GetStacksStackAnsibleResult(dict):
 @pulumi.output_type
 class GetStacksStackAzureDevopResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  project: str):
         GetStacksStackAzureDevopResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             project=project,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              project: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if project is None:
             raise TypeError("Missing 'project' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("project", project)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -2760,21 +3506,45 @@ class GetStacksStackAzureDevopResult(dict):
 @pulumi.output_type
 class GetStacksStackBitbucketCloudResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetStacksStackBitbucketCloudResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -2785,21 +3555,45 @@ class GetStacksStackBitbucketCloudResult(dict):
 @pulumi.output_type
 class GetStacksStackBitbucketDatacenterResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetStacksStackBitbucketDatacenterResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -2874,21 +3668,45 @@ class GetStacksStackCloudformationResult(dict):
 @pulumi.output_type
 class GetStacksStackGithubEnterpriseResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetStacksStackGithubEnterpriseResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
@@ -2899,21 +3717,45 @@ class GetStacksStackGithubEnterpriseResult(dict):
 @pulumi.output_type
 class GetStacksStackGitlabResult(dict):
     def __init__(__self__, *,
+                 id: str,
+                 is_default: bool,
                  namespace: str):
         GetStacksStackGitlabResult._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            is_default=is_default,
             namespace=namespace,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             is_default: Optional[bool] = None,
              namespace: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if is_default is None and 'isDefault' in kwargs:
+            is_default = kwargs['isDefault']
+        if is_default is None:
+            raise TypeError("Missing 'is_default' argument")
         if namespace is None:
             raise TypeError("Missing 'namespace' argument")
 
+        _setter("id", id)
+        _setter("is_default", is_default)
         _setter("namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter

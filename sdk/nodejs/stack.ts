@@ -166,6 +166,10 @@ export class Stack extends pulumi.CustomResource {
     }
 
     /**
+     * Project globs is an optional list of paths to track changes of in addition to the project root.
+     */
+    public readonly additionalProjectGlobs!: pulumi.Output<string[] | undefined>;
+    /**
      * Indicates whether this stack can manage others. Defaults to `false`.
      */
     public readonly administrative!: pulumi.Output<boolean | undefined>;
@@ -367,6 +371,7 @@ export class Stack extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StackState | undefined;
+            resourceInputs["additionalProjectGlobs"] = state ? state.additionalProjectGlobs : undefined;
             resourceInputs["administrative"] = state ? state.administrative : undefined;
             resourceInputs["afterApplies"] = state ? state.afterApplies : undefined;
             resourceInputs["afterDestroys"] = state ? state.afterDestroys : undefined;
@@ -423,6 +428,7 @@ export class Stack extends pulumi.CustomResource {
             if ((!args || args.repository === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'repository'");
             }
+            resourceInputs["additionalProjectGlobs"] = args ? args.additionalProjectGlobs : undefined;
             resourceInputs["administrative"] = args ? args.administrative : undefined;
             resourceInputs["afterApplies"] = args ? args.afterApplies : undefined;
             resourceInputs["afterDestroys"] = args ? args.afterDestroys : undefined;
@@ -483,6 +489,10 @@ export class Stack extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Stack resources.
  */
 export interface StackState {
+    /**
+     * Project globs is an optional list of paths to track changes of in addition to the project root.
+     */
+    additionalProjectGlobs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Indicates whether this stack can manage others. Defaults to `false`.
      */
@@ -677,6 +687,10 @@ export interface StackState {
  * The set of arguments for constructing a Stack resource.
  */
 export interface StackArgs {
+    /**
+     * Project globs is an optional list of paths to track changes of in addition to the project root.
+     */
+    additionalProjectGlobs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Indicates whether this stack can manage others. Defaults to `false`.
      */

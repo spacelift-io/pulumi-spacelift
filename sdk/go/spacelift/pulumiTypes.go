@@ -145,6 +145,10 @@ func (o IdpGroupMappingPolicyArrayOutput) Index(i pulumi.IntInput) IdpGroupMappi
 }
 
 type ModuleAzureDevops struct {
+	// ID of the Azure Devops integration. If not specified, the default integration will be used.
+	Id *string `pulumi:"id"`
+	// Indicates whether this is the default Azure DevOps integration
+	IsDefault *bool `pulumi:"isDefault"`
 	// The name of the Azure DevOps project
 	Project string `pulumi:"project"`
 }
@@ -161,6 +165,10 @@ type ModuleAzureDevopsInput interface {
 }
 
 type ModuleAzureDevopsArgs struct {
+	// ID of the Azure Devops integration. If not specified, the default integration will be used.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Indicates whether this is the default Azure DevOps integration
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The name of the Azure DevOps project
 	Project pulumi.StringInput `pulumi:"project"`
 }
@@ -260,6 +268,16 @@ func (o ModuleAzureDevopsOutput) ToOutput(ctx context.Context) pulumix.Output[Mo
 	}
 }
 
+// ID of the Azure Devops integration. If not specified, the default integration will be used.
+func (o ModuleAzureDevopsOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ModuleAzureDevops) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Azure DevOps integration
+func (o ModuleAzureDevopsOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ModuleAzureDevops) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
 // The name of the Azure DevOps project
 func (o ModuleAzureDevopsOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleAzureDevops) string { return v.Project }).(pulumi.StringOutput)
@@ -295,6 +313,26 @@ func (o ModuleAzureDevopsPtrOutput) Elem() ModuleAzureDevopsOutput {
 	}).(ModuleAzureDevopsOutput)
 }
 
+// ID of the Azure Devops integration. If not specified, the default integration will be used.
+func (o ModuleAzureDevopsPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ModuleAzureDevops) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Azure DevOps integration
+func (o ModuleAzureDevopsPtrOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ModuleAzureDevops) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsDefault
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The name of the Azure DevOps project
 func (o ModuleAzureDevopsPtrOutput) Project() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ModuleAzureDevops) *string {
@@ -306,6 +344,10 @@ func (o ModuleAzureDevopsPtrOutput) Project() pulumi.StringPtrOutput {
 }
 
 type ModuleBitbucketCloud struct {
+	// The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+	Id *string `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Cloud integration
+	IsDefault *bool `pulumi:"isDefault"`
 	// The Bitbucket project containing the repository
 	Namespace string `pulumi:"namespace"`
 }
@@ -322,6 +364,10 @@ type ModuleBitbucketCloudInput interface {
 }
 
 type ModuleBitbucketCloudArgs struct {
+	// The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Cloud integration
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The Bitbucket project containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
@@ -421,6 +467,16 @@ func (o ModuleBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output
 	}
 }
 
+// The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+func (o ModuleBitbucketCloudOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ModuleBitbucketCloud) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Bitbucket Cloud integration
+func (o ModuleBitbucketCloudOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ModuleBitbucketCloud) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
 // The Bitbucket project containing the repository
 func (o ModuleBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
@@ -456,6 +512,26 @@ func (o ModuleBitbucketCloudPtrOutput) Elem() ModuleBitbucketCloudOutput {
 	}).(ModuleBitbucketCloudOutput)
 }
 
+// The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+func (o ModuleBitbucketCloudPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ModuleBitbucketCloud) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Bitbucket Cloud integration
+func (o ModuleBitbucketCloudPtrOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ModuleBitbucketCloud) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsDefault
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The Bitbucket project containing the repository
 func (o ModuleBitbucketCloudPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ModuleBitbucketCloud) *string {
@@ -467,6 +543,10 @@ func (o ModuleBitbucketCloudPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type ModuleBitbucketDatacenter struct {
+	// The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+	Id *string `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Datacenter integration
+	IsDefault *bool `pulumi:"isDefault"`
 	// The Bitbucket project containing the repository
 	Namespace string `pulumi:"namespace"`
 }
@@ -483,6 +563,10 @@ type ModuleBitbucketDatacenterInput interface {
 }
 
 type ModuleBitbucketDatacenterArgs struct {
+	// The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Datacenter integration
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The Bitbucket project containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
@@ -582,6 +666,16 @@ func (o ModuleBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.O
 	}
 }
 
+// The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+func (o ModuleBitbucketDatacenterOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ModuleBitbucketDatacenter) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Bitbucket Datacenter integration
+func (o ModuleBitbucketDatacenterOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ModuleBitbucketDatacenter) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
 // The Bitbucket project containing the repository
 func (o ModuleBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
@@ -617,6 +711,26 @@ func (o ModuleBitbucketDatacenterPtrOutput) Elem() ModuleBitbucketDatacenterOutp
 	}).(ModuleBitbucketDatacenterOutput)
 }
 
+// The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+func (o ModuleBitbucketDatacenterPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ModuleBitbucketDatacenter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Bitbucket Datacenter integration
+func (o ModuleBitbucketDatacenterPtrOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ModuleBitbucketDatacenter) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsDefault
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The Bitbucket project containing the repository
 func (o ModuleBitbucketDatacenterPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ModuleBitbucketDatacenter) *string {
@@ -628,6 +742,10 @@ func (o ModuleBitbucketDatacenterPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type ModuleGithubEnterprise struct {
+	// The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+	Id *string `pulumi:"id"`
+	// Indicates whether this is the default GitHub Enterprise integration
+	IsDefault *bool `pulumi:"isDefault"`
 	// The GitHub organization / user the repository belongs to
 	Namespace string `pulumi:"namespace"`
 }
@@ -644,6 +762,10 @@ type ModuleGithubEnterpriseInput interface {
 }
 
 type ModuleGithubEnterpriseArgs struct {
+	// The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Indicates whether this is the default GitHub Enterprise integration
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The GitHub organization / user the repository belongs to
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
@@ -743,6 +865,16 @@ func (o ModuleGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Outp
 	}
 }
 
+// The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+func (o ModuleGithubEnterpriseOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ModuleGithubEnterprise) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default GitHub Enterprise integration
+func (o ModuleGithubEnterpriseOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ModuleGithubEnterprise) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
 // The GitHub organization / user the repository belongs to
 func (o ModuleGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
@@ -778,6 +910,26 @@ func (o ModuleGithubEnterprisePtrOutput) Elem() ModuleGithubEnterpriseOutput {
 	}).(ModuleGithubEnterpriseOutput)
 }
 
+// The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+func (o ModuleGithubEnterprisePtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ModuleGithubEnterprise) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default GitHub Enterprise integration
+func (o ModuleGithubEnterprisePtrOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ModuleGithubEnterprise) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsDefault
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The GitHub organization / user the repository belongs to
 func (o ModuleGithubEnterprisePtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ModuleGithubEnterprise) *string {
@@ -789,6 +941,10 @@ func (o ModuleGithubEnterprisePtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type ModuleGitlab struct {
+	// ID of the Gitlab integration. If not specified, the default integration will be used.
+	Id *string `pulumi:"id"`
+	// Indicates whether this is the default GitLab integration
+	IsDefault *bool `pulumi:"isDefault"`
 	// The GitLab namespace containing the repository
 	Namespace string `pulumi:"namespace"`
 }
@@ -805,6 +961,10 @@ type ModuleGitlabInput interface {
 }
 
 type ModuleGitlabArgs struct {
+	// ID of the Gitlab integration. If not specified, the default integration will be used.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Indicates whether this is the default GitLab integration
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The GitLab namespace containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
@@ -904,6 +1064,16 @@ func (o ModuleGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleG
 	}
 }
 
+// ID of the Gitlab integration. If not specified, the default integration will be used.
+func (o ModuleGitlabOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ModuleGitlab) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default GitLab integration
+func (o ModuleGitlabOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ModuleGitlab) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
 // The GitLab namespace containing the repository
 func (o ModuleGitlabOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v ModuleGitlab) string { return v.Namespace }).(pulumi.StringOutput)
@@ -937,6 +1107,26 @@ func (o ModuleGitlabPtrOutput) Elem() ModuleGitlabOutput {
 		var ret ModuleGitlab
 		return ret
 	}).(ModuleGitlabOutput)
+}
+
+// ID of the Gitlab integration. If not specified, the default integration will be used.
+func (o ModuleGitlabPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ModuleGitlab) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default GitLab integration
+func (o ModuleGitlabPtrOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ModuleGitlab) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsDefault
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The GitLab namespace containing the repository
@@ -1111,6 +1301,10 @@ func (o StackAnsiblePtrOutput) Playbook() pulumi.StringPtrOutput {
 }
 
 type StackAzureDevops struct {
+	// The ID of the Azure Devops integration. If not specified, the default integration will be used.
+	Id *string `pulumi:"id"`
+	// Indicates whether this is the default Azure DevOps integration
+	IsDefault *bool `pulumi:"isDefault"`
 	// The name of the Azure DevOps project
 	Project string `pulumi:"project"`
 }
@@ -1127,6 +1321,10 @@ type StackAzureDevopsInput interface {
 }
 
 type StackAzureDevopsArgs struct {
+	// The ID of the Azure Devops integration. If not specified, the default integration will be used.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Indicates whether this is the default Azure DevOps integration
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The name of the Azure DevOps project
 	Project pulumi.StringInput `pulumi:"project"`
 }
@@ -1226,6 +1424,16 @@ func (o StackAzureDevopsOutput) ToOutput(ctx context.Context) pulumix.Output[Sta
 	}
 }
 
+// The ID of the Azure Devops integration. If not specified, the default integration will be used.
+func (o StackAzureDevopsOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackAzureDevops) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Azure DevOps integration
+func (o StackAzureDevopsOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v StackAzureDevops) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
 // The name of the Azure DevOps project
 func (o StackAzureDevopsOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v StackAzureDevops) string { return v.Project }).(pulumi.StringOutput)
@@ -1261,6 +1469,26 @@ func (o StackAzureDevopsPtrOutput) Elem() StackAzureDevopsOutput {
 	}).(StackAzureDevopsOutput)
 }
 
+// The ID of the Azure Devops integration. If not specified, the default integration will be used.
+func (o StackAzureDevopsPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackAzureDevops) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Azure DevOps integration
+func (o StackAzureDevopsPtrOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *StackAzureDevops) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsDefault
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The name of the Azure DevOps project
 func (o StackAzureDevopsPtrOutput) Project() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackAzureDevops) *string {
@@ -1272,6 +1500,10 @@ func (o StackAzureDevopsPtrOutput) Project() pulumi.StringPtrOutput {
 }
 
 type StackBitbucketCloud struct {
+	// The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+	Id *string `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Cloud integration
+	IsDefault *bool `pulumi:"isDefault"`
 	// The Bitbucket project containing the repository
 	Namespace string `pulumi:"namespace"`
 }
@@ -1288,6 +1520,10 @@ type StackBitbucketCloudInput interface {
 }
 
 type StackBitbucketCloudArgs struct {
+	// The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Cloud integration
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The Bitbucket project containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
@@ -1387,6 +1623,16 @@ func (o StackBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[
 	}
 }
 
+// The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+func (o StackBitbucketCloudOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackBitbucketCloud) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Bitbucket Cloud integration
+func (o StackBitbucketCloudOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v StackBitbucketCloud) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
 // The Bitbucket project containing the repository
 func (o StackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
@@ -1422,6 +1668,26 @@ func (o StackBitbucketCloudPtrOutput) Elem() StackBitbucketCloudOutput {
 	}).(StackBitbucketCloudOutput)
 }
 
+// The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+func (o StackBitbucketCloudPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackBitbucketCloud) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Bitbucket Cloud integration
+func (o StackBitbucketCloudPtrOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *StackBitbucketCloud) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsDefault
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The Bitbucket project containing the repository
 func (o StackBitbucketCloudPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackBitbucketCloud) *string {
@@ -1433,6 +1699,10 @@ func (o StackBitbucketCloudPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type StackBitbucketDatacenter struct {
+	// The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+	Id *string `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Datacenter integration
+	IsDefault *bool `pulumi:"isDefault"`
 	// The Bitbucket project containing the repository
 	Namespace string `pulumi:"namespace"`
 }
@@ -1449,6 +1719,10 @@ type StackBitbucketDatacenterInput interface {
 }
 
 type StackBitbucketDatacenterArgs struct {
+	// The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Datacenter integration
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The Bitbucket project containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
@@ -1548,6 +1822,16 @@ func (o StackBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Ou
 	}
 }
 
+// The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+func (o StackBitbucketDatacenterOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackBitbucketDatacenter) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Bitbucket Datacenter integration
+func (o StackBitbucketDatacenterOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v StackBitbucketDatacenter) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
 // The Bitbucket project containing the repository
 func (o StackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
@@ -1581,6 +1865,26 @@ func (o StackBitbucketDatacenterPtrOutput) Elem() StackBitbucketDatacenterOutput
 		var ret StackBitbucketDatacenter
 		return ret
 	}).(StackBitbucketDatacenterOutput)
+}
+
+// The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+func (o StackBitbucketDatacenterPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackBitbucketDatacenter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default Bitbucket Datacenter integration
+func (o StackBitbucketDatacenterPtrOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *StackBitbucketDatacenter) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsDefault
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The Bitbucket project containing the repository
@@ -1812,6 +2116,10 @@ func (o StackCloudformationPtrOutput) TemplateBucket() pulumi.StringPtrOutput {
 }
 
 type StackGithubEnterprise struct {
+	// The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+	Id *string `pulumi:"id"`
+	// Indicates whether this is the default GitHub Enterprise integration
+	IsDefault *bool `pulumi:"isDefault"`
 	// The GitHub organization / user the repository belongs to
 	Namespace string `pulumi:"namespace"`
 }
@@ -1828,6 +2136,10 @@ type StackGithubEnterpriseInput interface {
 }
 
 type StackGithubEnterpriseArgs struct {
+	// The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Indicates whether this is the default GitHub Enterprise integration
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The GitHub organization / user the repository belongs to
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
@@ -1927,6 +2239,16 @@ func (o StackGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Outpu
 	}
 }
 
+// The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+func (o StackGithubEnterpriseOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackGithubEnterprise) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default GitHub Enterprise integration
+func (o StackGithubEnterpriseOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v StackGithubEnterprise) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
 // The GitHub organization / user the repository belongs to
 func (o StackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
@@ -1962,6 +2284,26 @@ func (o StackGithubEnterprisePtrOutput) Elem() StackGithubEnterpriseOutput {
 	}).(StackGithubEnterpriseOutput)
 }
 
+// The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+func (o StackGithubEnterprisePtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackGithubEnterprise) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default GitHub Enterprise integration
+func (o StackGithubEnterprisePtrOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *StackGithubEnterprise) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsDefault
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The GitHub organization / user the repository belongs to
 func (o StackGithubEnterprisePtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StackGithubEnterprise) *string {
@@ -1973,6 +2315,10 @@ func (o StackGithubEnterprisePtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 type StackGitlab struct {
+	// The ID of the Gitlab integration. If not specified, the default integration will be used.
+	Id *string `pulumi:"id"`
+	// Indicates whether this is the default GitLab integration
+	IsDefault *bool `pulumi:"isDefault"`
 	// The GitLab namespace containing the repository
 	Namespace string `pulumi:"namespace"`
 }
@@ -1989,6 +2335,10 @@ type StackGitlabInput interface {
 }
 
 type StackGitlabArgs struct {
+	// The ID of the Gitlab integration. If not specified, the default integration will be used.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Indicates whether this is the default GitLab integration
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The GitLab namespace containing the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
@@ -2088,6 +2438,16 @@ func (o StackGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[StackGit
 	}
 }
 
+// The ID of the Gitlab integration. If not specified, the default integration will be used.
+func (o StackGitlabOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StackGitlab) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default GitLab integration
+func (o StackGitlabOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v StackGitlab) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
 // The GitLab namespace containing the repository
 func (o StackGitlabOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackGitlab) string { return v.Namespace }).(pulumi.StringOutput)
@@ -2121,6 +2481,26 @@ func (o StackGitlabPtrOutput) Elem() StackGitlabOutput {
 		var ret StackGitlab
 		return ret
 	}).(StackGitlabOutput)
+}
+
+// The ID of the Gitlab integration. If not specified, the default integration will be used.
+func (o StackGitlabPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StackGitlab) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether this is the default GitLab integration
+func (o StackGitlabPtrOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *StackGitlab) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsDefault
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The GitLab namespace containing the repository
@@ -3763,7 +4143,9 @@ func (o GetContextsLabelArrayOutput) Index(i pulumi.IntInput) GetContextsLabelOu
 }
 
 type GetModuleAzureDevop struct {
-	Project string `pulumi:"project"`
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
+	Project   string `pulumi:"project"`
 }
 
 // GetModuleAzureDevopInput is an input type that accepts GetModuleAzureDevopArgs and GetModuleAzureDevopOutput values.
@@ -3778,7 +4160,9 @@ type GetModuleAzureDevopInput interface {
 }
 
 type GetModuleAzureDevopArgs struct {
-	Project pulumi.StringInput `pulumi:"project"`
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	Project   pulumi.StringInput `pulumi:"project"`
 }
 
 func (GetModuleAzureDevopArgs) ElementType() reflect.Type {
@@ -3850,6 +4234,14 @@ func (o GetModuleAzureDevopOutput) ToOutput(ctx context.Context) pulumix.Output[
 	}
 }
 
+func (o GetModuleAzureDevopOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetModuleAzureDevop) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetModuleAzureDevopOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetModuleAzureDevop) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 func (o GetModuleAzureDevopOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleAzureDevop) string { return v.Project }).(pulumi.StringOutput)
 }
@@ -3881,6 +4273,8 @@ func (o GetModuleAzureDevopArrayOutput) Index(i pulumi.IntInput) GetModuleAzureD
 }
 
 type GetModuleBitbucketCloud struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -3896,6 +4290,8 @@ type GetModuleBitbucketCloudInput interface {
 }
 
 type GetModuleBitbucketCloudArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -3968,6 +4364,14 @@ func (o GetModuleBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Out
 	}
 }
 
+func (o GetModuleBitbucketCloudOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetModuleBitbucketCloud) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetModuleBitbucketCloudOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetModuleBitbucketCloud) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 func (o GetModuleBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -3999,6 +4403,8 @@ func (o GetModuleBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetModuleBi
 }
 
 type GetModuleBitbucketDatacenter struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -4014,6 +4420,8 @@ type GetModuleBitbucketDatacenterInput interface {
 }
 
 type GetModuleBitbucketDatacenterArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -4086,6 +4494,14 @@ func (o GetModuleBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumi
 	}
 }
 
+func (o GetModuleBitbucketDatacenterOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetModuleBitbucketDatacenter) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetModuleBitbucketDatacenterOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetModuleBitbucketDatacenter) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 func (o GetModuleBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -4117,6 +4533,8 @@ func (o GetModuleBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetMod
 }
 
 type GetModuleGithubEnterprise struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -4132,6 +4550,8 @@ type GetModuleGithubEnterpriseInput interface {
 }
 
 type GetModuleGithubEnterpriseArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -4204,6 +4624,14 @@ func (o GetModuleGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.O
 	}
 }
 
+func (o GetModuleGithubEnterpriseOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetModuleGithubEnterprise) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetModuleGithubEnterpriseOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetModuleGithubEnterprise) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 func (o GetModuleGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -4235,6 +4663,8 @@ func (o GetModuleGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetModule
 }
 
 type GetModuleGitlab struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -4250,6 +4680,8 @@ type GetModuleGitlabInput interface {
 }
 
 type GetModuleGitlabArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -4320,6 +4752,14 @@ func (o GetModuleGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[GetM
 	return pulumix.Output[GetModuleGitlab]{
 		OutputState: o.OutputState,
 	}
+}
+
+func (o GetModuleGitlabOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetModuleGitlab) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetModuleGitlabOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetModuleGitlab) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
 func (o GetModuleGitlabOutput) Namespace() pulumi.StringOutput {
@@ -4761,7 +5201,9 @@ func (o GetStackAnsibleArrayOutput) Index(i pulumi.IntInput) GetStackAnsibleOutp
 }
 
 type GetStackAzureDevop struct {
-	Project string `pulumi:"project"`
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
+	Project   string `pulumi:"project"`
 }
 
 // GetStackAzureDevopInput is an input type that accepts GetStackAzureDevopArgs and GetStackAzureDevopOutput values.
@@ -4776,7 +5218,9 @@ type GetStackAzureDevopInput interface {
 }
 
 type GetStackAzureDevopArgs struct {
-	Project pulumi.StringInput `pulumi:"project"`
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	Project   pulumi.StringInput `pulumi:"project"`
 }
 
 func (GetStackAzureDevopArgs) ElementType() reflect.Type {
@@ -4848,6 +5292,14 @@ func (o GetStackAzureDevopOutput) ToOutput(ctx context.Context) pulumix.Output[G
 	}
 }
 
+func (o GetStackAzureDevopOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackAzureDevop) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetStackAzureDevopOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStackAzureDevop) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 func (o GetStackAzureDevopOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackAzureDevop) string { return v.Project }).(pulumi.StringOutput)
 }
@@ -4879,6 +5331,8 @@ func (o GetStackAzureDevopArrayOutput) Index(i pulumi.IntInput) GetStackAzureDev
 }
 
 type GetStackBitbucketCloud struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -4894,6 +5348,8 @@ type GetStackBitbucketCloudInput interface {
 }
 
 type GetStackBitbucketCloudArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -4966,6 +5422,14 @@ func (o GetStackBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Outp
 	}
 }
 
+func (o GetStackBitbucketCloudOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackBitbucketCloud) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetStackBitbucketCloudOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStackBitbucketCloud) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 func (o GetStackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -4997,6 +5461,8 @@ func (o GetStackBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetStackBitb
 }
 
 type GetStackBitbucketDatacenter struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -5012,6 +5478,8 @@ type GetStackBitbucketDatacenterInput interface {
 }
 
 type GetStackBitbucketDatacenterArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -5082,6 +5550,14 @@ func (o GetStackBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix
 	return pulumix.Output[GetStackBitbucketDatacenter]{
 		OutputState: o.OutputState,
 	}
+}
+
+func (o GetStackBitbucketDatacenterOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackBitbucketDatacenter) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetStackBitbucketDatacenterOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStackBitbucketDatacenter) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
 func (o GetStackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
@@ -5251,6 +5727,8 @@ func (o GetStackCloudformationArrayOutput) Index(i pulumi.IntInput) GetStackClou
 }
 
 type GetStackGithubEnterprise struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -5266,6 +5744,8 @@ type GetStackGithubEnterpriseInput interface {
 }
 
 type GetStackGithubEnterpriseArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -5338,6 +5818,14 @@ func (o GetStackGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Ou
 	}
 }
 
+func (o GetStackGithubEnterpriseOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackGithubEnterprise) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetStackGithubEnterpriseOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStackGithubEnterprise) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 func (o GetStackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -5369,6 +5857,8 @@ func (o GetStackGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetStackGi
 }
 
 type GetStackGitlab struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -5384,6 +5874,8 @@ type GetStackGitlabInput interface {
 }
 
 type GetStackGitlabArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -5454,6 +5946,14 @@ func (o GetStackGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[GetSt
 	return pulumix.Output[GetStackGitlab]{
 		OutputState: o.OutputState,
 	}
+}
+
+func (o GetStackGitlabOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStackGitlab) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetStackGitlabOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStackGitlab) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
 func (o GetStackGitlabOutput) Namespace() pulumi.StringOutput {
@@ -7194,6 +7694,7 @@ func (o GetStacksRepositoryPtrOutput) AnyOfs() pulumi.StringArrayOutput {
 }
 
 type GetStacksStack struct {
+	AdditionalProjectGlobs       []string                            `pulumi:"additionalProjectGlobs"`
 	Administrative               bool                                `pulumi:"administrative"`
 	AfterApplies                 []string                            `pulumi:"afterApplies"`
 	AfterDestroys                []string                            `pulumi:"afterDestroys"`
@@ -7252,6 +7753,7 @@ type GetStacksStackInput interface {
 }
 
 type GetStacksStackArgs struct {
+	AdditionalProjectGlobs       pulumi.StringArrayInput                     `pulumi:"additionalProjectGlobs"`
 	Administrative               pulumi.BoolInput                            `pulumi:"administrative"`
 	AfterApplies                 pulumi.StringArrayInput                     `pulumi:"afterApplies"`
 	AfterDestroys                pulumi.StringArrayInput                     `pulumi:"afterDestroys"`
@@ -7365,6 +7867,10 @@ func (o GetStacksStackOutput) ToOutput(ctx context.Context) pulumix.Output[GetSt
 	return pulumix.Output[GetStacksStack]{
 		OutputState: o.OutputState,
 	}
+}
+
+func (o GetStacksStackOutput) AdditionalProjectGlobs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStacksStack) []string { return v.AdditionalProjectGlobs }).(pulumi.StringArrayOutput)
 }
 
 func (o GetStacksStackOutput) Administrative() pulumi.BoolOutput {
@@ -7688,7 +8194,9 @@ func (o GetStacksStackAnsibleArrayOutput) Index(i pulumi.IntInput) GetStacksStac
 }
 
 type GetStacksStackAzureDevop struct {
-	Project string `pulumi:"project"`
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
+	Project   string `pulumi:"project"`
 }
 
 // GetStacksStackAzureDevopInput is an input type that accepts GetStacksStackAzureDevopArgs and GetStacksStackAzureDevopOutput values.
@@ -7703,7 +8211,9 @@ type GetStacksStackAzureDevopInput interface {
 }
 
 type GetStacksStackAzureDevopArgs struct {
-	Project pulumi.StringInput `pulumi:"project"`
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	Project   pulumi.StringInput `pulumi:"project"`
 }
 
 func (GetStacksStackAzureDevopArgs) ElementType() reflect.Type {
@@ -7775,6 +8285,14 @@ func (o GetStacksStackAzureDevopOutput) ToOutput(ctx context.Context) pulumix.Ou
 	}
 }
 
+func (o GetStacksStackAzureDevopOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackAzureDevop) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackAzureDevopOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStackAzureDevop) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 func (o GetStacksStackAzureDevopOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackAzureDevop) string { return v.Project }).(pulumi.StringOutput)
 }
@@ -7806,6 +8324,8 @@ func (o GetStacksStackAzureDevopArrayOutput) Index(i pulumi.IntInput) GetStacksS
 }
 
 type GetStacksStackBitbucketCloud struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -7821,6 +8341,8 @@ type GetStacksStackBitbucketCloudInput interface {
 }
 
 type GetStacksStackBitbucketCloudArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -7893,6 +8415,14 @@ func (o GetStacksStackBitbucketCloudOutput) ToOutput(ctx context.Context) pulumi
 	}
 }
 
+func (o GetStacksStackBitbucketCloudOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackBitbucketCloud) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackBitbucketCloudOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStackBitbucketCloud) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 func (o GetStacksStackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -7924,6 +8454,8 @@ func (o GetStacksStackBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetSta
 }
 
 type GetStacksStackBitbucketDatacenter struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -7939,6 +8471,8 @@ type GetStacksStackBitbucketDatacenterInput interface {
 }
 
 type GetStacksStackBitbucketDatacenterArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -8009,6 +8543,14 @@ func (o GetStacksStackBitbucketDatacenterOutput) ToOutput(ctx context.Context) p
 	return pulumix.Output[GetStacksStackBitbucketDatacenter]{
 		OutputState: o.OutputState,
 	}
+}
+
+func (o GetStacksStackBitbucketDatacenterOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackBitbucketDatacenter) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackBitbucketDatacenterOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStackBitbucketDatacenter) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
 func (o GetStacksStackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
@@ -8178,6 +8720,8 @@ func (o GetStacksStackCloudformationArrayOutput) Index(i pulumi.IntInput) GetSta
 }
 
 type GetStacksStackGithubEnterprise struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -8193,6 +8737,8 @@ type GetStacksStackGithubEnterpriseInput interface {
 }
 
 type GetStacksStackGithubEnterpriseArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -8265,6 +8811,14 @@ func (o GetStacksStackGithubEnterpriseOutput) ToOutput(ctx context.Context) pulu
 	}
 }
 
+func (o GetStacksStackGithubEnterpriseOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackGithubEnterprise) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackGithubEnterpriseOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStackGithubEnterprise) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
 func (o GetStacksStackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -8296,6 +8850,8 @@ func (o GetStacksStackGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetS
 }
 
 type GetStacksStackGitlab struct {
+	Id        string `pulumi:"id"`
+	IsDefault bool   `pulumi:"isDefault"`
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -8311,6 +8867,8 @@ type GetStacksStackGitlabInput interface {
 }
 
 type GetStacksStackGitlabArgs struct {
+	Id        pulumi.StringInput `pulumi:"id"`
+	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -8381,6 +8939,14 @@ func (o GetStacksStackGitlabOutput) ToOutput(ctx context.Context) pulumix.Output
 	return pulumix.Output[GetStacksStackGitlab]{
 		OutputState: o.OutputState,
 	}
+}
+
+func (o GetStacksStackGitlabOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStacksStackGitlab) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetStacksStackGitlabOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStacksStackGitlab) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
 func (o GetStacksStackGitlabOutput) Namespace() pulumi.StringOutput {

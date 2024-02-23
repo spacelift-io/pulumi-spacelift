@@ -42,22 +42,32 @@ export interface GetContextsLabel {
 }
 
 export interface GetModuleAzureDevop {
+    id: string;
+    isDefault: boolean;
     project: string;
 }
 
 export interface GetModuleBitbucketCloud {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
 export interface GetModuleBitbucketDatacenter {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
 export interface GetModuleGithubEnterprise {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
 export interface GetModuleGitlab {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
@@ -83,14 +93,20 @@ export interface GetStackAnsible {
 }
 
 export interface GetStackAzureDevop {
+    id: string;
+    isDefault: boolean;
     project: string;
 }
 
 export interface GetStackBitbucketCloud {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
 export interface GetStackBitbucketDatacenter {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
@@ -102,10 +118,14 @@ export interface GetStackCloudformation {
 }
 
 export interface GetStackGithubEnterprise {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
 export interface GetStackGitlab {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
@@ -161,6 +181,7 @@ export interface GetStacksRepository {
 }
 
 export interface GetStacksStack {
+    additionalProjectGlobs?: string[];
     administrative: boolean;
     afterApplies: string[];
     afterDestroys: string[];
@@ -212,14 +233,20 @@ export interface GetStacksStackAnsible {
 }
 
 export interface GetStacksStackAzureDevop {
+    id: string;
+    isDefault: boolean;
     project: string;
 }
 
 export interface GetStacksStackBitbucketCloud {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
 export interface GetStacksStackBitbucketDatacenter {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
@@ -231,10 +258,14 @@ export interface GetStacksStackCloudformation {
 }
 
 export interface GetStacksStackGithubEnterprise {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
 export interface GetStacksStackGitlab {
+    id: string;
+    isDefault: boolean;
     namespace: string;
 }
 
@@ -296,12 +327,28 @@ export interface IdpGroupMappingPolicy {
 
 export interface ModuleAzureDevops {
     /**
+     * ID of the Azure Devops integration. If not specified, the default integration will be used.
+     */
+    id?: string;
+    /**
+     * Indicates whether this is the default Azure DevOps integration
+     */
+    isDefault: boolean;
+    /**
      * The name of the Azure DevOps project
      */
     project: string;
 }
 
 export interface ModuleBitbucketCloud {
+    /**
+     * The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+     */
+    id?: string;
+    /**
+     * Indicates whether this is the default Bitbucket Cloud integration
+     */
+    isDefault: boolean;
     /**
      * The Bitbucket project containing the repository
      */
@@ -310,6 +357,14 @@ export interface ModuleBitbucketCloud {
 
 export interface ModuleBitbucketDatacenter {
     /**
+     * The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+     */
+    id?: string;
+    /**
+     * Indicates whether this is the default Bitbucket Datacenter integration
+     */
+    isDefault: boolean;
+    /**
      * The Bitbucket project containing the repository
      */
     namespace: string;
@@ -317,12 +372,28 @@ export interface ModuleBitbucketDatacenter {
 
 export interface ModuleGithubEnterprise {
     /**
+     * The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+     */
+    id?: string;
+    /**
+     * Indicates whether this is the default GitHub Enterprise integration
+     */
+    isDefault: boolean;
+    /**
      * The GitHub organization / user the repository belongs to
      */
     namespace: string;
 }
 
 export interface ModuleGitlab {
+    /**
+     * ID of the Gitlab integration. If not specified, the default integration will be used.
+     */
+    id?: string;
+    /**
+     * Indicates whether this is the default GitLab integration
+     */
+    isDefault: boolean;
     /**
      * The GitLab namespace containing the repository
      */
@@ -338,6 +409,14 @@ export interface StackAnsible {
 
 export interface StackAzureDevops {
     /**
+     * The ID of the Azure Devops integration. If not specified, the default integration will be used.
+     */
+    id?: string;
+    /**
+     * Indicates whether this is the default Azure DevOps integration
+     */
+    isDefault: boolean;
+    /**
      * The name of the Azure DevOps project
      */
     project: string;
@@ -345,12 +424,28 @@ export interface StackAzureDevops {
 
 export interface StackBitbucketCloud {
     /**
+     * The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+     */
+    id?: string;
+    /**
+     * Indicates whether this is the default Bitbucket Cloud integration
+     */
+    isDefault: boolean;
+    /**
      * The Bitbucket project containing the repository
      */
     namespace: string;
 }
 
 export interface StackBitbucketDatacenter {
+    /**
+     * The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+     */
+    id?: string;
+    /**
+     * Indicates whether this is the default Bitbucket Datacenter integration
+     */
+    isDefault: boolean;
     /**
      * The Bitbucket project containing the repository
      */
@@ -378,12 +473,28 @@ export interface StackCloudformation {
 
 export interface StackGithubEnterprise {
     /**
+     * The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+     */
+    id?: string;
+    /**
+     * Indicates whether this is the default GitHub Enterprise integration
+     */
+    isDefault: boolean;
+    /**
      * The GitHub organization / user the repository belongs to
      */
     namespace: string;
 }
 
 export interface StackGitlab {
+    /**
+     * The ID of the Gitlab integration. If not specified, the default integration will be used.
+     */
+    id?: string;
+    /**
+     * Indicates whether this is the default GitLab integration
+     */
+    isDefault: boolean;
     /**
      * The GitLab namespace containing the repository
      */

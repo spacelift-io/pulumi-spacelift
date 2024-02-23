@@ -14,13 +14,28 @@ namespace Pulumi.Spacelift.Outputs
     public sealed class ModuleGithubEnterprise
     {
         /// <summary>
+        /// The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+        /// </summary>
+        public readonly string? Id;
+        /// <summary>
+        /// Indicates whether this is the default GitHub Enterprise integration
+        /// </summary>
+        public readonly bool? IsDefault;
+        /// <summary>
         /// The GitHub organization / user the repository belongs to
         /// </summary>
         public readonly string Namespace;
 
         [OutputConstructor]
-        private ModuleGithubEnterprise(string @namespace)
+        private ModuleGithubEnterprise(
+            string? id,
+
+            bool? isDefault,
+
+            string @namespace)
         {
+            Id = id;
+            IsDefault = isDefault;
             Namespace = @namespace;
         }
     }

@@ -33,8 +33,8 @@ namespace Pulumi.Spacelift
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetGithubEnterpriseIntegrationResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetGithubEnterpriseIntegrationResult>("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetGithubEnterpriseIntegrationResult> InvokeAsync(GetGithubEnterpriseIntegrationArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetGithubEnterpriseIntegrationResult>("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", args ?? new GetGithubEnterpriseIntegrationArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.getGithubEnterpriseIntegration` returns details about Github Enterprise integration
@@ -58,8 +58,37 @@ namespace Pulumi.Spacelift
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetGithubEnterpriseIntegrationResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetGithubEnterpriseIntegrationResult>("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetGithubEnterpriseIntegrationResult> Invoke(GetGithubEnterpriseIntegrationInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetGithubEnterpriseIntegrationResult>("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", args ?? new GetGithubEnterpriseIntegrationInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetGithubEnterpriseIntegrationArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Github integration id. If not provided, the default integration will be returned
+        /// </summary>
+        [Input("id")]
+        public string? Id { get; set; }
+
+        public GetGithubEnterpriseIntegrationArgs()
+        {
+        }
+        public static new GetGithubEnterpriseIntegrationArgs Empty => new GetGithubEnterpriseIntegrationArgs();
+    }
+
+    public sealed class GetGithubEnterpriseIntegrationInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Github integration id. If not provided, the default integration will be returned
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        public GetGithubEnterpriseIntegrationInvokeArgs()
+        {
+        }
+        public static new GetGithubEnterpriseIntegrationInvokeArgs Empty => new GetGithubEnterpriseIntegrationInvokeArgs();
     }
 
 
@@ -75,13 +104,37 @@ namespace Pulumi.Spacelift
         /// </summary>
         public readonly string AppId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// Github integration description
         /// </summary>
-        public readonly string Id;
+        public readonly string Description;
+        /// <summary>
+        /// Github integration id. If not provided, the default integration will be returned
+        /// </summary>
+        public readonly string? Id;
+        /// <summary>
+        /// Github integration is default
+        /// </summary>
+        public readonly bool IsDefault;
+        /// <summary>
+        /// Github integration labels
+        /// </summary>
+        public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// Github integration name
+        /// </summary>
+        public readonly string Name;
+        /// <summary>
+        /// Github integration space id
+        /// </summary>
+        public readonly string SpaceId;
         /// <summary>
         /// Github integration webhook secret
         /// </summary>
         public readonly string WebhookSecret;
+        /// <summary>
+        /// Github integration webhook url
+        /// </summary>
+        public readonly string WebhookUrl;
 
         [OutputConstructor]
         private GetGithubEnterpriseIntegrationResult(
@@ -89,14 +142,32 @@ namespace Pulumi.Spacelift
 
             string appId,
 
-            string id,
+            string description,
 
-            string webhookSecret)
+            string? id,
+
+            bool isDefault,
+
+            ImmutableArray<string> labels,
+
+            string name,
+
+            string spaceId,
+
+            string webhookSecret,
+
+            string webhookUrl)
         {
             ApiHost = apiHost;
             AppId = appId;
+            Description = description;
             Id = id;
+            IsDefault = isDefault;
+            Labels = labels;
+            Name = name;
+            SpaceId = spaceId;
             WebhookSecret = webhookSecret;
+            WebhookUrl = webhookUrl;
         }
     }
 }

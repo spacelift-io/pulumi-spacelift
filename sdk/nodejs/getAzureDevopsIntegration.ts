@@ -16,11 +16,23 @@ import * as utilities from "./utilities";
  * const azureDevopsIntegration = spacelift.getAzureDevopsIntegration({});
  * ```
  */
-export function getAzureDevopsIntegration(opts?: pulumi.InvokeOptions): Promise<GetAzureDevopsIntegrationResult> {
+export function getAzureDevopsIntegration(args?: GetAzureDevopsIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetAzureDevopsIntegrationResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getAzureDevopsIntegration:getAzureDevopsIntegration", {
+        "id": args.id,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getAzureDevopsIntegration.
+ */
+export interface GetAzureDevopsIntegrationArgs {
+    /**
+     * Azure DevOps integration id. If not provided, the default integration will be returned
+     */
+    id?: string;
 }
 
 /**
@@ -28,17 +40,41 @@ export function getAzureDevopsIntegration(opts?: pulumi.InvokeOptions): Promise<
  */
 export interface GetAzureDevopsIntegrationResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Azure DevOps integration description
      */
-    readonly id: string;
+    readonly description: string;
+    /**
+     * Azure DevOps integration id. If not provided, the default integration will be returned
+     */
+    readonly id?: string;
+    /**
+     * Azure DevOps integration is default
+     */
+    readonly isDefault: boolean;
+    /**
+     * Azure DevOps integration labels
+     */
+    readonly labels: string[];
+    /**
+     * Azure DevOps integration name
+     */
+    readonly name: string;
     /**
      * Azure DevOps integration organization url
      */
     readonly organizationUrl: string;
     /**
+     * Azure DevOps integration space id
+     */
+    readonly spaceId: string;
+    /**
      * Azure DevOps integration webhook password
      */
     readonly webhookPassword: string;
+    /**
+     * Azure DevOps integration webhook url
+     */
+    readonly webhookUrl: string;
 }
 /**
  * `spacelift.getAzureDevopsIntegration` returns details about Azure DevOps integration
@@ -52,6 +88,16 @@ export interface GetAzureDevopsIntegrationResult {
  * const azureDevopsIntegration = spacelift.getAzureDevopsIntegration({});
  * ```
  */
-export function getAzureDevopsIntegrationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetAzureDevopsIntegrationResult> {
-    return pulumi.output(getAzureDevopsIntegration(opts))
+export function getAzureDevopsIntegrationOutput(args?: GetAzureDevopsIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAzureDevopsIntegrationResult> {
+    return pulumi.output(args).apply((a: any) => getAzureDevopsIntegration(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAzureDevopsIntegration.
+ */
+export interface GetAzureDevopsIntegrationOutputArgs {
+    /**
+     * Azure DevOps integration id. If not provided, the default integration will be returned
+     */
+    id?: pulumi.Input<string>;
 }

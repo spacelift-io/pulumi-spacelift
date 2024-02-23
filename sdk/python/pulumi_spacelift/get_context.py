@@ -21,7 +21,40 @@ class GetContextResult:
     """
     A collection of values returned by getContext.
     """
-    def __init__(__self__, context_id=None, description=None, id=None, labels=None, name=None, space_id=None):
+    def __init__(__self__, after_applies=None, after_destroys=None, after_inits=None, after_performs=None, after_plans=None, after_runs=None, before_applies=None, before_destroys=None, before_inits=None, before_performs=None, before_plans=None, context_id=None, description=None, id=None, labels=None, name=None, space_id=None):
+        if after_applies and not isinstance(after_applies, list):
+            raise TypeError("Expected argument 'after_applies' to be a list")
+        pulumi.set(__self__, "after_applies", after_applies)
+        if after_destroys and not isinstance(after_destroys, list):
+            raise TypeError("Expected argument 'after_destroys' to be a list")
+        pulumi.set(__self__, "after_destroys", after_destroys)
+        if after_inits and not isinstance(after_inits, list):
+            raise TypeError("Expected argument 'after_inits' to be a list")
+        pulumi.set(__self__, "after_inits", after_inits)
+        if after_performs and not isinstance(after_performs, list):
+            raise TypeError("Expected argument 'after_performs' to be a list")
+        pulumi.set(__self__, "after_performs", after_performs)
+        if after_plans and not isinstance(after_plans, list):
+            raise TypeError("Expected argument 'after_plans' to be a list")
+        pulumi.set(__self__, "after_plans", after_plans)
+        if after_runs and not isinstance(after_runs, list):
+            raise TypeError("Expected argument 'after_runs' to be a list")
+        pulumi.set(__self__, "after_runs", after_runs)
+        if before_applies and not isinstance(before_applies, list):
+            raise TypeError("Expected argument 'before_applies' to be a list")
+        pulumi.set(__self__, "before_applies", before_applies)
+        if before_destroys and not isinstance(before_destroys, list):
+            raise TypeError("Expected argument 'before_destroys' to be a list")
+        pulumi.set(__self__, "before_destroys", before_destroys)
+        if before_inits and not isinstance(before_inits, list):
+            raise TypeError("Expected argument 'before_inits' to be a list")
+        pulumi.set(__self__, "before_inits", before_inits)
+        if before_performs and not isinstance(before_performs, list):
+            raise TypeError("Expected argument 'before_performs' to be a list")
+        pulumi.set(__self__, "before_performs", before_performs)
+        if before_plans and not isinstance(before_plans, list):
+            raise TypeError("Expected argument 'before_plans' to be a list")
+        pulumi.set(__self__, "before_plans", before_plans)
         if context_id and not isinstance(context_id, str):
             raise TypeError("Expected argument 'context_id' to be a str")
         pulumi.set(__self__, "context_id", context_id)
@@ -40,6 +73,94 @@ class GetContextResult:
         if space_id and not isinstance(space_id, str):
             raise TypeError("Expected argument 'space_id' to be a str")
         pulumi.set(__self__, "space_id", space_id)
+
+    @property
+    @pulumi.getter(name="afterApplies")
+    def after_applies(self) -> Sequence[str]:
+        """
+        List of after-apply scripts
+        """
+        return pulumi.get(self, "after_applies")
+
+    @property
+    @pulumi.getter(name="afterDestroys")
+    def after_destroys(self) -> Sequence[str]:
+        """
+        List of after-destroy scripts
+        """
+        return pulumi.get(self, "after_destroys")
+
+    @property
+    @pulumi.getter(name="afterInits")
+    def after_inits(self) -> Sequence[str]:
+        """
+        List of after-init scripts
+        """
+        return pulumi.get(self, "after_inits")
+
+    @property
+    @pulumi.getter(name="afterPerforms")
+    def after_performs(self) -> Sequence[str]:
+        """
+        List of after-perform scripts
+        """
+        return pulumi.get(self, "after_performs")
+
+    @property
+    @pulumi.getter(name="afterPlans")
+    def after_plans(self) -> Sequence[str]:
+        """
+        List of after-plan scripts
+        """
+        return pulumi.get(self, "after_plans")
+
+    @property
+    @pulumi.getter(name="afterRuns")
+    def after_runs(self) -> Optional[Sequence[str]]:
+        """
+        List of after-run scripts
+        """
+        return pulumi.get(self, "after_runs")
+
+    @property
+    @pulumi.getter(name="beforeApplies")
+    def before_applies(self) -> Sequence[str]:
+        """
+        List of before-apply scripts
+        """
+        return pulumi.get(self, "before_applies")
+
+    @property
+    @pulumi.getter(name="beforeDestroys")
+    def before_destroys(self) -> Sequence[str]:
+        """
+        List of before-destroy scripts
+        """
+        return pulumi.get(self, "before_destroys")
+
+    @property
+    @pulumi.getter(name="beforeInits")
+    def before_inits(self) -> Sequence[str]:
+        """
+        List of before-init scripts
+        """
+        return pulumi.get(self, "before_inits")
+
+    @property
+    @pulumi.getter(name="beforePerforms")
+    def before_performs(self) -> Sequence[str]:
+        """
+        List of before-perform scripts
+        """
+        return pulumi.get(self, "before_performs")
+
+    @property
+    @pulumi.getter(name="beforePlans")
+    def before_plans(self) -> Sequence[str]:
+        """
+        List of before-plan scripts
+        """
+        return pulumi.get(self, "before_plans")
 
     @property
     @pulumi.getter(name="contextId")
@@ -93,6 +214,17 @@ class AwaitableGetContextResult(GetContextResult):
         if False:
             yield self
         return GetContextResult(
+            after_applies=self.after_applies,
+            after_destroys=self.after_destroys,
+            after_inits=self.after_inits,
+            after_performs=self.after_performs,
+            after_plans=self.after_plans,
+            after_runs=self.after_runs,
+            before_applies=self.before_applies,
+            before_destroys=self.before_destroys,
+            before_inits=self.before_inits,
+            before_performs=self.before_performs,
+            before_plans=self.before_plans,
             context_id=self.context_id,
             description=self.description,
             id=self.id,
@@ -101,7 +233,18 @@ class AwaitableGetContextResult(GetContextResult):
             space_id=self.space_id)
 
 
-def get_context(context_id: Optional[str] = None,
+def get_context(after_applies: Optional[Sequence[str]] = None,
+                after_destroys: Optional[Sequence[str]] = None,
+                after_inits: Optional[Sequence[str]] = None,
+                after_performs: Optional[Sequence[str]] = None,
+                after_plans: Optional[Sequence[str]] = None,
+                after_runs: Optional[Sequence[str]] = None,
+                before_applies: Optional[Sequence[str]] = None,
+                before_destroys: Optional[Sequence[str]] = None,
+                before_inits: Optional[Sequence[str]] = None,
+                before_performs: Optional[Sequence[str]] = None,
+                before_plans: Optional[Sequence[str]] = None,
+                context_id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContextResult:
     """
     `Context` represents a Spacelift **context** - a collection of configuration elements (either environment variables or mounted files) that can be administratively attached to multiple stacks (`Stack`) or modules (`Module`) using a context attachment (`ContextAttachment`)`
@@ -116,14 +259,47 @@ def get_context(context_id: Optional[str] = None,
     ```
 
 
+    :param Sequence[str] after_applies: List of after-apply scripts
+    :param Sequence[str] after_destroys: List of after-destroy scripts
+    :param Sequence[str] after_inits: List of after-init scripts
+    :param Sequence[str] after_performs: List of after-perform scripts
+    :param Sequence[str] after_plans: List of after-plan scripts
+    :param Sequence[str] after_runs: List of after-run scripts
+    :param Sequence[str] before_applies: List of before-apply scripts
+    :param Sequence[str] before_destroys: List of before-destroy scripts
+    :param Sequence[str] before_inits: List of before-init scripts
+    :param Sequence[str] before_performs: List of before-perform scripts
+    :param Sequence[str] before_plans: List of before-plan scripts
     :param str context_id: immutable ID (slug) of the context
     """
     __args__ = dict()
+    __args__['afterApplies'] = after_applies
+    __args__['afterDestroys'] = after_destroys
+    __args__['afterInits'] = after_inits
+    __args__['afterPerforms'] = after_performs
+    __args__['afterPlans'] = after_plans
+    __args__['afterRuns'] = after_runs
+    __args__['beforeApplies'] = before_applies
+    __args__['beforeDestroys'] = before_destroys
+    __args__['beforeInits'] = before_inits
+    __args__['beforePerforms'] = before_performs
+    __args__['beforePlans'] = before_plans
     __args__['contextId'] = context_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('spacelift:index/getContext:getContext', __args__, opts=opts, typ=GetContextResult).value
 
     return AwaitableGetContextResult(
+        after_applies=pulumi.get(__ret__, 'after_applies'),
+        after_destroys=pulumi.get(__ret__, 'after_destroys'),
+        after_inits=pulumi.get(__ret__, 'after_inits'),
+        after_performs=pulumi.get(__ret__, 'after_performs'),
+        after_plans=pulumi.get(__ret__, 'after_plans'),
+        after_runs=pulumi.get(__ret__, 'after_runs'),
+        before_applies=pulumi.get(__ret__, 'before_applies'),
+        before_destroys=pulumi.get(__ret__, 'before_destroys'),
+        before_inits=pulumi.get(__ret__, 'before_inits'),
+        before_performs=pulumi.get(__ret__, 'before_performs'),
+        before_plans=pulumi.get(__ret__, 'before_plans'),
         context_id=pulumi.get(__ret__, 'context_id'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
@@ -133,7 +309,18 @@ def get_context(context_id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_context)
-def get_context_output(context_id: Optional[pulumi.Input[str]] = None,
+def get_context_output(after_applies: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       after_destroys: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       after_inits: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       after_performs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       after_plans: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       after_runs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       before_applies: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       before_destroys: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       before_inits: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       before_performs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       before_plans: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                       context_id: Optional[pulumi.Input[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContextResult]:
     """
     `Context` represents a Spacelift **context** - a collection of configuration elements (either environment variables or mounted files) that can be administratively attached to multiple stacks (`Stack`) or modules (`Module`) using a context attachment (`ContextAttachment`)`
@@ -148,6 +335,17 @@ def get_context_output(context_id: Optional[pulumi.Input[str]] = None,
     ```
 
 
+    :param Sequence[str] after_applies: List of after-apply scripts
+    :param Sequence[str] after_destroys: List of after-destroy scripts
+    :param Sequence[str] after_inits: List of after-init scripts
+    :param Sequence[str] after_performs: List of after-perform scripts
+    :param Sequence[str] after_plans: List of after-plan scripts
+    :param Sequence[str] after_runs: List of after-run scripts
+    :param Sequence[str] before_applies: List of before-apply scripts
+    :param Sequence[str] before_destroys: List of before-destroy scripts
+    :param Sequence[str] before_inits: List of before-init scripts
+    :param Sequence[str] before_performs: List of before-perform scripts
+    :param Sequence[str] before_plans: List of before-plan scripts
     :param str context_id: immutable ID (slug) of the context
     """
     ...

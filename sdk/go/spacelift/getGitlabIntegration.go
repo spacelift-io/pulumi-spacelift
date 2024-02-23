@@ -37,35 +37,65 @@ import (
 //	}
 //
 // ```
-func GetGitlabIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetGitlabIntegrationResult, error) {
+func GetGitlabIntegration(ctx *pulumi.Context, args *GetGitlabIntegrationArgs, opts ...pulumi.InvokeOption) (*GetGitlabIntegrationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetGitlabIntegrationResult
-	err := ctx.Invoke("spacelift:index/getGitlabIntegration:getGitlabIntegration", nil, &rv, opts...)
+	err := ctx.Invoke("spacelift:index/getGitlabIntegration:getGitlabIntegration", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
+// A collection of arguments for invoking getGitlabIntegration.
+type GetGitlabIntegrationArgs struct {
+	// Gitlab integration id. If not provided, the default integration will be returned
+	Id *string `pulumi:"id"`
+}
+
 // A collection of values returned by getGitlabIntegration.
 type GetGitlabIntegrationResult struct {
 	// Gitlab integration api host
 	ApiHost string `pulumi:"apiHost"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	// Gitlab integration description
+	Description string `pulumi:"description"`
+	// Gitlab integration id. If not provided, the default integration will be returned
+	Id *string `pulumi:"id"`
+	// Gitlab integration is default
+	IsDefault bool `pulumi:"isDefault"`
+	// Gitlab integration labels
+	Labels []string `pulumi:"labels"`
+	// Gitlab integration name
+	Name string `pulumi:"name"`
+	// Gitlab integration space id
+	SpaceId string `pulumi:"spaceId"`
 	// Gitlab integration webhook secret
 	WebhookSecret string `pulumi:"webhookSecret"`
+	// Gitlab integration webhook url
+	WebhookUrl string `pulumi:"webhookUrl"`
 }
 
-func GetGitlabIntegrationOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetGitlabIntegrationResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetGitlabIntegrationResult, error) {
-		r, err := GetGitlabIntegration(ctx, opts...)
-		var s GetGitlabIntegrationResult
-		if r != nil {
-			s = *r
-		}
-		return s, err
-	}).(GetGitlabIntegrationResultOutput)
+func GetGitlabIntegrationOutput(ctx *pulumi.Context, args GetGitlabIntegrationOutputArgs, opts ...pulumi.InvokeOption) GetGitlabIntegrationResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetGitlabIntegrationResult, error) {
+			args := v.(GetGitlabIntegrationArgs)
+			r, err := GetGitlabIntegration(ctx, &args, opts...)
+			var s GetGitlabIntegrationResult
+			if r != nil {
+				s = *r
+			}
+			return s, err
+		}).(GetGitlabIntegrationResultOutput)
+}
+
+// A collection of arguments for invoking getGitlabIntegration.
+type GetGitlabIntegrationOutputArgs struct {
+	// Gitlab integration id. If not provided, the default integration will be returned
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (GetGitlabIntegrationOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGitlabIntegrationArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getGitlabIntegration.
@@ -94,14 +124,44 @@ func (o GetGitlabIntegrationResultOutput) ApiHost() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGitlabIntegrationResult) string { return v.ApiHost }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
-func (o GetGitlabIntegrationResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGitlabIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+// Gitlab integration description
+func (o GetGitlabIntegrationResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabIntegrationResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Gitlab integration id. If not provided, the default integration will be returned
+func (o GetGitlabIntegrationResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetGitlabIntegrationResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Gitlab integration is default
+func (o GetGitlabIntegrationResultOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGitlabIntegrationResult) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// Gitlab integration labels
+func (o GetGitlabIntegrationResultOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetGitlabIntegrationResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
+}
+
+// Gitlab integration name
+func (o GetGitlabIntegrationResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabIntegrationResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Gitlab integration space id
+func (o GetGitlabIntegrationResultOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabIntegrationResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
 // Gitlab integration webhook secret
 func (o GetGitlabIntegrationResultOutput) WebhookSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGitlabIntegrationResult) string { return v.WebhookSecret }).(pulumi.StringOutput)
+}
+
+// Gitlab integration webhook url
+func (o GetGitlabIntegrationResultOutput) WebhookUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabIntegrationResult) string { return v.WebhookUrl }).(pulumi.StringOutput)
 }
 
 func init() {

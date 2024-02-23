@@ -13,6 +13,18 @@ namespace Pulumi.Spacelift.Inputs
     public sealed class ModuleAzureDevopsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// ID of the Azure Devops integration. If not specified, the default integration will be used.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// Indicates whether this is the default Azure DevOps integration
+        /// </summary>
+        [Input("isDefault")]
+        public Input<bool>? IsDefault { get; set; }
+
+        /// <summary>
         /// The name of the Azure DevOps project
         /// </summary>
         [Input("project", required: true)]

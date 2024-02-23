@@ -13,6 +13,18 @@ namespace Pulumi.Spacelift.Inputs
     public sealed class ModuleGitlabArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// ID of the Gitlab integration. If not specified, the default integration will be used.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// Indicates whether this is the default GitLab integration
+        /// </summary>
+        [Input("isDefault")]
+        public Input<bool>? IsDefault { get; set; }
+
+        /// <summary>
         /// The GitLab namespace containing the repository
         /// </summary>
         [Input("namespace", required: true)]

@@ -179,6 +179,8 @@ import (
 type Stack struct {
 	pulumi.CustomResourceState
 
+	// Project globs is an optional list of paths to track changes of in addition to the project root.
+	AdditionalProjectGlobs pulumi.StringArrayOutput `pulumi:"additionalProjectGlobs"`
 	// Indicates whether this stack can manage others. Defaults to `false`.
 	Administrative pulumi.BoolPtrOutput `pulumi:"administrative"`
 	// List of after-apply scripts
@@ -320,6 +322,8 @@ func GetStack(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Stack resources.
 type stackState struct {
+	// Project globs is an optional list of paths to track changes of in addition to the project root.
+	AdditionalProjectGlobs []string `pulumi:"additionalProjectGlobs"`
 	// Indicates whether this stack can manage others. Defaults to `false`.
 	Administrative *bool `pulumi:"administrative"`
 	// List of after-apply scripts
@@ -419,6 +423,8 @@ type stackState struct {
 }
 
 type StackState struct {
+	// Project globs is an optional list of paths to track changes of in addition to the project root.
+	AdditionalProjectGlobs pulumi.StringArrayInput
 	// Indicates whether this stack can manage others. Defaults to `false`.
 	Administrative pulumi.BoolPtrInput
 	// List of after-apply scripts
@@ -522,6 +528,8 @@ func (StackState) ElementType() reflect.Type {
 }
 
 type stackArgs struct {
+	// Project globs is an optional list of paths to track changes of in addition to the project root.
+	AdditionalProjectGlobs []string `pulumi:"additionalProjectGlobs"`
 	// Indicates whether this stack can manage others. Defaults to `false`.
 	Administrative *bool `pulumi:"administrative"`
 	// List of after-apply scripts
@@ -620,6 +628,8 @@ type stackArgs struct {
 
 // The set of arguments for constructing a Stack resource.
 type StackArgs struct {
+	// Project globs is an optional list of paths to track changes of in addition to the project root.
+	AdditionalProjectGlobs pulumi.StringArrayInput
 	// Indicates whether this stack can manage others. Defaults to `false`.
 	Administrative pulumi.BoolPtrInput
 	// List of after-apply scripts
@@ -825,6 +835,11 @@ func (o StackOutput) ToOutput(ctx context.Context) pulumix.Output[*Stack] {
 	return pulumix.Output[*Stack]{
 		OutputState: o.OutputState,
 	}
+}
+
+// Project globs is an optional list of paths to track changes of in addition to the project root.
+func (o StackOutput) AdditionalProjectGlobs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Stack) pulumi.StringArrayOutput { return v.AdditionalProjectGlobs }).(pulumi.StringArrayOutput)
 }
 
 // Indicates whether this stack can manage others. Defaults to `false`.

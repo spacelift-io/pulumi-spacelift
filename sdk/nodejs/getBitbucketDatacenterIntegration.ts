@@ -16,11 +16,23 @@ import * as utilities from "./utilities";
  * const bitbucketDatacenterIntegration = spacelift.getBitbucketDatacenterIntegration({});
  * ```
  */
-export function getBitbucketDatacenterIntegration(opts?: pulumi.InvokeOptions): Promise<GetBitbucketDatacenterIntegrationResult> {
+export function getBitbucketDatacenterIntegration(args?: GetBitbucketDatacenterIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetBitbucketDatacenterIntegrationResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", {
+        "id": args.id,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getBitbucketDatacenterIntegration.
+ */
+export interface GetBitbucketDatacenterIntegrationArgs {
+    /**
+     * Bitbucket Datacenter integration id. If not provided, the default integration will be returned
+     */
+    id?: string;
 }
 
 /**
@@ -32,13 +44,37 @@ export interface GetBitbucketDatacenterIntegrationResult {
      */
     readonly apiHost: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Bitbucket Datacenter integration description
      */
-    readonly id: string;
+    readonly description: string;
+    /**
+     * Bitbucket Datacenter integration id. If not provided, the default integration will be returned
+     */
+    readonly id?: string;
+    /**
+     * Bitbucket Datacenter integration is default
+     */
+    readonly isDefault: boolean;
+    /**
+     * Bitbucket Datacenter integration labels
+     */
+    readonly labels: string[];
+    /**
+     * Bitbucket Datacenter integration name
+     */
+    readonly name: string;
+    /**
+     * Bitbucket Datacenter integration space id
+     */
+    readonly spaceId: string;
     /**
      * Bitbucket Datacenter integration user facing host
      */
     readonly userFacingHost: string;
+    /**
+     * Bitbucket Datacenter username
+     */
+    readonly username: string;
     /**
      * Bitbucket Datacenter integration webhook secret
      */
@@ -60,6 +96,16 @@ export interface GetBitbucketDatacenterIntegrationResult {
  * const bitbucketDatacenterIntegration = spacelift.getBitbucketDatacenterIntegration({});
  * ```
  */
-export function getBitbucketDatacenterIntegrationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetBitbucketDatacenterIntegrationResult> {
-    return pulumi.output(getBitbucketDatacenterIntegration(opts))
+export function getBitbucketDatacenterIntegrationOutput(args?: GetBitbucketDatacenterIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBitbucketDatacenterIntegrationResult> {
+    return pulumi.output(args).apply((a: any) => getBitbucketDatacenterIntegration(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getBitbucketDatacenterIntegration.
+ */
+export interface GetBitbucketDatacenterIntegrationOutputArgs {
+    /**
+     * Bitbucket Datacenter integration id. If not provided, the default integration will be returned
+     */
+    id?: pulumi.Input<string>;
 }

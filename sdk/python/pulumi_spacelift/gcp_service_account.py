@@ -200,7 +200,7 @@ class GcpServiceAccount(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_google as google
+        import pulumi_gcp as gcp
         import pulumi_spacelift as spacelift
 
         k8s_core_stack = spacelift.Stack("k8s-coreStack",
@@ -213,14 +213,13 @@ class GcpServiceAccount(pulumi.CustomResource):
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/devstorage.full_control",
             ])
-        k8s_coregoogle_project = google.index.Google_project("k8s-coregoogle_project",
-            name=Kubernetes code,
-            project_id=unicorn-k8s-core,
-            org_id=var.gcp_organization_id)
-        k8s_coregoogle_project_iam_member = google.index.Google_project_iam_member("k8s-coregoogle_project_iam_member",
-            project=k8s_coregoogle_project.id,
-            role=roles/owner,
-            member=fserviceAccount:{k8s_core_gcp_service_account.service_account_email})
+        k8s_core_project = gcp.organizations.Project("k8s-coreProject",
+            project_id="unicorn-k8s-core",
+            org_id=var["gcp_organization_id"])
+        k8s_core_iam_member = gcp.projects.IAMMember("k8s-coreIAMMember",
+            project=k8s_core_project.id,
+            role="roles/owner",
+            member=k8s_core_gcp_service_account.service_account_email.apply(lambda service_account_email: f"serviceAccount:{service_account_email}"))
         ```
 
         ## Import
@@ -250,7 +249,7 @@ class GcpServiceAccount(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_google as google
+        import pulumi_gcp as gcp
         import pulumi_spacelift as spacelift
 
         k8s_core_stack = spacelift.Stack("k8s-coreStack",
@@ -263,14 +262,13 @@ class GcpServiceAccount(pulumi.CustomResource):
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/devstorage.full_control",
             ])
-        k8s_coregoogle_project = google.index.Google_project("k8s-coregoogle_project",
-            name=Kubernetes code,
-            project_id=unicorn-k8s-core,
-            org_id=var.gcp_organization_id)
-        k8s_coregoogle_project_iam_member = google.index.Google_project_iam_member("k8s-coregoogle_project_iam_member",
-            project=k8s_coregoogle_project.id,
-            role=roles/owner,
-            member=fserviceAccount:{k8s_core_gcp_service_account.service_account_email})
+        k8s_core_project = gcp.organizations.Project("k8s-coreProject",
+            project_id="unicorn-k8s-core",
+            org_id=var["gcp_organization_id"])
+        k8s_core_iam_member = gcp.projects.IAMMember("k8s-coreIAMMember",
+            project=k8s_core_project.id,
+            role="roles/owner",
+            member=k8s_core_gcp_service_account.service_account_email.apply(lambda service_account_email: f"serviceAccount:{service_account_email}"))
         ```
 
         ## Import

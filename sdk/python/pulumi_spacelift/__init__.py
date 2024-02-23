@@ -5,6 +5,7 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .audit_trail_webhook import *
 from .aws_integration import *
 from .aws_integration_attachment import *
 from .aws_role import *
@@ -70,6 +71,7 @@ from .provider import *
 from .run import *
 from .scheduled_delete_task import *
 from .scheduled_task import *
+from .security_email import *
 from .space import *
 from .stack import *
 from .stack_activator import *
@@ -97,6 +99,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "spacelift",
+  "mod": "index/auditTrailWebhook",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/auditTrailWebhook:AuditTrailWebhook": "AuditTrailWebhook"
+  }
+ },
  {
   "pkg": "spacelift",
   "mod": "index/awsIntegration",
@@ -263,6 +273,14 @@ _utilities.register(
   "fqn": "pulumi_spacelift",
   "classes": {
    "spacelift:index/scheduledTask:ScheduledTask": "ScheduledTask"
+  }
+ },
+ {
+  "pkg": "spacelift",
+  "mod": "index/securityEmail",
+  "fqn": "pulumi_spacelift",
+  "classes": {
+   "spacelift:index/securityEmail:SecurityEmail": "SecurityEmail"
   }
  },
  {

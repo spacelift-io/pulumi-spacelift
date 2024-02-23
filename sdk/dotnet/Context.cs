@@ -40,6 +40,72 @@ namespace Pulumi.Spacelift
     public partial class Context : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
+        [Output("afterApplies")]
+        public Output<ImmutableArray<string>> AfterApplies { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
+        [Output("afterDestroys")]
+        public Output<ImmutableArray<string>> AfterDestroys { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
+        [Output("afterInits")]
+        public Output<ImmutableArray<string>> AfterInits { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
+        [Output("afterPerforms")]
+        public Output<ImmutableArray<string>> AfterPerforms { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
+        [Output("afterPlans")]
+        public Output<ImmutableArray<string>> AfterPlans { get; private set; } = null!;
+
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        [Output("afterRuns")]
+        public Output<ImmutableArray<string>> AfterRuns { get; private set; } = null!;
+
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
+        [Output("beforeApplies")]
+        public Output<ImmutableArray<string>> BeforeApplies { get; private set; } = null!;
+
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
+        [Output("beforeDestroys")]
+        public Output<ImmutableArray<string>> BeforeDestroys { get; private set; } = null!;
+
+        /// <summary>
+        /// List of before-init scripts
+        /// </summary>
+        [Output("beforeInits")]
+        public Output<ImmutableArray<string>> BeforeInits { get; private set; } = null!;
+
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
+        [Output("beforePerforms")]
+        public Output<ImmutableArray<string>> BeforePerforms { get; private set; } = null!;
+
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
+        [Output("beforePlans")]
+        public Output<ImmutableArray<string>> BeforePlans { get; private set; } = null!;
+
+        /// <summary>
         /// Free-form context description for users
         /// </summary>
         [Output("description")]
@@ -107,6 +173,138 @@ namespace Pulumi.Spacelift
 
     public sealed class ContextArgs : global::Pulumi.ResourceArgs
     {
+        [Input("afterApplies")]
+        private InputList<string>? _afterApplies;
+
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
+        public InputList<string> AfterApplies
+        {
+            get => _afterApplies ?? (_afterApplies = new InputList<string>());
+            set => _afterApplies = value;
+        }
+
+        [Input("afterDestroys")]
+        private InputList<string>? _afterDestroys;
+
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
+        public InputList<string> AfterDestroys
+        {
+            get => _afterDestroys ?? (_afterDestroys = new InputList<string>());
+            set => _afterDestroys = value;
+        }
+
+        [Input("afterInits")]
+        private InputList<string>? _afterInits;
+
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
+        public InputList<string> AfterInits
+        {
+            get => _afterInits ?? (_afterInits = new InputList<string>());
+            set => _afterInits = value;
+        }
+
+        [Input("afterPerforms")]
+        private InputList<string>? _afterPerforms;
+
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
+        public InputList<string> AfterPerforms
+        {
+            get => _afterPerforms ?? (_afterPerforms = new InputList<string>());
+            set => _afterPerforms = value;
+        }
+
+        [Input("afterPlans")]
+        private InputList<string>? _afterPlans;
+
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
+        public InputList<string> AfterPlans
+        {
+            get => _afterPlans ?? (_afterPlans = new InputList<string>());
+            set => _afterPlans = value;
+        }
+
+        [Input("afterRuns")]
+        private InputList<string>? _afterRuns;
+
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        public InputList<string> AfterRuns
+        {
+            get => _afterRuns ?? (_afterRuns = new InputList<string>());
+            set => _afterRuns = value;
+        }
+
+        [Input("beforeApplies")]
+        private InputList<string>? _beforeApplies;
+
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
+        public InputList<string> BeforeApplies
+        {
+            get => _beforeApplies ?? (_beforeApplies = new InputList<string>());
+            set => _beforeApplies = value;
+        }
+
+        [Input("beforeDestroys")]
+        private InputList<string>? _beforeDestroys;
+
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
+        public InputList<string> BeforeDestroys
+        {
+            get => _beforeDestroys ?? (_beforeDestroys = new InputList<string>());
+            set => _beforeDestroys = value;
+        }
+
+        [Input("beforeInits")]
+        private InputList<string>? _beforeInits;
+
+        /// <summary>
+        /// List of before-init scripts
+        /// </summary>
+        public InputList<string> BeforeInits
+        {
+            get => _beforeInits ?? (_beforeInits = new InputList<string>());
+            set => _beforeInits = value;
+        }
+
+        [Input("beforePerforms")]
+        private InputList<string>? _beforePerforms;
+
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
+        public InputList<string> BeforePerforms
+        {
+            get => _beforePerforms ?? (_beforePerforms = new InputList<string>());
+            set => _beforePerforms = value;
+        }
+
+        [Input("beforePlans")]
+        private InputList<string>? _beforePlans;
+
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
+        public InputList<string> BeforePlans
+        {
+            get => _beforePlans ?? (_beforePlans = new InputList<string>());
+            set => _beforePlans = value;
+        }
+
         /// <summary>
         /// Free-form context description for users
         /// </summary>
@@ -141,6 +339,138 @@ namespace Pulumi.Spacelift
 
     public sealed class ContextState : global::Pulumi.ResourceArgs
     {
+        [Input("afterApplies")]
+        private InputList<string>? _afterApplies;
+
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
+        public InputList<string> AfterApplies
+        {
+            get => _afterApplies ?? (_afterApplies = new InputList<string>());
+            set => _afterApplies = value;
+        }
+
+        [Input("afterDestroys")]
+        private InputList<string>? _afterDestroys;
+
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
+        public InputList<string> AfterDestroys
+        {
+            get => _afterDestroys ?? (_afterDestroys = new InputList<string>());
+            set => _afterDestroys = value;
+        }
+
+        [Input("afterInits")]
+        private InputList<string>? _afterInits;
+
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
+        public InputList<string> AfterInits
+        {
+            get => _afterInits ?? (_afterInits = new InputList<string>());
+            set => _afterInits = value;
+        }
+
+        [Input("afterPerforms")]
+        private InputList<string>? _afterPerforms;
+
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
+        public InputList<string> AfterPerforms
+        {
+            get => _afterPerforms ?? (_afterPerforms = new InputList<string>());
+            set => _afterPerforms = value;
+        }
+
+        [Input("afterPlans")]
+        private InputList<string>? _afterPlans;
+
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
+        public InputList<string> AfterPlans
+        {
+            get => _afterPlans ?? (_afterPlans = new InputList<string>());
+            set => _afterPlans = value;
+        }
+
+        [Input("afterRuns")]
+        private InputList<string>? _afterRuns;
+
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        public InputList<string> AfterRuns
+        {
+            get => _afterRuns ?? (_afterRuns = new InputList<string>());
+            set => _afterRuns = value;
+        }
+
+        [Input("beforeApplies")]
+        private InputList<string>? _beforeApplies;
+
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
+        public InputList<string> BeforeApplies
+        {
+            get => _beforeApplies ?? (_beforeApplies = new InputList<string>());
+            set => _beforeApplies = value;
+        }
+
+        [Input("beforeDestroys")]
+        private InputList<string>? _beforeDestroys;
+
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
+        public InputList<string> BeforeDestroys
+        {
+            get => _beforeDestroys ?? (_beforeDestroys = new InputList<string>());
+            set => _beforeDestroys = value;
+        }
+
+        [Input("beforeInits")]
+        private InputList<string>? _beforeInits;
+
+        /// <summary>
+        /// List of before-init scripts
+        /// </summary>
+        public InputList<string> BeforeInits
+        {
+            get => _beforeInits ?? (_beforeInits = new InputList<string>());
+            set => _beforeInits = value;
+        }
+
+        [Input("beforePerforms")]
+        private InputList<string>? _beforePerforms;
+
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
+        public InputList<string> BeforePerforms
+        {
+            get => _beforePerforms ?? (_beforePerforms = new InputList<string>());
+            set => _beforePerforms = value;
+        }
+
+        [Input("beforePlans")]
+        private InputList<string>? _beforePlans;
+
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
+        public InputList<string> BeforePlans
+        {
+            get => _beforePlans ?? (_beforePlans = new InputList<string>());
+            set => _beforePlans = value;
+        }
+
         /// <summary>
         /// Free-form context description for users
         /// </summary>

@@ -16,11 +16,23 @@ import * as utilities from "./utilities";
  * const githubEnterpriseIntegration = spacelift.getGithubEnterpriseIntegration({});
  * ```
  */
-export function getGithubEnterpriseIntegration(opts?: pulumi.InvokeOptions): Promise<GetGithubEnterpriseIntegrationResult> {
+export function getGithubEnterpriseIntegration(args?: GetGithubEnterpriseIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetGithubEnterpriseIntegrationResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", {
+        "id": args.id,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getGithubEnterpriseIntegration.
+ */
+export interface GetGithubEnterpriseIntegrationArgs {
+    /**
+     * Github integration id. If not provided, the default integration will be returned
+     */
+    id?: string;
 }
 
 /**
@@ -36,13 +48,37 @@ export interface GetGithubEnterpriseIntegrationResult {
      */
     readonly appId: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Github integration description
      */
-    readonly id: string;
+    readonly description: string;
+    /**
+     * Github integration id. If not provided, the default integration will be returned
+     */
+    readonly id?: string;
+    /**
+     * Github integration is default
+     */
+    readonly isDefault: boolean;
+    /**
+     * Github integration labels
+     */
+    readonly labels: string[];
+    /**
+     * Github integration name
+     */
+    readonly name: string;
+    /**
+     * Github integration space id
+     */
+    readonly spaceId: string;
     /**
      * Github integration webhook secret
      */
     readonly webhookSecret: string;
+    /**
+     * Github integration webhook url
+     */
+    readonly webhookUrl: string;
 }
 /**
  * `spacelift.getGithubEnterpriseIntegration` returns details about Github Enterprise integration
@@ -56,6 +92,16 @@ export interface GetGithubEnterpriseIntegrationResult {
  * const githubEnterpriseIntegration = spacelift.getGithubEnterpriseIntegration({});
  * ```
  */
-export function getGithubEnterpriseIntegrationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetGithubEnterpriseIntegrationResult> {
-    return pulumi.output(getGithubEnterpriseIntegration(opts))
+export function getGithubEnterpriseIntegrationOutput(args?: GetGithubEnterpriseIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGithubEnterpriseIntegrationResult> {
+    return pulumi.output(args).apply((a: any) => getGithubEnterpriseIntegration(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getGithubEnterpriseIntegration.
+ */
+export interface GetGithubEnterpriseIntegrationOutputArgs {
+    /**
+     * Github integration id. If not provided, the default integration will be returned
+     */
+    id?: pulumi.Input<string>;
 }

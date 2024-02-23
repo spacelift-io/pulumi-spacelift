@@ -71,6 +71,138 @@ namespace Pulumi.Spacelift
 
     public sealed class GetContextArgs : global::Pulumi.InvokeArgs
     {
+        [Input("afterApplies")]
+        private List<string>? _afterApplies;
+
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
+        public List<string> AfterApplies
+        {
+            get => _afterApplies ?? (_afterApplies = new List<string>());
+            set => _afterApplies = value;
+        }
+
+        [Input("afterDestroys")]
+        private List<string>? _afterDestroys;
+
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
+        public List<string> AfterDestroys
+        {
+            get => _afterDestroys ?? (_afterDestroys = new List<string>());
+            set => _afterDestroys = value;
+        }
+
+        [Input("afterInits")]
+        private List<string>? _afterInits;
+
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
+        public List<string> AfterInits
+        {
+            get => _afterInits ?? (_afterInits = new List<string>());
+            set => _afterInits = value;
+        }
+
+        [Input("afterPerforms")]
+        private List<string>? _afterPerforms;
+
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
+        public List<string> AfterPerforms
+        {
+            get => _afterPerforms ?? (_afterPerforms = new List<string>());
+            set => _afterPerforms = value;
+        }
+
+        [Input("afterPlans")]
+        private List<string>? _afterPlans;
+
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
+        public List<string> AfterPlans
+        {
+            get => _afterPlans ?? (_afterPlans = new List<string>());
+            set => _afterPlans = value;
+        }
+
+        [Input("afterRuns")]
+        private List<string>? _afterRuns;
+
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        public List<string> AfterRuns
+        {
+            get => _afterRuns ?? (_afterRuns = new List<string>());
+            set => _afterRuns = value;
+        }
+
+        [Input("beforeApplies")]
+        private List<string>? _beforeApplies;
+
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
+        public List<string> BeforeApplies
+        {
+            get => _beforeApplies ?? (_beforeApplies = new List<string>());
+            set => _beforeApplies = value;
+        }
+
+        [Input("beforeDestroys")]
+        private List<string>? _beforeDestroys;
+
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
+        public List<string> BeforeDestroys
+        {
+            get => _beforeDestroys ?? (_beforeDestroys = new List<string>());
+            set => _beforeDestroys = value;
+        }
+
+        [Input("beforeInits")]
+        private List<string>? _beforeInits;
+
+        /// <summary>
+        /// List of before-init scripts
+        /// </summary>
+        public List<string> BeforeInits
+        {
+            get => _beforeInits ?? (_beforeInits = new List<string>());
+            set => _beforeInits = value;
+        }
+
+        [Input("beforePerforms")]
+        private List<string>? _beforePerforms;
+
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
+        public List<string> BeforePerforms
+        {
+            get => _beforePerforms ?? (_beforePerforms = new List<string>());
+            set => _beforePerforms = value;
+        }
+
+        [Input("beforePlans")]
+        private List<string>? _beforePlans;
+
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
+        public List<string> BeforePlans
+        {
+            get => _beforePlans ?? (_beforePlans = new List<string>());
+            set => _beforePlans = value;
+        }
+
         /// <summary>
         /// immutable ID (slug) of the context
         /// </summary>
@@ -85,6 +217,138 @@ namespace Pulumi.Spacelift
 
     public sealed class GetContextInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("afterApplies")]
+        private InputList<string>? _afterApplies;
+
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
+        public InputList<string> AfterApplies
+        {
+            get => _afterApplies ?? (_afterApplies = new InputList<string>());
+            set => _afterApplies = value;
+        }
+
+        [Input("afterDestroys")]
+        private InputList<string>? _afterDestroys;
+
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
+        public InputList<string> AfterDestroys
+        {
+            get => _afterDestroys ?? (_afterDestroys = new InputList<string>());
+            set => _afterDestroys = value;
+        }
+
+        [Input("afterInits")]
+        private InputList<string>? _afterInits;
+
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
+        public InputList<string> AfterInits
+        {
+            get => _afterInits ?? (_afterInits = new InputList<string>());
+            set => _afterInits = value;
+        }
+
+        [Input("afterPerforms")]
+        private InputList<string>? _afterPerforms;
+
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
+        public InputList<string> AfterPerforms
+        {
+            get => _afterPerforms ?? (_afterPerforms = new InputList<string>());
+            set => _afterPerforms = value;
+        }
+
+        [Input("afterPlans")]
+        private InputList<string>? _afterPlans;
+
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
+        public InputList<string> AfterPlans
+        {
+            get => _afterPlans ?? (_afterPlans = new InputList<string>());
+            set => _afterPlans = value;
+        }
+
+        [Input("afterRuns")]
+        private InputList<string>? _afterRuns;
+
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        public InputList<string> AfterRuns
+        {
+            get => _afterRuns ?? (_afterRuns = new InputList<string>());
+            set => _afterRuns = value;
+        }
+
+        [Input("beforeApplies")]
+        private InputList<string>? _beforeApplies;
+
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
+        public InputList<string> BeforeApplies
+        {
+            get => _beforeApplies ?? (_beforeApplies = new InputList<string>());
+            set => _beforeApplies = value;
+        }
+
+        [Input("beforeDestroys")]
+        private InputList<string>? _beforeDestroys;
+
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
+        public InputList<string> BeforeDestroys
+        {
+            get => _beforeDestroys ?? (_beforeDestroys = new InputList<string>());
+            set => _beforeDestroys = value;
+        }
+
+        [Input("beforeInits")]
+        private InputList<string>? _beforeInits;
+
+        /// <summary>
+        /// List of before-init scripts
+        /// </summary>
+        public InputList<string> BeforeInits
+        {
+            get => _beforeInits ?? (_beforeInits = new InputList<string>());
+            set => _beforeInits = value;
+        }
+
+        [Input("beforePerforms")]
+        private InputList<string>? _beforePerforms;
+
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
+        public InputList<string> BeforePerforms
+        {
+            get => _beforePerforms ?? (_beforePerforms = new InputList<string>());
+            set => _beforePerforms = value;
+        }
+
+        [Input("beforePlans")]
+        private InputList<string>? _beforePlans;
+
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
+        public InputList<string> BeforePlans
+        {
+            get => _beforePlans ?? (_beforePlans = new InputList<string>());
+            set => _beforePlans = value;
+        }
+
         /// <summary>
         /// immutable ID (slug) of the context
         /// </summary>
@@ -101,6 +365,50 @@ namespace Pulumi.Spacelift
     [OutputType]
     public sealed class GetContextResult
     {
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
+        public readonly ImmutableArray<string> AfterApplies;
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
+        public readonly ImmutableArray<string> AfterDestroys;
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
+        public readonly ImmutableArray<string> AfterInits;
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
+        public readonly ImmutableArray<string> AfterPerforms;
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
+        public readonly ImmutableArray<string> AfterPlans;
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
+        public readonly ImmutableArray<string> AfterRuns;
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
+        public readonly ImmutableArray<string> BeforeApplies;
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
+        public readonly ImmutableArray<string> BeforeDestroys;
+        /// <summary>
+        /// List of before-init scripts
+        /// </summary>
+        public readonly ImmutableArray<string> BeforeInits;
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
+        public readonly ImmutableArray<string> BeforePerforms;
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
+        public readonly ImmutableArray<string> BeforePlans;
         /// <summary>
         /// immutable ID (slug) of the context
         /// </summary>
@@ -125,6 +433,28 @@ namespace Pulumi.Spacelift
 
         [OutputConstructor]
         private GetContextResult(
+            ImmutableArray<string> afterApplies,
+
+            ImmutableArray<string> afterDestroys,
+
+            ImmutableArray<string> afterInits,
+
+            ImmutableArray<string> afterPerforms,
+
+            ImmutableArray<string> afterPlans,
+
+            ImmutableArray<string> afterRuns,
+
+            ImmutableArray<string> beforeApplies,
+
+            ImmutableArray<string> beforeDestroys,
+
+            ImmutableArray<string> beforeInits,
+
+            ImmutableArray<string> beforePerforms,
+
+            ImmutableArray<string> beforePlans,
+
             string contextId,
 
             string description,
@@ -137,6 +467,17 @@ namespace Pulumi.Spacelift
 
             string spaceId)
         {
+            AfterApplies = afterApplies;
+            AfterDestroys = afterDestroys;
+            AfterInits = afterInits;
+            AfterPerforms = afterPerforms;
+            AfterPlans = afterPlans;
+            AfterRuns = afterRuns;
+            BeforeApplies = beforeApplies;
+            BeforeDestroys = beforeDestroys;
+            BeforeInits = beforeInits;
+            BeforePerforms = beforePerforms;
+            BeforePlans = beforePlans;
             ContextId = contextId;
             Description = description;
             Id = id;

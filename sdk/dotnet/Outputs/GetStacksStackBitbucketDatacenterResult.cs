@@ -13,11 +13,20 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStacksStackBitbucketDatacenterResult
     {
+        public readonly string Id;
+        public readonly bool IsDefault;
         public readonly string Namespace;
 
         [OutputConstructor]
-        private GetStacksStackBitbucketDatacenterResult(string @namespace)
+        private GetStacksStackBitbucketDatacenterResult(
+            string id,
+
+            bool isDefault,
+
+            string @namespace)
         {
+            Id = id;
+            IsDefault = isDefault;
             Namespace = @namespace;
         }
     }

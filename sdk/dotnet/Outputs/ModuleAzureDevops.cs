@@ -14,13 +14,28 @@ namespace Pulumi.Spacelift.Outputs
     public sealed class ModuleAzureDevops
     {
         /// <summary>
+        /// ID of the Azure Devops integration. If not specified, the default integration will be used.
+        /// </summary>
+        public readonly string? Id;
+        /// <summary>
+        /// Indicates whether this is the default Azure DevOps integration
+        /// </summary>
+        public readonly bool? IsDefault;
+        /// <summary>
         /// The name of the Azure DevOps project
         /// </summary>
         public readonly string Project;
 
         [OutputConstructor]
-        private ModuleAzureDevops(string project)
+        private ModuleAzureDevops(
+            string? id,
+
+            bool? isDefault,
+
+            string project)
         {
+            Id = id;
+            IsDefault = isDefault;
             Project = project;
         }
     }

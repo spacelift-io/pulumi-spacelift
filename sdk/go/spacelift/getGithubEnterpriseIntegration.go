@@ -37,14 +37,20 @@ import (
 //	}
 //
 // ```
-func GetGithubEnterpriseIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetGithubEnterpriseIntegrationResult, error) {
+func GetGithubEnterpriseIntegration(ctx *pulumi.Context, args *GetGithubEnterpriseIntegrationArgs, opts ...pulumi.InvokeOption) (*GetGithubEnterpriseIntegrationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetGithubEnterpriseIntegrationResult
-	err := ctx.Invoke("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", nil, &rv, opts...)
+	err := ctx.Invoke("spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
+}
+
+// A collection of arguments for invoking getGithubEnterpriseIntegration.
+type GetGithubEnterpriseIntegrationArgs struct {
+	// Github integration id. If not provided, the default integration will be returned
+	Id *string `pulumi:"id"`
 }
 
 // A collection of values returned by getGithubEnterpriseIntegration.
@@ -53,21 +59,45 @@ type GetGithubEnterpriseIntegrationResult struct {
 	ApiHost string `pulumi:"apiHost"`
 	// Github integration app id
 	AppId string `pulumi:"appId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	// Github integration description
+	Description string `pulumi:"description"`
+	// Github integration id. If not provided, the default integration will be returned
+	Id *string `pulumi:"id"`
+	// Github integration is default
+	IsDefault bool `pulumi:"isDefault"`
+	// Github integration labels
+	Labels []string `pulumi:"labels"`
+	// Github integration name
+	Name string `pulumi:"name"`
+	// Github integration space id
+	SpaceId string `pulumi:"spaceId"`
 	// Github integration webhook secret
 	WebhookSecret string `pulumi:"webhookSecret"`
+	// Github integration webhook url
+	WebhookUrl string `pulumi:"webhookUrl"`
 }
 
-func GetGithubEnterpriseIntegrationOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetGithubEnterpriseIntegrationResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetGithubEnterpriseIntegrationResult, error) {
-		r, err := GetGithubEnterpriseIntegration(ctx, opts...)
-		var s GetGithubEnterpriseIntegrationResult
-		if r != nil {
-			s = *r
-		}
-		return s, err
-	}).(GetGithubEnterpriseIntegrationResultOutput)
+func GetGithubEnterpriseIntegrationOutput(ctx *pulumi.Context, args GetGithubEnterpriseIntegrationOutputArgs, opts ...pulumi.InvokeOption) GetGithubEnterpriseIntegrationResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetGithubEnterpriseIntegrationResult, error) {
+			args := v.(GetGithubEnterpriseIntegrationArgs)
+			r, err := GetGithubEnterpriseIntegration(ctx, &args, opts...)
+			var s GetGithubEnterpriseIntegrationResult
+			if r != nil {
+				s = *r
+			}
+			return s, err
+		}).(GetGithubEnterpriseIntegrationResultOutput)
+}
+
+// A collection of arguments for invoking getGithubEnterpriseIntegration.
+type GetGithubEnterpriseIntegrationOutputArgs struct {
+	// Github integration id. If not provided, the default integration will be returned
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (GetGithubEnterpriseIntegrationOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGithubEnterpriseIntegrationArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getGithubEnterpriseIntegration.
@@ -101,14 +131,44 @@ func (o GetGithubEnterpriseIntegrationResultOutput) AppId() pulumi.StringOutput 
 	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.AppId }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
-func (o GetGithubEnterpriseIntegrationResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+// Github integration description
+func (o GetGithubEnterpriseIntegrationResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Github integration id. If not provided, the default integration will be returned
+func (o GetGithubEnterpriseIntegrationResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Github integration is default
+func (o GetGithubEnterpriseIntegrationResultOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// Github integration labels
+func (o GetGithubEnterpriseIntegrationResultOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
+}
+
+// Github integration name
+func (o GetGithubEnterpriseIntegrationResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Github integration space id
+func (o GetGithubEnterpriseIntegrationResultOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
 // Github integration webhook secret
 func (o GetGithubEnterpriseIntegrationResultOutput) WebhookSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.WebhookSecret }).(pulumi.StringOutput)
+}
+
+// Github integration webhook url
+func (o GetGithubEnterpriseIntegrationResultOutput) WebhookUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGithubEnterpriseIntegrationResult) string { return v.WebhookUrl }).(pulumi.StringOutput)
 }
 
 func init() {

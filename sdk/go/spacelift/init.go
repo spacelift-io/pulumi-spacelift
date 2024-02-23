@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "spacelift:index/auditTrailWebhook:AuditTrailWebhook":
+		r = &AuditTrailWebhook{}
 	case "spacelift:index/awsIntegration:AwsIntegration":
 		r = &AwsIntegration{}
 	case "spacelift:index/awsIntegrationAttachment:AwsIntegrationAttachment":
@@ -63,6 +65,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ScheduledDeleteTask{}
 	case "spacelift:index/scheduledTask:ScheduledTask":
 		r = &ScheduledTask{}
+	case "spacelift:index/securityEmail:SecurityEmail":
+		r = &SecurityEmail{}
 	case "spacelift:index/space:Space":
 		r = &Space{}
 	case "spacelift:index/stack:Stack":
@@ -122,6 +126,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/auditTrailWebhook",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"spacelift",
 		"index/awsIntegration",
@@ -225,6 +234,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"spacelift",
 		"index/scheduledTask",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"spacelift",
+		"index/securityEmail",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

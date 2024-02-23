@@ -22,7 +22,8 @@ import (
 //
 //	"fmt"
 //
-//	"github.com/pulumi/pulumi-google/sdk/v1/go/google"
+//	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/organizations"
+//	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/projects"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift"
 //
@@ -48,18 +49,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = index.NewGoogle_project(ctx, "k8s-coregoogle_project", &index.Google_projectArgs{
-//				Name:      "Kubernetes code",
-//				ProjectId: "unicorn-k8s-core",
-//				OrgId:     _var.Gcp_organization_id,
+//			_, err = organizations.NewProject(ctx, "k8s-coreProject", &organizations.ProjectArgs{
+//				ProjectId: pulumi.String("unicorn-k8s-core"),
+//				OrgId:     pulumi.Any(_var.Gcp_organization_id),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = index.NewGoogle_project_iam_member(ctx, "k8s-coregoogle_project_iam_member", &index.Google_project_iam_memberArgs{
-//				Project: k8s_coregoogle_project.Id,
-//				Role:    "roles/owner",
-//				Member:  pulumi.String(fmt.Sprintf("serviceAccount:%v", k8s_coreStackGcpServiceAccount.ServiceAccountEmail)),
+//			_, err = projects.NewIAMMember(ctx, "k8s-coreIAMMember", &projects.IAMMemberArgs{
+//				Project: k8s_coreProject.ID(),
+//				Role:    pulumi.String("roles/owner"),
+//				Member: k8s_coreStackGcpServiceAccount.ServiceAccountEmail.ApplyT(func(serviceAccountEmail string) (string, error) {
+//					return fmt.Sprintf("serviceAccount:%v", serviceAccountEmail), nil
+//				}).(pulumi.StringOutput),
 //			})
 //			if err != nil {
 //				return err

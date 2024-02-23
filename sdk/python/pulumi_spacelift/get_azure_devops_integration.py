@@ -21,24 +21,74 @@ class GetAzureDevopsIntegrationResult:
     """
     A collection of values returned by getAzureDevopsIntegration.
     """
-    def __init__(__self__, id=None, organization_url=None, webhook_password=None):
+    def __init__(__self__, description=None, id=None, is_default=None, labels=None, name=None, organization_url=None, space_id=None, webhook_password=None, webhook_url=None):
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if is_default and not isinstance(is_default, bool):
+            raise TypeError("Expected argument 'is_default' to be a bool")
+        pulumi.set(__self__, "is_default", is_default)
+        if labels and not isinstance(labels, list):
+            raise TypeError("Expected argument 'labels' to be a list")
+        pulumi.set(__self__, "labels", labels)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
         if organization_url and not isinstance(organization_url, str):
             raise TypeError("Expected argument 'organization_url' to be a str")
         pulumi.set(__self__, "organization_url", organization_url)
+        if space_id and not isinstance(space_id, str):
+            raise TypeError("Expected argument 'space_id' to be a str")
+        pulumi.set(__self__, "space_id", space_id)
         if webhook_password and not isinstance(webhook_password, str):
             raise TypeError("Expected argument 'webhook_password' to be a str")
         pulumi.set(__self__, "webhook_password", webhook_password)
+        if webhook_url and not isinstance(webhook_url, str):
+            raise TypeError("Expected argument 'webhook_url' to be a str")
+        pulumi.set(__self__, "webhook_url", webhook_url)
 
     @property
     @pulumi.getter
-    def id(self) -> str:
+    def description(self) -> str:
         """
-        The provider-assigned unique ID for this managed resource.
+        Azure DevOps integration description
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        Azure DevOps integration id. If not provided, the default integration will be returned
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        """
+        Azure DevOps integration is default
+        """
+        return pulumi.get(self, "is_default")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Sequence[str]:
+        """
+        Azure DevOps integration labels
+        """
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Azure DevOps integration name
+        """
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="organizationUrl")
@@ -49,12 +99,28 @@ class GetAzureDevopsIntegrationResult:
         return pulumi.get(self, "organization_url")
 
     @property
+    @pulumi.getter(name="spaceId")
+    def space_id(self) -> str:
+        """
+        Azure DevOps integration space id
+        """
+        return pulumi.get(self, "space_id")
+
+    @property
     @pulumi.getter(name="webhookPassword")
     def webhook_password(self) -> str:
         """
         Azure DevOps integration webhook password
         """
         return pulumi.get(self, "webhook_password")
+
+    @property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> str:
+        """
+        Azure DevOps integration webhook url
+        """
+        return pulumi.get(self, "webhook_url")
 
 
 class AwaitableGetAzureDevopsIntegrationResult(GetAzureDevopsIntegrationResult):
@@ -63,12 +129,19 @@ class AwaitableGetAzureDevopsIntegrationResult(GetAzureDevopsIntegrationResult):
         if False:
             yield self
         return GetAzureDevopsIntegrationResult(
+            description=self.description,
             id=self.id,
+            is_default=self.is_default,
+            labels=self.labels,
+            name=self.name,
             organization_url=self.organization_url,
-            webhook_password=self.webhook_password)
+            space_id=self.space_id,
+            webhook_password=self.webhook_password,
+            webhook_url=self.webhook_url)
 
 
-def get_azure_devops_integration(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAzureDevopsIntegrationResult:
+def get_azure_devops_integration(id: Optional[str] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAzureDevopsIntegrationResult:
     """
     `get_azure_devops_integration` returns details about Azure DevOps integration
 
@@ -80,19 +153,30 @@ def get_azure_devops_integration(opts: Optional[pulumi.InvokeOptions] = None) ->
 
     azure_devops_integration = spacelift.get_azure_devops_integration()
     ```
+
+
+    :param str id: Azure DevOps integration id. If not provided, the default integration will be returned
     """
     __args__ = dict()
+    __args__['id'] = id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('spacelift:index/getAzureDevopsIntegration:getAzureDevopsIntegration', __args__, opts=opts, typ=GetAzureDevopsIntegrationResult).value
 
     return AwaitableGetAzureDevopsIntegrationResult(
+        description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
+        is_default=pulumi.get(__ret__, 'is_default'),
+        labels=pulumi.get(__ret__, 'labels'),
+        name=pulumi.get(__ret__, 'name'),
         organization_url=pulumi.get(__ret__, 'organization_url'),
-        webhook_password=pulumi.get(__ret__, 'webhook_password'))
+        space_id=pulumi.get(__ret__, 'space_id'),
+        webhook_password=pulumi.get(__ret__, 'webhook_password'),
+        webhook_url=pulumi.get(__ret__, 'webhook_url'))
 
 
 @_utilities.lift_output_func(get_azure_devops_integration)
-def get_azure_devops_integration_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAzureDevopsIntegrationResult]:
+def get_azure_devops_integration_output(id: Optional[pulumi.Input[Optional[str]]] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAzureDevopsIntegrationResult]:
     """
     `get_azure_devops_integration` returns details about Azure DevOps integration
 
@@ -104,5 +188,8 @@ def get_azure_devops_integration_output(opts: Optional[pulumi.InvokeOptions] = N
 
     azure_devops_integration = spacelift.get_azure_devops_integration()
     ```
+
+
+    :param str id: Azure DevOps integration id. If not provided, the default integration will be returned
     """
     ...

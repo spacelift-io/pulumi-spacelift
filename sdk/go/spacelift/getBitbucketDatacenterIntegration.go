@@ -37,39 +37,69 @@ import (
 //	}
 //
 // ```
-func GetBitbucketDatacenterIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetBitbucketDatacenterIntegrationResult, error) {
+func GetBitbucketDatacenterIntegration(ctx *pulumi.Context, args *GetBitbucketDatacenterIntegrationArgs, opts ...pulumi.InvokeOption) (*GetBitbucketDatacenterIntegrationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBitbucketDatacenterIntegrationResult
-	err := ctx.Invoke("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", nil, &rv, opts...)
+	err := ctx.Invoke("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
+// A collection of arguments for invoking getBitbucketDatacenterIntegration.
+type GetBitbucketDatacenterIntegrationArgs struct {
+	// Bitbucket Datacenter integration id. If not provided, the default integration will be returned
+	Id *string `pulumi:"id"`
+}
+
 // A collection of values returned by getBitbucketDatacenterIntegration.
 type GetBitbucketDatacenterIntegrationResult struct {
 	// Bitbucket Datacenter integration api host
 	ApiHost string `pulumi:"apiHost"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	// Bitbucket Datacenter integration description
+	Description string `pulumi:"description"`
+	// Bitbucket Datacenter integration id. If not provided, the default integration will be returned
+	Id *string `pulumi:"id"`
+	// Bitbucket Datacenter integration is default
+	IsDefault bool `pulumi:"isDefault"`
+	// Bitbucket Datacenter integration labels
+	Labels []string `pulumi:"labels"`
+	// Bitbucket Datacenter integration name
+	Name string `pulumi:"name"`
+	// Bitbucket Datacenter integration space id
+	SpaceId string `pulumi:"spaceId"`
 	// Bitbucket Datacenter integration user facing host
 	UserFacingHost string `pulumi:"userFacingHost"`
+	// Bitbucket Datacenter username
+	Username string `pulumi:"username"`
 	// Bitbucket Datacenter integration webhook secret
 	WebhookSecret string `pulumi:"webhookSecret"`
 	// Bitbucket Datacenter integration webhook URL
 	WebhookUrl string `pulumi:"webhookUrl"`
 }
 
-func GetBitbucketDatacenterIntegrationOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetBitbucketDatacenterIntegrationResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetBitbucketDatacenterIntegrationResult, error) {
-		r, err := GetBitbucketDatacenterIntegration(ctx, opts...)
-		var s GetBitbucketDatacenterIntegrationResult
-		if r != nil {
-			s = *r
-		}
-		return s, err
-	}).(GetBitbucketDatacenterIntegrationResultOutput)
+func GetBitbucketDatacenterIntegrationOutput(ctx *pulumi.Context, args GetBitbucketDatacenterIntegrationOutputArgs, opts ...pulumi.InvokeOption) GetBitbucketDatacenterIntegrationResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetBitbucketDatacenterIntegrationResult, error) {
+			args := v.(GetBitbucketDatacenterIntegrationArgs)
+			r, err := GetBitbucketDatacenterIntegration(ctx, &args, opts...)
+			var s GetBitbucketDatacenterIntegrationResult
+			if r != nil {
+				s = *r
+			}
+			return s, err
+		}).(GetBitbucketDatacenterIntegrationResultOutput)
+}
+
+// A collection of arguments for invoking getBitbucketDatacenterIntegration.
+type GetBitbucketDatacenterIntegrationOutputArgs struct {
+	// Bitbucket Datacenter integration id. If not provided, the default integration will be returned
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (GetBitbucketDatacenterIntegrationOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBitbucketDatacenterIntegrationArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getBitbucketDatacenterIntegration.
@@ -98,14 +128,44 @@ func (o GetBitbucketDatacenterIntegrationResultOutput) ApiHost() pulumi.StringOu
 	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.ApiHost }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
-func (o GetBitbucketDatacenterIntegrationResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+// Bitbucket Datacenter integration description
+func (o GetBitbucketDatacenterIntegrationResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Bitbucket Datacenter integration id. If not provided, the default integration will be returned
+func (o GetBitbucketDatacenterIntegrationResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Bitbucket Datacenter integration is default
+func (o GetBitbucketDatacenterIntegrationResultOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// Bitbucket Datacenter integration labels
+func (o GetBitbucketDatacenterIntegrationResultOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
+}
+
+// Bitbucket Datacenter integration name
+func (o GetBitbucketDatacenterIntegrationResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Bitbucket Datacenter integration space id
+func (o GetBitbucketDatacenterIntegrationResultOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
 // Bitbucket Datacenter integration user facing host
 func (o GetBitbucketDatacenterIntegrationResultOutput) UserFacingHost() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.UserFacingHost }).(pulumi.StringOutput)
+}
+
+// Bitbucket Datacenter username
+func (o GetBitbucketDatacenterIntegrationResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketDatacenterIntegrationResult) string { return v.Username }).(pulumi.StringOutput)
 }
 
 // Bitbucket Datacenter integration webhook secret

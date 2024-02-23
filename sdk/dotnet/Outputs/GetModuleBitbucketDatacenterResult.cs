@@ -13,11 +13,20 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetModuleBitbucketDatacenterResult
     {
+        public readonly string Id;
+        public readonly bool IsDefault;
         public readonly string Namespace;
 
         [OutputConstructor]
-        private GetModuleBitbucketDatacenterResult(string @namespace)
+        private GetModuleBitbucketDatacenterResult(
+            string id,
+
+            bool isDefault,
+
+            string @namespace)
         {
+            Id = id;
+            IsDefault = isDefault;
             Namespace = @namespace;
         }
     }

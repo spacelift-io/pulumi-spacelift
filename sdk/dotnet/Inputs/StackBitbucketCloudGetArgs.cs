@@ -13,6 +13,18 @@ namespace Pulumi.Spacelift.Inputs
     public sealed class StackBitbucketCloudGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// Indicates whether this is the default Bitbucket Cloud integration
+        /// </summary>
+        [Input("isDefault")]
+        public Input<bool>? IsDefault { get; set; }
+
+        /// <summary>
         /// The Bitbucket project containing the repository
         /// </summary>
         [Input("namespace", required: true)]

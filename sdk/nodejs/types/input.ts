@@ -114,12 +114,28 @@ export interface IdpGroupMappingPolicy {
 
 export interface ModuleAzureDevops {
     /**
+     * ID of the Azure Devops integration. If not specified, the default integration will be used.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Indicates whether this is the default Azure DevOps integration
+     */
+    isDefault?: pulumi.Input<boolean>;
+    /**
      * The name of the Azure DevOps project
      */
     project: pulumi.Input<string>;
 }
 
 export interface ModuleBitbucketCloud {
+    /**
+     * The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Indicates whether this is the default Bitbucket Cloud integration
+     */
+    isDefault?: pulumi.Input<boolean>;
     /**
      * The Bitbucket project containing the repository
      */
@@ -128,6 +144,14 @@ export interface ModuleBitbucketCloud {
 
 export interface ModuleBitbucketDatacenter {
     /**
+     * The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Indicates whether this is the default Bitbucket Datacenter integration
+     */
+    isDefault?: pulumi.Input<boolean>;
+    /**
      * The Bitbucket project containing the repository
      */
     namespace: pulumi.Input<string>;
@@ -135,12 +159,28 @@ export interface ModuleBitbucketDatacenter {
 
 export interface ModuleGithubEnterprise {
     /**
+     * The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Indicates whether this is the default GitHub Enterprise integration
+     */
+    isDefault?: pulumi.Input<boolean>;
+    /**
      * The GitHub organization / user the repository belongs to
      */
     namespace: pulumi.Input<string>;
 }
 
 export interface ModuleGitlab {
+    /**
+     * ID of the Gitlab integration. If not specified, the default integration will be used.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Indicates whether this is the default GitLab integration
+     */
+    isDefault?: pulumi.Input<boolean>;
     /**
      * The GitLab namespace containing the repository
      */
@@ -156,6 +196,14 @@ export interface StackAnsible {
 
 export interface StackAzureDevops {
     /**
+     * The ID of the Azure Devops integration. If not specified, the default integration will be used.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Indicates whether this is the default Azure DevOps integration
+     */
+    isDefault?: pulumi.Input<boolean>;
+    /**
      * The name of the Azure DevOps project
      */
     project: pulumi.Input<string>;
@@ -163,12 +211,28 @@ export interface StackAzureDevops {
 
 export interface StackBitbucketCloud {
     /**
+     * The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Indicates whether this is the default Bitbucket Cloud integration
+     */
+    isDefault?: pulumi.Input<boolean>;
+    /**
      * The Bitbucket project containing the repository
      */
     namespace: pulumi.Input<string>;
 }
 
 export interface StackBitbucketDatacenter {
+    /**
+     * The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Indicates whether this is the default Bitbucket Datacenter integration
+     */
+    isDefault?: pulumi.Input<boolean>;
     /**
      * The Bitbucket project containing the repository
      */
@@ -196,12 +260,28 @@ export interface StackCloudformation {
 
 export interface StackGithubEnterprise {
     /**
+     * The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Indicates whether this is the default GitHub Enterprise integration
+     */
+    isDefault?: pulumi.Input<boolean>;
+    /**
      * The GitHub organization / user the repository belongs to
      */
     namespace: pulumi.Input<string>;
 }
 
 export interface StackGitlab {
+    /**
+     * The ID of the Gitlab integration. If not specified, the default integration will be used.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Indicates whether this is the default GitLab integration
+     */
+    isDefault?: pulumi.Input<boolean>;
     /**
      * The GitLab namespace containing the repository
      */

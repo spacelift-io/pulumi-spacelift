@@ -51,12 +51,56 @@ func LookupContext(ctx *pulumi.Context, args *LookupContextArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getContext.
 type LookupContextArgs struct {
+	// List of after-apply scripts
+	AfterApplies []string `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys []string `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits []string `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms []string `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans []string `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns []string `pulumi:"afterRuns"`
+	// List of before-apply scripts
+	BeforeApplies []string `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys []string `pulumi:"beforeDestroys"`
+	// List of before-init scripts
+	BeforeInits []string `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms []string `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans []string `pulumi:"beforePlans"`
 	// immutable ID (slug) of the context
 	ContextId string `pulumi:"contextId"`
 }
 
 // A collection of values returned by getContext.
 type LookupContextResult struct {
+	// List of after-apply scripts
+	AfterApplies []string `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys []string `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits []string `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms []string `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans []string `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns []string `pulumi:"afterRuns"`
+	// List of before-apply scripts
+	BeforeApplies []string `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys []string `pulumi:"beforeDestroys"`
+	// List of before-init scripts
+	BeforeInits []string `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms []string `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans []string `pulumi:"beforePlans"`
 	// immutable ID (slug) of the context
 	ContextId string `pulumi:"contextId"`
 	// free-form context description for users
@@ -85,6 +129,28 @@ func LookupContextOutput(ctx *pulumi.Context, args LookupContextOutputArgs, opts
 
 // A collection of arguments for invoking getContext.
 type LookupContextOutputArgs struct {
+	// List of after-apply scripts
+	AfterApplies pulumi.StringArrayInput `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys pulumi.StringArrayInput `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits pulumi.StringArrayInput `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms pulumi.StringArrayInput `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans pulumi.StringArrayInput `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns pulumi.StringArrayInput `pulumi:"afterRuns"`
+	// List of before-apply scripts
+	BeforeApplies pulumi.StringArrayInput `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys pulumi.StringArrayInput `pulumi:"beforeDestroys"`
+	// List of before-init scripts
+	BeforeInits pulumi.StringArrayInput `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms pulumi.StringArrayInput `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans pulumi.StringArrayInput `pulumi:"beforePlans"`
 	// immutable ID (slug) of the context
 	ContextId pulumi.StringInput `pulumi:"contextId"`
 }
@@ -112,6 +178,61 @@ func (o LookupContextResultOutput) ToOutput(ctx context.Context) pulumix.Output[
 	return pulumix.Output[LookupContextResult]{
 		OutputState: o.OutputState,
 	}
+}
+
+// List of after-apply scripts
+func (o LookupContextResultOutput) AfterApplies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.AfterApplies }).(pulumi.StringArrayOutput)
+}
+
+// List of after-destroy scripts
+func (o LookupContextResultOutput) AfterDestroys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.AfterDestroys }).(pulumi.StringArrayOutput)
+}
+
+// List of after-init scripts
+func (o LookupContextResultOutput) AfterInits() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.AfterInits }).(pulumi.StringArrayOutput)
+}
+
+// List of after-perform scripts
+func (o LookupContextResultOutput) AfterPerforms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.AfterPerforms }).(pulumi.StringArrayOutput)
+}
+
+// List of after-plan scripts
+func (o LookupContextResultOutput) AfterPlans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.AfterPlans }).(pulumi.StringArrayOutput)
+}
+
+// List of after-run scripts
+func (o LookupContextResultOutput) AfterRuns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.AfterRuns }).(pulumi.StringArrayOutput)
+}
+
+// List of before-apply scripts
+func (o LookupContextResultOutput) BeforeApplies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.BeforeApplies }).(pulumi.StringArrayOutput)
+}
+
+// List of before-destroy scripts
+func (o LookupContextResultOutput) BeforeDestroys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.BeforeDestroys }).(pulumi.StringArrayOutput)
+}
+
+// List of before-init scripts
+func (o LookupContextResultOutput) BeforeInits() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.BeforeInits }).(pulumi.StringArrayOutput)
+}
+
+// List of before-perform scripts
+func (o LookupContextResultOutput) BeforePerforms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.BeforePerforms }).(pulumi.StringArrayOutput)
+}
+
+// List of before-plan scripts
+func (o LookupContextResultOutput) BeforePlans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContextResult) []string { return v.BeforePlans }).(pulumi.StringArrayOutput)
 }
 
 // immutable ID (slug) of the context

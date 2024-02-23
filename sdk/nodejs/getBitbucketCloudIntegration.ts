@@ -16,11 +16,23 @@ import * as utilities from "./utilities";
  * const bitbucketCloudIntegration = spacelift.getBitbucketCloudIntegration({});
  * ```
  */
-export function getBitbucketCloudIntegration(opts?: pulumi.InvokeOptions): Promise<GetBitbucketCloudIntegrationResult> {
+export function getBitbucketCloudIntegration(args?: GetBitbucketCloudIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetBitbucketCloudIntegrationResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", {
+        "id": args.id,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getBitbucketCloudIntegration.
+ */
+export interface GetBitbucketCloudIntegrationArgs {
+    /**
+     * Bitbucket Cloud integration id. If not provided, the default integration will be returned
+     */
+    id?: string;
 }
 
 /**
@@ -28,13 +40,37 @@ export function getBitbucketCloudIntegration(opts?: pulumi.InvokeOptions): Promi
  */
 export interface GetBitbucketCloudIntegrationResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Bitbucket Cloud integration description
      */
-    readonly id: string;
+    readonly description: string;
+    /**
+     * Bitbucket Cloud integration id. If not provided, the default integration will be returned
+     */
+    readonly id?: string;
+    /**
+     * Bitbucket Cloud integration is default
+     */
+    readonly isDefault: boolean;
+    /**
+     * Bitbucket Cloud integration labels
+     */
+    readonly labels: string[];
+    /**
+     * Bitbucket Cloud integration name
+     */
+    readonly name: string;
+    /**
+     * Bitbucket Cloud integration space id
+     */
+    readonly spaceId: string;
     /**
      * Bitbucket Cloud username
      */
     readonly username: string;
+    /**
+     * Bitbucket Cloud integration webhook URL
+     */
+    readonly webhookUrl: string;
 }
 /**
  * `spacelift.getBitbucketCloudIntegration` returns details about Bitbucket Cloud integration
@@ -48,6 +84,16 @@ export interface GetBitbucketCloudIntegrationResult {
  * const bitbucketCloudIntegration = spacelift.getBitbucketCloudIntegration({});
  * ```
  */
-export function getBitbucketCloudIntegrationOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetBitbucketCloudIntegrationResult> {
-    return pulumi.output(getBitbucketCloudIntegration(opts))
+export function getBitbucketCloudIntegrationOutput(args?: GetBitbucketCloudIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBitbucketCloudIntegrationResult> {
+    return pulumi.output(args).apply((a: any) => getBitbucketCloudIntegration(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getBitbucketCloudIntegration.
+ */
+export interface GetBitbucketCloudIntegrationOutputArgs {
+    /**
+     * Bitbucket Cloud integration id. If not provided, the default integration will be returned
+     */
+    id?: pulumi.Input<string>;
 }

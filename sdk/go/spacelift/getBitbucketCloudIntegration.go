@@ -37,33 +37,63 @@ import (
 //	}
 //
 // ```
-func GetBitbucketCloudIntegration(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetBitbucketCloudIntegrationResult, error) {
+func GetBitbucketCloudIntegration(ctx *pulumi.Context, args *GetBitbucketCloudIntegrationArgs, opts ...pulumi.InvokeOption) (*GetBitbucketCloudIntegrationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBitbucketCloudIntegrationResult
-	err := ctx.Invoke("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", nil, &rv, opts...)
+	err := ctx.Invoke("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of values returned by getBitbucketCloudIntegration.
-type GetBitbucketCloudIntegrationResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Bitbucket Cloud username
-	Username string `pulumi:"username"`
+// A collection of arguments for invoking getBitbucketCloudIntegration.
+type GetBitbucketCloudIntegrationArgs struct {
+	// Bitbucket Cloud integration id. If not provided, the default integration will be returned
+	Id *string `pulumi:"id"`
 }
 
-func GetBitbucketCloudIntegrationOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetBitbucketCloudIntegrationResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetBitbucketCloudIntegrationResult, error) {
-		r, err := GetBitbucketCloudIntegration(ctx, opts...)
-		var s GetBitbucketCloudIntegrationResult
-		if r != nil {
-			s = *r
-		}
-		return s, err
-	}).(GetBitbucketCloudIntegrationResultOutput)
+// A collection of values returned by getBitbucketCloudIntegration.
+type GetBitbucketCloudIntegrationResult struct {
+	// Bitbucket Cloud integration description
+	Description string `pulumi:"description"`
+	// Bitbucket Cloud integration id. If not provided, the default integration will be returned
+	Id *string `pulumi:"id"`
+	// Bitbucket Cloud integration is default
+	IsDefault bool `pulumi:"isDefault"`
+	// Bitbucket Cloud integration labels
+	Labels []string `pulumi:"labels"`
+	// Bitbucket Cloud integration name
+	Name string `pulumi:"name"`
+	// Bitbucket Cloud integration space id
+	SpaceId string `pulumi:"spaceId"`
+	// Bitbucket Cloud username
+	Username string `pulumi:"username"`
+	// Bitbucket Cloud integration webhook URL
+	WebhookUrl string `pulumi:"webhookUrl"`
+}
+
+func GetBitbucketCloudIntegrationOutput(ctx *pulumi.Context, args GetBitbucketCloudIntegrationOutputArgs, opts ...pulumi.InvokeOption) GetBitbucketCloudIntegrationResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetBitbucketCloudIntegrationResult, error) {
+			args := v.(GetBitbucketCloudIntegrationArgs)
+			r, err := GetBitbucketCloudIntegration(ctx, &args, opts...)
+			var s GetBitbucketCloudIntegrationResult
+			if r != nil {
+				s = *r
+			}
+			return s, err
+		}).(GetBitbucketCloudIntegrationResultOutput)
+}
+
+// A collection of arguments for invoking getBitbucketCloudIntegration.
+type GetBitbucketCloudIntegrationOutputArgs struct {
+	// Bitbucket Cloud integration id. If not provided, the default integration will be returned
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (GetBitbucketCloudIntegrationOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBitbucketCloudIntegrationArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getBitbucketCloudIntegration.
@@ -87,14 +117,44 @@ func (o GetBitbucketCloudIntegrationResultOutput) ToOutput(ctx context.Context) 
 	}
 }
 
-// The provider-assigned unique ID for this managed resource.
-func (o GetBitbucketCloudIntegrationResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+// Bitbucket Cloud integration description
+func (o GetBitbucketCloudIntegrationResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Bitbucket Cloud integration id. If not provided, the default integration will be returned
+func (o GetBitbucketCloudIntegrationResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Bitbucket Cloud integration is default
+func (o GetBitbucketCloudIntegrationResultOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// Bitbucket Cloud integration labels
+func (o GetBitbucketCloudIntegrationResultOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) []string { return v.Labels }).(pulumi.StringArrayOutput)
+}
+
+// Bitbucket Cloud integration name
+func (o GetBitbucketCloudIntegrationResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Bitbucket Cloud integration space id
+func (o GetBitbucketCloudIntegrationResultOutput) SpaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
 // Bitbucket Cloud username
 func (o GetBitbucketCloudIntegrationResultOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// Bitbucket Cloud integration webhook URL
+func (o GetBitbucketCloudIntegrationResultOutput) WebhookUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBitbucketCloudIntegrationResult) string { return v.WebhookUrl }).(pulumi.StringOutput)
 }
 
 func init() {

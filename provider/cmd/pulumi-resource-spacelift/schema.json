@@ -118,6 +118,14 @@
         },
         "spacelift:index/ModuleAzureDevops:ModuleAzureDevops": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "ID of the Azure Devops integration. If not specified, the default integration will be used.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Indicates whether this is the default Azure DevOps integration\n"
+                },
                 "project": {
                     "type": "string",
                     "description": "The name of the Azure DevOps project\n"
@@ -126,10 +134,26 @@
             "type": "object",
             "required": [
                 "project"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "isDefault",
+                        "project"
+                    ]
+                }
+            }
         },
         "spacelift:index/ModuleBitbucketCloud:ModuleBitbucketCloud": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Indicates whether this is the default Bitbucket Cloud integration\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The Bitbucket project containing the repository\n"
@@ -138,10 +162,26 @@
             "type": "object",
             "required": [
                 "namespace"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "isDefault",
+                        "namespace"
+                    ]
+                }
+            }
         },
         "spacelift:index/ModuleBitbucketDatacenter:ModuleBitbucketDatacenter": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Indicates whether this is the default Bitbucket Datacenter integration\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The Bitbucket project containing the repository\n"
@@ -150,10 +190,26 @@
             "type": "object",
             "required": [
                 "namespace"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "isDefault",
+                        "namespace"
+                    ]
+                }
+            }
         },
         "spacelift:index/ModuleGithubEnterprise:ModuleGithubEnterprise": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Indicates whether this is the default GitHub Enterprise integration\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The GitHub organization / user the repository belongs to\n"
@@ -162,10 +218,26 @@
             "type": "object",
             "required": [
                 "namespace"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "isDefault",
+                        "namespace"
+                    ]
+                }
+            }
         },
         "spacelift:index/ModuleGitlab:ModuleGitlab": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "ID of the Gitlab integration. If not specified, the default integration will be used.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Indicates whether this is the default GitLab integration\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The GitLab namespace containing the repository\n"
@@ -174,7 +246,15 @@
             "type": "object",
             "required": [
                 "namespace"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "isDefault",
+                        "namespace"
+                    ]
+                }
+            }
         },
         "spacelift:index/StackAnsible:StackAnsible": {
             "properties": {
@@ -190,6 +270,14 @@
         },
         "spacelift:index/StackAzureDevops:StackAzureDevops": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the Azure Devops integration. If not specified, the default integration will be used.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Indicates whether this is the default Azure DevOps integration\n"
+                },
                 "project": {
                     "type": "string",
                     "description": "The name of the Azure DevOps project\n"
@@ -198,10 +286,26 @@
             "type": "object",
             "required": [
                 "project"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "isDefault",
+                        "project"
+                    ]
+                }
+            }
         },
         "spacelift:index/StackBitbucketCloud:StackBitbucketCloud": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Indicates whether this is the default Bitbucket Cloud integration\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The Bitbucket project containing the repository\n"
@@ -210,10 +314,26 @@
             "type": "object",
             "required": [
                 "namespace"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "isDefault",
+                        "namespace"
+                    ]
+                }
+            }
         },
         "spacelift:index/StackBitbucketDatacenter:StackBitbucketDatacenter": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Indicates whether this is the default Bitbucket Datacenter integration\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The Bitbucket project containing the repository\n"
@@ -222,7 +342,15 @@
             "type": "object",
             "required": [
                 "namespace"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "isDefault",
+                        "namespace"
+                    ]
+                }
+            }
         },
         "spacelift:index/StackCloudformation:StackCloudformation": {
             "properties": {
@@ -253,6 +381,14 @@
         },
         "spacelift:index/StackGithubEnterprise:StackGithubEnterprise": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Indicates whether this is the default GitHub Enterprise integration\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The GitHub organization / user the repository belongs to\n"
@@ -261,10 +397,26 @@
             "type": "object",
             "required": [
                 "namespace"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "isDefault",
+                        "namespace"
+                    ]
+                }
+            }
         },
         "spacelift:index/StackGitlab:StackGitlab": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the Gitlab integration. If not specified, the default integration will be used.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Indicates whether this is the default GitLab integration\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The GitLab namespace containing the repository\n"
@@ -273,7 +425,15 @@
             "type": "object",
             "required": [
                 "namespace"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "isDefault",
+                        "namespace"
+                    ]
+                }
+            }
         },
         "spacelift:index/StackKubernetes:StackKubernetes": {
             "properties": {
@@ -537,12 +697,20 @@
         },
         "spacelift:index/getModuleAzureDevop:getModuleAzureDevop": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "project": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "project"
             ],
             "language": {
@@ -553,12 +721,20 @@
         },
         "spacelift:index/getModuleBitbucketCloud:getModuleBitbucketCloud": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -569,12 +745,20 @@
         },
         "spacelift:index/getModuleBitbucketDatacenter:getModuleBitbucketDatacenter": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -585,12 +769,20 @@
         },
         "spacelift:index/getModuleGithubEnterprise:getModuleGithubEnterprise": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -601,12 +793,20 @@
         },
         "spacelift:index/getModuleGitlab:getModuleGitlab": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -707,12 +907,20 @@
         },
         "spacelift:index/getStackAzureDevop:getStackAzureDevop": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "project": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "project"
             ],
             "language": {
@@ -723,12 +931,20 @@
         },
         "spacelift:index/getStackBitbucketCloud:getStackBitbucketCloud": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -739,12 +955,20 @@
         },
         "spacelift:index/getStackBitbucketDatacenter:getStackBitbucketDatacenter": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -783,12 +1007,20 @@
         },
         "spacelift:index/getStackGithubEnterprise:getStackGithubEnterprise": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -799,12 +1031,20 @@
         },
         "spacelift:index/getStackGitlab:getStackGitlab": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -991,6 +1231,12 @@
         },
         "spacelift:index/getStacksStack:getStacksStack": {
             "properties": {
+                "additionalProjectGlobs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "administrative": {
                     "type": "boolean"
                 },
@@ -1263,12 +1509,20 @@
         },
         "spacelift:index/getStacksStackAzureDevop:getStacksStackAzureDevop": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "project": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "project"
             ],
             "language": {
@@ -1279,12 +1533,20 @@
         },
         "spacelift:index/getStacksStackBitbucketCloud:getStacksStackBitbucketCloud": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -1295,12 +1557,20 @@
         },
         "spacelift:index/getStacksStackBitbucketDatacenter:getStacksStackBitbucketDatacenter": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -1339,12 +1609,20 @@
         },
         "spacelift:index/getStacksStackGithubEnterprise:getStacksStackGithubEnterprise": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -1355,12 +1633,20 @@
         },
         "spacelift:index/getStacksStackGitlab:getStacksStackGitlab": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
                 "namespace": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
+                "isDefault",
                 "namespace"
             ],
             "language": {
@@ -1609,6 +1895,80 @@
         }
     },
     "resources": {
+        "spacelift:index/auditTrailWebhook:AuditTrailWebhook": {
+            "description": "`spacelift.AuditTrailWebhook` represents a webhook endpoint to which Spacelift sends POST requests about audit events.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@spacelift-io/pulumi-spacelift\";\n\nconst example = new spacelift.AuditTrailWebhook(\"example\", {\n    enabled: true,\n    endpoint: \"https://example.com\",\n    secret: \"mysecretkey\",\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nexample = spacelift.AuditTrailWebhook(\"example\",\n    enabled=True,\n    endpoint=\"https://example.com\",\n    secret=\"mysecretkey\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Spacelift.AuditTrailWebhook(\"example\", new()\n    {\n        Enabled = true,\n        Endpoint = \"https://example.com\",\n        Secret = \"mysecretkey\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewAuditTrailWebhook(ctx, \"example\", \u0026spacelift.AuditTrailWebhookArgs{\n\t\t\tEnabled:  pulumi.Bool(true),\n\t\t\tEndpoint: pulumi.String(\"https://example.com\"),\n\t\t\tSecret:   pulumi.String(\"mysecretkey\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.AuditTrailWebhook;\nimport com.pulumi.spacelift.AuditTrailWebhookArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AuditTrailWebhook(\"example\", AuditTrailWebhookArgs.builder()        \n            .enabled(true)\n            .endpoint(\"https://example.com\")\n            .secret(\"mysecretkey\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: spacelift:AuditTrailWebhook\n    properties:\n      enabled: true\n      endpoint: https://example.com\n      secret: mysecretkey\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "`enabled` determines whether the webhook is enabled. If it is not, Spacelift will not send any requests to the endpoint.\n"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "`endpoint` is the URL to which Spacelift will send POST requests about audit events.\n"
+                },
+                "includeRuns": {
+                    "type": "boolean",
+                    "description": "`include_runs` determines whether the webhook should include information about the run that triggered the event.\n"
+                },
+                "secret": {
+                    "type": "string",
+                    "description": "`secret` is a secret that Spacelift will send with the request\n",
+                    "secret": true
+                }
+            },
+            "required": [
+                "enabled",
+                "endpoint",
+                "secret"
+            ],
+            "inputProperties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "`enabled` determines whether the webhook is enabled. If it is not, Spacelift will not send any requests to the endpoint.\n"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "`endpoint` is the URL to which Spacelift will send POST requests about audit events.\n"
+                },
+                "includeRuns": {
+                    "type": "boolean",
+                    "description": "`include_runs` determines whether the webhook should include information about the run that triggered the event.\n"
+                },
+                "secret": {
+                    "type": "string",
+                    "description": "`secret` is a secret that Spacelift will send with the request\n",
+                    "secret": true
+                }
+            },
+            "requiredInputs": [
+                "enabled",
+                "endpoint",
+                "secret"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AuditTrailWebhook resources.\n",
+                "properties": {
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "`enabled` determines whether the webhook is enabled. If it is not, Spacelift will not send any requests to the endpoint.\n"
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "description": "`endpoint` is the URL to which Spacelift will send POST requests about audit events.\n"
+                    },
+                    "includeRuns": {
+                        "type": "boolean",
+                        "description": "`include_runs` determines whether the webhook should include information about the run that triggered the event.\n"
+                    },
+                    "secret": {
+                        "type": "string",
+                        "description": "`secret` is a secret that Spacelift will send with the request\n",
+                        "secret": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "spacelift:index/awsIntegration:AwsIntegration": {
             "description": "`spacelift.AwsIntegration` represents an integration with an AWS account. This integration is account-level and needs to be explicitly attached to individual stacks in order to take effect.\n\nNote: when assuming credentials for **shared workers**, Spacelift will use `$accountName@$integrationID@$stackID@$suffix` or `$accountName@$integrationID@$moduleID@$suffix` as [external ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) and `$runID@$stackID@$accountName` truncated to 64 characters as [session ID](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole),$suffix will be `read` or `write`.\n\n\n## Import\n\n\n\n```sh\n $ pulumi import spacelift:index/awsIntegration:AwsIntegration read_write_integration $INTEGRATION_ID\n```\n\n ",
             "properties": {
@@ -2254,6 +2614,83 @@
         "spacelift:index/context:Context": {
             "description": "`spacelift.Context` represents a Spacelift **context** - a collection of configuration elements (either environment variables or mounted files) that can be administratively attached to multiple stacks (`spacelift.Stack`) or modules (`spacelift.Module`) using a context attachment (`spacelift.ContextAttachment`)`\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@spacelift-io/pulumi-spacelift\";\n\nconst prod_k8s_ie = new spacelift.Context(\"prod-k8s-ie\", {description: \"Configuration details for the compute cluster in 🇮🇪\"});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nprod_k8s_ie = spacelift.Context(\"prod-k8s-ie\", description=\"Configuration details for the compute cluster in 🇮🇪\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var prod_k8s_ie = new Spacelift.Context(\"prod-k8s-ie\", new()\n    {\n        Description = \"Configuration details for the compute cluster in 🇮🇪\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewContext(ctx, \"prod-k8s-ie\", \u0026spacelift.ContextArgs{\n\t\t\tDescription: pulumi.String(\"Configuration details for the compute cluster in 🇮🇪\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.Context;\nimport com.pulumi.spacelift.ContextArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var prod_k8s_ie = new Context(\"prod-k8s-ie\", ContextArgs.builder()        \n            .description(\"Configuration details for the compute cluster in 🇮🇪\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  prod-k8s-ie:\n    type: spacelift:Context\n    properties:\n      description: \"Configuration details for the compute cluster in \\U0001F1EE\\U0001F1EA\"\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import spacelift:index/context:Context prod-k8s-ie $CONTEXT_ID\n```\n\n ",
             "properties": {
+                "afterApplies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-apply scripts\n"
+                },
+                "afterDestroys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-destroy scripts\n"
+                },
+                "afterInits": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-init scripts\n"
+                },
+                "afterPerforms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-perform scripts\n"
+                },
+                "afterPlans": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-plan scripts\n"
+                },
+                "afterRuns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-run scripts\n"
+                },
+                "beforeApplies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-apply scripts\n"
+                },
+                "beforeDestroys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-destroy scripts\n"
+                },
+                "beforeInits": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-init scripts\n"
+                },
+                "beforePerforms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-perform scripts\n"
+                },
+                "beforePlans": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-plan scripts\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "Free-form context description for users\n"
@@ -2278,6 +2715,83 @@
                 "spaceId"
             ],
             "inputProperties": {
+                "afterApplies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-apply scripts\n"
+                },
+                "afterDestroys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-destroy scripts\n"
+                },
+                "afterInits": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-init scripts\n"
+                },
+                "afterPerforms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-perform scripts\n"
+                },
+                "afterPlans": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-plan scripts\n"
+                },
+                "afterRuns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of after-run scripts\n"
+                },
+                "beforeApplies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-apply scripts\n"
+                },
+                "beforeDestroys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-destroy scripts\n"
+                },
+                "beforeInits": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-init scripts\n"
+                },
+                "beforePerforms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-perform scripts\n"
+                },
+                "beforePlans": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of before-plan scripts\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "Free-form context description for users\n"
@@ -2301,6 +2815,83 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Context resources.\n",
                 "properties": {
+                    "afterApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-apply scripts\n"
+                    },
+                    "afterDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-destroy scripts\n"
+                    },
+                    "afterInits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-init scripts\n"
+                    },
+                    "afterPerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-perform scripts\n"
+                    },
+                    "afterPlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-plan scripts\n"
+                    },
+                    "afterRuns": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-run scripts\n"
+                    },
+                    "beforeApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-apply scripts\n"
+                    },
+                    "beforeDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-destroy scripts\n"
+                    },
+                    "beforeInits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-init scripts\n"
+                    },
+                    "beforePerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-perform scripts\n"
+                    },
+                    "beforePlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-plan scripts\n"
+                    },
                     "description": {
                         "type": "string",
                         "description": "Free-form context description for users\n"
@@ -2604,7 +3195,7 @@
             }
         },
         "spacelift:index/gcpServiceAccount:GcpServiceAccount": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as google from \"@pulumi/google\";\nimport * as spacelift from \"@spacelift-io/pulumi-spacelift\";\n\nconst k8s_coreStack = new spacelift.Stack(\"k8s-coreStack\", {\n    branch: \"master\",\n    repository: \"core-infra\",\n});\nconst k8s_coreGcpServiceAccount = new spacelift.GcpServiceAccount(\"k8s-coreGcpServiceAccount\", {\n    stackId: k8s_coreStack.id,\n    tokenScopes: [\n        \"https://www.googleapis.com/auth/compute\",\n        \"https://www.googleapis.com/auth/cloud-platform\",\n        \"https://www.googleapis.com/auth/devstorage.full_control\",\n    ],\n});\nconst k8s_coregoogle_project = new google.index.Google_project(\"k8s-coregoogle_project\", {\n    name: \"Kubernetes code\",\n    projectId: \"unicorn-k8s-core\",\n    orgId: _var.gcp_organization_id,\n});\nconst k8s_coregoogle_project_iam_member = new google.index.Google_project_iam_member(\"k8s-coregoogle_project_iam_member\", {\n    project: k8s_coregoogle_project.id,\n    role: \"roles/owner\",\n    member: `serviceAccount:${k8s_coreGcpServiceAccount.serviceAccountEmail}`,\n});\n```\n```python\nimport pulumi\nimport pulumi_google as google\nimport pulumi_spacelift as spacelift\n\nk8s_core_stack = spacelift.Stack(\"k8s-coreStack\",\n    branch=\"master\",\n    repository=\"core-infra\")\nk8s_core_gcp_service_account = spacelift.GcpServiceAccount(\"k8s-coreGcpServiceAccount\",\n    stack_id=k8s_core_stack.id,\n    token_scopes=[\n        \"https://www.googleapis.com/auth/compute\",\n        \"https://www.googleapis.com/auth/cloud-platform\",\n        \"https://www.googleapis.com/auth/devstorage.full_control\",\n    ])\nk8s_coregoogle_project = google.index.Google_project(\"k8s-coregoogle_project\",\n    name=Kubernetes code,\n    project_id=unicorn-k8s-core,\n    org_id=var.gcp_organization_id)\nk8s_coregoogle_project_iam_member = google.index.Google_project_iam_member(\"k8s-coregoogle_project_iam_member\",\n    project=k8s_coregoogle_project.id,\n    role=roles/owner,\n    member=fserviceAccount:{k8s_core_gcp_service_account.service_account_email})\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Google = Pulumi.Google;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var k8s_coreStack = new Spacelift.Stack(\"k8s-coreStack\", new()\n    {\n        Branch = \"master\",\n        Repository = \"core-infra\",\n    });\n\n    var k8s_coreGcpServiceAccount = new Spacelift.GcpServiceAccount(\"k8s-coreGcpServiceAccount\", new()\n    {\n        StackId = k8s_coreStack.Id,\n        TokenScopes = new[]\n        {\n            \"https://www.googleapis.com/auth/compute\",\n            \"https://www.googleapis.com/auth/cloud-platform\",\n            \"https://www.googleapis.com/auth/devstorage.full_control\",\n        },\n    });\n\n    var k8s_coregoogle_project = new Google.Index.Google_project(\"k8s-coregoogle_project\", new()\n    {\n        Name = \"Kubernetes code\",\n        ProjectId = \"unicorn-k8s-core\",\n        OrgId = @var.Gcp_organization_id,\n    });\n\n    var k8s_coregoogle_project_iam_member = new Google.Index.Google_project_iam_member(\"k8s-coregoogle_project_iam_member\", new()\n    {\n        Project = k8s_coregoogle_project.Id,\n        Role = \"roles/owner\",\n        Member = $\"serviceAccount:{k8s_coreGcpServiceAccount.ServiceAccountEmail}\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-google/sdk/v1/go/google\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewStack(ctx, \"k8s-coreStack\", \u0026spacelift.StackArgs{\n\t\t\tBranch:     pulumi.String(\"master\"),\n\t\t\tRepository: pulumi.String(\"core-infra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewGcpServiceAccount(ctx, \"k8s-coreGcpServiceAccount\", \u0026spacelift.GcpServiceAccountArgs{\n\t\t\tStackId: k8s_coreStack.ID(),\n\t\t\tTokenScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/compute\"),\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/cloud-platform\"),\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/devstorage.full_control\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = index.NewGoogle_project(ctx, \"k8s-coregoogle_project\", \u0026index.Google_projectArgs{\n\t\t\tName:      \"Kubernetes code\",\n\t\t\tProjectId: \"unicorn-k8s-core\",\n\t\t\tOrgId:     _var.Gcp_organization_id,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = index.NewGoogle_project_iam_member(ctx, \"k8s-coregoogle_project_iam_member\", \u0026index.Google_project_iam_memberArgs{\n\t\t\tProject: k8s_coregoogle_project.Id,\n\t\t\tRole:    \"roles/owner\",\n\t\t\tMember:  pulumi.String(fmt.Sprintf(\"serviceAccount:%v\", k8s_coreGcpServiceAccount.ServiceAccountEmail)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.Stack;\nimport com.pulumi.spacelift.StackArgs;\nimport com.pulumi.spacelift.GcpServiceAccount;\nimport com.pulumi.spacelift.GcpServiceAccountArgs;\nimport com.pulumi.google.google_project;\nimport com.pulumi.google.Google_projectArgs;\nimport com.pulumi.google.google_project_iam_member;\nimport com.pulumi.google.Google_project_iam_memberArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var k8s_coreStack = new Stack(\"k8s-coreStack\", StackArgs.builder()        \n            .branch(\"master\")\n            .repository(\"core-infra\")\n            .build());\n\n        var k8s_coreGcpServiceAccount = new GcpServiceAccount(\"k8s-coreGcpServiceAccount\", GcpServiceAccountArgs.builder()        \n            .stackId(k8s_coreStack.id())\n            .tokenScopes(            \n                \"https://www.googleapis.com/auth/compute\",\n                \"https://www.googleapis.com/auth/cloud-platform\",\n                \"https://www.googleapis.com/auth/devstorage.full_control\")\n            .build());\n\n        var k8s_coregoogle_project = new Google_project(\"k8s-coregoogle_project\", Google_projectArgs.builder()        \n            .name(\"Kubernetes code\")\n            .projectId(\"unicorn-k8s-core\")\n            .orgId(var_.gcp_organization_id())\n            .build());\n\n        var k8s_coregoogle_project_iam_member = new Google_project_iam_member(\"k8s-coregoogle_project_iam_member\", Google_project_iam_memberArgs.builder()        \n            .project(k8s_coregoogle_project.id())\n            .role(\"roles/owner\")\n            .member(k8s_coreGcpServiceAccount.serviceAccountEmail().applyValue(serviceAccountEmail -\u003e String.format(\"serviceAccount:%s\", serviceAccountEmail)))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  k8s-coreStack:\n    type: spacelift:Stack\n    properties:\n      branch: master\n      repository: core-infra\n  k8s-coreGcpServiceAccount:\n    type: spacelift:GcpServiceAccount\n    properties:\n      stackId: ${[\"k8s-coreStack\"].id}\n      tokenScopes:\n        - https://www.googleapis.com/auth/compute\n        - https://www.googleapis.com/auth/cloud-platform\n        - https://www.googleapis.com/auth/devstorage.full_control\n  k8s-coregoogle_project:\n    type: google:google_project\n    properties:\n      name: Kubernetes code\n      projectId: unicorn-k8s-core\n      orgId: ${var.gcp_organization_id}\n  k8s-coregoogle_project_iam_member:\n    type: google:google_project_iam_member\n    properties:\n      project: ${[\"k8s-coregoogle_project\"].id}\n      role: roles/owner\n      member: serviceAccount:${[\"k8s-coreGcpServiceAccount\"].serviceAccountEmail}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core stack/$STACK_ID\n```\n\n\n\n```sh\n $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core module/$MODULE_ID\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as gcp from \"@pulumi/gcp\";\nimport * as spacelift from \"@spacelift-io/pulumi-spacelift\";\n\nconst k8s_coreStack = new spacelift.Stack(\"k8s-coreStack\", {\n    branch: \"master\",\n    repository: \"core-infra\",\n});\nconst k8s_coreGcpServiceAccount = new spacelift.GcpServiceAccount(\"k8s-coreGcpServiceAccount\", {\n    stackId: k8s_coreStack.id,\n    tokenScopes: [\n        \"https://www.googleapis.com/auth/compute\",\n        \"https://www.googleapis.com/auth/cloud-platform\",\n        \"https://www.googleapis.com/auth/devstorage.full_control\",\n    ],\n});\nconst k8s_coreProject = new gcp.organizations.Project(\"k8s-coreProject\", {\n    projectId: \"unicorn-k8s-core\",\n    orgId: _var.gcp_organization_id,\n});\nconst k8s_coreIAMMember = new gcp.projects.IAMMember(\"k8s-coreIAMMember\", {\n    project: k8s_coreProject.id,\n    role: \"roles/owner\",\n    member: pulumi.interpolate`serviceAccount:${k8s_coreGcpServiceAccount.serviceAccountEmail}`,\n});\n```\n```python\nimport pulumi\nimport pulumi_gcp as gcp\nimport pulumi_spacelift as spacelift\n\nk8s_core_stack = spacelift.Stack(\"k8s-coreStack\",\n    branch=\"master\",\n    repository=\"core-infra\")\nk8s_core_gcp_service_account = spacelift.GcpServiceAccount(\"k8s-coreGcpServiceAccount\",\n    stack_id=k8s_core_stack.id,\n    token_scopes=[\n        \"https://www.googleapis.com/auth/compute\",\n        \"https://www.googleapis.com/auth/cloud-platform\",\n        \"https://www.googleapis.com/auth/devstorage.full_control\",\n    ])\nk8s_core_project = gcp.organizations.Project(\"k8s-coreProject\",\n    project_id=\"unicorn-k8s-core\",\n    org_id=var[\"gcp_organization_id\"])\nk8s_core_iam_member = gcp.projects.IAMMember(\"k8s-coreIAMMember\",\n    project=k8s_core_project.id,\n    role=\"roles/owner\",\n    member=k8s_core_gcp_service_account.service_account_email.apply(lambda service_account_email: f\"serviceAccount:{service_account_email}\"))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Gcp = Pulumi.Gcp;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var k8s_coreStack = new Spacelift.Stack(\"k8s-coreStack\", new()\n    {\n        Branch = \"master\",\n        Repository = \"core-infra\",\n    });\n\n    var k8s_coreGcpServiceAccount = new Spacelift.GcpServiceAccount(\"k8s-coreGcpServiceAccount\", new()\n    {\n        StackId = k8s_coreStack.Id,\n        TokenScopes = new[]\n        {\n            \"https://www.googleapis.com/auth/compute\",\n            \"https://www.googleapis.com/auth/cloud-platform\",\n            \"https://www.googleapis.com/auth/devstorage.full_control\",\n        },\n    });\n\n    var k8s_coreProject = new Gcp.Organizations.Project(\"k8s-coreProject\", new()\n    {\n        ProjectId = \"unicorn-k8s-core\",\n        OrgId = @var.Gcp_organization_id,\n    });\n\n    var k8s_coreIAMMember = new Gcp.Projects.IAMMember(\"k8s-coreIAMMember\", new()\n    {\n        Project = k8s_coreProject.Id,\n        Role = \"roles/owner\",\n        Member = k8s_coreGcpServiceAccount.ServiceAccountEmail.Apply(serviceAccountEmail =\u003e $\"serviceAccount:{serviceAccountEmail}\"),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/organizations\"\n\t\"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/projects\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewStack(ctx, \"k8s-coreStack\", \u0026spacelift.StackArgs{\n\t\t\tBranch:     pulumi.String(\"master\"),\n\t\t\tRepository: pulumi.String(\"core-infra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewGcpServiceAccount(ctx, \"k8s-coreGcpServiceAccount\", \u0026spacelift.GcpServiceAccountArgs{\n\t\t\tStackId: k8s_coreStack.ID(),\n\t\t\tTokenScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/compute\"),\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/cloud-platform\"),\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/devstorage.full_control\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = organizations.NewProject(ctx, \"k8s-coreProject\", \u0026organizations.ProjectArgs{\n\t\t\tProjectId: pulumi.String(\"unicorn-k8s-core\"),\n\t\t\tOrgId:     pulumi.Any(_var.Gcp_organization_id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = projects.NewIAMMember(ctx, \"k8s-coreIAMMember\", \u0026projects.IAMMemberArgs{\n\t\t\tProject: k8s_coreProject.ID(),\n\t\t\tRole:    pulumi.String(\"roles/owner\"),\n\t\t\tMember: k8s_coreGcpServiceAccount.ServiceAccountEmail.ApplyT(func(serviceAccountEmail string) (string, error) {\n\t\t\t\treturn fmt.Sprintf(\"serviceAccount:%v\", serviceAccountEmail), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.Stack;\nimport com.pulumi.spacelift.StackArgs;\nimport com.pulumi.spacelift.GcpServiceAccount;\nimport com.pulumi.spacelift.GcpServiceAccountArgs;\nimport com.pulumi.gcp.organizations.Project;\nimport com.pulumi.gcp.organizations.ProjectArgs;\nimport com.pulumi.gcp.projects.IAMMember;\nimport com.pulumi.gcp.projects.IAMMemberArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var k8s_coreStack = new Stack(\"k8s-coreStack\", StackArgs.builder()        \n            .branch(\"master\")\n            .repository(\"core-infra\")\n            .build());\n\n        var k8s_coreGcpServiceAccount = new GcpServiceAccount(\"k8s-coreGcpServiceAccount\", GcpServiceAccountArgs.builder()        \n            .stackId(k8s_coreStack.id())\n            .tokenScopes(            \n                \"https://www.googleapis.com/auth/compute\",\n                \"https://www.googleapis.com/auth/cloud-platform\",\n                \"https://www.googleapis.com/auth/devstorage.full_control\")\n            .build());\n\n        var k8s_coreProject = new Project(\"k8s-coreProject\", ProjectArgs.builder()        \n            .projectId(\"unicorn-k8s-core\")\n            .orgId(var_.gcp_organization_id())\n            .build());\n\n        var k8s_coreIAMMember = new IAMMember(\"k8s-coreIAMMember\", IAMMemberArgs.builder()        \n            .project(k8s_coreProject.id())\n            .role(\"roles/owner\")\n            .member(k8s_coreGcpServiceAccount.serviceAccountEmail().applyValue(serviceAccountEmail -\u003e String.format(\"serviceAccount:%s\", serviceAccountEmail)))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  k8s-coreStack:\n    type: spacelift:Stack\n    properties:\n      branch: master\n      repository: core-infra\n  k8s-coreGcpServiceAccount:\n    type: spacelift:GcpServiceAccount\n    properties:\n      stackId: ${[\"k8s-coreStack\"].id}\n      tokenScopes:\n        - https://www.googleapis.com/auth/compute\n        - https://www.googleapis.com/auth/cloud-platform\n        - https://www.googleapis.com/auth/devstorage.full_control\n  k8s-coreProject:\n    type: gcp:organizations:Project\n    properties:\n      projectId: unicorn-k8s-core\n      orgId: ${var.gcp_organization_id}\n  k8s-coreIAMMember:\n    type: gcp:projects:IAMMember\n    properties:\n      project: ${[\"k8s-coreProject\"].id}\n      role: roles/owner\n      member: serviceAccount:${[\"k8s-coreGcpServiceAccount\"].serviceAccountEmail}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core stack/$STACK_ID\n```\n\n\n\n```sh\n $ pulumi import spacelift:index/gcpServiceAccount:GcpServiceAccount k8s-core module/$MODULE_ID\n```\n\n ",
             "properties": {
                 "moduleId": {
                     "type": "string",
@@ -3719,8 +4310,39 @@
                 "type": "object"
             }
         },
+        "spacelift:index/securityEmail:SecurityEmail": {
+            "description": "`spacelift.SecurityEmail` represents an email address that receives notifications about security issues in Spacelift.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@spacelift-io/pulumi-spacelift\";\n\nconst example = new spacelift.SecurityEmail(\"example\", {email: \"user@example.com\"});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nexample = spacelift.SecurityEmail(\"example\", email=\"user@example.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Spacelift.SecurityEmail(\"example\", new()\n    {\n        Email = \"user@example.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewSecurityEmail(ctx, \"example\", \u0026spacelift.SecurityEmailArgs{\n\t\t\tEmail: pulumi.String(\"user@example.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SecurityEmail;\nimport com.pulumi.spacelift.SecurityEmailArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new SecurityEmail(\"example\", SecurityEmailArgs.builder()        \n            .email(\"user@example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: spacelift:SecurityEmail\n    properties:\n      email: user@example.com\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email address to which the security notifications are sent\n"
+                }
+            },
+            "required": [
+                "email"
+            ],
+            "inputProperties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email address to which the security notifications are sent\n"
+                }
+            },
+            "requiredInputs": [
+                "email"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecurityEmail resources.\n",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "Email address to which the security notifications are sent\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "spacelift:index/space:Space": {
-            "description": "`spacelift.Space` represents a Spacelift **space** - a collection of resources such as stacks, modules, policies, etc. Allows for more granular access control. Can have a parent space.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@spacelift-io/pulumi-spacelift\";\n\nconst development = new spacelift.Space(\"development\", {\n    parentSpaceId: \"root\",\n    description: \"This a child of the root space. It contains all the resources common to the development infrastructure.\",\n});\nconst development_frontend = new spacelift.Space(\"development-frontend\", {\n    parentSpaceId: development.id,\n    inheritEntities: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\ndevelopment = spacelift.Space(\"development\",\n    parent_space_id=\"root\",\n    description=\"This a child of the root space. It contains all the resources common to the development infrastructure.\")\ndevelopment_frontend = spacelift.Space(\"development-frontend\",\n    parent_space_id=development.id,\n    inherit_entities=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var development = new Spacelift.Space(\"development\", new()\n    {\n        ParentSpaceId = \"root\",\n        Description = \"This a child of the root space. It contains all the resources common to the development infrastructure.\",\n    });\n\n    var development_frontend = new Spacelift.Space(\"development-frontend\", new()\n    {\n        ParentSpaceId = development.Id,\n        InheritEntities = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdevelopment, err := spacelift.NewSpace(ctx, \"development\", \u0026spacelift.SpaceArgs{\n\t\t\tParentSpaceId: pulumi.String(\"root\"),\n\t\t\tDescription:   pulumi.String(\"This a child of the root space. It contains all the resources common to the development infrastructure.\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewSpace(ctx, \"development-frontend\", \u0026spacelift.SpaceArgs{\n\t\t\tParentSpaceId:   development.ID(),\n\t\t\tInheritEntities: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.Space;\nimport com.pulumi.spacelift.SpaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var development = new Space(\"development\", SpaceArgs.builder()        \n            .parentSpaceId(\"root\")\n            .description(\"This a child of the root space. It contains all the resources common to the development infrastructure.\")\n            .build());\n\n        var development_frontend = new Space(\"development-frontend\", SpaceArgs.builder()        \n            .parentSpaceId(development.id())\n            .inheritEntities(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  development:\n    type: spacelift:Space\n    properties:\n      # Every account has a root space that serves as the root for the space tree.\n      #   # Except for the root space, all the other spaces must define their parents.\n      parentSpaceId: root\n      # An optional description of a space.\n      description: This a child of the root space. It contains all the resources common to the development infrastructure.\n  development-frontend:\n    type: spacelift:Space\n    properties:\n      # This space will be a child of the development space.\n      parentSpaceId: ${development.id}\n      # An optional value, that gives this space a read access to all the entities that it's parent has access to.\n      inheritEntities: true\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import spacelift:index/space:Space development $SPACE_ID\n```\n\n ",
+            "description": "`spacelift.Space` represents a Spacelift **space** - a collection of resources such as stacks, modules, policies, etc. Allows for more granular access control. Can have a parent space.\n\n**Please note:** the `spacelift.Space` resource requires root Admin permissions, and can only be used by administrative stacks in the root space, or using an API key or user session that has root space access.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@spacelift-io/pulumi-spacelift\";\n\nconst development = new spacelift.Space(\"development\", {\n    parentSpaceId: \"root\",\n    description: \"This a child of the root space. It contains all the resources common to the development infrastructure.\",\n});\nconst development_frontend = new spacelift.Space(\"development-frontend\", {\n    parentSpaceId: development.id,\n    inheritEntities: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\ndevelopment = spacelift.Space(\"development\",\n    parent_space_id=\"root\",\n    description=\"This a child of the root space. It contains all the resources common to the development infrastructure.\")\ndevelopment_frontend = spacelift.Space(\"development-frontend\",\n    parent_space_id=development.id,\n    inherit_entities=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var development = new Spacelift.Space(\"development\", new()\n    {\n        ParentSpaceId = \"root\",\n        Description = \"This a child of the root space. It contains all the resources common to the development infrastructure.\",\n    });\n\n    var development_frontend = new Spacelift.Space(\"development-frontend\", new()\n    {\n        ParentSpaceId = development.Id,\n        InheritEntities = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdevelopment, err := spacelift.NewSpace(ctx, \"development\", \u0026spacelift.SpaceArgs{\n\t\t\tParentSpaceId: pulumi.String(\"root\"),\n\t\t\tDescription:   pulumi.String(\"This a child of the root space. It contains all the resources common to the development infrastructure.\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewSpace(ctx, \"development-frontend\", \u0026spacelift.SpaceArgs{\n\t\t\tParentSpaceId:   development.ID(),\n\t\t\tInheritEntities: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.Space;\nimport com.pulumi.spacelift.SpaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var development = new Space(\"development\", SpaceArgs.builder()        \n            .parentSpaceId(\"root\")\n            .description(\"This a child of the root space. It contains all the resources common to the development infrastructure.\")\n            .build());\n\n        var development_frontend = new Space(\"development-frontend\", SpaceArgs.builder()        \n            .parentSpaceId(development.id())\n            .inheritEntities(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  development:\n    type: spacelift:Space\n    properties:\n      # Every account has a root space that serves as the root for the space tree.\n      #   # Except for the root space, all the other spaces must define their parents.\n      parentSpaceId: root\n      # An optional description of a space.\n      description: This a child of the root space. It contains all the resources common to the development infrastructure.\n  development-frontend:\n    type: spacelift:Space\n    properties:\n      # This space will be a child of the development space.\n      parentSpaceId: ${development.id}\n      # An optional value, that gives this space a read access to all the entities that it's parent has access to.\n      inheritEntities: true\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import spacelift:index/space:Space development $SPACE_ID\n```\n\n ",
             "properties": {
                 "description": {
                     "type": "string",
@@ -3807,6 +4429,13 @@
         "spacelift:index/stack:Stack": {
             "description": "`spacelift.Stack` combines source code and configuration to create a runtime environment where resources are managed. In this way it's similar to a stack in AWS CloudFormation, or a project on generic CI/CD platforms.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@spacelift-io/pulumi-spacelift\";\n\n// Terraform stack using Bitbucket Cloud as VCS\nconst k8s_cluster_bitbucket_cloud = new spacelift.Stack(\"k8s-cluster-bitbucket-cloud\", {\n    administrative: true,\n    autodeploy: true,\n    bitbucketCloud: {\n        namespace: \"SPACELIFT\",\n    },\n    branch: \"master\",\n    description: \"Provisions a Kubernetes cluster\",\n    projectRoot: \"cluster\",\n    repository: \"core-infra\",\n    terraformVersion: \"1.3.0\",\n});\n// Terraform stack using Bitbucket Data Center as VCS\nconst k8s_cluster_bitbucket_datacenter = new spacelift.Stack(\"k8s-cluster-bitbucket-datacenter\", {\n    administrative: true,\n    autodeploy: true,\n    bitbucketDatacenter: {\n        namespace: \"SPACELIFT\",\n    },\n    branch: \"master\",\n    description: \"Provisions a Kubernetes cluster\",\n    projectRoot: \"cluster\",\n    repository: \"core-infra\",\n    terraformVersion: \"1.3.0\",\n});\n// Terraform stack using a GitHub Custom Application. See the following page for more info: https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application\nconst k8s_cluster_github_enterprise = new spacelift.Stack(\"k8s-cluster-github-enterprise\", {\n    administrative: true,\n    autodeploy: true,\n    branch: \"master\",\n    description: \"Provisions a Kubernetes cluster\",\n    githubEnterprise: {\n        namespace: \"spacelift\",\n    },\n    projectRoot: \"cluster\",\n    repository: \"core-infra\",\n    terraformVersion: \"1.3.0\",\n});\n// Terraform stack using GitLab as VCS\nconst k8s_cluster_gitlab = new spacelift.Stack(\"k8s-cluster-gitlab\", {\n    administrative: true,\n    autodeploy: true,\n    branch: \"master\",\n    description: \"Provisions a Kubernetes cluster\",\n    gitlab: {\n        namespace: \"spacelift\",\n    },\n    projectRoot: \"cluster\",\n    repository: \"core-infra\",\n    terraformVersion: \"1.3.0\",\n});\n// Terraform stack using github.com as VCS and enabling external state access\nconst k8s_cluster = new spacelift.Stack(\"k8s-cluster\", {\n    administrative: true,\n    autodeploy: true,\n    branch: \"master\",\n    description: \"Provisions a Kubernetes cluster\",\n    projectRoot: \"cluster\",\n    repository: \"core-infra\",\n    terraformExternalStateAccess: true,\n    terraformVersion: \"1.3.0\",\n});\n// CloudFormation stack using github.com as VCS\nconst k8s_cluster_cloudformation = new spacelift.Stack(\"k8s-cluster-cloudformation\", {\n    autodeploy: true,\n    branch: \"master\",\n    cloudformation: {\n        entryTemplateFile: \"main.yaml\",\n        region: \"eu-central-1\",\n        stackName: \"k8s-cluster\",\n        templateBucket: \"s3://bucket\",\n    },\n    description: \"Provisions a Kubernetes cluster\",\n    projectRoot: \"cluster\",\n    repository: \"core-infra\",\n});\n// Pulumi stack using github.com as VCS\nconst k8s_cluster_pulumi = new spacelift.Stack(\"k8s-cluster-pulumi\", {\n    autodeploy: true,\n    branch: \"master\",\n    description: \"Provisions a Kubernetes cluster\",\n    projectRoot: \"cluster\",\n    pulumi: {\n        loginUrl: \"s3://pulumi-state-bucket\",\n        stackName: \"kubernetes-core-services\",\n    },\n    repository: \"core-infra\",\n    runnerImage: \"public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest\",\n});\n// Kubernetes stack using github.com as VCS\nconst k8s_core_kubernetes = new spacelift.Stack(\"k8s-core-kubernetes\", {\n    autodeploy: true,\n    beforeInits: [\"aws eks update-kubeconfig --region us-east-2 --name k8s-cluster\"],\n    branch: \"master\",\n    description: \"Shared cluster services (Datadog, Istio etc.)\",\n    kubernetes: {\n        kubectlVersion: \"1.26.1\",\n        namespace: \"core\",\n    },\n    projectRoot: \"core-services\",\n    repository: \"core-infra\",\n});\n// Ansible stack using github.com as VCS\nconst ansible_stack = new spacelift.Stack(\"ansible-stack\", {\n    ansible: {\n        playbook: \"main.yml\",\n    },\n    autodeploy: true,\n    branch: \"master\",\n    description: \"Provisioning EC2 machines\",\n    repository: \"ansible-playbooks\",\n    runnerImage: \"public.ecr.aws/spacelift/runner-ansible:latest\",\n});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\n# Terraform stack using Bitbucket Cloud as VCS\nk8s_cluster_bitbucket_cloud = spacelift.Stack(\"k8s-cluster-bitbucket-cloud\",\n    administrative=True,\n    autodeploy=True,\n    bitbucket_cloud=spacelift.StackBitbucketCloudArgs(\n        namespace=\"SPACELIFT\",\n    ),\n    branch=\"master\",\n    description=\"Provisions a Kubernetes cluster\",\n    project_root=\"cluster\",\n    repository=\"core-infra\",\n    terraform_version=\"1.3.0\")\n# Terraform stack using Bitbucket Data Center as VCS\nk8s_cluster_bitbucket_datacenter = spacelift.Stack(\"k8s-cluster-bitbucket-datacenter\",\n    administrative=True,\n    autodeploy=True,\n    bitbucket_datacenter=spacelift.StackBitbucketDatacenterArgs(\n        namespace=\"SPACELIFT\",\n    ),\n    branch=\"master\",\n    description=\"Provisions a Kubernetes cluster\",\n    project_root=\"cluster\",\n    repository=\"core-infra\",\n    terraform_version=\"1.3.0\")\n# Terraform stack using a GitHub Custom Application. See the following page for more info: https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application\nk8s_cluster_github_enterprise = spacelift.Stack(\"k8s-cluster-github-enterprise\",\n    administrative=True,\n    autodeploy=True,\n    branch=\"master\",\n    description=\"Provisions a Kubernetes cluster\",\n    github_enterprise=spacelift.StackGithubEnterpriseArgs(\n        namespace=\"spacelift\",\n    ),\n    project_root=\"cluster\",\n    repository=\"core-infra\",\n    terraform_version=\"1.3.0\")\n# Terraform stack using GitLab as VCS\nk8s_cluster_gitlab = spacelift.Stack(\"k8s-cluster-gitlab\",\n    administrative=True,\n    autodeploy=True,\n    branch=\"master\",\n    description=\"Provisions a Kubernetes cluster\",\n    gitlab=spacelift.StackGitlabArgs(\n        namespace=\"spacelift\",\n    ),\n    project_root=\"cluster\",\n    repository=\"core-infra\",\n    terraform_version=\"1.3.0\")\n# Terraform stack using github.com as VCS and enabling external state access\nk8s_cluster = spacelift.Stack(\"k8s-cluster\",\n    administrative=True,\n    autodeploy=True,\n    branch=\"master\",\n    description=\"Provisions a Kubernetes cluster\",\n    project_root=\"cluster\",\n    repository=\"core-infra\",\n    terraform_external_state_access=True,\n    terraform_version=\"1.3.0\")\n# CloudFormation stack using github.com as VCS\nk8s_cluster_cloudformation = spacelift.Stack(\"k8s-cluster-cloudformation\",\n    autodeploy=True,\n    branch=\"master\",\n    cloudformation=spacelift.StackCloudformationArgs(\n        entry_template_file=\"main.yaml\",\n        region=\"eu-central-1\",\n        stack_name=\"k8s-cluster\",\n        template_bucket=\"s3://bucket\",\n    ),\n    description=\"Provisions a Kubernetes cluster\",\n    project_root=\"cluster\",\n    repository=\"core-infra\")\n# Pulumi stack using github.com as VCS\nk8s_cluster_pulumi = spacelift.Stack(\"k8s-cluster-pulumi\",\n    autodeploy=True,\n    branch=\"master\",\n    description=\"Provisions a Kubernetes cluster\",\n    project_root=\"cluster\",\n    pulumi=spacelift.StackPulumiArgs(\n        login_url=\"s3://pulumi-state-bucket\",\n        stack_name=\"kubernetes-core-services\",\n    ),\n    repository=\"core-infra\",\n    runner_image=\"public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest\")\n# Kubernetes stack using github.com as VCS\nk8s_core_kubernetes = spacelift.Stack(\"k8s-core-kubernetes\",\n    autodeploy=True,\n    before_inits=[\"aws eks update-kubeconfig --region us-east-2 --name k8s-cluster\"],\n    branch=\"master\",\n    description=\"Shared cluster services (Datadog, Istio etc.)\",\n    kubernetes=spacelift.StackKubernetesArgs(\n        kubectl_version=\"1.26.1\",\n        namespace=\"core\",\n    ),\n    project_root=\"core-services\",\n    repository=\"core-infra\")\n# Ansible stack using github.com as VCS\nansible_stack = spacelift.Stack(\"ansible-stack\",\n    ansible=spacelift.StackAnsibleArgs(\n        playbook=\"main.yml\",\n    ),\n    autodeploy=True,\n    branch=\"master\",\n    description=\"Provisioning EC2 machines\",\n    repository=\"ansible-playbooks\",\n    runner_image=\"public.ecr.aws/spacelift/runner-ansible:latest\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Terraform stack using Bitbucket Cloud as VCS\n    var k8s_cluster_bitbucket_cloud = new Spacelift.Stack(\"k8s-cluster-bitbucket-cloud\", new()\n    {\n        Administrative = true,\n        Autodeploy = true,\n        BitbucketCloud = new Spacelift.Inputs.StackBitbucketCloudArgs\n        {\n            Namespace = \"SPACELIFT\",\n        },\n        Branch = \"master\",\n        Description = \"Provisions a Kubernetes cluster\",\n        ProjectRoot = \"cluster\",\n        Repository = \"core-infra\",\n        TerraformVersion = \"1.3.0\",\n    });\n\n    // Terraform stack using Bitbucket Data Center as VCS\n    var k8s_cluster_bitbucket_datacenter = new Spacelift.Stack(\"k8s-cluster-bitbucket-datacenter\", new()\n    {\n        Administrative = true,\n        Autodeploy = true,\n        BitbucketDatacenter = new Spacelift.Inputs.StackBitbucketDatacenterArgs\n        {\n            Namespace = \"SPACELIFT\",\n        },\n        Branch = \"master\",\n        Description = \"Provisions a Kubernetes cluster\",\n        ProjectRoot = \"cluster\",\n        Repository = \"core-infra\",\n        TerraformVersion = \"1.3.0\",\n    });\n\n    // Terraform stack using a GitHub Custom Application. See the following page for more info: https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application\n    var k8s_cluster_github_enterprise = new Spacelift.Stack(\"k8s-cluster-github-enterprise\", new()\n    {\n        Administrative = true,\n        Autodeploy = true,\n        Branch = \"master\",\n        Description = \"Provisions a Kubernetes cluster\",\n        GithubEnterprise = new Spacelift.Inputs.StackGithubEnterpriseArgs\n        {\n            Namespace = \"spacelift\",\n        },\n        ProjectRoot = \"cluster\",\n        Repository = \"core-infra\",\n        TerraformVersion = \"1.3.0\",\n    });\n\n    // Terraform stack using GitLab as VCS\n    var k8s_cluster_gitlab = new Spacelift.Stack(\"k8s-cluster-gitlab\", new()\n    {\n        Administrative = true,\n        Autodeploy = true,\n        Branch = \"master\",\n        Description = \"Provisions a Kubernetes cluster\",\n        Gitlab = new Spacelift.Inputs.StackGitlabArgs\n        {\n            Namespace = \"spacelift\",\n        },\n        ProjectRoot = \"cluster\",\n        Repository = \"core-infra\",\n        TerraformVersion = \"1.3.0\",\n    });\n\n    // Terraform stack using github.com as VCS and enabling external state access\n    var k8s_cluster = new Spacelift.Stack(\"k8s-cluster\", new()\n    {\n        Administrative = true,\n        Autodeploy = true,\n        Branch = \"master\",\n        Description = \"Provisions a Kubernetes cluster\",\n        ProjectRoot = \"cluster\",\n        Repository = \"core-infra\",\n        TerraformExternalStateAccess = true,\n        TerraformVersion = \"1.3.0\",\n    });\n\n    // CloudFormation stack using github.com as VCS\n    var k8s_cluster_cloudformation = new Spacelift.Stack(\"k8s-cluster-cloudformation\", new()\n    {\n        Autodeploy = true,\n        Branch = \"master\",\n        Cloudformation = new Spacelift.Inputs.StackCloudformationArgs\n        {\n            EntryTemplateFile = \"main.yaml\",\n            Region = \"eu-central-1\",\n            StackName = \"k8s-cluster\",\n            TemplateBucket = \"s3://bucket\",\n        },\n        Description = \"Provisions a Kubernetes cluster\",\n        ProjectRoot = \"cluster\",\n        Repository = \"core-infra\",\n    });\n\n    // Pulumi stack using github.com as VCS\n    var k8s_cluster_pulumi = new Spacelift.Stack(\"k8s-cluster-pulumi\", new()\n    {\n        Autodeploy = true,\n        Branch = \"master\",\n        Description = \"Provisions a Kubernetes cluster\",\n        ProjectRoot = \"cluster\",\n        Pulumi_backend = new Spacelift.Inputs.StackPulumiArgs\n        {\n            LoginUrl = \"s3://pulumi-state-bucket\",\n            StackName = \"kubernetes-core-services\",\n        },\n        Repository = \"core-infra\",\n        RunnerImage = \"public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest\",\n    });\n\n    // Kubernetes stack using github.com as VCS\n    var k8s_core_kubernetes = new Spacelift.Stack(\"k8s-core-kubernetes\", new()\n    {\n        Autodeploy = true,\n        BeforeInits = new[]\n        {\n            \"aws eks update-kubeconfig --region us-east-2 --name k8s-cluster\",\n        },\n        Branch = \"master\",\n        Description = \"Shared cluster services (Datadog, Istio etc.)\",\n        Kubernetes = new Spacelift.Inputs.StackKubernetesArgs\n        {\n            KubectlVersion = \"1.26.1\",\n            Namespace = \"core\",\n        },\n        ProjectRoot = \"core-services\",\n        Repository = \"core-infra\",\n    });\n\n    // Ansible stack using github.com as VCS\n    var ansible_stack = new Spacelift.Stack(\"ansible-stack\", new()\n    {\n        Ansible = new Spacelift.Inputs.StackAnsibleArgs\n        {\n            Playbook = \"main.yml\",\n        },\n        Autodeploy = true,\n        Branch = \"master\",\n        Description = \"Provisioning EC2 machines\",\n        Repository = \"ansible-playbooks\",\n        RunnerImage = \"public.ecr.aws/spacelift/runner-ansible:latest\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewStack(ctx, \"k8s-cluster-bitbucket-cloud\", \u0026spacelift.StackArgs{\n\t\t\tAdministrative: pulumi.Bool(true),\n\t\t\tAutodeploy:     pulumi.Bool(true),\n\t\t\tBitbucketCloud: \u0026spacelift.StackBitbucketCloudArgs{\n\t\t\t\tNamespace: pulumi.String(\"SPACELIFT\"),\n\t\t\t},\n\t\t\tBranch:           pulumi.String(\"master\"),\n\t\t\tDescription:      pulumi.String(\"Provisions a Kubernetes cluster\"),\n\t\t\tProjectRoot:      pulumi.String(\"cluster\"),\n\t\t\tRepository:       pulumi.String(\"core-infra\"),\n\t\t\tTerraformVersion: pulumi.String(\"1.3.0\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStack(ctx, \"k8s-cluster-bitbucket-datacenter\", \u0026spacelift.StackArgs{\n\t\t\tAdministrative: pulumi.Bool(true),\n\t\t\tAutodeploy:     pulumi.Bool(true),\n\t\t\tBitbucketDatacenter: \u0026spacelift.StackBitbucketDatacenterArgs{\n\t\t\t\tNamespace: pulumi.String(\"SPACELIFT\"),\n\t\t\t},\n\t\t\tBranch:           pulumi.String(\"master\"),\n\t\t\tDescription:      pulumi.String(\"Provisions a Kubernetes cluster\"),\n\t\t\tProjectRoot:      pulumi.String(\"cluster\"),\n\t\t\tRepository:       pulumi.String(\"core-infra\"),\n\t\t\tTerraformVersion: pulumi.String(\"1.3.0\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStack(ctx, \"k8s-cluster-github-enterprise\", \u0026spacelift.StackArgs{\n\t\t\tAdministrative: pulumi.Bool(true),\n\t\t\tAutodeploy:     pulumi.Bool(true),\n\t\t\tBranch:         pulumi.String(\"master\"),\n\t\t\tDescription:    pulumi.String(\"Provisions a Kubernetes cluster\"),\n\t\t\tGithubEnterprise: \u0026spacelift.StackGithubEnterpriseArgs{\n\t\t\t\tNamespace: pulumi.String(\"spacelift\"),\n\t\t\t},\n\t\t\tProjectRoot:      pulumi.String(\"cluster\"),\n\t\t\tRepository:       pulumi.String(\"core-infra\"),\n\t\t\tTerraformVersion: pulumi.String(\"1.3.0\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStack(ctx, \"k8s-cluster-gitlab\", \u0026spacelift.StackArgs{\n\t\t\tAdministrative: pulumi.Bool(true),\n\t\t\tAutodeploy:     pulumi.Bool(true),\n\t\t\tBranch:         pulumi.String(\"master\"),\n\t\t\tDescription:    pulumi.String(\"Provisions a Kubernetes cluster\"),\n\t\t\tGitlab: \u0026spacelift.StackGitlabArgs{\n\t\t\t\tNamespace: pulumi.String(\"spacelift\"),\n\t\t\t},\n\t\t\tProjectRoot:      pulumi.String(\"cluster\"),\n\t\t\tRepository:       pulumi.String(\"core-infra\"),\n\t\t\tTerraformVersion: pulumi.String(\"1.3.0\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStack(ctx, \"k8s-cluster\", \u0026spacelift.StackArgs{\n\t\t\tAdministrative:               pulumi.Bool(true),\n\t\t\tAutodeploy:                   pulumi.Bool(true),\n\t\t\tBranch:                       pulumi.String(\"master\"),\n\t\t\tDescription:                  pulumi.String(\"Provisions a Kubernetes cluster\"),\n\t\t\tProjectRoot:                  pulumi.String(\"cluster\"),\n\t\t\tRepository:                   pulumi.String(\"core-infra\"),\n\t\t\tTerraformExternalStateAccess: pulumi.Bool(true),\n\t\t\tTerraformVersion:             pulumi.String(\"1.3.0\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStack(ctx, \"k8s-cluster-cloudformation\", \u0026spacelift.StackArgs{\n\t\t\tAutodeploy: pulumi.Bool(true),\n\t\t\tBranch:     pulumi.String(\"master\"),\n\t\t\tCloudformation: \u0026spacelift.StackCloudformationArgs{\n\t\t\t\tEntryTemplateFile: pulumi.String(\"main.yaml\"),\n\t\t\t\tRegion:            pulumi.String(\"eu-central-1\"),\n\t\t\t\tStackName:         pulumi.String(\"k8s-cluster\"),\n\t\t\t\tTemplateBucket:    pulumi.String(\"s3://bucket\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"Provisions a Kubernetes cluster\"),\n\t\t\tProjectRoot: pulumi.String(\"cluster\"),\n\t\t\tRepository:  pulumi.String(\"core-infra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStack(ctx, \"k8s-cluster-pulumi\", \u0026spacelift.StackArgs{\n\t\t\tAutodeploy:  pulumi.Bool(true),\n\t\t\tBranch:      pulumi.String(\"master\"),\n\t\t\tDescription: pulumi.String(\"Provisions a Kubernetes cluster\"),\n\t\t\tProjectRoot: pulumi.String(\"cluster\"),\n\t\t\tPulumi: \u0026spacelift.StackPulumiArgs{\n\t\t\t\tLoginUrl:  pulumi.String(\"s3://pulumi-state-bucket\"),\n\t\t\t\tStackName: pulumi.String(\"kubernetes-core-services\"),\n\t\t\t},\n\t\t\tRepository:  pulumi.String(\"core-infra\"),\n\t\t\tRunnerImage: pulumi.String(\"public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStack(ctx, \"k8s-core-kubernetes\", \u0026spacelift.StackArgs{\n\t\t\tAutodeploy: pulumi.Bool(true),\n\t\t\tBeforeInits: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"aws eks update-kubeconfig --region us-east-2 --name k8s-cluster\"),\n\t\t\t},\n\t\t\tBranch:      pulumi.String(\"master\"),\n\t\t\tDescription: pulumi.String(\"Shared cluster services (Datadog, Istio etc.)\"),\n\t\t\tKubernetes: \u0026spacelift.StackKubernetesArgs{\n\t\t\t\tKubectlVersion: pulumi.String(\"1.26.1\"),\n\t\t\t\tNamespace:      pulumi.String(\"core\"),\n\t\t\t},\n\t\t\tProjectRoot: pulumi.String(\"core-services\"),\n\t\t\tRepository:  pulumi.String(\"core-infra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStack(ctx, \"ansible-stack\", \u0026spacelift.StackArgs{\n\t\t\tAnsible: \u0026spacelift.StackAnsibleArgs{\n\t\t\t\tPlaybook: pulumi.String(\"main.yml\"),\n\t\t\t},\n\t\t\tAutodeploy:  pulumi.Bool(true),\n\t\t\tBranch:      pulumi.String(\"master\"),\n\t\t\tDescription: pulumi.String(\"Provisioning EC2 machines\"),\n\t\t\tRepository:  pulumi.String(\"ansible-playbooks\"),\n\t\t\tRunnerImage: pulumi.String(\"public.ecr.aws/spacelift/runner-ansible:latest\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.Stack;\nimport com.pulumi.spacelift.StackArgs;\nimport com.pulumi.spacelift.inputs.StackBitbucketCloudArgs;\nimport com.pulumi.spacelift.inputs.StackBitbucketDatacenterArgs;\nimport com.pulumi.spacelift.inputs.StackGithubEnterpriseArgs;\nimport com.pulumi.spacelift.inputs.StackGitlabArgs;\nimport com.pulumi.spacelift.inputs.StackCloudformationArgs;\nimport com.pulumi.spacelift.inputs.StackPulumiArgs;\nimport com.pulumi.spacelift.inputs.StackKubernetesArgs;\nimport com.pulumi.spacelift.inputs.StackAnsibleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var k8s_cluster_bitbucket_cloud = new Stack(\"k8s-cluster-bitbucket-cloud\", StackArgs.builder()        \n            .administrative(true)\n            .autodeploy(true)\n            .bitbucketCloud(StackBitbucketCloudArgs.builder()\n                .namespace(\"SPACELIFT\")\n                .build())\n            .branch(\"master\")\n            .description(\"Provisions a Kubernetes cluster\")\n            .projectRoot(\"cluster\")\n            .repository(\"core-infra\")\n            .terraformVersion(\"1.3.0\")\n            .build());\n\n        var k8s_cluster_bitbucket_datacenter = new Stack(\"k8s-cluster-bitbucket-datacenter\", StackArgs.builder()        \n            .administrative(true)\n            .autodeploy(true)\n            .bitbucketDatacenter(StackBitbucketDatacenterArgs.builder()\n                .namespace(\"SPACELIFT\")\n                .build())\n            .branch(\"master\")\n            .description(\"Provisions a Kubernetes cluster\")\n            .projectRoot(\"cluster\")\n            .repository(\"core-infra\")\n            .terraformVersion(\"1.3.0\")\n            .build());\n\n        var k8s_cluster_github_enterprise = new Stack(\"k8s-cluster-github-enterprise\", StackArgs.builder()        \n            .administrative(true)\n            .autodeploy(true)\n            .branch(\"master\")\n            .description(\"Provisions a Kubernetes cluster\")\n            .githubEnterprise(StackGithubEnterpriseArgs.builder()\n                .namespace(\"spacelift\")\n                .build())\n            .projectRoot(\"cluster\")\n            .repository(\"core-infra\")\n            .terraformVersion(\"1.3.0\")\n            .build());\n\n        var k8s_cluster_gitlab = new Stack(\"k8s-cluster-gitlab\", StackArgs.builder()        \n            .administrative(true)\n            .autodeploy(true)\n            .branch(\"master\")\n            .description(\"Provisions a Kubernetes cluster\")\n            .gitlab(StackGitlabArgs.builder()\n                .namespace(\"spacelift\")\n                .build())\n            .projectRoot(\"cluster\")\n            .repository(\"core-infra\")\n            .terraformVersion(\"1.3.0\")\n            .build());\n\n        var k8s_cluster = new Stack(\"k8s-cluster\", StackArgs.builder()        \n            .administrative(true)\n            .autodeploy(true)\n            .branch(\"master\")\n            .description(\"Provisions a Kubernetes cluster\")\n            .projectRoot(\"cluster\")\n            .repository(\"core-infra\")\n            .terraformExternalStateAccess(true)\n            .terraformVersion(\"1.3.0\")\n            .build());\n\n        var k8s_cluster_cloudformation = new Stack(\"k8s-cluster-cloudformation\", StackArgs.builder()        \n            .autodeploy(true)\n            .branch(\"master\")\n            .cloudformation(StackCloudformationArgs.builder()\n                .entryTemplateFile(\"main.yaml\")\n                .region(\"eu-central-1\")\n                .stackName(\"k8s-cluster\")\n                .templateBucket(\"s3://bucket\")\n                .build())\n            .description(\"Provisions a Kubernetes cluster\")\n            .projectRoot(\"cluster\")\n            .repository(\"core-infra\")\n            .build());\n\n        var k8s_cluster_pulumi = new Stack(\"k8s-cluster-pulumi\", StackArgs.builder()        \n            .autodeploy(true)\n            .branch(\"master\")\n            .description(\"Provisions a Kubernetes cluster\")\n            .projectRoot(\"cluster\")\n            .pulumi(StackPulumiArgs.builder()\n                .loginUrl(\"s3://pulumi-state-bucket\")\n                .stackName(\"kubernetes-core-services\")\n                .build())\n            .repository(\"core-infra\")\n            .runnerImage(\"public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest\")\n            .build());\n\n        var k8s_core_kubernetes = new Stack(\"k8s-core-kubernetes\", StackArgs.builder()        \n            .autodeploy(true)\n            .beforeInits(\"aws eks update-kubeconfig --region us-east-2 --name k8s-cluster\")\n            .branch(\"master\")\n            .description(\"Shared cluster services (Datadog, Istio etc.)\")\n            .kubernetes(StackKubernetesArgs.builder()\n                .kubectlVersion(\"1.26.1\")\n                .namespace(\"core\")\n                .build())\n            .projectRoot(\"core-services\")\n            .repository(\"core-infra\")\n            .build());\n\n        var ansible_stack = new Stack(\"ansible-stack\", StackArgs.builder()        \n            .ansible(StackAnsibleArgs.builder()\n                .playbook(\"main.yml\")\n                .build())\n            .autodeploy(true)\n            .branch(\"master\")\n            .description(\"Provisioning EC2 machines\")\n            .repository(\"ansible-playbooks\")\n            .runnerImage(\"public.ecr.aws/spacelift/runner-ansible:latest\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Terraform stack using Bitbucket Cloud as VCS\n  k8s-cluster-bitbucket-cloud:\n    type: spacelift:Stack\n    properties:\n      administrative: true\n      autodeploy: true\n      bitbucketCloud:\n        namespace: SPACELIFT\n      branch: master\n      description: Provisions a Kubernetes cluster\n      projectRoot: cluster\n      repository: core-infra\n      terraformVersion: 1.3.0\n  # Terraform stack using Bitbucket Data Center as VCS\n  k8s-cluster-bitbucket-datacenter:\n    type: spacelift:Stack\n    properties:\n      administrative: true\n      autodeploy: true\n      bitbucketDatacenter:\n        namespace: SPACELIFT\n      branch: master\n      description: Provisions a Kubernetes cluster\n      projectRoot: cluster\n      repository: core-infra\n      terraformVersion: 1.3.0\n  # Terraform stack using a GitHub Custom Application. See the following page for more info: https://docs.spacelift.io/integrations/source-control/github#setting-up-the-custom-application\n  k8s-cluster-github-enterprise:\n    type: spacelift:Stack\n    properties:\n      administrative: true\n      autodeploy: true\n      branch: master\n      description: Provisions a Kubernetes cluster\n      githubEnterprise:\n        namespace: spacelift\n      projectRoot: cluster\n      repository: core-infra\n      terraformVersion: 1.3.0\n  # Terraform stack using GitLab as VCS\n  k8s-cluster-gitlab:\n    type: spacelift:Stack\n    properties:\n      administrative: true\n      autodeploy: true\n      branch: master\n      description: Provisions a Kubernetes cluster\n      gitlab:\n        namespace: spacelift\n      projectRoot: cluster\n      repository: core-infra\n      terraformVersion: 1.3.0\n  # Terraform stack using github.com as VCS and enabling external state access\n  k8s-cluster:\n    type: spacelift:Stack\n    properties:\n      administrative: true\n      autodeploy: true\n      branch: master\n      description: Provisions a Kubernetes cluster\n      projectRoot: cluster\n      repository: core-infra\n      terraformExternalStateAccess: true\n      terraformVersion: 1.3.0\n  # CloudFormation stack using github.com as VCS\n  k8s-cluster-cloudformation:\n    type: spacelift:Stack\n    properties:\n      autodeploy: true\n      branch: master\n      cloudformation:\n        entryTemplateFile: main.yaml\n        region: eu-central-1\n        stackName: k8s-cluster\n        templateBucket: s3://bucket\n      description: Provisions a Kubernetes cluster\n      projectRoot: cluster\n      repository: core-infra\n  # Pulumi stack using github.com as VCS\n  k8s-cluster-pulumi:\n    type: spacelift:Stack\n    properties:\n      autodeploy: true\n      branch: master\n      description: Provisions a Kubernetes cluster\n      projectRoot: cluster\n      pulumi:\n        loginUrl: s3://pulumi-state-bucket\n        stackName: kubernetes-core-services\n      repository: core-infra\n      runnerImage: public.ecr.aws/t0p9w2l5/runner-pulumi-javascript:latest\n  # Kubernetes stack using github.com as VCS\n  k8s-core-kubernetes:\n    type: spacelift:Stack\n    properties:\n      autodeploy: true\n      # You can use hooks to authenticate with your cluster\n      beforeInits:\n        - aws eks update-kubeconfig --region us-east-2 --name k8s-cluster\n      branch: master\n      description: Shared cluster services (Datadog, Istio etc.)\n      kubernetes:\n        kubectlVersion: 1.26.1\n        namespace: core\n      projectRoot: core-services\n      repository: core-infra\n  # Ansible stack using github.com as VCS\n  ansible-stack:\n    type: spacelift:Stack\n    properties:\n      ansible:\n        playbook: main.yml\n      autodeploy: true\n      branch: master\n      description: Provisioning EC2 machines\n      repository: ansible-playbooks\n      runnerImage: public.ecr.aws/spacelift/runner-ansible:latest\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n\n\n```sh\n $ pulumi import spacelift:index/stack:Stack k8s_core $STACK_ID\n```\n\n ",
             "properties": {
+                "additionalProjectGlobs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Project globs is an optional list of paths to track changes of in addition to the project root.\n"
+                },
                 "administrative": {
                     "type": "boolean",
                     "description": "Indicates whether this stack can manage others. Defaults to `false`.\n"
@@ -4050,6 +4679,13 @@
                 "terraformWorkflowTool"
             ],
             "inputProperties": {
+                "additionalProjectGlobs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Project globs is an optional list of paths to track changes of in addition to the project root.\n"
+                },
                 "administrative": {
                     "type": "boolean",
                     "description": "Indicates whether this stack can manage others. Defaults to `false`.\n"
@@ -4288,6 +4924,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Stack resources.\n",
                 "properties": {
+                    "additionalProjectGlobs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Project globs is an optional list of paths to track changes of in addition to the project root.\n"
+                    },
                     "administrative": {
                         "type": "boolean",
                         "description": "Indicates whether this stack can manage others. Defaults to `false`.\n"
@@ -4821,7 +5464,7 @@
             }
         },
         "spacelift:index/stackGcpServiceAccount:StackGcpServiceAccount": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as google from \"@pulumi/google\";\nimport * as spacelift from \"@spacelift-io/pulumi-spacelift\";\n\nconst k8s_coreStack = new spacelift.Stack(\"k8s-coreStack\", {\n    branch: \"master\",\n    repository: \"core-infra\",\n});\nconst k8s_coreStackGcpServiceAccount = new spacelift.StackGcpServiceAccount(\"k8s-coreStackGcpServiceAccount\", {\n    stackId: k8s_coreStack.id,\n    tokenScopes: [\n        \"https://www.googleapis.com/auth/compute\",\n        \"https://www.googleapis.com/auth/cloud-platform\",\n        \"https://www.googleapis.com/auth/devstorage.full_control\",\n    ],\n});\nconst k8s_coregoogle_project = new google.index.Google_project(\"k8s-coregoogle_project\", {\n    name: \"Kubernetes code\",\n    projectId: \"unicorn-k8s-core\",\n    orgId: _var.gcp_organization_id,\n});\nconst k8s_coregoogle_project_iam_member = new google.index.Google_project_iam_member(\"k8s-coregoogle_project_iam_member\", {\n    project: k8s_coregoogle_project.id,\n    role: \"roles/owner\",\n    member: `serviceAccount:${k8s_coreStackGcpServiceAccount.serviceAccountEmail}`,\n});\n```\n```python\nimport pulumi\nimport pulumi_google as google\nimport pulumi_spacelift as spacelift\n\nk8s_core_stack = spacelift.Stack(\"k8s-coreStack\",\n    branch=\"master\",\n    repository=\"core-infra\")\nk8s_core_stack_gcp_service_account = spacelift.StackGcpServiceAccount(\"k8s-coreStackGcpServiceAccount\",\n    stack_id=k8s_core_stack.id,\n    token_scopes=[\n        \"https://www.googleapis.com/auth/compute\",\n        \"https://www.googleapis.com/auth/cloud-platform\",\n        \"https://www.googleapis.com/auth/devstorage.full_control\",\n    ])\nk8s_coregoogle_project = google.index.Google_project(\"k8s-coregoogle_project\",\n    name=Kubernetes code,\n    project_id=unicorn-k8s-core,\n    org_id=var.gcp_organization_id)\nk8s_coregoogle_project_iam_member = google.index.Google_project_iam_member(\"k8s-coregoogle_project_iam_member\",\n    project=k8s_coregoogle_project.id,\n    role=roles/owner,\n    member=fserviceAccount:{k8s_core_stack_gcp_service_account.service_account_email})\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Google = Pulumi.Google;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var k8s_coreStack = new Spacelift.Stack(\"k8s-coreStack\", new()\n    {\n        Branch = \"master\",\n        Repository = \"core-infra\",\n    });\n\n    var k8s_coreStackGcpServiceAccount = new Spacelift.StackGcpServiceAccount(\"k8s-coreStackGcpServiceAccount\", new()\n    {\n        StackId = k8s_coreStack.Id,\n        TokenScopes = new[]\n        {\n            \"https://www.googleapis.com/auth/compute\",\n            \"https://www.googleapis.com/auth/cloud-platform\",\n            \"https://www.googleapis.com/auth/devstorage.full_control\",\n        },\n    });\n\n    var k8s_coregoogle_project = new Google.Index.Google_project(\"k8s-coregoogle_project\", new()\n    {\n        Name = \"Kubernetes code\",\n        ProjectId = \"unicorn-k8s-core\",\n        OrgId = @var.Gcp_organization_id,\n    });\n\n    var k8s_coregoogle_project_iam_member = new Google.Index.Google_project_iam_member(\"k8s-coregoogle_project_iam_member\", new()\n    {\n        Project = k8s_coregoogle_project.Id,\n        Role = \"roles/owner\",\n        Member = $\"serviceAccount:{k8s_coreStackGcpServiceAccount.ServiceAccountEmail}\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-google/sdk/v1/go/google\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewStack(ctx, \"k8s-coreStack\", \u0026spacelift.StackArgs{\n\t\t\tBranch:     pulumi.String(\"master\"),\n\t\t\tRepository: pulumi.String(\"core-infra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStackGcpServiceAccount(ctx, \"k8s-coreStackGcpServiceAccount\", \u0026spacelift.StackGcpServiceAccountArgs{\n\t\t\tStackId: k8s_coreStack.ID(),\n\t\t\tTokenScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/compute\"),\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/cloud-platform\"),\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/devstorage.full_control\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = index.NewGoogle_project(ctx, \"k8s-coregoogle_project\", \u0026index.Google_projectArgs{\n\t\t\tName:      \"Kubernetes code\",\n\t\t\tProjectId: \"unicorn-k8s-core\",\n\t\t\tOrgId:     _var.Gcp_organization_id,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = index.NewGoogle_project_iam_member(ctx, \"k8s-coregoogle_project_iam_member\", \u0026index.Google_project_iam_memberArgs{\n\t\t\tProject: k8s_coregoogle_project.Id,\n\t\t\tRole:    \"roles/owner\",\n\t\t\tMember:  pulumi.String(fmt.Sprintf(\"serviceAccount:%v\", k8s_coreStackGcpServiceAccount.ServiceAccountEmail)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.Stack;\nimport com.pulumi.spacelift.StackArgs;\nimport com.pulumi.spacelift.StackGcpServiceAccount;\nimport com.pulumi.spacelift.StackGcpServiceAccountArgs;\nimport com.pulumi.google.google_project;\nimport com.pulumi.google.Google_projectArgs;\nimport com.pulumi.google.google_project_iam_member;\nimport com.pulumi.google.Google_project_iam_memberArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var k8s_coreStack = new Stack(\"k8s-coreStack\", StackArgs.builder()        \n            .branch(\"master\")\n            .repository(\"core-infra\")\n            .build());\n\n        var k8s_coreStackGcpServiceAccount = new StackGcpServiceAccount(\"k8s-coreStackGcpServiceAccount\", StackGcpServiceAccountArgs.builder()        \n            .stackId(k8s_coreStack.id())\n            .tokenScopes(            \n                \"https://www.googleapis.com/auth/compute\",\n                \"https://www.googleapis.com/auth/cloud-platform\",\n                \"https://www.googleapis.com/auth/devstorage.full_control\")\n            .build());\n\n        var k8s_coregoogle_project = new Google_project(\"k8s-coregoogle_project\", Google_projectArgs.builder()        \n            .name(\"Kubernetes code\")\n            .projectId(\"unicorn-k8s-core\")\n            .orgId(var_.gcp_organization_id())\n            .build());\n\n        var k8s_coregoogle_project_iam_member = new Google_project_iam_member(\"k8s-coregoogle_project_iam_member\", Google_project_iam_memberArgs.builder()        \n            .project(k8s_coregoogle_project.id())\n            .role(\"roles/owner\")\n            .member(k8s_coreStackGcpServiceAccount.serviceAccountEmail().applyValue(serviceAccountEmail -\u003e String.format(\"serviceAccount:%s\", serviceAccountEmail)))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  k8s-coreStack:\n    type: spacelift:Stack\n    properties:\n      branch: master\n      repository: core-infra\n  k8s-coreStackGcpServiceAccount:\n    type: spacelift:StackGcpServiceAccount\n    properties:\n      stackId: ${[\"k8s-coreStack\"].id}\n      tokenScopes:\n        - https://www.googleapis.com/auth/compute\n        - https://www.googleapis.com/auth/cloud-platform\n        - https://www.googleapis.com/auth/devstorage.full_control\n  k8s-coregoogle_project:\n    type: google:google_project\n    properties:\n      name: Kubernetes code\n      projectId: unicorn-k8s-core\n      orgId: ${var.gcp_organization_id}\n  k8s-coregoogle_project_iam_member:\n    type: google:google_project_iam_member\n    properties:\n      project: ${[\"k8s-coregoogle_project\"].id}\n      role: roles/owner\n      member: serviceAccount:${[\"k8s-coreStackGcpServiceAccount\"].serviceAccountEmail}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as gcp from \"@pulumi/gcp\";\nimport * as spacelift from \"@spacelift-io/pulumi-spacelift\";\n\nconst k8s_coreStack = new spacelift.Stack(\"k8s-coreStack\", {\n    branch: \"master\",\n    repository: \"core-infra\",\n});\nconst k8s_coreStackGcpServiceAccount = new spacelift.StackGcpServiceAccount(\"k8s-coreStackGcpServiceAccount\", {\n    stackId: k8s_coreStack.id,\n    tokenScopes: [\n        \"https://www.googleapis.com/auth/compute\",\n        \"https://www.googleapis.com/auth/cloud-platform\",\n        \"https://www.googleapis.com/auth/devstorage.full_control\",\n    ],\n});\nconst k8s_coreProject = new gcp.organizations.Project(\"k8s-coreProject\", {\n    projectId: \"unicorn-k8s-core\",\n    orgId: _var.gcp_organization_id,\n});\nconst k8s_coreIAMMember = new gcp.projects.IAMMember(\"k8s-coreIAMMember\", {\n    project: k8s_coreProject.id,\n    role: \"roles/owner\",\n    member: pulumi.interpolate`serviceAccount:${k8s_coreStackGcpServiceAccount.serviceAccountEmail}`,\n});\n```\n```python\nimport pulumi\nimport pulumi_gcp as gcp\nimport pulumi_spacelift as spacelift\n\nk8s_core_stack = spacelift.Stack(\"k8s-coreStack\",\n    branch=\"master\",\n    repository=\"core-infra\")\nk8s_core_stack_gcp_service_account = spacelift.StackGcpServiceAccount(\"k8s-coreStackGcpServiceAccount\",\n    stack_id=k8s_core_stack.id,\n    token_scopes=[\n        \"https://www.googleapis.com/auth/compute\",\n        \"https://www.googleapis.com/auth/cloud-platform\",\n        \"https://www.googleapis.com/auth/devstorage.full_control\",\n    ])\nk8s_core_project = gcp.organizations.Project(\"k8s-coreProject\",\n    project_id=\"unicorn-k8s-core\",\n    org_id=var[\"gcp_organization_id\"])\nk8s_core_iam_member = gcp.projects.IAMMember(\"k8s-coreIAMMember\",\n    project=k8s_core_project.id,\n    role=\"roles/owner\",\n    member=k8s_core_stack_gcp_service_account.service_account_email.apply(lambda service_account_email: f\"serviceAccount:{service_account_email}\"))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Gcp = Pulumi.Gcp;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var k8s_coreStack = new Spacelift.Stack(\"k8s-coreStack\", new()\n    {\n        Branch = \"master\",\n        Repository = \"core-infra\",\n    });\n\n    var k8s_coreStackGcpServiceAccount = new Spacelift.StackGcpServiceAccount(\"k8s-coreStackGcpServiceAccount\", new()\n    {\n        StackId = k8s_coreStack.Id,\n        TokenScopes = new[]\n        {\n            \"https://www.googleapis.com/auth/compute\",\n            \"https://www.googleapis.com/auth/cloud-platform\",\n            \"https://www.googleapis.com/auth/devstorage.full_control\",\n        },\n    });\n\n    var k8s_coreProject = new Gcp.Organizations.Project(\"k8s-coreProject\", new()\n    {\n        ProjectId = \"unicorn-k8s-core\",\n        OrgId = @var.Gcp_organization_id,\n    });\n\n    var k8s_coreIAMMember = new Gcp.Projects.IAMMember(\"k8s-coreIAMMember\", new()\n    {\n        Project = k8s_coreProject.Id,\n        Role = \"roles/owner\",\n        Member = k8s_coreStackGcpServiceAccount.ServiceAccountEmail.Apply(serviceAccountEmail =\u003e $\"serviceAccount:{serviceAccountEmail}\"),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/organizations\"\n\t\"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/projects\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.NewStack(ctx, \"k8s-coreStack\", \u0026spacelift.StackArgs{\n\t\t\tBranch:     pulumi.String(\"master\"),\n\t\t\tRepository: pulumi.String(\"core-infra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = spacelift.NewStackGcpServiceAccount(ctx, \"k8s-coreStackGcpServiceAccount\", \u0026spacelift.StackGcpServiceAccountArgs{\n\t\t\tStackId: k8s_coreStack.ID(),\n\t\t\tTokenScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/compute\"),\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/cloud-platform\"),\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/devstorage.full_control\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = organizations.NewProject(ctx, \"k8s-coreProject\", \u0026organizations.ProjectArgs{\n\t\t\tProjectId: pulumi.String(\"unicorn-k8s-core\"),\n\t\t\tOrgId:     pulumi.Any(_var.Gcp_organization_id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = projects.NewIAMMember(ctx, \"k8s-coreIAMMember\", \u0026projects.IAMMemberArgs{\n\t\t\tProject: k8s_coreProject.ID(),\n\t\t\tRole:    pulumi.String(\"roles/owner\"),\n\t\t\tMember: k8s_coreStackGcpServiceAccount.ServiceAccountEmail.ApplyT(func(serviceAccountEmail string) (string, error) {\n\t\t\t\treturn fmt.Sprintf(\"serviceAccount:%v\", serviceAccountEmail), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.Stack;\nimport com.pulumi.spacelift.StackArgs;\nimport com.pulumi.spacelift.StackGcpServiceAccount;\nimport com.pulumi.spacelift.StackGcpServiceAccountArgs;\nimport com.pulumi.gcp.organizations.Project;\nimport com.pulumi.gcp.organizations.ProjectArgs;\nimport com.pulumi.gcp.projects.IAMMember;\nimport com.pulumi.gcp.projects.IAMMemberArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var k8s_coreStack = new Stack(\"k8s-coreStack\", StackArgs.builder()        \n            .branch(\"master\")\n            .repository(\"core-infra\")\n            .build());\n\n        var k8s_coreStackGcpServiceAccount = new StackGcpServiceAccount(\"k8s-coreStackGcpServiceAccount\", StackGcpServiceAccountArgs.builder()        \n            .stackId(k8s_coreStack.id())\n            .tokenScopes(            \n                \"https://www.googleapis.com/auth/compute\",\n                \"https://www.googleapis.com/auth/cloud-platform\",\n                \"https://www.googleapis.com/auth/devstorage.full_control\")\n            .build());\n\n        var k8s_coreProject = new Project(\"k8s-coreProject\", ProjectArgs.builder()        \n            .projectId(\"unicorn-k8s-core\")\n            .orgId(var_.gcp_organization_id())\n            .build());\n\n        var k8s_coreIAMMember = new IAMMember(\"k8s-coreIAMMember\", IAMMemberArgs.builder()        \n            .project(k8s_coreProject.id())\n            .role(\"roles/owner\")\n            .member(k8s_coreStackGcpServiceAccount.serviceAccountEmail().applyValue(serviceAccountEmail -\u003e String.format(\"serviceAccount:%s\", serviceAccountEmail)))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  k8s-coreStack:\n    type: spacelift:Stack\n    properties:\n      branch: master\n      repository: core-infra\n  k8s-coreStackGcpServiceAccount:\n    type: spacelift:StackGcpServiceAccount\n    properties:\n      stackId: ${[\"k8s-coreStack\"].id}\n      tokenScopes:\n        - https://www.googleapis.com/auth/compute\n        - https://www.googleapis.com/auth/cloud-platform\n        - https://www.googleapis.com/auth/devstorage.full_control\n  k8s-coreProject:\n    type: gcp:organizations:Project\n    properties:\n      projectId: unicorn-k8s-core\n      orgId: ${var.gcp_organization_id}\n  k8s-coreIAMMember:\n    type: gcp:projects:IAMMember\n    properties:\n      project: ${[\"k8s-coreProject\"].id}\n      role: roles/owner\n      member: serviceAccount:${[\"k8s-coreStackGcpServiceAccount\"].serviceAccountEmail}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "moduleId": {
                     "type": "string",
@@ -5705,28 +6348,70 @@
             }
         },
         "spacelift:index/getAzureDevopsIntegration:getAzureDevopsIntegration": {
-            "description": "`spacelift.getAzureDevopsIntegration` returns details about Azure DevOps integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst azureDevopsIntegration = spacelift.getAzureDevopsIntegration({});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nazure_devops_integration = spacelift.get_azure_devops_integration()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var azureDevopsIntegration = Spacelift.GetAzureDevopsIntegration.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetAzureDevopsIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SpaceliftFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var azureDevopsIntegration = SpaceliftFunctions.getAzureDevopsIntegration();\n\n    }\n}\n```\n```yaml\nvariables:\n  azureDevopsIntegration:\n    fn::invoke:\n      Function: spacelift:getAzureDevopsIntegration\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
-            "outputs": {
-                "description": "A collection of values returned by getAzureDevopsIntegration.\n",
+            "description": "`spacelift.getAzureDevopsIntegration` returns details about Azure DevOps integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst azureDevopsIntegration = spacelift.getAzureDevopsIntegration({});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nazure_devops_integration = spacelift.get_azure_devops_integration()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var azureDevopsIntegration = Spacelift.GetAzureDevopsIntegration.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetAzureDevopsIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SpaceliftFunctions;\nimport com.pulumi.spacelift.inputs.GetAzureDevopsIntegrationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var azureDevopsIntegration = SpaceliftFunctions.getAzureDevopsIntegration();\n\n    }\n}\n```\n```yaml\nvariables:\n  azureDevopsIntegration:\n    fn::invoke:\n      Function: spacelift:getAzureDevopsIntegration\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAzureDevopsIntegration.\n",
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                        "description": "Azure DevOps integration id. If not provided, the default integration will be returned\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAzureDevopsIntegration.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Azure DevOps integration description\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Azure DevOps integration id. If not provided, the default integration will be returned\n"
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "Azure DevOps integration is default\n"
+                    },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Azure DevOps integration labels\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Azure DevOps integration name\n"
                     },
                     "organizationUrl": {
                         "type": "string",
                         "description": "Azure DevOps integration organization url\n"
                     },
+                    "spaceId": {
+                        "type": "string",
+                        "description": "Azure DevOps integration space id\n"
+                    },
                     "webhookPassword": {
                         "type": "string",
                         "description": "Azure DevOps integration webhook password\n"
+                    },
+                    "webhookUrl": {
+                        "type": "string",
+                        "description": "Azure DevOps integration webhook url\n"
                     }
                 },
                 "type": "object",
                 "required": [
+                    "description",
+                    "isDefault",
+                    "labels",
+                    "name",
                     "organizationUrl",
+                    "spaceId",
                     "webhookPassword",
-                    "id"
+                    "webhookUrl"
                 ]
             }
         },
@@ -5907,28 +6592,80 @@
             }
         },
         "spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration": {
-            "description": "`spacelift.getBitbucketCloudIntegration` returns details about Bitbucket Cloud integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst bitbucketCloudIntegration = spacelift.getBitbucketCloudIntegration({});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nbitbucket_cloud_integration = spacelift.get_bitbucket_cloud_integration()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var bitbucketCloudIntegration = Spacelift.GetBitbucketCloudIntegration.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetBitbucketCloudIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SpaceliftFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var bitbucketCloudIntegration = SpaceliftFunctions.getBitbucketCloudIntegration();\n\n    }\n}\n```\n```yaml\nvariables:\n  bitbucketCloudIntegration:\n    fn::invoke:\n      Function: spacelift:getBitbucketCloudIntegration\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
-            "outputs": {
-                "description": "A collection of values returned by getBitbucketCloudIntegration.\n",
+            "description": "`spacelift.getBitbucketCloudIntegration` returns details about Bitbucket Cloud integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst bitbucketCloudIntegration = spacelift.getBitbucketCloudIntegration({});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nbitbucket_cloud_integration = spacelift.get_bitbucket_cloud_integration()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var bitbucketCloudIntegration = Spacelift.GetBitbucketCloudIntegration.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetBitbucketCloudIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SpaceliftFunctions;\nimport com.pulumi.spacelift.inputs.GetBitbucketCloudIntegrationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var bitbucketCloudIntegration = SpaceliftFunctions.getBitbucketCloudIntegration();\n\n    }\n}\n```\n```yaml\nvariables:\n  bitbucketCloudIntegration:\n    fn::invoke:\n      Function: spacelift:getBitbucketCloudIntegration\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getBitbucketCloudIntegration.\n",
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                        "description": "Bitbucket Cloud integration id. If not provided, the default integration will be returned\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getBitbucketCloudIntegration.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Bitbucket Cloud integration description\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Bitbucket Cloud integration id. If not provided, the default integration will be returned\n"
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "Bitbucket Cloud integration is default\n"
+                    },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Bitbucket Cloud integration labels\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Bitbucket Cloud integration name\n"
+                    },
+                    "spaceId": {
+                        "type": "string",
+                        "description": "Bitbucket Cloud integration space id\n"
                     },
                     "username": {
                         "type": "string",
                         "description": "Bitbucket Cloud username\n"
+                    },
+                    "webhookUrl": {
+                        "type": "string",
+                        "description": "Bitbucket Cloud integration webhook URL\n"
                     }
                 },
                 "type": "object",
                 "required": [
+                    "description",
+                    "isDefault",
+                    "labels",
+                    "name",
+                    "spaceId",
                     "username",
-                    "id"
+                    "webhookUrl"
                 ]
             }
         },
         "spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration": {
-            "description": "`spacelift.getBitbucketDatacenterIntegration` returns details about Bitbucket Datacenter integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst bitbucketDatacenterIntegration = spacelift.getBitbucketDatacenterIntegration({});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nbitbucket_datacenter_integration = spacelift.get_bitbucket_datacenter_integration()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var bitbucketDatacenterIntegration = Spacelift.GetBitbucketDatacenterIntegration.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetBitbucketDatacenterIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SpaceliftFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var bitbucketDatacenterIntegration = SpaceliftFunctions.getBitbucketDatacenterIntegration();\n\n    }\n}\n```\n```yaml\nvariables:\n  bitbucketDatacenterIntegration:\n    fn::invoke:\n      Function: spacelift:getBitbucketDatacenterIntegration\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "`spacelift.getBitbucketDatacenterIntegration` returns details about Bitbucket Datacenter integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst bitbucketDatacenterIntegration = spacelift.getBitbucketDatacenterIntegration({});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\nbitbucket_datacenter_integration = spacelift.get_bitbucket_datacenter_integration()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var bitbucketDatacenterIntegration = Spacelift.GetBitbucketDatacenterIntegration.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetBitbucketDatacenterIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SpaceliftFunctions;\nimport com.pulumi.spacelift.inputs.GetBitbucketDatacenterIntegrationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var bitbucketDatacenterIntegration = SpaceliftFunctions.getBitbucketDatacenterIntegration();\n\n    }\n}\n```\n```yaml\nvariables:\n  bitbucketDatacenterIntegration:\n    fn::invoke:\n      Function: spacelift:getBitbucketDatacenterIntegration\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getBitbucketDatacenterIntegration.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Bitbucket Datacenter integration id. If not provided, the default integration will be returned\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by getBitbucketDatacenterIntegration.\n",
                 "properties": {
@@ -5936,13 +6673,40 @@
                         "type": "string",
                         "description": "Bitbucket Datacenter integration api host\n"
                     },
+                    "description": {
+                        "type": "string",
+                        "description": "Bitbucket Datacenter integration description\n"
+                    },
                     "id": {
                         "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                        "description": "Bitbucket Datacenter integration id. If not provided, the default integration will be returned\n"
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "Bitbucket Datacenter integration is default\n"
+                    },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Bitbucket Datacenter integration labels\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Bitbucket Datacenter integration name\n"
+                    },
+                    "spaceId": {
+                        "type": "string",
+                        "description": "Bitbucket Datacenter integration space id\n"
                     },
                     "userFacingHost": {
                         "type": "string",
                         "description": "Bitbucket Datacenter integration user facing host\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Bitbucket Datacenter username\n"
                     },
                     "webhookSecret": {
                         "type": "string",
@@ -5956,10 +6720,15 @@
                 "type": "object",
                 "required": [
                     "apiHost",
+                    "description",
+                    "isDefault",
+                    "labels",
+                    "name",
+                    "spaceId",
                     "userFacingHost",
+                    "username",
                     "webhookSecret",
-                    "webhookUrl",
-                    "id"
+                    "webhookUrl"
                 ]
             }
         },
@@ -5968,6 +6737,83 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getContext.\n",
                 "properties": {
+                    "afterApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-apply scripts\n"
+                    },
+                    "afterDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-destroy scripts\n"
+                    },
+                    "afterInits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-init scripts\n"
+                    },
+                    "afterPerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-perform scripts\n"
+                    },
+                    "afterPlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-plan scripts\n"
+                    },
+                    "afterRuns": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-run scripts\n"
+                    },
+                    "beforeApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-apply scripts\n"
+                    },
+                    "beforeDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-destroy scripts\n"
+                    },
+                    "beforeInits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-init scripts\n"
+                    },
+                    "beforePerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-perform scripts\n"
+                    },
+                    "beforePlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-plan scripts\n"
+                    },
                     "contextId": {
                         "type": "string",
                         "description": "immutable ID (slug) of the context\n"
@@ -5981,6 +6827,83 @@
             "outputs": {
                 "description": "A collection of values returned by getContext.\n",
                 "properties": {
+                    "afterApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-apply scripts\n"
+                    },
+                    "afterDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-destroy scripts\n"
+                    },
+                    "afterInits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-init scripts\n"
+                    },
+                    "afterPerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-perform scripts\n"
+                    },
+                    "afterPlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-plan scripts\n"
+                    },
+                    "afterRuns": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of after-run scripts\n"
+                    },
+                    "beforeApplies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-apply scripts\n"
+                    },
+                    "beforeDestroys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-destroy scripts\n"
+                    },
+                    "beforeInits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-init scripts\n"
+                    },
+                    "beforePerforms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-perform scripts\n"
+                    },
+                    "beforePlans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of before-plan scripts\n"
+                    },
                     "contextId": {
                         "type": "string",
                         "description": "immutable ID (slug) of the context\n"
@@ -6010,6 +6933,16 @@
                 },
                 "type": "object",
                 "required": [
+                    "afterApplies",
+                    "afterDestroys",
+                    "afterInits",
+                    "afterPerforms",
+                    "afterPlans",
+                    "beforeApplies",
+                    "beforeDestroys",
+                    "beforeInits",
+                    "beforePerforms",
+                    "beforePlans",
                     "contextId",
                     "description",
                     "labels",
@@ -6334,7 +7267,17 @@
             }
         },
         "spacelift:index/getGithubEnterpriseIntegration:getGithubEnterpriseIntegration": {
-            "description": "`spacelift.getGithubEnterpriseIntegration` returns details about Github Enterprise integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst githubEnterpriseIntegration = spacelift.getGithubEnterpriseIntegration({});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\ngithub_enterprise_integration = spacelift.get_github_enterprise_integration()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var githubEnterpriseIntegration = Spacelift.GetGithubEnterpriseIntegration.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetGithubEnterpriseIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SpaceliftFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var githubEnterpriseIntegration = SpaceliftFunctions.getGithubEnterpriseIntegration();\n\n    }\n}\n```\n```yaml\nvariables:\n  githubEnterpriseIntegration:\n    fn::invoke:\n      Function: spacelift:getGithubEnterpriseIntegration\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "`spacelift.getGithubEnterpriseIntegration` returns details about Github Enterprise integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst githubEnterpriseIntegration = spacelift.getGithubEnterpriseIntegration({});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\ngithub_enterprise_integration = spacelift.get_github_enterprise_integration()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var githubEnterpriseIntegration = Spacelift.GetGithubEnterpriseIntegration.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetGithubEnterpriseIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SpaceliftFunctions;\nimport com.pulumi.spacelift.inputs.GetGithubEnterpriseIntegrationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var githubEnterpriseIntegration = SpaceliftFunctions.getGithubEnterpriseIntegration();\n\n    }\n}\n```\n```yaml\nvariables:\n  githubEnterpriseIntegration:\n    fn::invoke:\n      Function: spacelift:getGithubEnterpriseIntegration\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getGithubEnterpriseIntegration.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Github integration id. If not provided, the default integration will be returned\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by getGithubEnterpriseIntegration.\n",
                 "properties": {
@@ -6346,26 +7289,68 @@
                         "type": "string",
                         "description": "Github integration app id\n"
                     },
+                    "description": {
+                        "type": "string",
+                        "description": "Github integration description\n"
+                    },
                     "id": {
                         "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                        "description": "Github integration id. If not provided, the default integration will be returned\n"
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "Github integration is default\n"
+                    },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Github integration labels\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Github integration name\n"
+                    },
+                    "spaceId": {
+                        "type": "string",
+                        "description": "Github integration space id\n"
                     },
                     "webhookSecret": {
                         "type": "string",
                         "description": "Github integration webhook secret\n"
+                    },
+                    "webhookUrl": {
+                        "type": "string",
+                        "description": "Github integration webhook url\n"
                     }
                 },
                 "type": "object",
                 "required": [
                     "apiHost",
                     "appId",
+                    "description",
+                    "isDefault",
+                    "labels",
+                    "name",
+                    "spaceId",
                     "webhookSecret",
-                    "id"
+                    "webhookUrl"
                 ]
             }
         },
         "spacelift:index/getGitlabIntegration:getGitlabIntegration": {
-            "description": "`spacelift.getGitlabIntegration` returns details about Gitlab integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst gitlabIntegration = spacelift.getGitlabIntegration({});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\ngitlab_integration = spacelift.get_gitlab_integration()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var gitlabIntegration = Spacelift.GetGitlabIntegration.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetGitlabIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SpaceliftFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var gitlabIntegration = SpaceliftFunctions.getGitlabIntegration();\n\n    }\n}\n```\n```yaml\nvariables:\n  gitlabIntegration:\n    fn::invoke:\n      Function: spacelift:getGitlabIntegration\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "`spacelift.getGitlabIntegration` returns details about Gitlab integration\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as spacelift from \"@pulumi/spacelift\";\n\nconst gitlabIntegration = spacelift.getGitlabIntegration({});\n```\n```python\nimport pulumi\nimport pulumi_spacelift as spacelift\n\ngitlab_integration = spacelift.get_gitlab_integration()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Spacelift = Pulumi.Spacelift;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var gitlabIntegration = Spacelift.GetGitlabIntegration.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := spacelift.GetGitlabIntegration(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.spacelift.SpaceliftFunctions;\nimport com.pulumi.spacelift.inputs.GetGitlabIntegrationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var gitlabIntegration = SpaceliftFunctions.getGitlabIntegration();\n\n    }\n}\n```\n```yaml\nvariables:\n  gitlabIntegration:\n    fn::invoke:\n      Function: spacelift:getGitlabIntegration\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getGitlabIntegration.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Gitlab integration id. If not provided, the default integration will be returned\n"
+                    }
+                },
+                "type": "object"
+            },
             "outputs": {
                 "description": "A collection of values returned by getGitlabIntegration.\n",
                 "properties": {
@@ -6373,20 +7358,52 @@
                         "type": "string",
                         "description": "Gitlab integration api host\n"
                     },
+                    "description": {
+                        "type": "string",
+                        "description": "Gitlab integration description\n"
+                    },
                     "id": {
                         "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                        "description": "Gitlab integration id. If not provided, the default integration will be returned\n"
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "Gitlab integration is default\n"
+                    },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Gitlab integration labels\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Gitlab integration name\n"
+                    },
+                    "spaceId": {
+                        "type": "string",
+                        "description": "Gitlab integration space id\n"
                     },
                     "webhookSecret": {
                         "type": "string",
                         "description": "Gitlab integration webhook secret\n"
+                    },
+                    "webhookUrl": {
+                        "type": "string",
+                        "description": "Gitlab integration webhook url\n"
                     }
                 },
                 "type": "object",
                 "required": [
                     "apiHost",
+                    "description",
+                    "isDefault",
+                    "labels",
+                    "name",
+                    "spaceId",
                     "webhookSecret",
-                    "id"
+                    "webhookUrl"
                 ]
             }
         },
@@ -7120,6 +8137,13 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getStack.\n",
                 "properties": {
+                    "additionalProjectGlobs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Project globs is an optional list of paths to track changes of in addition to the project root.\n"
+                    },
                     "afterApplies": {
                         "type": "array",
                         "items": {
@@ -7210,6 +8234,13 @@
             "outputs": {
                 "description": "A collection of values returned by getStack.\n",
                 "properties": {
+                    "additionalProjectGlobs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Project globs is an optional list of paths to track changes of in addition to the project root.\n"
+                    },
                     "administrative": {
                         "type": "boolean",
                         "description": "indicates whether this stack can administer others\n"

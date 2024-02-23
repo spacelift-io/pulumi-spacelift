@@ -13,6 +13,18 @@ namespace Pulumi.Spacelift.Inputs
     public sealed class ModuleGithubEnterpriseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// Indicates whether this is the default GitHub Enterprise integration
+        /// </summary>
+        [Input("isDefault")]
+        public Input<bool>? IsDefault { get; set; }
+
+        /// <summary>
         /// The GitHub organization / user the repository belongs to
         /// </summary>
         [Input("namespace", required: true)]

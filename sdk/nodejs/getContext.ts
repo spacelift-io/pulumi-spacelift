@@ -22,6 +22,17 @@ export function getContext(args: GetContextArgs, opts?: pulumi.InvokeOptions): P
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("spacelift:index/getContext:getContext", {
+        "afterApplies": args.afterApplies,
+        "afterDestroys": args.afterDestroys,
+        "afterInits": args.afterInits,
+        "afterPerforms": args.afterPerforms,
+        "afterPlans": args.afterPlans,
+        "afterRuns": args.afterRuns,
+        "beforeApplies": args.beforeApplies,
+        "beforeDestroys": args.beforeDestroys,
+        "beforeInits": args.beforeInits,
+        "beforePerforms": args.beforePerforms,
+        "beforePlans": args.beforePlans,
         "contextId": args.contextId,
     }, opts);
 }
@@ -30,6 +41,50 @@ export function getContext(args: GetContextArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getContext.
  */
 export interface GetContextArgs {
+    /**
+     * List of after-apply scripts
+     */
+    afterApplies?: string[];
+    /**
+     * List of after-destroy scripts
+     */
+    afterDestroys?: string[];
+    /**
+     * List of after-init scripts
+     */
+    afterInits?: string[];
+    /**
+     * List of after-perform scripts
+     */
+    afterPerforms?: string[];
+    /**
+     * List of after-plan scripts
+     */
+    afterPlans?: string[];
+    /**
+     * List of after-run scripts
+     */
+    afterRuns?: string[];
+    /**
+     * List of before-apply scripts
+     */
+    beforeApplies?: string[];
+    /**
+     * List of before-destroy scripts
+     */
+    beforeDestroys?: string[];
+    /**
+     * List of before-init scripts
+     */
+    beforeInits?: string[];
+    /**
+     * List of before-perform scripts
+     */
+    beforePerforms?: string[];
+    /**
+     * List of before-plan scripts
+     */
+    beforePlans?: string[];
     /**
      * immutable ID (slug) of the context
      */
@@ -40,6 +95,50 @@ export interface GetContextArgs {
  * A collection of values returned by getContext.
  */
 export interface GetContextResult {
+    /**
+     * List of after-apply scripts
+     */
+    readonly afterApplies: string[];
+    /**
+     * List of after-destroy scripts
+     */
+    readonly afterDestroys: string[];
+    /**
+     * List of after-init scripts
+     */
+    readonly afterInits: string[];
+    /**
+     * List of after-perform scripts
+     */
+    readonly afterPerforms: string[];
+    /**
+     * List of after-plan scripts
+     */
+    readonly afterPlans: string[];
+    /**
+     * List of after-run scripts
+     */
+    readonly afterRuns?: string[];
+    /**
+     * List of before-apply scripts
+     */
+    readonly beforeApplies: string[];
+    /**
+     * List of before-destroy scripts
+     */
+    readonly beforeDestroys: string[];
+    /**
+     * List of before-init scripts
+     */
+    readonly beforeInits: string[];
+    /**
+     * List of before-perform scripts
+     */
+    readonly beforePerforms: string[];
+    /**
+     * List of before-plan scripts
+     */
+    readonly beforePlans: string[];
     /**
      * immutable ID (slug) of the context
      */
@@ -84,6 +183,50 @@ export function getContextOutput(args: GetContextOutputArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getContext.
  */
 export interface GetContextOutputArgs {
+    /**
+     * List of after-apply scripts
+     */
+    afterApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-destroy scripts
+     */
+    afterDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-init scripts
+     */
+    afterInits?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-perform scripts
+     */
+    afterPerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-plan scripts
+     */
+    afterPlans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of after-run scripts
+     */
+    afterRuns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-apply scripts
+     */
+    beforeApplies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-destroy scripts
+     */
+    beforeDestroys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-init scripts
+     */
+    beforeInits?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-perform scripts
+     */
+    beforePerforms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of before-plan scripts
+     */
+    beforePlans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * immutable ID (slug) of the context
      */

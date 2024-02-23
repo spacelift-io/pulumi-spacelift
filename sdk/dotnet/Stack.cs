@@ -178,6 +178,12 @@ namespace Pulumi.Spacelift
     public partial class Stack : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Project globs is an optional list of paths to track changes of in addition to the project root.
+        /// </summary>
+        [Output("additionalProjectGlobs")]
+        public Output<ImmutableArray<string>> AdditionalProjectGlobs { get; private set; } = null!;
+
+        /// <summary>
         /// Indicates whether this stack can manage others. Defaults to `false`.
         /// </summary>
         [Output("administrative")]
@@ -512,6 +518,18 @@ namespace Pulumi.Spacelift
 
     public sealed class StackArgs : global::Pulumi.ResourceArgs
     {
+        [Input("additionalProjectGlobs")]
+        private InputList<string>? _additionalProjectGlobs;
+
+        /// <summary>
+        /// Project globs is an optional list of paths to track changes of in addition to the project root.
+        /// </summary>
+        public InputList<string> AdditionalProjectGlobs
+        {
+            get => _additionalProjectGlobs ?? (_additionalProjectGlobs = new InputList<string>());
+            set => _additionalProjectGlobs = value;
+        }
+
         /// <summary>
         /// Indicates whether this stack can manage others. Defaults to `false`.
         /// </summary>
@@ -879,6 +897,18 @@ namespace Pulumi.Spacelift
 
     public sealed class StackState : global::Pulumi.ResourceArgs
     {
+        [Input("additionalProjectGlobs")]
+        private InputList<string>? _additionalProjectGlobs;
+
+        /// <summary>
+        /// Project globs is an optional list of paths to track changes of in addition to the project root.
+        /// </summary>
+        public InputList<string> AdditionalProjectGlobs
+        {
+            get => _additionalProjectGlobs ?? (_additionalProjectGlobs = new InputList<string>());
+            set => _additionalProjectGlobs = value;
+        }
+
         /// <summary>
         /// Indicates whether this stack can manage others. Defaults to `false`.
         /// </summary>

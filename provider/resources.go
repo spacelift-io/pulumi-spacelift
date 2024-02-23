@@ -2,7 +2,6 @@ package spacelift
 
 import (
 	"fmt"
-
 	"path/filepath"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
@@ -94,6 +93,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
+			"spacelift_audit_trail_webhook":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AuditTrailWebhook")},
 			"spacelift_aws_integration":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsIntegration")},
 			"spacelift_aws_integration_attachment":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsIntegrationAttachment")},
 			"spacelift_aws_role":                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsRole")},
@@ -115,6 +115,7 @@ func Provider() tfbridge.ProviderInfo {
 			"spacelift_run":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Run")},
 			"spacelift_scheduled_delete_stack":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ScheduledDeleteTask")},
 			"spacelift_scheduled_task":               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ScheduledTask")},
+			"spacelift_security_email":               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SecurityEmail")},
 			"spacelift_space":                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Space")},
 			"spacelift_stack": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Stack"), Fields: map[string]*tfbridge.SchemaInfo{
 				"pulumi": {

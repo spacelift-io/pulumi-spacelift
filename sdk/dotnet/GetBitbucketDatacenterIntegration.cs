@@ -33,8 +33,8 @@ namespace Pulumi.Spacelift
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetBitbucketDatacenterIntegrationResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBitbucketDatacenterIntegrationResult>("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetBitbucketDatacenterIntegrationResult> InvokeAsync(GetBitbucketDatacenterIntegrationArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBitbucketDatacenterIntegrationResult>("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", args ?? new GetBitbucketDatacenterIntegrationArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.getBitbucketDatacenterIntegration` returns details about Bitbucket Datacenter integration
@@ -58,8 +58,37 @@ namespace Pulumi.Spacelift
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetBitbucketDatacenterIntegrationResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetBitbucketDatacenterIntegrationResult>("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetBitbucketDatacenterIntegrationResult> Invoke(GetBitbucketDatacenterIntegrationInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBitbucketDatacenterIntegrationResult>("spacelift:index/getBitbucketDatacenterIntegration:getBitbucketDatacenterIntegration", args ?? new GetBitbucketDatacenterIntegrationInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetBitbucketDatacenterIntegrationArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Bitbucket Datacenter integration id. If not provided, the default integration will be returned
+        /// </summary>
+        [Input("id")]
+        public string? Id { get; set; }
+
+        public GetBitbucketDatacenterIntegrationArgs()
+        {
+        }
+        public static new GetBitbucketDatacenterIntegrationArgs Empty => new GetBitbucketDatacenterIntegrationArgs();
+    }
+
+    public sealed class GetBitbucketDatacenterIntegrationInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Bitbucket Datacenter integration id. If not provided, the default integration will be returned
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        public GetBitbucketDatacenterIntegrationInvokeArgs()
+        {
+        }
+        public static new GetBitbucketDatacenterIntegrationInvokeArgs Empty => new GetBitbucketDatacenterIntegrationInvokeArgs();
     }
 
 
@@ -71,13 +100,37 @@ namespace Pulumi.Spacelift
         /// </summary>
         public readonly string ApiHost;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// Bitbucket Datacenter integration description
         /// </summary>
-        public readonly string Id;
+        public readonly string Description;
+        /// <summary>
+        /// Bitbucket Datacenter integration id. If not provided, the default integration will be returned
+        /// </summary>
+        public readonly string? Id;
+        /// <summary>
+        /// Bitbucket Datacenter integration is default
+        /// </summary>
+        public readonly bool IsDefault;
+        /// <summary>
+        /// Bitbucket Datacenter integration labels
+        /// </summary>
+        public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// Bitbucket Datacenter integration name
+        /// </summary>
+        public readonly string Name;
+        /// <summary>
+        /// Bitbucket Datacenter integration space id
+        /// </summary>
+        public readonly string SpaceId;
         /// <summary>
         /// Bitbucket Datacenter integration user facing host
         /// </summary>
         public readonly string UserFacingHost;
+        /// <summary>
+        /// Bitbucket Datacenter username
+        /// </summary>
+        public readonly string Username;
         /// <summary>
         /// Bitbucket Datacenter integration webhook secret
         /// </summary>
@@ -91,17 +144,35 @@ namespace Pulumi.Spacelift
         private GetBitbucketDatacenterIntegrationResult(
             string apiHost,
 
-            string id,
+            string description,
+
+            string? id,
+
+            bool isDefault,
+
+            ImmutableArray<string> labels,
+
+            string name,
+
+            string spaceId,
 
             string userFacingHost,
+
+            string username,
 
             string webhookSecret,
 
             string webhookUrl)
         {
             ApiHost = apiHost;
+            Description = description;
             Id = id;
+            IsDefault = isDefault;
+            Labels = labels;
+            Name = name;
+            SpaceId = spaceId;
             UserFacingHost = userFacingHost;
+            Username = username;
             WebhookSecret = webhookSecret;
             WebhookUrl = webhookUrl;
         }

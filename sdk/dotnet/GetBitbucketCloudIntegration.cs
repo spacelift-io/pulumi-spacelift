@@ -33,8 +33,8 @@ namespace Pulumi.Spacelift
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetBitbucketCloudIntegrationResult> InvokeAsync(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBitbucketCloudIntegrationResult>("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", InvokeArgs.Empty, options.WithDefaults());
+        public static Task<GetBitbucketCloudIntegrationResult> InvokeAsync(GetBitbucketCloudIntegrationArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBitbucketCloudIntegrationResult>("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", args ?? new GetBitbucketCloudIntegrationArgs(), options.WithDefaults());
 
         /// <summary>
         /// `spacelift.getBitbucketCloudIntegration` returns details about Bitbucket Cloud integration
@@ -58,8 +58,37 @@ namespace Pulumi.Spacelift
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetBitbucketCloudIntegrationResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetBitbucketCloudIntegrationResult>("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetBitbucketCloudIntegrationResult> Invoke(GetBitbucketCloudIntegrationInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBitbucketCloudIntegrationResult>("spacelift:index/getBitbucketCloudIntegration:getBitbucketCloudIntegration", args ?? new GetBitbucketCloudIntegrationInvokeArgs(), options.WithDefaults());
+    }
+
+
+    public sealed class GetBitbucketCloudIntegrationArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Bitbucket Cloud integration id. If not provided, the default integration will be returned
+        /// </summary>
+        [Input("id")]
+        public string? Id { get; set; }
+
+        public GetBitbucketCloudIntegrationArgs()
+        {
+        }
+        public static new GetBitbucketCloudIntegrationArgs Empty => new GetBitbucketCloudIntegrationArgs();
+    }
+
+    public sealed class GetBitbucketCloudIntegrationInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Bitbucket Cloud integration id. If not provided, the default integration will be returned
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        public GetBitbucketCloudIntegrationInvokeArgs()
+        {
+        }
+        public static new GetBitbucketCloudIntegrationInvokeArgs Empty => new GetBitbucketCloudIntegrationInvokeArgs();
     }
 
 
@@ -67,22 +96,64 @@ namespace Pulumi.Spacelift
     public sealed class GetBitbucketCloudIntegrationResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// Bitbucket Cloud integration description
         /// </summary>
-        public readonly string Id;
+        public readonly string Description;
+        /// <summary>
+        /// Bitbucket Cloud integration id. If not provided, the default integration will be returned
+        /// </summary>
+        public readonly string? Id;
+        /// <summary>
+        /// Bitbucket Cloud integration is default
+        /// </summary>
+        public readonly bool IsDefault;
+        /// <summary>
+        /// Bitbucket Cloud integration labels
+        /// </summary>
+        public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// Bitbucket Cloud integration name
+        /// </summary>
+        public readonly string Name;
+        /// <summary>
+        /// Bitbucket Cloud integration space id
+        /// </summary>
+        public readonly string SpaceId;
         /// <summary>
         /// Bitbucket Cloud username
         /// </summary>
         public readonly string Username;
+        /// <summary>
+        /// Bitbucket Cloud integration webhook URL
+        /// </summary>
+        public readonly string WebhookUrl;
 
         [OutputConstructor]
         private GetBitbucketCloudIntegrationResult(
-            string id,
+            string description,
 
-            string username)
+            string? id,
+
+            bool isDefault,
+
+            ImmutableArray<string> labels,
+
+            string name,
+
+            string spaceId,
+
+            string username,
+
+            string webhookUrl)
         {
+            Description = description;
             Id = id;
+            IsDefault = isDefault;
+            Labels = labels;
+            Name = name;
+            SpaceId = spaceId;
             Username = username;
+            WebhookUrl = webhookUrl;
         }
     }
 }
