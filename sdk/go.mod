@@ -1,4 +1,4 @@
-module github.com/spacelift-io/pulumi-spacelift/sdk
+module github.com/spacelift-io/pulumi-spacelift/sdk/v2
 
 go 1.21
 
