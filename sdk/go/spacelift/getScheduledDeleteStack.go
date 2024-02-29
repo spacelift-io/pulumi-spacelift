@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -107,12 +106,6 @@ func (o GetScheduledDeleteStackResultOutput) ToGetScheduledDeleteStackResultOutp
 
 func (o GetScheduledDeleteStackResultOutput) ToGetScheduledDeleteStackResultOutputWithContext(ctx context.Context) GetScheduledDeleteStackResultOutput {
 	return o
-}
-
-func (o GetScheduledDeleteStackResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetScheduledDeleteStackResult] {
-	return pulumix.Output[GetScheduledDeleteStackResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Timestamp (unix timestamp) at which time the scheduling should happen.

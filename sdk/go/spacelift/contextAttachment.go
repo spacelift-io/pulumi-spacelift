@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -29,6 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// For a module
 //			_, err := spacelift.NewContextAttachment(ctx, "attachment", &spacelift.ContextAttachmentArgs{
 //				ContextId: pulumi.String("prod-k8s-ie"),
 //				ModuleId:  pulumi.String("k8s-module"),
@@ -167,12 +167,6 @@ func (i *ContextAttachment) ToContextAttachmentOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(ContextAttachmentOutput)
 }
 
-func (i *ContextAttachment) ToOutput(ctx context.Context) pulumix.Output[*ContextAttachment] {
-	return pulumix.Output[*ContextAttachment]{
-		OutputState: i.ToContextAttachmentOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ContextAttachmentArrayInput is an input type that accepts ContextAttachmentArray and ContextAttachmentArrayOutput values.
 // You can construct a concrete instance of `ContextAttachmentArrayInput` via:
 //
@@ -196,12 +190,6 @@ func (i ContextAttachmentArray) ToContextAttachmentArrayOutput() ContextAttachme
 
 func (i ContextAttachmentArray) ToContextAttachmentArrayOutputWithContext(ctx context.Context) ContextAttachmentArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ContextAttachmentArrayOutput)
-}
-
-func (i ContextAttachmentArray) ToOutput(ctx context.Context) pulumix.Output[[]*ContextAttachment] {
-	return pulumix.Output[[]*ContextAttachment]{
-		OutputState: i.ToContextAttachmentArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ContextAttachmentMapInput is an input type that accepts ContextAttachmentMap and ContextAttachmentMapOutput values.
@@ -229,12 +217,6 @@ func (i ContextAttachmentMap) ToContextAttachmentMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(ContextAttachmentMapOutput)
 }
 
-func (i ContextAttachmentMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContextAttachment] {
-	return pulumix.Output[map[string]*ContextAttachment]{
-		OutputState: i.ToContextAttachmentMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ContextAttachmentOutput struct{ *pulumi.OutputState }
 
 func (ContextAttachmentOutput) ElementType() reflect.Type {
@@ -247,12 +229,6 @@ func (o ContextAttachmentOutput) ToContextAttachmentOutput() ContextAttachmentOu
 
 func (o ContextAttachmentOutput) ToContextAttachmentOutputWithContext(ctx context.Context) ContextAttachmentOutput {
 	return o
-}
-
-func (o ContextAttachmentOutput) ToOutput(ctx context.Context) pulumix.Output[*ContextAttachment] {
-	return pulumix.Output[*ContextAttachment]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID of the context to attach
@@ -289,12 +265,6 @@ func (o ContextAttachmentArrayOutput) ToContextAttachmentArrayOutputWithContext(
 	return o
 }
 
-func (o ContextAttachmentArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ContextAttachment] {
-	return pulumix.Output[[]*ContextAttachment]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ContextAttachmentArrayOutput) Index(i pulumi.IntInput) ContextAttachmentOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ContextAttachment {
 		return vs[0].([]*ContextAttachment)[vs[1].(int)]
@@ -313,12 +283,6 @@ func (o ContextAttachmentMapOutput) ToContextAttachmentMapOutput() ContextAttach
 
 func (o ContextAttachmentMapOutput) ToContextAttachmentMapOutputWithContext(ctx context.Context) ContextAttachmentMapOutput {
 	return o
-}
-
-func (o ContextAttachmentMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContextAttachment] {
-	return pulumix.Output[map[string]*ContextAttachment]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ContextAttachmentMapOutput) MapIndex(k pulumi.StringInput) ContextAttachmentOutput {

@@ -13,10 +13,22 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetPoliciesPolicyResult
     {
+        /// <summary>
+        /// ID of the policy
+        /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// Name of the policy
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID (slug) of the space the policy is in
+        /// </summary>
         public readonly string SpaceId;
+        /// <summary>
+        /// Type of the policy
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

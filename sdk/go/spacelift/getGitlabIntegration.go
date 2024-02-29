@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -111,12 +110,6 @@ func (o GetGitlabIntegrationResultOutput) ToGetGitlabIntegrationResultOutput() G
 
 func (o GetGitlabIntegrationResultOutput) ToGetGitlabIntegrationResultOutputWithContext(ctx context.Context) GetGitlabIntegrationResultOutput {
 	return o
-}
-
-func (o GetGitlabIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetGitlabIntegrationResult] {
-	return pulumix.Output[GetGitlabIntegrationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Gitlab integration api host

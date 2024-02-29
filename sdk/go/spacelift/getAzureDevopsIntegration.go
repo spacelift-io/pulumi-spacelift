@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -111,12 +110,6 @@ func (o GetAzureDevopsIntegrationResultOutput) ToGetAzureDevopsIntegrationResult
 
 func (o GetAzureDevopsIntegrationResultOutput) ToGetAzureDevopsIntegrationResultOutputWithContext(ctx context.Context) GetAzureDevopsIntegrationResultOutput {
 	return o
-}
-
-func (o GetAzureDevopsIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAzureDevopsIntegrationResult] {
-	return pulumix.Output[GetAzureDevopsIntegrationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Azure DevOps integration description

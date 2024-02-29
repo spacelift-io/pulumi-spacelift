@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -108,12 +107,6 @@ func (o LookupWorkerPoolResultOutput) ToLookupWorkerPoolResultOutput() LookupWor
 
 func (o LookupWorkerPoolResultOutput) ToLookupWorkerPoolResultOutputWithContext(ctx context.Context) LookupWorkerPoolResultOutput {
 	return o
-}
-
-func (o LookupWorkerPoolResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupWorkerPoolResult] {
-	return pulumix.Output[LookupWorkerPoolResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // credentials necessary to connect WorkerPool's workers to the control plane

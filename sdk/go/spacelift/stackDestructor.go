@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -147,12 +146,6 @@ func (i *StackDestructor) ToStackDestructorOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(StackDestructorOutput)
 }
 
-func (i *StackDestructor) ToOutput(ctx context.Context) pulumix.Output[*StackDestructor] {
-	return pulumix.Output[*StackDestructor]{
-		OutputState: i.ToStackDestructorOutputWithContext(ctx).OutputState,
-	}
-}
-
 // StackDestructorArrayInput is an input type that accepts StackDestructorArray and StackDestructorArrayOutput values.
 // You can construct a concrete instance of `StackDestructorArrayInput` via:
 //
@@ -176,12 +169,6 @@ func (i StackDestructorArray) ToStackDestructorArrayOutput() StackDestructorArra
 
 func (i StackDestructorArray) ToStackDestructorArrayOutputWithContext(ctx context.Context) StackDestructorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StackDestructorArrayOutput)
-}
-
-func (i StackDestructorArray) ToOutput(ctx context.Context) pulumix.Output[[]*StackDestructor] {
-	return pulumix.Output[[]*StackDestructor]{
-		OutputState: i.ToStackDestructorArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // StackDestructorMapInput is an input type that accepts StackDestructorMap and StackDestructorMapOutput values.
@@ -209,12 +196,6 @@ func (i StackDestructorMap) ToStackDestructorMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(StackDestructorMapOutput)
 }
 
-func (i StackDestructorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackDestructor] {
-	return pulumix.Output[map[string]*StackDestructor]{
-		OutputState: i.ToStackDestructorMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackDestructorOutput struct{ *pulumi.OutputState }
 
 func (StackDestructorOutput) ElementType() reflect.Type {
@@ -227,12 +208,6 @@ func (o StackDestructorOutput) ToStackDestructorOutput() StackDestructorOutput {
 
 func (o StackDestructorOutput) ToStackDestructorOutputWithContext(ctx context.Context) StackDestructorOutput {
 	return o
-}
-
-func (o StackDestructorOutput) ToOutput(ctx context.Context) pulumix.Output[*StackDestructor] {
-	return pulumix.Output[*StackDestructor]{
-		OutputState: o.OutputState,
-	}
 }
 
 // If set to true, destruction won't delete the stack
@@ -259,12 +234,6 @@ func (o StackDestructorArrayOutput) ToStackDestructorArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o StackDestructorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*StackDestructor] {
-	return pulumix.Output[[]*StackDestructor]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StackDestructorArrayOutput) Index(i pulumi.IntInput) StackDestructorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *StackDestructor {
 		return vs[0].([]*StackDestructor)[vs[1].(int)]
@@ -283,12 +252,6 @@ func (o StackDestructorMapOutput) ToStackDestructorMapOutput() StackDestructorMa
 
 func (o StackDestructorMapOutput) ToStackDestructorMapOutputWithContext(ctx context.Context) StackDestructorMapOutput {
 	return o
-}
-
-func (o StackDestructorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackDestructor] {
-	return pulumix.Output[map[string]*StackDestructor]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackDestructorMapOutput) MapIndex(k pulumi.StringInput) StackDestructorOutput {

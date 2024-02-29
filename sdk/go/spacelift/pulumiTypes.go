@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -51,12 +50,6 @@ func (i IdpGroupMappingPolicyArgs) ToIdpGroupMappingPolicyOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(IdpGroupMappingPolicyOutput)
 }
 
-func (i IdpGroupMappingPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[IdpGroupMappingPolicy] {
-	return pulumix.Output[IdpGroupMappingPolicy]{
-		OutputState: i.ToIdpGroupMappingPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IdpGroupMappingPolicyArrayInput is an input type that accepts IdpGroupMappingPolicyArray and IdpGroupMappingPolicyArrayOutput values.
 // You can construct a concrete instance of `IdpGroupMappingPolicyArrayInput` via:
 //
@@ -82,12 +75,6 @@ func (i IdpGroupMappingPolicyArray) ToIdpGroupMappingPolicyArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(IdpGroupMappingPolicyArrayOutput)
 }
 
-func (i IdpGroupMappingPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]IdpGroupMappingPolicy] {
-	return pulumix.Output[[]IdpGroupMappingPolicy]{
-		OutputState: i.ToIdpGroupMappingPolicyArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IdpGroupMappingPolicyOutput struct{ *pulumi.OutputState }
 
 func (IdpGroupMappingPolicyOutput) ElementType() reflect.Type {
@@ -100,12 +87,6 @@ func (o IdpGroupMappingPolicyOutput) ToIdpGroupMappingPolicyOutput() IdpGroupMap
 
 func (o IdpGroupMappingPolicyOutput) ToIdpGroupMappingPolicyOutputWithContext(ctx context.Context) IdpGroupMappingPolicyOutput {
 	return o
-}
-
-func (o IdpGroupMappingPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[IdpGroupMappingPolicy] {
-	return pulumix.Output[IdpGroupMappingPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Type of access to the space. Possible values are: READ, WRITE, ADMIN
@@ -130,12 +111,6 @@ func (o IdpGroupMappingPolicyArrayOutput) ToIdpGroupMappingPolicyArrayOutput() I
 
 func (o IdpGroupMappingPolicyArrayOutput) ToIdpGroupMappingPolicyArrayOutputWithContext(ctx context.Context) IdpGroupMappingPolicyArrayOutput {
 	return o
-}
-
-func (o IdpGroupMappingPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]IdpGroupMappingPolicy] {
-	return pulumix.Output[[]IdpGroupMappingPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IdpGroupMappingPolicyArrayOutput) Index(i pulumi.IntInput) IdpGroupMappingPolicyOutput {
@@ -185,12 +160,6 @@ func (i ModuleAzureDevopsArgs) ToModuleAzureDevopsOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleAzureDevopsOutput)
 }
 
-func (i ModuleAzureDevopsArgs) ToOutput(ctx context.Context) pulumix.Output[ModuleAzureDevops] {
-	return pulumix.Output[ModuleAzureDevops]{
-		OutputState: i.ToModuleAzureDevopsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ModuleAzureDevopsArgs) ToModuleAzureDevopsPtrOutput() ModuleAzureDevopsPtrOutput {
 	return i.ToModuleAzureDevopsPtrOutputWithContext(context.Background())
 }
@@ -232,12 +201,6 @@ func (i *moduleAzureDevopsPtrType) ToModuleAzureDevopsPtrOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleAzureDevopsPtrOutput)
 }
 
-func (i *moduleAzureDevopsPtrType) ToOutput(ctx context.Context) pulumix.Output[*ModuleAzureDevops] {
-	return pulumix.Output[*ModuleAzureDevops]{
-		OutputState: i.ToModuleAzureDevopsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ModuleAzureDevopsOutput struct{ *pulumi.OutputState }
 
 func (ModuleAzureDevopsOutput) ElementType() reflect.Type {
@@ -260,12 +223,6 @@ func (o ModuleAzureDevopsOutput) ToModuleAzureDevopsPtrOutputWithContext(ctx con
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ModuleAzureDevops) *ModuleAzureDevops {
 		return &v
 	}).(ModuleAzureDevopsPtrOutput)
-}
-
-func (o ModuleAzureDevopsOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleAzureDevops] {
-	return pulumix.Output[ModuleAzureDevops]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID of the Azure Devops integration. If not specified, the default integration will be used.
@@ -295,12 +252,6 @@ func (o ModuleAzureDevopsPtrOutput) ToModuleAzureDevopsPtrOutput() ModuleAzureDe
 
 func (o ModuleAzureDevopsPtrOutput) ToModuleAzureDevopsPtrOutputWithContext(ctx context.Context) ModuleAzureDevopsPtrOutput {
 	return o
-}
-
-func (o ModuleAzureDevopsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleAzureDevops] {
-	return pulumix.Output[*ModuleAzureDevops]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ModuleAzureDevopsPtrOutput) Elem() ModuleAzureDevopsOutput {
@@ -384,12 +335,6 @@ func (i ModuleBitbucketCloudArgs) ToModuleBitbucketCloudOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketCloudOutput)
 }
 
-func (i ModuleBitbucketCloudArgs) ToOutput(ctx context.Context) pulumix.Output[ModuleBitbucketCloud] {
-	return pulumix.Output[ModuleBitbucketCloud]{
-		OutputState: i.ToModuleBitbucketCloudOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ModuleBitbucketCloudArgs) ToModuleBitbucketCloudPtrOutput() ModuleBitbucketCloudPtrOutput {
 	return i.ToModuleBitbucketCloudPtrOutputWithContext(context.Background())
 }
@@ -431,12 +376,6 @@ func (i *moduleBitbucketCloudPtrType) ToModuleBitbucketCloudPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketCloudPtrOutput)
 }
 
-func (i *moduleBitbucketCloudPtrType) ToOutput(ctx context.Context) pulumix.Output[*ModuleBitbucketCloud] {
-	return pulumix.Output[*ModuleBitbucketCloud]{
-		OutputState: i.ToModuleBitbucketCloudPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ModuleBitbucketCloudOutput struct{ *pulumi.OutputState }
 
 func (ModuleBitbucketCloudOutput) ElementType() reflect.Type {
@@ -459,12 +398,6 @@ func (o ModuleBitbucketCloudOutput) ToModuleBitbucketCloudPtrOutputWithContext(c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ModuleBitbucketCloud) *ModuleBitbucketCloud {
 		return &v
 	}).(ModuleBitbucketCloudPtrOutput)
-}
-
-func (o ModuleBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleBitbucketCloud] {
-	return pulumix.Output[ModuleBitbucketCloud]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
@@ -494,12 +427,6 @@ func (o ModuleBitbucketCloudPtrOutput) ToModuleBitbucketCloudPtrOutput() ModuleB
 
 func (o ModuleBitbucketCloudPtrOutput) ToModuleBitbucketCloudPtrOutputWithContext(ctx context.Context) ModuleBitbucketCloudPtrOutput {
 	return o
-}
-
-func (o ModuleBitbucketCloudPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleBitbucketCloud] {
-	return pulumix.Output[*ModuleBitbucketCloud]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ModuleBitbucketCloudPtrOutput) Elem() ModuleBitbucketCloudOutput {
@@ -583,12 +510,6 @@ func (i ModuleBitbucketDatacenterArgs) ToModuleBitbucketDatacenterOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketDatacenterOutput)
 }
 
-func (i ModuleBitbucketDatacenterArgs) ToOutput(ctx context.Context) pulumix.Output[ModuleBitbucketDatacenter] {
-	return pulumix.Output[ModuleBitbucketDatacenter]{
-		OutputState: i.ToModuleBitbucketDatacenterOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ModuleBitbucketDatacenterArgs) ToModuleBitbucketDatacenterPtrOutput() ModuleBitbucketDatacenterPtrOutput {
 	return i.ToModuleBitbucketDatacenterPtrOutputWithContext(context.Background())
 }
@@ -630,12 +551,6 @@ func (i *moduleBitbucketDatacenterPtrType) ToModuleBitbucketDatacenterPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleBitbucketDatacenterPtrOutput)
 }
 
-func (i *moduleBitbucketDatacenterPtrType) ToOutput(ctx context.Context) pulumix.Output[*ModuleBitbucketDatacenter] {
-	return pulumix.Output[*ModuleBitbucketDatacenter]{
-		OutputState: i.ToModuleBitbucketDatacenterPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ModuleBitbucketDatacenterOutput struct{ *pulumi.OutputState }
 
 func (ModuleBitbucketDatacenterOutput) ElementType() reflect.Type {
@@ -658,12 +573,6 @@ func (o ModuleBitbucketDatacenterOutput) ToModuleBitbucketDatacenterPtrOutputWit
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ModuleBitbucketDatacenter) *ModuleBitbucketDatacenter {
 		return &v
 	}).(ModuleBitbucketDatacenterPtrOutput)
-}
-
-func (o ModuleBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleBitbucketDatacenter] {
-	return pulumix.Output[ModuleBitbucketDatacenter]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
@@ -693,12 +602,6 @@ func (o ModuleBitbucketDatacenterPtrOutput) ToModuleBitbucketDatacenterPtrOutput
 
 func (o ModuleBitbucketDatacenterPtrOutput) ToModuleBitbucketDatacenterPtrOutputWithContext(ctx context.Context) ModuleBitbucketDatacenterPtrOutput {
 	return o
-}
-
-func (o ModuleBitbucketDatacenterPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleBitbucketDatacenter] {
-	return pulumix.Output[*ModuleBitbucketDatacenter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ModuleBitbucketDatacenterPtrOutput) Elem() ModuleBitbucketDatacenterOutput {
@@ -782,12 +685,6 @@ func (i ModuleGithubEnterpriseArgs) ToModuleGithubEnterpriseOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleGithubEnterpriseOutput)
 }
 
-func (i ModuleGithubEnterpriseArgs) ToOutput(ctx context.Context) pulumix.Output[ModuleGithubEnterprise] {
-	return pulumix.Output[ModuleGithubEnterprise]{
-		OutputState: i.ToModuleGithubEnterpriseOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ModuleGithubEnterpriseArgs) ToModuleGithubEnterprisePtrOutput() ModuleGithubEnterprisePtrOutput {
 	return i.ToModuleGithubEnterprisePtrOutputWithContext(context.Background())
 }
@@ -829,12 +726,6 @@ func (i *moduleGithubEnterprisePtrType) ToModuleGithubEnterprisePtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleGithubEnterprisePtrOutput)
 }
 
-func (i *moduleGithubEnterprisePtrType) ToOutput(ctx context.Context) pulumix.Output[*ModuleGithubEnterprise] {
-	return pulumix.Output[*ModuleGithubEnterprise]{
-		OutputState: i.ToModuleGithubEnterprisePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ModuleGithubEnterpriseOutput struct{ *pulumi.OutputState }
 
 func (ModuleGithubEnterpriseOutput) ElementType() reflect.Type {
@@ -857,12 +748,6 @@ func (o ModuleGithubEnterpriseOutput) ToModuleGithubEnterprisePtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ModuleGithubEnterprise) *ModuleGithubEnterprise {
 		return &v
 	}).(ModuleGithubEnterprisePtrOutput)
-}
-
-func (o ModuleGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleGithubEnterprise] {
-	return pulumix.Output[ModuleGithubEnterprise]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
@@ -892,12 +777,6 @@ func (o ModuleGithubEnterprisePtrOutput) ToModuleGithubEnterprisePtrOutput() Mod
 
 func (o ModuleGithubEnterprisePtrOutput) ToModuleGithubEnterprisePtrOutputWithContext(ctx context.Context) ModuleGithubEnterprisePtrOutput {
 	return o
-}
-
-func (o ModuleGithubEnterprisePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleGithubEnterprise] {
-	return pulumix.Output[*ModuleGithubEnterprise]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ModuleGithubEnterprisePtrOutput) Elem() ModuleGithubEnterpriseOutput {
@@ -981,12 +860,6 @@ func (i ModuleGitlabArgs) ToModuleGitlabOutputWithContext(ctx context.Context) M
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleGitlabOutput)
 }
 
-func (i ModuleGitlabArgs) ToOutput(ctx context.Context) pulumix.Output[ModuleGitlab] {
-	return pulumix.Output[ModuleGitlab]{
-		OutputState: i.ToModuleGitlabOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ModuleGitlabArgs) ToModuleGitlabPtrOutput() ModuleGitlabPtrOutput {
 	return i.ToModuleGitlabPtrOutputWithContext(context.Background())
 }
@@ -1028,12 +901,6 @@ func (i *moduleGitlabPtrType) ToModuleGitlabPtrOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleGitlabPtrOutput)
 }
 
-func (i *moduleGitlabPtrType) ToOutput(ctx context.Context) pulumix.Output[*ModuleGitlab] {
-	return pulumix.Output[*ModuleGitlab]{
-		OutputState: i.ToModuleGitlabPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ModuleGitlabOutput struct{ *pulumi.OutputState }
 
 func (ModuleGitlabOutput) ElementType() reflect.Type {
@@ -1056,12 +923,6 @@ func (o ModuleGitlabOutput) ToModuleGitlabPtrOutputWithContext(ctx context.Conte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ModuleGitlab) *ModuleGitlab {
 		return &v
 	}).(ModuleGitlabPtrOutput)
-}
-
-func (o ModuleGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[ModuleGitlab] {
-	return pulumix.Output[ModuleGitlab]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID of the Gitlab integration. If not specified, the default integration will be used.
@@ -1091,12 +952,6 @@ func (o ModuleGitlabPtrOutput) ToModuleGitlabPtrOutput() ModuleGitlabPtrOutput {
 
 func (o ModuleGitlabPtrOutput) ToModuleGitlabPtrOutputWithContext(ctx context.Context) ModuleGitlabPtrOutput {
 	return o
-}
-
-func (o ModuleGitlabPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ModuleGitlab] {
-	return pulumix.Output[*ModuleGitlab]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ModuleGitlabPtrOutput) Elem() ModuleGitlabOutput {
@@ -1172,12 +1027,6 @@ func (i StackAnsibleArgs) ToStackAnsibleOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(StackAnsibleOutput)
 }
 
-func (i StackAnsibleArgs) ToOutput(ctx context.Context) pulumix.Output[StackAnsible] {
-	return pulumix.Output[StackAnsible]{
-		OutputState: i.ToStackAnsibleOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackAnsibleArgs) ToStackAnsiblePtrOutput() StackAnsiblePtrOutput {
 	return i.ToStackAnsiblePtrOutputWithContext(context.Background())
 }
@@ -1219,12 +1068,6 @@ func (i *stackAnsiblePtrType) ToStackAnsiblePtrOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(StackAnsiblePtrOutput)
 }
 
-func (i *stackAnsiblePtrType) ToOutput(ctx context.Context) pulumix.Output[*StackAnsible] {
-	return pulumix.Output[*StackAnsible]{
-		OutputState: i.ToStackAnsiblePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackAnsibleOutput struct{ *pulumi.OutputState }
 
 func (StackAnsibleOutput) ElementType() reflect.Type {
@@ -1249,12 +1092,6 @@ func (o StackAnsibleOutput) ToStackAnsiblePtrOutputWithContext(ctx context.Conte
 	}).(StackAnsiblePtrOutput)
 }
 
-func (o StackAnsibleOutput) ToOutput(ctx context.Context) pulumix.Output[StackAnsible] {
-	return pulumix.Output[StackAnsible]{
-		OutputState: o.OutputState,
-	}
-}
-
 // The playbook Ansible should run.
 func (o StackAnsibleOutput) Playbook() pulumi.StringOutput {
 	return o.ApplyT(func(v StackAnsible) string { return v.Playbook }).(pulumi.StringOutput)
@@ -1272,12 +1109,6 @@ func (o StackAnsiblePtrOutput) ToStackAnsiblePtrOutput() StackAnsiblePtrOutput {
 
 func (o StackAnsiblePtrOutput) ToStackAnsiblePtrOutputWithContext(ctx context.Context) StackAnsiblePtrOutput {
 	return o
-}
-
-func (o StackAnsiblePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackAnsible] {
-	return pulumix.Output[*StackAnsible]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackAnsiblePtrOutput) Elem() StackAnsibleOutput {
@@ -1341,12 +1172,6 @@ func (i StackAzureDevopsArgs) ToStackAzureDevopsOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(StackAzureDevopsOutput)
 }
 
-func (i StackAzureDevopsArgs) ToOutput(ctx context.Context) pulumix.Output[StackAzureDevops] {
-	return pulumix.Output[StackAzureDevops]{
-		OutputState: i.ToStackAzureDevopsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackAzureDevopsArgs) ToStackAzureDevopsPtrOutput() StackAzureDevopsPtrOutput {
 	return i.ToStackAzureDevopsPtrOutputWithContext(context.Background())
 }
@@ -1388,12 +1213,6 @@ func (i *stackAzureDevopsPtrType) ToStackAzureDevopsPtrOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(StackAzureDevopsPtrOutput)
 }
 
-func (i *stackAzureDevopsPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackAzureDevops] {
-	return pulumix.Output[*StackAzureDevops]{
-		OutputState: i.ToStackAzureDevopsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackAzureDevopsOutput struct{ *pulumi.OutputState }
 
 func (StackAzureDevopsOutput) ElementType() reflect.Type {
@@ -1416,12 +1235,6 @@ func (o StackAzureDevopsOutput) ToStackAzureDevopsPtrOutputWithContext(ctx conte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v StackAzureDevops) *StackAzureDevops {
 		return &v
 	}).(StackAzureDevopsPtrOutput)
-}
-
-func (o StackAzureDevopsOutput) ToOutput(ctx context.Context) pulumix.Output[StackAzureDevops] {
-	return pulumix.Output[StackAzureDevops]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the Azure Devops integration. If not specified, the default integration will be used.
@@ -1451,12 +1264,6 @@ func (o StackAzureDevopsPtrOutput) ToStackAzureDevopsPtrOutput() StackAzureDevop
 
 func (o StackAzureDevopsPtrOutput) ToStackAzureDevopsPtrOutputWithContext(ctx context.Context) StackAzureDevopsPtrOutput {
 	return o
-}
-
-func (o StackAzureDevopsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackAzureDevops] {
-	return pulumix.Output[*StackAzureDevops]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackAzureDevopsPtrOutput) Elem() StackAzureDevopsOutput {
@@ -1540,12 +1347,6 @@ func (i StackBitbucketCloudArgs) ToStackBitbucketCloudOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketCloudOutput)
 }
 
-func (i StackBitbucketCloudArgs) ToOutput(ctx context.Context) pulumix.Output[StackBitbucketCloud] {
-	return pulumix.Output[StackBitbucketCloud]{
-		OutputState: i.ToStackBitbucketCloudOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackBitbucketCloudArgs) ToStackBitbucketCloudPtrOutput() StackBitbucketCloudPtrOutput {
 	return i.ToStackBitbucketCloudPtrOutputWithContext(context.Background())
 }
@@ -1587,12 +1388,6 @@ func (i *stackBitbucketCloudPtrType) ToStackBitbucketCloudPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketCloudPtrOutput)
 }
 
-func (i *stackBitbucketCloudPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackBitbucketCloud] {
-	return pulumix.Output[*StackBitbucketCloud]{
-		OutputState: i.ToStackBitbucketCloudPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackBitbucketCloudOutput struct{ *pulumi.OutputState }
 
 func (StackBitbucketCloudOutput) ElementType() reflect.Type {
@@ -1615,12 +1410,6 @@ func (o StackBitbucketCloudOutput) ToStackBitbucketCloudPtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v StackBitbucketCloud) *StackBitbucketCloud {
 		return &v
 	}).(StackBitbucketCloudPtrOutput)
-}
-
-func (o StackBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[StackBitbucketCloud] {
-	return pulumix.Output[StackBitbucketCloud]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
@@ -1650,12 +1439,6 @@ func (o StackBitbucketCloudPtrOutput) ToStackBitbucketCloudPtrOutput() StackBitb
 
 func (o StackBitbucketCloudPtrOutput) ToStackBitbucketCloudPtrOutputWithContext(ctx context.Context) StackBitbucketCloudPtrOutput {
 	return o
-}
-
-func (o StackBitbucketCloudPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackBitbucketCloud] {
-	return pulumix.Output[*StackBitbucketCloud]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackBitbucketCloudPtrOutput) Elem() StackBitbucketCloudOutput {
@@ -1739,12 +1522,6 @@ func (i StackBitbucketDatacenterArgs) ToStackBitbucketDatacenterOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketDatacenterOutput)
 }
 
-func (i StackBitbucketDatacenterArgs) ToOutput(ctx context.Context) pulumix.Output[StackBitbucketDatacenter] {
-	return pulumix.Output[StackBitbucketDatacenter]{
-		OutputState: i.ToStackBitbucketDatacenterOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackBitbucketDatacenterArgs) ToStackBitbucketDatacenterPtrOutput() StackBitbucketDatacenterPtrOutput {
 	return i.ToStackBitbucketDatacenterPtrOutputWithContext(context.Background())
 }
@@ -1786,12 +1563,6 @@ func (i *stackBitbucketDatacenterPtrType) ToStackBitbucketDatacenterPtrOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(StackBitbucketDatacenterPtrOutput)
 }
 
-func (i *stackBitbucketDatacenterPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackBitbucketDatacenter] {
-	return pulumix.Output[*StackBitbucketDatacenter]{
-		OutputState: i.ToStackBitbucketDatacenterPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackBitbucketDatacenterOutput struct{ *pulumi.OutputState }
 
 func (StackBitbucketDatacenterOutput) ElementType() reflect.Type {
@@ -1814,12 +1585,6 @@ func (o StackBitbucketDatacenterOutput) ToStackBitbucketDatacenterPtrOutputWithC
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v StackBitbucketDatacenter) *StackBitbucketDatacenter {
 		return &v
 	}).(StackBitbucketDatacenterPtrOutput)
-}
-
-func (o StackBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Output[StackBitbucketDatacenter] {
-	return pulumix.Output[StackBitbucketDatacenter]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
@@ -1849,12 +1614,6 @@ func (o StackBitbucketDatacenterPtrOutput) ToStackBitbucketDatacenterPtrOutput()
 
 func (o StackBitbucketDatacenterPtrOutput) ToStackBitbucketDatacenterPtrOutputWithContext(ctx context.Context) StackBitbucketDatacenterPtrOutput {
 	return o
-}
-
-func (o StackBitbucketDatacenterPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackBitbucketDatacenter] {
-	return pulumix.Output[*StackBitbucketDatacenter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackBitbucketDatacenterPtrOutput) Elem() StackBitbucketDatacenterOutput {
@@ -1942,12 +1701,6 @@ func (i StackCloudformationArgs) ToStackCloudformationOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(StackCloudformationOutput)
 }
 
-func (i StackCloudformationArgs) ToOutput(ctx context.Context) pulumix.Output[StackCloudformation] {
-	return pulumix.Output[StackCloudformation]{
-		OutputState: i.ToStackCloudformationOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackCloudformationArgs) ToStackCloudformationPtrOutput() StackCloudformationPtrOutput {
 	return i.ToStackCloudformationPtrOutputWithContext(context.Background())
 }
@@ -1989,12 +1742,6 @@ func (i *stackCloudformationPtrType) ToStackCloudformationPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(StackCloudformationPtrOutput)
 }
 
-func (i *stackCloudformationPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackCloudformation] {
-	return pulumix.Output[*StackCloudformation]{
-		OutputState: i.ToStackCloudformationPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackCloudformationOutput struct{ *pulumi.OutputState }
 
 func (StackCloudformationOutput) ElementType() reflect.Type {
@@ -2017,12 +1764,6 @@ func (o StackCloudformationOutput) ToStackCloudformationPtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v StackCloudformation) *StackCloudformation {
 		return &v
 	}).(StackCloudformationPtrOutput)
-}
-
-func (o StackCloudformationOutput) ToOutput(ctx context.Context) pulumix.Output[StackCloudformation] {
-	return pulumix.Output[StackCloudformation]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Template file `cloudformation package` will be called on
@@ -2057,12 +1798,6 @@ func (o StackCloudformationPtrOutput) ToStackCloudformationPtrOutput() StackClou
 
 func (o StackCloudformationPtrOutput) ToStackCloudformationPtrOutputWithContext(ctx context.Context) StackCloudformationPtrOutput {
 	return o
-}
-
-func (o StackCloudformationPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackCloudformation] {
-	return pulumix.Output[*StackCloudformation]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackCloudformationPtrOutput) Elem() StackCloudformationOutput {
@@ -2156,12 +1891,6 @@ func (i StackGithubEnterpriseArgs) ToStackGithubEnterpriseOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(StackGithubEnterpriseOutput)
 }
 
-func (i StackGithubEnterpriseArgs) ToOutput(ctx context.Context) pulumix.Output[StackGithubEnterprise] {
-	return pulumix.Output[StackGithubEnterprise]{
-		OutputState: i.ToStackGithubEnterpriseOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackGithubEnterpriseArgs) ToStackGithubEnterprisePtrOutput() StackGithubEnterprisePtrOutput {
 	return i.ToStackGithubEnterprisePtrOutputWithContext(context.Background())
 }
@@ -2203,12 +1932,6 @@ func (i *stackGithubEnterprisePtrType) ToStackGithubEnterprisePtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(StackGithubEnterprisePtrOutput)
 }
 
-func (i *stackGithubEnterprisePtrType) ToOutput(ctx context.Context) pulumix.Output[*StackGithubEnterprise] {
-	return pulumix.Output[*StackGithubEnterprise]{
-		OutputState: i.ToStackGithubEnterprisePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackGithubEnterpriseOutput struct{ *pulumi.OutputState }
 
 func (StackGithubEnterpriseOutput) ElementType() reflect.Type {
@@ -2231,12 +1954,6 @@ func (o StackGithubEnterpriseOutput) ToStackGithubEnterprisePtrOutputWithContext
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v StackGithubEnterprise) *StackGithubEnterprise {
 		return &v
 	}).(StackGithubEnterprisePtrOutput)
-}
-
-func (o StackGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Output[StackGithubEnterprise] {
-	return pulumix.Output[StackGithubEnterprise]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
@@ -2266,12 +1983,6 @@ func (o StackGithubEnterprisePtrOutput) ToStackGithubEnterprisePtrOutput() Stack
 
 func (o StackGithubEnterprisePtrOutput) ToStackGithubEnterprisePtrOutputWithContext(ctx context.Context) StackGithubEnterprisePtrOutput {
 	return o
-}
-
-func (o StackGithubEnterprisePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackGithubEnterprise] {
-	return pulumix.Output[*StackGithubEnterprise]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackGithubEnterprisePtrOutput) Elem() StackGithubEnterpriseOutput {
@@ -2355,12 +2066,6 @@ func (i StackGitlabArgs) ToStackGitlabOutputWithContext(ctx context.Context) Sta
 	return pulumi.ToOutputWithContext(ctx, i).(StackGitlabOutput)
 }
 
-func (i StackGitlabArgs) ToOutput(ctx context.Context) pulumix.Output[StackGitlab] {
-	return pulumix.Output[StackGitlab]{
-		OutputState: i.ToStackGitlabOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackGitlabArgs) ToStackGitlabPtrOutput() StackGitlabPtrOutput {
 	return i.ToStackGitlabPtrOutputWithContext(context.Background())
 }
@@ -2402,12 +2107,6 @@ func (i *stackGitlabPtrType) ToStackGitlabPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(StackGitlabPtrOutput)
 }
 
-func (i *stackGitlabPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackGitlab] {
-	return pulumix.Output[*StackGitlab]{
-		OutputState: i.ToStackGitlabPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackGitlabOutput struct{ *pulumi.OutputState }
 
 func (StackGitlabOutput) ElementType() reflect.Type {
@@ -2430,12 +2129,6 @@ func (o StackGitlabOutput) ToStackGitlabPtrOutputWithContext(ctx context.Context
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v StackGitlab) *StackGitlab {
 		return &v
 	}).(StackGitlabPtrOutput)
-}
-
-func (o StackGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[StackGitlab] {
-	return pulumix.Output[StackGitlab]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of the Gitlab integration. If not specified, the default integration will be used.
@@ -2465,12 +2158,6 @@ func (o StackGitlabPtrOutput) ToStackGitlabPtrOutput() StackGitlabPtrOutput {
 
 func (o StackGitlabPtrOutput) ToStackGitlabPtrOutputWithContext(ctx context.Context) StackGitlabPtrOutput {
 	return o
-}
-
-func (o StackGitlabPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackGitlab] {
-	return pulumix.Output[*StackGitlab]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackGitlabPtrOutput) Elem() StackGitlabOutput {
@@ -2550,12 +2237,6 @@ func (i StackKubernetesArgs) ToStackKubernetesOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(StackKubernetesOutput)
 }
 
-func (i StackKubernetesArgs) ToOutput(ctx context.Context) pulumix.Output[StackKubernetes] {
-	return pulumix.Output[StackKubernetes]{
-		OutputState: i.ToStackKubernetesOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackKubernetesArgs) ToStackKubernetesPtrOutput() StackKubernetesPtrOutput {
 	return i.ToStackKubernetesPtrOutputWithContext(context.Background())
 }
@@ -2597,12 +2278,6 @@ func (i *stackKubernetesPtrType) ToStackKubernetesPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(StackKubernetesPtrOutput)
 }
 
-func (i *stackKubernetesPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackKubernetes] {
-	return pulumix.Output[*StackKubernetes]{
-		OutputState: i.ToStackKubernetesPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackKubernetesOutput struct{ *pulumi.OutputState }
 
 func (StackKubernetesOutput) ElementType() reflect.Type {
@@ -2627,12 +2302,6 @@ func (o StackKubernetesOutput) ToStackKubernetesPtrOutputWithContext(ctx context
 	}).(StackKubernetesPtrOutput)
 }
 
-func (o StackKubernetesOutput) ToOutput(ctx context.Context) pulumix.Output[StackKubernetes] {
-	return pulumix.Output[StackKubernetes]{
-		OutputState: o.OutputState,
-	}
-}
-
 // Kubectl version.
 func (o StackKubernetesOutput) KubectlVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StackKubernetes) *string { return v.KubectlVersion }).(pulumi.StringPtrOutput)
@@ -2655,12 +2324,6 @@ func (o StackKubernetesPtrOutput) ToStackKubernetesPtrOutput() StackKubernetesPt
 
 func (o StackKubernetesPtrOutput) ToStackKubernetesPtrOutputWithContext(ctx context.Context) StackKubernetesPtrOutput {
 	return o
-}
-
-func (o StackKubernetesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackKubernetes] {
-	return pulumix.Output[*StackKubernetes]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackKubernetesPtrOutput) Elem() StackKubernetesOutput {
@@ -2730,12 +2393,6 @@ func (i StackPulumiArgs) ToStackPulumiOutputWithContext(ctx context.Context) Sta
 	return pulumi.ToOutputWithContext(ctx, i).(StackPulumiOutput)
 }
 
-func (i StackPulumiArgs) ToOutput(ctx context.Context) pulumix.Output[StackPulumi] {
-	return pulumix.Output[StackPulumi]{
-		OutputState: i.ToStackPulumiOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackPulumiArgs) ToStackPulumiPtrOutput() StackPulumiPtrOutput {
 	return i.ToStackPulumiPtrOutputWithContext(context.Background())
 }
@@ -2777,12 +2434,6 @@ func (i *stackPulumiPtrType) ToStackPulumiPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(StackPulumiPtrOutput)
 }
 
-func (i *stackPulumiPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackPulumi] {
-	return pulumix.Output[*StackPulumi]{
-		OutputState: i.ToStackPulumiPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackPulumiOutput struct{ *pulumi.OutputState }
 
 func (StackPulumiOutput) ElementType() reflect.Type {
@@ -2807,12 +2458,6 @@ func (o StackPulumiOutput) ToStackPulumiPtrOutputWithContext(ctx context.Context
 	}).(StackPulumiPtrOutput)
 }
 
-func (o StackPulumiOutput) ToOutput(ctx context.Context) pulumix.Output[StackPulumi] {
-	return pulumix.Output[StackPulumi]{
-		OutputState: o.OutputState,
-	}
-}
-
 // State backend to log into on Run initialize.
 func (o StackPulumiOutput) LoginUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v StackPulumi) string { return v.LoginUrl }).(pulumi.StringOutput)
@@ -2835,12 +2480,6 @@ func (o StackPulumiPtrOutput) ToStackPulumiPtrOutput() StackPulumiPtrOutput {
 
 func (o StackPulumiPtrOutput) ToStackPulumiPtrOutputWithContext(ctx context.Context) StackPulumiPtrOutput {
 	return o
-}
-
-func (o StackPulumiPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackPulumi] {
-	return pulumix.Output[*StackPulumi]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackPulumiPtrOutput) Elem() StackPulumiOutput {
@@ -2910,12 +2549,6 @@ func (i StackRawGitArgs) ToStackRawGitOutputWithContext(ctx context.Context) Sta
 	return pulumi.ToOutputWithContext(ctx, i).(StackRawGitOutput)
 }
 
-func (i StackRawGitArgs) ToOutput(ctx context.Context) pulumix.Output[StackRawGit] {
-	return pulumix.Output[StackRawGit]{
-		OutputState: i.ToStackRawGitOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackRawGitArgs) ToStackRawGitPtrOutput() StackRawGitPtrOutput {
 	return i.ToStackRawGitPtrOutputWithContext(context.Background())
 }
@@ -2957,12 +2590,6 @@ func (i *stackRawGitPtrType) ToStackRawGitPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(StackRawGitPtrOutput)
 }
 
-func (i *stackRawGitPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackRawGit] {
-	return pulumix.Output[*StackRawGit]{
-		OutputState: i.ToStackRawGitPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackRawGitOutput struct{ *pulumi.OutputState }
 
 func (StackRawGitOutput) ElementType() reflect.Type {
@@ -2987,12 +2614,6 @@ func (o StackRawGitOutput) ToStackRawGitPtrOutputWithContext(ctx context.Context
 	}).(StackRawGitPtrOutput)
 }
 
-func (o StackRawGitOutput) ToOutput(ctx context.Context) pulumix.Output[StackRawGit] {
-	return pulumix.Output[StackRawGit]{
-		OutputState: o.OutputState,
-	}
-}
-
 // User-friendly namespace for the repository, this is for cosmetic purposes only
 func (o StackRawGitOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackRawGit) string { return v.Namespace }).(pulumi.StringOutput)
@@ -3015,12 +2636,6 @@ func (o StackRawGitPtrOutput) ToStackRawGitPtrOutput() StackRawGitPtrOutput {
 
 func (o StackRawGitPtrOutput) ToStackRawGitPtrOutputWithContext(ctx context.Context) StackRawGitPtrOutput {
 	return o
-}
-
-func (o StackRawGitPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackRawGit] {
-	return pulumix.Output[*StackRawGit]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackRawGitPtrOutput) Elem() StackRawGitOutput {
@@ -3084,12 +2699,6 @@ func (i StackShowcaseArgs) ToStackShowcaseOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(StackShowcaseOutput)
 }
 
-func (i StackShowcaseArgs) ToOutput(ctx context.Context) pulumix.Output[StackShowcase] {
-	return pulumix.Output[StackShowcase]{
-		OutputState: i.ToStackShowcaseOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackShowcaseArgs) ToStackShowcasePtrOutput() StackShowcasePtrOutput {
 	return i.ToStackShowcasePtrOutputWithContext(context.Background())
 }
@@ -3131,12 +2740,6 @@ func (i *stackShowcasePtrType) ToStackShowcasePtrOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(StackShowcasePtrOutput)
 }
 
-func (i *stackShowcasePtrType) ToOutput(ctx context.Context) pulumix.Output[*StackShowcase] {
-	return pulumix.Output[*StackShowcase]{
-		OutputState: i.ToStackShowcasePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackShowcaseOutput struct{ *pulumi.OutputState }
 
 func (StackShowcaseOutput) ElementType() reflect.Type {
@@ -3161,12 +2764,6 @@ func (o StackShowcaseOutput) ToStackShowcasePtrOutputWithContext(ctx context.Con
 	}).(StackShowcasePtrOutput)
 }
 
-func (o StackShowcaseOutput) ToOutput(ctx context.Context) pulumix.Output[StackShowcase] {
-	return pulumix.Output[StackShowcase]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StackShowcaseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v StackShowcase) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -3183,12 +2780,6 @@ func (o StackShowcasePtrOutput) ToStackShowcasePtrOutput() StackShowcasePtrOutpu
 
 func (o StackShowcasePtrOutput) ToStackShowcasePtrOutputWithContext(ctx context.Context) StackShowcasePtrOutput {
 	return o
-}
-
-func (o StackShowcasePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackShowcase] {
-	return pulumix.Output[*StackShowcase]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackShowcasePtrOutput) Elem() StackShowcaseOutput {
@@ -3251,12 +2842,6 @@ func (i StackTerragruntArgs) ToStackTerragruntOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(StackTerragruntOutput)
 }
 
-func (i StackTerragruntArgs) ToOutput(ctx context.Context) pulumix.Output[StackTerragrunt] {
-	return pulumix.Output[StackTerragrunt]{
-		OutputState: i.ToStackTerragruntOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StackTerragruntArgs) ToStackTerragruntPtrOutput() StackTerragruntPtrOutput {
 	return i.ToStackTerragruntPtrOutputWithContext(context.Background())
 }
@@ -3298,12 +2883,6 @@ func (i *stackTerragruntPtrType) ToStackTerragruntPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(StackTerragruntPtrOutput)
 }
 
-func (i *stackTerragruntPtrType) ToOutput(ctx context.Context) pulumix.Output[*StackTerragrunt] {
-	return pulumix.Output[*StackTerragrunt]{
-		OutputState: i.ToStackTerragruntPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackTerragruntOutput struct{ *pulumi.OutputState }
 
 func (StackTerragruntOutput) ElementType() reflect.Type {
@@ -3326,12 +2905,6 @@ func (o StackTerragruntOutput) ToStackTerragruntPtrOutputWithContext(ctx context
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v StackTerragrunt) *StackTerragrunt {
 		return &v
 	}).(StackTerragruntPtrOutput)
-}
-
-func (o StackTerragruntOutput) ToOutput(ctx context.Context) pulumix.Output[StackTerragrunt] {
-	return pulumix.Output[StackTerragrunt]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackTerragruntOutput) TerraformVersion() pulumi.StringPtrOutput {
@@ -3364,12 +2937,6 @@ func (o StackTerragruntPtrOutput) ToStackTerragruntPtrOutput() StackTerragruntPt
 
 func (o StackTerragruntPtrOutput) ToStackTerragruntPtrOutputWithContext(ctx context.Context) StackTerragruntPtrOutput {
 	return o
-}
-
-func (o StackTerragruntPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StackTerragrunt] {
-	return pulumix.Output[*StackTerragrunt]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackTerragruntPtrOutput) Elem() StackTerragruntOutput {
@@ -3457,12 +3024,6 @@ func (i UserPolicyArgs) ToUserPolicyOutputWithContext(ctx context.Context) UserP
 	return pulumi.ToOutputWithContext(ctx, i).(UserPolicyOutput)
 }
 
-func (i UserPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[UserPolicy] {
-	return pulumix.Output[UserPolicy]{
-		OutputState: i.ToUserPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // UserPolicyArrayInput is an input type that accepts UserPolicyArray and UserPolicyArrayOutput values.
 // You can construct a concrete instance of `UserPolicyArrayInput` via:
 //
@@ -3488,12 +3049,6 @@ func (i UserPolicyArray) ToUserPolicyArrayOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(UserPolicyArrayOutput)
 }
 
-func (i UserPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]UserPolicy] {
-	return pulumix.Output[[]UserPolicy]{
-		OutputState: i.ToUserPolicyArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type UserPolicyOutput struct{ *pulumi.OutputState }
 
 func (UserPolicyOutput) ElementType() reflect.Type {
@@ -3506,12 +3061,6 @@ func (o UserPolicyOutput) ToUserPolicyOutput() UserPolicyOutput {
 
 func (o UserPolicyOutput) ToUserPolicyOutputWithContext(ctx context.Context) UserPolicyOutput {
 	return o
-}
-
-func (o UserPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[UserPolicy] {
-	return pulumix.Output[UserPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Type of access to the space. Possible values are: READ, WRITE, ADMIN
@@ -3538,12 +3087,6 @@ func (o UserPolicyArrayOutput) ToUserPolicyArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o UserPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserPolicy] {
-	return pulumix.Output[[]UserPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o UserPolicyArrayOutput) Index(i pulumi.IntInput) UserPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserPolicy {
 		return vs[0].([]UserPolicy)[vs[1].(int)]
@@ -3551,14 +3094,21 @@ func (o UserPolicyArrayOutput) Index(i pulumi.IntInput) UserPolicyOutput {
 }
 
 type GetAwsIntegrationsIntegration struct {
-	DurationSeconds             int      `pulumi:"durationSeconds"`
-	ExternalId                  string   `pulumi:"externalId"`
-	GenerateCredentialsInWorker bool     `pulumi:"generateCredentialsInWorker"`
-	IntegrationId               string   `pulumi:"integrationId"`
-	Labels                      []string `pulumi:"labels"`
-	Name                        string   `pulumi:"name"`
-	RoleArn                     string   `pulumi:"roleArn"`
-	SpaceId                     string   `pulumi:"spaceId"`
+	// Duration in seconds for which the assumed role credentials should be valid
+	DurationSeconds int `pulumi:"durationSeconds"`
+	// Custom external ID (works only for private workers).
+	ExternalId string `pulumi:"externalId"`
+	// Generate AWS credentials in the private worker
+	GenerateCredentialsInWorker bool `pulumi:"generateCredentialsInWorker"`
+	// Immutable ID of the integration.
+	IntegrationId string   `pulumi:"integrationId"`
+	Labels        []string `pulumi:"labels"`
+	// Name of the AWS integration.
+	Name string `pulumi:"name"`
+	// ARN of the AWS IAM role to attach
+	RoleArn string `pulumi:"roleArn"`
+	// ID (slug) of the space the integration is in
+	SpaceId string `pulumi:"spaceId"`
 }
 
 // GetAwsIntegrationsIntegrationInput is an input type that accepts GetAwsIntegrationsIntegrationArgs and GetAwsIntegrationsIntegrationOutput values.
@@ -3573,14 +3123,21 @@ type GetAwsIntegrationsIntegrationInput interface {
 }
 
 type GetAwsIntegrationsIntegrationArgs struct {
-	DurationSeconds             pulumi.IntInput         `pulumi:"durationSeconds"`
-	ExternalId                  pulumi.StringInput      `pulumi:"externalId"`
-	GenerateCredentialsInWorker pulumi.BoolInput        `pulumi:"generateCredentialsInWorker"`
-	IntegrationId               pulumi.StringInput      `pulumi:"integrationId"`
-	Labels                      pulumi.StringArrayInput `pulumi:"labels"`
-	Name                        pulumi.StringInput      `pulumi:"name"`
-	RoleArn                     pulumi.StringInput      `pulumi:"roleArn"`
-	SpaceId                     pulumi.StringInput      `pulumi:"spaceId"`
+	// Duration in seconds for which the assumed role credentials should be valid
+	DurationSeconds pulumi.IntInput `pulumi:"durationSeconds"`
+	// Custom external ID (works only for private workers).
+	ExternalId pulumi.StringInput `pulumi:"externalId"`
+	// Generate AWS credentials in the private worker
+	GenerateCredentialsInWorker pulumi.BoolInput `pulumi:"generateCredentialsInWorker"`
+	// Immutable ID of the integration.
+	IntegrationId pulumi.StringInput      `pulumi:"integrationId"`
+	Labels        pulumi.StringArrayInput `pulumi:"labels"`
+	// Name of the AWS integration.
+	Name pulumi.StringInput `pulumi:"name"`
+	// ARN of the AWS IAM role to attach
+	RoleArn pulumi.StringInput `pulumi:"roleArn"`
+	// ID (slug) of the space the integration is in
+	SpaceId pulumi.StringInput `pulumi:"spaceId"`
 }
 
 func (GetAwsIntegrationsIntegrationArgs) ElementType() reflect.Type {
@@ -3593,12 +3150,6 @@ func (i GetAwsIntegrationsIntegrationArgs) ToGetAwsIntegrationsIntegrationOutput
 
 func (i GetAwsIntegrationsIntegrationArgs) ToGetAwsIntegrationsIntegrationOutputWithContext(ctx context.Context) GetAwsIntegrationsIntegrationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetAwsIntegrationsIntegrationOutput)
-}
-
-func (i GetAwsIntegrationsIntegrationArgs) ToOutput(ctx context.Context) pulumix.Output[GetAwsIntegrationsIntegration] {
-	return pulumix.Output[GetAwsIntegrationsIntegration]{
-		OutputState: i.ToGetAwsIntegrationsIntegrationOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetAwsIntegrationsIntegrationArrayInput is an input type that accepts GetAwsIntegrationsIntegrationArray and GetAwsIntegrationsIntegrationArrayOutput values.
@@ -3626,12 +3177,6 @@ func (i GetAwsIntegrationsIntegrationArray) ToGetAwsIntegrationsIntegrationArray
 	return pulumi.ToOutputWithContext(ctx, i).(GetAwsIntegrationsIntegrationArrayOutput)
 }
 
-func (i GetAwsIntegrationsIntegrationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAwsIntegrationsIntegration] {
-	return pulumix.Output[[]GetAwsIntegrationsIntegration]{
-		OutputState: i.ToGetAwsIntegrationsIntegrationArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetAwsIntegrationsIntegrationOutput struct{ *pulumi.OutputState }
 
 func (GetAwsIntegrationsIntegrationOutput) ElementType() reflect.Type {
@@ -3646,24 +3191,22 @@ func (o GetAwsIntegrationsIntegrationOutput) ToGetAwsIntegrationsIntegrationOutp
 	return o
 }
 
-func (o GetAwsIntegrationsIntegrationOutput) ToOutput(ctx context.Context) pulumix.Output[GetAwsIntegrationsIntegration] {
-	return pulumix.Output[GetAwsIntegrationsIntegration]{
-		OutputState: o.OutputState,
-	}
-}
-
+// Duration in seconds for which the assumed role credentials should be valid
 func (o GetAwsIntegrationsIntegrationOutput) DurationSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAwsIntegrationsIntegration) int { return v.DurationSeconds }).(pulumi.IntOutput)
 }
 
+// Custom external ID (works only for private workers).
 func (o GetAwsIntegrationsIntegrationOutput) ExternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsIntegrationsIntegration) string { return v.ExternalId }).(pulumi.StringOutput)
 }
 
+// Generate AWS credentials in the private worker
 func (o GetAwsIntegrationsIntegrationOutput) GenerateCredentialsInWorker() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAwsIntegrationsIntegration) bool { return v.GenerateCredentialsInWorker }).(pulumi.BoolOutput)
 }
 
+// Immutable ID of the integration.
 func (o GetAwsIntegrationsIntegrationOutput) IntegrationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsIntegrationsIntegration) string { return v.IntegrationId }).(pulumi.StringOutput)
 }
@@ -3672,14 +3215,17 @@ func (o GetAwsIntegrationsIntegrationOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetAwsIntegrationsIntegration) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// Name of the AWS integration.
 func (o GetAwsIntegrationsIntegrationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsIntegrationsIntegration) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ARN of the AWS IAM role to attach
 func (o GetAwsIntegrationsIntegrationOutput) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsIntegrationsIntegration) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the space the integration is in
 func (o GetAwsIntegrationsIntegrationOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAwsIntegrationsIntegration) string { return v.SpaceId }).(pulumi.StringOutput)
 }
@@ -3698,12 +3244,6 @@ func (o GetAwsIntegrationsIntegrationArrayOutput) ToGetAwsIntegrationsIntegratio
 	return o
 }
 
-func (o GetAwsIntegrationsIntegrationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAwsIntegrationsIntegration] {
-	return pulumix.Output[[]GetAwsIntegrationsIntegration]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetAwsIntegrationsIntegrationArrayOutput) Index(i pulumi.IntInput) GetAwsIntegrationsIntegrationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAwsIntegrationsIntegration {
 		return vs[0].([]GetAwsIntegrationsIntegration)[vs[1].(int)]
@@ -3711,16 +3251,26 @@ func (o GetAwsIntegrationsIntegrationArrayOutput) Index(i pulumi.IntInput) GetAw
 }
 
 type GetAzureIntegrationsIntegration struct {
-	AdminConsentProvided  bool     `pulumi:"adminConsentProvided"`
-	AdminConsentUrl       string   `pulumi:"adminConsentUrl"`
-	ApplicationId         string   `pulumi:"applicationId"`
-	DefaultSubscriptionId string   `pulumi:"defaultSubscriptionId"`
-	DisplayName           string   `pulumi:"displayName"`
-	IntegrationId         string   `pulumi:"integrationId"`
-	Labels                []string `pulumi:"labels"`
-	Name                  string   `pulumi:"name"`
-	SpaceId               string   `pulumi:"spaceId"`
-	TenantId              string   `pulumi:"tenantId"`
+	// Indicates whether admin consent has been performed for the AAD Application.
+	AdminConsentProvided bool `pulumi:"adminConsentProvided"`
+	// The URL to use to provide admin consent to the application in the customer's tenant
+	AdminConsentUrl string `pulumi:"adminConsentUrl"`
+	// The applicationId of the Azure AD application used by the integration.
+	ApplicationId string `pulumi:"applicationId"`
+	// The default subscription ID to use, if one isn't specified at the stack/module level
+	DefaultSubscriptionId string `pulumi:"defaultSubscriptionId"`
+	// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
+	DisplayName string `pulumi:"displayName"`
+	// Immutable ID of the integration.
+	IntegrationId string `pulumi:"integrationId"`
+	// Labels to set on the integration
+	Labels []string `pulumi:"labels"`
+	// The friendly name of the integration.
+	Name string `pulumi:"name"`
+	// ID (slug) of the space the integration is in
+	SpaceId string `pulumi:"spaceId"`
+	// The Azure AD tenant ID
+	TenantId string `pulumi:"tenantId"`
 }
 
 // GetAzureIntegrationsIntegrationInput is an input type that accepts GetAzureIntegrationsIntegrationArgs and GetAzureIntegrationsIntegrationOutput values.
@@ -3735,16 +3285,26 @@ type GetAzureIntegrationsIntegrationInput interface {
 }
 
 type GetAzureIntegrationsIntegrationArgs struct {
-	AdminConsentProvided  pulumi.BoolInput        `pulumi:"adminConsentProvided"`
-	AdminConsentUrl       pulumi.StringInput      `pulumi:"adminConsentUrl"`
-	ApplicationId         pulumi.StringInput      `pulumi:"applicationId"`
-	DefaultSubscriptionId pulumi.StringInput      `pulumi:"defaultSubscriptionId"`
-	DisplayName           pulumi.StringInput      `pulumi:"displayName"`
-	IntegrationId         pulumi.StringInput      `pulumi:"integrationId"`
-	Labels                pulumi.StringArrayInput `pulumi:"labels"`
-	Name                  pulumi.StringInput      `pulumi:"name"`
-	SpaceId               pulumi.StringInput      `pulumi:"spaceId"`
-	TenantId              pulumi.StringInput      `pulumi:"tenantId"`
+	// Indicates whether admin consent has been performed for the AAD Application.
+	AdminConsentProvided pulumi.BoolInput `pulumi:"adminConsentProvided"`
+	// The URL to use to provide admin consent to the application in the customer's tenant
+	AdminConsentUrl pulumi.StringInput `pulumi:"adminConsentUrl"`
+	// The applicationId of the Azure AD application used by the integration.
+	ApplicationId pulumi.StringInput `pulumi:"applicationId"`
+	// The default subscription ID to use, if one isn't specified at the stack/module level
+	DefaultSubscriptionId pulumi.StringInput `pulumi:"defaultSubscriptionId"`
+	// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// Immutable ID of the integration.
+	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
+	// Labels to set on the integration
+	Labels pulumi.StringArrayInput `pulumi:"labels"`
+	// The friendly name of the integration.
+	Name pulumi.StringInput `pulumi:"name"`
+	// ID (slug) of the space the integration is in
+	SpaceId pulumi.StringInput `pulumi:"spaceId"`
+	// The Azure AD tenant ID
+	TenantId pulumi.StringInput `pulumi:"tenantId"`
 }
 
 func (GetAzureIntegrationsIntegrationArgs) ElementType() reflect.Type {
@@ -3757,12 +3317,6 @@ func (i GetAzureIntegrationsIntegrationArgs) ToGetAzureIntegrationsIntegrationOu
 
 func (i GetAzureIntegrationsIntegrationArgs) ToGetAzureIntegrationsIntegrationOutputWithContext(ctx context.Context) GetAzureIntegrationsIntegrationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetAzureIntegrationsIntegrationOutput)
-}
-
-func (i GetAzureIntegrationsIntegrationArgs) ToOutput(ctx context.Context) pulumix.Output[GetAzureIntegrationsIntegration] {
-	return pulumix.Output[GetAzureIntegrationsIntegration]{
-		OutputState: i.ToGetAzureIntegrationsIntegrationOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetAzureIntegrationsIntegrationArrayInput is an input type that accepts GetAzureIntegrationsIntegrationArray and GetAzureIntegrationsIntegrationArrayOutput values.
@@ -3790,12 +3344,6 @@ func (i GetAzureIntegrationsIntegrationArray) ToGetAzureIntegrationsIntegrationA
 	return pulumi.ToOutputWithContext(ctx, i).(GetAzureIntegrationsIntegrationArrayOutput)
 }
 
-func (i GetAzureIntegrationsIntegrationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAzureIntegrationsIntegration] {
-	return pulumix.Output[[]GetAzureIntegrationsIntegration]{
-		OutputState: i.ToGetAzureIntegrationsIntegrationArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetAzureIntegrationsIntegrationOutput struct{ *pulumi.OutputState }
 
 func (GetAzureIntegrationsIntegrationOutput) ElementType() reflect.Type {
@@ -3810,48 +3358,52 @@ func (o GetAzureIntegrationsIntegrationOutput) ToGetAzureIntegrationsIntegration
 	return o
 }
 
-func (o GetAzureIntegrationsIntegrationOutput) ToOutput(ctx context.Context) pulumix.Output[GetAzureIntegrationsIntegration] {
-	return pulumix.Output[GetAzureIntegrationsIntegration]{
-		OutputState: o.OutputState,
-	}
-}
-
+// Indicates whether admin consent has been performed for the AAD Application.
 func (o GetAzureIntegrationsIntegrationOutput) AdminConsentProvided() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAzureIntegrationsIntegration) bool { return v.AdminConsentProvided }).(pulumi.BoolOutput)
 }
 
+// The URL to use to provide admin consent to the application in the customer's tenant
 func (o GetAzureIntegrationsIntegrationOutput) AdminConsentUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.AdminConsentUrl }).(pulumi.StringOutput)
 }
 
+// The applicationId of the Azure AD application used by the integration.
 func (o GetAzureIntegrationsIntegrationOutput) ApplicationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.ApplicationId }).(pulumi.StringOutput)
 }
 
+// The default subscription ID to use, if one isn't specified at the stack/module level
 func (o GetAzureIntegrationsIntegrationOutput) DefaultSubscriptionId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.DefaultSubscriptionId }).(pulumi.StringOutput)
 }
 
+// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
 func (o GetAzureIntegrationsIntegrationOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.DisplayName }).(pulumi.StringOutput)
 }
 
+// Immutable ID of the integration.
 func (o GetAzureIntegrationsIntegrationOutput) IntegrationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.IntegrationId }).(pulumi.StringOutput)
 }
 
+// Labels to set on the integration
 func (o GetAzureIntegrationsIntegrationOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetAzureIntegrationsIntegration) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// The friendly name of the integration.
 func (o GetAzureIntegrationsIntegrationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the space the integration is in
 func (o GetAzureIntegrationsIntegrationOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
+// The Azure AD tenant ID
 func (o GetAzureIntegrationsIntegrationOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAzureIntegrationsIntegration) string { return v.TenantId }).(pulumi.StringOutput)
 }
@@ -3870,12 +3422,6 @@ func (o GetAzureIntegrationsIntegrationArrayOutput) ToGetAzureIntegrationsIntegr
 	return o
 }
 
-func (o GetAzureIntegrationsIntegrationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAzureIntegrationsIntegration] {
-	return pulumix.Output[[]GetAzureIntegrationsIntegration]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetAzureIntegrationsIntegrationArrayOutput) Index(i pulumi.IntInput) GetAzureIntegrationsIntegrationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAzureIntegrationsIntegration {
 		return vs[0].([]GetAzureIntegrationsIntegration)[vs[1].(int)]
@@ -3883,11 +3429,15 @@ func (o GetAzureIntegrationsIntegrationArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetContextsContext struct {
-	ContextId   string   `pulumi:"contextId"`
+	// immutable ID (slug) of the context
+	ContextId string `pulumi:"contextId"`
+	// free-form context description for users
 	Description string   `pulumi:"description"`
 	Labels      []string `pulumi:"labels"`
-	Name        string   `pulumi:"name"`
-	SpaceId     string   `pulumi:"spaceId"`
+	// name of the context
+	Name string `pulumi:"name"`
+	// ID (slug) of the space the context is in
+	SpaceId string `pulumi:"spaceId"`
 }
 
 // GetContextsContextInput is an input type that accepts GetContextsContextArgs and GetContextsContextOutput values.
@@ -3902,11 +3452,15 @@ type GetContextsContextInput interface {
 }
 
 type GetContextsContextArgs struct {
-	ContextId   pulumi.StringInput      `pulumi:"contextId"`
+	// immutable ID (slug) of the context
+	ContextId pulumi.StringInput `pulumi:"contextId"`
+	// free-form context description for users
 	Description pulumi.StringInput      `pulumi:"description"`
 	Labels      pulumi.StringArrayInput `pulumi:"labels"`
-	Name        pulumi.StringInput      `pulumi:"name"`
-	SpaceId     pulumi.StringInput      `pulumi:"spaceId"`
+	// name of the context
+	Name pulumi.StringInput `pulumi:"name"`
+	// ID (slug) of the space the context is in
+	SpaceId pulumi.StringInput `pulumi:"spaceId"`
 }
 
 func (GetContextsContextArgs) ElementType() reflect.Type {
@@ -3919,12 +3473,6 @@ func (i GetContextsContextArgs) ToGetContextsContextOutput() GetContextsContextO
 
 func (i GetContextsContextArgs) ToGetContextsContextOutputWithContext(ctx context.Context) GetContextsContextOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetContextsContextOutput)
-}
-
-func (i GetContextsContextArgs) ToOutput(ctx context.Context) pulumix.Output[GetContextsContext] {
-	return pulumix.Output[GetContextsContext]{
-		OutputState: i.ToGetContextsContextOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetContextsContextArrayInput is an input type that accepts GetContextsContextArray and GetContextsContextArrayOutput values.
@@ -3952,12 +3500,6 @@ func (i GetContextsContextArray) ToGetContextsContextArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetContextsContextArrayOutput)
 }
 
-func (i GetContextsContextArray) ToOutput(ctx context.Context) pulumix.Output[[]GetContextsContext] {
-	return pulumix.Output[[]GetContextsContext]{
-		OutputState: i.ToGetContextsContextArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetContextsContextOutput struct{ *pulumi.OutputState }
 
 func (GetContextsContextOutput) ElementType() reflect.Type {
@@ -3972,16 +3514,12 @@ func (o GetContextsContextOutput) ToGetContextsContextOutputWithContext(ctx cont
 	return o
 }
 
-func (o GetContextsContextOutput) ToOutput(ctx context.Context) pulumix.Output[GetContextsContext] {
-	return pulumix.Output[GetContextsContext]{
-		OutputState: o.OutputState,
-	}
-}
-
+// immutable ID (slug) of the context
 func (o GetContextsContextOutput) ContextId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetContextsContext) string { return v.ContextId }).(pulumi.StringOutput)
 }
 
+// free-form context description for users
 func (o GetContextsContextOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetContextsContext) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -3990,10 +3528,12 @@ func (o GetContextsContextOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetContextsContext) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// name of the context
 func (o GetContextsContextOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetContextsContext) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the space the context is in
 func (o GetContextsContextOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetContextsContext) string { return v.SpaceId }).(pulumi.StringOutput)
 }
@@ -4010,12 +3550,6 @@ func (o GetContextsContextArrayOutput) ToGetContextsContextArrayOutput() GetCont
 
 func (o GetContextsContextArrayOutput) ToGetContextsContextArrayOutputWithContext(ctx context.Context) GetContextsContextArrayOutput {
 	return o
-}
-
-func (o GetContextsContextArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetContextsContext] {
-	return pulumix.Output[[]GetContextsContext]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetContextsContextArrayOutput) Index(i pulumi.IntInput) GetContextsContextOutput {
@@ -4055,12 +3589,6 @@ func (i GetContextsLabelArgs) ToGetContextsLabelOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetContextsLabelOutput)
 }
 
-func (i GetContextsLabelArgs) ToOutput(ctx context.Context) pulumix.Output[GetContextsLabel] {
-	return pulumix.Output[GetContextsLabel]{
-		OutputState: i.ToGetContextsLabelOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetContextsLabelArrayInput is an input type that accepts GetContextsLabelArray and GetContextsLabelArrayOutput values.
 // You can construct a concrete instance of `GetContextsLabelArrayInput` via:
 //
@@ -4086,12 +3614,6 @@ func (i GetContextsLabelArray) ToGetContextsLabelArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetContextsLabelArrayOutput)
 }
 
-func (i GetContextsLabelArray) ToOutput(ctx context.Context) pulumix.Output[[]GetContextsLabel] {
-	return pulumix.Output[[]GetContextsLabel]{
-		OutputState: i.ToGetContextsLabelArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetContextsLabelOutput struct{ *pulumi.OutputState }
 
 func (GetContextsLabelOutput) ElementType() reflect.Type {
@@ -4104,12 +3626,6 @@ func (o GetContextsLabelOutput) ToGetContextsLabelOutput() GetContextsLabelOutpu
 
 func (o GetContextsLabelOutput) ToGetContextsLabelOutputWithContext(ctx context.Context) GetContextsLabelOutput {
 	return o
-}
-
-func (o GetContextsLabelOutput) ToOutput(ctx context.Context) pulumix.Output[GetContextsLabel] {
-	return pulumix.Output[GetContextsLabel]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetContextsLabelOutput) AnyOfs() pulumi.StringArrayOutput {
@@ -4130,12 +3646,6 @@ func (o GetContextsLabelArrayOutput) ToGetContextsLabelArrayOutputWithContext(ct
 	return o
 }
 
-func (o GetContextsLabelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetContextsLabel] {
-	return pulumix.Output[[]GetContextsLabel]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetContextsLabelArrayOutput) Index(i pulumi.IntInput) GetContextsLabelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContextsLabel {
 		return vs[0].([]GetContextsLabel)[vs[1].(int)]
@@ -4143,9 +3653,12 @@ func (o GetContextsLabelArrayOutput) Index(i pulumi.IntInput) GetContextsLabelOu
 }
 
 type GetModuleAzureDevop struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
-	Project   string `pulumi:"project"`
+	// ID of the Azure Devops integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Azure Devops integration
+	IsDefault bool `pulumi:"isDefault"`
+	// The name of the Azure DevOps project
+	Project string `pulumi:"project"`
 }
 
 // GetModuleAzureDevopInput is an input type that accepts GetModuleAzureDevopArgs and GetModuleAzureDevopOutput values.
@@ -4160,9 +3673,12 @@ type GetModuleAzureDevopInput interface {
 }
 
 type GetModuleAzureDevopArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
-	Project   pulumi.StringInput `pulumi:"project"`
+	// ID of the Azure Devops integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Azure Devops integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// The name of the Azure DevOps project
+	Project pulumi.StringInput `pulumi:"project"`
 }
 
 func (GetModuleAzureDevopArgs) ElementType() reflect.Type {
@@ -4175,12 +3691,6 @@ func (i GetModuleAzureDevopArgs) ToGetModuleAzureDevopOutput() GetModuleAzureDev
 
 func (i GetModuleAzureDevopArgs) ToGetModuleAzureDevopOutputWithContext(ctx context.Context) GetModuleAzureDevopOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleAzureDevopOutput)
-}
-
-func (i GetModuleAzureDevopArgs) ToOutput(ctx context.Context) pulumix.Output[GetModuleAzureDevop] {
-	return pulumix.Output[GetModuleAzureDevop]{
-		OutputState: i.ToGetModuleAzureDevopOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetModuleAzureDevopArrayInput is an input type that accepts GetModuleAzureDevopArray and GetModuleAzureDevopArrayOutput values.
@@ -4208,12 +3718,6 @@ func (i GetModuleAzureDevopArray) ToGetModuleAzureDevopArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleAzureDevopArrayOutput)
 }
 
-func (i GetModuleAzureDevopArray) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleAzureDevop] {
-	return pulumix.Output[[]GetModuleAzureDevop]{
-		OutputState: i.ToGetModuleAzureDevopArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetModuleAzureDevopOutput struct{ *pulumi.OutputState }
 
 func (GetModuleAzureDevopOutput) ElementType() reflect.Type {
@@ -4228,20 +3732,17 @@ func (o GetModuleAzureDevopOutput) ToGetModuleAzureDevopOutputWithContext(ctx co
 	return o
 }
 
-func (o GetModuleAzureDevopOutput) ToOutput(ctx context.Context) pulumix.Output[GetModuleAzureDevop] {
-	return pulumix.Output[GetModuleAzureDevop]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Azure Devops integration
 func (o GetModuleAzureDevopOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleAzureDevop) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Azure Devops integration
 func (o GetModuleAzureDevopOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetModuleAzureDevop) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// The name of the Azure DevOps project
 func (o GetModuleAzureDevopOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleAzureDevop) string { return v.Project }).(pulumi.StringOutput)
 }
@@ -4260,12 +3761,6 @@ func (o GetModuleAzureDevopArrayOutput) ToGetModuleAzureDevopArrayOutputWithCont
 	return o
 }
 
-func (o GetModuleAzureDevopArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleAzureDevop] {
-	return pulumix.Output[[]GetModuleAzureDevop]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetModuleAzureDevopArrayOutput) Index(i pulumi.IntInput) GetModuleAzureDevopOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleAzureDevop {
 		return vs[0].([]GetModuleAzureDevop)[vs[1].(int)]
@@ -4273,8 +3768,11 @@ func (o GetModuleAzureDevopArrayOutput) Index(i pulumi.IntInput) GetModuleAzureD
 }
 
 type GetModuleBitbucketCloud struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the Bitbucket Cloud integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Cloud integration
+	IsDefault bool `pulumi:"isDefault"`
+	// Bitbucket Cloud namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -4290,8 +3788,11 @@ type GetModuleBitbucketCloudInput interface {
 }
 
 type GetModuleBitbucketCloudArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the Bitbucket Cloud integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Cloud integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Bitbucket Cloud namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -4305,12 +3806,6 @@ func (i GetModuleBitbucketCloudArgs) ToGetModuleBitbucketCloudOutput() GetModule
 
 func (i GetModuleBitbucketCloudArgs) ToGetModuleBitbucketCloudOutputWithContext(ctx context.Context) GetModuleBitbucketCloudOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketCloudOutput)
-}
-
-func (i GetModuleBitbucketCloudArgs) ToOutput(ctx context.Context) pulumix.Output[GetModuleBitbucketCloud] {
-	return pulumix.Output[GetModuleBitbucketCloud]{
-		OutputState: i.ToGetModuleBitbucketCloudOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetModuleBitbucketCloudArrayInput is an input type that accepts GetModuleBitbucketCloudArray and GetModuleBitbucketCloudArrayOutput values.
@@ -4338,12 +3833,6 @@ func (i GetModuleBitbucketCloudArray) ToGetModuleBitbucketCloudArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketCloudArrayOutput)
 }
 
-func (i GetModuleBitbucketCloudArray) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleBitbucketCloud] {
-	return pulumix.Output[[]GetModuleBitbucketCloud]{
-		OutputState: i.ToGetModuleBitbucketCloudArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetModuleBitbucketCloudOutput struct{ *pulumi.OutputState }
 
 func (GetModuleBitbucketCloudOutput) ElementType() reflect.Type {
@@ -4358,20 +3847,17 @@ func (o GetModuleBitbucketCloudOutput) ToGetModuleBitbucketCloudOutputWithContex
 	return o
 }
 
-func (o GetModuleBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[GetModuleBitbucketCloud] {
-	return pulumix.Output[GetModuleBitbucketCloud]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Bitbucket Cloud integration
 func (o GetModuleBitbucketCloudOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleBitbucketCloud) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Bitbucket Cloud integration
 func (o GetModuleBitbucketCloudOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetModuleBitbucketCloud) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// Bitbucket Cloud namespace of the stack's repository
 func (o GetModuleBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -4390,12 +3876,6 @@ func (o GetModuleBitbucketCloudArrayOutput) ToGetModuleBitbucketCloudArrayOutput
 	return o
 }
 
-func (o GetModuleBitbucketCloudArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleBitbucketCloud] {
-	return pulumix.Output[[]GetModuleBitbucketCloud]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetModuleBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetModuleBitbucketCloudOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleBitbucketCloud {
 		return vs[0].([]GetModuleBitbucketCloud)[vs[1].(int)]
@@ -4403,8 +3883,11 @@ func (o GetModuleBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetModuleBi
 }
 
 type GetModuleBitbucketDatacenter struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the Bitbucket Datacenter integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Datacenter integration
+	IsDefault bool `pulumi:"isDefault"`
+	// Bitbucket Datacenter namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -4420,8 +3903,11 @@ type GetModuleBitbucketDatacenterInput interface {
 }
 
 type GetModuleBitbucketDatacenterArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the Bitbucket Datacenter integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Datacenter integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Bitbucket Datacenter namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -4435,12 +3921,6 @@ func (i GetModuleBitbucketDatacenterArgs) ToGetModuleBitbucketDatacenterOutput()
 
 func (i GetModuleBitbucketDatacenterArgs) ToGetModuleBitbucketDatacenterOutputWithContext(ctx context.Context) GetModuleBitbucketDatacenterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketDatacenterOutput)
-}
-
-func (i GetModuleBitbucketDatacenterArgs) ToOutput(ctx context.Context) pulumix.Output[GetModuleBitbucketDatacenter] {
-	return pulumix.Output[GetModuleBitbucketDatacenter]{
-		OutputState: i.ToGetModuleBitbucketDatacenterOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetModuleBitbucketDatacenterArrayInput is an input type that accepts GetModuleBitbucketDatacenterArray and GetModuleBitbucketDatacenterArrayOutput values.
@@ -4468,12 +3948,6 @@ func (i GetModuleBitbucketDatacenterArray) ToGetModuleBitbucketDatacenterArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleBitbucketDatacenterArrayOutput)
 }
 
-func (i GetModuleBitbucketDatacenterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleBitbucketDatacenter] {
-	return pulumix.Output[[]GetModuleBitbucketDatacenter]{
-		OutputState: i.ToGetModuleBitbucketDatacenterArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetModuleBitbucketDatacenterOutput struct{ *pulumi.OutputState }
 
 func (GetModuleBitbucketDatacenterOutput) ElementType() reflect.Type {
@@ -4488,20 +3962,17 @@ func (o GetModuleBitbucketDatacenterOutput) ToGetModuleBitbucketDatacenterOutput
 	return o
 }
 
-func (o GetModuleBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Output[GetModuleBitbucketDatacenter] {
-	return pulumix.Output[GetModuleBitbucketDatacenter]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Bitbucket Datacenter integration
 func (o GetModuleBitbucketDatacenterOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleBitbucketDatacenter) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Bitbucket Datacenter integration
 func (o GetModuleBitbucketDatacenterOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetModuleBitbucketDatacenter) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// Bitbucket Datacenter namespace of the stack's repository
 func (o GetModuleBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -4520,12 +3991,6 @@ func (o GetModuleBitbucketDatacenterArrayOutput) ToGetModuleBitbucketDatacenterA
 	return o
 }
 
-func (o GetModuleBitbucketDatacenterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleBitbucketDatacenter] {
-	return pulumix.Output[[]GetModuleBitbucketDatacenter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetModuleBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetModuleBitbucketDatacenterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleBitbucketDatacenter {
 		return vs[0].([]GetModuleBitbucketDatacenter)[vs[1].(int)]
@@ -4533,8 +3998,11 @@ func (o GetModuleBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetMod
 }
 
 type GetModuleGithubEnterprise struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the GitHub Enterprise integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default GitHub Enterprise integration
+	IsDefault bool `pulumi:"isDefault"`
+	// GitHub Enterprise namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -4550,8 +4018,11 @@ type GetModuleGithubEnterpriseInput interface {
 }
 
 type GetModuleGithubEnterpriseArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the GitHub Enterprise integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default GitHub Enterprise integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// GitHub Enterprise namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -4565,12 +4036,6 @@ func (i GetModuleGithubEnterpriseArgs) ToGetModuleGithubEnterpriseOutput() GetMo
 
 func (i GetModuleGithubEnterpriseArgs) ToGetModuleGithubEnterpriseOutputWithContext(ctx context.Context) GetModuleGithubEnterpriseOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleGithubEnterpriseOutput)
-}
-
-func (i GetModuleGithubEnterpriseArgs) ToOutput(ctx context.Context) pulumix.Output[GetModuleGithubEnterprise] {
-	return pulumix.Output[GetModuleGithubEnterprise]{
-		OutputState: i.ToGetModuleGithubEnterpriseOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetModuleGithubEnterpriseArrayInput is an input type that accepts GetModuleGithubEnterpriseArray and GetModuleGithubEnterpriseArrayOutput values.
@@ -4598,12 +4063,6 @@ func (i GetModuleGithubEnterpriseArray) ToGetModuleGithubEnterpriseArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleGithubEnterpriseArrayOutput)
 }
 
-func (i GetModuleGithubEnterpriseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleGithubEnterprise] {
-	return pulumix.Output[[]GetModuleGithubEnterprise]{
-		OutputState: i.ToGetModuleGithubEnterpriseArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetModuleGithubEnterpriseOutput struct{ *pulumi.OutputState }
 
 func (GetModuleGithubEnterpriseOutput) ElementType() reflect.Type {
@@ -4618,20 +4077,17 @@ func (o GetModuleGithubEnterpriseOutput) ToGetModuleGithubEnterpriseOutputWithCo
 	return o
 }
 
-func (o GetModuleGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Output[GetModuleGithubEnterprise] {
-	return pulumix.Output[GetModuleGithubEnterprise]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the GitHub Enterprise integration
 func (o GetModuleGithubEnterpriseOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleGithubEnterprise) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default GitHub Enterprise integration
 func (o GetModuleGithubEnterpriseOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetModuleGithubEnterprise) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// GitHub Enterprise namespace of the stack's repository
 func (o GetModuleGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -4650,12 +4106,6 @@ func (o GetModuleGithubEnterpriseArrayOutput) ToGetModuleGithubEnterpriseArrayOu
 	return o
 }
 
-func (o GetModuleGithubEnterpriseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleGithubEnterprise] {
-	return pulumix.Output[[]GetModuleGithubEnterprise]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetModuleGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetModuleGithubEnterpriseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleGithubEnterprise {
 		return vs[0].([]GetModuleGithubEnterprise)[vs[1].(int)]
@@ -4663,8 +4113,11 @@ func (o GetModuleGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetModule
 }
 
 type GetModuleGitlab struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the Gitlab integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Gitlab integration
+	IsDefault bool `pulumi:"isDefault"`
+	// GitLab namespace of the repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -4680,8 +4133,11 @@ type GetModuleGitlabInput interface {
 }
 
 type GetModuleGitlabArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the Gitlab integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Gitlab integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// GitLab namespace of the repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -4695,12 +4151,6 @@ func (i GetModuleGitlabArgs) ToGetModuleGitlabOutput() GetModuleGitlabOutput {
 
 func (i GetModuleGitlabArgs) ToGetModuleGitlabOutputWithContext(ctx context.Context) GetModuleGitlabOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleGitlabOutput)
-}
-
-func (i GetModuleGitlabArgs) ToOutput(ctx context.Context) pulumix.Output[GetModuleGitlab] {
-	return pulumix.Output[GetModuleGitlab]{
-		OutputState: i.ToGetModuleGitlabOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetModuleGitlabArrayInput is an input type that accepts GetModuleGitlabArray and GetModuleGitlabArrayOutput values.
@@ -4728,12 +4178,6 @@ func (i GetModuleGitlabArray) ToGetModuleGitlabArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetModuleGitlabArrayOutput)
 }
 
-func (i GetModuleGitlabArray) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleGitlab] {
-	return pulumix.Output[[]GetModuleGitlab]{
-		OutputState: i.ToGetModuleGitlabArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetModuleGitlabOutput struct{ *pulumi.OutputState }
 
 func (GetModuleGitlabOutput) ElementType() reflect.Type {
@@ -4748,20 +4192,17 @@ func (o GetModuleGitlabOutput) ToGetModuleGitlabOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o GetModuleGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[GetModuleGitlab] {
-	return pulumix.Output[GetModuleGitlab]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Gitlab integration
 func (o GetModuleGitlabOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleGitlab) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Gitlab integration
 func (o GetModuleGitlabOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetModuleGitlab) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// GitLab namespace of the repository
 func (o GetModuleGitlabOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetModuleGitlab) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -4780,12 +4221,6 @@ func (o GetModuleGitlabArrayOutput) ToGetModuleGitlabArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o GetModuleGitlabArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetModuleGitlab] {
-	return pulumix.Output[[]GetModuleGitlab]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetModuleGitlabArrayOutput) Index(i pulumi.IntInput) GetModuleGitlabOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModuleGitlab {
 		return vs[0].([]GetModuleGitlab)[vs[1].(int)]
@@ -4793,11 +4228,15 @@ func (o GetModuleGitlabArrayOutput) Index(i pulumi.IntInput) GetModuleGitlabOutp
 }
 
 type GetPoliciesPolicy struct {
-	Id      string   `pulumi:"id"`
-	Labels  []string `pulumi:"labels"`
-	Name    string   `pulumi:"name"`
-	SpaceId string   `pulumi:"spaceId"`
-	Type    string   `pulumi:"type"`
+	// ID of the policy
+	Id     string   `pulumi:"id"`
+	Labels []string `pulumi:"labels"`
+	// Name of the policy
+	Name string `pulumi:"name"`
+	// ID (slug) of the space the policy is in
+	SpaceId string `pulumi:"spaceId"`
+	// Type of the policy
+	Type string `pulumi:"type"`
 }
 
 // GetPoliciesPolicyInput is an input type that accepts GetPoliciesPolicyArgs and GetPoliciesPolicyOutput values.
@@ -4812,11 +4251,15 @@ type GetPoliciesPolicyInput interface {
 }
 
 type GetPoliciesPolicyArgs struct {
-	Id      pulumi.StringInput      `pulumi:"id"`
-	Labels  pulumi.StringArrayInput `pulumi:"labels"`
-	Name    pulumi.StringInput      `pulumi:"name"`
-	SpaceId pulumi.StringInput      `pulumi:"spaceId"`
-	Type    pulumi.StringInput      `pulumi:"type"`
+	// ID of the policy
+	Id     pulumi.StringInput      `pulumi:"id"`
+	Labels pulumi.StringArrayInput `pulumi:"labels"`
+	// Name of the policy
+	Name pulumi.StringInput `pulumi:"name"`
+	// ID (slug) of the space the policy is in
+	SpaceId pulumi.StringInput `pulumi:"spaceId"`
+	// Type of the policy
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetPoliciesPolicyArgs) ElementType() reflect.Type {
@@ -4829,12 +4272,6 @@ func (i GetPoliciesPolicyArgs) ToGetPoliciesPolicyOutput() GetPoliciesPolicyOutp
 
 func (i GetPoliciesPolicyArgs) ToGetPoliciesPolicyOutputWithContext(ctx context.Context) GetPoliciesPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetPoliciesPolicyOutput)
-}
-
-func (i GetPoliciesPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetPoliciesPolicy] {
-	return pulumix.Output[GetPoliciesPolicy]{
-		OutputState: i.ToGetPoliciesPolicyOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetPoliciesPolicyArrayInput is an input type that accepts GetPoliciesPolicyArray and GetPoliciesPolicyArrayOutput values.
@@ -4862,12 +4299,6 @@ func (i GetPoliciesPolicyArray) ToGetPoliciesPolicyArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetPoliciesPolicyArrayOutput)
 }
 
-func (i GetPoliciesPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetPoliciesPolicy] {
-	return pulumix.Output[[]GetPoliciesPolicy]{
-		OutputState: i.ToGetPoliciesPolicyArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetPoliciesPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetPoliciesPolicyOutput) ElementType() reflect.Type {
@@ -4882,12 +4313,7 @@ func (o GetPoliciesPolicyOutput) ToGetPoliciesPolicyOutputWithContext(ctx contex
 	return o
 }
 
-func (o GetPoliciesPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetPoliciesPolicy] {
-	return pulumix.Output[GetPoliciesPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the policy
 func (o GetPoliciesPolicyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -4896,14 +4322,17 @@ func (o GetPoliciesPolicyOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// Name of the policy
 func (o GetPoliciesPolicyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the space the policy is in
 func (o GetPoliciesPolicyOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
+// Type of the policy
 func (o GetPoliciesPolicyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoliciesPolicy) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -4922,12 +4351,6 @@ func (o GetPoliciesPolicyArrayOutput) ToGetPoliciesPolicyArrayOutputWithContext(
 	return o
 }
 
-func (o GetPoliciesPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetPoliciesPolicy] {
-	return pulumix.Output[[]GetPoliciesPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetPoliciesPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPoliciesPolicy {
 		return vs[0].([]GetPoliciesPolicy)[vs[1].(int)]
@@ -4935,12 +4358,18 @@ func (o GetPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetPoliciesPolicy
 }
 
 type GetSpacesSpace struct {
-	Description     string   `pulumi:"description"`
-	InheritEntities bool     `pulumi:"inheritEntities"`
-	Labels          []string `pulumi:"labels"`
-	Name            string   `pulumi:"name"`
-	ParentSpaceId   string   `pulumi:"parentSpaceId"`
-	SpaceId         string   `pulumi:"spaceId"`
+	// free-form space description for users
+	Description string `pulumi:"description"`
+	// indication whether access to this space inherits read access to entities from the parent space
+	InheritEntities bool `pulumi:"inheritEntities"`
+	// list of labels describing a space
+	Labels []string `pulumi:"labels"`
+	// name of the space
+	Name string `pulumi:"name"`
+	// immutable ID (slug) of parent space
+	ParentSpaceId string `pulumi:"parentSpaceId"`
+	// immutable ID (slug) of the space
+	SpaceId string `pulumi:"spaceId"`
 }
 
 // GetSpacesSpaceInput is an input type that accepts GetSpacesSpaceArgs and GetSpacesSpaceOutput values.
@@ -4955,12 +4384,18 @@ type GetSpacesSpaceInput interface {
 }
 
 type GetSpacesSpaceArgs struct {
-	Description     pulumi.StringInput      `pulumi:"description"`
-	InheritEntities pulumi.BoolInput        `pulumi:"inheritEntities"`
-	Labels          pulumi.StringArrayInput `pulumi:"labels"`
-	Name            pulumi.StringInput      `pulumi:"name"`
-	ParentSpaceId   pulumi.StringInput      `pulumi:"parentSpaceId"`
-	SpaceId         pulumi.StringInput      `pulumi:"spaceId"`
+	// free-form space description for users
+	Description pulumi.StringInput `pulumi:"description"`
+	// indication whether access to this space inherits read access to entities from the parent space
+	InheritEntities pulumi.BoolInput `pulumi:"inheritEntities"`
+	// list of labels describing a space
+	Labels pulumi.StringArrayInput `pulumi:"labels"`
+	// name of the space
+	Name pulumi.StringInput `pulumi:"name"`
+	// immutable ID (slug) of parent space
+	ParentSpaceId pulumi.StringInput `pulumi:"parentSpaceId"`
+	// immutable ID (slug) of the space
+	SpaceId pulumi.StringInput `pulumi:"spaceId"`
 }
 
 func (GetSpacesSpaceArgs) ElementType() reflect.Type {
@@ -4973,12 +4408,6 @@ func (i GetSpacesSpaceArgs) ToGetSpacesSpaceOutput() GetSpacesSpaceOutput {
 
 func (i GetSpacesSpaceArgs) ToGetSpacesSpaceOutputWithContext(ctx context.Context) GetSpacesSpaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetSpacesSpaceOutput)
-}
-
-func (i GetSpacesSpaceArgs) ToOutput(ctx context.Context) pulumix.Output[GetSpacesSpace] {
-	return pulumix.Output[GetSpacesSpace]{
-		OutputState: i.ToGetSpacesSpaceOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetSpacesSpaceArrayInput is an input type that accepts GetSpacesSpaceArray and GetSpacesSpaceArrayOutput values.
@@ -5006,12 +4435,6 @@ func (i GetSpacesSpaceArray) ToGetSpacesSpaceArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetSpacesSpaceArrayOutput)
 }
 
-func (i GetSpacesSpaceArray) ToOutput(ctx context.Context) pulumix.Output[[]GetSpacesSpace] {
-	return pulumix.Output[[]GetSpacesSpace]{
-		OutputState: i.ToGetSpacesSpaceArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetSpacesSpaceOutput struct{ *pulumi.OutputState }
 
 func (GetSpacesSpaceOutput) ElementType() reflect.Type {
@@ -5026,32 +4449,32 @@ func (o GetSpacesSpaceOutput) ToGetSpacesSpaceOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o GetSpacesSpaceOutput) ToOutput(ctx context.Context) pulumix.Output[GetSpacesSpace] {
-	return pulumix.Output[GetSpacesSpace]{
-		OutputState: o.OutputState,
-	}
-}
-
+// free-form space description for users
 func (o GetSpacesSpaceOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSpacesSpace) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// indication whether access to this space inherits read access to entities from the parent space
 func (o GetSpacesSpaceOutput) InheritEntities() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSpacesSpace) bool { return v.InheritEntities }).(pulumi.BoolOutput)
 }
 
+// list of labels describing a space
 func (o GetSpacesSpaceOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSpacesSpace) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// name of the space
 func (o GetSpacesSpaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSpacesSpace) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// immutable ID (slug) of parent space
 func (o GetSpacesSpaceOutput) ParentSpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSpacesSpace) string { return v.ParentSpaceId }).(pulumi.StringOutput)
 }
 
+// immutable ID (slug) of the space
 func (o GetSpacesSpaceOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSpacesSpace) string { return v.SpaceId }).(pulumi.StringOutput)
 }
@@ -5070,12 +4493,6 @@ func (o GetSpacesSpaceArrayOutput) ToGetSpacesSpaceArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o GetSpacesSpaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetSpacesSpace] {
-	return pulumix.Output[[]GetSpacesSpace]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetSpacesSpaceArrayOutput) Index(i pulumi.IntInput) GetSpacesSpaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSpacesSpace {
 		return vs[0].([]GetSpacesSpace)[vs[1].(int)]
@@ -5083,6 +4500,7 @@ func (o GetSpacesSpaceArrayOutput) Index(i pulumi.IntInput) GetSpacesSpaceOutput
 }
 
 type GetStackAnsible struct {
+	// The playbook the Ansible stack should run.
 	Playbook string `pulumi:"playbook"`
 }
 
@@ -5098,6 +4516,7 @@ type GetStackAnsibleInput interface {
 }
 
 type GetStackAnsibleArgs struct {
+	// The playbook the Ansible stack should run.
 	Playbook pulumi.StringInput `pulumi:"playbook"`
 }
 
@@ -5111,12 +4530,6 @@ func (i GetStackAnsibleArgs) ToGetStackAnsibleOutput() GetStackAnsibleOutput {
 
 func (i GetStackAnsibleArgs) ToGetStackAnsibleOutputWithContext(ctx context.Context) GetStackAnsibleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackAnsibleOutput)
-}
-
-func (i GetStackAnsibleArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackAnsible] {
-	return pulumix.Output[GetStackAnsible]{
-		OutputState: i.ToGetStackAnsibleOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackAnsibleArrayInput is an input type that accepts GetStackAnsibleArray and GetStackAnsibleArrayOutput values.
@@ -5144,12 +4557,6 @@ func (i GetStackAnsibleArray) ToGetStackAnsibleArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackAnsibleArrayOutput)
 }
 
-func (i GetStackAnsibleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackAnsible] {
-	return pulumix.Output[[]GetStackAnsible]{
-		OutputState: i.ToGetStackAnsibleArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackAnsibleOutput struct{ *pulumi.OutputState }
 
 func (GetStackAnsibleOutput) ElementType() reflect.Type {
@@ -5164,12 +4571,7 @@ func (o GetStackAnsibleOutput) ToGetStackAnsibleOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o GetStackAnsibleOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackAnsible] {
-	return pulumix.Output[GetStackAnsible]{
-		OutputState: o.OutputState,
-	}
-}
-
+// The playbook the Ansible stack should run.
 func (o GetStackAnsibleOutput) Playbook() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackAnsible) string { return v.Playbook }).(pulumi.StringOutput)
 }
@@ -5188,12 +4590,6 @@ func (o GetStackAnsibleArrayOutput) ToGetStackAnsibleArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o GetStackAnsibleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackAnsible] {
-	return pulumix.Output[[]GetStackAnsible]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStackAnsibleArrayOutput) Index(i pulumi.IntInput) GetStackAnsibleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackAnsible {
 		return vs[0].([]GetStackAnsible)[vs[1].(int)]
@@ -5201,9 +4597,12 @@ func (o GetStackAnsibleArrayOutput) Index(i pulumi.IntInput) GetStackAnsibleOutp
 }
 
 type GetStackAzureDevop struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
-	Project   string `pulumi:"project"`
+	// ID of the Azure Devops VCS integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Azure Devops VCS integration
+	IsDefault bool `pulumi:"isDefault"`
+	// The name of the Azure DevOps project
+	Project string `pulumi:"project"`
 }
 
 // GetStackAzureDevopInput is an input type that accepts GetStackAzureDevopArgs and GetStackAzureDevopOutput values.
@@ -5218,9 +4617,12 @@ type GetStackAzureDevopInput interface {
 }
 
 type GetStackAzureDevopArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
-	Project   pulumi.StringInput `pulumi:"project"`
+	// ID of the Azure Devops VCS integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Azure Devops VCS integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// The name of the Azure DevOps project
+	Project pulumi.StringInput `pulumi:"project"`
 }
 
 func (GetStackAzureDevopArgs) ElementType() reflect.Type {
@@ -5233,12 +4635,6 @@ func (i GetStackAzureDevopArgs) ToGetStackAzureDevopOutput() GetStackAzureDevopO
 
 func (i GetStackAzureDevopArgs) ToGetStackAzureDevopOutputWithContext(ctx context.Context) GetStackAzureDevopOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackAzureDevopOutput)
-}
-
-func (i GetStackAzureDevopArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackAzureDevop] {
-	return pulumix.Output[GetStackAzureDevop]{
-		OutputState: i.ToGetStackAzureDevopOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackAzureDevopArrayInput is an input type that accepts GetStackAzureDevopArray and GetStackAzureDevopArrayOutput values.
@@ -5266,12 +4662,6 @@ func (i GetStackAzureDevopArray) ToGetStackAzureDevopArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackAzureDevopArrayOutput)
 }
 
-func (i GetStackAzureDevopArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackAzureDevop] {
-	return pulumix.Output[[]GetStackAzureDevop]{
-		OutputState: i.ToGetStackAzureDevopArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackAzureDevopOutput struct{ *pulumi.OutputState }
 
 func (GetStackAzureDevopOutput) ElementType() reflect.Type {
@@ -5286,20 +4676,17 @@ func (o GetStackAzureDevopOutput) ToGetStackAzureDevopOutputWithContext(ctx cont
 	return o
 }
 
-func (o GetStackAzureDevopOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackAzureDevop] {
-	return pulumix.Output[GetStackAzureDevop]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Azure Devops VCS integration
 func (o GetStackAzureDevopOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackAzureDevop) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Azure Devops VCS integration
 func (o GetStackAzureDevopOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStackAzureDevop) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// The name of the Azure DevOps project
 func (o GetStackAzureDevopOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackAzureDevop) string { return v.Project }).(pulumi.StringOutput)
 }
@@ -5318,12 +4705,6 @@ func (o GetStackAzureDevopArrayOutput) ToGetStackAzureDevopArrayOutputWithContex
 	return o
 }
 
-func (o GetStackAzureDevopArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackAzureDevop] {
-	return pulumix.Output[[]GetStackAzureDevop]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStackAzureDevopArrayOutput) Index(i pulumi.IntInput) GetStackAzureDevopOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackAzureDevop {
 		return vs[0].([]GetStackAzureDevop)[vs[1].(int)]
@@ -5331,8 +4712,11 @@ func (o GetStackAzureDevopArrayOutput) Index(i pulumi.IntInput) GetStackAzureDev
 }
 
 type GetStackBitbucketCloud struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the Bitbucket Cloud integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Cloud integration
+	IsDefault bool `pulumi:"isDefault"`
+	// Bitbucket Cloud namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -5348,8 +4732,11 @@ type GetStackBitbucketCloudInput interface {
 }
 
 type GetStackBitbucketCloudArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the Bitbucket Cloud integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Cloud integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Bitbucket Cloud namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -5363,12 +4750,6 @@ func (i GetStackBitbucketCloudArgs) ToGetStackBitbucketCloudOutput() GetStackBit
 
 func (i GetStackBitbucketCloudArgs) ToGetStackBitbucketCloudOutputWithContext(ctx context.Context) GetStackBitbucketCloudOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketCloudOutput)
-}
-
-func (i GetStackBitbucketCloudArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackBitbucketCloud] {
-	return pulumix.Output[GetStackBitbucketCloud]{
-		OutputState: i.ToGetStackBitbucketCloudOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackBitbucketCloudArrayInput is an input type that accepts GetStackBitbucketCloudArray and GetStackBitbucketCloudArrayOutput values.
@@ -5396,12 +4777,6 @@ func (i GetStackBitbucketCloudArray) ToGetStackBitbucketCloudArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketCloudArrayOutput)
 }
 
-func (i GetStackBitbucketCloudArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackBitbucketCloud] {
-	return pulumix.Output[[]GetStackBitbucketCloud]{
-		OutputState: i.ToGetStackBitbucketCloudArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackBitbucketCloudOutput struct{ *pulumi.OutputState }
 
 func (GetStackBitbucketCloudOutput) ElementType() reflect.Type {
@@ -5416,20 +4791,17 @@ func (o GetStackBitbucketCloudOutput) ToGetStackBitbucketCloudOutputWithContext(
 	return o
 }
 
-func (o GetStackBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackBitbucketCloud] {
-	return pulumix.Output[GetStackBitbucketCloud]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Bitbucket Cloud integration
 func (o GetStackBitbucketCloudOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackBitbucketCloud) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Bitbucket Cloud integration
 func (o GetStackBitbucketCloudOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStackBitbucketCloud) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// Bitbucket Cloud namespace of the stack's repository
 func (o GetStackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -5448,12 +4820,6 @@ func (o GetStackBitbucketCloudArrayOutput) ToGetStackBitbucketCloudArrayOutputWi
 	return o
 }
 
-func (o GetStackBitbucketCloudArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackBitbucketCloud] {
-	return pulumix.Output[[]GetStackBitbucketCloud]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStackBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetStackBitbucketCloudOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackBitbucketCloud {
 		return vs[0].([]GetStackBitbucketCloud)[vs[1].(int)]
@@ -5461,8 +4827,11 @@ func (o GetStackBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetStackBitb
 }
 
 type GetStackBitbucketDatacenter struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the Bitbucket Datacenter integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Datacenter integration
+	IsDefault bool `pulumi:"isDefault"`
+	// Bitbucket Datacenter namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -5478,8 +4847,11 @@ type GetStackBitbucketDatacenterInput interface {
 }
 
 type GetStackBitbucketDatacenterArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the Bitbucket Datacenter integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Datacenter integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Bitbucket Datacenter namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -5493,12 +4865,6 @@ func (i GetStackBitbucketDatacenterArgs) ToGetStackBitbucketDatacenterOutput() G
 
 func (i GetStackBitbucketDatacenterArgs) ToGetStackBitbucketDatacenterOutputWithContext(ctx context.Context) GetStackBitbucketDatacenterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketDatacenterOutput)
-}
-
-func (i GetStackBitbucketDatacenterArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackBitbucketDatacenter] {
-	return pulumix.Output[GetStackBitbucketDatacenter]{
-		OutputState: i.ToGetStackBitbucketDatacenterOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackBitbucketDatacenterArrayInput is an input type that accepts GetStackBitbucketDatacenterArray and GetStackBitbucketDatacenterArrayOutput values.
@@ -5526,12 +4892,6 @@ func (i GetStackBitbucketDatacenterArray) ToGetStackBitbucketDatacenterArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackBitbucketDatacenterArrayOutput)
 }
 
-func (i GetStackBitbucketDatacenterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackBitbucketDatacenter] {
-	return pulumix.Output[[]GetStackBitbucketDatacenter]{
-		OutputState: i.ToGetStackBitbucketDatacenterArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackBitbucketDatacenterOutput struct{ *pulumi.OutputState }
 
 func (GetStackBitbucketDatacenterOutput) ElementType() reflect.Type {
@@ -5546,20 +4906,17 @@ func (o GetStackBitbucketDatacenterOutput) ToGetStackBitbucketDatacenterOutputWi
 	return o
 }
 
-func (o GetStackBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackBitbucketDatacenter] {
-	return pulumix.Output[GetStackBitbucketDatacenter]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Bitbucket Datacenter integration
 func (o GetStackBitbucketDatacenterOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackBitbucketDatacenter) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Bitbucket Datacenter integration
 func (o GetStackBitbucketDatacenterOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStackBitbucketDatacenter) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// Bitbucket Datacenter namespace of the stack's repository
 func (o GetStackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -5578,12 +4935,6 @@ func (o GetStackBitbucketDatacenterArrayOutput) ToGetStackBitbucketDatacenterArr
 	return o
 }
 
-func (o GetStackBitbucketDatacenterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackBitbucketDatacenter] {
-	return pulumix.Output[[]GetStackBitbucketDatacenter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStackBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetStackBitbucketDatacenterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackBitbucketDatacenter {
 		return vs[0].([]GetStackBitbucketDatacenter)[vs[1].(int)]
@@ -5591,10 +4942,14 @@ func (o GetStackBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetStac
 }
 
 type GetStackCloudformation struct {
+	// Template file `cloudformation package` will be called on
 	EntryTemplateFile string `pulumi:"entryTemplateFile"`
-	Region            string `pulumi:"region"`
-	StackName         string `pulumi:"stackName"`
-	TemplateBucket    string `pulumi:"templateBucket"`
+	// AWS region to use
+	Region string `pulumi:"region"`
+	// CloudFormation stack name
+	StackName string `pulumi:"stackName"`
+	// S3 bucket to save CloudFormation templates to
+	TemplateBucket string `pulumi:"templateBucket"`
 }
 
 // GetStackCloudformationInput is an input type that accepts GetStackCloudformationArgs and GetStackCloudformationOutput values.
@@ -5609,10 +4964,14 @@ type GetStackCloudformationInput interface {
 }
 
 type GetStackCloudformationArgs struct {
+	// Template file `cloudformation package` will be called on
 	EntryTemplateFile pulumi.StringInput `pulumi:"entryTemplateFile"`
-	Region            pulumi.StringInput `pulumi:"region"`
-	StackName         pulumi.StringInput `pulumi:"stackName"`
-	TemplateBucket    pulumi.StringInput `pulumi:"templateBucket"`
+	// AWS region to use
+	Region pulumi.StringInput `pulumi:"region"`
+	// CloudFormation stack name
+	StackName pulumi.StringInput `pulumi:"stackName"`
+	// S3 bucket to save CloudFormation templates to
+	TemplateBucket pulumi.StringInput `pulumi:"templateBucket"`
 }
 
 func (GetStackCloudformationArgs) ElementType() reflect.Type {
@@ -5625,12 +4984,6 @@ func (i GetStackCloudformationArgs) ToGetStackCloudformationOutput() GetStackClo
 
 func (i GetStackCloudformationArgs) ToGetStackCloudformationOutputWithContext(ctx context.Context) GetStackCloudformationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackCloudformationOutput)
-}
-
-func (i GetStackCloudformationArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackCloudformation] {
-	return pulumix.Output[GetStackCloudformation]{
-		OutputState: i.ToGetStackCloudformationOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackCloudformationArrayInput is an input type that accepts GetStackCloudformationArray and GetStackCloudformationArrayOutput values.
@@ -5658,12 +5011,6 @@ func (i GetStackCloudformationArray) ToGetStackCloudformationArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackCloudformationArrayOutput)
 }
 
-func (i GetStackCloudformationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackCloudformation] {
-	return pulumix.Output[[]GetStackCloudformation]{
-		OutputState: i.ToGetStackCloudformationArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackCloudformationOutput struct{ *pulumi.OutputState }
 
 func (GetStackCloudformationOutput) ElementType() reflect.Type {
@@ -5678,24 +5025,22 @@ func (o GetStackCloudformationOutput) ToGetStackCloudformationOutputWithContext(
 	return o
 }
 
-func (o GetStackCloudformationOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackCloudformation] {
-	return pulumix.Output[GetStackCloudformation]{
-		OutputState: o.OutputState,
-	}
-}
-
+// Template file `cloudformation package` will be called on
 func (o GetStackCloudformationOutput) EntryTemplateFile() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackCloudformation) string { return v.EntryTemplateFile }).(pulumi.StringOutput)
 }
 
+// AWS region to use
 func (o GetStackCloudformationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackCloudformation) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// CloudFormation stack name
 func (o GetStackCloudformationOutput) StackName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackCloudformation) string { return v.StackName }).(pulumi.StringOutput)
 }
 
+// S3 bucket to save CloudFormation templates to
 func (o GetStackCloudformationOutput) TemplateBucket() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackCloudformation) string { return v.TemplateBucket }).(pulumi.StringOutput)
 }
@@ -5714,12 +5059,6 @@ func (o GetStackCloudformationArrayOutput) ToGetStackCloudformationArrayOutputWi
 	return o
 }
 
-func (o GetStackCloudformationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackCloudformation] {
-	return pulumix.Output[[]GetStackCloudformation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStackCloudformationArrayOutput) Index(i pulumi.IntInput) GetStackCloudformationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackCloudformation {
 		return vs[0].([]GetStackCloudformation)[vs[1].(int)]
@@ -5727,8 +5066,11 @@ func (o GetStackCloudformationArrayOutput) Index(i pulumi.IntInput) GetStackClou
 }
 
 type GetStackGithubEnterprise struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the GitHub Enterprise integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default GitHub Enterprise integration
+	IsDefault bool `pulumi:"isDefault"`
+	// GitHub Enterprise namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -5744,8 +5086,11 @@ type GetStackGithubEnterpriseInput interface {
 }
 
 type GetStackGithubEnterpriseArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the GitHub Enterprise integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default GitHub Enterprise integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// GitHub Enterprise namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -5759,12 +5104,6 @@ func (i GetStackGithubEnterpriseArgs) ToGetStackGithubEnterpriseOutput() GetStac
 
 func (i GetStackGithubEnterpriseArgs) ToGetStackGithubEnterpriseOutputWithContext(ctx context.Context) GetStackGithubEnterpriseOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackGithubEnterpriseOutput)
-}
-
-func (i GetStackGithubEnterpriseArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackGithubEnterprise] {
-	return pulumix.Output[GetStackGithubEnterprise]{
-		OutputState: i.ToGetStackGithubEnterpriseOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackGithubEnterpriseArrayInput is an input type that accepts GetStackGithubEnterpriseArray and GetStackGithubEnterpriseArrayOutput values.
@@ -5792,12 +5131,6 @@ func (i GetStackGithubEnterpriseArray) ToGetStackGithubEnterpriseArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackGithubEnterpriseArrayOutput)
 }
 
-func (i GetStackGithubEnterpriseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackGithubEnterprise] {
-	return pulumix.Output[[]GetStackGithubEnterprise]{
-		OutputState: i.ToGetStackGithubEnterpriseArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackGithubEnterpriseOutput struct{ *pulumi.OutputState }
 
 func (GetStackGithubEnterpriseOutput) ElementType() reflect.Type {
@@ -5812,20 +5145,17 @@ func (o GetStackGithubEnterpriseOutput) ToGetStackGithubEnterpriseOutputWithCont
 	return o
 }
 
-func (o GetStackGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackGithubEnterprise] {
-	return pulumix.Output[GetStackGithubEnterprise]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the GitHub Enterprise integration
 func (o GetStackGithubEnterpriseOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackGithubEnterprise) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default GitHub Enterprise integration
 func (o GetStackGithubEnterpriseOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStackGithubEnterprise) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// GitHub Enterprise namespace of the stack's repository
 func (o GetStackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -5844,12 +5174,6 @@ func (o GetStackGithubEnterpriseArrayOutput) ToGetStackGithubEnterpriseArrayOutp
 	return o
 }
 
-func (o GetStackGithubEnterpriseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackGithubEnterprise] {
-	return pulumix.Output[[]GetStackGithubEnterprise]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStackGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetStackGithubEnterpriseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackGithubEnterprise {
 		return vs[0].([]GetStackGithubEnterprise)[vs[1].(int)]
@@ -5857,8 +5181,11 @@ func (o GetStackGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetStackGi
 }
 
 type GetStackGitlab struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the Gitlab integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Gitlab integration
+	IsDefault bool `pulumi:"isDefault"`
+	// GitLab namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -5874,8 +5201,11 @@ type GetStackGitlabInput interface {
 }
 
 type GetStackGitlabArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the Gitlab integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Gitlab integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// GitLab namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -5889,12 +5219,6 @@ func (i GetStackGitlabArgs) ToGetStackGitlabOutput() GetStackGitlabOutput {
 
 func (i GetStackGitlabArgs) ToGetStackGitlabOutputWithContext(ctx context.Context) GetStackGitlabOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackGitlabOutput)
-}
-
-func (i GetStackGitlabArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackGitlab] {
-	return pulumix.Output[GetStackGitlab]{
-		OutputState: i.ToGetStackGitlabOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackGitlabArrayInput is an input type that accepts GetStackGitlabArray and GetStackGitlabArrayOutput values.
@@ -5922,12 +5246,6 @@ func (i GetStackGitlabArray) ToGetStackGitlabArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackGitlabArrayOutput)
 }
 
-func (i GetStackGitlabArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackGitlab] {
-	return pulumix.Output[[]GetStackGitlab]{
-		OutputState: i.ToGetStackGitlabArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackGitlabOutput struct{ *pulumi.OutputState }
 
 func (GetStackGitlabOutput) ElementType() reflect.Type {
@@ -5942,20 +5260,17 @@ func (o GetStackGitlabOutput) ToGetStackGitlabOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o GetStackGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackGitlab] {
-	return pulumix.Output[GetStackGitlab]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Gitlab integration
 func (o GetStackGitlabOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackGitlab) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Gitlab integration
 func (o GetStackGitlabOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStackGitlab) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// GitLab namespace of the stack's repository
 func (o GetStackGitlabOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackGitlab) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -5974,12 +5289,6 @@ func (o GetStackGitlabArrayOutput) ToGetStackGitlabArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o GetStackGitlabArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackGitlab] {
-	return pulumix.Output[[]GetStackGitlab]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStackGitlabArrayOutput) Index(i pulumi.IntInput) GetStackGitlabOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackGitlab {
 		return vs[0].([]GetStackGitlab)[vs[1].(int)]
@@ -5987,8 +5296,10 @@ func (o GetStackGitlabArrayOutput) Index(i pulumi.IntInput) GetStackGitlabOutput
 }
 
 type GetStackKubernete struct {
+	// Kubectl version.
 	KubectlVersion string `pulumi:"kubectlVersion"`
-	Namespace      string `pulumi:"namespace"`
+	// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
+	Namespace string `pulumi:"namespace"`
 }
 
 // GetStackKuberneteInput is an input type that accepts GetStackKuberneteArgs and GetStackKuberneteOutput values.
@@ -6003,8 +5314,10 @@ type GetStackKuberneteInput interface {
 }
 
 type GetStackKuberneteArgs struct {
+	// Kubectl version.
 	KubectlVersion pulumi.StringInput `pulumi:"kubectlVersion"`
-	Namespace      pulumi.StringInput `pulumi:"namespace"`
+	// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
+	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
 func (GetStackKuberneteArgs) ElementType() reflect.Type {
@@ -6017,12 +5330,6 @@ func (i GetStackKuberneteArgs) ToGetStackKuberneteOutput() GetStackKuberneteOutp
 
 func (i GetStackKuberneteArgs) ToGetStackKuberneteOutputWithContext(ctx context.Context) GetStackKuberneteOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackKuberneteOutput)
-}
-
-func (i GetStackKuberneteArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackKubernete] {
-	return pulumix.Output[GetStackKubernete]{
-		OutputState: i.ToGetStackKuberneteOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackKuberneteArrayInput is an input type that accepts GetStackKuberneteArray and GetStackKuberneteArrayOutput values.
@@ -6050,12 +5357,6 @@ func (i GetStackKuberneteArray) ToGetStackKuberneteArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackKuberneteArrayOutput)
 }
 
-func (i GetStackKuberneteArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackKubernete] {
-	return pulumix.Output[[]GetStackKubernete]{
-		OutputState: i.ToGetStackKuberneteArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackKuberneteOutput struct{ *pulumi.OutputState }
 
 func (GetStackKuberneteOutput) ElementType() reflect.Type {
@@ -6070,16 +5371,12 @@ func (o GetStackKuberneteOutput) ToGetStackKuberneteOutputWithContext(ctx contex
 	return o
 }
 
-func (o GetStackKuberneteOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackKubernete] {
-	return pulumix.Output[GetStackKubernete]{
-		OutputState: o.OutputState,
-	}
-}
-
+// Kubectl version.
 func (o GetStackKuberneteOutput) KubectlVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackKubernete) string { return v.KubectlVersion }).(pulumi.StringOutput)
 }
 
+// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
 func (o GetStackKuberneteOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackKubernete) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -6098,12 +5395,6 @@ func (o GetStackKuberneteArrayOutput) ToGetStackKuberneteArrayOutputWithContext(
 	return o
 }
 
-func (o GetStackKuberneteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackKubernete] {
-	return pulumix.Output[[]GetStackKubernete]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStackKuberneteArrayOutput) Index(i pulumi.IntInput) GetStackKuberneteOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackKubernete {
 		return vs[0].([]GetStackKubernete)[vs[1].(int)]
@@ -6111,7 +5402,9 @@ func (o GetStackKuberneteArrayOutput) Index(i pulumi.IntInput) GetStackKubernete
 }
 
 type GetStackPulumi struct {
-	LoginUrl  string `pulumi:"loginUrl"`
+	// State backend to log into on Run initialize.
+	LoginUrl string `pulumi:"loginUrl"`
+	// Pulumi stack name to use with the state backend.
 	StackName string `pulumi:"stackName"`
 }
 
@@ -6127,7 +5420,9 @@ type GetStackPulumiInput interface {
 }
 
 type GetStackPulumiArgs struct {
-	LoginUrl  pulumi.StringInput `pulumi:"loginUrl"`
+	// State backend to log into on Run initialize.
+	LoginUrl pulumi.StringInput `pulumi:"loginUrl"`
+	// Pulumi stack name to use with the state backend.
 	StackName pulumi.StringInput `pulumi:"stackName"`
 }
 
@@ -6141,12 +5436,6 @@ func (i GetStackPulumiArgs) ToGetStackPulumiOutput() GetStackPulumiOutput {
 
 func (i GetStackPulumiArgs) ToGetStackPulumiOutputWithContext(ctx context.Context) GetStackPulumiOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackPulumiOutput)
-}
-
-func (i GetStackPulumiArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackPulumi] {
-	return pulumix.Output[GetStackPulumi]{
-		OutputState: i.ToGetStackPulumiOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackPulumiArrayInput is an input type that accepts GetStackPulumiArray and GetStackPulumiArrayOutput values.
@@ -6174,12 +5463,6 @@ func (i GetStackPulumiArray) ToGetStackPulumiArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackPulumiArrayOutput)
 }
 
-func (i GetStackPulumiArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackPulumi] {
-	return pulumix.Output[[]GetStackPulumi]{
-		OutputState: i.ToGetStackPulumiArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackPulumiOutput struct{ *pulumi.OutputState }
 
 func (GetStackPulumiOutput) ElementType() reflect.Type {
@@ -6194,16 +5477,12 @@ func (o GetStackPulumiOutput) ToGetStackPulumiOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o GetStackPulumiOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackPulumi] {
-	return pulumix.Output[GetStackPulumi]{
-		OutputState: o.OutputState,
-	}
-}
-
+// State backend to log into on Run initialize.
 func (o GetStackPulumiOutput) LoginUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackPulumi) string { return v.LoginUrl }).(pulumi.StringOutput)
 }
 
+// Pulumi stack name to use with the state backend.
 func (o GetStackPulumiOutput) StackName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackPulumi) string { return v.StackName }).(pulumi.StringOutput)
 }
@@ -6222,12 +5501,6 @@ func (o GetStackPulumiArrayOutput) ToGetStackPulumiArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o GetStackPulumiArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackPulumi] {
-	return pulumix.Output[[]GetStackPulumi]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStackPulumiArrayOutput) Index(i pulumi.IntInput) GetStackPulumiOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackPulumi {
 		return vs[0].([]GetStackPulumi)[vs[1].(int)]
@@ -6235,8 +5508,10 @@ func (o GetStackPulumiArrayOutput) Index(i pulumi.IntInput) GetStackPulumiOutput
 }
 
 type GetStackRawGit struct {
+	// User-friendly namespace for the repository, this is for cosmetic purposes only
 	Namespace string `pulumi:"namespace"`
-	Url       string `pulumi:"url"`
+	// HTTPS URL of the Git repository
+	Url string `pulumi:"url"`
 }
 
 // GetStackRawGitInput is an input type that accepts GetStackRawGitArgs and GetStackRawGitOutput values.
@@ -6251,8 +5526,10 @@ type GetStackRawGitInput interface {
 }
 
 type GetStackRawGitArgs struct {
+	// User-friendly namespace for the repository, this is for cosmetic purposes only
 	Namespace pulumi.StringInput `pulumi:"namespace"`
-	Url       pulumi.StringInput `pulumi:"url"`
+	// HTTPS URL of the Git repository
+	Url pulumi.StringInput `pulumi:"url"`
 }
 
 func (GetStackRawGitArgs) ElementType() reflect.Type {
@@ -6265,12 +5542,6 @@ func (i GetStackRawGitArgs) ToGetStackRawGitOutput() GetStackRawGitOutput {
 
 func (i GetStackRawGitArgs) ToGetStackRawGitOutputWithContext(ctx context.Context) GetStackRawGitOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackRawGitOutput)
-}
-
-func (i GetStackRawGitArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackRawGit] {
-	return pulumix.Output[GetStackRawGit]{
-		OutputState: i.ToGetStackRawGitOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackRawGitArrayInput is an input type that accepts GetStackRawGitArray and GetStackRawGitArrayOutput values.
@@ -6298,12 +5569,6 @@ func (i GetStackRawGitArray) ToGetStackRawGitArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackRawGitArrayOutput)
 }
 
-func (i GetStackRawGitArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackRawGit] {
-	return pulumix.Output[[]GetStackRawGit]{
-		OutputState: i.ToGetStackRawGitArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackRawGitOutput struct{ *pulumi.OutputState }
 
 func (GetStackRawGitOutput) ElementType() reflect.Type {
@@ -6318,16 +5583,12 @@ func (o GetStackRawGitOutput) ToGetStackRawGitOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o GetStackRawGitOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackRawGit] {
-	return pulumix.Output[GetStackRawGit]{
-		OutputState: o.OutputState,
-	}
-}
-
+// User-friendly namespace for the repository, this is for cosmetic purposes only
 func (o GetStackRawGitOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackRawGit) string { return v.Namespace }).(pulumi.StringOutput)
 }
 
+// HTTPS URL of the Git repository
 func (o GetStackRawGitOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackRawGit) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -6346,12 +5607,6 @@ func (o GetStackRawGitArrayOutput) ToGetStackRawGitArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o GetStackRawGitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackRawGit] {
-	return pulumix.Output[[]GetStackRawGit]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStackRawGitArrayOutput) Index(i pulumi.IntInput) GetStackRawGitOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStackRawGit {
 		return vs[0].([]GetStackRawGit)[vs[1].(int)]
@@ -6359,6 +5614,7 @@ func (o GetStackRawGitArrayOutput) Index(i pulumi.IntInput) GetStackRawGitOutput
 }
 
 type GetStackShowcase struct {
+	// GitHub namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -6374,6 +5630,7 @@ type GetStackShowcaseInput interface {
 }
 
 type GetStackShowcaseArgs struct {
+	// GitHub namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -6387,12 +5644,6 @@ func (i GetStackShowcaseArgs) ToGetStackShowcaseOutput() GetStackShowcaseOutput 
 
 func (i GetStackShowcaseArgs) ToGetStackShowcaseOutputWithContext(ctx context.Context) GetStackShowcaseOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackShowcaseOutput)
-}
-
-func (i GetStackShowcaseArgs) ToOutput(ctx context.Context) pulumix.Output[GetStackShowcase] {
-	return pulumix.Output[GetStackShowcase]{
-		OutputState: i.ToGetStackShowcaseOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStackShowcaseArrayInput is an input type that accepts GetStackShowcaseArray and GetStackShowcaseArrayOutput values.
@@ -6420,12 +5671,6 @@ func (i GetStackShowcaseArray) ToGetStackShowcaseArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStackShowcaseArrayOutput)
 }
 
-func (i GetStackShowcaseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStackShowcase] {
-	return pulumix.Output[[]GetStackShowcase]{
-		OutputState: i.ToGetStackShowcaseArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStackShowcaseOutput struct{ *pulumi.OutputState }
 
 func (GetStackShowcaseOutput) ElementType() reflect.Type {
@@ -6440,12 +5685,7 @@ func (o GetStackShowcaseOutput) ToGetStackShowcaseOutputWithContext(ctx context.
 	return o
 }
 
-func (o GetStackShowcaseOutput) ToOutput(ctx context.Context) pulumix.Output[GetStackShowcase] {
-	return pulumix.Output[GetStackShowcase]{
-		OutputState: o.OutputState,
-	}
-}
-
+// GitHub namespace of the stack's repository
 func (o GetStackShowcaseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStackShowcase) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -6462,12 +5702,6 @@ func (o GetStackShowcaseArrayOutput) ToGetStackShowcaseArrayOutput() GetStackSho
 
 func (o GetStackShowcaseArrayOutput) ToGetStackShowcaseArrayOutputWithContext(ctx context.Context) GetStackShowcaseArrayOutput {
 	return o
-}
-
-func (o GetStackShowcaseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStackShowcase] {
-	return pulumix.Output[[]GetStackShowcase]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStackShowcaseArrayOutput) Index(i pulumi.IntInput) GetStackShowcaseOutput {
@@ -6505,12 +5739,6 @@ func (i GetStacksAdministrativeArgs) ToGetStacksAdministrativeOutput() GetStacks
 
 func (i GetStacksAdministrativeArgs) ToGetStacksAdministrativeOutputWithContext(ctx context.Context) GetStacksAdministrativeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksAdministrativeOutput)
-}
-
-func (i GetStacksAdministrativeArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksAdministrative] {
-	return pulumix.Output[GetStacksAdministrative]{
-		OutputState: i.ToGetStacksAdministrativeOutputWithContext(ctx).OutputState,
-	}
 }
 
 func (i GetStacksAdministrativeArgs) ToGetStacksAdministrativePtrOutput() GetStacksAdministrativePtrOutput {
@@ -6554,12 +5782,6 @@ func (i *getStacksAdministrativePtrType) ToGetStacksAdministrativePtrOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksAdministrativePtrOutput)
 }
 
-func (i *getStacksAdministrativePtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksAdministrative] {
-	return pulumix.Output[*GetStacksAdministrative]{
-		OutputState: i.ToGetStacksAdministrativePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksAdministrativeOutput struct{ *pulumi.OutputState }
 
 func (GetStacksAdministrativeOutput) ElementType() reflect.Type {
@@ -6584,12 +5806,6 @@ func (o GetStacksAdministrativeOutput) ToGetStacksAdministrativePtrOutputWithCon
 	}).(GetStacksAdministrativePtrOutput)
 }
 
-func (o GetStacksAdministrativeOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksAdministrative] {
-	return pulumix.Output[GetStacksAdministrative]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksAdministrativeOutput) Equals() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetStacksAdministrative) *bool { return v.Equals }).(pulumi.BoolPtrOutput)
 }
@@ -6606,12 +5822,6 @@ func (o GetStacksAdministrativePtrOutput) ToGetStacksAdministrativePtrOutput() G
 
 func (o GetStacksAdministrativePtrOutput) ToGetStacksAdministrativePtrOutputWithContext(ctx context.Context) GetStacksAdministrativePtrOutput {
 	return o
-}
-
-func (o GetStacksAdministrativePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksAdministrative] {
-	return pulumix.Output[*GetStacksAdministrative]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksAdministrativePtrOutput) Elem() GetStacksAdministrativeOutput {
@@ -6664,12 +5874,6 @@ func (i GetStacksBranchArgs) ToGetStacksBranchOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksBranchOutput)
 }
 
-func (i GetStacksBranchArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksBranch] {
-	return pulumix.Output[GetStacksBranch]{
-		OutputState: i.ToGetStacksBranchOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i GetStacksBranchArgs) ToGetStacksBranchPtrOutput() GetStacksBranchPtrOutput {
 	return i.ToGetStacksBranchPtrOutputWithContext(context.Background())
 }
@@ -6711,12 +5915,6 @@ func (i *getStacksBranchPtrType) ToGetStacksBranchPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksBranchPtrOutput)
 }
 
-func (i *getStacksBranchPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksBranch] {
-	return pulumix.Output[*GetStacksBranch]{
-		OutputState: i.ToGetStacksBranchPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksBranchOutput struct{ *pulumi.OutputState }
 
 func (GetStacksBranchOutput) ElementType() reflect.Type {
@@ -6741,12 +5939,6 @@ func (o GetStacksBranchOutput) ToGetStacksBranchPtrOutputWithContext(ctx context
 	}).(GetStacksBranchPtrOutput)
 }
 
-func (o GetStacksBranchOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksBranch] {
-	return pulumix.Output[GetStacksBranch]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksBranchOutput) AnyOfs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksBranch) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
 }
@@ -6763,12 +5955,6 @@ func (o GetStacksBranchPtrOutput) ToGetStacksBranchPtrOutput() GetStacksBranchPt
 
 func (o GetStacksBranchPtrOutput) ToGetStacksBranchPtrOutputWithContext(ctx context.Context) GetStacksBranchPtrOutput {
 	return o
-}
-
-func (o GetStacksBranchPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksBranch] {
-	return pulumix.Output[*GetStacksBranch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksBranchPtrOutput) Elem() GetStacksBranchOutput {
@@ -6821,12 +6007,6 @@ func (i GetStacksCommitArgs) ToGetStacksCommitOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksCommitOutput)
 }
 
-func (i GetStacksCommitArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksCommit] {
-	return pulumix.Output[GetStacksCommit]{
-		OutputState: i.ToGetStacksCommitOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i GetStacksCommitArgs) ToGetStacksCommitPtrOutput() GetStacksCommitPtrOutput {
 	return i.ToGetStacksCommitPtrOutputWithContext(context.Background())
 }
@@ -6868,12 +6048,6 @@ func (i *getStacksCommitPtrType) ToGetStacksCommitPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksCommitPtrOutput)
 }
 
-func (i *getStacksCommitPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksCommit] {
-	return pulumix.Output[*GetStacksCommit]{
-		OutputState: i.ToGetStacksCommitPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksCommitOutput struct{ *pulumi.OutputState }
 
 func (GetStacksCommitOutput) ElementType() reflect.Type {
@@ -6898,12 +6072,6 @@ func (o GetStacksCommitOutput) ToGetStacksCommitPtrOutputWithContext(ctx context
 	}).(GetStacksCommitPtrOutput)
 }
 
-func (o GetStacksCommitOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksCommit] {
-	return pulumix.Output[GetStacksCommit]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksCommitOutput) AnyOfs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksCommit) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
 }
@@ -6920,12 +6088,6 @@ func (o GetStacksCommitPtrOutput) ToGetStacksCommitPtrOutput() GetStacksCommitPt
 
 func (o GetStacksCommitPtrOutput) ToGetStacksCommitPtrOutputWithContext(ctx context.Context) GetStacksCommitPtrOutput {
 	return o
-}
-
-func (o GetStacksCommitPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksCommit] {
-	return pulumix.Output[*GetStacksCommit]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksCommitPtrOutput) Elem() GetStacksCommitOutput {
@@ -6978,12 +6140,6 @@ func (i GetStacksLabelArgs) ToGetStacksLabelOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksLabelOutput)
 }
 
-func (i GetStacksLabelArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksLabel] {
-	return pulumix.Output[GetStacksLabel]{
-		OutputState: i.ToGetStacksLabelOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetStacksLabelArrayInput is an input type that accepts GetStacksLabelArray and GetStacksLabelArrayOutput values.
 // You can construct a concrete instance of `GetStacksLabelArrayInput` via:
 //
@@ -7009,12 +6165,6 @@ func (i GetStacksLabelArray) ToGetStacksLabelArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksLabelArrayOutput)
 }
 
-func (i GetStacksLabelArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksLabel] {
-	return pulumix.Output[[]GetStacksLabel]{
-		OutputState: i.ToGetStacksLabelArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksLabelOutput struct{ *pulumi.OutputState }
 
 func (GetStacksLabelOutput) ElementType() reflect.Type {
@@ -7027,12 +6177,6 @@ func (o GetStacksLabelOutput) ToGetStacksLabelOutput() GetStacksLabelOutput {
 
 func (o GetStacksLabelOutput) ToGetStacksLabelOutputWithContext(ctx context.Context) GetStacksLabelOutput {
 	return o
-}
-
-func (o GetStacksLabelOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksLabel] {
-	return pulumix.Output[GetStacksLabel]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksLabelOutput) AnyOfs() pulumi.StringArrayOutput {
@@ -7051,12 +6195,6 @@ func (o GetStacksLabelArrayOutput) ToGetStacksLabelArrayOutput() GetStacksLabelA
 
 func (o GetStacksLabelArrayOutput) ToGetStacksLabelArrayOutputWithContext(ctx context.Context) GetStacksLabelArrayOutput {
 	return o
-}
-
-func (o GetStacksLabelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksLabel] {
-	return pulumix.Output[[]GetStacksLabel]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksLabelArrayOutput) Index(i pulumi.IntInput) GetStacksLabelOutput {
@@ -7094,12 +6232,6 @@ func (i GetStacksLockedArgs) ToGetStacksLockedOutput() GetStacksLockedOutput {
 
 func (i GetStacksLockedArgs) ToGetStacksLockedOutputWithContext(ctx context.Context) GetStacksLockedOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksLockedOutput)
-}
-
-func (i GetStacksLockedArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksLocked] {
-	return pulumix.Output[GetStacksLocked]{
-		OutputState: i.ToGetStacksLockedOutputWithContext(ctx).OutputState,
-	}
 }
 
 func (i GetStacksLockedArgs) ToGetStacksLockedPtrOutput() GetStacksLockedPtrOutput {
@@ -7143,12 +6275,6 @@ func (i *getStacksLockedPtrType) ToGetStacksLockedPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksLockedPtrOutput)
 }
 
-func (i *getStacksLockedPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksLocked] {
-	return pulumix.Output[*GetStacksLocked]{
-		OutputState: i.ToGetStacksLockedPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksLockedOutput struct{ *pulumi.OutputState }
 
 func (GetStacksLockedOutput) ElementType() reflect.Type {
@@ -7173,12 +6299,6 @@ func (o GetStacksLockedOutput) ToGetStacksLockedPtrOutputWithContext(ctx context
 	}).(GetStacksLockedPtrOutput)
 }
 
-func (o GetStacksLockedOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksLocked] {
-	return pulumix.Output[GetStacksLocked]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksLockedOutput) Equals() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetStacksLocked) *bool { return v.Equals }).(pulumi.BoolPtrOutput)
 }
@@ -7195,12 +6315,6 @@ func (o GetStacksLockedPtrOutput) ToGetStacksLockedPtrOutput() GetStacksLockedPt
 
 func (o GetStacksLockedPtrOutput) ToGetStacksLockedPtrOutputWithContext(ctx context.Context) GetStacksLockedPtrOutput {
 	return o
-}
-
-func (o GetStacksLockedPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksLocked] {
-	return pulumix.Output[*GetStacksLocked]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksLockedPtrOutput) Elem() GetStacksLockedOutput {
@@ -7253,12 +6367,6 @@ func (i GetStacksNameArgs) ToGetStacksNameOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksNameOutput)
 }
 
-func (i GetStacksNameArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksName] {
-	return pulumix.Output[GetStacksName]{
-		OutputState: i.ToGetStacksNameOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i GetStacksNameArgs) ToGetStacksNamePtrOutput() GetStacksNamePtrOutput {
 	return i.ToGetStacksNamePtrOutputWithContext(context.Background())
 }
@@ -7300,12 +6408,6 @@ func (i *getStacksNamePtrType) ToGetStacksNamePtrOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksNamePtrOutput)
 }
 
-func (i *getStacksNamePtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksName] {
-	return pulumix.Output[*GetStacksName]{
-		OutputState: i.ToGetStacksNamePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksNameOutput struct{ *pulumi.OutputState }
 
 func (GetStacksNameOutput) ElementType() reflect.Type {
@@ -7330,12 +6432,6 @@ func (o GetStacksNameOutput) ToGetStacksNamePtrOutputWithContext(ctx context.Con
 	}).(GetStacksNamePtrOutput)
 }
 
-func (o GetStacksNameOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksName] {
-	return pulumix.Output[GetStacksName]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksNameOutput) AnyOfs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksName) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
 }
@@ -7352,12 +6448,6 @@ func (o GetStacksNamePtrOutput) ToGetStacksNamePtrOutput() GetStacksNamePtrOutpu
 
 func (o GetStacksNamePtrOutput) ToGetStacksNamePtrOutputWithContext(ctx context.Context) GetStacksNamePtrOutput {
 	return o
-}
-
-func (o GetStacksNamePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksName] {
-	return pulumix.Output[*GetStacksName]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksNamePtrOutput) Elem() GetStacksNameOutput {
@@ -7410,12 +6500,6 @@ func (i GetStacksProjectRootArgs) ToGetStacksProjectRootOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksProjectRootOutput)
 }
 
-func (i GetStacksProjectRootArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksProjectRoot] {
-	return pulumix.Output[GetStacksProjectRoot]{
-		OutputState: i.ToGetStacksProjectRootOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i GetStacksProjectRootArgs) ToGetStacksProjectRootPtrOutput() GetStacksProjectRootPtrOutput {
 	return i.ToGetStacksProjectRootPtrOutputWithContext(context.Background())
 }
@@ -7457,12 +6541,6 @@ func (i *getStacksProjectRootPtrType) ToGetStacksProjectRootPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksProjectRootPtrOutput)
 }
 
-func (i *getStacksProjectRootPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksProjectRoot] {
-	return pulumix.Output[*GetStacksProjectRoot]{
-		OutputState: i.ToGetStacksProjectRootPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksProjectRootOutput struct{ *pulumi.OutputState }
 
 func (GetStacksProjectRootOutput) ElementType() reflect.Type {
@@ -7487,12 +6565,6 @@ func (o GetStacksProjectRootOutput) ToGetStacksProjectRootPtrOutputWithContext(c
 	}).(GetStacksProjectRootPtrOutput)
 }
 
-func (o GetStacksProjectRootOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksProjectRoot] {
-	return pulumix.Output[GetStacksProjectRoot]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksProjectRootOutput) AnyOfs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksProjectRoot) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
 }
@@ -7509,12 +6581,6 @@ func (o GetStacksProjectRootPtrOutput) ToGetStacksProjectRootPtrOutput() GetStac
 
 func (o GetStacksProjectRootPtrOutput) ToGetStacksProjectRootPtrOutputWithContext(ctx context.Context) GetStacksProjectRootPtrOutput {
 	return o
-}
-
-func (o GetStacksProjectRootPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksProjectRoot] {
-	return pulumix.Output[*GetStacksProjectRoot]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksProjectRootPtrOutput) Elem() GetStacksProjectRootOutput {
@@ -7567,12 +6633,6 @@ func (i GetStacksRepositoryArgs) ToGetStacksRepositoryOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksRepositoryOutput)
 }
 
-func (i GetStacksRepositoryArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksRepository] {
-	return pulumix.Output[GetStacksRepository]{
-		OutputState: i.ToGetStacksRepositoryOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i GetStacksRepositoryArgs) ToGetStacksRepositoryPtrOutput() GetStacksRepositoryPtrOutput {
 	return i.ToGetStacksRepositoryPtrOutputWithContext(context.Background())
 }
@@ -7614,12 +6674,6 @@ func (i *getStacksRepositoryPtrType) ToGetStacksRepositoryPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksRepositoryPtrOutput)
 }
 
-func (i *getStacksRepositoryPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksRepository] {
-	return pulumix.Output[*GetStacksRepository]{
-		OutputState: i.ToGetStacksRepositoryPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksRepositoryOutput struct{ *pulumi.OutputState }
 
 func (GetStacksRepositoryOutput) ElementType() reflect.Type {
@@ -7644,12 +6698,6 @@ func (o GetStacksRepositoryOutput) ToGetStacksRepositoryPtrOutputWithContext(ctx
 	}).(GetStacksRepositoryPtrOutput)
 }
 
-func (o GetStacksRepositoryOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksRepository] {
-	return pulumix.Output[GetStacksRepository]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksRepositoryOutput) AnyOfs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksRepository) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
 }
@@ -7666,12 +6714,6 @@ func (o GetStacksRepositoryPtrOutput) ToGetStacksRepositoryPtrOutput() GetStacks
 
 func (o GetStacksRepositoryPtrOutput) ToGetStacksRepositoryPtrOutputWithContext(ctx context.Context) GetStacksRepositoryPtrOutput {
 	return o
-}
-
-func (o GetStacksRepositoryPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksRepository] {
-	return pulumix.Output[*GetStacksRepository]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksRepositoryPtrOutput) Elem() GetStacksRepositoryOutput {
@@ -7694,51 +6736,92 @@ func (o GetStacksRepositoryPtrOutput) AnyOfs() pulumi.StringArrayOutput {
 }
 
 type GetStacksStack struct {
-	AdditionalProjectGlobs       []string                            `pulumi:"additionalProjectGlobs"`
-	Administrative               bool                                `pulumi:"administrative"`
-	AfterApplies                 []string                            `pulumi:"afterApplies"`
-	AfterDestroys                []string                            `pulumi:"afterDestroys"`
-	AfterInits                   []string                            `pulumi:"afterInits"`
-	AfterPerforms                []string                            `pulumi:"afterPerforms"`
-	AfterPlans                   []string                            `pulumi:"afterPlans"`
-	AfterRuns                    []string                            `pulumi:"afterRuns"`
-	Ansibles                     []GetStacksStackAnsible             `pulumi:"ansibles"`
-	Autodeploy                   bool                                `pulumi:"autodeploy"`
-	Autoretry                    bool                                `pulumi:"autoretry"`
-	AwsAssumeRolePolicyStatement string                              `pulumi:"awsAssumeRolePolicyStatement"`
-	AzureDevops                  []GetStacksStackAzureDevop          `pulumi:"azureDevops"`
-	BeforeApplies                []string                            `pulumi:"beforeApplies"`
-	BeforeDestroys               []string                            `pulumi:"beforeDestroys"`
-	BeforeInits                  []string                            `pulumi:"beforeInits"`
-	BeforePerforms               []string                            `pulumi:"beforePerforms"`
-	BeforePlans                  []string                            `pulumi:"beforePlans"`
-	BitbucketClouds              []GetStacksStackBitbucketCloud      `pulumi:"bitbucketClouds"`
-	BitbucketDatacenters         []GetStacksStackBitbucketDatacenter `pulumi:"bitbucketDatacenters"`
-	Branch                       string                              `pulumi:"branch"`
-	Cloudformations              []GetStacksStackCloudformation      `pulumi:"cloudformations"`
-	Description                  string                              `pulumi:"description"`
-	EnableLocalPreview           bool                                `pulumi:"enableLocalPreview"`
-	GithubEnterprises            []GetStacksStackGithubEnterprise    `pulumi:"githubEnterprises"`
-	Gitlabs                      []GetStacksStackGitlab              `pulumi:"gitlabs"`
-	Kubernetes                   []GetStacksStackKubernete           `pulumi:"kubernetes"`
-	Labels                       []string                            `pulumi:"labels"`
-	ManageState                  bool                                `pulumi:"manageState"`
-	Name                         string                              `pulumi:"name"`
-	ProjectRoot                  string                              `pulumi:"projectRoot"`
-	ProtectFromDeletion          bool                                `pulumi:"protectFromDeletion"`
-	Pulumis                      []GetStacksStackPulumi              `pulumi:"pulumis"`
-	RawGits                      []GetStacksStackRawGit              `pulumi:"rawGits"`
-	Repository                   string                              `pulumi:"repository"`
-	RunnerImage                  string                              `pulumi:"runnerImage"`
-	Showcases                    []GetStacksStackShowcase            `pulumi:"showcases"`
-	SpaceId                      string                              `pulumi:"spaceId"`
-	StackId                      string                              `pulumi:"stackId"`
-	TerraformExternalStateAccess bool                                `pulumi:"terraformExternalStateAccess"`
-	TerraformSmartSanitization   bool                                `pulumi:"terraformSmartSanitization"`
-	TerraformVersion             string                              `pulumi:"terraformVersion"`
-	TerraformWorkflowTool        string                              `pulumi:"terraformWorkflowTool"`
-	TerraformWorkspace           string                              `pulumi:"terraformWorkspace"`
-	WorkerPoolId                 string                              `pulumi:"workerPoolId"`
+	// Project globs is an optional list of paths to track changes of in addition to the project root.
+	AdditionalProjectGlobs []string `pulumi:"additionalProjectGlobs"`
+	// indicates whether this stack can administer others
+	Administrative bool `pulumi:"administrative"`
+	// List of after-apply scripts
+	AfterApplies []string `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys []string `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits []string `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms []string `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans []string `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns []string `pulumi:"afterRuns"`
+	// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+	Ansibles []GetStacksStackAnsible `pulumi:"ansibles"`
+	// indicates whether changes to this stack can be automatically deployed
+	Autodeploy bool `pulumi:"autodeploy"`
+	// indicates whether obsolete proposed changes should automatically be retried
+	Autoretry bool `pulumi:"autoretry"`
+	// AWS IAM assume role policy statement setting up trust relationship
+	AwsAssumeRolePolicyStatement string `pulumi:"awsAssumeRolePolicyStatement"`
+	// Azure DevOps VCS settings
+	AzureDevops []GetStacksStackAzureDevop `pulumi:"azureDevops"`
+	// List of before-apply scripts
+	BeforeApplies []string `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys []string `pulumi:"beforeDestroys"`
+	// List of before-init scripts
+	BeforeInits []string `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms []string `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans []string `pulumi:"beforePlans"`
+	// Bitbucket Cloud VCS settings
+	BitbucketClouds []GetStacksStackBitbucketCloud `pulumi:"bitbucketClouds"`
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenters []GetStacksStackBitbucketDatacenter `pulumi:"bitbucketDatacenters"`
+	// Repository branch to treat as the default 'main' branch
+	Branch string `pulumi:"branch"`
+	// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
+	Cloudformations []GetStacksStackCloudformation `pulumi:"cloudformations"`
+	// free-form stack description for users
+	Description string `pulumi:"description"`
+	// Indicates whether local preview runs can be triggered on this Stack.
+	EnableLocalPreview bool `pulumi:"enableLocalPreview"`
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprises []GetStacksStackGithubEnterprise `pulumi:"githubEnterprises"`
+	// GitLab VCS settings
+	Gitlabs []GetStacksStackGitlab `pulumi:"gitlabs"`
+	// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+	Kubernetes []GetStacksStackKubernete `pulumi:"kubernetes"`
+	Labels     []string                  `pulumi:"labels"`
+	// Determines if Spacelift should manage state for this stack
+	ManageState bool `pulumi:"manageState"`
+	// Name of the stack - should be unique in one account
+	Name string `pulumi:"name"`
+	// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+	ProjectRoot string `pulumi:"projectRoot"`
+	// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+	ProtectFromDeletion bool `pulumi:"protectFromDeletion"`
+	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
+	Pulumis []GetStacksStackPulumi `pulumi:"pulumis"`
+	// One-way VCS integration using a raw Git repository link
+	RawGits []GetStacksStackRawGit `pulumi:"rawGits"`
+	// Name of the repository, without the owner part
+	Repository string `pulumi:"repository"`
+	// Name of the Docker image used to process Runs
+	RunnerImage string `pulumi:"runnerImage"`
+	// Showcase-related attributes
+	Showcases []GetStacksStackShowcase `pulumi:"showcases"`
+	// ID (slug) of the space the stack is in
+	SpaceId string `pulumi:"spaceId"`
+	// ID (slug) of the stack
+	StackId string `pulumi:"stackId"`
+	// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift.
+	TerraformExternalStateAccess bool   `pulumi:"terraformExternalStateAccess"`
+	TerraformSmartSanitization   bool   `pulumi:"terraformSmartSanitization"`
+	TerraformVersion             string `pulumi:"terraformVersion"`
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+	TerraformWorkflowTool string `pulumi:"terraformWorkflowTool"`
+	TerraformWorkspace    string `pulumi:"terraformWorkspace"`
+	// ID of the worker pool to use
+	WorkerPoolId string `pulumi:"workerPoolId"`
 }
 
 // GetStacksStackInput is an input type that accepts GetStacksStackArgs and GetStacksStackOutput values.
@@ -7753,51 +6836,92 @@ type GetStacksStackInput interface {
 }
 
 type GetStacksStackArgs struct {
-	AdditionalProjectGlobs       pulumi.StringArrayInput                     `pulumi:"additionalProjectGlobs"`
-	Administrative               pulumi.BoolInput                            `pulumi:"administrative"`
-	AfterApplies                 pulumi.StringArrayInput                     `pulumi:"afterApplies"`
-	AfterDestroys                pulumi.StringArrayInput                     `pulumi:"afterDestroys"`
-	AfterInits                   pulumi.StringArrayInput                     `pulumi:"afterInits"`
-	AfterPerforms                pulumi.StringArrayInput                     `pulumi:"afterPerforms"`
-	AfterPlans                   pulumi.StringArrayInput                     `pulumi:"afterPlans"`
-	AfterRuns                    pulumi.StringArrayInput                     `pulumi:"afterRuns"`
-	Ansibles                     GetStacksStackAnsibleArrayInput             `pulumi:"ansibles"`
-	Autodeploy                   pulumi.BoolInput                            `pulumi:"autodeploy"`
-	Autoretry                    pulumi.BoolInput                            `pulumi:"autoretry"`
-	AwsAssumeRolePolicyStatement pulumi.StringInput                          `pulumi:"awsAssumeRolePolicyStatement"`
-	AzureDevops                  GetStacksStackAzureDevopArrayInput          `pulumi:"azureDevops"`
-	BeforeApplies                pulumi.StringArrayInput                     `pulumi:"beforeApplies"`
-	BeforeDestroys               pulumi.StringArrayInput                     `pulumi:"beforeDestroys"`
-	BeforeInits                  pulumi.StringArrayInput                     `pulumi:"beforeInits"`
-	BeforePerforms               pulumi.StringArrayInput                     `pulumi:"beforePerforms"`
-	BeforePlans                  pulumi.StringArrayInput                     `pulumi:"beforePlans"`
-	BitbucketClouds              GetStacksStackBitbucketCloudArrayInput      `pulumi:"bitbucketClouds"`
-	BitbucketDatacenters         GetStacksStackBitbucketDatacenterArrayInput `pulumi:"bitbucketDatacenters"`
-	Branch                       pulumi.StringInput                          `pulumi:"branch"`
-	Cloudformations              GetStacksStackCloudformationArrayInput      `pulumi:"cloudformations"`
-	Description                  pulumi.StringInput                          `pulumi:"description"`
-	EnableLocalPreview           pulumi.BoolInput                            `pulumi:"enableLocalPreview"`
-	GithubEnterprises            GetStacksStackGithubEnterpriseArrayInput    `pulumi:"githubEnterprises"`
-	Gitlabs                      GetStacksStackGitlabArrayInput              `pulumi:"gitlabs"`
-	Kubernetes                   GetStacksStackKuberneteArrayInput           `pulumi:"kubernetes"`
-	Labels                       pulumi.StringArrayInput                     `pulumi:"labels"`
-	ManageState                  pulumi.BoolInput                            `pulumi:"manageState"`
-	Name                         pulumi.StringInput                          `pulumi:"name"`
-	ProjectRoot                  pulumi.StringInput                          `pulumi:"projectRoot"`
-	ProtectFromDeletion          pulumi.BoolInput                            `pulumi:"protectFromDeletion"`
-	Pulumis                      GetStacksStackPulumiArrayInput              `pulumi:"pulumis"`
-	RawGits                      GetStacksStackRawGitArrayInput              `pulumi:"rawGits"`
-	Repository                   pulumi.StringInput                          `pulumi:"repository"`
-	RunnerImage                  pulumi.StringInput                          `pulumi:"runnerImage"`
-	Showcases                    GetStacksStackShowcaseArrayInput            `pulumi:"showcases"`
-	SpaceId                      pulumi.StringInput                          `pulumi:"spaceId"`
-	StackId                      pulumi.StringInput                          `pulumi:"stackId"`
-	TerraformExternalStateAccess pulumi.BoolInput                            `pulumi:"terraformExternalStateAccess"`
-	TerraformSmartSanitization   pulumi.BoolInput                            `pulumi:"terraformSmartSanitization"`
-	TerraformVersion             pulumi.StringInput                          `pulumi:"terraformVersion"`
-	TerraformWorkflowTool        pulumi.StringInput                          `pulumi:"terraformWorkflowTool"`
-	TerraformWorkspace           pulumi.StringInput                          `pulumi:"terraformWorkspace"`
-	WorkerPoolId                 pulumi.StringInput                          `pulumi:"workerPoolId"`
+	// Project globs is an optional list of paths to track changes of in addition to the project root.
+	AdditionalProjectGlobs pulumi.StringArrayInput `pulumi:"additionalProjectGlobs"`
+	// indicates whether this stack can administer others
+	Administrative pulumi.BoolInput `pulumi:"administrative"`
+	// List of after-apply scripts
+	AfterApplies pulumi.StringArrayInput `pulumi:"afterApplies"`
+	// List of after-destroy scripts
+	AfterDestroys pulumi.StringArrayInput `pulumi:"afterDestroys"`
+	// List of after-init scripts
+	AfterInits pulumi.StringArrayInput `pulumi:"afterInits"`
+	// List of after-perform scripts
+	AfterPerforms pulumi.StringArrayInput `pulumi:"afterPerforms"`
+	// List of after-plan scripts
+	AfterPlans pulumi.StringArrayInput `pulumi:"afterPlans"`
+	// List of after-run scripts
+	AfterRuns pulumi.StringArrayInput `pulumi:"afterRuns"`
+	// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+	Ansibles GetStacksStackAnsibleArrayInput `pulumi:"ansibles"`
+	// indicates whether changes to this stack can be automatically deployed
+	Autodeploy pulumi.BoolInput `pulumi:"autodeploy"`
+	// indicates whether obsolete proposed changes should automatically be retried
+	Autoretry pulumi.BoolInput `pulumi:"autoretry"`
+	// AWS IAM assume role policy statement setting up trust relationship
+	AwsAssumeRolePolicyStatement pulumi.StringInput `pulumi:"awsAssumeRolePolicyStatement"`
+	// Azure DevOps VCS settings
+	AzureDevops GetStacksStackAzureDevopArrayInput `pulumi:"azureDevops"`
+	// List of before-apply scripts
+	BeforeApplies pulumi.StringArrayInput `pulumi:"beforeApplies"`
+	// List of before-destroy scripts
+	BeforeDestroys pulumi.StringArrayInput `pulumi:"beforeDestroys"`
+	// List of before-init scripts
+	BeforeInits pulumi.StringArrayInput `pulumi:"beforeInits"`
+	// List of before-perform scripts
+	BeforePerforms pulumi.StringArrayInput `pulumi:"beforePerforms"`
+	// List of before-plan scripts
+	BeforePlans pulumi.StringArrayInput `pulumi:"beforePlans"`
+	// Bitbucket Cloud VCS settings
+	BitbucketClouds GetStacksStackBitbucketCloudArrayInput `pulumi:"bitbucketClouds"`
+	// Bitbucket Datacenter VCS settings
+	BitbucketDatacenters GetStacksStackBitbucketDatacenterArrayInput `pulumi:"bitbucketDatacenters"`
+	// Repository branch to treat as the default 'main' branch
+	Branch pulumi.StringInput `pulumi:"branch"`
+	// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
+	Cloudformations GetStacksStackCloudformationArrayInput `pulumi:"cloudformations"`
+	// free-form stack description for users
+	Description pulumi.StringInput `pulumi:"description"`
+	// Indicates whether local preview runs can be triggered on this Stack.
+	EnableLocalPreview pulumi.BoolInput `pulumi:"enableLocalPreview"`
+	// GitHub Enterprise (self-hosted) VCS settings
+	GithubEnterprises GetStacksStackGithubEnterpriseArrayInput `pulumi:"githubEnterprises"`
+	// GitLab VCS settings
+	Gitlabs GetStacksStackGitlabArrayInput `pulumi:"gitlabs"`
+	// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+	Kubernetes GetStacksStackKuberneteArrayInput `pulumi:"kubernetes"`
+	Labels     pulumi.StringArrayInput           `pulumi:"labels"`
+	// Determines if Spacelift should manage state for this stack
+	ManageState pulumi.BoolInput `pulumi:"manageState"`
+	// Name of the stack - should be unique in one account
+	Name pulumi.StringInput `pulumi:"name"`
+	// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+	ProjectRoot pulumi.StringInput `pulumi:"projectRoot"`
+	// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+	ProtectFromDeletion pulumi.BoolInput `pulumi:"protectFromDeletion"`
+	// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
+	Pulumis GetStacksStackPulumiArrayInput `pulumi:"pulumis"`
+	// One-way VCS integration using a raw Git repository link
+	RawGits GetStacksStackRawGitArrayInput `pulumi:"rawGits"`
+	// Name of the repository, without the owner part
+	Repository pulumi.StringInput `pulumi:"repository"`
+	// Name of the Docker image used to process Runs
+	RunnerImage pulumi.StringInput `pulumi:"runnerImage"`
+	// Showcase-related attributes
+	Showcases GetStacksStackShowcaseArrayInput `pulumi:"showcases"`
+	// ID (slug) of the space the stack is in
+	SpaceId pulumi.StringInput `pulumi:"spaceId"`
+	// ID (slug) of the stack
+	StackId pulumi.StringInput `pulumi:"stackId"`
+	// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift.
+	TerraformExternalStateAccess pulumi.BoolInput   `pulumi:"terraformExternalStateAccess"`
+	TerraformSmartSanitization   pulumi.BoolInput   `pulumi:"terraformSmartSanitization"`
+	TerraformVersion             pulumi.StringInput `pulumi:"terraformVersion"`
+	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+	TerraformWorkflowTool pulumi.StringInput `pulumi:"terraformWorkflowTool"`
+	TerraformWorkspace    pulumi.StringInput `pulumi:"terraformWorkspace"`
+	// ID of the worker pool to use
+	WorkerPoolId pulumi.StringInput `pulumi:"workerPoolId"`
 }
 
 func (GetStacksStackArgs) ElementType() reflect.Type {
@@ -7810,12 +6934,6 @@ func (i GetStacksStackArgs) ToGetStacksStackOutput() GetStacksStackOutput {
 
 func (i GetStacksStackArgs) ToGetStacksStackOutputWithContext(ctx context.Context) GetStacksStackOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackOutput)
-}
-
-func (i GetStacksStackArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStack] {
-	return pulumix.Output[GetStacksStack]{
-		OutputState: i.ToGetStacksStackOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackArrayInput is an input type that accepts GetStacksStackArray and GetStacksStackArrayOutput values.
@@ -7843,12 +6961,6 @@ func (i GetStacksStackArray) ToGetStacksStackArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackArrayOutput)
 }
 
-func (i GetStacksStackArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStack] {
-	return pulumix.Output[[]GetStacksStack]{
-		OutputState: i.ToGetStacksStackArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackOutput) ElementType() reflect.Type {
@@ -7863,116 +6975,137 @@ func (o GetStacksStackOutput) ToGetStacksStackOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o GetStacksStackOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStack] {
-	return pulumix.Output[GetStacksStack]{
-		OutputState: o.OutputState,
-	}
-}
-
+// Project globs is an optional list of paths to track changes of in addition to the project root.
 func (o GetStacksStackOutput) AdditionalProjectGlobs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.AdditionalProjectGlobs }).(pulumi.StringArrayOutput)
 }
 
+// indicates whether this stack can administer others
 func (o GetStacksStackOutput) Administrative() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStack) bool { return v.Administrative }).(pulumi.BoolOutput)
 }
 
+// List of after-apply scripts
 func (o GetStacksStackOutput) AfterApplies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterApplies }).(pulumi.StringArrayOutput)
 }
 
+// List of after-destroy scripts
 func (o GetStacksStackOutput) AfterDestroys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterDestroys }).(pulumi.StringArrayOutput)
 }
 
+// List of after-init scripts
 func (o GetStacksStackOutput) AfterInits() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterInits }).(pulumi.StringArrayOutput)
 }
 
+// List of after-perform scripts
 func (o GetStacksStackOutput) AfterPerforms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterPerforms }).(pulumi.StringArrayOutput)
 }
 
+// List of after-plan scripts
 func (o GetStacksStackOutput) AfterPlans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterPlans }).(pulumi.StringArrayOutput)
 }
 
+// List of after-run scripts
 func (o GetStacksStackOutput) AfterRuns() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.AfterRuns }).(pulumi.StringArrayOutput)
 }
 
+// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
 func (o GetStacksStackOutput) Ansibles() GetStacksStackAnsibleArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackAnsible { return v.Ansibles }).(GetStacksStackAnsibleArrayOutput)
 }
 
+// indicates whether changes to this stack can be automatically deployed
 func (o GetStacksStackOutput) Autodeploy() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStack) bool { return v.Autodeploy }).(pulumi.BoolOutput)
 }
 
+// indicates whether obsolete proposed changes should automatically be retried
 func (o GetStacksStackOutput) Autoretry() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStack) bool { return v.Autoretry }).(pulumi.BoolOutput)
 }
 
+// AWS IAM assume role policy statement setting up trust relationship
 func (o GetStacksStackOutput) AwsAssumeRolePolicyStatement() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.AwsAssumeRolePolicyStatement }).(pulumi.StringOutput)
 }
 
+// Azure DevOps VCS settings
 func (o GetStacksStackOutput) AzureDevops() GetStacksStackAzureDevopArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackAzureDevop { return v.AzureDevops }).(GetStacksStackAzureDevopArrayOutput)
 }
 
+// List of before-apply scripts
 func (o GetStacksStackOutput) BeforeApplies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.BeforeApplies }).(pulumi.StringArrayOutput)
 }
 
+// List of before-destroy scripts
 func (o GetStacksStackOutput) BeforeDestroys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.BeforeDestroys }).(pulumi.StringArrayOutput)
 }
 
+// List of before-init scripts
 func (o GetStacksStackOutput) BeforeInits() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.BeforeInits }).(pulumi.StringArrayOutput)
 }
 
+// List of before-perform scripts
 func (o GetStacksStackOutput) BeforePerforms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.BeforePerforms }).(pulumi.StringArrayOutput)
 }
 
+// List of before-plan scripts
 func (o GetStacksStackOutput) BeforePlans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.BeforePlans }).(pulumi.StringArrayOutput)
 }
 
+// Bitbucket Cloud VCS settings
 func (o GetStacksStackOutput) BitbucketClouds() GetStacksStackBitbucketCloudArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackBitbucketCloud { return v.BitbucketClouds }).(GetStacksStackBitbucketCloudArrayOutput)
 }
 
+// Bitbucket Datacenter VCS settings
 func (o GetStacksStackOutput) BitbucketDatacenters() GetStacksStackBitbucketDatacenterArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackBitbucketDatacenter { return v.BitbucketDatacenters }).(GetStacksStackBitbucketDatacenterArrayOutput)
 }
 
+// Repository branch to treat as the default 'main' branch
 func (o GetStacksStackOutput) Branch() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.Branch }).(pulumi.StringOutput)
 }
 
+// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
 func (o GetStacksStackOutput) Cloudformations() GetStacksStackCloudformationArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackCloudformation { return v.Cloudformations }).(GetStacksStackCloudformationArrayOutput)
 }
 
+// free-form stack description for users
 func (o GetStacksStackOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Indicates whether local preview runs can be triggered on this Stack.
 func (o GetStacksStackOutput) EnableLocalPreview() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStack) bool { return v.EnableLocalPreview }).(pulumi.BoolOutput)
 }
 
+// GitHub Enterprise (self-hosted) VCS settings
 func (o GetStacksStackOutput) GithubEnterprises() GetStacksStackGithubEnterpriseArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackGithubEnterprise { return v.GithubEnterprises }).(GetStacksStackGithubEnterpriseArrayOutput)
 }
 
+// GitLab VCS settings
 func (o GetStacksStackOutput) Gitlabs() GetStacksStackGitlabArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackGitlab { return v.Gitlabs }).(GetStacksStackGitlabArrayOutput)
 }
 
+// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
 func (o GetStacksStackOutput) Kubernetes() GetStacksStackKuberneteArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackKubernete { return v.Kubernetes }).(GetStacksStackKuberneteArrayOutput)
 }
@@ -7981,50 +7114,62 @@ func (o GetStacksStackOutput) Labels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []string { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
+// Determines if Spacelift should manage state for this stack
 func (o GetStacksStackOutput) ManageState() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStack) bool { return v.ManageState }).(pulumi.BoolOutput)
 }
 
+// Name of the stack - should be unique in one account
 func (o GetStacksStackOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
 func (o GetStacksStackOutput) ProjectRoot() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.ProjectRoot }).(pulumi.StringOutput)
 }
 
+// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
 func (o GetStacksStackOutput) ProtectFromDeletion() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStack) bool { return v.ProtectFromDeletion }).(pulumi.BoolOutput)
 }
 
+// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
 func (o GetStacksStackOutput) Pulumis() GetStacksStackPulumiArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackPulumi { return v.Pulumis }).(GetStacksStackPulumiArrayOutput)
 }
 
+// One-way VCS integration using a raw Git repository link
 func (o GetStacksStackOutput) RawGits() GetStacksStackRawGitArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackRawGit { return v.RawGits }).(GetStacksStackRawGitArrayOutput)
 }
 
+// Name of the repository, without the owner part
 func (o GetStacksStackOutput) Repository() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.Repository }).(pulumi.StringOutput)
 }
 
+// Name of the Docker image used to process Runs
 func (o GetStacksStackOutput) RunnerImage() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.RunnerImage }).(pulumi.StringOutput)
 }
 
+// Showcase-related attributes
 func (o GetStacksStackOutput) Showcases() GetStacksStackShowcaseArrayOutput {
 	return o.ApplyT(func(v GetStacksStack) []GetStacksStackShowcase { return v.Showcases }).(GetStacksStackShowcaseArrayOutput)
 }
 
+// ID (slug) of the space the stack is in
 func (o GetStacksStackOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the stack
 func (o GetStacksStackOutput) StackId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.StackId }).(pulumi.StringOutput)
 }
 
+// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift.
 func (o GetStacksStackOutput) TerraformExternalStateAccess() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStack) bool { return v.TerraformExternalStateAccess }).(pulumi.BoolOutput)
 }
@@ -8037,6 +7182,7 @@ func (o GetStacksStackOutput) TerraformVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.TerraformVersion }).(pulumi.StringOutput)
 }
 
+// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
 func (o GetStacksStackOutput) TerraformWorkflowTool() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.TerraformWorkflowTool }).(pulumi.StringOutput)
 }
@@ -8045,6 +7191,7 @@ func (o GetStacksStackOutput) TerraformWorkspace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.TerraformWorkspace }).(pulumi.StringOutput)
 }
 
+// ID of the worker pool to use
 func (o GetStacksStackOutput) WorkerPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStack) string { return v.WorkerPoolId }).(pulumi.StringOutput)
 }
@@ -8063,12 +7210,6 @@ func (o GetStacksStackArrayOutput) ToGetStacksStackArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o GetStacksStackArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStack] {
-	return pulumix.Output[[]GetStacksStack]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackArrayOutput) Index(i pulumi.IntInput) GetStacksStackOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStack {
 		return vs[0].([]GetStacksStack)[vs[1].(int)]
@@ -8076,6 +7217,7 @@ func (o GetStacksStackArrayOutput) Index(i pulumi.IntInput) GetStacksStackOutput
 }
 
 type GetStacksStackAnsible struct {
+	// The playbook the Ansible stack should run.
 	Playbook string `pulumi:"playbook"`
 }
 
@@ -8091,6 +7233,7 @@ type GetStacksStackAnsibleInput interface {
 }
 
 type GetStacksStackAnsibleArgs struct {
+	// The playbook the Ansible stack should run.
 	Playbook pulumi.StringInput `pulumi:"playbook"`
 }
 
@@ -8104,12 +7247,6 @@ func (i GetStacksStackAnsibleArgs) ToGetStacksStackAnsibleOutput() GetStacksStac
 
 func (i GetStacksStackAnsibleArgs) ToGetStacksStackAnsibleOutputWithContext(ctx context.Context) GetStacksStackAnsibleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackAnsibleOutput)
-}
-
-func (i GetStacksStackAnsibleArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackAnsible] {
-	return pulumix.Output[GetStacksStackAnsible]{
-		OutputState: i.ToGetStacksStackAnsibleOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackAnsibleArrayInput is an input type that accepts GetStacksStackAnsibleArray and GetStacksStackAnsibleArrayOutput values.
@@ -8137,12 +7274,6 @@ func (i GetStacksStackAnsibleArray) ToGetStacksStackAnsibleArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackAnsibleArrayOutput)
 }
 
-func (i GetStacksStackAnsibleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackAnsible] {
-	return pulumix.Output[[]GetStacksStackAnsible]{
-		OutputState: i.ToGetStacksStackAnsibleArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackAnsibleOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackAnsibleOutput) ElementType() reflect.Type {
@@ -8157,12 +7288,7 @@ func (o GetStacksStackAnsibleOutput) ToGetStacksStackAnsibleOutputWithContext(ct
 	return o
 }
 
-func (o GetStacksStackAnsibleOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackAnsible] {
-	return pulumix.Output[GetStacksStackAnsible]{
-		OutputState: o.OutputState,
-	}
-}
-
+// The playbook the Ansible stack should run.
 func (o GetStacksStackAnsibleOutput) Playbook() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackAnsible) string { return v.Playbook }).(pulumi.StringOutput)
 }
@@ -8181,12 +7307,6 @@ func (o GetStacksStackAnsibleArrayOutput) ToGetStacksStackAnsibleArrayOutputWith
 	return o
 }
 
-func (o GetStacksStackAnsibleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackAnsible] {
-	return pulumix.Output[[]GetStacksStackAnsible]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackAnsibleArrayOutput) Index(i pulumi.IntInput) GetStacksStackAnsibleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackAnsible {
 		return vs[0].([]GetStacksStackAnsible)[vs[1].(int)]
@@ -8194,9 +7314,12 @@ func (o GetStacksStackAnsibleArrayOutput) Index(i pulumi.IntInput) GetStacksStac
 }
 
 type GetStacksStackAzureDevop struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
-	Project   string `pulumi:"project"`
+	// ID of the Azure Devops VCS integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Azure Devops VCS integration
+	IsDefault bool `pulumi:"isDefault"`
+	// The name of the Azure DevOps project
+	Project string `pulumi:"project"`
 }
 
 // GetStacksStackAzureDevopInput is an input type that accepts GetStacksStackAzureDevopArgs and GetStacksStackAzureDevopOutput values.
@@ -8211,9 +7334,12 @@ type GetStacksStackAzureDevopInput interface {
 }
 
 type GetStacksStackAzureDevopArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
-	Project   pulumi.StringInput `pulumi:"project"`
+	// ID of the Azure Devops VCS integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Azure Devops VCS integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// The name of the Azure DevOps project
+	Project pulumi.StringInput `pulumi:"project"`
 }
 
 func (GetStacksStackAzureDevopArgs) ElementType() reflect.Type {
@@ -8226,12 +7352,6 @@ func (i GetStacksStackAzureDevopArgs) ToGetStacksStackAzureDevopOutput() GetStac
 
 func (i GetStacksStackAzureDevopArgs) ToGetStacksStackAzureDevopOutputWithContext(ctx context.Context) GetStacksStackAzureDevopOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackAzureDevopOutput)
-}
-
-func (i GetStacksStackAzureDevopArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackAzureDevop] {
-	return pulumix.Output[GetStacksStackAzureDevop]{
-		OutputState: i.ToGetStacksStackAzureDevopOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackAzureDevopArrayInput is an input type that accepts GetStacksStackAzureDevopArray and GetStacksStackAzureDevopArrayOutput values.
@@ -8259,12 +7379,6 @@ func (i GetStacksStackAzureDevopArray) ToGetStacksStackAzureDevopArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackAzureDevopArrayOutput)
 }
 
-func (i GetStacksStackAzureDevopArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackAzureDevop] {
-	return pulumix.Output[[]GetStacksStackAzureDevop]{
-		OutputState: i.ToGetStacksStackAzureDevopArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackAzureDevopOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackAzureDevopOutput) ElementType() reflect.Type {
@@ -8279,20 +7393,17 @@ func (o GetStacksStackAzureDevopOutput) ToGetStacksStackAzureDevopOutputWithCont
 	return o
 }
 
-func (o GetStacksStackAzureDevopOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackAzureDevop] {
-	return pulumix.Output[GetStacksStackAzureDevop]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Azure Devops VCS integration
 func (o GetStacksStackAzureDevopOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackAzureDevop) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Azure Devops VCS integration
 func (o GetStacksStackAzureDevopOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStackAzureDevop) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// The name of the Azure DevOps project
 func (o GetStacksStackAzureDevopOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackAzureDevop) string { return v.Project }).(pulumi.StringOutput)
 }
@@ -8311,12 +7422,6 @@ func (o GetStacksStackAzureDevopArrayOutput) ToGetStacksStackAzureDevopArrayOutp
 	return o
 }
 
-func (o GetStacksStackAzureDevopArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackAzureDevop] {
-	return pulumix.Output[[]GetStacksStackAzureDevop]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackAzureDevopArrayOutput) Index(i pulumi.IntInput) GetStacksStackAzureDevopOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackAzureDevop {
 		return vs[0].([]GetStacksStackAzureDevop)[vs[1].(int)]
@@ -8324,8 +7429,11 @@ func (o GetStacksStackAzureDevopArrayOutput) Index(i pulumi.IntInput) GetStacksS
 }
 
 type GetStacksStackBitbucketCloud struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the Bitbucket Cloud integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Cloud integration
+	IsDefault bool `pulumi:"isDefault"`
+	// Bitbucket Cloud namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -8341,8 +7449,11 @@ type GetStacksStackBitbucketCloudInput interface {
 }
 
 type GetStacksStackBitbucketCloudArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the Bitbucket Cloud integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Cloud integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Bitbucket Cloud namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -8356,12 +7467,6 @@ func (i GetStacksStackBitbucketCloudArgs) ToGetStacksStackBitbucketCloudOutput()
 
 func (i GetStacksStackBitbucketCloudArgs) ToGetStacksStackBitbucketCloudOutputWithContext(ctx context.Context) GetStacksStackBitbucketCloudOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackBitbucketCloudOutput)
-}
-
-func (i GetStacksStackBitbucketCloudArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackBitbucketCloud] {
-	return pulumix.Output[GetStacksStackBitbucketCloud]{
-		OutputState: i.ToGetStacksStackBitbucketCloudOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackBitbucketCloudArrayInput is an input type that accepts GetStacksStackBitbucketCloudArray and GetStacksStackBitbucketCloudArrayOutput values.
@@ -8389,12 +7494,6 @@ func (i GetStacksStackBitbucketCloudArray) ToGetStacksStackBitbucketCloudArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackBitbucketCloudArrayOutput)
 }
 
-func (i GetStacksStackBitbucketCloudArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackBitbucketCloud] {
-	return pulumix.Output[[]GetStacksStackBitbucketCloud]{
-		OutputState: i.ToGetStacksStackBitbucketCloudArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackBitbucketCloudOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackBitbucketCloudOutput) ElementType() reflect.Type {
@@ -8409,20 +7508,17 @@ func (o GetStacksStackBitbucketCloudOutput) ToGetStacksStackBitbucketCloudOutput
 	return o
 }
 
-func (o GetStacksStackBitbucketCloudOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackBitbucketCloud] {
-	return pulumix.Output[GetStacksStackBitbucketCloud]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Bitbucket Cloud integration
 func (o GetStacksStackBitbucketCloudOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackBitbucketCloud) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Bitbucket Cloud integration
 func (o GetStacksStackBitbucketCloudOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStackBitbucketCloud) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// Bitbucket Cloud namespace of the stack's repository
 func (o GetStacksStackBitbucketCloudOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackBitbucketCloud) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -8441,12 +7537,6 @@ func (o GetStacksStackBitbucketCloudArrayOutput) ToGetStacksStackBitbucketCloudA
 	return o
 }
 
-func (o GetStacksStackBitbucketCloudArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackBitbucketCloud] {
-	return pulumix.Output[[]GetStacksStackBitbucketCloud]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetStacksStackBitbucketCloudOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackBitbucketCloud {
 		return vs[0].([]GetStacksStackBitbucketCloud)[vs[1].(int)]
@@ -8454,8 +7544,11 @@ func (o GetStacksStackBitbucketCloudArrayOutput) Index(i pulumi.IntInput) GetSta
 }
 
 type GetStacksStackBitbucketDatacenter struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the Bitbucket Datacenter integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Datacenter integration
+	IsDefault bool `pulumi:"isDefault"`
+	// Bitbucket Datacenter namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -8471,8 +7564,11 @@ type GetStacksStackBitbucketDatacenterInput interface {
 }
 
 type GetStacksStackBitbucketDatacenterArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the Bitbucket Datacenter integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Bitbucket Datacenter integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Bitbucket Datacenter namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -8486,12 +7582,6 @@ func (i GetStacksStackBitbucketDatacenterArgs) ToGetStacksStackBitbucketDatacent
 
 func (i GetStacksStackBitbucketDatacenterArgs) ToGetStacksStackBitbucketDatacenterOutputWithContext(ctx context.Context) GetStacksStackBitbucketDatacenterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackBitbucketDatacenterOutput)
-}
-
-func (i GetStacksStackBitbucketDatacenterArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackBitbucketDatacenter] {
-	return pulumix.Output[GetStacksStackBitbucketDatacenter]{
-		OutputState: i.ToGetStacksStackBitbucketDatacenterOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackBitbucketDatacenterArrayInput is an input type that accepts GetStacksStackBitbucketDatacenterArray and GetStacksStackBitbucketDatacenterArrayOutput values.
@@ -8519,12 +7609,6 @@ func (i GetStacksStackBitbucketDatacenterArray) ToGetStacksStackBitbucketDatacen
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackBitbucketDatacenterArrayOutput)
 }
 
-func (i GetStacksStackBitbucketDatacenterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackBitbucketDatacenter] {
-	return pulumix.Output[[]GetStacksStackBitbucketDatacenter]{
-		OutputState: i.ToGetStacksStackBitbucketDatacenterArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackBitbucketDatacenterOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackBitbucketDatacenterOutput) ElementType() reflect.Type {
@@ -8539,20 +7623,17 @@ func (o GetStacksStackBitbucketDatacenterOutput) ToGetStacksStackBitbucketDatace
 	return o
 }
 
-func (o GetStacksStackBitbucketDatacenterOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackBitbucketDatacenter] {
-	return pulumix.Output[GetStacksStackBitbucketDatacenter]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Bitbucket Datacenter integration
 func (o GetStacksStackBitbucketDatacenterOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackBitbucketDatacenter) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Bitbucket Datacenter integration
 func (o GetStacksStackBitbucketDatacenterOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStackBitbucketDatacenter) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// Bitbucket Datacenter namespace of the stack's repository
 func (o GetStacksStackBitbucketDatacenterOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackBitbucketDatacenter) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -8571,12 +7652,6 @@ func (o GetStacksStackBitbucketDatacenterArrayOutput) ToGetStacksStackBitbucketD
 	return o
 }
 
-func (o GetStacksStackBitbucketDatacenterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackBitbucketDatacenter] {
-	return pulumix.Output[[]GetStacksStackBitbucketDatacenter]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) GetStacksStackBitbucketDatacenterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackBitbucketDatacenter {
 		return vs[0].([]GetStacksStackBitbucketDatacenter)[vs[1].(int)]
@@ -8584,10 +7659,14 @@ func (o GetStacksStackBitbucketDatacenterArrayOutput) Index(i pulumi.IntInput) G
 }
 
 type GetStacksStackCloudformation struct {
+	// Template file `cloudformation package` will be called on
 	EntryTemplateFile string `pulumi:"entryTemplateFile"`
-	Region            string `pulumi:"region"`
-	StackName         string `pulumi:"stackName"`
-	TemplateBucket    string `pulumi:"templateBucket"`
+	// AWS region to use
+	Region string `pulumi:"region"`
+	// CloudFormation stack name
+	StackName string `pulumi:"stackName"`
+	// S3 bucket to save CloudFormation templates to
+	TemplateBucket string `pulumi:"templateBucket"`
 }
 
 // GetStacksStackCloudformationInput is an input type that accepts GetStacksStackCloudformationArgs and GetStacksStackCloudformationOutput values.
@@ -8602,10 +7681,14 @@ type GetStacksStackCloudformationInput interface {
 }
 
 type GetStacksStackCloudformationArgs struct {
+	// Template file `cloudformation package` will be called on
 	EntryTemplateFile pulumi.StringInput `pulumi:"entryTemplateFile"`
-	Region            pulumi.StringInput `pulumi:"region"`
-	StackName         pulumi.StringInput `pulumi:"stackName"`
-	TemplateBucket    pulumi.StringInput `pulumi:"templateBucket"`
+	// AWS region to use
+	Region pulumi.StringInput `pulumi:"region"`
+	// CloudFormation stack name
+	StackName pulumi.StringInput `pulumi:"stackName"`
+	// S3 bucket to save CloudFormation templates to
+	TemplateBucket pulumi.StringInput `pulumi:"templateBucket"`
 }
 
 func (GetStacksStackCloudformationArgs) ElementType() reflect.Type {
@@ -8618,12 +7701,6 @@ func (i GetStacksStackCloudformationArgs) ToGetStacksStackCloudformationOutput()
 
 func (i GetStacksStackCloudformationArgs) ToGetStacksStackCloudformationOutputWithContext(ctx context.Context) GetStacksStackCloudformationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackCloudformationOutput)
-}
-
-func (i GetStacksStackCloudformationArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackCloudformation] {
-	return pulumix.Output[GetStacksStackCloudformation]{
-		OutputState: i.ToGetStacksStackCloudformationOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackCloudformationArrayInput is an input type that accepts GetStacksStackCloudformationArray and GetStacksStackCloudformationArrayOutput values.
@@ -8651,12 +7728,6 @@ func (i GetStacksStackCloudformationArray) ToGetStacksStackCloudformationArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackCloudformationArrayOutput)
 }
 
-func (i GetStacksStackCloudformationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackCloudformation] {
-	return pulumix.Output[[]GetStacksStackCloudformation]{
-		OutputState: i.ToGetStacksStackCloudformationArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackCloudformationOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackCloudformationOutput) ElementType() reflect.Type {
@@ -8671,24 +7742,22 @@ func (o GetStacksStackCloudformationOutput) ToGetStacksStackCloudformationOutput
 	return o
 }
 
-func (o GetStacksStackCloudformationOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackCloudformation] {
-	return pulumix.Output[GetStacksStackCloudformation]{
-		OutputState: o.OutputState,
-	}
-}
-
+// Template file `cloudformation package` will be called on
 func (o GetStacksStackCloudformationOutput) EntryTemplateFile() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackCloudformation) string { return v.EntryTemplateFile }).(pulumi.StringOutput)
 }
 
+// AWS region to use
 func (o GetStacksStackCloudformationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackCloudformation) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// CloudFormation stack name
 func (o GetStacksStackCloudformationOutput) StackName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackCloudformation) string { return v.StackName }).(pulumi.StringOutput)
 }
 
+// S3 bucket to save CloudFormation templates to
 func (o GetStacksStackCloudformationOutput) TemplateBucket() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackCloudformation) string { return v.TemplateBucket }).(pulumi.StringOutput)
 }
@@ -8707,12 +7776,6 @@ func (o GetStacksStackCloudformationArrayOutput) ToGetStacksStackCloudformationA
 	return o
 }
 
-func (o GetStacksStackCloudformationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackCloudformation] {
-	return pulumix.Output[[]GetStacksStackCloudformation]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackCloudformationArrayOutput) Index(i pulumi.IntInput) GetStacksStackCloudformationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackCloudformation {
 		return vs[0].([]GetStacksStackCloudformation)[vs[1].(int)]
@@ -8720,8 +7783,11 @@ func (o GetStacksStackCloudformationArrayOutput) Index(i pulumi.IntInput) GetSta
 }
 
 type GetStacksStackGithubEnterprise struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the GitHub Enterprise integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default GitHub Enterprise integration
+	IsDefault bool `pulumi:"isDefault"`
+	// GitHub Enterprise namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -8737,8 +7803,11 @@ type GetStacksStackGithubEnterpriseInput interface {
 }
 
 type GetStacksStackGithubEnterpriseArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the GitHub Enterprise integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default GitHub Enterprise integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// GitHub Enterprise namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -8752,12 +7821,6 @@ func (i GetStacksStackGithubEnterpriseArgs) ToGetStacksStackGithubEnterpriseOutp
 
 func (i GetStacksStackGithubEnterpriseArgs) ToGetStacksStackGithubEnterpriseOutputWithContext(ctx context.Context) GetStacksStackGithubEnterpriseOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackGithubEnterpriseOutput)
-}
-
-func (i GetStacksStackGithubEnterpriseArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackGithubEnterprise] {
-	return pulumix.Output[GetStacksStackGithubEnterprise]{
-		OutputState: i.ToGetStacksStackGithubEnterpriseOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackGithubEnterpriseArrayInput is an input type that accepts GetStacksStackGithubEnterpriseArray and GetStacksStackGithubEnterpriseArrayOutput values.
@@ -8785,12 +7848,6 @@ func (i GetStacksStackGithubEnterpriseArray) ToGetStacksStackGithubEnterpriseArr
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackGithubEnterpriseArrayOutput)
 }
 
-func (i GetStacksStackGithubEnterpriseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackGithubEnterprise] {
-	return pulumix.Output[[]GetStacksStackGithubEnterprise]{
-		OutputState: i.ToGetStacksStackGithubEnterpriseArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackGithubEnterpriseOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackGithubEnterpriseOutput) ElementType() reflect.Type {
@@ -8805,20 +7862,17 @@ func (o GetStacksStackGithubEnterpriseOutput) ToGetStacksStackGithubEnterpriseOu
 	return o
 }
 
-func (o GetStacksStackGithubEnterpriseOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackGithubEnterprise] {
-	return pulumix.Output[GetStacksStackGithubEnterprise]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the GitHub Enterprise integration
 func (o GetStacksStackGithubEnterpriseOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackGithubEnterprise) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default GitHub Enterprise integration
 func (o GetStacksStackGithubEnterpriseOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStackGithubEnterprise) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// GitHub Enterprise namespace of the stack's repository
 func (o GetStacksStackGithubEnterpriseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackGithubEnterprise) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -8837,12 +7891,6 @@ func (o GetStacksStackGithubEnterpriseArrayOutput) ToGetStacksStackGithubEnterpr
 	return o
 }
 
-func (o GetStacksStackGithubEnterpriseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackGithubEnterprise] {
-	return pulumix.Output[[]GetStacksStackGithubEnterprise]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetStacksStackGithubEnterpriseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackGithubEnterprise {
 		return vs[0].([]GetStacksStackGithubEnterprise)[vs[1].(int)]
@@ -8850,8 +7898,11 @@ func (o GetStacksStackGithubEnterpriseArrayOutput) Index(i pulumi.IntInput) GetS
 }
 
 type GetStacksStackGitlab struct {
-	Id        string `pulumi:"id"`
-	IsDefault bool   `pulumi:"isDefault"`
+	// ID of the Gitlab integration
+	Id string `pulumi:"id"`
+	// Indicates whether this is the default Gitlab integration
+	IsDefault bool `pulumi:"isDefault"`
+	// GitLab namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -8867,8 +7918,11 @@ type GetStacksStackGitlabInput interface {
 }
 
 type GetStacksStackGitlabArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
+	// ID of the Gitlab integration
+	Id pulumi.StringInput `pulumi:"id"`
+	// Indicates whether this is the default Gitlab integration
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// GitLab namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -8882,12 +7936,6 @@ func (i GetStacksStackGitlabArgs) ToGetStacksStackGitlabOutput() GetStacksStackG
 
 func (i GetStacksStackGitlabArgs) ToGetStacksStackGitlabOutputWithContext(ctx context.Context) GetStacksStackGitlabOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackGitlabOutput)
-}
-
-func (i GetStacksStackGitlabArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackGitlab] {
-	return pulumix.Output[GetStacksStackGitlab]{
-		OutputState: i.ToGetStacksStackGitlabOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackGitlabArrayInput is an input type that accepts GetStacksStackGitlabArray and GetStacksStackGitlabArrayOutput values.
@@ -8915,12 +7963,6 @@ func (i GetStacksStackGitlabArray) ToGetStacksStackGitlabArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackGitlabArrayOutput)
 }
 
-func (i GetStacksStackGitlabArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackGitlab] {
-	return pulumix.Output[[]GetStacksStackGitlab]{
-		OutputState: i.ToGetStacksStackGitlabArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackGitlabOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackGitlabOutput) ElementType() reflect.Type {
@@ -8935,20 +7977,17 @@ func (o GetStacksStackGitlabOutput) ToGetStacksStackGitlabOutputWithContext(ctx 
 	return o
 }
 
-func (o GetStacksStackGitlabOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackGitlab] {
-	return pulumix.Output[GetStacksStackGitlab]{
-		OutputState: o.OutputState,
-	}
-}
-
+// ID of the Gitlab integration
 func (o GetStacksStackGitlabOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackGitlab) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Indicates whether this is the default Gitlab integration
 func (o GetStacksStackGitlabOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStacksStackGitlab) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// GitLab namespace of the stack's repository
 func (o GetStacksStackGitlabOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackGitlab) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -8967,12 +8006,6 @@ func (o GetStacksStackGitlabArrayOutput) ToGetStacksStackGitlabArrayOutputWithCo
 	return o
 }
 
-func (o GetStacksStackGitlabArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackGitlab] {
-	return pulumix.Output[[]GetStacksStackGitlab]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackGitlabArrayOutput) Index(i pulumi.IntInput) GetStacksStackGitlabOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackGitlab {
 		return vs[0].([]GetStacksStackGitlab)[vs[1].(int)]
@@ -8980,8 +8013,10 @@ func (o GetStacksStackGitlabArrayOutput) Index(i pulumi.IntInput) GetStacksStack
 }
 
 type GetStacksStackKubernete struct {
+	// Kubectl version.
 	KubectlVersion string `pulumi:"kubectlVersion"`
-	Namespace      string `pulumi:"namespace"`
+	// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
+	Namespace string `pulumi:"namespace"`
 }
 
 // GetStacksStackKuberneteInput is an input type that accepts GetStacksStackKuberneteArgs and GetStacksStackKuberneteOutput values.
@@ -8996,8 +8031,10 @@ type GetStacksStackKuberneteInput interface {
 }
 
 type GetStacksStackKuberneteArgs struct {
+	// Kubectl version.
 	KubectlVersion pulumi.StringInput `pulumi:"kubectlVersion"`
-	Namespace      pulumi.StringInput `pulumi:"namespace"`
+	// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
+	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
 func (GetStacksStackKuberneteArgs) ElementType() reflect.Type {
@@ -9010,12 +8047,6 @@ func (i GetStacksStackKuberneteArgs) ToGetStacksStackKuberneteOutput() GetStacks
 
 func (i GetStacksStackKuberneteArgs) ToGetStacksStackKuberneteOutputWithContext(ctx context.Context) GetStacksStackKuberneteOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackKuberneteOutput)
-}
-
-func (i GetStacksStackKuberneteArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackKubernete] {
-	return pulumix.Output[GetStacksStackKubernete]{
-		OutputState: i.ToGetStacksStackKuberneteOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackKuberneteArrayInput is an input type that accepts GetStacksStackKuberneteArray and GetStacksStackKuberneteArrayOutput values.
@@ -9043,12 +8074,6 @@ func (i GetStacksStackKuberneteArray) ToGetStacksStackKuberneteArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackKuberneteArrayOutput)
 }
 
-func (i GetStacksStackKuberneteArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackKubernete] {
-	return pulumix.Output[[]GetStacksStackKubernete]{
-		OutputState: i.ToGetStacksStackKuberneteArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackKuberneteOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackKuberneteOutput) ElementType() reflect.Type {
@@ -9063,16 +8088,12 @@ func (o GetStacksStackKuberneteOutput) ToGetStacksStackKuberneteOutputWithContex
 	return o
 }
 
-func (o GetStacksStackKuberneteOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackKubernete] {
-	return pulumix.Output[GetStacksStackKubernete]{
-		OutputState: o.OutputState,
-	}
-}
-
+// Kubectl version.
 func (o GetStacksStackKuberneteOutput) KubectlVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackKubernete) string { return v.KubectlVersion }).(pulumi.StringOutput)
 }
 
+// Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
 func (o GetStacksStackKuberneteOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackKubernete) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -9091,12 +8112,6 @@ func (o GetStacksStackKuberneteArrayOutput) ToGetStacksStackKuberneteArrayOutput
 	return o
 }
 
-func (o GetStacksStackKuberneteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackKubernete] {
-	return pulumix.Output[[]GetStacksStackKubernete]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackKuberneteArrayOutput) Index(i pulumi.IntInput) GetStacksStackKuberneteOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackKubernete {
 		return vs[0].([]GetStacksStackKubernete)[vs[1].(int)]
@@ -9104,7 +8119,9 @@ func (o GetStacksStackKuberneteArrayOutput) Index(i pulumi.IntInput) GetStacksSt
 }
 
 type GetStacksStackPulumi struct {
-	LoginUrl  string `pulumi:"loginUrl"`
+	// State backend to log into on Run initialize.
+	LoginUrl string `pulumi:"loginUrl"`
+	// Pulumi stack name to use with the state backend.
 	StackName string `pulumi:"stackName"`
 }
 
@@ -9120,7 +8137,9 @@ type GetStacksStackPulumiInput interface {
 }
 
 type GetStacksStackPulumiArgs struct {
-	LoginUrl  pulumi.StringInput `pulumi:"loginUrl"`
+	// State backend to log into on Run initialize.
+	LoginUrl pulumi.StringInput `pulumi:"loginUrl"`
+	// Pulumi stack name to use with the state backend.
 	StackName pulumi.StringInput `pulumi:"stackName"`
 }
 
@@ -9134,12 +8153,6 @@ func (i GetStacksStackPulumiArgs) ToGetStacksStackPulumiOutput() GetStacksStackP
 
 func (i GetStacksStackPulumiArgs) ToGetStacksStackPulumiOutputWithContext(ctx context.Context) GetStacksStackPulumiOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackPulumiOutput)
-}
-
-func (i GetStacksStackPulumiArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackPulumi] {
-	return pulumix.Output[GetStacksStackPulumi]{
-		OutputState: i.ToGetStacksStackPulumiOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackPulumiArrayInput is an input type that accepts GetStacksStackPulumiArray and GetStacksStackPulumiArrayOutput values.
@@ -9167,12 +8180,6 @@ func (i GetStacksStackPulumiArray) ToGetStacksStackPulumiArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackPulumiArrayOutput)
 }
 
-func (i GetStacksStackPulumiArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackPulumi] {
-	return pulumix.Output[[]GetStacksStackPulumi]{
-		OutputState: i.ToGetStacksStackPulumiArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackPulumiOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackPulumiOutput) ElementType() reflect.Type {
@@ -9187,16 +8194,12 @@ func (o GetStacksStackPulumiOutput) ToGetStacksStackPulumiOutputWithContext(ctx 
 	return o
 }
 
-func (o GetStacksStackPulumiOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackPulumi] {
-	return pulumix.Output[GetStacksStackPulumi]{
-		OutputState: o.OutputState,
-	}
-}
-
+// State backend to log into on Run initialize.
 func (o GetStacksStackPulumiOutput) LoginUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackPulumi) string { return v.LoginUrl }).(pulumi.StringOutput)
 }
 
+// Pulumi stack name to use with the state backend.
 func (o GetStacksStackPulumiOutput) StackName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackPulumi) string { return v.StackName }).(pulumi.StringOutput)
 }
@@ -9215,12 +8218,6 @@ func (o GetStacksStackPulumiArrayOutput) ToGetStacksStackPulumiArrayOutputWithCo
 	return o
 }
 
-func (o GetStacksStackPulumiArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackPulumi] {
-	return pulumix.Output[[]GetStacksStackPulumi]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackPulumiArrayOutput) Index(i pulumi.IntInput) GetStacksStackPulumiOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackPulumi {
 		return vs[0].([]GetStacksStackPulumi)[vs[1].(int)]
@@ -9228,8 +8225,10 @@ func (o GetStacksStackPulumiArrayOutput) Index(i pulumi.IntInput) GetStacksStack
 }
 
 type GetStacksStackRawGit struct {
+	// User-friendly namespace for the repository, this is for cosmetic purposes only
 	Namespace string `pulumi:"namespace"`
-	Url       string `pulumi:"url"`
+	// HTTPS URL of the Git repository
+	Url string `pulumi:"url"`
 }
 
 // GetStacksStackRawGitInput is an input type that accepts GetStacksStackRawGitArgs and GetStacksStackRawGitOutput values.
@@ -9244,8 +8243,10 @@ type GetStacksStackRawGitInput interface {
 }
 
 type GetStacksStackRawGitArgs struct {
+	// User-friendly namespace for the repository, this is for cosmetic purposes only
 	Namespace pulumi.StringInput `pulumi:"namespace"`
-	Url       pulumi.StringInput `pulumi:"url"`
+	// HTTPS URL of the Git repository
+	Url pulumi.StringInput `pulumi:"url"`
 }
 
 func (GetStacksStackRawGitArgs) ElementType() reflect.Type {
@@ -9258,12 +8259,6 @@ func (i GetStacksStackRawGitArgs) ToGetStacksStackRawGitOutput() GetStacksStackR
 
 func (i GetStacksStackRawGitArgs) ToGetStacksStackRawGitOutputWithContext(ctx context.Context) GetStacksStackRawGitOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackRawGitOutput)
-}
-
-func (i GetStacksStackRawGitArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackRawGit] {
-	return pulumix.Output[GetStacksStackRawGit]{
-		OutputState: i.ToGetStacksStackRawGitOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackRawGitArrayInput is an input type that accepts GetStacksStackRawGitArray and GetStacksStackRawGitArrayOutput values.
@@ -9291,12 +8286,6 @@ func (i GetStacksStackRawGitArray) ToGetStacksStackRawGitArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackRawGitArrayOutput)
 }
 
-func (i GetStacksStackRawGitArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackRawGit] {
-	return pulumix.Output[[]GetStacksStackRawGit]{
-		OutputState: i.ToGetStacksStackRawGitArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackRawGitOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackRawGitOutput) ElementType() reflect.Type {
@@ -9311,16 +8300,12 @@ func (o GetStacksStackRawGitOutput) ToGetStacksStackRawGitOutputWithContext(ctx 
 	return o
 }
 
-func (o GetStacksStackRawGitOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackRawGit] {
-	return pulumix.Output[GetStacksStackRawGit]{
-		OutputState: o.OutputState,
-	}
-}
-
+// User-friendly namespace for the repository, this is for cosmetic purposes only
 func (o GetStacksStackRawGitOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackRawGit) string { return v.Namespace }).(pulumi.StringOutput)
 }
 
+// HTTPS URL of the Git repository
 func (o GetStacksStackRawGitOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackRawGit) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -9339,12 +8324,6 @@ func (o GetStacksStackRawGitArrayOutput) ToGetStacksStackRawGitArrayOutputWithCo
 	return o
 }
 
-func (o GetStacksStackRawGitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackRawGit] {
-	return pulumix.Output[[]GetStacksStackRawGit]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStackRawGitArrayOutput) Index(i pulumi.IntInput) GetStacksStackRawGitOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStacksStackRawGit {
 		return vs[0].([]GetStacksStackRawGit)[vs[1].(int)]
@@ -9352,6 +8331,7 @@ func (o GetStacksStackRawGitArrayOutput) Index(i pulumi.IntInput) GetStacksStack
 }
 
 type GetStacksStackShowcase struct {
+	// GitHub namespace of the stack's repository
 	Namespace string `pulumi:"namespace"`
 }
 
@@ -9367,6 +8347,7 @@ type GetStacksStackShowcaseInput interface {
 }
 
 type GetStacksStackShowcaseArgs struct {
+	// GitHub namespace of the stack's repository
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
@@ -9380,12 +8361,6 @@ func (i GetStacksStackShowcaseArgs) ToGetStacksStackShowcaseOutput() GetStacksSt
 
 func (i GetStacksStackShowcaseArgs) ToGetStacksStackShowcaseOutputWithContext(ctx context.Context) GetStacksStackShowcaseOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackShowcaseOutput)
-}
-
-func (i GetStacksStackShowcaseArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackShowcase] {
-	return pulumix.Output[GetStacksStackShowcase]{
-		OutputState: i.ToGetStacksStackShowcaseOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetStacksStackShowcaseArrayInput is an input type that accepts GetStacksStackShowcaseArray and GetStacksStackShowcaseArrayOutput values.
@@ -9413,12 +8388,6 @@ func (i GetStacksStackShowcaseArray) ToGetStacksStackShowcaseArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStackShowcaseArrayOutput)
 }
 
-func (i GetStacksStackShowcaseArray) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackShowcase] {
-	return pulumix.Output[[]GetStacksStackShowcase]{
-		OutputState: i.ToGetStacksStackShowcaseArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStackShowcaseOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStackShowcaseOutput) ElementType() reflect.Type {
@@ -9433,12 +8402,7 @@ func (o GetStacksStackShowcaseOutput) ToGetStacksStackShowcaseOutputWithContext(
 	return o
 }
 
-func (o GetStacksStackShowcaseOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksStackShowcase] {
-	return pulumix.Output[GetStacksStackShowcase]{
-		OutputState: o.OutputState,
-	}
-}
-
+// GitHub namespace of the stack's repository
 func (o GetStacksStackShowcaseOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStacksStackShowcase) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -9455,12 +8419,6 @@ func (o GetStacksStackShowcaseArrayOutput) ToGetStacksStackShowcaseArrayOutput()
 
 func (o GetStacksStackShowcaseArrayOutput) ToGetStacksStackShowcaseArrayOutputWithContext(ctx context.Context) GetStacksStackShowcaseArrayOutput {
 	return o
-}
-
-func (o GetStacksStackShowcaseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetStacksStackShowcase] {
-	return pulumix.Output[[]GetStacksStackShowcase]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksStackShowcaseArrayOutput) Index(i pulumi.IntInput) GetStacksStackShowcaseOutput {
@@ -9498,12 +8456,6 @@ func (i GetStacksStateArgs) ToGetStacksStateOutput() GetStacksStateOutput {
 
 func (i GetStacksStateArgs) ToGetStacksStateOutputWithContext(ctx context.Context) GetStacksStateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStateOutput)
-}
-
-func (i GetStacksStateArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksState] {
-	return pulumix.Output[GetStacksState]{
-		OutputState: i.ToGetStacksStateOutputWithContext(ctx).OutputState,
-	}
 }
 
 func (i GetStacksStateArgs) ToGetStacksStatePtrOutput() GetStacksStatePtrOutput {
@@ -9547,12 +8499,6 @@ func (i *getStacksStatePtrType) ToGetStacksStatePtrOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksStatePtrOutput)
 }
 
-func (i *getStacksStatePtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksState] {
-	return pulumix.Output[*GetStacksState]{
-		OutputState: i.ToGetStacksStatePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksStateOutput struct{ *pulumi.OutputState }
 
 func (GetStacksStateOutput) ElementType() reflect.Type {
@@ -9577,12 +8523,6 @@ func (o GetStacksStateOutput) ToGetStacksStatePtrOutputWithContext(ctx context.C
 	}).(GetStacksStatePtrOutput)
 }
 
-func (o GetStacksStateOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksState] {
-	return pulumix.Output[GetStacksState]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksStateOutput) AnyOfs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksState) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
 }
@@ -9599,12 +8539,6 @@ func (o GetStacksStatePtrOutput) ToGetStacksStatePtrOutput() GetStacksStatePtrOu
 
 func (o GetStacksStatePtrOutput) ToGetStacksStatePtrOutputWithContext(ctx context.Context) GetStacksStatePtrOutput {
 	return o
-}
-
-func (o GetStacksStatePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksState] {
-	return pulumix.Output[*GetStacksState]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksStatePtrOutput) Elem() GetStacksStateOutput {
@@ -9657,12 +8591,6 @@ func (i GetStacksVendorArgs) ToGetStacksVendorOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksVendorOutput)
 }
 
-func (i GetStacksVendorArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksVendor] {
-	return pulumix.Output[GetStacksVendor]{
-		OutputState: i.ToGetStacksVendorOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i GetStacksVendorArgs) ToGetStacksVendorPtrOutput() GetStacksVendorPtrOutput {
 	return i.ToGetStacksVendorPtrOutputWithContext(context.Background())
 }
@@ -9704,12 +8632,6 @@ func (i *getStacksVendorPtrType) ToGetStacksVendorPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksVendorPtrOutput)
 }
 
-func (i *getStacksVendorPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksVendor] {
-	return pulumix.Output[*GetStacksVendor]{
-		OutputState: i.ToGetStacksVendorPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksVendorOutput struct{ *pulumi.OutputState }
 
 func (GetStacksVendorOutput) ElementType() reflect.Type {
@@ -9734,12 +8656,6 @@ func (o GetStacksVendorOutput) ToGetStacksVendorPtrOutputWithContext(ctx context
 	}).(GetStacksVendorPtrOutput)
 }
 
-func (o GetStacksVendorOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksVendor] {
-	return pulumix.Output[GetStacksVendor]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksVendorOutput) AnyOfs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksVendor) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
 }
@@ -9756,12 +8672,6 @@ func (o GetStacksVendorPtrOutput) ToGetStacksVendorPtrOutput() GetStacksVendorPt
 
 func (o GetStacksVendorPtrOutput) ToGetStacksVendorPtrOutputWithContext(ctx context.Context) GetStacksVendorPtrOutput {
 	return o
-}
-
-func (o GetStacksVendorPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksVendor] {
-	return pulumix.Output[*GetStacksVendor]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksVendorPtrOutput) Elem() GetStacksVendorOutput {
@@ -9814,12 +8724,6 @@ func (i GetStacksWorkerPoolArgs) ToGetStacksWorkerPoolOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksWorkerPoolOutput)
 }
 
-func (i GetStacksWorkerPoolArgs) ToOutput(ctx context.Context) pulumix.Output[GetStacksWorkerPool] {
-	return pulumix.Output[GetStacksWorkerPool]{
-		OutputState: i.ToGetStacksWorkerPoolOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i GetStacksWorkerPoolArgs) ToGetStacksWorkerPoolPtrOutput() GetStacksWorkerPoolPtrOutput {
 	return i.ToGetStacksWorkerPoolPtrOutputWithContext(context.Background())
 }
@@ -9861,12 +8765,6 @@ func (i *getStacksWorkerPoolPtrType) ToGetStacksWorkerPoolPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(GetStacksWorkerPoolPtrOutput)
 }
 
-func (i *getStacksWorkerPoolPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetStacksWorkerPool] {
-	return pulumix.Output[*GetStacksWorkerPool]{
-		OutputState: i.ToGetStacksWorkerPoolPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetStacksWorkerPoolOutput struct{ *pulumi.OutputState }
 
 func (GetStacksWorkerPoolOutput) ElementType() reflect.Type {
@@ -9891,12 +8789,6 @@ func (o GetStacksWorkerPoolOutput) ToGetStacksWorkerPoolPtrOutputWithContext(ctx
 	}).(GetStacksWorkerPoolPtrOutput)
 }
 
-func (o GetStacksWorkerPoolOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksWorkerPool] {
-	return pulumix.Output[GetStacksWorkerPool]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetStacksWorkerPoolOutput) AnyOfs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetStacksWorkerPool) []string { return v.AnyOfs }).(pulumi.StringArrayOutput)
 }
@@ -9913,12 +8805,6 @@ func (o GetStacksWorkerPoolPtrOutput) ToGetStacksWorkerPoolPtrOutput() GetStacks
 
 func (o GetStacksWorkerPoolPtrOutput) ToGetStacksWorkerPoolPtrOutputWithContext(ctx context.Context) GetStacksWorkerPoolPtrOutput {
 	return o
-}
-
-func (o GetStacksWorkerPoolPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetStacksWorkerPool] {
-	return pulumix.Output[*GetStacksWorkerPool]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStacksWorkerPoolPtrOutput) Elem() GetStacksWorkerPoolOutput {
@@ -9941,8 +8827,11 @@ func (o GetStacksWorkerPoolPtrOutput) AnyOfs() pulumi.StringArrayOutput {
 }
 
 type GetVcsAgentPoolsVcsAgentPool struct {
-	Description    string `pulumi:"description"`
-	Name           string `pulumi:"name"`
+	// Free-form VCS agent pool description for users
+	Description string `pulumi:"description"`
+	// Name of the VCS agent pool
+	Name string `pulumi:"name"`
+	// ID of the VCS agent pool to retrieve
 	VcsAgentPoolId string `pulumi:"vcsAgentPoolId"`
 }
 
@@ -9958,8 +8847,11 @@ type GetVcsAgentPoolsVcsAgentPoolInput interface {
 }
 
 type GetVcsAgentPoolsVcsAgentPoolArgs struct {
-	Description    pulumi.StringInput `pulumi:"description"`
-	Name           pulumi.StringInput `pulumi:"name"`
+	// Free-form VCS agent pool description for users
+	Description pulumi.StringInput `pulumi:"description"`
+	// Name of the VCS agent pool
+	Name pulumi.StringInput `pulumi:"name"`
+	// ID of the VCS agent pool to retrieve
 	VcsAgentPoolId pulumi.StringInput `pulumi:"vcsAgentPoolId"`
 }
 
@@ -9973,12 +8865,6 @@ func (i GetVcsAgentPoolsVcsAgentPoolArgs) ToGetVcsAgentPoolsVcsAgentPoolOutput()
 
 func (i GetVcsAgentPoolsVcsAgentPoolArgs) ToGetVcsAgentPoolsVcsAgentPoolOutputWithContext(ctx context.Context) GetVcsAgentPoolsVcsAgentPoolOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetVcsAgentPoolsVcsAgentPoolOutput)
-}
-
-func (i GetVcsAgentPoolsVcsAgentPoolArgs) ToOutput(ctx context.Context) pulumix.Output[GetVcsAgentPoolsVcsAgentPool] {
-	return pulumix.Output[GetVcsAgentPoolsVcsAgentPool]{
-		OutputState: i.ToGetVcsAgentPoolsVcsAgentPoolOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetVcsAgentPoolsVcsAgentPoolArrayInput is an input type that accepts GetVcsAgentPoolsVcsAgentPoolArray and GetVcsAgentPoolsVcsAgentPoolArrayOutput values.
@@ -10006,12 +8892,6 @@ func (i GetVcsAgentPoolsVcsAgentPoolArray) ToGetVcsAgentPoolsVcsAgentPoolArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(GetVcsAgentPoolsVcsAgentPoolArrayOutput)
 }
 
-func (i GetVcsAgentPoolsVcsAgentPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]GetVcsAgentPoolsVcsAgentPool] {
-	return pulumix.Output[[]GetVcsAgentPoolsVcsAgentPool]{
-		OutputState: i.ToGetVcsAgentPoolsVcsAgentPoolArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetVcsAgentPoolsVcsAgentPoolOutput struct{ *pulumi.OutputState }
 
 func (GetVcsAgentPoolsVcsAgentPoolOutput) ElementType() reflect.Type {
@@ -10026,20 +8906,17 @@ func (o GetVcsAgentPoolsVcsAgentPoolOutput) ToGetVcsAgentPoolsVcsAgentPoolOutput
 	return o
 }
 
-func (o GetVcsAgentPoolsVcsAgentPoolOutput) ToOutput(ctx context.Context) pulumix.Output[GetVcsAgentPoolsVcsAgentPool] {
-	return pulumix.Output[GetVcsAgentPoolsVcsAgentPool]{
-		OutputState: o.OutputState,
-	}
-}
-
+// Free-form VCS agent pool description for users
 func (o GetVcsAgentPoolsVcsAgentPoolOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVcsAgentPoolsVcsAgentPool) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Name of the VCS agent pool
 func (o GetVcsAgentPoolsVcsAgentPoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVcsAgentPoolsVcsAgentPool) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the VCS agent pool to retrieve
 func (o GetVcsAgentPoolsVcsAgentPoolOutput) VcsAgentPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVcsAgentPoolsVcsAgentPool) string { return v.VcsAgentPoolId }).(pulumi.StringOutput)
 }
@@ -10058,12 +8935,6 @@ func (o GetVcsAgentPoolsVcsAgentPoolArrayOutput) ToGetVcsAgentPoolsVcsAgentPoolA
 	return o
 }
 
-func (o GetVcsAgentPoolsVcsAgentPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetVcsAgentPoolsVcsAgentPool] {
-	return pulumix.Output[[]GetVcsAgentPoolsVcsAgentPool]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetVcsAgentPoolsVcsAgentPoolArrayOutput) Index(i pulumi.IntInput) GetVcsAgentPoolsVcsAgentPoolOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVcsAgentPoolsVcsAgentPool {
 		return vs[0].([]GetVcsAgentPoolsVcsAgentPool)[vs[1].(int)]
@@ -10071,10 +8942,15 @@ func (o GetVcsAgentPoolsVcsAgentPoolArrayOutput) Index(i pulumi.IntInput) GetVcs
 }
 
 type GetWorkerPoolsWorkerPool struct {
-	Config       string `pulumi:"config"`
-	Description  string `pulumi:"description"`
-	Name         string `pulumi:"name"`
-	SpaceId      string `pulumi:"spaceId"`
+	// credentials necessary to connect WorkerPool's workers to the control plane
+	Config string `pulumi:"config"`
+	// description of the worker pool
+	Description string `pulumi:"description"`
+	// name of the worker pool
+	Name string `pulumi:"name"`
+	// ID (slug) of the space the worker pool is in
+	SpaceId string `pulumi:"spaceId"`
+	// ID of the worker pool
 	WorkerPoolId string `pulumi:"workerPoolId"`
 }
 
@@ -10090,10 +8966,15 @@ type GetWorkerPoolsWorkerPoolInput interface {
 }
 
 type GetWorkerPoolsWorkerPoolArgs struct {
-	Config       pulumi.StringInput `pulumi:"config"`
-	Description  pulumi.StringInput `pulumi:"description"`
-	Name         pulumi.StringInput `pulumi:"name"`
-	SpaceId      pulumi.StringInput `pulumi:"spaceId"`
+	// credentials necessary to connect WorkerPool's workers to the control plane
+	Config pulumi.StringInput `pulumi:"config"`
+	// description of the worker pool
+	Description pulumi.StringInput `pulumi:"description"`
+	// name of the worker pool
+	Name pulumi.StringInput `pulumi:"name"`
+	// ID (slug) of the space the worker pool is in
+	SpaceId pulumi.StringInput `pulumi:"spaceId"`
+	// ID of the worker pool
 	WorkerPoolId pulumi.StringInput `pulumi:"workerPoolId"`
 }
 
@@ -10107,12 +8988,6 @@ func (i GetWorkerPoolsWorkerPoolArgs) ToGetWorkerPoolsWorkerPoolOutput() GetWork
 
 func (i GetWorkerPoolsWorkerPoolArgs) ToGetWorkerPoolsWorkerPoolOutputWithContext(ctx context.Context) GetWorkerPoolsWorkerPoolOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetWorkerPoolsWorkerPoolOutput)
-}
-
-func (i GetWorkerPoolsWorkerPoolArgs) ToOutput(ctx context.Context) pulumix.Output[GetWorkerPoolsWorkerPool] {
-	return pulumix.Output[GetWorkerPoolsWorkerPool]{
-		OutputState: i.ToGetWorkerPoolsWorkerPoolOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GetWorkerPoolsWorkerPoolArrayInput is an input type that accepts GetWorkerPoolsWorkerPoolArray and GetWorkerPoolsWorkerPoolArrayOutput values.
@@ -10140,12 +9015,6 @@ func (i GetWorkerPoolsWorkerPoolArray) ToGetWorkerPoolsWorkerPoolArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetWorkerPoolsWorkerPoolArrayOutput)
 }
 
-func (i GetWorkerPoolsWorkerPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]GetWorkerPoolsWorkerPool] {
-	return pulumix.Output[[]GetWorkerPoolsWorkerPool]{
-		OutputState: i.ToGetWorkerPoolsWorkerPoolArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetWorkerPoolsWorkerPoolOutput struct{ *pulumi.OutputState }
 
 func (GetWorkerPoolsWorkerPoolOutput) ElementType() reflect.Type {
@@ -10160,28 +9029,27 @@ func (o GetWorkerPoolsWorkerPoolOutput) ToGetWorkerPoolsWorkerPoolOutputWithCont
 	return o
 }
 
-func (o GetWorkerPoolsWorkerPoolOutput) ToOutput(ctx context.Context) pulumix.Output[GetWorkerPoolsWorkerPool] {
-	return pulumix.Output[GetWorkerPoolsWorkerPool]{
-		OutputState: o.OutputState,
-	}
-}
-
+// credentials necessary to connect WorkerPool's workers to the control plane
 func (o GetWorkerPoolsWorkerPoolOutput) Config() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWorkerPoolsWorkerPool) string { return v.Config }).(pulumi.StringOutput)
 }
 
+// description of the worker pool
 func (o GetWorkerPoolsWorkerPoolOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWorkerPoolsWorkerPool) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// name of the worker pool
 func (o GetWorkerPoolsWorkerPoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWorkerPoolsWorkerPool) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID (slug) of the space the worker pool is in
 func (o GetWorkerPoolsWorkerPoolOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWorkerPoolsWorkerPool) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
+// ID of the worker pool
 func (o GetWorkerPoolsWorkerPoolOutput) WorkerPoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWorkerPoolsWorkerPool) string { return v.WorkerPoolId }).(pulumi.StringOutput)
 }
@@ -10198,12 +9066,6 @@ func (o GetWorkerPoolsWorkerPoolArrayOutput) ToGetWorkerPoolsWorkerPoolArrayOutp
 
 func (o GetWorkerPoolsWorkerPoolArrayOutput) ToGetWorkerPoolsWorkerPoolArrayOutputWithContext(ctx context.Context) GetWorkerPoolsWorkerPoolArrayOutput {
 	return o
-}
-
-func (o GetWorkerPoolsWorkerPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetWorkerPoolsWorkerPool] {
-	return pulumix.Output[[]GetWorkerPoolsWorkerPool]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetWorkerPoolsWorkerPoolArrayOutput) Index(i pulumi.IntInput) GetWorkerPoolsWorkerPoolOutput {

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['StackGcpServiceAccountArgs', 'StackGcpServiceAccount']
@@ -23,34 +23,11 @@ class StackGcpServiceAccountArgs:
         :param pulumi.Input[str] module_id: ID of the module which uses GCP service account credentials
         :param pulumi.Input[str] stack_id: ID of the stack which uses GCP service account credentials
         """
-        StackGcpServiceAccountArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            token_scopes=token_scopes,
-            module_id=module_id,
-            stack_id=stack_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             module_id: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if token_scopes is None and 'tokenScopes' in kwargs:
-            token_scopes = kwargs['tokenScopes']
-        if token_scopes is None:
-            raise TypeError("Missing 'token_scopes' argument")
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
-        _setter("token_scopes", token_scopes)
+        pulumi.set(__self__, "token_scopes", token_scopes)
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter(name="tokenScopes")
@@ -103,39 +80,14 @@ class _StackGcpServiceAccountState:
         :param pulumi.Input[str] stack_id: ID of the stack which uses GCP service account credentials
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of scopes that will be requested when generating temporary GCP service account credentials
         """
-        _StackGcpServiceAccountState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            module_id=module_id,
-            service_account_email=service_account_email,
-            stack_id=stack_id,
-            token_scopes=token_scopes,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             module_id: Optional[pulumi.Input[str]] = None,
-             service_account_email: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if service_account_email is None and 'serviceAccountEmail' in kwargs:
-            service_account_email = kwargs['serviceAccountEmail']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if token_scopes is None and 'tokenScopes' in kwargs:
-            token_scopes = kwargs['tokenScopes']
-
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if service_account_email is not None:
-            _setter("service_account_email", service_account_email)
+            pulumi.set(__self__, "service_account_email", service_account_email)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
         if token_scopes is not None:
-            _setter("token_scopes", token_scopes)
+            pulumi.set(__self__, "token_scopes", token_scopes)
 
     @property
     @pulumi.getter(name="moduleId")
@@ -271,10 +223,6 @@ class StackGcpServiceAccount(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            StackGcpServiceAccountArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

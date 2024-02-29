@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -153,12 +152,6 @@ func (i *Blueprint) ToBlueprintOutputWithContext(ctx context.Context) BlueprintO
 	return pulumi.ToOutputWithContext(ctx, i).(BlueprintOutput)
 }
 
-func (i *Blueprint) ToOutput(ctx context.Context) pulumix.Output[*Blueprint] {
-	return pulumix.Output[*Blueprint]{
-		OutputState: i.ToBlueprintOutputWithContext(ctx).OutputState,
-	}
-}
-
 // BlueprintArrayInput is an input type that accepts BlueprintArray and BlueprintArrayOutput values.
 // You can construct a concrete instance of `BlueprintArrayInput` via:
 //
@@ -182,12 +175,6 @@ func (i BlueprintArray) ToBlueprintArrayOutput() BlueprintArrayOutput {
 
 func (i BlueprintArray) ToBlueprintArrayOutputWithContext(ctx context.Context) BlueprintArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BlueprintArrayOutput)
-}
-
-func (i BlueprintArray) ToOutput(ctx context.Context) pulumix.Output[[]*Blueprint] {
-	return pulumix.Output[[]*Blueprint]{
-		OutputState: i.ToBlueprintArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // BlueprintMapInput is an input type that accepts BlueprintMap and BlueprintMapOutput values.
@@ -215,12 +202,6 @@ func (i BlueprintMap) ToBlueprintMapOutputWithContext(ctx context.Context) Bluep
 	return pulumi.ToOutputWithContext(ctx, i).(BlueprintMapOutput)
 }
 
-func (i BlueprintMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Blueprint] {
-	return pulumix.Output[map[string]*Blueprint]{
-		OutputState: i.ToBlueprintMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type BlueprintOutput struct{ *pulumi.OutputState }
 
 func (BlueprintOutput) ElementType() reflect.Type {
@@ -233,12 +214,6 @@ func (o BlueprintOutput) ToBlueprintOutput() BlueprintOutput {
 
 func (o BlueprintOutput) ToBlueprintOutputWithContext(ctx context.Context) BlueprintOutput {
 	return o
-}
-
-func (o BlueprintOutput) ToOutput(ctx context.Context) pulumix.Output[*Blueprint] {
-	return pulumix.Output[*Blueprint]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Description of the blueprint
@@ -285,12 +260,6 @@ func (o BlueprintArrayOutput) ToBlueprintArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o BlueprintArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Blueprint] {
-	return pulumix.Output[[]*Blueprint]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BlueprintArrayOutput) Index(i pulumi.IntInput) BlueprintOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Blueprint {
 		return vs[0].([]*Blueprint)[vs[1].(int)]
@@ -309,12 +278,6 @@ func (o BlueprintMapOutput) ToBlueprintMapOutput() BlueprintMapOutput {
 
 func (o BlueprintMapOutput) ToBlueprintMapOutputWithContext(ctx context.Context) BlueprintMapOutput {
 	return o
-}
-
-func (o BlueprintMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Blueprint] {
-	return pulumix.Output[map[string]*Blueprint]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o BlueprintMapOutput) MapIndex(k pulumi.StringInput) BlueprintOutput {

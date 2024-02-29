@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DriftDetectionArgs', 'DriftDetection']
@@ -27,41 +27,14 @@ class DriftDetectionArgs:
         :param pulumi.Input[bool] reconcile: Whether a tracked run should be triggered when drift is detected.
         :param pulumi.Input[str] timezone: Timezone in which the schedule is expressed. Defaults to `UTC`.
         """
-        DriftDetectionArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            schedules=schedules,
-            stack_id=stack_id,
-            ignore_state=ignore_state,
-            reconcile=reconcile,
-            timezone=timezone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             schedules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             ignore_state: Optional[pulumi.Input[bool]] = None,
-             reconcile: Optional[pulumi.Input[bool]] = None,
-             timezone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if schedules is None:
-            raise TypeError("Missing 'schedules' argument")
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if stack_id is None:
-            raise TypeError("Missing 'stack_id' argument")
-        if ignore_state is None and 'ignoreState' in kwargs:
-            ignore_state = kwargs['ignoreState']
-
-        _setter("schedules", schedules)
-        _setter("stack_id", stack_id)
+        pulumi.set(__self__, "schedules", schedules)
+        pulumi.set(__self__, "stack_id", stack_id)
         if ignore_state is not None:
-            _setter("ignore_state", ignore_state)
+            pulumi.set(__self__, "ignore_state", ignore_state)
         if reconcile is not None:
-            _setter("reconcile", reconcile)
+            pulumi.set(__self__, "reconcile", reconcile)
         if timezone is not None:
-            _setter("timezone", timezone)
+            pulumi.set(__self__, "timezone", timezone)
 
     @property
     @pulumi.getter
@@ -140,39 +113,16 @@ class _DriftDetectionState:
         :param pulumi.Input[str] stack_id: ID of the stack for which to set up drift detection
         :param pulumi.Input[str] timezone: Timezone in which the schedule is expressed. Defaults to `UTC`.
         """
-        _DriftDetectionState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            ignore_state=ignore_state,
-            reconcile=reconcile,
-            schedules=schedules,
-            stack_id=stack_id,
-            timezone=timezone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             ignore_state: Optional[pulumi.Input[bool]] = None,
-             reconcile: Optional[pulumi.Input[bool]] = None,
-             schedules: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             timezone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if ignore_state is None and 'ignoreState' in kwargs:
-            ignore_state = kwargs['ignoreState']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
         if ignore_state is not None:
-            _setter("ignore_state", ignore_state)
+            pulumi.set(__self__, "ignore_state", ignore_state)
         if reconcile is not None:
-            _setter("reconcile", reconcile)
+            pulumi.set(__self__, "reconcile", reconcile)
         if schedules is not None:
-            _setter("schedules", schedules)
+            pulumi.set(__self__, "schedules", schedules)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
         if timezone is not None:
-            _setter("timezone", timezone)
+            pulumi.set(__self__, "timezone", timezone)
 
     @property
     @pulumi.getter(name="ignoreState")
@@ -328,10 +278,6 @@ class DriftDetection(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            DriftDetectionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

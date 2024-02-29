@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -115,273 +115,100 @@ class StackArgs:
         :param pulumilib.Input['StackTerragruntArgs'] terragrunt: Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
         :param pulumilib.Input[str] worker_pool_id: ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         """
-        StackArgs._configure(
-            lambda key, value: pulumilib.set(__self__, key, value),
-            branch=branch,
-            repository=repository,
-            additional_project_globs=additional_project_globs,
-            administrative=administrative,
-            after_applies=after_applies,
-            after_destroys=after_destroys,
-            after_inits=after_inits,
-            after_performs=after_performs,
-            after_plans=after_plans,
-            after_runs=after_runs,
-            ansible=ansible,
-            autodeploy=autodeploy,
-            autoretry=autoretry,
-            azure_devops=azure_devops,
-            before_applies=before_applies,
-            before_destroys=before_destroys,
-            before_inits=before_inits,
-            before_performs=before_performs,
-            before_plans=before_plans,
-            bitbucket_cloud=bitbucket_cloud,
-            bitbucket_datacenter=bitbucket_datacenter,
-            cloudformation=cloudformation,
-            description=description,
-            enable_local_preview=enable_local_preview,
-            github_action_deploy=github_action_deploy,
-            github_enterprise=github_enterprise,
-            gitlab=gitlab,
-            import_state=import_state,
-            import_state_file=import_state_file,
-            kubernetes=kubernetes,
-            labels=labels,
-            manage_state=manage_state,
-            name=name,
-            project_root=project_root,
-            protect_from_deletion=protect_from_deletion,
-            pulumi=pulumi,
-            raw_git=raw_git,
-            runner_image=runner_image,
-            showcase=showcase,
-            slug=slug,
-            space_id=space_id,
-            terraform_external_state_access=terraform_external_state_access,
-            terraform_smart_sanitization=terraform_smart_sanitization,
-            terraform_version=terraform_version,
-            terraform_workflow_tool=terraform_workflow_tool,
-            terraform_workspace=terraform_workspace,
-            terragrunt=terragrunt,
-            worker_pool_id=worker_pool_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             branch: Optional[pulumilib.Input[str]] = None,
-             repository: Optional[pulumilib.Input[str]] = None,
-             additional_project_globs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             administrative: Optional[pulumilib.Input[bool]] = None,
-             after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             after_inits: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             after_performs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             after_plans: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             after_runs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             ansible: Optional[pulumilib.Input['StackAnsibleArgs']] = None,
-             autodeploy: Optional[pulumilib.Input[bool]] = None,
-             autoretry: Optional[pulumilib.Input[bool]] = None,
-             azure_devops: Optional[pulumilib.Input['StackAzureDevopsArgs']] = None,
-             before_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             before_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             before_inits: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             before_performs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             before_plans: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             bitbucket_cloud: Optional[pulumilib.Input['StackBitbucketCloudArgs']] = None,
-             bitbucket_datacenter: Optional[pulumilib.Input['StackBitbucketDatacenterArgs']] = None,
-             cloudformation: Optional[pulumilib.Input['StackCloudformationArgs']] = None,
-             description: Optional[pulumilib.Input[str]] = None,
-             enable_local_preview: Optional[pulumilib.Input[bool]] = None,
-             github_action_deploy: Optional[pulumilib.Input[bool]] = None,
-             github_enterprise: Optional[pulumilib.Input['StackGithubEnterpriseArgs']] = None,
-             gitlab: Optional[pulumilib.Input['StackGitlabArgs']] = None,
-             import_state: Optional[pulumilib.Input[str]] = None,
-             import_state_file: Optional[pulumilib.Input[str]] = None,
-             kubernetes: Optional[pulumilib.Input['StackKubernetesArgs']] = None,
-             labels: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             manage_state: Optional[pulumilib.Input[bool]] = None,
-             name: Optional[pulumilib.Input[str]] = None,
-             project_root: Optional[pulumilib.Input[str]] = None,
-             protect_from_deletion: Optional[pulumilib.Input[bool]] = None,
-             pulumi: Optional[pulumilib.Input['StackPulumiArgs']] = None,
-             raw_git: Optional[pulumilib.Input['StackRawGitArgs']] = None,
-             runner_image: Optional[pulumilib.Input[str]] = None,
-             showcase: Optional[pulumilib.Input['StackShowcaseArgs']] = None,
-             slug: Optional[pulumilib.Input[str]] = None,
-             space_id: Optional[pulumilib.Input[str]] = None,
-             terraform_external_state_access: Optional[pulumilib.Input[bool]] = None,
-             terraform_smart_sanitization: Optional[pulumilib.Input[bool]] = None,
-             terraform_version: Optional[pulumilib.Input[str]] = None,
-             terraform_workflow_tool: Optional[pulumilib.Input[str]] = None,
-             terraform_workspace: Optional[pulumilib.Input[str]] = None,
-             terragrunt: Optional[pulumilib.Input['StackTerragruntArgs']] = None,
-             worker_pool_id: Optional[pulumilib.Input[str]] = None,
-             opts: Optional[pulumilib.ResourceOptions] = None,
-             **kwargs):
-        if branch is None:
-            raise TypeError("Missing 'branch' argument")
-        if repository is None:
-            raise TypeError("Missing 'repository' argument")
-        if additional_project_globs is None and 'additionalProjectGlobs' in kwargs:
-            additional_project_globs = kwargs['additionalProjectGlobs']
-        if after_applies is None and 'afterApplies' in kwargs:
-            after_applies = kwargs['afterApplies']
-        if after_destroys is None and 'afterDestroys' in kwargs:
-            after_destroys = kwargs['afterDestroys']
-        if after_inits is None and 'afterInits' in kwargs:
-            after_inits = kwargs['afterInits']
-        if after_performs is None and 'afterPerforms' in kwargs:
-            after_performs = kwargs['afterPerforms']
-        if after_plans is None and 'afterPlans' in kwargs:
-            after_plans = kwargs['afterPlans']
-        if after_runs is None and 'afterRuns' in kwargs:
-            after_runs = kwargs['afterRuns']
-        if azure_devops is None and 'azureDevops' in kwargs:
-            azure_devops = kwargs['azureDevops']
-        if before_applies is None and 'beforeApplies' in kwargs:
-            before_applies = kwargs['beforeApplies']
-        if before_destroys is None and 'beforeDestroys' in kwargs:
-            before_destroys = kwargs['beforeDestroys']
-        if before_inits is None and 'beforeInits' in kwargs:
-            before_inits = kwargs['beforeInits']
-        if before_performs is None and 'beforePerforms' in kwargs:
-            before_performs = kwargs['beforePerforms']
-        if before_plans is None and 'beforePlans' in kwargs:
-            before_plans = kwargs['beforePlans']
-        if bitbucket_cloud is None and 'bitbucketCloud' in kwargs:
-            bitbucket_cloud = kwargs['bitbucketCloud']
-        if bitbucket_datacenter is None and 'bitbucketDatacenter' in kwargs:
-            bitbucket_datacenter = kwargs['bitbucketDatacenter']
-        if enable_local_preview is None and 'enableLocalPreview' in kwargs:
-            enable_local_preview = kwargs['enableLocalPreview']
-        if github_action_deploy is None and 'githubActionDeploy' in kwargs:
-            github_action_deploy = kwargs['githubActionDeploy']
-        if github_enterprise is None and 'githubEnterprise' in kwargs:
-            github_enterprise = kwargs['githubEnterprise']
-        if import_state is None and 'importState' in kwargs:
-            import_state = kwargs['importState']
-        if import_state_file is None and 'importStateFile' in kwargs:
-            import_state_file = kwargs['importStateFile']
-        if manage_state is None and 'manageState' in kwargs:
-            manage_state = kwargs['manageState']
-        if project_root is None and 'projectRoot' in kwargs:
-            project_root = kwargs['projectRoot']
-        if protect_from_deletion is None and 'protectFromDeletion' in kwargs:
-            protect_from_deletion = kwargs['protectFromDeletion']
-        if raw_git is None and 'rawGit' in kwargs:
-            raw_git = kwargs['rawGit']
-        if runner_image is None and 'runnerImage' in kwargs:
-            runner_image = kwargs['runnerImage']
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-        if terraform_external_state_access is None and 'terraformExternalStateAccess' in kwargs:
-            terraform_external_state_access = kwargs['terraformExternalStateAccess']
-        if terraform_smart_sanitization is None and 'terraformSmartSanitization' in kwargs:
-            terraform_smart_sanitization = kwargs['terraformSmartSanitization']
-        if terraform_version is None and 'terraformVersion' in kwargs:
-            terraform_version = kwargs['terraformVersion']
-        if terraform_workflow_tool is None and 'terraformWorkflowTool' in kwargs:
-            terraform_workflow_tool = kwargs['terraformWorkflowTool']
-        if terraform_workspace is None and 'terraformWorkspace' in kwargs:
-            terraform_workspace = kwargs['terraformWorkspace']
-        if worker_pool_id is None and 'workerPoolId' in kwargs:
-            worker_pool_id = kwargs['workerPoolId']
-
-        _setter("branch", branch)
-        _setter("repository", repository)
+        pulumilib.set(__self__, "branch", branch)
+        pulumilib.set(__self__, "repository", repository)
         if additional_project_globs is not None:
-            _setter("additional_project_globs", additional_project_globs)
+            pulumilib.set(__self__, "additional_project_globs", additional_project_globs)
         if administrative is not None:
-            _setter("administrative", administrative)
+            pulumilib.set(__self__, "administrative", administrative)
         if after_applies is not None:
-            _setter("after_applies", after_applies)
+            pulumilib.set(__self__, "after_applies", after_applies)
         if after_destroys is not None:
-            _setter("after_destroys", after_destroys)
+            pulumilib.set(__self__, "after_destroys", after_destroys)
         if after_inits is not None:
-            _setter("after_inits", after_inits)
+            pulumilib.set(__self__, "after_inits", after_inits)
         if after_performs is not None:
-            _setter("after_performs", after_performs)
+            pulumilib.set(__self__, "after_performs", after_performs)
         if after_plans is not None:
-            _setter("after_plans", after_plans)
+            pulumilib.set(__self__, "after_plans", after_plans)
         if after_runs is not None:
-            _setter("after_runs", after_runs)
+            pulumilib.set(__self__, "after_runs", after_runs)
         if ansible is not None:
-            _setter("ansible", ansible)
+            pulumilib.set(__self__, "ansible", ansible)
         if autodeploy is not None:
-            _setter("autodeploy", autodeploy)
+            pulumilib.set(__self__, "autodeploy", autodeploy)
         if autoretry is not None:
-            _setter("autoretry", autoretry)
+            pulumilib.set(__self__, "autoretry", autoretry)
         if azure_devops is not None:
-            _setter("azure_devops", azure_devops)
+            pulumilib.set(__self__, "azure_devops", azure_devops)
         if before_applies is not None:
-            _setter("before_applies", before_applies)
+            pulumilib.set(__self__, "before_applies", before_applies)
         if before_destroys is not None:
-            _setter("before_destroys", before_destroys)
+            pulumilib.set(__self__, "before_destroys", before_destroys)
         if before_inits is not None:
-            _setter("before_inits", before_inits)
+            pulumilib.set(__self__, "before_inits", before_inits)
         if before_performs is not None:
-            _setter("before_performs", before_performs)
+            pulumilib.set(__self__, "before_performs", before_performs)
         if before_plans is not None:
-            _setter("before_plans", before_plans)
+            pulumilib.set(__self__, "before_plans", before_plans)
         if bitbucket_cloud is not None:
-            _setter("bitbucket_cloud", bitbucket_cloud)
+            pulumilib.set(__self__, "bitbucket_cloud", bitbucket_cloud)
         if bitbucket_datacenter is not None:
-            _setter("bitbucket_datacenter", bitbucket_datacenter)
+            pulumilib.set(__self__, "bitbucket_datacenter", bitbucket_datacenter)
         if cloudformation is not None:
-            _setter("cloudformation", cloudformation)
+            pulumilib.set(__self__, "cloudformation", cloudformation)
         if description is not None:
-            _setter("description", description)
+            pulumilib.set(__self__, "description", description)
         if enable_local_preview is not None:
-            _setter("enable_local_preview", enable_local_preview)
+            pulumilib.set(__self__, "enable_local_preview", enable_local_preview)
         if github_action_deploy is not None:
-            _setter("github_action_deploy", github_action_deploy)
+            pulumilib.set(__self__, "github_action_deploy", github_action_deploy)
         if github_enterprise is not None:
-            _setter("github_enterprise", github_enterprise)
+            pulumilib.set(__self__, "github_enterprise", github_enterprise)
         if gitlab is not None:
-            _setter("gitlab", gitlab)
+            pulumilib.set(__self__, "gitlab", gitlab)
         if import_state is not None:
-            _setter("import_state", import_state)
+            pulumilib.set(__self__, "import_state", import_state)
         if import_state_file is not None:
-            _setter("import_state_file", import_state_file)
+            pulumilib.set(__self__, "import_state_file", import_state_file)
         if kubernetes is not None:
-            _setter("kubernetes", kubernetes)
+            pulumilib.set(__self__, "kubernetes", kubernetes)
         if labels is not None:
-            _setter("labels", labels)
+            pulumilib.set(__self__, "labels", labels)
         if manage_state is not None:
-            _setter("manage_state", manage_state)
+            pulumilib.set(__self__, "manage_state", manage_state)
         if name is not None:
-            _setter("name", name)
+            pulumilib.set(__self__, "name", name)
         if project_root is not None:
-            _setter("project_root", project_root)
+            pulumilib.set(__self__, "project_root", project_root)
         if protect_from_deletion is not None:
-            _setter("protect_from_deletion", protect_from_deletion)
+            pulumilib.set(__self__, "protect_from_deletion", protect_from_deletion)
         if pulumi is not None:
-            _setter("pulumi", pulumi)
+            pulumilib.set(__self__, "pulumi", pulumi)
         if raw_git is not None:
-            _setter("raw_git", raw_git)
+            pulumilib.set(__self__, "raw_git", raw_git)
         if runner_image is not None:
-            _setter("runner_image", runner_image)
+            pulumilib.set(__self__, "runner_image", runner_image)
         if showcase is not None:
-            _setter("showcase", showcase)
+            pulumilib.set(__self__, "showcase", showcase)
         if slug is not None:
-            _setter("slug", slug)
+            pulumilib.set(__self__, "slug", slug)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumilib.set(__self__, "space_id", space_id)
         if terraform_external_state_access is not None:
-            _setter("terraform_external_state_access", terraform_external_state_access)
+            pulumilib.set(__self__, "terraform_external_state_access", terraform_external_state_access)
         if terraform_smart_sanitization is not None:
-            _setter("terraform_smart_sanitization", terraform_smart_sanitization)
+            pulumilib.set(__self__, "terraform_smart_sanitization", terraform_smart_sanitization)
         if terraform_version is not None:
-            _setter("terraform_version", terraform_version)
+            pulumilib.set(__self__, "terraform_version", terraform_version)
         if terraform_workflow_tool is not None:
-            _setter("terraform_workflow_tool", terraform_workflow_tool)
+            pulumilib.set(__self__, "terraform_workflow_tool", terraform_workflow_tool)
         if terraform_workspace is not None:
-            _setter("terraform_workspace", terraform_workspace)
+            pulumilib.set(__self__, "terraform_workspace", terraform_workspace)
         if terragrunt is not None:
-            _setter("terragrunt", terragrunt)
+            pulumilib.set(__self__, "terragrunt", terragrunt)
         if worker_pool_id is not None:
-            _setter("worker_pool_id", worker_pool_id)
+            pulumilib.set(__self__, "worker_pool_id", worker_pool_id)
 
     @property
     @pulumilib.getter
@@ -1060,277 +887,104 @@ class _StackState:
         :param pulumilib.Input['StackTerragruntArgs'] terragrunt: Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
         :param pulumilib.Input[str] worker_pool_id: ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         """
-        _StackState._configure(
-            lambda key, value: pulumilib.set(__self__, key, value),
-            additional_project_globs=additional_project_globs,
-            administrative=administrative,
-            after_applies=after_applies,
-            after_destroys=after_destroys,
-            after_inits=after_inits,
-            after_performs=after_performs,
-            after_plans=after_plans,
-            after_runs=after_runs,
-            ansible=ansible,
-            autodeploy=autodeploy,
-            autoretry=autoretry,
-            aws_assume_role_policy_statement=aws_assume_role_policy_statement,
-            azure_devops=azure_devops,
-            before_applies=before_applies,
-            before_destroys=before_destroys,
-            before_inits=before_inits,
-            before_performs=before_performs,
-            before_plans=before_plans,
-            bitbucket_cloud=bitbucket_cloud,
-            bitbucket_datacenter=bitbucket_datacenter,
-            branch=branch,
-            cloudformation=cloudformation,
-            description=description,
-            enable_local_preview=enable_local_preview,
-            github_action_deploy=github_action_deploy,
-            github_enterprise=github_enterprise,
-            gitlab=gitlab,
-            import_state=import_state,
-            import_state_file=import_state_file,
-            kubernetes=kubernetes,
-            labels=labels,
-            manage_state=manage_state,
-            name=name,
-            project_root=project_root,
-            protect_from_deletion=protect_from_deletion,
-            pulumi=pulumi,
-            raw_git=raw_git,
-            repository=repository,
-            runner_image=runner_image,
-            showcase=showcase,
-            slug=slug,
-            space_id=space_id,
-            terraform_external_state_access=terraform_external_state_access,
-            terraform_smart_sanitization=terraform_smart_sanitization,
-            terraform_version=terraform_version,
-            terraform_workflow_tool=terraform_workflow_tool,
-            terraform_workspace=terraform_workspace,
-            terragrunt=terragrunt,
-            worker_pool_id=worker_pool_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             additional_project_globs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             administrative: Optional[pulumilib.Input[bool]] = None,
-             after_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             after_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             after_inits: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             after_performs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             after_plans: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             after_runs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             ansible: Optional[pulumilib.Input['StackAnsibleArgs']] = None,
-             autodeploy: Optional[pulumilib.Input[bool]] = None,
-             autoretry: Optional[pulumilib.Input[bool]] = None,
-             aws_assume_role_policy_statement: Optional[pulumilib.Input[str]] = None,
-             azure_devops: Optional[pulumilib.Input['StackAzureDevopsArgs']] = None,
-             before_applies: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             before_destroys: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             before_inits: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             before_performs: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             before_plans: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             bitbucket_cloud: Optional[pulumilib.Input['StackBitbucketCloudArgs']] = None,
-             bitbucket_datacenter: Optional[pulumilib.Input['StackBitbucketDatacenterArgs']] = None,
-             branch: Optional[pulumilib.Input[str]] = None,
-             cloudformation: Optional[pulumilib.Input['StackCloudformationArgs']] = None,
-             description: Optional[pulumilib.Input[str]] = None,
-             enable_local_preview: Optional[pulumilib.Input[bool]] = None,
-             github_action_deploy: Optional[pulumilib.Input[bool]] = None,
-             github_enterprise: Optional[pulumilib.Input['StackGithubEnterpriseArgs']] = None,
-             gitlab: Optional[pulumilib.Input['StackGitlabArgs']] = None,
-             import_state: Optional[pulumilib.Input[str]] = None,
-             import_state_file: Optional[pulumilib.Input[str]] = None,
-             kubernetes: Optional[pulumilib.Input['StackKubernetesArgs']] = None,
-             labels: Optional[pulumilib.Input[Sequence[pulumilib.Input[str]]]] = None,
-             manage_state: Optional[pulumilib.Input[bool]] = None,
-             name: Optional[pulumilib.Input[str]] = None,
-             project_root: Optional[pulumilib.Input[str]] = None,
-             protect_from_deletion: Optional[pulumilib.Input[bool]] = None,
-             pulumi: Optional[pulumilib.Input['StackPulumiArgs']] = None,
-             raw_git: Optional[pulumilib.Input['StackRawGitArgs']] = None,
-             repository: Optional[pulumilib.Input[str]] = None,
-             runner_image: Optional[pulumilib.Input[str]] = None,
-             showcase: Optional[pulumilib.Input['StackShowcaseArgs']] = None,
-             slug: Optional[pulumilib.Input[str]] = None,
-             space_id: Optional[pulumilib.Input[str]] = None,
-             terraform_external_state_access: Optional[pulumilib.Input[bool]] = None,
-             terraform_smart_sanitization: Optional[pulumilib.Input[bool]] = None,
-             terraform_version: Optional[pulumilib.Input[str]] = None,
-             terraform_workflow_tool: Optional[pulumilib.Input[str]] = None,
-             terraform_workspace: Optional[pulumilib.Input[str]] = None,
-             terragrunt: Optional[pulumilib.Input['StackTerragruntArgs']] = None,
-             worker_pool_id: Optional[pulumilib.Input[str]] = None,
-             opts: Optional[pulumilib.ResourceOptions] = None,
-             **kwargs):
-        if additional_project_globs is None and 'additionalProjectGlobs' in kwargs:
-            additional_project_globs = kwargs['additionalProjectGlobs']
-        if after_applies is None and 'afterApplies' in kwargs:
-            after_applies = kwargs['afterApplies']
-        if after_destroys is None and 'afterDestroys' in kwargs:
-            after_destroys = kwargs['afterDestroys']
-        if after_inits is None and 'afterInits' in kwargs:
-            after_inits = kwargs['afterInits']
-        if after_performs is None and 'afterPerforms' in kwargs:
-            after_performs = kwargs['afterPerforms']
-        if after_plans is None and 'afterPlans' in kwargs:
-            after_plans = kwargs['afterPlans']
-        if after_runs is None and 'afterRuns' in kwargs:
-            after_runs = kwargs['afterRuns']
-        if aws_assume_role_policy_statement is None and 'awsAssumeRolePolicyStatement' in kwargs:
-            aws_assume_role_policy_statement = kwargs['awsAssumeRolePolicyStatement']
-        if azure_devops is None and 'azureDevops' in kwargs:
-            azure_devops = kwargs['azureDevops']
-        if before_applies is None and 'beforeApplies' in kwargs:
-            before_applies = kwargs['beforeApplies']
-        if before_destroys is None and 'beforeDestroys' in kwargs:
-            before_destroys = kwargs['beforeDestroys']
-        if before_inits is None and 'beforeInits' in kwargs:
-            before_inits = kwargs['beforeInits']
-        if before_performs is None and 'beforePerforms' in kwargs:
-            before_performs = kwargs['beforePerforms']
-        if before_plans is None and 'beforePlans' in kwargs:
-            before_plans = kwargs['beforePlans']
-        if bitbucket_cloud is None and 'bitbucketCloud' in kwargs:
-            bitbucket_cloud = kwargs['bitbucketCloud']
-        if bitbucket_datacenter is None and 'bitbucketDatacenter' in kwargs:
-            bitbucket_datacenter = kwargs['bitbucketDatacenter']
-        if enable_local_preview is None and 'enableLocalPreview' in kwargs:
-            enable_local_preview = kwargs['enableLocalPreview']
-        if github_action_deploy is None and 'githubActionDeploy' in kwargs:
-            github_action_deploy = kwargs['githubActionDeploy']
-        if github_enterprise is None and 'githubEnterprise' in kwargs:
-            github_enterprise = kwargs['githubEnterprise']
-        if import_state is None and 'importState' in kwargs:
-            import_state = kwargs['importState']
-        if import_state_file is None and 'importStateFile' in kwargs:
-            import_state_file = kwargs['importStateFile']
-        if manage_state is None and 'manageState' in kwargs:
-            manage_state = kwargs['manageState']
-        if project_root is None and 'projectRoot' in kwargs:
-            project_root = kwargs['projectRoot']
-        if protect_from_deletion is None and 'protectFromDeletion' in kwargs:
-            protect_from_deletion = kwargs['protectFromDeletion']
-        if raw_git is None and 'rawGit' in kwargs:
-            raw_git = kwargs['rawGit']
-        if runner_image is None and 'runnerImage' in kwargs:
-            runner_image = kwargs['runnerImage']
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-        if terraform_external_state_access is None and 'terraformExternalStateAccess' in kwargs:
-            terraform_external_state_access = kwargs['terraformExternalStateAccess']
-        if terraform_smart_sanitization is None and 'terraformSmartSanitization' in kwargs:
-            terraform_smart_sanitization = kwargs['terraformSmartSanitization']
-        if terraform_version is None and 'terraformVersion' in kwargs:
-            terraform_version = kwargs['terraformVersion']
-        if terraform_workflow_tool is None and 'terraformWorkflowTool' in kwargs:
-            terraform_workflow_tool = kwargs['terraformWorkflowTool']
-        if terraform_workspace is None and 'terraformWorkspace' in kwargs:
-            terraform_workspace = kwargs['terraformWorkspace']
-        if worker_pool_id is None and 'workerPoolId' in kwargs:
-            worker_pool_id = kwargs['workerPoolId']
-
         if additional_project_globs is not None:
-            _setter("additional_project_globs", additional_project_globs)
+            pulumilib.set(__self__, "additional_project_globs", additional_project_globs)
         if administrative is not None:
-            _setter("administrative", administrative)
+            pulumilib.set(__self__, "administrative", administrative)
         if after_applies is not None:
-            _setter("after_applies", after_applies)
+            pulumilib.set(__self__, "after_applies", after_applies)
         if after_destroys is not None:
-            _setter("after_destroys", after_destroys)
+            pulumilib.set(__self__, "after_destroys", after_destroys)
         if after_inits is not None:
-            _setter("after_inits", after_inits)
+            pulumilib.set(__self__, "after_inits", after_inits)
         if after_performs is not None:
-            _setter("after_performs", after_performs)
+            pulumilib.set(__self__, "after_performs", after_performs)
         if after_plans is not None:
-            _setter("after_plans", after_plans)
+            pulumilib.set(__self__, "after_plans", after_plans)
         if after_runs is not None:
-            _setter("after_runs", after_runs)
+            pulumilib.set(__self__, "after_runs", after_runs)
         if ansible is not None:
-            _setter("ansible", ansible)
+            pulumilib.set(__self__, "ansible", ansible)
         if autodeploy is not None:
-            _setter("autodeploy", autodeploy)
+            pulumilib.set(__self__, "autodeploy", autodeploy)
         if autoretry is not None:
-            _setter("autoretry", autoretry)
+            pulumilib.set(__self__, "autoretry", autoretry)
         if aws_assume_role_policy_statement is not None:
-            _setter("aws_assume_role_policy_statement", aws_assume_role_policy_statement)
+            pulumilib.set(__self__, "aws_assume_role_policy_statement", aws_assume_role_policy_statement)
         if azure_devops is not None:
-            _setter("azure_devops", azure_devops)
+            pulumilib.set(__self__, "azure_devops", azure_devops)
         if before_applies is not None:
-            _setter("before_applies", before_applies)
+            pulumilib.set(__self__, "before_applies", before_applies)
         if before_destroys is not None:
-            _setter("before_destroys", before_destroys)
+            pulumilib.set(__self__, "before_destroys", before_destroys)
         if before_inits is not None:
-            _setter("before_inits", before_inits)
+            pulumilib.set(__self__, "before_inits", before_inits)
         if before_performs is not None:
-            _setter("before_performs", before_performs)
+            pulumilib.set(__self__, "before_performs", before_performs)
         if before_plans is not None:
-            _setter("before_plans", before_plans)
+            pulumilib.set(__self__, "before_plans", before_plans)
         if bitbucket_cloud is not None:
-            _setter("bitbucket_cloud", bitbucket_cloud)
+            pulumilib.set(__self__, "bitbucket_cloud", bitbucket_cloud)
         if bitbucket_datacenter is not None:
-            _setter("bitbucket_datacenter", bitbucket_datacenter)
+            pulumilib.set(__self__, "bitbucket_datacenter", bitbucket_datacenter)
         if branch is not None:
-            _setter("branch", branch)
+            pulumilib.set(__self__, "branch", branch)
         if cloudformation is not None:
-            _setter("cloudformation", cloudformation)
+            pulumilib.set(__self__, "cloudformation", cloudformation)
         if description is not None:
-            _setter("description", description)
+            pulumilib.set(__self__, "description", description)
         if enable_local_preview is not None:
-            _setter("enable_local_preview", enable_local_preview)
+            pulumilib.set(__self__, "enable_local_preview", enable_local_preview)
         if github_action_deploy is not None:
-            _setter("github_action_deploy", github_action_deploy)
+            pulumilib.set(__self__, "github_action_deploy", github_action_deploy)
         if github_enterprise is not None:
-            _setter("github_enterprise", github_enterprise)
+            pulumilib.set(__self__, "github_enterprise", github_enterprise)
         if gitlab is not None:
-            _setter("gitlab", gitlab)
+            pulumilib.set(__self__, "gitlab", gitlab)
         if import_state is not None:
-            _setter("import_state", import_state)
+            pulumilib.set(__self__, "import_state", import_state)
         if import_state_file is not None:
-            _setter("import_state_file", import_state_file)
+            pulumilib.set(__self__, "import_state_file", import_state_file)
         if kubernetes is not None:
-            _setter("kubernetes", kubernetes)
+            pulumilib.set(__self__, "kubernetes", kubernetes)
         if labels is not None:
-            _setter("labels", labels)
+            pulumilib.set(__self__, "labels", labels)
         if manage_state is not None:
-            _setter("manage_state", manage_state)
+            pulumilib.set(__self__, "manage_state", manage_state)
         if name is not None:
-            _setter("name", name)
+            pulumilib.set(__self__, "name", name)
         if project_root is not None:
-            _setter("project_root", project_root)
+            pulumilib.set(__self__, "project_root", project_root)
         if protect_from_deletion is not None:
-            _setter("protect_from_deletion", protect_from_deletion)
+            pulumilib.set(__self__, "protect_from_deletion", protect_from_deletion)
         if pulumi is not None:
-            _setter("pulumi", pulumi)
+            pulumilib.set(__self__, "pulumi", pulumi)
         if raw_git is not None:
-            _setter("raw_git", raw_git)
+            pulumilib.set(__self__, "raw_git", raw_git)
         if repository is not None:
-            _setter("repository", repository)
+            pulumilib.set(__self__, "repository", repository)
         if runner_image is not None:
-            _setter("runner_image", runner_image)
+            pulumilib.set(__self__, "runner_image", runner_image)
         if showcase is not None:
-            _setter("showcase", showcase)
+            pulumilib.set(__self__, "showcase", showcase)
         if slug is not None:
-            _setter("slug", slug)
+            pulumilib.set(__self__, "slug", slug)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumilib.set(__self__, "space_id", space_id)
         if terraform_external_state_access is not None:
-            _setter("terraform_external_state_access", terraform_external_state_access)
+            pulumilib.set(__self__, "terraform_external_state_access", terraform_external_state_access)
         if terraform_smart_sanitization is not None:
-            _setter("terraform_smart_sanitization", terraform_smart_sanitization)
+            pulumilib.set(__self__, "terraform_smart_sanitization", terraform_smart_sanitization)
         if terraform_version is not None:
-            _setter("terraform_version", terraform_version)
+            pulumilib.set(__self__, "terraform_version", terraform_version)
         if terraform_workflow_tool is not None:
-            _setter("terraform_workflow_tool", terraform_workflow_tool)
+            pulumilib.set(__self__, "terraform_workflow_tool", terraform_workflow_tool)
         if terraform_workspace is not None:
-            _setter("terraform_workspace", terraform_workspace)
+            pulumilib.set(__self__, "terraform_workspace", terraform_workspace)
         if terragrunt is not None:
-            _setter("terragrunt", terragrunt)
+            pulumilib.set(__self__, "terragrunt", terragrunt)
         if worker_pool_id is not None:
-            _setter("worker_pool_id", worker_pool_id)
+            pulumilib.set(__self__, "worker_pool_id", worker_pool_id)
 
     @property
     @pulumilib.getter(name="additionalProjectGlobs")
@@ -2282,10 +1936,6 @@ class Stack(pulumilib.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            StackArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -2356,51 +2006,40 @@ class Stack(pulumilib.CustomResource):
             __props__.__dict__["after_performs"] = after_performs
             __props__.__dict__["after_plans"] = after_plans
             __props__.__dict__["after_runs"] = after_runs
-            ansible = _utilities.configure(ansible, StackAnsibleArgs, True)
             __props__.__dict__["ansible"] = ansible
             __props__.__dict__["autodeploy"] = autodeploy
             __props__.__dict__["autoretry"] = autoretry
-            azure_devops = _utilities.configure(azure_devops, StackAzureDevopsArgs, True)
             __props__.__dict__["azure_devops"] = azure_devops
             __props__.__dict__["before_applies"] = before_applies
             __props__.__dict__["before_destroys"] = before_destroys
             __props__.__dict__["before_inits"] = before_inits
             __props__.__dict__["before_performs"] = before_performs
             __props__.__dict__["before_plans"] = before_plans
-            bitbucket_cloud = _utilities.configure(bitbucket_cloud, StackBitbucketCloudArgs, True)
             __props__.__dict__["bitbucket_cloud"] = bitbucket_cloud
-            bitbucket_datacenter = _utilities.configure(bitbucket_datacenter, StackBitbucketDatacenterArgs, True)
             __props__.__dict__["bitbucket_datacenter"] = bitbucket_datacenter
             if branch is None and not opts.urn:
                 raise TypeError("Missing required property 'branch'")
             __props__.__dict__["branch"] = branch
-            cloudformation = _utilities.configure(cloudformation, StackCloudformationArgs, True)
             __props__.__dict__["cloudformation"] = cloudformation
             __props__.__dict__["description"] = description
             __props__.__dict__["enable_local_preview"] = enable_local_preview
             __props__.__dict__["github_action_deploy"] = github_action_deploy
-            github_enterprise = _utilities.configure(github_enterprise, StackGithubEnterpriseArgs, True)
             __props__.__dict__["github_enterprise"] = github_enterprise
-            gitlab = _utilities.configure(gitlab, StackGitlabArgs, True)
             __props__.__dict__["gitlab"] = gitlab
             __props__.__dict__["import_state"] = None if import_state is None else pulumilib.Output.secret(import_state)
             __props__.__dict__["import_state_file"] = import_state_file
-            kubernetes = _utilities.configure(kubernetes, StackKubernetesArgs, True)
             __props__.__dict__["kubernetes"] = kubernetes
             __props__.__dict__["labels"] = labels
             __props__.__dict__["manage_state"] = manage_state
             __props__.__dict__["name"] = name
             __props__.__dict__["project_root"] = project_root
             __props__.__dict__["protect_from_deletion"] = protect_from_deletion
-            pulumi = _utilities.configure(pulumi, StackPulumiArgs, True)
             __props__.__dict__["pulumi"] = pulumi
-            raw_git = _utilities.configure(raw_git, StackRawGitArgs, True)
             __props__.__dict__["raw_git"] = raw_git
             if repository is None and not opts.urn:
                 raise TypeError("Missing required property 'repository'")
             __props__.__dict__["repository"] = repository
             __props__.__dict__["runner_image"] = runner_image
-            showcase = _utilities.configure(showcase, StackShowcaseArgs, True)
             __props__.__dict__["showcase"] = showcase
             __props__.__dict__["slug"] = slug
             __props__.__dict__["space_id"] = space_id
@@ -2409,7 +2048,6 @@ class Stack(pulumilib.CustomResource):
             __props__.__dict__["terraform_version"] = terraform_version
             __props__.__dict__["terraform_workflow_tool"] = terraform_workflow_tool
             __props__.__dict__["terraform_workspace"] = terraform_workspace
-            terragrunt = _utilities.configure(terragrunt, StackTerragruntArgs, True)
             __props__.__dict__["terragrunt"] = terragrunt
             __props__.__dict__["worker_pool_id"] = worker_pool_id
             __props__.__dict__["aws_assume_role_policy_statement"] = None

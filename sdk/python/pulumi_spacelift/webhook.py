@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['WebhookArgs', 'Webhook']
@@ -27,40 +27,15 @@ class WebhookArgs:
         :param pulumi.Input[str] secret: secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
         :param pulumi.Input[str] stack_id: ID of the stack which triggers the webhooks
         """
-        WebhookArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoint=endpoint,
-            enabled=enabled,
-            module_id=module_id,
-            secret=secret,
-            stack_id=stack_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoint: Optional[pulumi.Input[str]] = None,
-             enabled: Optional[pulumi.Input[bool]] = None,
-             module_id: Optional[pulumi.Input[str]] = None,
-             secret: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if endpoint is None:
-            raise TypeError("Missing 'endpoint' argument")
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
-        _setter("endpoint", endpoint)
+        pulumi.set(__self__, "endpoint", endpoint)
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if secret is not None:
-            _setter("secret", secret)
+            pulumi.set(__self__, "secret", secret)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter
@@ -139,39 +114,16 @@ class _WebhookState:
         :param pulumi.Input[str] secret: secret used to sign each POST request so you're able to verify that the request comes from us. Defaults to an empty value.
         :param pulumi.Input[str] stack_id: ID of the stack which triggers the webhooks
         """
-        _WebhookState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            endpoint=endpoint,
-            module_id=module_id,
-            secret=secret,
-            stack_id=stack_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[pulumi.Input[bool]] = None,
-             endpoint: Optional[pulumi.Input[str]] = None,
-             module_id: Optional[pulumi.Input[str]] = None,
-             secret: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if endpoint is not None:
-            _setter("endpoint", endpoint)
+            pulumi.set(__self__, "endpoint", endpoint)
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if secret is not None:
-            _setter("secret", secret)
+            pulumi.set(__self__, "secret", secret)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter
@@ -309,10 +261,6 @@ class Webhook(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            WebhookArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

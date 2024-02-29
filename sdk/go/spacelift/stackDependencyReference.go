@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -176,12 +175,6 @@ func (i *StackDependencyReference) ToStackDependencyReferenceOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(StackDependencyReferenceOutput)
 }
 
-func (i *StackDependencyReference) ToOutput(ctx context.Context) pulumix.Output[*StackDependencyReference] {
-	return pulumix.Output[*StackDependencyReference]{
-		OutputState: i.ToStackDependencyReferenceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // StackDependencyReferenceArrayInput is an input type that accepts StackDependencyReferenceArray and StackDependencyReferenceArrayOutput values.
 // You can construct a concrete instance of `StackDependencyReferenceArrayInput` via:
 //
@@ -205,12 +198,6 @@ func (i StackDependencyReferenceArray) ToStackDependencyReferenceArrayOutput() S
 
 func (i StackDependencyReferenceArray) ToStackDependencyReferenceArrayOutputWithContext(ctx context.Context) StackDependencyReferenceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StackDependencyReferenceArrayOutput)
-}
-
-func (i StackDependencyReferenceArray) ToOutput(ctx context.Context) pulumix.Output[[]*StackDependencyReference] {
-	return pulumix.Output[[]*StackDependencyReference]{
-		OutputState: i.ToStackDependencyReferenceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // StackDependencyReferenceMapInput is an input type that accepts StackDependencyReferenceMap and StackDependencyReferenceMapOutput values.
@@ -238,12 +225,6 @@ func (i StackDependencyReferenceMap) ToStackDependencyReferenceMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(StackDependencyReferenceMapOutput)
 }
 
-func (i StackDependencyReferenceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackDependencyReference] {
-	return pulumix.Output[map[string]*StackDependencyReference]{
-		OutputState: i.ToStackDependencyReferenceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackDependencyReferenceOutput struct{ *pulumi.OutputState }
 
 func (StackDependencyReferenceOutput) ElementType() reflect.Type {
@@ -256,12 +237,6 @@ func (o StackDependencyReferenceOutput) ToStackDependencyReferenceOutput() Stack
 
 func (o StackDependencyReferenceOutput) ToStackDependencyReferenceOutputWithContext(ctx context.Context) StackDependencyReferenceOutput {
 	return o
-}
-
-func (o StackDependencyReferenceOutput) ToOutput(ctx context.Context) pulumix.Output[*StackDependencyReference] {
-	return pulumix.Output[*StackDependencyReference]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the input of the stack dependency reference
@@ -293,12 +268,6 @@ func (o StackDependencyReferenceArrayOutput) ToStackDependencyReferenceArrayOutp
 	return o
 }
 
-func (o StackDependencyReferenceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*StackDependencyReference] {
-	return pulumix.Output[[]*StackDependencyReference]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StackDependencyReferenceArrayOutput) Index(i pulumi.IntInput) StackDependencyReferenceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *StackDependencyReference {
 		return vs[0].([]*StackDependencyReference)[vs[1].(int)]
@@ -317,12 +286,6 @@ func (o StackDependencyReferenceMapOutput) ToStackDependencyReferenceMapOutput()
 
 func (o StackDependencyReferenceMapOutput) ToStackDependencyReferenceMapOutputWithContext(ctx context.Context) StackDependencyReferenceMapOutput {
 	return o
-}
-
-func (o StackDependencyReferenceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackDependencyReference] {
-	return pulumix.Output[map[string]*StackDependencyReference]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackDependencyReferenceMapOutput) MapIndex(k pulumi.StringInput) StackDependencyReferenceOutput {

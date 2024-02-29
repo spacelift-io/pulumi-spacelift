@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -172,12 +171,6 @@ func (o LookupContextResultOutput) ToLookupContextResultOutput() LookupContextRe
 
 func (o LookupContextResultOutput) ToLookupContextResultOutputWithContext(ctx context.Context) LookupContextResultOutput {
 	return o
-}
-
-func (o LookupContextResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupContextResult] {
-	return pulumix.Output[LookupContextResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List of after-apply scripts

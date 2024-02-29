@@ -13,11 +13,29 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetSpacesSpaceResult
     {
+        /// <summary>
+        /// free-form space description for users
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// indication whether access to this space inherits read access to entities from the parent space
+        /// </summary>
         public readonly bool InheritEntities;
+        /// <summary>
+        /// list of labels describing a space
+        /// </summary>
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// name of the space
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// immutable ID (slug) of parent space
+        /// </summary>
         public readonly string ParentSpaceId;
+        /// <summary>
+        /// immutable ID (slug) of the space
+        /// </summary>
         public readonly string SpaceId;
 
         [OutputConstructor]

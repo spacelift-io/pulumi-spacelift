@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -31,9 +30,9 @@ import (
 //
 // )
 //
-//	func filebase64OrPanic(path string) pulumi.StringPtrInput {
+//	func filebase64OrPanic(path string) string {
 //		if fileData, err := os.ReadFile(path); err == nil {
-//			return pulumi.String(base64.StdEncoding.EncodeToString(fileData[:]))
+//			return base64.StdEncoding.EncodeToString(fileData[:])
 //		} else {
 //			panic(err.Error())
 //		}
@@ -41,6 +40,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// For a context
 //			_, err := spacelift.NewMountedfile(ctx, "ireland-kubeconfig", &spacelift.MountedfileArgs{
 //				ContextId:    pulumi.String("prod-k8s-ie"),
 //				RelativePath: pulumi.String("kubeconfig"),
@@ -49,6 +49,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// For a module
 //			_, err = spacelift.NewMountedfile(ctx, "module-kubeconfig", &spacelift.MountedfileArgs{
 //				ModuleId:     pulumi.String("k8s-module"),
 //				RelativePath: pulumi.String("kubeconfig"),
@@ -57,6 +58,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// For a stack
 //			_, err = spacelift.NewMountedfile(ctx, "core-kubeconfig", &spacelift.MountedfileArgs{
 //				StackId:      pulumi.String("k8s-core"),
 //				RelativePath: pulumi.String("kubeconfig"),
@@ -243,12 +245,6 @@ func (i *Mountedfile) ToMountedfileOutputWithContext(ctx context.Context) Mounte
 	return pulumi.ToOutputWithContext(ctx, i).(MountedfileOutput)
 }
 
-func (i *Mountedfile) ToOutput(ctx context.Context) pulumix.Output[*Mountedfile] {
-	return pulumix.Output[*Mountedfile]{
-		OutputState: i.ToMountedfileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // MountedfileArrayInput is an input type that accepts MountedfileArray and MountedfileArrayOutput values.
 // You can construct a concrete instance of `MountedfileArrayInput` via:
 //
@@ -272,12 +268,6 @@ func (i MountedfileArray) ToMountedfileArrayOutput() MountedfileArrayOutput {
 
 func (i MountedfileArray) ToMountedfileArrayOutputWithContext(ctx context.Context) MountedfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MountedfileArrayOutput)
-}
-
-func (i MountedfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*Mountedfile] {
-	return pulumix.Output[[]*Mountedfile]{
-		OutputState: i.ToMountedfileArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // MountedfileMapInput is an input type that accepts MountedfileMap and MountedfileMapOutput values.
@@ -305,12 +295,6 @@ func (i MountedfileMap) ToMountedfileMapOutputWithContext(ctx context.Context) M
 	return pulumi.ToOutputWithContext(ctx, i).(MountedfileMapOutput)
 }
 
-func (i MountedfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Mountedfile] {
-	return pulumix.Output[map[string]*Mountedfile]{
-		OutputState: i.ToMountedfileMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type MountedfileOutput struct{ *pulumi.OutputState }
 
 func (MountedfileOutput) ElementType() reflect.Type {
@@ -323,12 +307,6 @@ func (o MountedfileOutput) ToMountedfileOutput() MountedfileOutput {
 
 func (o MountedfileOutput) ToMountedfileOutputWithContext(ctx context.Context) MountedfileOutput {
 	return o
-}
-
-func (o MountedfileOutput) ToOutput(ctx context.Context) pulumix.Output[*Mountedfile] {
-	return pulumix.Output[*Mountedfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 // SHA-256 checksum of the value
@@ -380,12 +358,6 @@ func (o MountedfileArrayOutput) ToMountedfileArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o MountedfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Mountedfile] {
-	return pulumix.Output[[]*Mountedfile]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o MountedfileArrayOutput) Index(i pulumi.IntInput) MountedfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Mountedfile {
 		return vs[0].([]*Mountedfile)[vs[1].(int)]
@@ -404,12 +376,6 @@ func (o MountedfileMapOutput) ToMountedfileMapOutput() MountedfileMapOutput {
 
 func (o MountedfileMapOutput) ToMountedfileMapOutputWithContext(ctx context.Context) MountedfileMapOutput {
 	return o
-}
-
-func (o MountedfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Mountedfile] {
-	return pulumix.Output[map[string]*Mountedfile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o MountedfileMapOutput) MapIndex(k pulumi.StringInput) MountedfileOutput {

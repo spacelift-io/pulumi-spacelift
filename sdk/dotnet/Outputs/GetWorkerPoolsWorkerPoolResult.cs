@@ -13,10 +13,25 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetWorkerPoolsWorkerPoolResult
     {
+        /// <summary>
+        /// credentials necessary to connect WorkerPool's workers to the control plane
+        /// </summary>
         public readonly string Config;
+        /// <summary>
+        /// description of the worker pool
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// name of the worker pool
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID (slug) of the space the worker pool is in
+        /// </summary>
         public readonly string SpaceId;
+        /// <summary>
+        /// ID of the worker pool
+        /// </summary>
         public readonly string WorkerPoolId;
 
         [OutputConstructor]

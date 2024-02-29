@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ContextArgs', 'Context']
@@ -46,99 +46,36 @@ class ContextArgs:
         :param pulumi.Input[str] name: Name of the context - should be unique in one account
         :param pulumi.Input[str] space_id: ID (slug) of the space the context is in
         """
-        ContextArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            after_applies=after_applies,
-            after_destroys=after_destroys,
-            after_inits=after_inits,
-            after_performs=after_performs,
-            after_plans=after_plans,
-            after_runs=after_runs,
-            before_applies=before_applies,
-            before_destroys=before_destroys,
-            before_inits=before_inits,
-            before_performs=before_performs,
-            before_plans=before_plans,
-            description=description,
-            labels=labels,
-            name=name,
-            space_id=space_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             after_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             after_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             after_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             after_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             after_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             after_runs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             before_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             before_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             before_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             before_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if after_applies is None and 'afterApplies' in kwargs:
-            after_applies = kwargs['afterApplies']
-        if after_destroys is None and 'afterDestroys' in kwargs:
-            after_destroys = kwargs['afterDestroys']
-        if after_inits is None and 'afterInits' in kwargs:
-            after_inits = kwargs['afterInits']
-        if after_performs is None and 'afterPerforms' in kwargs:
-            after_performs = kwargs['afterPerforms']
-        if after_plans is None and 'afterPlans' in kwargs:
-            after_plans = kwargs['afterPlans']
-        if after_runs is None and 'afterRuns' in kwargs:
-            after_runs = kwargs['afterRuns']
-        if before_applies is None and 'beforeApplies' in kwargs:
-            before_applies = kwargs['beforeApplies']
-        if before_destroys is None and 'beforeDestroys' in kwargs:
-            before_destroys = kwargs['beforeDestroys']
-        if before_inits is None and 'beforeInits' in kwargs:
-            before_inits = kwargs['beforeInits']
-        if before_performs is None and 'beforePerforms' in kwargs:
-            before_performs = kwargs['beforePerforms']
-        if before_plans is None and 'beforePlans' in kwargs:
-            before_plans = kwargs['beforePlans']
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-
         if after_applies is not None:
-            _setter("after_applies", after_applies)
+            pulumi.set(__self__, "after_applies", after_applies)
         if after_destroys is not None:
-            _setter("after_destroys", after_destroys)
+            pulumi.set(__self__, "after_destroys", after_destroys)
         if after_inits is not None:
-            _setter("after_inits", after_inits)
+            pulumi.set(__self__, "after_inits", after_inits)
         if after_performs is not None:
-            _setter("after_performs", after_performs)
+            pulumi.set(__self__, "after_performs", after_performs)
         if after_plans is not None:
-            _setter("after_plans", after_plans)
+            pulumi.set(__self__, "after_plans", after_plans)
         if after_runs is not None:
-            _setter("after_runs", after_runs)
+            pulumi.set(__self__, "after_runs", after_runs)
         if before_applies is not None:
-            _setter("before_applies", before_applies)
+            pulumi.set(__self__, "before_applies", before_applies)
         if before_destroys is not None:
-            _setter("before_destroys", before_destroys)
+            pulumi.set(__self__, "before_destroys", before_destroys)
         if before_inits is not None:
-            _setter("before_inits", before_inits)
+            pulumi.set(__self__, "before_inits", before_inits)
         if before_performs is not None:
-            _setter("before_performs", before_performs)
+            pulumi.set(__self__, "before_performs", before_performs)
         if before_plans is not None:
-            _setter("before_plans", before_plans)
+            pulumi.set(__self__, "before_plans", before_plans)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumi.set(__self__, "space_id", space_id)
 
     @property
     @pulumi.getter(name="afterApplies")
@@ -353,99 +290,36 @@ class _ContextState:
         :param pulumi.Input[str] name: Name of the context - should be unique in one account
         :param pulumi.Input[str] space_id: ID (slug) of the space the context is in
         """
-        _ContextState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            after_applies=after_applies,
-            after_destroys=after_destroys,
-            after_inits=after_inits,
-            after_performs=after_performs,
-            after_plans=after_plans,
-            after_runs=after_runs,
-            before_applies=before_applies,
-            before_destroys=before_destroys,
-            before_inits=before_inits,
-            before_performs=before_performs,
-            before_plans=before_plans,
-            description=description,
-            labels=labels,
-            name=name,
-            space_id=space_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             after_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             after_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             after_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             after_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             after_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             after_runs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             before_applies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             before_destroys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             before_inits: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             before_performs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             before_plans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if after_applies is None and 'afterApplies' in kwargs:
-            after_applies = kwargs['afterApplies']
-        if after_destroys is None and 'afterDestroys' in kwargs:
-            after_destroys = kwargs['afterDestroys']
-        if after_inits is None and 'afterInits' in kwargs:
-            after_inits = kwargs['afterInits']
-        if after_performs is None and 'afterPerforms' in kwargs:
-            after_performs = kwargs['afterPerforms']
-        if after_plans is None and 'afterPlans' in kwargs:
-            after_plans = kwargs['afterPlans']
-        if after_runs is None and 'afterRuns' in kwargs:
-            after_runs = kwargs['afterRuns']
-        if before_applies is None and 'beforeApplies' in kwargs:
-            before_applies = kwargs['beforeApplies']
-        if before_destroys is None and 'beforeDestroys' in kwargs:
-            before_destroys = kwargs['beforeDestroys']
-        if before_inits is None and 'beforeInits' in kwargs:
-            before_inits = kwargs['beforeInits']
-        if before_performs is None and 'beforePerforms' in kwargs:
-            before_performs = kwargs['beforePerforms']
-        if before_plans is None and 'beforePlans' in kwargs:
-            before_plans = kwargs['beforePlans']
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-
         if after_applies is not None:
-            _setter("after_applies", after_applies)
+            pulumi.set(__self__, "after_applies", after_applies)
         if after_destroys is not None:
-            _setter("after_destroys", after_destroys)
+            pulumi.set(__self__, "after_destroys", after_destroys)
         if after_inits is not None:
-            _setter("after_inits", after_inits)
+            pulumi.set(__self__, "after_inits", after_inits)
         if after_performs is not None:
-            _setter("after_performs", after_performs)
+            pulumi.set(__self__, "after_performs", after_performs)
         if after_plans is not None:
-            _setter("after_plans", after_plans)
+            pulumi.set(__self__, "after_plans", after_plans)
         if after_runs is not None:
-            _setter("after_runs", after_runs)
+            pulumi.set(__self__, "after_runs", after_runs)
         if before_applies is not None:
-            _setter("before_applies", before_applies)
+            pulumi.set(__self__, "before_applies", before_applies)
         if before_destroys is not None:
-            _setter("before_destroys", before_destroys)
+            pulumi.set(__self__, "before_destroys", before_destroys)
         if before_inits is not None:
-            _setter("before_inits", before_inits)
+            pulumi.set(__self__, "before_inits", before_inits)
         if before_performs is not None:
-            _setter("before_performs", before_performs)
+            pulumi.set(__self__, "before_performs", before_performs)
         if before_plans is not None:
-            _setter("before_plans", before_plans)
+            pulumi.set(__self__, "before_plans", before_plans)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumi.set(__self__, "space_id", space_id)
 
     @property
     @pulumi.getter(name="afterApplies")
@@ -715,10 +589,6 @@ class Context(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ContextArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
