@@ -16,7 +16,7 @@ builds:
       - linux
     ignore: []
     ldflags:
-      - -X github.com/pulumi/pulumi-spacelift/provider/pkg/version.Version={{.Tag}}
+      - -X github.com/spacelift-io/pulumi-spacelift/provider/pkg/version.Version={{.Tag}}
     main: ./cmd/pulumi-resource-spacelift/
 release:
   disable: false
