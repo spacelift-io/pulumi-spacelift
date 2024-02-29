@@ -71,10 +71,3 @@ jobs:
           aws cloudfront create-invalidation
           --distribution-id ${{ secrets.DISTRIBUTION }}
           --paths "/*"
-
-    strategy:
-      matrix:
-        provider_os:
-          - darwin
-          - linux
-          - windows
