@@ -13,10 +13,22 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetContextsContextResult
     {
+        /// <summary>
+        /// immutable ID (slug) of the context
+        /// </summary>
         public readonly string ContextId;
+        /// <summary>
+        /// free-form context description for users
+        /// </summary>
         public readonly string Description;
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// name of the context
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID (slug) of the space the context is in
+        /// </summary>
         public readonly string SpaceId;
 
         [OutputConstructor]

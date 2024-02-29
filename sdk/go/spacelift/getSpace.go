@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -110,12 +109,6 @@ func (o LookupSpaceResultOutput) ToLookupSpaceResultOutput() LookupSpaceResultOu
 
 func (o LookupSpaceResultOutput) ToLookupSpaceResultOutputWithContext(ctx context.Context) LookupSpaceResultOutput {
 	return o
-}
-
-func (o LookupSpaceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSpaceResult] {
-	return pulumix.Output[LookupSpaceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // free-form space description for users

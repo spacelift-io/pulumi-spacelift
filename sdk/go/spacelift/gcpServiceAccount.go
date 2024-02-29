@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -198,12 +197,6 @@ func (i *GcpServiceAccount) ToGcpServiceAccountOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(GcpServiceAccountOutput)
 }
 
-func (i *GcpServiceAccount) ToOutput(ctx context.Context) pulumix.Output[*GcpServiceAccount] {
-	return pulumix.Output[*GcpServiceAccount]{
-		OutputState: i.ToGcpServiceAccountOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GcpServiceAccountArrayInput is an input type that accepts GcpServiceAccountArray and GcpServiceAccountArrayOutput values.
 // You can construct a concrete instance of `GcpServiceAccountArrayInput` via:
 //
@@ -227,12 +220,6 @@ func (i GcpServiceAccountArray) ToGcpServiceAccountArrayOutput() GcpServiceAccou
 
 func (i GcpServiceAccountArray) ToGcpServiceAccountArrayOutputWithContext(ctx context.Context) GcpServiceAccountArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GcpServiceAccountArrayOutput)
-}
-
-func (i GcpServiceAccountArray) ToOutput(ctx context.Context) pulumix.Output[[]*GcpServiceAccount] {
-	return pulumix.Output[[]*GcpServiceAccount]{
-		OutputState: i.ToGcpServiceAccountArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GcpServiceAccountMapInput is an input type that accepts GcpServiceAccountMap and GcpServiceAccountMapOutput values.
@@ -260,12 +247,6 @@ func (i GcpServiceAccountMap) ToGcpServiceAccountMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GcpServiceAccountMapOutput)
 }
 
-func (i GcpServiceAccountMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GcpServiceAccount] {
-	return pulumix.Output[map[string]*GcpServiceAccount]{
-		OutputState: i.ToGcpServiceAccountMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GcpServiceAccountOutput struct{ *pulumi.OutputState }
 
 func (GcpServiceAccountOutput) ElementType() reflect.Type {
@@ -278,12 +259,6 @@ func (o GcpServiceAccountOutput) ToGcpServiceAccountOutput() GcpServiceAccountOu
 
 func (o GcpServiceAccountOutput) ToGcpServiceAccountOutputWithContext(ctx context.Context) GcpServiceAccountOutput {
 	return o
-}
-
-func (o GcpServiceAccountOutput) ToOutput(ctx context.Context) pulumix.Output[*GcpServiceAccount] {
-	return pulumix.Output[*GcpServiceAccount]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID of the module which uses GCP service account credentials
@@ -320,12 +295,6 @@ func (o GcpServiceAccountArrayOutput) ToGcpServiceAccountArrayOutputWithContext(
 	return o
 }
 
-func (o GcpServiceAccountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GcpServiceAccount] {
-	return pulumix.Output[[]*GcpServiceAccount]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GcpServiceAccountArrayOutput) Index(i pulumi.IntInput) GcpServiceAccountOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GcpServiceAccount {
 		return vs[0].([]*GcpServiceAccount)[vs[1].(int)]
@@ -344,12 +313,6 @@ func (o GcpServiceAccountMapOutput) ToGcpServiceAccountMapOutput() GcpServiceAcc
 
 func (o GcpServiceAccountMapOutput) ToGcpServiceAccountMapOutputWithContext(ctx context.Context) GcpServiceAccountMapOutput {
 	return o
-}
-
-func (o GcpServiceAccountMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GcpServiceAccount] {
-	return pulumix.Output[map[string]*GcpServiceAccount]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GcpServiceAccountMapOutput) MapIndex(k pulumi.StringInput) GcpServiceAccountOutput {

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -151,12 +150,6 @@ func (i *VcsAgentPool) ToVcsAgentPoolOutputWithContext(ctx context.Context) VcsA
 	return pulumi.ToOutputWithContext(ctx, i).(VcsAgentPoolOutput)
 }
 
-func (i *VcsAgentPool) ToOutput(ctx context.Context) pulumix.Output[*VcsAgentPool] {
-	return pulumix.Output[*VcsAgentPool]{
-		OutputState: i.ToVcsAgentPoolOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VcsAgentPoolArrayInput is an input type that accepts VcsAgentPoolArray and VcsAgentPoolArrayOutput values.
 // You can construct a concrete instance of `VcsAgentPoolArrayInput` via:
 //
@@ -180,12 +173,6 @@ func (i VcsAgentPoolArray) ToVcsAgentPoolArrayOutput() VcsAgentPoolArrayOutput {
 
 func (i VcsAgentPoolArray) ToVcsAgentPoolArrayOutputWithContext(ctx context.Context) VcsAgentPoolArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VcsAgentPoolArrayOutput)
-}
-
-func (i VcsAgentPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]*VcsAgentPool] {
-	return pulumix.Output[[]*VcsAgentPool]{
-		OutputState: i.ToVcsAgentPoolArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VcsAgentPoolMapInput is an input type that accepts VcsAgentPoolMap and VcsAgentPoolMapOutput values.
@@ -213,12 +200,6 @@ func (i VcsAgentPoolMap) ToVcsAgentPoolMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(VcsAgentPoolMapOutput)
 }
 
-func (i VcsAgentPoolMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VcsAgentPool] {
-	return pulumix.Output[map[string]*VcsAgentPool]{
-		OutputState: i.ToVcsAgentPoolMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VcsAgentPoolOutput struct{ *pulumi.OutputState }
 
 func (VcsAgentPoolOutput) ElementType() reflect.Type {
@@ -231,12 +212,6 @@ func (o VcsAgentPoolOutput) ToVcsAgentPoolOutput() VcsAgentPoolOutput {
 
 func (o VcsAgentPoolOutput) ToVcsAgentPoolOutputWithContext(ctx context.Context) VcsAgentPoolOutput {
 	return o
-}
-
-func (o VcsAgentPoolOutput) ToOutput(ctx context.Context) pulumix.Output[*VcsAgentPool] {
-	return pulumix.Output[*VcsAgentPool]{
-		OutputState: o.OutputState,
-	}
 }
 
 // VCS agent pool configuration, encoded using base64
@@ -268,12 +243,6 @@ func (o VcsAgentPoolArrayOutput) ToVcsAgentPoolArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o VcsAgentPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VcsAgentPool] {
-	return pulumix.Output[[]*VcsAgentPool]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VcsAgentPoolArrayOutput) Index(i pulumi.IntInput) VcsAgentPoolOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VcsAgentPool {
 		return vs[0].([]*VcsAgentPool)[vs[1].(int)]
@@ -292,12 +261,6 @@ func (o VcsAgentPoolMapOutput) ToVcsAgentPoolMapOutput() VcsAgentPoolMapOutput {
 
 func (o VcsAgentPoolMapOutput) ToVcsAgentPoolMapOutputWithContext(ctx context.Context) VcsAgentPoolMapOutput {
 	return o
-}
-
-func (o VcsAgentPoolMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VcsAgentPool] {
-	return pulumix.Output[map[string]*VcsAgentPool]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VcsAgentPoolMapOutput) MapIndex(k pulumi.StringInput) VcsAgentPoolOutput {

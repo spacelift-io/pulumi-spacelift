@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -266,12 +265,6 @@ func (i *Context) ToContextOutputWithContext(ctx context.Context) ContextOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(ContextOutput)
 }
 
-func (i *Context) ToOutput(ctx context.Context) pulumix.Output[*Context] {
-	return pulumix.Output[*Context]{
-		OutputState: i.ToContextOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ContextArrayInput is an input type that accepts ContextArray and ContextArrayOutput values.
 // You can construct a concrete instance of `ContextArrayInput` via:
 //
@@ -295,12 +288,6 @@ func (i ContextArray) ToContextArrayOutput() ContextArrayOutput {
 
 func (i ContextArray) ToContextArrayOutputWithContext(ctx context.Context) ContextArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ContextArrayOutput)
-}
-
-func (i ContextArray) ToOutput(ctx context.Context) pulumix.Output[[]*Context] {
-	return pulumix.Output[[]*Context]{
-		OutputState: i.ToContextArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ContextMapInput is an input type that accepts ContextMap and ContextMapOutput values.
@@ -328,12 +315,6 @@ func (i ContextMap) ToContextMapOutputWithContext(ctx context.Context) ContextMa
 	return pulumi.ToOutputWithContext(ctx, i).(ContextMapOutput)
 }
 
-func (i ContextMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Context] {
-	return pulumix.Output[map[string]*Context]{
-		OutputState: i.ToContextMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ContextOutput struct{ *pulumi.OutputState }
 
 func (ContextOutput) ElementType() reflect.Type {
@@ -346,12 +327,6 @@ func (o ContextOutput) ToContextOutput() ContextOutput {
 
 func (o ContextOutput) ToContextOutputWithContext(ctx context.Context) ContextOutput {
 	return o
-}
-
-func (o ContextOutput) ToOutput(ctx context.Context) pulumix.Output[*Context] {
-	return pulumix.Output[*Context]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List of after-apply scripts
@@ -442,12 +417,6 @@ func (o ContextArrayOutput) ToContextArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o ContextArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Context] {
-	return pulumix.Output[[]*Context]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ContextArrayOutput) Index(i pulumi.IntInput) ContextOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Context {
 		return vs[0].([]*Context)[vs[1].(int)]
@@ -466,12 +435,6 @@ func (o ContextMapOutput) ToContextMapOutput() ContextMapOutput {
 
 func (o ContextMapOutput) ToContextMapOutputWithContext(ctx context.Context) ContextMapOutput {
 	return o
-}
-
-func (o ContextMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Context] {
-	return pulumix.Output[map[string]*Context]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ContextMapOutput) MapIndex(k pulumi.StringInput) ContextOutput {

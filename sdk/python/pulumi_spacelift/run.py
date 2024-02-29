@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RunArgs', 'Run']
@@ -25,36 +25,13 @@ class RunArgs:
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of the resource.
         :param pulumi.Input[bool] proposed: Whether the run is a proposed run. Defaults to `false`.
         """
-        RunArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            stack_id=stack_id,
-            commit_sha=commit_sha,
-            keepers=keepers,
-            proposed=proposed,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             stack_id: Optional[pulumi.Input[str]] = None,
-             commit_sha: Optional[pulumi.Input[str]] = None,
-             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             proposed: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if stack_id is None:
-            raise TypeError("Missing 'stack_id' argument")
-        if commit_sha is None and 'commitSha' in kwargs:
-            commit_sha = kwargs['commitSha']
-
-        _setter("stack_id", stack_id)
+        pulumi.set(__self__, "stack_id", stack_id)
         if commit_sha is not None:
-            _setter("commit_sha", commit_sha)
+            pulumi.set(__self__, "commit_sha", commit_sha)
         if keepers is not None:
-            _setter("keepers", keepers)
+            pulumi.set(__self__, "keepers", keepers)
         if proposed is not None:
-            _setter("proposed", proposed)
+            pulumi.set(__self__, "proposed", proposed)
 
     @property
     @pulumi.getter(name="stackId")
@@ -119,35 +96,14 @@ class _RunState:
         :param pulumi.Input[bool] proposed: Whether the run is a proposed run. Defaults to `false`.
         :param pulumi.Input[str] stack_id: ID of the stack on which the run is to be triggered.
         """
-        _RunState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            commit_sha=commit_sha,
-            keepers=keepers,
-            proposed=proposed,
-            stack_id=stack_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             commit_sha: Optional[pulumi.Input[str]] = None,
-             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             proposed: Optional[pulumi.Input[bool]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if commit_sha is None and 'commitSha' in kwargs:
-            commit_sha = kwargs['commitSha']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
         if commit_sha is not None:
-            _setter("commit_sha", commit_sha)
+            pulumi.set(__self__, "commit_sha", commit_sha)
         if keepers is not None:
-            _setter("keepers", keepers)
+            pulumi.set(__self__, "keepers", keepers)
         if proposed is not None:
-            _setter("proposed", proposed)
+            pulumi.set(__self__, "proposed", proposed)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter(name="commitSha")
@@ -269,10 +225,6 @@ class Run(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            RunArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -138,12 +137,6 @@ func (o LookupEnvironmentVariableResultOutput) ToLookupEnvironmentVariableResult
 
 func (o LookupEnvironmentVariableResultOutput) ToLookupEnvironmentVariableResultOutputWithContext(ctx context.Context) LookupEnvironmentVariableResultOutput {
 	return o
-}
-
-func (o LookupEnvironmentVariableResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupEnvironmentVariableResult] {
-	return pulumix.Output[LookupEnvironmentVariableResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // SHA-256 checksum of the value

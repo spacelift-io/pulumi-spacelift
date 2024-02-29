@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -204,12 +203,6 @@ func (i *AzureIntegration) ToAzureIntegrationOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(AzureIntegrationOutput)
 }
 
-func (i *AzureIntegration) ToOutput(ctx context.Context) pulumix.Output[*AzureIntegration] {
-	return pulumix.Output[*AzureIntegration]{
-		OutputState: i.ToAzureIntegrationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AzureIntegrationArrayInput is an input type that accepts AzureIntegrationArray and AzureIntegrationArrayOutput values.
 // You can construct a concrete instance of `AzureIntegrationArrayInput` via:
 //
@@ -233,12 +226,6 @@ func (i AzureIntegrationArray) ToAzureIntegrationArrayOutput() AzureIntegrationA
 
 func (i AzureIntegrationArray) ToAzureIntegrationArrayOutputWithContext(ctx context.Context) AzureIntegrationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AzureIntegrationArrayOutput)
-}
-
-func (i AzureIntegrationArray) ToOutput(ctx context.Context) pulumix.Output[[]*AzureIntegration] {
-	return pulumix.Output[[]*AzureIntegration]{
-		OutputState: i.ToAzureIntegrationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AzureIntegrationMapInput is an input type that accepts AzureIntegrationMap and AzureIntegrationMapOutput values.
@@ -266,12 +253,6 @@ func (i AzureIntegrationMap) ToAzureIntegrationMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(AzureIntegrationMapOutput)
 }
 
-func (i AzureIntegrationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AzureIntegration] {
-	return pulumix.Output[map[string]*AzureIntegration]{
-		OutputState: i.ToAzureIntegrationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AzureIntegrationOutput struct{ *pulumi.OutputState }
 
 func (AzureIntegrationOutput) ElementType() reflect.Type {
@@ -284,12 +265,6 @@ func (o AzureIntegrationOutput) ToAzureIntegrationOutput() AzureIntegrationOutpu
 
 func (o AzureIntegrationOutput) ToAzureIntegrationOutputWithContext(ctx context.Context) AzureIntegrationOutput {
 	return o
-}
-
-func (o AzureIntegrationOutput) ToOutput(ctx context.Context) pulumix.Output[*AzureIntegration] {
-	return pulumix.Output[*AzureIntegration]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Indicates whether admin consent has been performed for the AAD Application.
@@ -351,12 +326,6 @@ func (o AzureIntegrationArrayOutput) ToAzureIntegrationArrayOutputWithContext(ct
 	return o
 }
 
-func (o AzureIntegrationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AzureIntegration] {
-	return pulumix.Output[[]*AzureIntegration]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AzureIntegrationArrayOutput) Index(i pulumi.IntInput) AzureIntegrationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AzureIntegration {
 		return vs[0].([]*AzureIntegration)[vs[1].(int)]
@@ -375,12 +344,6 @@ func (o AzureIntegrationMapOutput) ToAzureIntegrationMapOutput() AzureIntegratio
 
 func (o AzureIntegrationMapOutput) ToAzureIntegrationMapOutputWithContext(ctx context.Context) AzureIntegrationMapOutput {
 	return o
-}
-
-func (o AzureIntegrationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AzureIntegration] {
-	return pulumix.Output[map[string]*AzureIntegration]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AzureIntegrationMapOutput) MapIndex(k pulumi.StringInput) AzureIntegrationOutput {

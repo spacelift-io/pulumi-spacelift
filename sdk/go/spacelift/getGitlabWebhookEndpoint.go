@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -79,12 +78,6 @@ func (o GetGitlabWebhookEndpointResultOutput) ToGetGitlabWebhookEndpointResultOu
 
 func (o GetGitlabWebhookEndpointResultOutput) ToGetGitlabWebhookEndpointResultOutputWithContext(ctx context.Context) GetGitlabWebhookEndpointResultOutput {
 	return o
-}
-
-func (o GetGitlabWebhookEndpointResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetGitlabWebhookEndpointResult] {
-	return pulumix.Output[GetGitlabWebhookEndpointResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

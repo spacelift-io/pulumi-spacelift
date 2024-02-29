@@ -18,19 +18,19 @@ import * as utilities from "./utilities";
  * const ireland_kubeconfig = new spacelift.Mountedfile("ireland-kubeconfig", {
  *     contextId: "prod-k8s-ie",
  *     relativePath: "kubeconfig",
- *     content: Buffer.from(fs.readFileSync(`${path.module}/kubeconfig.json`), 'binary').toString('base64'),
+ *     content: fs.readFileSync(`${path.module}/kubeconfig.json`, { encoding: "base64" }),
  * });
  * // For a module
  * const module_kubeconfig = new spacelift.Mountedfile("module-kubeconfig", {
  *     moduleId: "k8s-module",
  *     relativePath: "kubeconfig",
- *     content: Buffer.from(fs.readFileSync(`${path.module}/kubeconfig.json`), 'binary').toString('base64'),
+ *     content: fs.readFileSync(`${path.module}/kubeconfig.json`, { encoding: "base64" }),
  * });
  * // For a stack
  * const core_kubeconfig = new spacelift.Mountedfile("core-kubeconfig", {
  *     stackId: "k8s-core",
  *     relativePath: "kubeconfig",
- *     content: Buffer.from(fs.readFileSync(`${path.module}/kubeconfig.json`), 'binary').toString('base64'),
+ *     content: fs.readFileSync(`${path.module}/kubeconfig.json`, { encoding: "base64" }),
  * });
  * ```
  *

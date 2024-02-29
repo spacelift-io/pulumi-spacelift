@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AzureIntegrationAttachmentArgs', 'AzureIntegrationAttachment']
@@ -29,48 +29,17 @@ class AzureIntegrationAttachmentArgs:
         :param pulumi.Input[str] subscription_id: Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
         :param pulumi.Input[bool] write: Indicates whether this attachment is used for write operations. Defaults to `true`.
         """
-        AzureIntegrationAttachmentArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            integration_id=integration_id,
-            module_id=module_id,
-            read=read,
-            stack_id=stack_id,
-            subscription_id=subscription_id,
-            write=write,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             integration_id: Optional[pulumi.Input[str]] = None,
-             module_id: Optional[pulumi.Input[str]] = None,
-             read: Optional[pulumi.Input[bool]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             subscription_id: Optional[pulumi.Input[str]] = None,
-             write: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if integration_id is None and 'integrationId' in kwargs:
-            integration_id = kwargs['integrationId']
-        if integration_id is None:
-            raise TypeError("Missing 'integration_id' argument")
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if subscription_id is None and 'subscriptionId' in kwargs:
-            subscription_id = kwargs['subscriptionId']
-
-        _setter("integration_id", integration_id)
+        pulumi.set(__self__, "integration_id", integration_id)
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if read is not None:
-            _setter("read", read)
+            pulumi.set(__self__, "read", read)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
         if subscription_id is not None:
-            _setter("subscription_id", subscription_id)
+            pulumi.set(__self__, "subscription_id", subscription_id)
         if write is not None:
-            _setter("write", write)
+            pulumi.set(__self__, "write", write)
 
     @property
     @pulumi.getter(name="integrationId")
@@ -165,53 +134,20 @@ class _AzureIntegrationAttachmentState:
         :param pulumi.Input[str] subscription_id: Contains the Azure subscription ID to use with this Stack.  Overrides the default subscription ID set at the integration level.
         :param pulumi.Input[bool] write: Indicates whether this attachment is used for write operations. Defaults to `true`.
         """
-        _AzureIntegrationAttachmentState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            attachment_id=attachment_id,
-            integration_id=integration_id,
-            module_id=module_id,
-            read=read,
-            stack_id=stack_id,
-            subscription_id=subscription_id,
-            write=write,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             attachment_id: Optional[pulumi.Input[str]] = None,
-             integration_id: Optional[pulumi.Input[str]] = None,
-             module_id: Optional[pulumi.Input[str]] = None,
-             read: Optional[pulumi.Input[bool]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             subscription_id: Optional[pulumi.Input[str]] = None,
-             write: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if attachment_id is None and 'attachmentId' in kwargs:
-            attachment_id = kwargs['attachmentId']
-        if integration_id is None and 'integrationId' in kwargs:
-            integration_id = kwargs['integrationId']
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if subscription_id is None and 'subscriptionId' in kwargs:
-            subscription_id = kwargs['subscriptionId']
-
         if attachment_id is not None:
-            _setter("attachment_id", attachment_id)
+            pulumi.set(__self__, "attachment_id", attachment_id)
         if integration_id is not None:
-            _setter("integration_id", integration_id)
+            pulumi.set(__self__, "integration_id", integration_id)
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if read is not None:
-            _setter("read", read)
+            pulumi.set(__self__, "read", read)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
         if subscription_id is not None:
-            _setter("subscription_id", subscription_id)
+            pulumi.set(__self__, "subscription_id", subscription_id)
         if write is not None:
-            _setter("write", write)
+            pulumi.set(__self__, "write", write)
 
     @property
     @pulumi.getter(name="attachmentId")
@@ -401,10 +337,6 @@ class AzureIntegrationAttachment(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            AzureIntegrationAttachmentArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
