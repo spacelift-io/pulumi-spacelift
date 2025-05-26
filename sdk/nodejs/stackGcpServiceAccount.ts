@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
+ * import * as google from "@pulumi/google";
  * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * const k8s_coreStack = new spacelift.Stack("k8s-coreStack", {
@@ -24,14 +24,15 @@ import * as utilities from "./utilities";
  *         "https://www.googleapis.com/auth/devstorage.full_control",
  *     ],
  * });
- * const k8s_coreProject = new gcp.organizations.Project("k8s-coreProject", {
+ * const k8s_coregoogle_project = new google.index.Google_project("k8s-coregoogle_project", {
+ *     name: "Kubernetes code",
  *     projectId: "unicorn-k8s-core",
  *     orgId: _var.gcp_organization_id,
  * });
- * const k8s_coreIAMMember = new gcp.projects.IAMMember("k8s-coreIAMMember", {
- *     project: k8s_coreProject.id,
+ * const k8s_coregoogle_project_iam_member = new google.index.Google_project_iam_member("k8s-coregoogle_project_iam_member", {
+ *     project: k8s_coregoogle_project.id,
  *     role: "roles/owner",
- *     member: pulumi.interpolate`serviceAccount:${k8s_coreStackGcpServiceAccount.serviceAccountEmail}`,
+ *     member: `serviceAccount:${k8s_coreStackGcpServiceAccount.serviceAccountEmail}`,
  * });
  * ```
  */
