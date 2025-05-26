@@ -18,56 +18,6 @@ var (
 			After:  `check_call(['pulumi', 'plugin', 'install', '--server', 'https:\/\/downloads.spacelift.io\/pulumi-plugins', 'resource', 'spacelift', '0.0.0']`,
 			File:   "sdk/python/setup.py",
 		},
-		{
-			Before: regexp.MustCompile(`import pulumi$`),
-			After:  `import pulumi as pulumilib`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
-		{
-			Before: regexp.MustCompile(`pulumi.CustomResource`),
-			After:  `pulumilib.CustomResource`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
-		{
-			Before: regexp.MustCompile(`import pulumi$`),
-			After:  `import pulumi as pulumilib`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
-		{
-			Before: regexp.MustCompile(`pulumi.ResourceOptions`),
-			After:  `pulumilib.ResourceOptions`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
-		{
-			Before: regexp.MustCompile(`pulumi.Input`),
-			After:  `pulumilib.Input`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
-		{
-			Before: regexp.MustCompile(`pulumi.Output`),
-			After:  `pulumilib.Output`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
-		{
-			Before: regexp.MustCompile(`@pulumi.getter`),
-			After:  `@pulumilib.getter`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
-		{
-			Before: regexp.MustCompile(`@pulumi.input_type`),
-			After:  `@pulumilib.input_type`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
-		{
-			Before: regexp.MustCompile(`pulumi.get`),
-			After:  `pulumilib.get`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
-		{
-			Before: regexp.MustCompile(`pulumi.set`),
-			After:  `pulumilib.set`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
 	}
 )
 
