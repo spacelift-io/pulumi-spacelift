@@ -1,5 +1,6 @@
-ARG UBUNTU_VERSION=latest
-FROM --platform=linux/amd64 ubuntu:${UBUNTU_VERSION} 
+ARG UBUNTU_VERSION=22.04
+ARG TARGETPLATFORM=linux/amd64
+FROM --platform=$TARGETPLATFORM ubuntu:${UBUNTU_VERSION} 
 
 # Update apt-get and install various needed utilities
 RUN apt-get update && \
@@ -36,7 +37,7 @@ RUN rm -rf /usr/local/bin/pulumictl && \
   tar -C /usr/local/bin -xzf pulumictl.${PULUMICTL_VERSION}.tar.gz
 
 # Install nodejs
-ARG NODEJS_VERSION=v16.20.2
+ARG NODEJS_VERSION=v18.20.4
 ARG NODEJS_PKG=node-${NODEJS_VERSION}-linux-x64
 ARG NODEJS_TARBALL=${NODEJS_PKG}.tar.xz
 RUN rm -rf /usr/local/node && \
@@ -54,7 +55,11 @@ RUN apt-get install -y python3 && \
   apt-get install -y python3-setuptools
 
 # Install .NET
-RUN apt-get install -y dotnet-sdk-6.0
+RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+  dpkg -i packages-microsoft-prod.deb && \
+  rm packages-microsoft-prod.deb && \
+  apt-get update && \
+  apt-get install -y dotnet-sdk-6.0
 
 # Install Pulumi
 RUN curl -fsSL https://get.pulumi.com | sh
