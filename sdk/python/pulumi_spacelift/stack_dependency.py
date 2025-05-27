@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['StackDependencyArgs', 'StackDependency']
@@ -21,29 +21,8 @@ class StackDependencyArgs:
         :param pulumi.Input[str] depends_on_stack_id: immutable ID (slug) of stack to depend on.
         :param pulumi.Input[str] stack_id: immutable ID (slug) of stack which has a dependency.
         """
-        StackDependencyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            depends_on_stack_id=depends_on_stack_id,
-            stack_id=stack_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             depends_on_stack_id: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if depends_on_stack_id is None and 'dependsOnStackId' in kwargs:
-            depends_on_stack_id = kwargs['dependsOnStackId']
-        if depends_on_stack_id is None:
-            raise TypeError("Missing 'depends_on_stack_id' argument")
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if stack_id is None:
-            raise TypeError("Missing 'stack_id' argument")
-
-        _setter("depends_on_stack_id", depends_on_stack_id)
-        _setter("stack_id", stack_id)
+        pulumi.set(__self__, "depends_on_stack_id", depends_on_stack_id)
+        pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter(name="dependsOnStackId")
@@ -80,27 +59,10 @@ class _StackDependencyState:
         :param pulumi.Input[str] depends_on_stack_id: immutable ID (slug) of stack to depend on.
         :param pulumi.Input[str] stack_id: immutable ID (slug) of stack which has a dependency.
         """
-        _StackDependencyState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            depends_on_stack_id=depends_on_stack_id,
-            stack_id=stack_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             depends_on_stack_id: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if depends_on_stack_id is None and 'dependsOnStackId' in kwargs:
-            depends_on_stack_id = kwargs['dependsOnStackId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
         if depends_on_stack_id is not None:
-            _setter("depends_on_stack_id", depends_on_stack_id)
+            pulumi.set(__self__, "depends_on_stack_id", depends_on_stack_id)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter(name="dependsOnStackId")
@@ -196,10 +158,6 @@ class StackDependency(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            StackDependencyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

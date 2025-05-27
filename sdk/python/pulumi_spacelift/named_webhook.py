@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['NamedWebhookArgs', 'NamedWebhook']
@@ -29,44 +29,15 @@ class NamedWebhookArgs:
         :param pulumi.Input[str] name: the name for the webhook which will also be used to generate the id
         :param pulumi.Input[str] secret: secret used to sign each request so you're able to verify that the request comes from us. Defaults to an empty value.
         """
-        NamedWebhookArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            endpoint=endpoint,
-            space_id=space_id,
-            labels=labels,
-            name=name,
-            secret=secret,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[pulumi.Input[bool]] = None,
-             endpoint: Optional[pulumi.Input[str]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             secret: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if enabled is None:
-            raise TypeError("Missing 'enabled' argument")
-        if endpoint is None:
-            raise TypeError("Missing 'endpoint' argument")
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-        if space_id is None:
-            raise TypeError("Missing 'space_id' argument")
-
-        _setter("enabled", enabled)
-        _setter("endpoint", endpoint)
-        _setter("space_id", space_id)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "space_id", space_id)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if secret is not None:
-            _setter("secret", secret)
+            pulumi.set(__self__, "secret", secret)
 
     @property
     @pulumi.getter
@@ -159,41 +130,18 @@ class _NamedWebhookState:
         :param pulumi.Input[str] secret: secret used to sign each request so you're able to verify that the request comes from us. Defaults to an empty value.
         :param pulumi.Input[str] space_id: ID of the space the webhook is in
         """
-        _NamedWebhookState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            endpoint=endpoint,
-            labels=labels,
-            name=name,
-            secret=secret,
-            space_id=space_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[pulumi.Input[bool]] = None,
-             endpoint: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             secret: Optional[pulumi.Input[str]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if endpoint is not None:
-            _setter("endpoint", endpoint)
+            pulumi.set(__self__, "endpoint", endpoint)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if secret is not None:
-            _setter("secret", secret)
+            pulumi.set(__self__, "secret", secret)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumi.set(__self__, "space_id", space_id)
 
     @property
     @pulumi.getter
@@ -311,10 +259,6 @@ class NamedWebhook(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            NamedWebhookArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

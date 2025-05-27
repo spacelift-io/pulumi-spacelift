@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -169,12 +168,6 @@ func (i *TerraformProvider) ToTerraformProviderOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(TerraformProviderOutput)
 }
 
-func (i *TerraformProvider) ToOutput(ctx context.Context) pulumix.Output[*TerraformProvider] {
-	return pulumix.Output[*TerraformProvider]{
-		OutputState: i.ToTerraformProviderOutputWithContext(ctx).OutputState,
-	}
-}
-
 // TerraformProviderArrayInput is an input type that accepts TerraformProviderArray and TerraformProviderArrayOutput values.
 // You can construct a concrete instance of `TerraformProviderArrayInput` via:
 //
@@ -198,12 +191,6 @@ func (i TerraformProviderArray) ToTerraformProviderArrayOutput() TerraformProvid
 
 func (i TerraformProviderArray) ToTerraformProviderArrayOutputWithContext(ctx context.Context) TerraformProviderArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TerraformProviderArrayOutput)
-}
-
-func (i TerraformProviderArray) ToOutput(ctx context.Context) pulumix.Output[[]*TerraformProvider] {
-	return pulumix.Output[[]*TerraformProvider]{
-		OutputState: i.ToTerraformProviderArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // TerraformProviderMapInput is an input type that accepts TerraformProviderMap and TerraformProviderMapOutput values.
@@ -231,12 +218,6 @@ func (i TerraformProviderMap) ToTerraformProviderMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(TerraformProviderMapOutput)
 }
 
-func (i TerraformProviderMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TerraformProvider] {
-	return pulumix.Output[map[string]*TerraformProvider]{
-		OutputState: i.ToTerraformProviderMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type TerraformProviderOutput struct{ *pulumi.OutputState }
 
 func (TerraformProviderOutput) ElementType() reflect.Type {
@@ -249,12 +230,6 @@ func (o TerraformProviderOutput) ToTerraformProviderOutput() TerraformProviderOu
 
 func (o TerraformProviderOutput) ToTerraformProviderOutputWithContext(ctx context.Context) TerraformProviderOutput {
 	return o
-}
-
-func (o TerraformProviderOutput) ToOutput(ctx context.Context) pulumix.Output[*TerraformProvider] {
-	return pulumix.Output[*TerraformProvider]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Free-form description for human users, supports Markdown
@@ -295,12 +270,6 @@ func (o TerraformProviderArrayOutput) ToTerraformProviderArrayOutputWithContext(
 	return o
 }
 
-func (o TerraformProviderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TerraformProvider] {
-	return pulumix.Output[[]*TerraformProvider]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o TerraformProviderArrayOutput) Index(i pulumi.IntInput) TerraformProviderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TerraformProvider {
 		return vs[0].([]*TerraformProvider)[vs[1].(int)]
@@ -319,12 +288,6 @@ func (o TerraformProviderMapOutput) ToTerraformProviderMapOutput() TerraformProv
 
 func (o TerraformProviderMapOutput) ToTerraformProviderMapOutputWithContext(ctx context.Context) TerraformProviderMapOutput {
 	return o
-}
-
-func (o TerraformProviderMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TerraformProvider] {
-	return pulumix.Output[map[string]*TerraformProvider]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o TerraformProviderMapOutput) MapIndex(k pulumi.StringInput) TerraformProviderOutput {

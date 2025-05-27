@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -111,12 +110,6 @@ func (o LookupScheduledTaskResultOutput) ToLookupScheduledTaskResultOutput() Loo
 
 func (o LookupScheduledTaskResultOutput) ToLookupScheduledTaskResultOutputWithContext(ctx context.Context) LookupScheduledTaskResultOutput {
 	return o
-}
-
-func (o LookupScheduledTaskResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupScheduledTaskResult] {
-	return pulumix.Output[LookupScheduledTaskResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Timestamp (unix timestamp) at which time the scheduling should happen.

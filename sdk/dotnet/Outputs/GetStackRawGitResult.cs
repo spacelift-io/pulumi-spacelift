@@ -13,7 +13,13 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStackRawGitResult
     {
+        /// <summary>
+        /// User-friendly namespace for the repository, this is for cosmetic purposes only
+        /// </summary>
         public readonly string Namespace;
+        /// <summary>
+        /// HTTPS URL of the Git repository
+        /// </summary>
         public readonly string Url;
 
         [OutputConstructor]

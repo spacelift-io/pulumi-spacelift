@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -139,12 +138,6 @@ func (o GetAwsIntegrationAttachmentExternalIdResultOutput) ToGetAwsIntegrationAt
 
 func (o GetAwsIntegrationAttachmentExternalIdResultOutput) ToGetAwsIntegrationAttachmentExternalIdResultOutputWithContext(ctx context.Context) GetAwsIntegrationAttachmentExternalIdResultOutput {
 	return o
-}
-
-func (o GetAwsIntegrationAttachmentExternalIdResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAwsIntegrationAttachmentExternalIdResult] {
-	return pulumix.Output[GetAwsIntegrationAttachmentExternalIdResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // An assume role policy statement that can be attached to your role to allow Spacelift to assume it

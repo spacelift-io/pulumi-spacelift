@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -115,12 +114,6 @@ func (o GetBitbucketDatacenterIntegrationResultOutput) ToGetBitbucketDatacenterI
 
 func (o GetBitbucketDatacenterIntegrationResultOutput) ToGetBitbucketDatacenterIntegrationResultOutputWithContext(ctx context.Context) GetBitbucketDatacenterIntegrationResultOutput {
 	return o
-}
-
-func (o GetBitbucketDatacenterIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBitbucketDatacenterIntegrationResult] {
-	return pulumix.Output[GetBitbucketDatacenterIntegrationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Bitbucket Datacenter integration api host

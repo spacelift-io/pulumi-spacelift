@@ -13,8 +13,17 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetModuleGitlabResult
     {
+        /// <summary>
+        /// ID of the Gitlab integration
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Indicates whether this is the default Gitlab integration
+        /// </summary>
         public readonly bool IsDefault;
+        /// <summary>
+        /// GitLab namespace of the repository
+        /// </summary>
         public readonly string Namespace;
 
         [OutputConstructor]

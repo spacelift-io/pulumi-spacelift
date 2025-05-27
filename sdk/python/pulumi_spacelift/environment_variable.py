@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['EnvironmentVariableArgs', 'EnvironmentVariable']
@@ -29,47 +29,18 @@ class EnvironmentVariableArgs:
         :param pulumi.Input[str] value: Value of the environment variable. Defaults to an empty string.
         :param pulumi.Input[bool] write_only: Indicates whether the value is secret or not. Defaults to `true`.
         """
-        EnvironmentVariableArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            context_id=context_id,
-            module_id=module_id,
-            name=name,
-            stack_id=stack_id,
-            value=value,
-            write_only=write_only,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             context_id: Optional[pulumi.Input[str]] = None,
-             module_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             value: Optional[pulumi.Input[str]] = None,
-             write_only: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if context_id is None and 'contextId' in kwargs:
-            context_id = kwargs['contextId']
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if write_only is None and 'writeOnly' in kwargs:
-            write_only = kwargs['writeOnly']
-
         if context_id is not None:
-            _setter("context_id", context_id)
+            pulumi.set(__self__, "context_id", context_id)
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
         if value is not None:
-            _setter("value", value)
+            pulumi.set(__self__, "value", value)
         if write_only is not None:
-            _setter("write_only", write_only)
+            pulumi.set(__self__, "write_only", write_only)
 
     @property
     @pulumi.getter(name="contextId")
@@ -164,51 +135,20 @@ class _EnvironmentVariableState:
         :param pulumi.Input[str] value: Value of the environment variable. Defaults to an empty string.
         :param pulumi.Input[bool] write_only: Indicates whether the value is secret or not. Defaults to `true`.
         """
-        _EnvironmentVariableState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            checksum=checksum,
-            context_id=context_id,
-            module_id=module_id,
-            name=name,
-            stack_id=stack_id,
-            value=value,
-            write_only=write_only,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             checksum: Optional[pulumi.Input[str]] = None,
-             context_id: Optional[pulumi.Input[str]] = None,
-             module_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             value: Optional[pulumi.Input[str]] = None,
-             write_only: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if context_id is None and 'contextId' in kwargs:
-            context_id = kwargs['contextId']
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if write_only is None and 'writeOnly' in kwargs:
-            write_only = kwargs['writeOnly']
-
         if checksum is not None:
-            _setter("checksum", checksum)
+            pulumi.set(__self__, "checksum", checksum)
         if context_id is not None:
-            _setter("context_id", context_id)
+            pulumi.set(__self__, "context_id", context_id)
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
         if value is not None:
-            _setter("value", value)
+            pulumi.set(__self__, "value", value)
         if write_only is not None:
-            _setter("write_only", write_only)
+            pulumi.set(__self__, "write_only", write_only)
 
     @property
     @pulumi.getter
@@ -412,10 +352,6 @@ class EnvironmentVariable(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            EnvironmentVariableArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

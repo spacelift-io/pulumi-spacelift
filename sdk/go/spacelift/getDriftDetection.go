@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -111,12 +110,6 @@ func (o LookupDriftDetectionResultOutput) ToLookupDriftDetectionResultOutput() L
 
 func (o LookupDriftDetectionResultOutput) ToLookupDriftDetectionResultOutputWithContext(ctx context.Context) LookupDriftDetectionResultOutput {
 	return o
-}
-
-func (o LookupDriftDetectionResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDriftDetectionResult] {
-	return pulumix.Output[LookupDriftDetectionResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

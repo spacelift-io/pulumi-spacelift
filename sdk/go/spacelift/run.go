@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -167,12 +166,6 @@ func (i *Run) ToRunOutputWithContext(ctx context.Context) RunOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RunOutput)
 }
 
-func (i *Run) ToOutput(ctx context.Context) pulumix.Output[*Run] {
-	return pulumix.Output[*Run]{
-		OutputState: i.ToRunOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RunArrayInput is an input type that accepts RunArray and RunArrayOutput values.
 // You can construct a concrete instance of `RunArrayInput` via:
 //
@@ -196,12 +189,6 @@ func (i RunArray) ToRunArrayOutput() RunArrayOutput {
 
 func (i RunArray) ToRunArrayOutputWithContext(ctx context.Context) RunArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RunArrayOutput)
-}
-
-func (i RunArray) ToOutput(ctx context.Context) pulumix.Output[[]*Run] {
-	return pulumix.Output[[]*Run]{
-		OutputState: i.ToRunArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RunMapInput is an input type that accepts RunMap and RunMapOutput values.
@@ -229,12 +216,6 @@ func (i RunMap) ToRunMapOutputWithContext(ctx context.Context) RunMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RunMapOutput)
 }
 
-func (i RunMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Run] {
-	return pulumix.Output[map[string]*Run]{
-		OutputState: i.ToRunMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RunOutput struct{ *pulumi.OutputState }
 
 func (RunOutput) ElementType() reflect.Type {
@@ -247,12 +228,6 @@ func (o RunOutput) ToRunOutput() RunOutput {
 
 func (o RunOutput) ToRunOutputWithContext(ctx context.Context) RunOutput {
 	return o
-}
-
-func (o RunOutput) ToOutput(ctx context.Context) pulumix.Output[*Run] {
-	return pulumix.Output[*Run]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The commit SHA for which to trigger a run.
@@ -289,12 +264,6 @@ func (o RunArrayOutput) ToRunArrayOutputWithContext(ctx context.Context) RunArra
 	return o
 }
 
-func (o RunArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Run] {
-	return pulumix.Output[[]*Run]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RunArrayOutput) Index(i pulumi.IntInput) RunOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Run {
 		return vs[0].([]*Run)[vs[1].(int)]
@@ -313,12 +282,6 @@ func (o RunMapOutput) ToRunMapOutput() RunMapOutput {
 
 func (o RunMapOutput) ToRunMapOutputWithContext(ctx context.Context) RunMapOutput {
 	return o
-}
-
-func (o RunMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Run] {
-	return pulumix.Output[map[string]*Run]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RunMapOutput) MapIndex(k pulumi.StringInput) RunOutput {
