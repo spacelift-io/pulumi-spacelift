@@ -4,7 +4,7 @@
 
 import copy
 import warnings
-import pulumi
+import pulumi as pulumilib
 import pulumi.runtime
 from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities

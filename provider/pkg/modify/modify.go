@@ -19,18 +19,14 @@ var (
 			File:   "sdk/python/setup.py",
 		},
 		{
-			Before: regexp.MustCompile(`import pulumi$`),
+			// (?m) enables multiline mode, not working without it
+			Before: regexp.MustCompile(`(?m)^import pulumi$`),
 			After:  `import pulumi as pulumilib`,
 			File:   "sdk/python/pulumi_spacelift/stack.py",
 		},
 		{
 			Before: regexp.MustCompile(`pulumi.CustomResource`),
 			After:  `pulumilib.CustomResource`,
-			File:   "sdk/python/pulumi_spacelift/stack.py",
-		},
-		{
-			Before: regexp.MustCompile(`import pulumi$`),
-			After:  `import pulumi as pulumilib`,
 			File:   "sdk/python/pulumi_spacelift/stack.py",
 		},
 		{
