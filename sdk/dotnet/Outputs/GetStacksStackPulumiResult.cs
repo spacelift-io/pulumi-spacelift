@@ -13,7 +13,13 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStacksStackPulumiResult
     {
+        /// <summary>
+        /// State backend to log into on Run initialize.
+        /// </summary>
         public readonly string LoginUrl;
+        /// <summary>
+        /// Pulumi stack name to use with the state backend.
+        /// </summary>
         public readonly string StackName;
 
         [OutputConstructor]

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['SpaceArgs', 'Space']
@@ -27,39 +27,16 @@ class SpaceArgs:
         :param pulumi.Input[str] name: name of the space
         :param pulumi.Input[str] parent_space_id: immutable ID (slug) of parent space. Defaults to `root`.
         """
-        SpaceArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            inherit_entities=inherit_entities,
-            labels=labels,
-            name=name,
-            parent_space_id=parent_space_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             inherit_entities: Optional[pulumi.Input[bool]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             parent_space_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if inherit_entities is None and 'inheritEntities' in kwargs:
-            inherit_entities = kwargs['inheritEntities']
-        if parent_space_id is None and 'parentSpaceId' in kwargs:
-            parent_space_id = kwargs['parentSpaceId']
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if inherit_entities is not None:
-            _setter("inherit_entities", inherit_entities)
+            pulumi.set(__self__, "inherit_entities", inherit_entities)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if parent_space_id is not None:
-            _setter("parent_space_id", parent_space_id)
+            pulumi.set(__self__, "parent_space_id", parent_space_id)
 
     @property
     @pulumi.getter
@@ -138,39 +115,16 @@ class _SpaceState:
         :param pulumi.Input[str] name: name of the space
         :param pulumi.Input[str] parent_space_id: immutable ID (slug) of parent space. Defaults to `root`.
         """
-        _SpaceState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            inherit_entities=inherit_entities,
-            labels=labels,
-            name=name,
-            parent_space_id=parent_space_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             inherit_entities: Optional[pulumi.Input[bool]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             parent_space_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if inherit_entities is None and 'inheritEntities' in kwargs:
-            inherit_entities = kwargs['inheritEntities']
-        if parent_space_id is None and 'parentSpaceId' in kwargs:
-            parent_space_id = kwargs['parentSpaceId']
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if inherit_entities is not None:
-            _setter("inherit_entities", inherit_entities)
+            pulumi.set(__self__, "inherit_entities", inherit_entities)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if parent_space_id is not None:
-            _setter("parent_space_id", parent_space_id)
+            pulumi.set(__self__, "parent_space_id", parent_space_id)
 
     @property
     @pulumi.getter
@@ -318,10 +272,6 @@ class Space(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            SpaceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -78,12 +77,6 @@ func (o GetVcsAgentPoolsResultOutput) ToGetVcsAgentPoolsResultOutput() GetVcsAge
 
 func (o GetVcsAgentPoolsResultOutput) ToGetVcsAgentPoolsResultOutputWithContext(ctx context.Context) GetVcsAgentPoolsResultOutput {
 	return o
-}
-
-func (o GetVcsAgentPoolsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetVcsAgentPoolsResult] {
-	return pulumix.Output[GetVcsAgentPoolsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

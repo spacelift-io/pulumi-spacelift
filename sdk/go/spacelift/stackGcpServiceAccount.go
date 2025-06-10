@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -182,12 +181,6 @@ func (i *StackGcpServiceAccount) ToStackGcpServiceAccountOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(StackGcpServiceAccountOutput)
 }
 
-func (i *StackGcpServiceAccount) ToOutput(ctx context.Context) pulumix.Output[*StackGcpServiceAccount] {
-	return pulumix.Output[*StackGcpServiceAccount]{
-		OutputState: i.ToStackGcpServiceAccountOutputWithContext(ctx).OutputState,
-	}
-}
-
 // StackGcpServiceAccountArrayInput is an input type that accepts StackGcpServiceAccountArray and StackGcpServiceAccountArrayOutput values.
 // You can construct a concrete instance of `StackGcpServiceAccountArrayInput` via:
 //
@@ -211,12 +204,6 @@ func (i StackGcpServiceAccountArray) ToStackGcpServiceAccountArrayOutput() Stack
 
 func (i StackGcpServiceAccountArray) ToStackGcpServiceAccountArrayOutputWithContext(ctx context.Context) StackGcpServiceAccountArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StackGcpServiceAccountArrayOutput)
-}
-
-func (i StackGcpServiceAccountArray) ToOutput(ctx context.Context) pulumix.Output[[]*StackGcpServiceAccount] {
-	return pulumix.Output[[]*StackGcpServiceAccount]{
-		OutputState: i.ToStackGcpServiceAccountArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // StackGcpServiceAccountMapInput is an input type that accepts StackGcpServiceAccountMap and StackGcpServiceAccountMapOutput values.
@@ -244,12 +231,6 @@ func (i StackGcpServiceAccountMap) ToStackGcpServiceAccountMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(StackGcpServiceAccountMapOutput)
 }
 
-func (i StackGcpServiceAccountMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackGcpServiceAccount] {
-	return pulumix.Output[map[string]*StackGcpServiceAccount]{
-		OutputState: i.ToStackGcpServiceAccountMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackGcpServiceAccountOutput struct{ *pulumi.OutputState }
 
 func (StackGcpServiceAccountOutput) ElementType() reflect.Type {
@@ -262,12 +243,6 @@ func (o StackGcpServiceAccountOutput) ToStackGcpServiceAccountOutput() StackGcpS
 
 func (o StackGcpServiceAccountOutput) ToStackGcpServiceAccountOutputWithContext(ctx context.Context) StackGcpServiceAccountOutput {
 	return o
-}
-
-func (o StackGcpServiceAccountOutput) ToOutput(ctx context.Context) pulumix.Output[*StackGcpServiceAccount] {
-	return pulumix.Output[*StackGcpServiceAccount]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID of the module which uses GCP service account credentials
@@ -304,12 +279,6 @@ func (o StackGcpServiceAccountArrayOutput) ToStackGcpServiceAccountArrayOutputWi
 	return o
 }
 
-func (o StackGcpServiceAccountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*StackGcpServiceAccount] {
-	return pulumix.Output[[]*StackGcpServiceAccount]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StackGcpServiceAccountArrayOutput) Index(i pulumi.IntInput) StackGcpServiceAccountOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *StackGcpServiceAccount {
 		return vs[0].([]*StackGcpServiceAccount)[vs[1].(int)]
@@ -328,12 +297,6 @@ func (o StackGcpServiceAccountMapOutput) ToStackGcpServiceAccountMapOutput() Sta
 
 func (o StackGcpServiceAccountMapOutput) ToStackGcpServiceAccountMapOutputWithContext(ctx context.Context) StackGcpServiceAccountMapOutput {
 	return o
-}
-
-func (o StackGcpServiceAccountMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackGcpServiceAccount] {
-	return pulumix.Output[map[string]*StackGcpServiceAccount]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackGcpServiceAccountMapOutput) MapIndex(k pulumi.StringInput) StackGcpServiceAccountOutput {

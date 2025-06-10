@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -159,12 +158,6 @@ func (i *StackAwsRole) ToStackAwsRoleOutputWithContext(ctx context.Context) Stac
 	return pulumi.ToOutputWithContext(ctx, i).(StackAwsRoleOutput)
 }
 
-func (i *StackAwsRole) ToOutput(ctx context.Context) pulumix.Output[*StackAwsRole] {
-	return pulumix.Output[*StackAwsRole]{
-		OutputState: i.ToStackAwsRoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // StackAwsRoleArrayInput is an input type that accepts StackAwsRoleArray and StackAwsRoleArrayOutput values.
 // You can construct a concrete instance of `StackAwsRoleArrayInput` via:
 //
@@ -188,12 +181,6 @@ func (i StackAwsRoleArray) ToStackAwsRoleArrayOutput() StackAwsRoleArrayOutput {
 
 func (i StackAwsRoleArray) ToStackAwsRoleArrayOutputWithContext(ctx context.Context) StackAwsRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StackAwsRoleArrayOutput)
-}
-
-func (i StackAwsRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*StackAwsRole] {
-	return pulumix.Output[[]*StackAwsRole]{
-		OutputState: i.ToStackAwsRoleArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // StackAwsRoleMapInput is an input type that accepts StackAwsRoleMap and StackAwsRoleMapOutput values.
@@ -221,12 +208,6 @@ func (i StackAwsRoleMap) ToStackAwsRoleMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(StackAwsRoleMapOutput)
 }
 
-func (i StackAwsRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackAwsRole] {
-	return pulumix.Output[map[string]*StackAwsRole]{
-		OutputState: i.ToStackAwsRoleMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackAwsRoleOutput struct{ *pulumi.OutputState }
 
 func (StackAwsRoleOutput) ElementType() reflect.Type {
@@ -239,12 +220,6 @@ func (o StackAwsRoleOutput) ToStackAwsRoleOutput() StackAwsRoleOutput {
 
 func (o StackAwsRoleOutput) ToStackAwsRoleOutputWithContext(ctx context.Context) StackAwsRoleOutput {
 	return o
-}
-
-func (o StackAwsRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*StackAwsRole] {
-	return pulumix.Output[*StackAwsRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 // AWS IAM role session duration in seconds
@@ -291,12 +266,6 @@ func (o StackAwsRoleArrayOutput) ToStackAwsRoleArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o StackAwsRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*StackAwsRole] {
-	return pulumix.Output[[]*StackAwsRole]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StackAwsRoleArrayOutput) Index(i pulumi.IntInput) StackAwsRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *StackAwsRole {
 		return vs[0].([]*StackAwsRole)[vs[1].(int)]
@@ -315,12 +284,6 @@ func (o StackAwsRoleMapOutput) ToStackAwsRoleMapOutput() StackAwsRoleMapOutput {
 
 func (o StackAwsRoleMapOutput) ToStackAwsRoleMapOutputWithContext(ctx context.Context) StackAwsRoleMapOutput {
 	return o
-}
-
-func (o StackAwsRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackAwsRole] {
-	return pulumix.Output[map[string]*StackAwsRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackAwsRoleMapOutput) MapIndex(k pulumi.StringInput) StackAwsRoleOutput {

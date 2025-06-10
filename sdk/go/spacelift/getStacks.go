@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -123,12 +122,6 @@ func (o GetStacksResultOutput) ToGetStacksResultOutput() GetStacksResultOutput {
 
 func (o GetStacksResultOutput) ToGetStacksResultOutputWithContext(ctx context.Context) GetStacksResultOutput {
 	return o
-}
-
-func (o GetStacksResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetStacksResult] {
-	return pulumix.Output[GetStacksResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Require stacks to be administrative or not

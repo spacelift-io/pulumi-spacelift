@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -131,12 +130,6 @@ func (i *Version) ToVersionOutputWithContext(ctx context.Context) VersionOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(VersionOutput)
 }
 
-func (i *Version) ToOutput(ctx context.Context) pulumix.Output[*Version] {
-	return pulumix.Output[*Version]{
-		OutputState: i.ToVersionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // VersionArrayInput is an input type that accepts VersionArray and VersionArrayOutput values.
 // You can construct a concrete instance of `VersionArrayInput` via:
 //
@@ -160,12 +153,6 @@ func (i VersionArray) ToVersionArrayOutput() VersionArrayOutput {
 
 func (i VersionArray) ToVersionArrayOutputWithContext(ctx context.Context) VersionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VersionArrayOutput)
-}
-
-func (i VersionArray) ToOutput(ctx context.Context) pulumix.Output[[]*Version] {
-	return pulumix.Output[[]*Version]{
-		OutputState: i.ToVersionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // VersionMapInput is an input type that accepts VersionMap and VersionMapOutput values.
@@ -193,12 +180,6 @@ func (i VersionMap) ToVersionMapOutputWithContext(ctx context.Context) VersionMa
 	return pulumi.ToOutputWithContext(ctx, i).(VersionMapOutput)
 }
 
-func (i VersionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Version] {
-	return pulumix.Output[map[string]*Version]{
-		OutputState: i.ToVersionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VersionOutput struct{ *pulumi.OutputState }
 
 func (VersionOutput) ElementType() reflect.Type {
@@ -211,12 +192,6 @@ func (o VersionOutput) ToVersionOutput() VersionOutput {
 
 func (o VersionOutput) ToVersionOutputWithContext(ctx context.Context) VersionOutput {
 	return o
-}
-
-func (o VersionOutput) ToOutput(ctx context.Context) pulumix.Output[*Version] {
-	return pulumix.Output[*Version]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The commit SHA for which to trigger a version.
@@ -253,12 +228,6 @@ func (o VersionArrayOutput) ToVersionArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o VersionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Version] {
-	return pulumix.Output[[]*Version]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VersionArrayOutput) Index(i pulumi.IntInput) VersionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Version {
 		return vs[0].([]*Version)[vs[1].(int)]
@@ -277,12 +246,6 @@ func (o VersionMapOutput) ToVersionMapOutput() VersionMapOutput {
 
 func (o VersionMapOutput) ToVersionMapOutputWithContext(ctx context.Context) VersionMapOutput {
 	return o
-}
-
-func (o VersionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Version] {
-	return pulumix.Output[map[string]*Version]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VersionMapOutput) MapIndex(k pulumi.StringInput) VersionOutput {

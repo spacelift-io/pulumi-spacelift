@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -113,12 +112,6 @@ func (o LookupGcpServiceAccountResultOutput) ToLookupGcpServiceAccountResultOutp
 
 func (o LookupGcpServiceAccountResultOutput) ToLookupGcpServiceAccountResultOutputWithContext(ctx context.Context) LookupGcpServiceAccountResultOutput {
 	return o
-}
-
-func (o LookupGcpServiceAccountResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupGcpServiceAccountResult] {
-	return pulumix.Output[LookupGcpServiceAccountResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

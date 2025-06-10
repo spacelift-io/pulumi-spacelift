@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -231,12 +230,6 @@ func (o LookupStackResultOutput) ToLookupStackResultOutput() LookupStackResultOu
 
 func (o LookupStackResultOutput) ToLookupStackResultOutputWithContext(ctx context.Context) LookupStackResultOutput {
 	return o
-}
-
-func (o LookupStackResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupStackResult] {
-	return pulumix.Output[LookupStackResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Project globs is an optional list of paths to track changes of in addition to the project root.

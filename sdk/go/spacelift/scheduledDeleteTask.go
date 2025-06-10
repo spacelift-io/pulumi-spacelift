@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -33,6 +32,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// at a given timestamp (unix)
 //			_, err = spacelift.NewScheduledDeleteTask(ctx, "k8s-core-delete", &spacelift.ScheduledDeleteTaskArgs{
 //				StackId:         k8s_core.ID(),
 //				At:              pulumi.Int(1663336895),
@@ -174,12 +174,6 @@ func (i *ScheduledDeleteTask) ToScheduledDeleteTaskOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(ScheduledDeleteTaskOutput)
 }
 
-func (i *ScheduledDeleteTask) ToOutput(ctx context.Context) pulumix.Output[*ScheduledDeleteTask] {
-	return pulumix.Output[*ScheduledDeleteTask]{
-		OutputState: i.ToScheduledDeleteTaskOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ScheduledDeleteTaskArrayInput is an input type that accepts ScheduledDeleteTaskArray and ScheduledDeleteTaskArrayOutput values.
 // You can construct a concrete instance of `ScheduledDeleteTaskArrayInput` via:
 //
@@ -203,12 +197,6 @@ func (i ScheduledDeleteTaskArray) ToScheduledDeleteTaskArrayOutput() ScheduledDe
 
 func (i ScheduledDeleteTaskArray) ToScheduledDeleteTaskArrayOutputWithContext(ctx context.Context) ScheduledDeleteTaskArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ScheduledDeleteTaskArrayOutput)
-}
-
-func (i ScheduledDeleteTaskArray) ToOutput(ctx context.Context) pulumix.Output[[]*ScheduledDeleteTask] {
-	return pulumix.Output[[]*ScheduledDeleteTask]{
-		OutputState: i.ToScheduledDeleteTaskArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ScheduledDeleteTaskMapInput is an input type that accepts ScheduledDeleteTaskMap and ScheduledDeleteTaskMapOutput values.
@@ -236,12 +224,6 @@ func (i ScheduledDeleteTaskMap) ToScheduledDeleteTaskMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ScheduledDeleteTaskMapOutput)
 }
 
-func (i ScheduledDeleteTaskMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ScheduledDeleteTask] {
-	return pulumix.Output[map[string]*ScheduledDeleteTask]{
-		OutputState: i.ToScheduledDeleteTaskMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ScheduledDeleteTaskOutput struct{ *pulumi.OutputState }
 
 func (ScheduledDeleteTaskOutput) ElementType() reflect.Type {
@@ -254,12 +236,6 @@ func (o ScheduledDeleteTaskOutput) ToScheduledDeleteTaskOutput() ScheduledDelete
 
 func (o ScheduledDeleteTaskOutput) ToScheduledDeleteTaskOutputWithContext(ctx context.Context) ScheduledDeleteTaskOutput {
 	return o
-}
-
-func (o ScheduledDeleteTaskOutput) ToOutput(ctx context.Context) pulumix.Output[*ScheduledDeleteTask] {
-	return pulumix.Output[*ScheduledDeleteTask]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Timestamp (unix timestamp) at which time the scheduling should happen.
@@ -296,12 +272,6 @@ func (o ScheduledDeleteTaskArrayOutput) ToScheduledDeleteTaskArrayOutputWithCont
 	return o
 }
 
-func (o ScheduledDeleteTaskArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ScheduledDeleteTask] {
-	return pulumix.Output[[]*ScheduledDeleteTask]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ScheduledDeleteTaskArrayOutput) Index(i pulumi.IntInput) ScheduledDeleteTaskOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ScheduledDeleteTask {
 		return vs[0].([]*ScheduledDeleteTask)[vs[1].(int)]
@@ -320,12 +290,6 @@ func (o ScheduledDeleteTaskMapOutput) ToScheduledDeleteTaskMapOutput() Scheduled
 
 func (o ScheduledDeleteTaskMapOutput) ToScheduledDeleteTaskMapOutputWithContext(ctx context.Context) ScheduledDeleteTaskMapOutput {
 	return o
-}
-
-func (o ScheduledDeleteTaskMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ScheduledDeleteTask] {
-	return pulumix.Output[map[string]*ScheduledDeleteTask]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ScheduledDeleteTaskMapOutput) MapIndex(k pulumi.StringInput) ScheduledDeleteTaskOutput {

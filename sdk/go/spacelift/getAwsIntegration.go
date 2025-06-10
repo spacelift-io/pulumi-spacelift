@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -118,12 +117,6 @@ func (o LookupAwsIntegrationResultOutput) ToLookupAwsIntegrationResultOutput() L
 
 func (o LookupAwsIntegrationResultOutput) ToLookupAwsIntegrationResultOutputWithContext(ctx context.Context) LookupAwsIntegrationResultOutput {
 	return o
-}
-
-func (o LookupAwsIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAwsIntegrationResult] {
-	return pulumix.Output[LookupAwsIntegrationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Duration in seconds for which the assumed role credentials should be valid

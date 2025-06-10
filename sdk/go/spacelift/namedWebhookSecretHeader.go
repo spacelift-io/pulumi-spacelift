@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -134,12 +133,6 @@ func (i *NamedWebhookSecretHeader) ToNamedWebhookSecretHeaderOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(NamedWebhookSecretHeaderOutput)
 }
 
-func (i *NamedWebhookSecretHeader) ToOutput(ctx context.Context) pulumix.Output[*NamedWebhookSecretHeader] {
-	return pulumix.Output[*NamedWebhookSecretHeader]{
-		OutputState: i.ToNamedWebhookSecretHeaderOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NamedWebhookSecretHeaderArrayInput is an input type that accepts NamedWebhookSecretHeaderArray and NamedWebhookSecretHeaderArrayOutput values.
 // You can construct a concrete instance of `NamedWebhookSecretHeaderArrayInput` via:
 //
@@ -163,12 +156,6 @@ func (i NamedWebhookSecretHeaderArray) ToNamedWebhookSecretHeaderArrayOutput() N
 
 func (i NamedWebhookSecretHeaderArray) ToNamedWebhookSecretHeaderArrayOutputWithContext(ctx context.Context) NamedWebhookSecretHeaderArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NamedWebhookSecretHeaderArrayOutput)
-}
-
-func (i NamedWebhookSecretHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]*NamedWebhookSecretHeader] {
-	return pulumix.Output[[]*NamedWebhookSecretHeader]{
-		OutputState: i.ToNamedWebhookSecretHeaderArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // NamedWebhookSecretHeaderMapInput is an input type that accepts NamedWebhookSecretHeaderMap and NamedWebhookSecretHeaderMapOutput values.
@@ -196,12 +183,6 @@ func (i NamedWebhookSecretHeaderMap) ToNamedWebhookSecretHeaderMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(NamedWebhookSecretHeaderMapOutput)
 }
 
-func (i NamedWebhookSecretHeaderMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NamedWebhookSecretHeader] {
-	return pulumix.Output[map[string]*NamedWebhookSecretHeader]{
-		OutputState: i.ToNamedWebhookSecretHeaderMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NamedWebhookSecretHeaderOutput struct{ *pulumi.OutputState }
 
 func (NamedWebhookSecretHeaderOutput) ElementType() reflect.Type {
@@ -214,12 +195,6 @@ func (o NamedWebhookSecretHeaderOutput) ToNamedWebhookSecretHeaderOutput() Named
 
 func (o NamedWebhookSecretHeaderOutput) ToNamedWebhookSecretHeaderOutputWithContext(ctx context.Context) NamedWebhookSecretHeaderOutput {
 	return o
-}
-
-func (o NamedWebhookSecretHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[*NamedWebhookSecretHeader] {
-	return pulumix.Output[*NamedWebhookSecretHeader]{
-		OutputState: o.OutputState,
-	}
 }
 
 // key for the header
@@ -251,12 +226,6 @@ func (o NamedWebhookSecretHeaderArrayOutput) ToNamedWebhookSecretHeaderArrayOutp
 	return o
 }
 
-func (o NamedWebhookSecretHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NamedWebhookSecretHeader] {
-	return pulumix.Output[[]*NamedWebhookSecretHeader]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o NamedWebhookSecretHeaderArrayOutput) Index(i pulumi.IntInput) NamedWebhookSecretHeaderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NamedWebhookSecretHeader {
 		return vs[0].([]*NamedWebhookSecretHeader)[vs[1].(int)]
@@ -275,12 +244,6 @@ func (o NamedWebhookSecretHeaderMapOutput) ToNamedWebhookSecretHeaderMapOutput()
 
 func (o NamedWebhookSecretHeaderMapOutput) ToNamedWebhookSecretHeaderMapOutputWithContext(ctx context.Context) NamedWebhookSecretHeaderMapOutput {
 	return o
-}
-
-func (o NamedWebhookSecretHeaderMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NamedWebhookSecretHeader] {
-	return pulumix.Output[map[string]*NamedWebhookSecretHeader]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NamedWebhookSecretHeaderMapOutput) MapIndex(k pulumi.StringInput) NamedWebhookSecretHeaderOutput {

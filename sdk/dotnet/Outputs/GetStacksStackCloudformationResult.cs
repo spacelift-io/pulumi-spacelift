@@ -13,9 +13,21 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStacksStackCloudformationResult
     {
+        /// <summary>
+        /// Template file `cloudformation package` will be called on
+        /// </summary>
         public readonly string EntryTemplateFile;
+        /// <summary>
+        /// AWS region to use
+        /// </summary>
         public readonly string Region;
+        /// <summary>
+        /// CloudFormation stack name
+        /// </summary>
         public readonly string StackName;
+        /// <summary>
+        /// S3 bucket to save CloudFormation templates to
+        /// </summary>
         public readonly string TemplateBucket;
 
         [OutputConstructor]

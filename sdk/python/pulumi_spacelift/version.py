@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VersionArgs', 'Version']
@@ -25,38 +25,13 @@ class VersionArgs:
         :param pulumi.Input[Mapping[str, Any]] keepers: Arbitrary map of values that, when changed, will trigger recreation of the resource.
         :param pulumi.Input[str] version_number: A semantic version number to set for the triggered version, example: 0.11.2
         """
-        VersionArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            module_id=module_id,
-            commit_sha=commit_sha,
-            keepers=keepers,
-            version_number=version_number,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             module_id: Optional[pulumi.Input[str]] = None,
-             commit_sha: Optional[pulumi.Input[str]] = None,
-             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             version_number: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if module_id is None:
-            raise TypeError("Missing 'module_id' argument")
-        if commit_sha is None and 'commitSha' in kwargs:
-            commit_sha = kwargs['commitSha']
-        if version_number is None and 'versionNumber' in kwargs:
-            version_number = kwargs['versionNumber']
-
-        _setter("module_id", module_id)
+        pulumi.set(__self__, "module_id", module_id)
         if commit_sha is not None:
-            _setter("commit_sha", commit_sha)
+            pulumi.set(__self__, "commit_sha", commit_sha)
         if keepers is not None:
-            _setter("keepers", keepers)
+            pulumi.set(__self__, "keepers", keepers)
         if version_number is not None:
-            _setter("version_number", version_number)
+            pulumi.set(__self__, "version_number", version_number)
 
     @property
     @pulumi.getter(name="moduleId")
@@ -121,37 +96,14 @@ class _VersionState:
         :param pulumi.Input[str] module_id: ID of the module on which the version creation is to be triggered.
         :param pulumi.Input[str] version_number: A semantic version number to set for the triggered version, example: 0.11.2
         """
-        _VersionState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            commit_sha=commit_sha,
-            keepers=keepers,
-            module_id=module_id,
-            version_number=version_number,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             commit_sha: Optional[pulumi.Input[str]] = None,
-             keepers: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-             module_id: Optional[pulumi.Input[str]] = None,
-             version_number: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if commit_sha is None and 'commitSha' in kwargs:
-            commit_sha = kwargs['commitSha']
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if version_number is None and 'versionNumber' in kwargs:
-            version_number = kwargs['versionNumber']
-
         if commit_sha is not None:
-            _setter("commit_sha", commit_sha)
+            pulumi.set(__self__, "commit_sha", commit_sha)
         if keepers is not None:
-            _setter("keepers", keepers)
+            pulumi.set(__self__, "keepers", keepers)
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if version_number is not None:
-            _setter("version_number", version_number)
+            pulumi.set(__self__, "version_number", version_number)
 
     @property
     @pulumi.getter(name="commitSha")
@@ -241,10 +193,6 @@ class Version(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            VersionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

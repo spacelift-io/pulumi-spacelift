@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -138,12 +137,6 @@ func (o LookupMountedfileResultOutput) ToLookupMountedfileResultOutput() LookupM
 
 func (o LookupMountedfileResultOutput) ToLookupMountedfileResultOutputWithContext(ctx context.Context) LookupMountedfileResultOutput {
 	return o
-}
-
-func (o LookupMountedfileResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupMountedfileResult] {
-	return pulumix.Output[LookupMountedfileResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // SHA-256 checksum of the value

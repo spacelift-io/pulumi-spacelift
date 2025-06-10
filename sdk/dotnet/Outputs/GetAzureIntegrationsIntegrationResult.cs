@@ -13,15 +13,45 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetAzureIntegrationsIntegrationResult
     {
+        /// <summary>
+        /// Indicates whether admin consent has been performed for the AAD Application.
+        /// </summary>
         public readonly bool AdminConsentProvided;
+        /// <summary>
+        /// The URL to use to provide admin consent to the application in the customer's tenant
+        /// </summary>
         public readonly string AdminConsentUrl;
+        /// <summary>
+        /// The applicationId of the Azure AD application used by the integration.
+        /// </summary>
         public readonly string ApplicationId;
+        /// <summary>
+        /// The default subscription ID to use, if one isn't specified at the stack/module level
+        /// </summary>
         public readonly string DefaultSubscriptionId;
+        /// <summary>
+        /// The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
+        /// </summary>
         public readonly string DisplayName;
+        /// <summary>
+        /// Immutable ID of the integration.
+        /// </summary>
         public readonly string IntegrationId;
+        /// <summary>
+        /// Labels to set on the integration
+        /// </summary>
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// The friendly name of the integration.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID (slug) of the space the integration is in
+        /// </summary>
         public readonly string SpaceId;
+        /// <summary>
+        /// The Azure AD tenant ID
+        /// </summary>
         public readonly string TenantId;
 
         [OutputConstructor]

@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * const k8s_core = new spacelift.WorkerPool("k8s-core", {
- *     csr: Buffer.from(fs.readFileSync("/path/to/csr"), 'binary').toString('base64'),
+ *     csr: fs.readFileSync("/path/to/csr", { encoding: "base64" }),
  *     description: "Used for all type jobs",
  * });
  * ```
