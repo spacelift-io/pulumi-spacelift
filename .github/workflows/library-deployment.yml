@@ -9,6 +9,10 @@ defaults:
   run:
     shell: bash
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
 jobs:
   library-deployment:
     name: 🚀 Build and upload provider
@@ -41,7 +45,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 24.x
           registry-url: https://registry.npmjs.org
 
       - name: Install yarn
@@ -66,13 +70,8 @@ jobs:
       - name: Build SDKs
         run: make build_sdks
 
-      - name: Set NPM auth token
-        run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-
       - name: Publish npm package.
         run: cd sdk/nodejs/bin && npm publish --access public
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create NuGet config
         run: cp nuget.config.template sdk/dotnet/nuget.config
