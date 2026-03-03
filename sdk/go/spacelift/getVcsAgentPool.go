@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -77,12 +76,6 @@ func (o LookupVcsAgentPoolResultOutput) ToLookupVcsAgentPoolResultOutput() Looku
 
 func (o LookupVcsAgentPoolResultOutput) ToLookupVcsAgentPoolResultOutputWithContext(ctx context.Context) LookupVcsAgentPoolResultOutput {
 	return o
-}
-
-func (o LookupVcsAgentPoolResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVcsAgentPoolResult] {
-	return pulumix.Output[LookupVcsAgentPoolResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Free-form VCS agent pool description for users

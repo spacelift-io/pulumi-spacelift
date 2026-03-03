@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -134,12 +133,6 @@ func (o LookupModuleResultOutput) ToLookupModuleResultOutput() LookupModuleResul
 
 func (o LookupModuleResultOutput) ToLookupModuleResultOutputWithContext(ctx context.Context) LookupModuleResultOutput {
 	return o
-}
-
-func (o LookupModuleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupModuleResult] {
-	return pulumix.Output[LookupModuleResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // indicates whether this module can administer others

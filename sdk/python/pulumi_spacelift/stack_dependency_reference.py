@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['StackDependencyReferenceArgs', 'StackDependencyReference']
@@ -23,36 +23,9 @@ class StackDependencyReferenceArgs:
         :param pulumi.Input[str] output_name: Name of the output of stack to depend on
         :param pulumi.Input[str] stack_dependency_id: Immutable ID of stack dependency
         """
-        StackDependencyReferenceArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            input_name=input_name,
-            output_name=output_name,
-            stack_dependency_id=stack_dependency_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             input_name: Optional[pulumi.Input[str]] = None,
-             output_name: Optional[pulumi.Input[str]] = None,
-             stack_dependency_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if input_name is None and 'inputName' in kwargs:
-            input_name = kwargs['inputName']
-        if input_name is None:
-            raise TypeError("Missing 'input_name' argument")
-        if output_name is None and 'outputName' in kwargs:
-            output_name = kwargs['outputName']
-        if output_name is None:
-            raise TypeError("Missing 'output_name' argument")
-        if stack_dependency_id is None and 'stackDependencyId' in kwargs:
-            stack_dependency_id = kwargs['stackDependencyId']
-        if stack_dependency_id is None:
-            raise TypeError("Missing 'stack_dependency_id' argument")
-
-        _setter("input_name", input_name)
-        _setter("output_name", output_name)
-        _setter("stack_dependency_id", stack_dependency_id)
+        pulumi.set(__self__, "input_name", input_name)
+        pulumi.set(__self__, "output_name", output_name)
+        pulumi.set(__self__, "stack_dependency_id", stack_dependency_id)
 
     @property
     @pulumi.getter(name="inputName")
@@ -103,33 +76,12 @@ class _StackDependencyReferenceState:
         :param pulumi.Input[str] output_name: Name of the output of stack to depend on
         :param pulumi.Input[str] stack_dependency_id: Immutable ID of stack dependency
         """
-        _StackDependencyReferenceState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            input_name=input_name,
-            output_name=output_name,
-            stack_dependency_id=stack_dependency_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             input_name: Optional[pulumi.Input[str]] = None,
-             output_name: Optional[pulumi.Input[str]] = None,
-             stack_dependency_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if input_name is None and 'inputName' in kwargs:
-            input_name = kwargs['inputName']
-        if output_name is None and 'outputName' in kwargs:
-            output_name = kwargs['outputName']
-        if stack_dependency_id is None and 'stackDependencyId' in kwargs:
-            stack_dependency_id = kwargs['stackDependencyId']
-
         if input_name is not None:
-            _setter("input_name", input_name)
+            pulumi.set(__self__, "input_name", input_name)
         if output_name is not None:
-            _setter("output_name", output_name)
+            pulumi.set(__self__, "output_name", output_name)
         if stack_dependency_id is not None:
-            _setter("stack_dependency_id", stack_dependency_id)
+            pulumi.set(__self__, "stack_dependency_id", stack_dependency_id)
 
     @property
     @pulumi.getter(name="inputName")
@@ -247,10 +199,6 @@ class StackDependencyReference(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            StackDependencyReferenceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

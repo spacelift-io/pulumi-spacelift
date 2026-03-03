@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AuditTrailWebhookArgs', 'AuditTrailWebhook']
@@ -25,36 +25,11 @@ class AuditTrailWebhookArgs:
         :param pulumi.Input[str] secret: `secret` is a secret that Spacelift will send with the request
         :param pulumi.Input[bool] include_runs: `include_runs` determines whether the webhook should include information about the run that triggered the event.
         """
-        AuditTrailWebhookArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            endpoint=endpoint,
-            secret=secret,
-            include_runs=include_runs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[pulumi.Input[bool]] = None,
-             endpoint: Optional[pulumi.Input[str]] = None,
-             secret: Optional[pulumi.Input[str]] = None,
-             include_runs: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if enabled is None:
-            raise TypeError("Missing 'enabled' argument")
-        if endpoint is None:
-            raise TypeError("Missing 'endpoint' argument")
-        if secret is None:
-            raise TypeError("Missing 'secret' argument")
-        if include_runs is None and 'includeRuns' in kwargs:
-            include_runs = kwargs['includeRuns']
-
-        _setter("enabled", enabled)
-        _setter("endpoint", endpoint)
-        _setter("secret", secret)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "secret", secret)
         if include_runs is not None:
-            _setter("include_runs", include_runs)
+            pulumi.set(__self__, "include_runs", include_runs)
 
     @property
     @pulumi.getter
@@ -119,33 +94,14 @@ class _AuditTrailWebhookState:
         :param pulumi.Input[bool] include_runs: `include_runs` determines whether the webhook should include information about the run that triggered the event.
         :param pulumi.Input[str] secret: `secret` is a secret that Spacelift will send with the request
         """
-        _AuditTrailWebhookState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            enabled=enabled,
-            endpoint=endpoint,
-            include_runs=include_runs,
-            secret=secret,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             enabled: Optional[pulumi.Input[bool]] = None,
-             endpoint: Optional[pulumi.Input[str]] = None,
-             include_runs: Optional[pulumi.Input[bool]] = None,
-             secret: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if include_runs is None and 'includeRuns' in kwargs:
-            include_runs = kwargs['includeRuns']
-
         if enabled is not None:
-            _setter("enabled", enabled)
+            pulumi.set(__self__, "enabled", enabled)
         if endpoint is not None:
-            _setter("endpoint", endpoint)
+            pulumi.set(__self__, "endpoint", endpoint)
         if include_runs is not None:
-            _setter("include_runs", include_runs)
+            pulumi.set(__self__, "include_runs", include_runs)
         if secret is not None:
-            _setter("secret", secret)
+            pulumi.set(__self__, "secret", secret)
 
     @property
     @pulumi.getter
@@ -259,10 +215,6 @@ class AuditTrailWebhook(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            AuditTrailWebhookArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
