@@ -579,7 +579,7 @@ namespace Pulumi.Spacelift
         /// </summary>
         public readonly string TerraformWorkflowTool;
         /// <summary>
-        /// Pulumi Stack to select
+        /// Terraform workspace to select
         /// </summary>
         public readonly string TerraformWorkspace;
         /// <summary>

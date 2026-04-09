@@ -115,7 +115,7 @@ class StackArgs:
         :param pulumilib.Input[_builtins.bool] terraform_smart_sanitization: Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above. Defaults to `false`.
         :param pulumilib.Input[_builtins.str] terraform_version: Terraform version to use
         :param pulumilib.Input[_builtins.str] terraform_workflow_tool: Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
-        :param pulumilib.Input[_builtins.str] terraform_workspace: Pulumi Stack to select
+        :param pulumilib.Input[_builtins.str] terraform_workspace: Terraform workspace to select
         :param pulumilib.Input['StackTerragruntArgs'] terragrunt: Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
         :param pulumilib.Input[_builtins.str] worker_pool_id: ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         """
@@ -752,7 +752,7 @@ class StackArgs:
     @pulumilib.getter(name="terraformWorkspace")
     def terraform_workspace(self) -> Optional[pulumilib.Input[_builtins.str]]:
         """
-        Pulumi Stack to select
+        Terraform workspace to select
         """
         return pulumilib.get(self, "terraform_workspace")
 
@@ -884,7 +884,7 @@ class _StackState:
         :param pulumilib.Input[_builtins.bool] terraform_smart_sanitization: Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above. Defaults to `false`.
         :param pulumilib.Input[_builtins.str] terraform_version: Terraform version to use
         :param pulumilib.Input[_builtins.str] terraform_workflow_tool: Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
-        :param pulumilib.Input[_builtins.str] terraform_workspace: Pulumi Stack to select
+        :param pulumilib.Input[_builtins.str] terraform_workspace: Terraform workspace to select
         :param pulumilib.Input['StackTerragruntArgs'] terragrunt: Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
         :param pulumilib.Input[_builtins.str] worker_pool_id: ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         """
@@ -1537,7 +1537,7 @@ class _StackState:
     @pulumilib.getter(name="terraformWorkspace")
     def terraform_workspace(self) -> Optional[pulumilib.Input[_builtins.str]]:
         """
-        Pulumi Stack to select
+        Terraform workspace to select
         """
         return pulumilib.get(self, "terraform_workspace")
 
@@ -1680,7 +1680,7 @@ class Stack(pulumilib.CustomResource):
         :param pulumilib.Input[_builtins.bool] terraform_smart_sanitization: Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above. Defaults to `false`.
         :param pulumilib.Input[_builtins.str] terraform_version: Terraform version to use
         :param pulumilib.Input[_builtins.str] terraform_workflow_tool: Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
-        :param pulumilib.Input[_builtins.str] terraform_workspace: Pulumi Stack to select
+        :param pulumilib.Input[_builtins.str] terraform_workspace: Terraform workspace to select
         :param pulumilib.Input[Union['StackTerragruntArgs', 'StackTerragruntArgsDict']] terragrunt: Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
         :param pulumilib.Input[_builtins.str] worker_pool_id: ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         """
@@ -1937,7 +1937,7 @@ class Stack(pulumilib.CustomResource):
         :param pulumilib.Input[_builtins.bool] terraform_smart_sanitization: Indicates whether runs on this will use terraform's sensitive value system to sanitize the outputs of Terraform state and plans in spacelift instead of sanitizing all fields. Note: Requires the terraform version to be v1.0.1 or above. Defaults to `false`.
         :param pulumilib.Input[_builtins.str] terraform_version: Terraform version to use
         :param pulumilib.Input[_builtins.str] terraform_workflow_tool: Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
-        :param pulumilib.Input[_builtins.str] terraform_workspace: Pulumi Stack to select
+        :param pulumilib.Input[_builtins.str] terraform_workspace: Terraform workspace to select
         :param pulumilib.Input[Union['StackTerragruntArgs', 'StackTerragruntArgsDict']] terragrunt: Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
         :param pulumilib.Input[_builtins.str] worker_pool_id: ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         """
@@ -2362,7 +2362,7 @@ class Stack(pulumilib.CustomResource):
     @pulumilib.getter(name="terraformWorkspace")
     def terraform_workspace(self) -> pulumilib.Output[Optional[_builtins.str]]:
         """
-        Pulumi Stack to select
+        Terraform workspace to select
         """
         return pulumilib.get(self, "terraform_workspace")
 

@@ -292,7 +292,7 @@ namespace Pulumi.Spacelift
         public Output<string> TerraformWorkflowTool { get; private set; } = null!;
 
         /// <summary>
-        /// Pulumi Stack to select
+        /// Terraform workspace to select
         /// </summary>
         [Output("terraformWorkspace")]
         public Output<string?> TerraformWorkspace { get; private set; } = null!;
@@ -712,7 +712,7 @@ namespace Pulumi.Spacelift
         public Input<string>? TerraformWorkflowTool { get; set; }
 
         /// <summary>
-        /// Pulumi Stack to select
+        /// Terraform workspace to select
         /// </summary>
         [Input("terraformWorkspace")]
         public Input<string>? TerraformWorkspace { get; set; }
@@ -1095,7 +1095,7 @@ namespace Pulumi.Spacelift
         public Input<string>? TerraformWorkflowTool { get; set; }
 
         /// <summary>
-        /// Pulumi Stack to select
+        /// Terraform workspace to select
         /// </summary>
         [Input("terraformWorkspace")]
         public Input<string>? TerraformWorkspace { get; set; }

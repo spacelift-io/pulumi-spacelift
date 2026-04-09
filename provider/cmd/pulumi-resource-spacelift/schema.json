@@ -4816,7 +4816,7 @@
                 },
                 "terraformWorkspace": {
                     "type": "string",
-                    "description": "Pulumi Stack to select\n"
+                    "description": "Terraform workspace to select\n"
                 },
                 "terragrunt": {
                     "$ref": "#/types/spacelift:index/StackTerragrunt:StackTerragrunt",
@@ -5064,7 +5064,7 @@
                 },
                 "terraformWorkspace": {
                     "type": "string",
-                    "description": "Pulumi Stack to select\n"
+                    "description": "Terraform workspace to select\n"
                 },
                 "terragrunt": {
                     "$ref": "#/types/spacelift:index/StackTerragrunt:StackTerragrunt",
@@ -5313,7 +5313,7 @@
                     },
                     "terraformWorkspace": {
                         "type": "string",
-                        "description": "Pulumi Stack to select\n"
+                        "description": "Terraform workspace to select\n"
                     },
                     "terragrunt": {
                         "$ref": "#/types/spacelift:index/StackTerragrunt:StackTerragrunt",
@@ -8674,7 +8674,7 @@
                         "type": "string"
                     },
                     "terraformWorkspace": {
-                        "description": "Pulumi Stack to select\n",
+                        "description": "Terraform workspace to select\n",
                         "type": "string"
                     },
                     "workerPoolId": {

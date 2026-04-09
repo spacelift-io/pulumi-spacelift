@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"regexp"
+
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/info"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
@@ -92,6 +95,22 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		PreConfigureCallback: preConfigureCallback,
+		DocRules: &info.DocRule{
+			EditRules: func(defaults []info.DocsEdit) []info.DocsEdit {
+				// The default bridge edit rules rewrite "Terraform workspace" to "Pulumi Stack",
+				// but our provider's terraform_workspace field literally refers to a Terraform
+				// workspace, not a Pulumi concept. Add a counter-rule that reverts it.
+				revert := info.DocsEdit{
+					Path: "*",
+					Edit: func(_ string, content []byte) ([]byte, error) {
+						re := regexp.MustCompile(`Pulumi Stack to select`)
+						return re.ReplaceAll(content, []byte("Terraform workspace to select")), nil
+					},
+					Phase: info.PreCodeTranslation,
+				}
+				return append(defaults, revert)
+			},
+		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"spacelift_audit_trail_webhook":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AuditTrailWebhook")},
 			"spacelift_aws_integration":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsIntegration")},
@@ -171,7 +190,7 @@ func Provider() tfbridge.ProviderInfo {
 			"spacelift_space":                                  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getSpace")},
 			"spacelift_space_by_path":                          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getSpaceByPath")},
 			"spacelift_spaces":                                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getSpaces")},
-			"spacelift_stack":                                  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStack")},
+			"spacelift_stack": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStack")},
 			"spacelift_stacks":                                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStacks")},
 			"spacelift_stack_aws_role":                         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStackAwsRole")},
 			"spacelift_stack_gcp_service_account":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStackGcpServiceAccount")},

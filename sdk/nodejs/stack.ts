@@ -222,7 +222,7 @@ export class Stack extends pulumi.CustomResource {
      */
     declare public readonly terraformWorkflowTool: pulumi.Output<string>;
     /**
-     * Pulumi Stack to select
+     * Terraform workspace to select
      */
     declare public readonly terraformWorkspace: pulumi.Output<string | undefined>;
     /**
@@ -544,7 +544,7 @@ export interface StackState {
      */
     terraformWorkflowTool?: pulumi.Input<string>;
     /**
-     * Pulumi Stack to select
+     * Terraform workspace to select
      */
     terraformWorkspace?: pulumi.Input<string>;
     /**
@@ -736,7 +736,7 @@ export interface StackArgs {
      */
     terraformWorkflowTool?: pulumi.Input<string>;
     /**
-     * Pulumi Stack to select
+     * Terraform workspace to select
      */
     terraformWorkspace?: pulumi.Input<string>;
     /**

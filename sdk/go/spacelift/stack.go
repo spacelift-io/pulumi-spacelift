@@ -112,7 +112,7 @@ type Stack struct {
 	TerraformVersion pulumi.StringPtrOutput `pulumi:"terraformVersion"`
 	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
 	TerraformWorkflowTool pulumi.StringOutput `pulumi:"terraformWorkflowTool"`
-	// Pulumi Stack to select
+	// Terraform workspace to select
 	TerraformWorkspace pulumi.StringPtrOutput `pulumi:"terraformWorkspace"`
 	// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
 	Terragrunt StackTerragruntPtrOutput `pulumi:"terragrunt"`
@@ -253,7 +253,7 @@ type stackState struct {
 	TerraformVersion *string `pulumi:"terraformVersion"`
 	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
 	TerraformWorkflowTool *string `pulumi:"terraformWorkflowTool"`
-	// Pulumi Stack to select
+	// Terraform workspace to select
 	TerraformWorkspace *string `pulumi:"terraformWorkspace"`
 	// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
 	Terragrunt *StackTerragrunt `pulumi:"terragrunt"`
@@ -352,7 +352,7 @@ type StackState struct {
 	TerraformVersion pulumi.StringPtrInput
 	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
 	TerraformWorkflowTool pulumi.StringPtrInput
-	// Pulumi Stack to select
+	// Terraform workspace to select
 	TerraformWorkspace pulumi.StringPtrInput
 	// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
 	Terragrunt StackTerragruntPtrInput
@@ -453,7 +453,7 @@ type stackArgs struct {
 	TerraformVersion *string `pulumi:"terraformVersion"`
 	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
 	TerraformWorkflowTool *string `pulumi:"terraformWorkflowTool"`
-	// Pulumi Stack to select
+	// Terraform workspace to select
 	TerraformWorkspace *string `pulumi:"terraformWorkspace"`
 	// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
 	Terragrunt *StackTerragrunt `pulumi:"terragrunt"`
@@ -551,7 +551,7 @@ type StackArgs struct {
 	TerraformVersion pulumi.StringPtrInput
 	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
 	TerraformWorkflowTool pulumi.StringPtrInput
-	// Pulumi Stack to select
+	// Terraform workspace to select
 	TerraformWorkspace pulumi.StringPtrInput
 	// Terragrunt-specific configuration. Presence means this Stack is an Terragrunt Stack.
 	Terragrunt StackTerragruntPtrInput
@@ -874,7 +874,7 @@ func (o StackOutput) TerraformWorkflowTool() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringOutput { return v.TerraformWorkflowTool }).(pulumi.StringOutput)
 }
 
-// Pulumi Stack to select
+// Terraform workspace to select
 func (o StackOutput) TerraformWorkspace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Stack) pulumi.StringPtrOutput { return v.TerraformWorkspace }).(pulumi.StringPtrOutput)
 }

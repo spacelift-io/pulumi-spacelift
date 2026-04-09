@@ -167,7 +167,7 @@ type LookupStackResult struct {
 	TerraformVersion string `pulumi:"terraformVersion"`
 	// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
 	TerraformWorkflowTool string `pulumi:"terraformWorkflowTool"`
-	// Pulumi Stack to select
+	// Terraform workspace to select
 	TerraformWorkspace string `pulumi:"terraformWorkspace"`
 	// ID of the worker pool to use
 	WorkerPoolId string `pulumi:"workerPoolId"`
@@ -450,7 +450,7 @@ func (o LookupStackResultOutput) TerraformWorkflowTool() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.TerraformWorkflowTool }).(pulumi.StringOutput)
 }
 
-// Pulumi Stack to select
+// Terraform workspace to select
 func (o LookupStackResultOutput) TerraformWorkspace() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStackResult) string { return v.TerraformWorkspace }).(pulumi.StringOutput)
 }

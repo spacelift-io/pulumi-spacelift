@@ -520,7 +520,7 @@ class GetStackResult:
     @pulumi.getter(name="terraformWorkspace")
     def terraform_workspace(self) -> _builtins.str:
         """
-        Pulumi Stack to select
+        Terraform workspace to select
         """
         return pulumi.get(self, "terraform_workspace")
 

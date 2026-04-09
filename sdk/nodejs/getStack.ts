@@ -275,7 +275,7 @@ export interface GetStackResult {
      */
     readonly terraformWorkflowTool: string;
     /**
-     * Pulumi Stack to select
+     * Terraform workspace to select
      */
     readonly terraformWorkspace: string;
     /**
