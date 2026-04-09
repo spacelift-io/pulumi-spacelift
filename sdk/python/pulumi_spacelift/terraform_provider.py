@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['TerraformProviderArgs', 'TerraformProvider']
@@ -26,39 +26,14 @@ class TerraformProviderArgs:
         :param pulumi.Input[str] description: Free-form description for human users, supports Markdown
         :param pulumi.Input[bool] public: Whether the provider is public or not, defaults to false (private)
         """
-        TerraformProviderArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            space_id=space_id,
-            type=type,
-            description=description,
-            labels=labels,
-            public=public,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             space_id: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             public: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-        if space_id is None:
-            raise TypeError("Missing 'space_id' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("space_id", space_id)
-        _setter("type", type)
+        pulumi.set(__self__, "space_id", space_id)
+        pulumi.set(__self__, "type", type)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if public is not None:
-            _setter("public", public)
+            pulumi.set(__self__, "public", public)
 
     @property
     @pulumi.getter(name="spaceId")
@@ -133,37 +108,16 @@ class _TerraformProviderState:
         :param pulumi.Input[str] space_id: ID (slug) of the space the provider is in
         :param pulumi.Input[str] type: Type of the provider - should be unique in one account
         """
-        _TerraformProviderState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            labels=labels,
-            public=public,
-            space_id=space_id,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             public: Optional[pulumi.Input[bool]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if public is not None:
-            _setter("public", public)
+            pulumi.set(__self__, "public", public)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumi.set(__self__, "space_id", space_id)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -287,10 +241,6 @@ class TerraformProvider(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            TerraformProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

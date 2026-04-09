@@ -13,6 +13,9 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStacksStackShowcaseResult
     {
+        /// <summary>
+        /// GitHub namespace of the stack's repository
+        /// </summary>
         public readonly string Namespace;
 
         [OutputConstructor]

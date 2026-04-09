@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -52,27 +52,8 @@ class IdpGroupMappingPolicyArgs:
         :param pulumi.Input[str] role: Type of access to the space. Possible values are: READ, WRITE, ADMIN
         :param pulumi.Input[str] space_id: ID (slug) of the space the user group has access to
         """
-        IdpGroupMappingPolicyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            role=role,
-            space_id=space_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             role: Optional[pulumi.Input[str]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if role is None:
-            raise TypeError("Missing 'role' argument")
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-        if space_id is None:
-            raise TypeError("Missing 'space_id' argument")
-
-        _setter("role", role)
-        _setter("space_id", space_id)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "space_id", space_id)
 
     @property
     @pulumi.getter
@@ -110,30 +91,11 @@ class ModuleAzureDevopsArgs:
         :param pulumi.Input[str] id: ID of the Azure Devops integration. If not specified, the default integration will be used.
         :param pulumi.Input[bool] is_default: Indicates whether this is the default Azure DevOps integration
         """
-        ModuleAzureDevopsArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            project=project,
-            id=id,
-            is_default=is_default,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             project: Optional[pulumi.Input[str]] = None,
-             id: Optional[pulumi.Input[str]] = None,
-             is_default: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if project is None:
-            raise TypeError("Missing 'project' argument")
-        if is_default is None and 'isDefault' in kwargs:
-            is_default = kwargs['isDefault']
-
-        _setter("project", project)
+        pulumi.set(__self__, "project", project)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if is_default is not None:
-            _setter("is_default", is_default)
+            pulumi.set(__self__, "is_default", is_default)
 
     @property
     @pulumi.getter
@@ -183,30 +145,11 @@ class ModuleBitbucketCloudArgs:
         :param pulumi.Input[str] id: The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
         :param pulumi.Input[bool] is_default: Indicates whether this is the default Bitbucket Cloud integration
         """
-        ModuleBitbucketCloudArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace=namespace,
-            id=id,
-            is_default=is_default,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace: Optional[pulumi.Input[str]] = None,
-             id: Optional[pulumi.Input[str]] = None,
-             is_default: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if namespace is None:
-            raise TypeError("Missing 'namespace' argument")
-        if is_default is None and 'isDefault' in kwargs:
-            is_default = kwargs['isDefault']
-
-        _setter("namespace", namespace)
+        pulumi.set(__self__, "namespace", namespace)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if is_default is not None:
-            _setter("is_default", is_default)
+            pulumi.set(__self__, "is_default", is_default)
 
     @property
     @pulumi.getter
@@ -256,30 +199,11 @@ class ModuleBitbucketDatacenterArgs:
         :param pulumi.Input[str] id: The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
         :param pulumi.Input[bool] is_default: Indicates whether this is the default Bitbucket Datacenter integration
         """
-        ModuleBitbucketDatacenterArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace=namespace,
-            id=id,
-            is_default=is_default,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace: Optional[pulumi.Input[str]] = None,
-             id: Optional[pulumi.Input[str]] = None,
-             is_default: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if namespace is None:
-            raise TypeError("Missing 'namespace' argument")
-        if is_default is None and 'isDefault' in kwargs:
-            is_default = kwargs['isDefault']
-
-        _setter("namespace", namespace)
+        pulumi.set(__self__, "namespace", namespace)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if is_default is not None:
-            _setter("is_default", is_default)
+            pulumi.set(__self__, "is_default", is_default)
 
     @property
     @pulumi.getter
@@ -329,30 +253,11 @@ class ModuleGithubEnterpriseArgs:
         :param pulumi.Input[str] id: The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
         :param pulumi.Input[bool] is_default: Indicates whether this is the default GitHub Enterprise integration
         """
-        ModuleGithubEnterpriseArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace=namespace,
-            id=id,
-            is_default=is_default,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace: Optional[pulumi.Input[str]] = None,
-             id: Optional[pulumi.Input[str]] = None,
-             is_default: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if namespace is None:
-            raise TypeError("Missing 'namespace' argument")
-        if is_default is None and 'isDefault' in kwargs:
-            is_default = kwargs['isDefault']
-
-        _setter("namespace", namespace)
+        pulumi.set(__self__, "namespace", namespace)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if is_default is not None:
-            _setter("is_default", is_default)
+            pulumi.set(__self__, "is_default", is_default)
 
     @property
     @pulumi.getter
@@ -402,30 +307,11 @@ class ModuleGitlabArgs:
         :param pulumi.Input[str] id: ID of the Gitlab integration. If not specified, the default integration will be used.
         :param pulumi.Input[bool] is_default: Indicates whether this is the default GitLab integration
         """
-        ModuleGitlabArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace=namespace,
-            id=id,
-            is_default=is_default,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace: Optional[pulumi.Input[str]] = None,
-             id: Optional[pulumi.Input[str]] = None,
-             is_default: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if namespace is None:
-            raise TypeError("Missing 'namespace' argument")
-        if is_default is None and 'isDefault' in kwargs:
-            is_default = kwargs['isDefault']
-
-        _setter("namespace", namespace)
+        pulumi.set(__self__, "namespace", namespace)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if is_default is not None:
-            _setter("is_default", is_default)
+            pulumi.set(__self__, "is_default", is_default)
 
     @property
     @pulumi.getter
@@ -471,20 +357,7 @@ class StackAnsibleArgs:
         """
         :param pulumi.Input[str] playbook: The playbook Ansible should run.
         """
-        StackAnsibleArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            playbook=playbook,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             playbook: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if playbook is None:
-            raise TypeError("Missing 'playbook' argument")
-
-        _setter("playbook", playbook)
+        pulumi.set(__self__, "playbook", playbook)
 
     @property
     @pulumi.getter
@@ -510,30 +383,11 @@ class StackAzureDevopsArgs:
         :param pulumi.Input[str] id: The ID of the Azure Devops integration. If not specified, the default integration will be used.
         :param pulumi.Input[bool] is_default: Indicates whether this is the default Azure DevOps integration
         """
-        StackAzureDevopsArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            project=project,
-            id=id,
-            is_default=is_default,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             project: Optional[pulumi.Input[str]] = None,
-             id: Optional[pulumi.Input[str]] = None,
-             is_default: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if project is None:
-            raise TypeError("Missing 'project' argument")
-        if is_default is None and 'isDefault' in kwargs:
-            is_default = kwargs['isDefault']
-
-        _setter("project", project)
+        pulumi.set(__self__, "project", project)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if is_default is not None:
-            _setter("is_default", is_default)
+            pulumi.set(__self__, "is_default", is_default)
 
     @property
     @pulumi.getter
@@ -583,30 +437,11 @@ class StackBitbucketCloudArgs:
         :param pulumi.Input[str] id: The ID of the Bitbucket Cloud integration. If not specified, the default integration will be used.
         :param pulumi.Input[bool] is_default: Indicates whether this is the default Bitbucket Cloud integration
         """
-        StackBitbucketCloudArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace=namespace,
-            id=id,
-            is_default=is_default,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace: Optional[pulumi.Input[str]] = None,
-             id: Optional[pulumi.Input[str]] = None,
-             is_default: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if namespace is None:
-            raise TypeError("Missing 'namespace' argument")
-        if is_default is None and 'isDefault' in kwargs:
-            is_default = kwargs['isDefault']
-
-        _setter("namespace", namespace)
+        pulumi.set(__self__, "namespace", namespace)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if is_default is not None:
-            _setter("is_default", is_default)
+            pulumi.set(__self__, "is_default", is_default)
 
     @property
     @pulumi.getter
@@ -656,30 +491,11 @@ class StackBitbucketDatacenterArgs:
         :param pulumi.Input[str] id: The ID of the Bitbucket Datacenter integration. If not specified, the default integration will be used.
         :param pulumi.Input[bool] is_default: Indicates whether this is the default Bitbucket Datacenter integration
         """
-        StackBitbucketDatacenterArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace=namespace,
-            id=id,
-            is_default=is_default,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace: Optional[pulumi.Input[str]] = None,
-             id: Optional[pulumi.Input[str]] = None,
-             is_default: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if namespace is None:
-            raise TypeError("Missing 'namespace' argument")
-        if is_default is None and 'isDefault' in kwargs:
-            is_default = kwargs['isDefault']
-
-        _setter("namespace", namespace)
+        pulumi.set(__self__, "namespace", namespace)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if is_default is not None:
-            _setter("is_default", is_default)
+            pulumi.set(__self__, "is_default", is_default)
 
     @property
     @pulumi.getter
@@ -731,41 +547,10 @@ class StackCloudformationArgs:
         :param pulumi.Input[str] stack_name: CloudFormation stack name
         :param pulumi.Input[str] template_bucket: S3 bucket to save CloudFormation templates to
         """
-        StackCloudformationArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            entry_template_file=entry_template_file,
-            region=region,
-            stack_name=stack_name,
-            template_bucket=template_bucket,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             entry_template_file: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             stack_name: Optional[pulumi.Input[str]] = None,
-             template_bucket: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if entry_template_file is None and 'entryTemplateFile' in kwargs:
-            entry_template_file = kwargs['entryTemplateFile']
-        if entry_template_file is None:
-            raise TypeError("Missing 'entry_template_file' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-        if stack_name is None and 'stackName' in kwargs:
-            stack_name = kwargs['stackName']
-        if stack_name is None:
-            raise TypeError("Missing 'stack_name' argument")
-        if template_bucket is None and 'templateBucket' in kwargs:
-            template_bucket = kwargs['templateBucket']
-        if template_bucket is None:
-            raise TypeError("Missing 'template_bucket' argument")
-
-        _setter("entry_template_file", entry_template_file)
-        _setter("region", region)
-        _setter("stack_name", stack_name)
-        _setter("template_bucket", template_bucket)
+        pulumi.set(__self__, "entry_template_file", entry_template_file)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "stack_name", stack_name)
+        pulumi.set(__self__, "template_bucket", template_bucket)
 
     @property
     @pulumi.getter(name="entryTemplateFile")
@@ -827,30 +612,11 @@ class StackGithubEnterpriseArgs:
         :param pulumi.Input[str] id: The ID of the GitHub Enterprise integration. If not specified, the default integration will be used.
         :param pulumi.Input[bool] is_default: Indicates whether this is the default GitHub Enterprise integration
         """
-        StackGithubEnterpriseArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace=namespace,
-            id=id,
-            is_default=is_default,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace: Optional[pulumi.Input[str]] = None,
-             id: Optional[pulumi.Input[str]] = None,
-             is_default: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if namespace is None:
-            raise TypeError("Missing 'namespace' argument")
-        if is_default is None and 'isDefault' in kwargs:
-            is_default = kwargs['isDefault']
-
-        _setter("namespace", namespace)
+        pulumi.set(__self__, "namespace", namespace)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if is_default is not None:
-            _setter("is_default", is_default)
+            pulumi.set(__self__, "is_default", is_default)
 
     @property
     @pulumi.getter
@@ -900,30 +666,11 @@ class StackGitlabArgs:
         :param pulumi.Input[str] id: The ID of the Gitlab integration. If not specified, the default integration will be used.
         :param pulumi.Input[bool] is_default: Indicates whether this is the default GitLab integration
         """
-        StackGitlabArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace=namespace,
-            id=id,
-            is_default=is_default,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace: Optional[pulumi.Input[str]] = None,
-             id: Optional[pulumi.Input[str]] = None,
-             is_default: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if namespace is None:
-            raise TypeError("Missing 'namespace' argument")
-        if is_default is None and 'isDefault' in kwargs:
-            is_default = kwargs['isDefault']
-
-        _setter("namespace", namespace)
+        pulumi.set(__self__, "namespace", namespace)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if is_default is not None:
-            _setter("is_default", is_default)
+            pulumi.set(__self__, "is_default", is_default)
 
     @property
     @pulumi.getter
@@ -971,25 +718,10 @@ class StackKubernetesArgs:
         :param pulumi.Input[str] kubectl_version: Kubectl version.
         :param pulumi.Input[str] namespace: Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
         """
-        StackKubernetesArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            kubectl_version=kubectl_version,
-            namespace=namespace,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             kubectl_version: Optional[pulumi.Input[str]] = None,
-             namespace: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if kubectl_version is None and 'kubectlVersion' in kwargs:
-            kubectl_version = kwargs['kubectlVersion']
-
         if kubectl_version is not None:
-            _setter("kubectl_version", kubectl_version)
+            pulumi.set(__self__, "kubectl_version", kubectl_version)
         if namespace is not None:
-            _setter("namespace", namespace)
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="kubectlVersion")
@@ -1025,29 +757,8 @@ class StackPulumiArgs:
         :param pulumi.Input[str] login_url: State backend to log into on Run initialize.
         :param pulumi.Input[str] stack_name: Pulumi stack name to use with the state backend.
         """
-        StackPulumiArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            login_url=login_url,
-            stack_name=stack_name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             login_url: Optional[pulumi.Input[str]] = None,
-             stack_name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if login_url is None and 'loginUrl' in kwargs:
-            login_url = kwargs['loginUrl']
-        if login_url is None:
-            raise TypeError("Missing 'login_url' argument")
-        if stack_name is None and 'stackName' in kwargs:
-            stack_name = kwargs['stackName']
-        if stack_name is None:
-            raise TypeError("Missing 'stack_name' argument")
-
-        _setter("login_url", login_url)
-        _setter("stack_name", stack_name)
+        pulumi.set(__self__, "login_url", login_url)
+        pulumi.set(__self__, "stack_name", stack_name)
 
     @property
     @pulumi.getter(name="loginUrl")
@@ -1083,25 +794,8 @@ class StackRawGitArgs:
         :param pulumi.Input[str] namespace: User-friendly namespace for the repository, this is for cosmetic purposes only
         :param pulumi.Input[str] url: HTTPS URL of the Git repository
         """
-        StackRawGitArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace=namespace,
-            url=url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace: Optional[pulumi.Input[str]] = None,
-             url: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if namespace is None:
-            raise TypeError("Missing 'namespace' argument")
-        if url is None:
-            raise TypeError("Missing 'url' argument")
-
-        _setter("namespace", namespace)
-        _setter("url", url)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -1132,20 +826,7 @@ class StackRawGitArgs:
 class StackShowcaseArgs:
     def __init__(__self__, *,
                  namespace: pulumi.Input[str]):
-        StackShowcaseArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace=namespace,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if namespace is None:
-            raise TypeError("Missing 'namespace' argument")
-
-        _setter("namespace", namespace)
+        pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -1168,39 +849,14 @@ class StackTerragruntArgs:
         :param pulumi.Input[str] terragrunt_version: Terragrunt version.
         :param pulumi.Input[bool] use_run_all: Whether to use `terragrunt run-all` instead of `terragrunt`.
         """
-        StackTerragruntArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            terraform_version=terraform_version,
-            terragrunt_version=terragrunt_version,
-            use_run_all=use_run_all,
-            use_smart_sanitization=use_smart_sanitization,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             terraform_version: Optional[pulumi.Input[str]] = None,
-             terragrunt_version: Optional[pulumi.Input[str]] = None,
-             use_run_all: Optional[pulumi.Input[bool]] = None,
-             use_smart_sanitization: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if terraform_version is None and 'terraformVersion' in kwargs:
-            terraform_version = kwargs['terraformVersion']
-        if terragrunt_version is None and 'terragruntVersion' in kwargs:
-            terragrunt_version = kwargs['terragruntVersion']
-        if use_run_all is None and 'useRunAll' in kwargs:
-            use_run_all = kwargs['useRunAll']
-        if use_smart_sanitization is None and 'useSmartSanitization' in kwargs:
-            use_smart_sanitization = kwargs['useSmartSanitization']
-
         if terraform_version is not None:
-            _setter("terraform_version", terraform_version)
+            pulumi.set(__self__, "terraform_version", terraform_version)
         if terragrunt_version is not None:
-            _setter("terragrunt_version", terragrunt_version)
+            pulumi.set(__self__, "terragrunt_version", terragrunt_version)
         if use_run_all is not None:
-            _setter("use_run_all", use_run_all)
+            pulumi.set(__self__, "use_run_all", use_run_all)
         if use_smart_sanitization is not None:
-            _setter("use_smart_sanitization", use_smart_sanitization)
+            pulumi.set(__self__, "use_smart_sanitization", use_smart_sanitization)
 
     @property
     @pulumi.getter(name="terraformVersion")
@@ -1254,27 +910,8 @@ class UserPolicyArgs:
         :param pulumi.Input[str] role: Type of access to the space. Possible values are: READ, WRITE, ADMIN
         :param pulumi.Input[str] space_id: ID (slug) of the space the user has access to
         """
-        UserPolicyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            role=role,
-            space_id=space_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             role: Optional[pulumi.Input[str]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if role is None:
-            raise TypeError("Missing 'role' argument")
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-        if space_id is None:
-            raise TypeError("Missing 'space_id' argument")
-
-        _setter("role", role)
-        _setter("space_id", space_id)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "space_id", space_id)
 
     @property
     @pulumi.getter
@@ -1305,22 +942,7 @@ class UserPolicyArgs:
 class GetContextsLabelArgs:
     def __init__(__self__, *,
                  any_ofs: Sequence[str]):
-        GetContextsLabelArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            any_ofs=any_ofs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             any_ofs: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if any_ofs is None and 'anyOfs' in kwargs:
-            any_ofs = kwargs['anyOfs']
-        if any_ofs is None:
-            raise TypeError("Missing 'any_ofs' argument")
-
-        _setter("any_ofs", any_ofs)
+        pulumi.set(__self__, "any_ofs", any_ofs)
 
     @property
     @pulumi.getter(name="anyOfs")
@@ -1336,19 +958,8 @@ class GetContextsLabelArgs:
 class GetStacksAdministrativeArgs:
     def __init__(__self__, *,
                  equals: Optional[bool] = None):
-        GetStacksAdministrativeArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            equals=equals,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             equals: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if equals is not None:
-            _setter("equals", equals)
+            pulumi.set(__self__, "equals", equals)
 
     @property
     @pulumi.getter
@@ -1364,22 +975,7 @@ class GetStacksAdministrativeArgs:
 class GetStacksBranchArgs:
     def __init__(__self__, *,
                  any_ofs: Sequence[str]):
-        GetStacksBranchArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            any_ofs=any_ofs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             any_ofs: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if any_ofs is None and 'anyOfs' in kwargs:
-            any_ofs = kwargs['anyOfs']
-        if any_ofs is None:
-            raise TypeError("Missing 'any_ofs' argument")
-
-        _setter("any_ofs", any_ofs)
+        pulumi.set(__self__, "any_ofs", any_ofs)
 
     @property
     @pulumi.getter(name="anyOfs")
@@ -1395,22 +991,7 @@ class GetStacksBranchArgs:
 class GetStacksCommitArgs:
     def __init__(__self__, *,
                  any_ofs: Sequence[str]):
-        GetStacksCommitArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            any_ofs=any_ofs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             any_ofs: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if any_ofs is None and 'anyOfs' in kwargs:
-            any_ofs = kwargs['anyOfs']
-        if any_ofs is None:
-            raise TypeError("Missing 'any_ofs' argument")
-
-        _setter("any_ofs", any_ofs)
+        pulumi.set(__self__, "any_ofs", any_ofs)
 
     @property
     @pulumi.getter(name="anyOfs")
@@ -1426,22 +1007,7 @@ class GetStacksCommitArgs:
 class GetStacksLabelArgs:
     def __init__(__self__, *,
                  any_ofs: Sequence[str]):
-        GetStacksLabelArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            any_ofs=any_ofs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             any_ofs: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if any_ofs is None and 'anyOfs' in kwargs:
-            any_ofs = kwargs['anyOfs']
-        if any_ofs is None:
-            raise TypeError("Missing 'any_ofs' argument")
-
-        _setter("any_ofs", any_ofs)
+        pulumi.set(__self__, "any_ofs", any_ofs)
 
     @property
     @pulumi.getter(name="anyOfs")
@@ -1457,19 +1023,8 @@ class GetStacksLabelArgs:
 class GetStacksLockedArgs:
     def __init__(__self__, *,
                  equals: Optional[bool] = None):
-        GetStacksLockedArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            equals=equals,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             equals: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if equals is not None:
-            _setter("equals", equals)
+            pulumi.set(__self__, "equals", equals)
 
     @property
     @pulumi.getter
@@ -1485,22 +1040,7 @@ class GetStacksLockedArgs:
 class GetStacksNameArgs:
     def __init__(__self__, *,
                  any_ofs: Sequence[str]):
-        GetStacksNameArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            any_ofs=any_ofs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             any_ofs: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if any_ofs is None and 'anyOfs' in kwargs:
-            any_ofs = kwargs['anyOfs']
-        if any_ofs is None:
-            raise TypeError("Missing 'any_ofs' argument")
-
-        _setter("any_ofs", any_ofs)
+        pulumi.set(__self__, "any_ofs", any_ofs)
 
     @property
     @pulumi.getter(name="anyOfs")
@@ -1516,22 +1056,7 @@ class GetStacksNameArgs:
 class GetStacksProjectRootArgs:
     def __init__(__self__, *,
                  any_ofs: Sequence[str]):
-        GetStacksProjectRootArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            any_ofs=any_ofs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             any_ofs: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if any_ofs is None and 'anyOfs' in kwargs:
-            any_ofs = kwargs['anyOfs']
-        if any_ofs is None:
-            raise TypeError("Missing 'any_ofs' argument")
-
-        _setter("any_ofs", any_ofs)
+        pulumi.set(__self__, "any_ofs", any_ofs)
 
     @property
     @pulumi.getter(name="anyOfs")
@@ -1547,22 +1072,7 @@ class GetStacksProjectRootArgs:
 class GetStacksRepositoryArgs:
     def __init__(__self__, *,
                  any_ofs: Sequence[str]):
-        GetStacksRepositoryArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            any_ofs=any_ofs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             any_ofs: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if any_ofs is None and 'anyOfs' in kwargs:
-            any_ofs = kwargs['anyOfs']
-        if any_ofs is None:
-            raise TypeError("Missing 'any_ofs' argument")
-
-        _setter("any_ofs", any_ofs)
+        pulumi.set(__self__, "any_ofs", any_ofs)
 
     @property
     @pulumi.getter(name="anyOfs")
@@ -1578,22 +1088,7 @@ class GetStacksRepositoryArgs:
 class GetStacksStateArgs:
     def __init__(__self__, *,
                  any_ofs: Sequence[str]):
-        GetStacksStateArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            any_ofs=any_ofs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             any_ofs: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if any_ofs is None and 'anyOfs' in kwargs:
-            any_ofs = kwargs['anyOfs']
-        if any_ofs is None:
-            raise TypeError("Missing 'any_ofs' argument")
-
-        _setter("any_ofs", any_ofs)
+        pulumi.set(__self__, "any_ofs", any_ofs)
 
     @property
     @pulumi.getter(name="anyOfs")
@@ -1609,22 +1104,7 @@ class GetStacksStateArgs:
 class GetStacksVendorArgs:
     def __init__(__self__, *,
                  any_ofs: Sequence[str]):
-        GetStacksVendorArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            any_ofs=any_ofs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             any_ofs: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if any_ofs is None and 'anyOfs' in kwargs:
-            any_ofs = kwargs['anyOfs']
-        if any_ofs is None:
-            raise TypeError("Missing 'any_ofs' argument")
-
-        _setter("any_ofs", any_ofs)
+        pulumi.set(__self__, "any_ofs", any_ofs)
 
     @property
     @pulumi.getter(name="anyOfs")
@@ -1640,22 +1120,7 @@ class GetStacksVendorArgs:
 class GetStacksWorkerPoolArgs:
     def __init__(__self__, *,
                  any_ofs: Sequence[str]):
-        GetStacksWorkerPoolArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            any_ofs=any_ofs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             any_ofs: Optional[Sequence[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if any_ofs is None and 'anyOfs' in kwargs:
-            any_ofs = kwargs['anyOfs']
-        if any_ofs is None:
-            raise TypeError("Missing 'any_ofs' argument")
-
-        _setter("any_ofs", any_ofs)
+        pulumi.set(__self__, "any_ofs", any_ofs)
 
     @property
     @pulumi.getter(name="anyOfs")

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -121,12 +120,6 @@ func (o LookupAzureIntegrationResultOutput) ToLookupAzureIntegrationResultOutput
 
 func (o LookupAzureIntegrationResultOutput) ToLookupAzureIntegrationResultOutputWithContext(ctx context.Context) LookupAzureIntegrationResultOutput {
 	return o
-}
-
-func (o LookupAzureIntegrationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAzureIntegrationResult] {
-	return pulumix.Output[LookupAzureIntegrationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Indicates whether admin consent has been performed for the AAD Application.

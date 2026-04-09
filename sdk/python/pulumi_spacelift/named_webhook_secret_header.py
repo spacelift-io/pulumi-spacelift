@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['NamedWebhookSecretHeaderArgs', 'NamedWebhookSecretHeader']
@@ -23,32 +23,9 @@ class NamedWebhookSecretHeaderArgs:
         :param pulumi.Input[str] value: value for the header
         :param pulumi.Input[str] webhook_id: ID of the stack on which the environment variable is defined
         """
-        NamedWebhookSecretHeaderArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-            webhook_id=webhook_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[pulumi.Input[str]] = None,
-             value: Optional[pulumi.Input[str]] = None,
-             webhook_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if key is None:
-            raise TypeError("Missing 'key' argument")
-        if value is None:
-            raise TypeError("Missing 'value' argument")
-        if webhook_id is None and 'webhookId' in kwargs:
-            webhook_id = kwargs['webhookId']
-        if webhook_id is None:
-            raise TypeError("Missing 'webhook_id' argument")
-
-        _setter("key", key)
-        _setter("value", value)
-        _setter("webhook_id", webhook_id)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "webhook_id", webhook_id)
 
     @property
     @pulumi.getter
@@ -99,29 +76,12 @@ class _NamedWebhookSecretHeaderState:
         :param pulumi.Input[str] value: value for the header
         :param pulumi.Input[str] webhook_id: ID of the stack on which the environment variable is defined
         """
-        _NamedWebhookSecretHeaderState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            value=value,
-            webhook_id=webhook_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: Optional[pulumi.Input[str]] = None,
-             value: Optional[pulumi.Input[str]] = None,
-             webhook_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if webhook_id is None and 'webhookId' in kwargs:
-            webhook_id = kwargs['webhookId']
-
         if key is not None:
-            _setter("key", key)
+            pulumi.set(__self__, "key", key)
         if value is not None:
-            _setter("value", value)
+            pulumi.set(__self__, "value", value)
         if webhook_id is not None:
-            _setter("webhook_id", webhook_id)
+            pulumi.set(__self__, "webhook_id", webhook_id)
 
     @property
     @pulumi.getter
@@ -197,10 +157,6 @@ class NamedWebhookSecretHeader(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            NamedWebhookSecretHeaderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

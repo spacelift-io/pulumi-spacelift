@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['WorkerPoolArgs', 'WorkerPool']
@@ -26,37 +26,16 @@ class WorkerPoolArgs:
         :param pulumi.Input[str] name: name of the worker pool
         :param pulumi.Input[str] space_id: ID (slug) of the space the worker pool is in
         """
-        WorkerPoolArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            csr=csr,
-            description=description,
-            labels=labels,
-            name=name,
-            space_id=space_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             csr: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-
         if csr is not None:
-            _setter("csr", csr)
+            pulumi.set(__self__, "csr", csr)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumi.set(__self__, "space_id", space_id)
 
     @property
     @pulumi.getter
@@ -135,47 +114,20 @@ class _WorkerPoolState:
         :param pulumi.Input[str] private_key: private key in base64
         :param pulumi.Input[str] space_id: ID (slug) of the space the worker pool is in
         """
-        _WorkerPoolState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            config=config,
-            csr=csr,
-            description=description,
-            labels=labels,
-            name=name,
-            private_key=private_key,
-            space_id=space_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             config: Optional[pulumi.Input[str]] = None,
-             csr: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             private_key: Optional[pulumi.Input[str]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if private_key is None and 'privateKey' in kwargs:
-            private_key = kwargs['privateKey']
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-
         if config is not None:
-            _setter("config", config)
+            pulumi.set(__self__, "config", config)
         if csr is not None:
-            _setter("csr", csr)
+            pulumi.set(__self__, "csr", csr)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if private_key is not None:
-            _setter("private_key", private_key)
+            pulumi.set(__self__, "private_key", private_key)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumi.set(__self__, "space_id", space_id)
 
     @property
     @pulumi.getter
@@ -335,10 +287,6 @@ class WorkerPool(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            WorkerPoolArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

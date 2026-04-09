@@ -13,8 +13,17 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetModuleBitbucketCloudResult
     {
+        /// <summary>
+        /// ID of the Bitbucket Cloud integration
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Indicates whether this is the default Bitbucket Cloud integration
+        /// </summary>
         public readonly bool IsDefault;
+        /// <summary>
+        /// Bitbucket Cloud namespace of the stack's repository
+        /// </summary>
         public readonly string Namespace;
 
         [OutputConstructor]

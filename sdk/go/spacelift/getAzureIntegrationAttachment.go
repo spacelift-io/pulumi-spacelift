@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -120,12 +119,6 @@ func (o LookupAzureIntegrationAttachmentResultOutput) ToLookupAzureIntegrationAt
 
 func (o LookupAzureIntegrationAttachmentResultOutput) ToLookupAzureIntegrationAttachmentResultOutputWithContext(ctx context.Context) LookupAzureIntegrationAttachmentResultOutput {
 	return o
-}
-
-func (o LookupAzureIntegrationAttachmentResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAzureIntegrationAttachmentResult] {
-	return pulumix.Output[LookupAzureIntegrationAttachmentResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Internal ID of the attachment entity

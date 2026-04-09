@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as spacelift from "@spacelift-io/pulumi-spacelift";
  *
  * const no_weekend_deploysPolicy = new spacelift.Policy("no-weekend-deploysPolicy", {
- *     body: fs.readFileSync("policies/no-weekend-deploys.rego"),
+ *     body: fs.readFileSync("policies/no-weekend-deploys.rego", "utf8"),
  *     type: "PLAN",
  * });
  * const core_infra_production = new spacelift.Stack("core-infra-production", {

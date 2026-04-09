@@ -13,8 +13,17 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStackGithubEnterpriseResult
     {
+        /// <summary>
+        /// ID of the GitHub Enterprise integration
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Indicates whether this is the default GitHub Enterprise integration
+        /// </summary>
         public readonly bool IsDefault;
+        /// <summary>
+        /// GitHub Enterprise namespace of the stack's repository
+        /// </summary>
         public readonly string Namespace;
 
         [OutputConstructor]

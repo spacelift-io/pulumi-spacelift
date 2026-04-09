@@ -1,0 +1,24 @@
+archives:
+  - id: archive
+    name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
+before:
+  hooks:
+    - make tfgen
+builds:
+  - binary: pulumi-resource-spacelift
+    dir: provider
+    goarch:
+      - amd64
+      - arm64
+    goos:
+      - darwin
+      - windows
+      - linux
+    ignore: []
+    ldflags:
+      - -X github.com/spacelift-io/pulumi-spacelift/provider/pkg/version.Version={{.Tag}}
+    main: ./cmd/pulumi-resource-spacelift/
+release:
+  disable: false
+snapshot:
+  name_template: "{{ .Tag }}-SNAPSHOT"

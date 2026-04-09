@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -121,12 +120,6 @@ func (o LookupContextAttachmentResultOutput) ToLookupContextAttachmentResultOutp
 
 func (o LookupContextAttachmentResultOutput) ToLookupContextAttachmentResultOutputWithContext(ctx context.Context) LookupContextAttachmentResultOutput {
 	return o
-}
-
-func (o LookupContextAttachmentResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupContextAttachmentResult] {
-	return pulumix.Output[LookupContextAttachmentResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID of the attached context

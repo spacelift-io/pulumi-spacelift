@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ScheduledDeleteTaskArgs', 'ScheduledDeleteTask']
@@ -25,39 +25,12 @@ class ScheduledDeleteTaskArgs:
         :param pulumi.Input[bool] delete_resources: Indicates whether the resources of the stack should be deleted.
         :param pulumi.Input[str] schedule_id: ID of the schedule
         """
-        ScheduledDeleteTaskArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            at=at,
-            stack_id=stack_id,
-            delete_resources=delete_resources,
-            schedule_id=schedule_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             at: Optional[pulumi.Input[int]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             delete_resources: Optional[pulumi.Input[bool]] = None,
-             schedule_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if at is None:
-            raise TypeError("Missing 'at' argument")
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if stack_id is None:
-            raise TypeError("Missing 'stack_id' argument")
-        if delete_resources is None and 'deleteResources' in kwargs:
-            delete_resources = kwargs['deleteResources']
-        if schedule_id is None and 'scheduleId' in kwargs:
-            schedule_id = kwargs['scheduleId']
-
-        _setter("at", at)
-        _setter("stack_id", stack_id)
+        pulumi.set(__self__, "at", at)
+        pulumi.set(__self__, "stack_id", stack_id)
         if delete_resources is not None:
-            _setter("delete_resources", delete_resources)
+            pulumi.set(__self__, "delete_resources", delete_resources)
         if schedule_id is not None:
-            _setter("schedule_id", schedule_id)
+            pulumi.set(__self__, "schedule_id", schedule_id)
 
     @property
     @pulumi.getter
@@ -122,37 +95,14 @@ class _ScheduledDeleteTaskState:
         :param pulumi.Input[str] schedule_id: ID of the schedule
         :param pulumi.Input[str] stack_id: ID of the stack for which to set up scheduling
         """
-        _ScheduledDeleteTaskState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            at=at,
-            delete_resources=delete_resources,
-            schedule_id=schedule_id,
-            stack_id=stack_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             at: Optional[pulumi.Input[int]] = None,
-             delete_resources: Optional[pulumi.Input[bool]] = None,
-             schedule_id: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if delete_resources is None and 'deleteResources' in kwargs:
-            delete_resources = kwargs['deleteResources']
-        if schedule_id is None and 'scheduleId' in kwargs:
-            schedule_id = kwargs['scheduleId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
         if at is not None:
-            _setter("at", at)
+            pulumi.set(__self__, "at", at)
         if delete_resources is not None:
-            _setter("delete_resources", delete_resources)
+            pulumi.set(__self__, "delete_resources", delete_resources)
         if schedule_id is not None:
-            _setter("schedule_id", schedule_id)
+            pulumi.set(__self__, "schedule_id", schedule_id)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter
@@ -284,10 +234,6 @@ class ScheduledDeleteTask(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ScheduledDeleteTaskArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

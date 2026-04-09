@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -155,12 +154,6 @@ func (i *StackDependency) ToStackDependencyOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(StackDependencyOutput)
 }
 
-func (i *StackDependency) ToOutput(ctx context.Context) pulumix.Output[*StackDependency] {
-	return pulumix.Output[*StackDependency]{
-		OutputState: i.ToStackDependencyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // StackDependencyArrayInput is an input type that accepts StackDependencyArray and StackDependencyArrayOutput values.
 // You can construct a concrete instance of `StackDependencyArrayInput` via:
 //
@@ -184,12 +177,6 @@ func (i StackDependencyArray) ToStackDependencyArrayOutput() StackDependencyArra
 
 func (i StackDependencyArray) ToStackDependencyArrayOutputWithContext(ctx context.Context) StackDependencyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StackDependencyArrayOutput)
-}
-
-func (i StackDependencyArray) ToOutput(ctx context.Context) pulumix.Output[[]*StackDependency] {
-	return pulumix.Output[[]*StackDependency]{
-		OutputState: i.ToStackDependencyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // StackDependencyMapInput is an input type that accepts StackDependencyMap and StackDependencyMapOutput values.
@@ -217,12 +204,6 @@ func (i StackDependencyMap) ToStackDependencyMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(StackDependencyMapOutput)
 }
 
-func (i StackDependencyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackDependency] {
-	return pulumix.Output[map[string]*StackDependency]{
-		OutputState: i.ToStackDependencyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackDependencyOutput struct{ *pulumi.OutputState }
 
 func (StackDependencyOutput) ElementType() reflect.Type {
@@ -235,12 +216,6 @@ func (o StackDependencyOutput) ToStackDependencyOutput() StackDependencyOutput {
 
 func (o StackDependencyOutput) ToStackDependencyOutputWithContext(ctx context.Context) StackDependencyOutput {
 	return o
-}
-
-func (o StackDependencyOutput) ToOutput(ctx context.Context) pulumix.Output[*StackDependency] {
-	return pulumix.Output[*StackDependency]{
-		OutputState: o.OutputState,
-	}
 }
 
 // immutable ID (slug) of stack to depend on.
@@ -267,12 +242,6 @@ func (o StackDependencyArrayOutput) ToStackDependencyArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o StackDependencyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*StackDependency] {
-	return pulumix.Output[[]*StackDependency]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StackDependencyArrayOutput) Index(i pulumi.IntInput) StackDependencyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *StackDependency {
 		return vs[0].([]*StackDependency)[vs[1].(int)]
@@ -291,12 +260,6 @@ func (o StackDependencyMapOutput) ToStackDependencyMapOutput() StackDependencyMa
 
 func (o StackDependencyMapOutput) ToStackDependencyMapOutputWithContext(ctx context.Context) StackDependencyMapOutput {
 	return o
-}
-
-func (o StackDependencyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackDependency] {
-	return pulumix.Output[map[string]*StackDependency]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackDependencyMapOutput) MapIndex(k pulumi.StringInput) StackDependencyOutput {
