@@ -10,7 +10,7 @@ jobs:
   build-library:
     name: 👷‍♀️ Build library
     runs-on: ubuntu-latest
-    container: golang:1.21-alpine
+    container: golang:1.26-alpine
     steps:
       - name: Install build dependencies
         run: apk add --no-cache alpine-sdk git bash npm python3 py3-pip
