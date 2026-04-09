@@ -1,0 +1,3 @@
+name: spacelift
+description: A Pulumi resource provider for spacelift.
+language: schema

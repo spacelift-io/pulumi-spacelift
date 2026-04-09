@@ -119,7 +119,8 @@ func Provider() tfbridge.ProviderInfo {
 			"spacelift_space":                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Space")},
 			"spacelift_stack": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Stack"), Fields: map[string]*tfbridge.SchemaInfo{
 				"pulumi": {
-					CSharpName: "pulumi_backend",
+					Name:       "pulumiConfig",
+					CSharpName: "PulumiConfig",
 				},
 			}},
 			"spacelift_stack_activator":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "StackActivator")},
