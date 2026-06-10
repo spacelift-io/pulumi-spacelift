@@ -1,4 +1,15 @@
-# Spacelift Pulumi Provider
+> [!WARNING]
+> ## This provider is deprecated and will be archived on December 10, 2026
+>
+> The `pulumi-spacelift` provider is no longer maintained and will receive no further updates. The repository will become read-only on December 10, 2026. Existing usage continues to function after that date.
+>
+> **This does not affect running Pulumi workloads on Spacelift.** Pulumi remains a fully supported IaC vendor on Spacelift. This deprecation applies only to this open-source provider, used to manage Spacelift resources themselves from Pulumi code.
+>
+> **Migrate to Pulumi's Terraform provider bridge** wrapping the official Spacelift Terraform provider: https://www.pulumi.com/blog/any-terraform-provider/
+>
+> Questions: open an issue or contact support@spacelift.io.
+
+# Pulumi Provider for Spacelift (Deprecated)
 
 ## Installing
 
