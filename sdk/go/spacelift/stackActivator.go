@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -148,12 +147,6 @@ func (i *StackActivator) ToStackActivatorOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(StackActivatorOutput)
 }
 
-func (i *StackActivator) ToOutput(ctx context.Context) pulumix.Output[*StackActivator] {
-	return pulumix.Output[*StackActivator]{
-		OutputState: i.ToStackActivatorOutputWithContext(ctx).OutputState,
-	}
-}
-
 // StackActivatorArrayInput is an input type that accepts StackActivatorArray and StackActivatorArrayOutput values.
 // You can construct a concrete instance of `StackActivatorArrayInput` via:
 //
@@ -177,12 +170,6 @@ func (i StackActivatorArray) ToStackActivatorArrayOutput() StackActivatorArrayOu
 
 func (i StackActivatorArray) ToStackActivatorArrayOutputWithContext(ctx context.Context) StackActivatorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(StackActivatorArrayOutput)
-}
-
-func (i StackActivatorArray) ToOutput(ctx context.Context) pulumix.Output[[]*StackActivator] {
-	return pulumix.Output[[]*StackActivator]{
-		OutputState: i.ToStackActivatorArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // StackActivatorMapInput is an input type that accepts StackActivatorMap and StackActivatorMapOutput values.
@@ -210,12 +197,6 @@ func (i StackActivatorMap) ToStackActivatorMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(StackActivatorMapOutput)
 }
 
-func (i StackActivatorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackActivator] {
-	return pulumix.Output[map[string]*StackActivator]{
-		OutputState: i.ToStackActivatorMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StackActivatorOutput struct{ *pulumi.OutputState }
 
 func (StackActivatorOutput) ElementType() reflect.Type {
@@ -228,12 +209,6 @@ func (o StackActivatorOutput) ToStackActivatorOutput() StackActivatorOutput {
 
 func (o StackActivatorOutput) ToStackActivatorOutputWithContext(ctx context.Context) StackActivatorOutput {
 	return o
-}
-
-func (o StackActivatorOutput) ToOutput(ctx context.Context) pulumix.Output[*StackActivator] {
-	return pulumix.Output[*StackActivator]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Enable/disable stack
@@ -260,12 +235,6 @@ func (o StackActivatorArrayOutput) ToStackActivatorArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o StackActivatorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*StackActivator] {
-	return pulumix.Output[[]*StackActivator]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StackActivatorArrayOutput) Index(i pulumi.IntInput) StackActivatorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *StackActivator {
 		return vs[0].([]*StackActivator)[vs[1].(int)]
@@ -284,12 +253,6 @@ func (o StackActivatorMapOutput) ToStackActivatorMapOutput() StackActivatorMapOu
 
 func (o StackActivatorMapOutput) ToStackActivatorMapOutputWithContext(ctx context.Context) StackActivatorMapOutput {
 	return o
-}
-
-func (o StackActivatorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*StackActivator] {
-	return pulumix.Output[map[string]*StackActivator]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StackActivatorMapOutput) MapIndex(k pulumi.StringInput) StackActivatorOutput {

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -24,32 +24,9 @@ class UserArgs:
         :param pulumi.Input[str] invitation_email: Email of the user. Used for sending an invitation.
         :param pulumi.Input[str] username: Username of the user
         """
-        UserArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            invitation_email=invitation_email,
-            policies=policies,
-            username=username,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             invitation_email: Optional[pulumi.Input[str]] = None,
-             policies: Optional[pulumi.Input[Sequence[pulumi.Input['UserPolicyArgs']]]] = None,
-             username: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if invitation_email is None and 'invitationEmail' in kwargs:
-            invitation_email = kwargs['invitationEmail']
-        if invitation_email is None:
-            raise TypeError("Missing 'invitation_email' argument")
-        if policies is None:
-            raise TypeError("Missing 'policies' argument")
-        if username is None:
-            raise TypeError("Missing 'username' argument")
-
-        _setter("invitation_email", invitation_email)
-        _setter("policies", policies)
-        _setter("username", username)
+        pulumi.set(__self__, "invitation_email", invitation_email)
+        pulumi.set(__self__, "policies", policies)
+        pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="invitationEmail")
@@ -96,29 +73,12 @@ class _UserState:
         :param pulumi.Input[str] invitation_email: Email of the user. Used for sending an invitation.
         :param pulumi.Input[str] username: Username of the user
         """
-        _UserState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            invitation_email=invitation_email,
-            policies=policies,
-            username=username,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             invitation_email: Optional[pulumi.Input[str]] = None,
-             policies: Optional[pulumi.Input[Sequence[pulumi.Input['UserPolicyArgs']]]] = None,
-             username: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if invitation_email is None and 'invitationEmail' in kwargs:
-            invitation_email = kwargs['invitationEmail']
-
         if invitation_email is not None:
-            _setter("invitation_email", invitation_email)
+            pulumi.set(__self__, "invitation_email", invitation_email)
         if policies is not None:
-            _setter("policies", policies)
+            pulumi.set(__self__, "policies", policies)
         if username is not None:
-            _setter("username", username)
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="invitationEmail")
@@ -190,10 +150,6 @@ class User(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            UserArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

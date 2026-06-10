@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -79,12 +78,6 @@ func (o GetIPsResultOutput) ToGetIPsResultOutput() GetIPsResultOutput {
 
 func (o GetIPsResultOutput) ToGetIPsResultOutputWithContext(ctx context.Context) GetIPsResultOutput {
 	return o
-}
-
-func (o GetIPsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetIPsResult] {
-	return pulumix.Output[GetIPsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

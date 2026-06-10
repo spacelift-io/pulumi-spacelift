@@ -6,7 +6,6 @@ on:
       - 'v*'
   workflow_dispatch: # This is needed to trigger the workflow manually
 
-
 jobs:
   release:
     name: 🚀 Release new pulumi provider version
@@ -42,26 +41,17 @@ jobs:
       - name: Print pulumictl version
         run: pulumictl get version
 
-      - name: Build provider
-        run: make provider
-        env:
-          PROVIDER_OS: ${{ matrix.provider_os }}
+      - name: Set PreRelease Version
+        run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
 
-      - name: Create package directory
-        run: |
-          mkdir -p package/arm64 package/amd64
-          mv bin/pulumi-resource-*amd64* package/amd64/pulumi-resource-spacelift
-          mv bin/pulumi-resource-*arm64* package/arm64/pulumi-resource-spacelift
-
-      - name: Create package
-        run: |
-          cd package/amd64
-          tar -zcvf pulumi-resource-spacelift-${{ github.ref_name }}-${{matrix.provider_os}}-amd64.tar.gz pulumi-resource-*
-          cd ../arm64
-          tar -zcvf pulumi-resource-spacelift-${{ github.ref_name }}-${{matrix.provider_os}}-arm64.tar.gz pulumi-resource-*
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v5
+        with:
+          args: -p 3 release --rm-dist
+          version: latest
 
       - name: Create upload directory
-        run: mkdir -p upload/pulumi-plugins && mv package/*/*.tar.gz upload/pulumi-plugins/ && ls -la upload/pulumi-plugins/
+        run: mkdir -p upload/pulumi-plugins && mv dist/*/*.tar.gz upload/pulumi-plugins/ && ls -la upload/pulumi-plugins/
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -81,10 +71,3 @@ jobs:
           aws cloudfront create-invalidation
           --distribution-id ${{ secrets.DISTRIBUTION }}
           --paths "/*"
-
-    strategy:
-      matrix:
-        provider_os:
-          - darwin
-          - linux
-          - windows

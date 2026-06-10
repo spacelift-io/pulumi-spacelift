@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['PolicyArgs', 'Policy']
@@ -26,39 +26,14 @@ class PolicyArgs:
         :param pulumi.Input[str] name: Name of the policy - should be unique in one account
         :param pulumi.Input[str] space_id: ID (slug) of the space the policy is in
         """
-        PolicyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            body=body,
-            type=type,
-            labels=labels,
-            name=name,
-            space_id=space_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             body: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if body is None:
-            raise TypeError("Missing 'body' argument")
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-
-        _setter("body", body)
-        _setter("type", type)
+        pulumi.set(__self__, "body", body)
+        pulumi.set(__self__, "type", type)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumi.set(__self__, "space_id", space_id)
 
     @property
     @pulumi.getter
@@ -133,37 +108,16 @@ class _PolicyState:
         :param pulumi.Input[str] space_id: ID (slug) of the space the policy is in
         :param pulumi.Input[str] type: Type of the policy. Possible values are `ACCESS`, `APPROVAL`, `GIT_PUSH`, `INITIALIZATION`, `LOGIN`, `PLAN`, `TASK`, `TRIGGER` and `NOTIFICATION`. Deprecated values are `STACK_ACCESS` (use `ACCESS` instead), `TASK_RUN` (use `TASK` instead), and `TERRAFORM_PLAN` (use `PLAN` instead).
         """
-        _PolicyState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            body=body,
-            labels=labels,
-            name=name,
-            space_id=space_id,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             body: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-
         if body is not None:
-            _setter("body", body)
+            pulumi.set(__self__, "body", body)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumi.set(__self__, "space_id", space_id)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -309,10 +263,6 @@ class Policy(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            PolicyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

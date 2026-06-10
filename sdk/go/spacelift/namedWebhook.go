@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -164,12 +163,6 @@ func (i *NamedWebhook) ToNamedWebhookOutputWithContext(ctx context.Context) Name
 	return pulumi.ToOutputWithContext(ctx, i).(NamedWebhookOutput)
 }
 
-func (i *NamedWebhook) ToOutput(ctx context.Context) pulumix.Output[*NamedWebhook] {
-	return pulumix.Output[*NamedWebhook]{
-		OutputState: i.ToNamedWebhookOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NamedWebhookArrayInput is an input type that accepts NamedWebhookArray and NamedWebhookArrayOutput values.
 // You can construct a concrete instance of `NamedWebhookArrayInput` via:
 //
@@ -193,12 +186,6 @@ func (i NamedWebhookArray) ToNamedWebhookArrayOutput() NamedWebhookArrayOutput {
 
 func (i NamedWebhookArray) ToNamedWebhookArrayOutputWithContext(ctx context.Context) NamedWebhookArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NamedWebhookArrayOutput)
-}
-
-func (i NamedWebhookArray) ToOutput(ctx context.Context) pulumix.Output[[]*NamedWebhook] {
-	return pulumix.Output[[]*NamedWebhook]{
-		OutputState: i.ToNamedWebhookArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // NamedWebhookMapInput is an input type that accepts NamedWebhookMap and NamedWebhookMapOutput values.
@@ -226,12 +213,6 @@ func (i NamedWebhookMap) ToNamedWebhookMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(NamedWebhookMapOutput)
 }
 
-func (i NamedWebhookMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NamedWebhook] {
-	return pulumix.Output[map[string]*NamedWebhook]{
-		OutputState: i.ToNamedWebhookMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NamedWebhookOutput struct{ *pulumi.OutputState }
 
 func (NamedWebhookOutput) ElementType() reflect.Type {
@@ -244,12 +225,6 @@ func (o NamedWebhookOutput) ToNamedWebhookOutput() NamedWebhookOutput {
 
 func (o NamedWebhookOutput) ToNamedWebhookOutputWithContext(ctx context.Context) NamedWebhookOutput {
 	return o
-}
-
-func (o NamedWebhookOutput) ToOutput(ctx context.Context) pulumix.Output[*NamedWebhook] {
-	return pulumix.Output[*NamedWebhook]{
-		OutputState: o.OutputState,
-	}
 }
 
 // enables or disables sending webhooks.
@@ -296,12 +271,6 @@ func (o NamedWebhookArrayOutput) ToNamedWebhookArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o NamedWebhookArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NamedWebhook] {
-	return pulumix.Output[[]*NamedWebhook]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o NamedWebhookArrayOutput) Index(i pulumi.IntInput) NamedWebhookOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NamedWebhook {
 		return vs[0].([]*NamedWebhook)[vs[1].(int)]
@@ -320,12 +289,6 @@ func (o NamedWebhookMapOutput) ToNamedWebhookMapOutput() NamedWebhookMapOutput {
 
 func (o NamedWebhookMapOutput) ToNamedWebhookMapOutputWithContext(ctx context.Context) NamedWebhookMapOutput {
 	return o
-}
-
-func (o NamedWebhookMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NamedWebhook] {
-	return pulumix.Output[map[string]*NamedWebhook]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NamedWebhookMapOutput) MapIndex(k pulumi.StringInput) NamedWebhookOutput {

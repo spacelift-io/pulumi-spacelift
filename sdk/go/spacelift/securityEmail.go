@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -127,12 +126,6 @@ func (i *SecurityEmail) ToSecurityEmailOutputWithContext(ctx context.Context) Se
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityEmailOutput)
 }
 
-func (i *SecurityEmail) ToOutput(ctx context.Context) pulumix.Output[*SecurityEmail] {
-	return pulumix.Output[*SecurityEmail]{
-		OutputState: i.ToSecurityEmailOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecurityEmailArrayInput is an input type that accepts SecurityEmailArray and SecurityEmailArrayOutput values.
 // You can construct a concrete instance of `SecurityEmailArrayInput` via:
 //
@@ -156,12 +149,6 @@ func (i SecurityEmailArray) ToSecurityEmailArrayOutput() SecurityEmailArrayOutpu
 
 func (i SecurityEmailArray) ToSecurityEmailArrayOutputWithContext(ctx context.Context) SecurityEmailArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityEmailArrayOutput)
-}
-
-func (i SecurityEmailArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecurityEmail] {
-	return pulumix.Output[[]*SecurityEmail]{
-		OutputState: i.ToSecurityEmailArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecurityEmailMapInput is an input type that accepts SecurityEmailMap and SecurityEmailMapOutput values.
@@ -189,12 +176,6 @@ func (i SecurityEmailMap) ToSecurityEmailMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecurityEmailMapOutput)
 }
 
-func (i SecurityEmailMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecurityEmail] {
-	return pulumix.Output[map[string]*SecurityEmail]{
-		OutputState: i.ToSecurityEmailMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecurityEmailOutput struct{ *pulumi.OutputState }
 
 func (SecurityEmailOutput) ElementType() reflect.Type {
@@ -207,12 +188,6 @@ func (o SecurityEmailOutput) ToSecurityEmailOutput() SecurityEmailOutput {
 
 func (o SecurityEmailOutput) ToSecurityEmailOutputWithContext(ctx context.Context) SecurityEmailOutput {
 	return o
-}
-
-func (o SecurityEmailOutput) ToOutput(ctx context.Context) pulumix.Output[*SecurityEmail] {
-	return pulumix.Output[*SecurityEmail]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Email address to which the security notifications are sent
@@ -234,12 +209,6 @@ func (o SecurityEmailArrayOutput) ToSecurityEmailArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o SecurityEmailArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecurityEmail] {
-	return pulumix.Output[[]*SecurityEmail]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecurityEmailArrayOutput) Index(i pulumi.IntInput) SecurityEmailOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecurityEmail {
 		return vs[0].([]*SecurityEmail)[vs[1].(int)]
@@ -258,12 +227,6 @@ func (o SecurityEmailMapOutput) ToSecurityEmailMapOutput() SecurityEmailMapOutpu
 
 func (o SecurityEmailMapOutput) ToSecurityEmailMapOutputWithContext(ctx context.Context) SecurityEmailMapOutput {
 	return o
-}
-
-func (o SecurityEmailMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecurityEmail] {
-	return pulumix.Output[map[string]*SecurityEmail]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecurityEmailMapOutput) MapIndex(k pulumi.StringInput) SecurityEmailOutput {

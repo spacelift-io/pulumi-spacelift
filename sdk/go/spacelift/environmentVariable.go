@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -28,6 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// For a context
 //			_, err := spacelift.NewEnvironmentVariable(ctx, "ireland-kubeconfig", &spacelift.EnvironmentVariableArgs{
 //				ContextId: pulumi.String("prod-k8s-ie"),
 //				Value:     pulumi.String("/project/spacelift/kubeconfig"),
@@ -36,6 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// For a module
 //			_, err = spacelift.NewEnvironmentVariable(ctx, "module-kubeconfig", &spacelift.EnvironmentVariableArgs{
 //				ModuleId:  pulumi.String("k8s-module"),
 //				Value:     pulumi.String("/project/spacelift/kubeconfig"),
@@ -44,6 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// For a stack
 //			_, err = spacelift.NewEnvironmentVariable(ctx, "core-kubeconfig", &spacelift.EnvironmentVariableArgs{
 //				StackId:   pulumi.String("k8s-core"),
 //				Value:     pulumi.String("/project/spacelift/kubeconfig"),
@@ -224,12 +226,6 @@ func (i *EnvironmentVariable) ToEnvironmentVariableOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentVariableOutput)
 }
 
-func (i *EnvironmentVariable) ToOutput(ctx context.Context) pulumix.Output[*EnvironmentVariable] {
-	return pulumix.Output[*EnvironmentVariable]{
-		OutputState: i.ToEnvironmentVariableOutputWithContext(ctx).OutputState,
-	}
-}
-
 // EnvironmentVariableArrayInput is an input type that accepts EnvironmentVariableArray and EnvironmentVariableArrayOutput values.
 // You can construct a concrete instance of `EnvironmentVariableArrayInput` via:
 //
@@ -253,12 +249,6 @@ func (i EnvironmentVariableArray) ToEnvironmentVariableArrayOutput() Environment
 
 func (i EnvironmentVariableArray) ToEnvironmentVariableArrayOutputWithContext(ctx context.Context) EnvironmentVariableArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentVariableArrayOutput)
-}
-
-func (i EnvironmentVariableArray) ToOutput(ctx context.Context) pulumix.Output[[]*EnvironmentVariable] {
-	return pulumix.Output[[]*EnvironmentVariable]{
-		OutputState: i.ToEnvironmentVariableArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // EnvironmentVariableMapInput is an input type that accepts EnvironmentVariableMap and EnvironmentVariableMapOutput values.
@@ -286,12 +276,6 @@ func (i EnvironmentVariableMap) ToEnvironmentVariableMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentVariableMapOutput)
 }
 
-func (i EnvironmentVariableMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EnvironmentVariable] {
-	return pulumix.Output[map[string]*EnvironmentVariable]{
-		OutputState: i.ToEnvironmentVariableMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type EnvironmentVariableOutput struct{ *pulumi.OutputState }
 
 func (EnvironmentVariableOutput) ElementType() reflect.Type {
@@ -304,12 +288,6 @@ func (o EnvironmentVariableOutput) ToEnvironmentVariableOutput() EnvironmentVari
 
 func (o EnvironmentVariableOutput) ToEnvironmentVariableOutputWithContext(ctx context.Context) EnvironmentVariableOutput {
 	return o
-}
-
-func (o EnvironmentVariableOutput) ToOutput(ctx context.Context) pulumix.Output[*EnvironmentVariable] {
-	return pulumix.Output[*EnvironmentVariable]{
-		OutputState: o.OutputState,
-	}
 }
 
 // SHA-256 checksum of the value
@@ -361,12 +339,6 @@ func (o EnvironmentVariableArrayOutput) ToEnvironmentVariableArrayOutputWithCont
 	return o
 }
 
-func (o EnvironmentVariableArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EnvironmentVariable] {
-	return pulumix.Output[[]*EnvironmentVariable]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EnvironmentVariableArrayOutput) Index(i pulumi.IntInput) EnvironmentVariableOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EnvironmentVariable {
 		return vs[0].([]*EnvironmentVariable)[vs[1].(int)]
@@ -385,12 +357,6 @@ func (o EnvironmentVariableMapOutput) ToEnvironmentVariableMapOutput() Environme
 
 func (o EnvironmentVariableMapOutput) ToEnvironmentVariableMapOutputWithContext(ctx context.Context) EnvironmentVariableMapOutput {
 	return o
-}
-
-func (o EnvironmentVariableMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EnvironmentVariable] {
-	return pulumix.Output[map[string]*EnvironmentVariable]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EnvironmentVariableMapOutput) MapIndex(k pulumi.StringInput) EnvironmentVariableOutput {

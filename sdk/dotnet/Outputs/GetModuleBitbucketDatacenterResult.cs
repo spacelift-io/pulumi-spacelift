@@ -13,8 +13,17 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetModuleBitbucketDatacenterResult
     {
+        /// <summary>
+        /// ID of the Bitbucket Datacenter integration
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Indicates whether this is the default Bitbucket Datacenter integration
+        /// </summary>
         public readonly bool IsDefault;
+        /// <summary>
+        /// Bitbucket Datacenter namespace of the stack's repository
+        /// </summary>
         public readonly string Namespace;
 
         [OutputConstructor]

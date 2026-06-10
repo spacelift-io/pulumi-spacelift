@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -29,6 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// For a stack
 //			_, err := spacelift.NewAzureIntegrationAttachment(ctx, "readonly", &spacelift.AzureIntegrationAttachmentArgs{
 //				IntegrationId:  pulumi.Any(spacelift_azure_integration.Example.Id),
 //				StackId:        pulumi.Any(spacelift_stack.Example.Id),
@@ -38,6 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// For a module
 //			_, err = spacelift.NewAzureIntegrationAttachment(ctx, "writeonly", &spacelift.AzureIntegrationAttachmentArgs{
 //				IntegrationId:  pulumi.Any(spacelift_azure_integration.Example.Id),
 //				StackId:        pulumi.Any(spacelift_module.Example.Id),
@@ -209,12 +210,6 @@ func (i *AzureIntegrationAttachment) ToAzureIntegrationAttachmentOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(AzureIntegrationAttachmentOutput)
 }
 
-func (i *AzureIntegrationAttachment) ToOutput(ctx context.Context) pulumix.Output[*AzureIntegrationAttachment] {
-	return pulumix.Output[*AzureIntegrationAttachment]{
-		OutputState: i.ToAzureIntegrationAttachmentOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AzureIntegrationAttachmentArrayInput is an input type that accepts AzureIntegrationAttachmentArray and AzureIntegrationAttachmentArrayOutput values.
 // You can construct a concrete instance of `AzureIntegrationAttachmentArrayInput` via:
 //
@@ -238,12 +233,6 @@ func (i AzureIntegrationAttachmentArray) ToAzureIntegrationAttachmentArrayOutput
 
 func (i AzureIntegrationAttachmentArray) ToAzureIntegrationAttachmentArrayOutputWithContext(ctx context.Context) AzureIntegrationAttachmentArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AzureIntegrationAttachmentArrayOutput)
-}
-
-func (i AzureIntegrationAttachmentArray) ToOutput(ctx context.Context) pulumix.Output[[]*AzureIntegrationAttachment] {
-	return pulumix.Output[[]*AzureIntegrationAttachment]{
-		OutputState: i.ToAzureIntegrationAttachmentArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AzureIntegrationAttachmentMapInput is an input type that accepts AzureIntegrationAttachmentMap and AzureIntegrationAttachmentMapOutput values.
@@ -271,12 +260,6 @@ func (i AzureIntegrationAttachmentMap) ToAzureIntegrationAttachmentMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(AzureIntegrationAttachmentMapOutput)
 }
 
-func (i AzureIntegrationAttachmentMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AzureIntegrationAttachment] {
-	return pulumix.Output[map[string]*AzureIntegrationAttachment]{
-		OutputState: i.ToAzureIntegrationAttachmentMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AzureIntegrationAttachmentOutput struct{ *pulumi.OutputState }
 
 func (AzureIntegrationAttachmentOutput) ElementType() reflect.Type {
@@ -289,12 +272,6 @@ func (o AzureIntegrationAttachmentOutput) ToAzureIntegrationAttachmentOutput() A
 
 func (o AzureIntegrationAttachmentOutput) ToAzureIntegrationAttachmentOutputWithContext(ctx context.Context) AzureIntegrationAttachmentOutput {
 	return o
-}
-
-func (o AzureIntegrationAttachmentOutput) ToOutput(ctx context.Context) pulumix.Output[*AzureIntegrationAttachment] {
-	return pulumix.Output[*AzureIntegrationAttachment]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Internal ID of the attachment entity
@@ -346,12 +323,6 @@ func (o AzureIntegrationAttachmentArrayOutput) ToAzureIntegrationAttachmentArray
 	return o
 }
 
-func (o AzureIntegrationAttachmentArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AzureIntegrationAttachment] {
-	return pulumix.Output[[]*AzureIntegrationAttachment]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AzureIntegrationAttachmentArrayOutput) Index(i pulumi.IntInput) AzureIntegrationAttachmentOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AzureIntegrationAttachment {
 		return vs[0].([]*AzureIntegrationAttachment)[vs[1].(int)]
@@ -370,12 +341,6 @@ func (o AzureIntegrationAttachmentMapOutput) ToAzureIntegrationAttachmentMapOutp
 
 func (o AzureIntegrationAttachmentMapOutput) ToAzureIntegrationAttachmentMapOutputWithContext(ctx context.Context) AzureIntegrationAttachmentMapOutput {
 	return o
-}
-
-func (o AzureIntegrationAttachmentMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AzureIntegrationAttachment] {
-	return pulumix.Output[map[string]*AzureIntegrationAttachment]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AzureIntegrationAttachmentMapOutput) MapIndex(k pulumi.StringInput) AzureIntegrationAttachmentOutput {

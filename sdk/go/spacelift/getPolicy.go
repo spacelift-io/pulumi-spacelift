@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -109,12 +108,6 @@ func (o LookupPolicyResultOutput) ToLookupPolicyResultOutput() LookupPolicyResul
 
 func (o LookupPolicyResultOutput) ToLookupPolicyResultOutputWithContext(ctx context.Context) LookupPolicyResultOutput {
 	return o
-}
-
-func (o LookupPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupPolicyResult] {
-	return pulumix.Output[LookupPolicyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // body of the policy

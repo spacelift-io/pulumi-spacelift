@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -27,6 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Explicit module name and provider:
 //			_, err := spacelift.NewModule(ctx, "k8s-module", &spacelift.ModuleArgs{
 //				Administrative:    pulumi.Bool(true),
 //				Branch:            pulumi.String("master"),
@@ -37,6 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Unspecified module name and provider (repository naming scheme terraform-${provider}-${name})
 //			_, err = spacelift.NewModule(ctx, "example-module", &spacelift.ModuleArgs{
 //				Administrative: pulumi.Bool(true),
 //				Branch:         pulumi.String("master"),
@@ -351,12 +352,6 @@ func (i *Module) ToModuleOutputWithContext(ctx context.Context) ModuleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleOutput)
 }
 
-func (i *Module) ToOutput(ctx context.Context) pulumix.Output[*Module] {
-	return pulumix.Output[*Module]{
-		OutputState: i.ToModuleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ModuleArrayInput is an input type that accepts ModuleArray and ModuleArrayOutput values.
 // You can construct a concrete instance of `ModuleArrayInput` via:
 //
@@ -380,12 +375,6 @@ func (i ModuleArray) ToModuleArrayOutput() ModuleArrayOutput {
 
 func (i ModuleArray) ToModuleArrayOutputWithContext(ctx context.Context) ModuleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleArrayOutput)
-}
-
-func (i ModuleArray) ToOutput(ctx context.Context) pulumix.Output[[]*Module] {
-	return pulumix.Output[[]*Module]{
-		OutputState: i.ToModuleArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ModuleMapInput is an input type that accepts ModuleMap and ModuleMapOutput values.
@@ -413,12 +402,6 @@ func (i ModuleMap) ToModuleMapOutputWithContext(ctx context.Context) ModuleMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(ModuleMapOutput)
 }
 
-func (i ModuleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Module] {
-	return pulumix.Output[map[string]*Module]{
-		OutputState: i.ToModuleMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ModuleOutput struct{ *pulumi.OutputState }
 
 func (ModuleOutput) ElementType() reflect.Type {
@@ -431,12 +414,6 @@ func (o ModuleOutput) ToModuleOutput() ModuleOutput {
 
 func (o ModuleOutput) ToModuleOutputWithContext(ctx context.Context) ModuleOutput {
 	return o
-}
-
-func (o ModuleOutput) ToOutput(ctx context.Context) pulumix.Output[*Module] {
-	return pulumix.Output[*Module]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Indicates whether this module can manage others. Defaults to `false`.
@@ -556,12 +533,6 @@ func (o ModuleArrayOutput) ToModuleArrayOutputWithContext(ctx context.Context) M
 	return o
 }
 
-func (o ModuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Module] {
-	return pulumix.Output[[]*Module]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ModuleArrayOutput) Index(i pulumi.IntInput) ModuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Module {
 		return vs[0].([]*Module)[vs[1].(int)]
@@ -580,12 +551,6 @@ func (o ModuleMapOutput) ToModuleMapOutput() ModuleMapOutput {
 
 func (o ModuleMapOutput) ToModuleMapOutputWithContext(ctx context.Context) ModuleMapOutput {
 	return o
-}
-
-func (o ModuleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Module] {
-	return pulumix.Output[map[string]*Module]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ModuleMapOutput) MapIndex(k pulumi.StringInput) ModuleOutput {

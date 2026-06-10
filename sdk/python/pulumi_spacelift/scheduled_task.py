@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ScheduledTaskArgs', 'ScheduledTask']
@@ -29,45 +29,16 @@ class ScheduledTaskArgs:
         :param pulumi.Input[str] schedule_id: ID of the schedule
         :param pulumi.Input[str] timezone: Timezone in which the schedule is expressed. Defaults to `UTC`.
         """
-        ScheduledTaskArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            command=command,
-            stack_id=stack_id,
-            at=at,
-            everies=everies,
-            schedule_id=schedule_id,
-            timezone=timezone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             command: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             at: Optional[pulumi.Input[int]] = None,
-             everies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             schedule_id: Optional[pulumi.Input[str]] = None,
-             timezone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if command is None:
-            raise TypeError("Missing 'command' argument")
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if stack_id is None:
-            raise TypeError("Missing 'stack_id' argument")
-        if schedule_id is None and 'scheduleId' in kwargs:
-            schedule_id = kwargs['scheduleId']
-
-        _setter("command", command)
-        _setter("stack_id", stack_id)
+        pulumi.set(__self__, "command", command)
+        pulumi.set(__self__, "stack_id", stack_id)
         if at is not None:
-            _setter("at", at)
+            pulumi.set(__self__, "at", at)
         if everies is not None:
-            _setter("everies", everies)
+            pulumi.set(__self__, "everies", everies)
         if schedule_id is not None:
-            _setter("schedule_id", schedule_id)
+            pulumi.set(__self__, "schedule_id", schedule_id)
         if timezone is not None:
-            _setter("timezone", timezone)
+            pulumi.set(__self__, "timezone", timezone)
 
     @property
     @pulumi.getter
@@ -160,43 +131,18 @@ class _ScheduledTaskState:
         :param pulumi.Input[str] stack_id: ID of the stack for which to set up the scheduled task
         :param pulumi.Input[str] timezone: Timezone in which the schedule is expressed. Defaults to `UTC`.
         """
-        _ScheduledTaskState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            at=at,
-            command=command,
-            everies=everies,
-            schedule_id=schedule_id,
-            stack_id=stack_id,
-            timezone=timezone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             at: Optional[pulumi.Input[int]] = None,
-             command: Optional[pulumi.Input[str]] = None,
-             everies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             schedule_id: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             timezone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if schedule_id is None and 'scheduleId' in kwargs:
-            schedule_id = kwargs['scheduleId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
         if at is not None:
-            _setter("at", at)
+            pulumi.set(__self__, "at", at)
         if command is not None:
-            _setter("command", command)
+            pulumi.set(__self__, "command", command)
         if everies is not None:
-            _setter("everies", everies)
+            pulumi.set(__self__, "everies", everies)
         if schedule_id is not None:
-            _setter("schedule_id", schedule_id)
+            pulumi.set(__self__, "schedule_id", schedule_id)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
         if timezone is not None:
-            _setter("timezone", timezone)
+            pulumi.set(__self__, "timezone", timezone)
 
     @property
     @pulumi.getter
@@ -380,10 +326,6 @@ class ScheduledTask(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ScheduledTaskArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

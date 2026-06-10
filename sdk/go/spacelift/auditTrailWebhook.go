@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -172,12 +171,6 @@ func (i *AuditTrailWebhook) ToAuditTrailWebhookOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(AuditTrailWebhookOutput)
 }
 
-func (i *AuditTrailWebhook) ToOutput(ctx context.Context) pulumix.Output[*AuditTrailWebhook] {
-	return pulumix.Output[*AuditTrailWebhook]{
-		OutputState: i.ToAuditTrailWebhookOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuditTrailWebhookArrayInput is an input type that accepts AuditTrailWebhookArray and AuditTrailWebhookArrayOutput values.
 // You can construct a concrete instance of `AuditTrailWebhookArrayInput` via:
 //
@@ -201,12 +194,6 @@ func (i AuditTrailWebhookArray) ToAuditTrailWebhookArrayOutput() AuditTrailWebho
 
 func (i AuditTrailWebhookArray) ToAuditTrailWebhookArrayOutputWithContext(ctx context.Context) AuditTrailWebhookArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuditTrailWebhookArrayOutput)
-}
-
-func (i AuditTrailWebhookArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuditTrailWebhook] {
-	return pulumix.Output[[]*AuditTrailWebhook]{
-		OutputState: i.ToAuditTrailWebhookArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuditTrailWebhookMapInput is an input type that accepts AuditTrailWebhookMap and AuditTrailWebhookMapOutput values.
@@ -234,12 +221,6 @@ func (i AuditTrailWebhookMap) ToAuditTrailWebhookMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(AuditTrailWebhookMapOutput)
 }
 
-func (i AuditTrailWebhookMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuditTrailWebhook] {
-	return pulumix.Output[map[string]*AuditTrailWebhook]{
-		OutputState: i.ToAuditTrailWebhookMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuditTrailWebhookOutput struct{ *pulumi.OutputState }
 
 func (AuditTrailWebhookOutput) ElementType() reflect.Type {
@@ -252,12 +233,6 @@ func (o AuditTrailWebhookOutput) ToAuditTrailWebhookOutput() AuditTrailWebhookOu
 
 func (o AuditTrailWebhookOutput) ToAuditTrailWebhookOutputWithContext(ctx context.Context) AuditTrailWebhookOutput {
 	return o
-}
-
-func (o AuditTrailWebhookOutput) ToOutput(ctx context.Context) pulumix.Output[*AuditTrailWebhook] {
-	return pulumix.Output[*AuditTrailWebhook]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `enabled` determines whether the webhook is enabled. If it is not, Spacelift will not send any requests to the endpoint.
@@ -294,12 +269,6 @@ func (o AuditTrailWebhookArrayOutput) ToAuditTrailWebhookArrayOutputWithContext(
 	return o
 }
 
-func (o AuditTrailWebhookArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuditTrailWebhook] {
-	return pulumix.Output[[]*AuditTrailWebhook]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuditTrailWebhookArrayOutput) Index(i pulumi.IntInput) AuditTrailWebhookOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuditTrailWebhook {
 		return vs[0].([]*AuditTrailWebhook)[vs[1].(int)]
@@ -318,12 +287,6 @@ func (o AuditTrailWebhookMapOutput) ToAuditTrailWebhookMapOutput() AuditTrailWeb
 
 func (o AuditTrailWebhookMapOutput) ToAuditTrailWebhookMapOutputWithContext(ctx context.Context) AuditTrailWebhookMapOutput {
 	return o
-}
-
-func (o AuditTrailWebhookMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuditTrailWebhook] {
-	return pulumix.Output[map[string]*AuditTrailWebhook]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuditTrailWebhookMapOutput) MapIndex(k pulumi.StringInput) AuditTrailWebhookOutput {

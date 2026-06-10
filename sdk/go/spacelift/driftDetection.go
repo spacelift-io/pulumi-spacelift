@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -195,12 +194,6 @@ func (i *DriftDetection) ToDriftDetectionOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DriftDetectionOutput)
 }
 
-func (i *DriftDetection) ToOutput(ctx context.Context) pulumix.Output[*DriftDetection] {
-	return pulumix.Output[*DriftDetection]{
-		OutputState: i.ToDriftDetectionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DriftDetectionArrayInput is an input type that accepts DriftDetectionArray and DriftDetectionArrayOutput values.
 // You can construct a concrete instance of `DriftDetectionArrayInput` via:
 //
@@ -224,12 +217,6 @@ func (i DriftDetectionArray) ToDriftDetectionArrayOutput() DriftDetectionArrayOu
 
 func (i DriftDetectionArray) ToDriftDetectionArrayOutputWithContext(ctx context.Context) DriftDetectionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DriftDetectionArrayOutput)
-}
-
-func (i DriftDetectionArray) ToOutput(ctx context.Context) pulumix.Output[[]*DriftDetection] {
-	return pulumix.Output[[]*DriftDetection]{
-		OutputState: i.ToDriftDetectionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DriftDetectionMapInput is an input type that accepts DriftDetectionMap and DriftDetectionMapOutput values.
@@ -257,12 +244,6 @@ func (i DriftDetectionMap) ToDriftDetectionMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DriftDetectionMapOutput)
 }
 
-func (i DriftDetectionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DriftDetection] {
-	return pulumix.Output[map[string]*DriftDetection]{
-		OutputState: i.ToDriftDetectionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DriftDetectionOutput struct{ *pulumi.OutputState }
 
 func (DriftDetectionOutput) ElementType() reflect.Type {
@@ -275,12 +256,6 @@ func (o DriftDetectionOutput) ToDriftDetectionOutput() DriftDetectionOutput {
 
 func (o DriftDetectionOutput) ToDriftDetectionOutputWithContext(ctx context.Context) DriftDetectionOutput {
 	return o
-}
-
-func (o DriftDetectionOutput) ToOutput(ctx context.Context) pulumix.Output[*DriftDetection] {
-	return pulumix.Output[*DriftDetection]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Controls whether drift detection should be performed on a stack in any final state instead of just 'Finished'.
@@ -322,12 +297,6 @@ func (o DriftDetectionArrayOutput) ToDriftDetectionArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o DriftDetectionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DriftDetection] {
-	return pulumix.Output[[]*DriftDetection]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DriftDetectionArrayOutput) Index(i pulumi.IntInput) DriftDetectionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DriftDetection {
 		return vs[0].([]*DriftDetection)[vs[1].(int)]
@@ -346,12 +315,6 @@ func (o DriftDetectionMapOutput) ToDriftDetectionMapOutput() DriftDetectionMapOu
 
 func (o DriftDetectionMapOutput) ToDriftDetectionMapOutputWithContext(ctx context.Context) DriftDetectionMapOutput {
 	return o
-}
-
-func (o DriftDetectionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DriftDetection] {
-	return pulumix.Output[map[string]*DriftDetection]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DriftDetectionMapOutput) MapIndex(k pulumi.StringInput) DriftDetectionOutput {

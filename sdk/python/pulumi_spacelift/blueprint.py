@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['BlueprintArgs', 'Blueprint']
@@ -29,41 +29,16 @@ class BlueprintArgs:
         :param pulumi.Input[str] name: Name of the blueprint
         :param pulumi.Input[str] template: Body of the blueprint. If `state` is set to `PUBLISHED`, this field is required.
         """
-        BlueprintArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            space=space,
-            state=state,
-            description=description,
-            labels=labels,
-            name=name,
-            template=template,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             space: Optional[pulumi.Input[str]] = None,
-             state: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             template: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if space is None:
-            raise TypeError("Missing 'space' argument")
-        if state is None:
-            raise TypeError("Missing 'state' argument")
-
-        _setter("space", space)
-        _setter("state", state)
+        pulumi.set(__self__, "space", space)
+        pulumi.set(__self__, "state", state)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if template is not None:
-            _setter("template", template)
+            pulumi.set(__self__, "template", template)
 
     @property
     @pulumi.getter
@@ -156,39 +131,18 @@ class _BlueprintState:
         :param pulumi.Input[str] state: State of the blueprint. Value can be `DRAFT` or `PUBLISHED`.
         :param pulumi.Input[str] template: Body of the blueprint. If `state` is set to `PUBLISHED`, this field is required.
         """
-        _BlueprintState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            labels=labels,
-            name=name,
-            space=space,
-            state=state,
-            template=template,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             space: Optional[pulumi.Input[str]] = None,
-             state: Optional[pulumi.Input[str]] = None,
-             template: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if space is not None:
-            _setter("space", space)
+            pulumi.set(__self__, "space", space)
         if state is not None:
-            _setter("state", state)
+            pulumi.set(__self__, "state", state)
         if template is not None:
-            _setter("template", template)
+            pulumi.set(__self__, "template", template)
 
     @property
     @pulumi.getter
@@ -304,10 +258,6 @@ class Blueprint(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            BlueprintArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

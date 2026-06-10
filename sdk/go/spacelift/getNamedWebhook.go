@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -87,12 +86,6 @@ func (o LookupNamedWebhookResultOutput) ToLookupNamedWebhookResultOutput() Looku
 
 func (o LookupNamedWebhookResultOutput) ToLookupNamedWebhookResultOutputWithContext(ctx context.Context) LookupNamedWebhookResultOutput {
 	return o
-}
-
-func (o LookupNamedWebhookResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupNamedWebhookResult] {
-	return pulumix.Output[LookupNamedWebhookResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // enables or disables sending webhooks.

@@ -9,7 +9,6 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -141,12 +140,6 @@ func (i *IdpGroupMapping) ToIdpGroupMappingOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(IdpGroupMappingOutput)
 }
 
-func (i *IdpGroupMapping) ToOutput(ctx context.Context) pulumix.Output[*IdpGroupMapping] {
-	return pulumix.Output[*IdpGroupMapping]{
-		OutputState: i.ToIdpGroupMappingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // IdpGroupMappingArrayInput is an input type that accepts IdpGroupMappingArray and IdpGroupMappingArrayOutput values.
 // You can construct a concrete instance of `IdpGroupMappingArrayInput` via:
 //
@@ -170,12 +163,6 @@ func (i IdpGroupMappingArray) ToIdpGroupMappingArrayOutput() IdpGroupMappingArra
 
 func (i IdpGroupMappingArray) ToIdpGroupMappingArrayOutputWithContext(ctx context.Context) IdpGroupMappingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IdpGroupMappingArrayOutput)
-}
-
-func (i IdpGroupMappingArray) ToOutput(ctx context.Context) pulumix.Output[[]*IdpGroupMapping] {
-	return pulumix.Output[[]*IdpGroupMapping]{
-		OutputState: i.ToIdpGroupMappingArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // IdpGroupMappingMapInput is an input type that accepts IdpGroupMappingMap and IdpGroupMappingMapOutput values.
@@ -203,12 +190,6 @@ func (i IdpGroupMappingMap) ToIdpGroupMappingMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(IdpGroupMappingMapOutput)
 }
 
-func (i IdpGroupMappingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IdpGroupMapping] {
-	return pulumix.Output[map[string]*IdpGroupMapping]{
-		OutputState: i.ToIdpGroupMappingMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type IdpGroupMappingOutput struct{ *pulumi.OutputState }
 
 func (IdpGroupMappingOutput) ElementType() reflect.Type {
@@ -221,12 +202,6 @@ func (o IdpGroupMappingOutput) ToIdpGroupMappingOutput() IdpGroupMappingOutput {
 
 func (o IdpGroupMappingOutput) ToIdpGroupMappingOutputWithContext(ctx context.Context) IdpGroupMappingOutput {
 	return o
-}
-
-func (o IdpGroupMappingOutput) ToOutput(ctx context.Context) pulumix.Output[*IdpGroupMapping] {
-	return pulumix.Output[*IdpGroupMapping]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the user group - should be unique in one account
@@ -252,12 +227,6 @@ func (o IdpGroupMappingArrayOutput) ToIdpGroupMappingArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o IdpGroupMappingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IdpGroupMapping] {
-	return pulumix.Output[[]*IdpGroupMapping]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o IdpGroupMappingArrayOutput) Index(i pulumi.IntInput) IdpGroupMappingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IdpGroupMapping {
 		return vs[0].([]*IdpGroupMapping)[vs[1].(int)]
@@ -276,12 +245,6 @@ func (o IdpGroupMappingMapOutput) ToIdpGroupMappingMapOutput() IdpGroupMappingMa
 
 func (o IdpGroupMappingMapOutput) ToIdpGroupMappingMapOutputWithContext(ctx context.Context) IdpGroupMappingMapOutput {
 	return o
-}
-
-func (o IdpGroupMappingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IdpGroupMapping] {
-	return pulumix.Output[map[string]*IdpGroupMapping]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o IdpGroupMappingMapOutput) MapIndex(k pulumi.StringInput) IdpGroupMappingOutput {

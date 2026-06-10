@@ -13,8 +13,17 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStacksStackAzureDevopResult
     {
+        /// <summary>
+        /// ID of the Azure Devops VCS integration
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Indicates whether this is the default Azure Devops VCS integration
+        /// </summary>
         public readonly bool IsDefault;
+        /// <summary>
+        /// The name of the Azure DevOps project
+        /// </summary>
         public readonly string Project;
 
         [OutputConstructor]

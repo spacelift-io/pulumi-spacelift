@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -112,12 +111,6 @@ func (o GetSpaceByPathResultOutput) ToGetSpaceByPathResultOutput() GetSpaceByPat
 
 func (o GetSpaceByPathResultOutput) ToGetSpaceByPathResultOutputWithContext(ctx context.Context) GetSpaceByPathResultOutput {
 	return o
-}
-
-func (o GetSpaceByPathResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSpaceByPathResult] {
-	return pulumix.Output[GetSpaceByPathResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // free-form space description for users

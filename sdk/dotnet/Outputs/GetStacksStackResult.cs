@@ -13,50 +13,173 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetStacksStackResult
     {
+        /// <summary>
+        /// Project globs is an optional list of paths to track changes of in addition to the project root.
+        /// </summary>
         public readonly ImmutableArray<string> AdditionalProjectGlobs;
+        /// <summary>
+        /// indicates whether this stack can administer others
+        /// </summary>
         public readonly bool Administrative;
+        /// <summary>
+        /// List of after-apply scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterApplies;
+        /// <summary>
+        /// List of after-destroy scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterDestroys;
+        /// <summary>
+        /// List of after-init scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterInits;
+        /// <summary>
+        /// List of after-perform scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterPerforms;
+        /// <summary>
+        /// List of after-plan scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterPlans;
+        /// <summary>
+        /// List of after-run scripts
+        /// </summary>
         public readonly ImmutableArray<string> AfterRuns;
+        /// <summary>
+        /// Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackAnsibleResult> Ansibles;
+        /// <summary>
+        /// indicates whether changes to this stack can be automatically deployed
+        /// </summary>
         public readonly bool Autodeploy;
+        /// <summary>
+        /// indicates whether obsolete proposed changes should automatically be retried
+        /// </summary>
         public readonly bool Autoretry;
+        /// <summary>
+        /// AWS IAM assume role policy statement setting up trust relationship
+        /// </summary>
         public readonly string AwsAssumeRolePolicyStatement;
+        /// <summary>
+        /// Azure DevOps VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackAzureDevopResult> AzureDevops;
+        /// <summary>
+        /// List of before-apply scripts
+        /// </summary>
         public readonly ImmutableArray<string> BeforeApplies;
+        /// <summary>
+        /// List of before-destroy scripts
+        /// </summary>
         public readonly ImmutableArray<string> BeforeDestroys;
+        /// <summary>
+        /// List of before-init scripts
+        /// </summary>
         public readonly ImmutableArray<string> BeforeInits;
+        /// <summary>
+        /// List of before-perform scripts
+        /// </summary>
         public readonly ImmutableArray<string> BeforePerforms;
+        /// <summary>
+        /// List of before-plan scripts
+        /// </summary>
         public readonly ImmutableArray<string> BeforePlans;
+        /// <summary>
+        /// Bitbucket Cloud VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackBitbucketCloudResult> BitbucketClouds;
+        /// <summary>
+        /// Bitbucket Datacenter VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackBitbucketDatacenterResult> BitbucketDatacenters;
+        /// <summary>
+        /// Repository branch to treat as the default 'main' branch
+        /// </summary>
         public readonly string Branch;
+        /// <summary>
+        /// CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackCloudformationResult> Cloudformations;
+        /// <summary>
+        /// free-form stack description for users
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Indicates whether local preview runs can be triggered on this Stack.
+        /// </summary>
         public readonly bool EnableLocalPreview;
+        /// <summary>
+        /// GitHub Enterprise (self-hosted) VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackGithubEnterpriseResult> GithubEnterprises;
+        /// <summary>
+        /// GitLab VCS settings
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackGitlabResult> Gitlabs;
+        /// <summary>
+        /// Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackKuberneteResult> Kubernetes;
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// Determines if Spacelift should manage state for this stack
+        /// </summary>
         public readonly bool ManageState;
+        /// <summary>
+        /// Name of the stack - should be unique in one account
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+        /// </summary>
         public readonly string ProjectRoot;
+        /// <summary>
+        /// Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+        /// </summary>
         public readonly bool ProtectFromDeletion;
+        /// <summary>
+        /// Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackPulumiResult> Pulumis;
+        /// <summary>
+        /// One-way VCS integration using a raw Git repository link
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackRawGitResult> RawGits;
+        /// <summary>
+        /// Name of the repository, without the owner part
+        /// </summary>
         public readonly string Repository;
+        /// <summary>
+        /// Name of the Docker image used to process Runs
+        /// </summary>
         public readonly string RunnerImage;
+        /// <summary>
+        /// Showcase-related attributes
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStacksStackShowcaseResult> Showcases;
+        /// <summary>
+        /// ID (slug) of the space the stack is in
+        /// </summary>
         public readonly string SpaceId;
+        /// <summary>
+        /// ID (slug) of the stack
+        /// </summary>
         public readonly string StackId;
+        /// <summary>
+        /// Indicates whether you can access the Stack state file from other stacks or outside of Spacelift.
+        /// </summary>
         public readonly bool TerraformExternalStateAccess;
         public readonly bool TerraformSmartSanitization;
         public readonly string TerraformVersion;
+        /// <summary>
+        /// Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+        /// </summary>
         public readonly string TerraformWorkflowTool;
         public readonly string TerraformWorkspace;
+        /// <summary>
+        /// ID of the worker pool to use
+        /// </summary>
         public readonly string WorkerPoolId;
 
         [OutputConstructor]

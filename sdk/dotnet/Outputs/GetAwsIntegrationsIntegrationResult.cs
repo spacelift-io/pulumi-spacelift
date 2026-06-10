@@ -13,13 +13,34 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetAwsIntegrationsIntegrationResult
     {
+        /// <summary>
+        /// Duration in seconds for which the assumed role credentials should be valid
+        /// </summary>
         public readonly int DurationSeconds;
+        /// <summary>
+        /// Custom external ID (works only for private workers).
+        /// </summary>
         public readonly string ExternalId;
+        /// <summary>
+        /// Generate AWS credentials in the private worker
+        /// </summary>
         public readonly bool GenerateCredentialsInWorker;
+        /// <summary>
+        /// Immutable ID of the integration.
+        /// </summary>
         public readonly string IntegrationId;
         public readonly ImmutableArray<string> Labels;
+        /// <summary>
+        /// Name of the AWS integration.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ARN of the AWS IAM role to attach
+        /// </summary>
         public readonly string RoleArn;
+        /// <summary>
+        /// ID (slug) of the space the integration is in
+        /// </summary>
         public readonly string SpaceId;
 
         [OutputConstructor]

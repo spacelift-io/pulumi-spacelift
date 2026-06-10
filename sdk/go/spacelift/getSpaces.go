@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -79,12 +78,6 @@ func (o GetSpacesResultOutput) ToGetSpacesResultOutput() GetSpacesResultOutput {
 
 func (o GetSpacesResultOutput) ToGetSpacesResultOutputWithContext(ctx context.Context) GetSpacesResultOutput {
 	return o
-}
-
-func (o GetSpacesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSpacesResult] {
-	return pulumix.Output[GetSpacesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

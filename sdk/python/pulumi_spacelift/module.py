@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -60,117 +60,42 @@ class ModuleArgs:
         :param pulumi.Input[str] worker_pool_id: ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         :param pulumi.Input[str] workflow_tool: Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
         """
-        ModuleArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            branch=branch,
-            repository=repository,
-            administrative=administrative,
-            azure_devops=azure_devops,
-            bitbucket_cloud=bitbucket_cloud,
-            bitbucket_datacenter=bitbucket_datacenter,
-            description=description,
-            enable_local_preview=enable_local_preview,
-            github_enterprise=github_enterprise,
-            gitlab=gitlab,
-            labels=labels,
-            name=name,
-            project_root=project_root,
-            protect_from_deletion=protect_from_deletion,
-            shared_accounts=shared_accounts,
-            space_id=space_id,
-            terraform_provider=terraform_provider,
-            worker_pool_id=worker_pool_id,
-            workflow_tool=workflow_tool,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             branch: Optional[pulumi.Input[str]] = None,
-             repository: Optional[pulumi.Input[str]] = None,
-             administrative: Optional[pulumi.Input[bool]] = None,
-             azure_devops: Optional[pulumi.Input['ModuleAzureDevopsArgs']] = None,
-             bitbucket_cloud: Optional[pulumi.Input['ModuleBitbucketCloudArgs']] = None,
-             bitbucket_datacenter: Optional[pulumi.Input['ModuleBitbucketDatacenterArgs']] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             enable_local_preview: Optional[pulumi.Input[bool]] = None,
-             github_enterprise: Optional[pulumi.Input['ModuleGithubEnterpriseArgs']] = None,
-             gitlab: Optional[pulumi.Input['ModuleGitlabArgs']] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             project_root: Optional[pulumi.Input[str]] = None,
-             protect_from_deletion: Optional[pulumi.Input[bool]] = None,
-             shared_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             terraform_provider: Optional[pulumi.Input[str]] = None,
-             worker_pool_id: Optional[pulumi.Input[str]] = None,
-             workflow_tool: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if branch is None:
-            raise TypeError("Missing 'branch' argument")
-        if repository is None:
-            raise TypeError("Missing 'repository' argument")
-        if azure_devops is None and 'azureDevops' in kwargs:
-            azure_devops = kwargs['azureDevops']
-        if bitbucket_cloud is None and 'bitbucketCloud' in kwargs:
-            bitbucket_cloud = kwargs['bitbucketCloud']
-        if bitbucket_datacenter is None and 'bitbucketDatacenter' in kwargs:
-            bitbucket_datacenter = kwargs['bitbucketDatacenter']
-        if enable_local_preview is None and 'enableLocalPreview' in kwargs:
-            enable_local_preview = kwargs['enableLocalPreview']
-        if github_enterprise is None and 'githubEnterprise' in kwargs:
-            github_enterprise = kwargs['githubEnterprise']
-        if project_root is None and 'projectRoot' in kwargs:
-            project_root = kwargs['projectRoot']
-        if protect_from_deletion is None and 'protectFromDeletion' in kwargs:
-            protect_from_deletion = kwargs['protectFromDeletion']
-        if shared_accounts is None and 'sharedAccounts' in kwargs:
-            shared_accounts = kwargs['sharedAccounts']
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-        if terraform_provider is None and 'terraformProvider' in kwargs:
-            terraform_provider = kwargs['terraformProvider']
-        if worker_pool_id is None and 'workerPoolId' in kwargs:
-            worker_pool_id = kwargs['workerPoolId']
-        if workflow_tool is None and 'workflowTool' in kwargs:
-            workflow_tool = kwargs['workflowTool']
-
-        _setter("branch", branch)
-        _setter("repository", repository)
+        pulumi.set(__self__, "branch", branch)
+        pulumi.set(__self__, "repository", repository)
         if administrative is not None:
-            _setter("administrative", administrative)
+            pulumi.set(__self__, "administrative", administrative)
         if azure_devops is not None:
-            _setter("azure_devops", azure_devops)
+            pulumi.set(__self__, "azure_devops", azure_devops)
         if bitbucket_cloud is not None:
-            _setter("bitbucket_cloud", bitbucket_cloud)
+            pulumi.set(__self__, "bitbucket_cloud", bitbucket_cloud)
         if bitbucket_datacenter is not None:
-            _setter("bitbucket_datacenter", bitbucket_datacenter)
+            pulumi.set(__self__, "bitbucket_datacenter", bitbucket_datacenter)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if enable_local_preview is not None:
-            _setter("enable_local_preview", enable_local_preview)
+            pulumi.set(__self__, "enable_local_preview", enable_local_preview)
         if github_enterprise is not None:
-            _setter("github_enterprise", github_enterprise)
+            pulumi.set(__self__, "github_enterprise", github_enterprise)
         if gitlab is not None:
-            _setter("gitlab", gitlab)
+            pulumi.set(__self__, "gitlab", gitlab)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if project_root is not None:
-            _setter("project_root", project_root)
+            pulumi.set(__self__, "project_root", project_root)
         if protect_from_deletion is not None:
-            _setter("protect_from_deletion", protect_from_deletion)
+            pulumi.set(__self__, "protect_from_deletion", protect_from_deletion)
         if shared_accounts is not None:
-            _setter("shared_accounts", shared_accounts)
+            pulumi.set(__self__, "shared_accounts", shared_accounts)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumi.set(__self__, "space_id", space_id)
         if terraform_provider is not None:
-            _setter("terraform_provider", terraform_provider)
+            pulumi.set(__self__, "terraform_provider", terraform_provider)
         if worker_pool_id is not None:
-            _setter("worker_pool_id", worker_pool_id)
+            pulumi.set(__self__, "worker_pool_id", worker_pool_id)
         if workflow_tool is not None:
-            _setter("workflow_tool", workflow_tool)
+            pulumi.set(__self__, "workflow_tool", workflow_tool)
 
     @property
     @pulumi.getter
@@ -451,121 +376,46 @@ class _ModuleState:
         :param pulumi.Input[str] worker_pool_id: ID of the worker pool to use. NOTE: worker*pool*id is required when using a self-hosted instance of Spacelift.
         :param pulumi.Input[str] workflow_tool: Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`. Defaults to `TERRAFORM_FOSS`.
         """
-        _ModuleState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            administrative=administrative,
-            aws_assume_role_policy_statement=aws_assume_role_policy_statement,
-            azure_devops=azure_devops,
-            bitbucket_cloud=bitbucket_cloud,
-            bitbucket_datacenter=bitbucket_datacenter,
-            branch=branch,
-            description=description,
-            enable_local_preview=enable_local_preview,
-            github_enterprise=github_enterprise,
-            gitlab=gitlab,
-            labels=labels,
-            name=name,
-            project_root=project_root,
-            protect_from_deletion=protect_from_deletion,
-            repository=repository,
-            shared_accounts=shared_accounts,
-            space_id=space_id,
-            terraform_provider=terraform_provider,
-            worker_pool_id=worker_pool_id,
-            workflow_tool=workflow_tool,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             administrative: Optional[pulumi.Input[bool]] = None,
-             aws_assume_role_policy_statement: Optional[pulumi.Input[str]] = None,
-             azure_devops: Optional[pulumi.Input['ModuleAzureDevopsArgs']] = None,
-             bitbucket_cloud: Optional[pulumi.Input['ModuleBitbucketCloudArgs']] = None,
-             bitbucket_datacenter: Optional[pulumi.Input['ModuleBitbucketDatacenterArgs']] = None,
-             branch: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             enable_local_preview: Optional[pulumi.Input[bool]] = None,
-             github_enterprise: Optional[pulumi.Input['ModuleGithubEnterpriseArgs']] = None,
-             gitlab: Optional[pulumi.Input['ModuleGitlabArgs']] = None,
-             labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             project_root: Optional[pulumi.Input[str]] = None,
-             protect_from_deletion: Optional[pulumi.Input[bool]] = None,
-             repository: Optional[pulumi.Input[str]] = None,
-             shared_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             space_id: Optional[pulumi.Input[str]] = None,
-             terraform_provider: Optional[pulumi.Input[str]] = None,
-             worker_pool_id: Optional[pulumi.Input[str]] = None,
-             workflow_tool: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if aws_assume_role_policy_statement is None and 'awsAssumeRolePolicyStatement' in kwargs:
-            aws_assume_role_policy_statement = kwargs['awsAssumeRolePolicyStatement']
-        if azure_devops is None and 'azureDevops' in kwargs:
-            azure_devops = kwargs['azureDevops']
-        if bitbucket_cloud is None and 'bitbucketCloud' in kwargs:
-            bitbucket_cloud = kwargs['bitbucketCloud']
-        if bitbucket_datacenter is None and 'bitbucketDatacenter' in kwargs:
-            bitbucket_datacenter = kwargs['bitbucketDatacenter']
-        if enable_local_preview is None and 'enableLocalPreview' in kwargs:
-            enable_local_preview = kwargs['enableLocalPreview']
-        if github_enterprise is None and 'githubEnterprise' in kwargs:
-            github_enterprise = kwargs['githubEnterprise']
-        if project_root is None and 'projectRoot' in kwargs:
-            project_root = kwargs['projectRoot']
-        if protect_from_deletion is None and 'protectFromDeletion' in kwargs:
-            protect_from_deletion = kwargs['protectFromDeletion']
-        if shared_accounts is None and 'sharedAccounts' in kwargs:
-            shared_accounts = kwargs['sharedAccounts']
-        if space_id is None and 'spaceId' in kwargs:
-            space_id = kwargs['spaceId']
-        if terraform_provider is None and 'terraformProvider' in kwargs:
-            terraform_provider = kwargs['terraformProvider']
-        if worker_pool_id is None and 'workerPoolId' in kwargs:
-            worker_pool_id = kwargs['workerPoolId']
-        if workflow_tool is None and 'workflowTool' in kwargs:
-            workflow_tool = kwargs['workflowTool']
-
         if administrative is not None:
-            _setter("administrative", administrative)
+            pulumi.set(__self__, "administrative", administrative)
         if aws_assume_role_policy_statement is not None:
-            _setter("aws_assume_role_policy_statement", aws_assume_role_policy_statement)
+            pulumi.set(__self__, "aws_assume_role_policy_statement", aws_assume_role_policy_statement)
         if azure_devops is not None:
-            _setter("azure_devops", azure_devops)
+            pulumi.set(__self__, "azure_devops", azure_devops)
         if bitbucket_cloud is not None:
-            _setter("bitbucket_cloud", bitbucket_cloud)
+            pulumi.set(__self__, "bitbucket_cloud", bitbucket_cloud)
         if bitbucket_datacenter is not None:
-            _setter("bitbucket_datacenter", bitbucket_datacenter)
+            pulumi.set(__self__, "bitbucket_datacenter", bitbucket_datacenter)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if enable_local_preview is not None:
-            _setter("enable_local_preview", enable_local_preview)
+            pulumi.set(__self__, "enable_local_preview", enable_local_preview)
         if github_enterprise is not None:
-            _setter("github_enterprise", github_enterprise)
+            pulumi.set(__self__, "github_enterprise", github_enterprise)
         if gitlab is not None:
-            _setter("gitlab", gitlab)
+            pulumi.set(__self__, "gitlab", gitlab)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if project_root is not None:
-            _setter("project_root", project_root)
+            pulumi.set(__self__, "project_root", project_root)
         if protect_from_deletion is not None:
-            _setter("protect_from_deletion", protect_from_deletion)
+            pulumi.set(__self__, "protect_from_deletion", protect_from_deletion)
         if repository is not None:
-            _setter("repository", repository)
+            pulumi.set(__self__, "repository", repository)
         if shared_accounts is not None:
-            _setter("shared_accounts", shared_accounts)
+            pulumi.set(__self__, "shared_accounts", shared_accounts)
         if space_id is not None:
-            _setter("space_id", space_id)
+            pulumi.set(__self__, "space_id", space_id)
         if terraform_provider is not None:
-            _setter("terraform_provider", terraform_provider)
+            pulumi.set(__self__, "terraform_provider", terraform_provider)
         if worker_pool_id is not None:
-            _setter("worker_pool_id", worker_pool_id)
+            pulumi.set(__self__, "worker_pool_id", worker_pool_id)
         if workflow_tool is not None:
-            _setter("workflow_tool", workflow_tool)
+            pulumi.set(__self__, "workflow_tool", workflow_tool)
 
     @property
     @pulumi.getter
@@ -933,10 +783,6 @@ class Module(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ModuleArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -971,20 +817,15 @@ class Module(pulumi.CustomResource):
             __props__ = ModuleArgs.__new__(ModuleArgs)
 
             __props__.__dict__["administrative"] = administrative
-            azure_devops = _utilities.configure(azure_devops, ModuleAzureDevopsArgs, True)
             __props__.__dict__["azure_devops"] = azure_devops
-            bitbucket_cloud = _utilities.configure(bitbucket_cloud, ModuleBitbucketCloudArgs, True)
             __props__.__dict__["bitbucket_cloud"] = bitbucket_cloud
-            bitbucket_datacenter = _utilities.configure(bitbucket_datacenter, ModuleBitbucketDatacenterArgs, True)
             __props__.__dict__["bitbucket_datacenter"] = bitbucket_datacenter
             if branch is None and not opts.urn:
                 raise TypeError("Missing required property 'branch'")
             __props__.__dict__["branch"] = branch
             __props__.__dict__["description"] = description
             __props__.__dict__["enable_local_preview"] = enable_local_preview
-            github_enterprise = _utilities.configure(github_enterprise, ModuleGithubEnterpriseArgs, True)
             __props__.__dict__["github_enterprise"] = github_enterprise
-            gitlab = _utilities.configure(gitlab, ModuleGitlabArgs, True)
             __props__.__dict__["gitlab"] = gitlab
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name

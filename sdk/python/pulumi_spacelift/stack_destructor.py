@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['StackDestructorArgs', 'StackDestructor']
@@ -21,26 +21,9 @@ class StackDestructorArgs:
         :param pulumi.Input[str] stack_id: ID of the stack to delete and destroy on destruction
         :param pulumi.Input[bool] deactivated: If set to true, destruction won't delete the stack
         """
-        StackDestructorArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            stack_id=stack_id,
-            deactivated=deactivated,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             stack_id: Optional[pulumi.Input[str]] = None,
-             deactivated: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-        if stack_id is None:
-            raise TypeError("Missing 'stack_id' argument")
-
-        _setter("stack_id", stack_id)
+        pulumi.set(__self__, "stack_id", stack_id)
         if deactivated is not None:
-            _setter("deactivated", deactivated)
+            pulumi.set(__self__, "deactivated", deactivated)
 
     @property
     @pulumi.getter(name="stackId")
@@ -77,25 +60,10 @@ class _StackDestructorState:
         :param pulumi.Input[bool] deactivated: If set to true, destruction won't delete the stack
         :param pulumi.Input[str] stack_id: ID of the stack to delete and destroy on destruction
         """
-        _StackDestructorState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            deactivated=deactivated,
-            stack_id=stack_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             deactivated: Optional[pulumi.Input[bool]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
         if deactivated is not None:
-            _setter("deactivated", deactivated)
+            pulumi.set(__self__, "deactivated", deactivated)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter
@@ -185,10 +153,6 @@ class StackDestructor(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            StackDestructorArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

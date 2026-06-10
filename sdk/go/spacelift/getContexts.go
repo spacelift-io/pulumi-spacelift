@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -110,12 +109,6 @@ func (o GetContextsResultOutput) ToGetContextsResultOutput() GetContextsResultOu
 
 func (o GetContextsResultOutput) ToGetContextsResultOutputWithContext(ctx context.Context) GetContextsResultOutput {
 	return o
-}
-
-func (o GetContextsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetContextsResult] {
-	return pulumix.Output[GetContextsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetContextsResultOutput) Contexts() GetContextsContextArrayOutput {

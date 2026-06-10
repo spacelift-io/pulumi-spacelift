@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -29,9 +28,9 @@ import (
 //
 // )
 //
-//	func filebase64OrPanic(path string) pulumi.StringPtrInput {
+//	func filebase64OrPanic(path string) string {
 //		if fileData, err := os.ReadFile(path); err == nil {
-//			return pulumi.String(base64.StdEncoding.EncodeToString(fileData[:]))
+//			return base64.StdEncoding.EncodeToString(fileData[:])
 //		} else {
 //			panic(err.Error())
 //		}
@@ -199,12 +198,6 @@ func (i *WorkerPool) ToWorkerPoolOutputWithContext(ctx context.Context) WorkerPo
 	return pulumi.ToOutputWithContext(ctx, i).(WorkerPoolOutput)
 }
 
-func (i *WorkerPool) ToOutput(ctx context.Context) pulumix.Output[*WorkerPool] {
-	return pulumix.Output[*WorkerPool]{
-		OutputState: i.ToWorkerPoolOutputWithContext(ctx).OutputState,
-	}
-}
-
 // WorkerPoolArrayInput is an input type that accepts WorkerPoolArray and WorkerPoolArrayOutput values.
 // You can construct a concrete instance of `WorkerPoolArrayInput` via:
 //
@@ -228,12 +221,6 @@ func (i WorkerPoolArray) ToWorkerPoolArrayOutput() WorkerPoolArrayOutput {
 
 func (i WorkerPoolArray) ToWorkerPoolArrayOutputWithContext(ctx context.Context) WorkerPoolArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WorkerPoolArrayOutput)
-}
-
-func (i WorkerPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]*WorkerPool] {
-	return pulumix.Output[[]*WorkerPool]{
-		OutputState: i.ToWorkerPoolArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // WorkerPoolMapInput is an input type that accepts WorkerPoolMap and WorkerPoolMapOutput values.
@@ -261,12 +248,6 @@ func (i WorkerPoolMap) ToWorkerPoolMapOutputWithContext(ctx context.Context) Wor
 	return pulumi.ToOutputWithContext(ctx, i).(WorkerPoolMapOutput)
 }
 
-func (i WorkerPoolMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WorkerPool] {
-	return pulumix.Output[map[string]*WorkerPool]{
-		OutputState: i.ToWorkerPoolMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WorkerPoolOutput struct{ *pulumi.OutputState }
 
 func (WorkerPoolOutput) ElementType() reflect.Type {
@@ -279,12 +260,6 @@ func (o WorkerPoolOutput) ToWorkerPoolOutput() WorkerPoolOutput {
 
 func (o WorkerPoolOutput) ToWorkerPoolOutputWithContext(ctx context.Context) WorkerPoolOutput {
 	return o
-}
-
-func (o WorkerPoolOutput) ToOutput(ctx context.Context) pulumix.Output[*WorkerPool] {
-	return pulumix.Output[*WorkerPool]{
-		OutputState: o.OutputState,
-	}
 }
 
 // credentials necessary to connect WorkerPool's workers to the control plane
@@ -335,12 +310,6 @@ func (o WorkerPoolArrayOutput) ToWorkerPoolArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o WorkerPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WorkerPool] {
-	return pulumix.Output[[]*WorkerPool]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WorkerPoolArrayOutput) Index(i pulumi.IntInput) WorkerPoolOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WorkerPool {
 		return vs[0].([]*WorkerPool)[vs[1].(int)]
@@ -359,12 +328,6 @@ func (o WorkerPoolMapOutput) ToWorkerPoolMapOutput() WorkerPoolMapOutput {
 
 func (o WorkerPoolMapOutput) ToWorkerPoolMapOutputWithContext(ctx context.Context) WorkerPoolMapOutput {
 	return o
-}
-
-func (o WorkerPoolMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WorkerPool] {
-	return pulumix.Output[map[string]*WorkerPool]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WorkerPoolMapOutput) MapIndex(k pulumi.StringInput) WorkerPoolOutput {

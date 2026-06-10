@@ -6,34 +6,97 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface GetAwsIntegrationsIntegration {
+    /**
+     * Duration in seconds for which the assumed role credentials should be valid
+     */
     durationSeconds: number;
+    /**
+     * Custom external ID (works only for private workers).
+     */
     externalId: string;
+    /**
+     * Generate AWS credentials in the private worker
+     */
     generateCredentialsInWorker: boolean;
+    /**
+     * Immutable ID of the integration.
+     */
     integrationId: string;
     labels: string[];
+    /**
+     * Name of the AWS integration.
+     */
     name: string;
+    /**
+     * ARN of the AWS IAM role to attach
+     */
     roleArn: string;
+    /**
+     * ID (slug) of the space the integration is in
+     */
     spaceId: string;
 }
 
 export interface GetAzureIntegrationsIntegration {
+    /**
+     * Indicates whether admin consent has been performed for the AAD Application.
+     */
     adminConsentProvided: boolean;
+    /**
+     * The URL to use to provide admin consent to the application in the customer's tenant
+     */
     adminConsentUrl: string;
+    /**
+     * The applicationId of the Azure AD application used by the integration.
+     */
     applicationId: string;
+    /**
+     * The default subscription ID to use, if one isn't specified at the stack/module level
+     */
     defaultSubscriptionId: string;
+    /**
+     * The display name for the application in Azure. This is automatically generated when the integration is created, and cannot be changed without deleting and recreating the integration.
+     */
     displayName: string;
+    /**
+     * Immutable ID of the integration.
+     */
     integrationId: string;
+    /**
+     * Labels to set on the integration
+     */
     labels: string[];
+    /**
+     * The friendly name of the integration.
+     */
     name: string;
+    /**
+     * ID (slug) of the space the integration is in
+     */
     spaceId: string;
+    /**
+     * The Azure AD tenant ID
+     */
     tenantId: string;
 }
 
 export interface GetContextsContext {
+    /**
+     * immutable ID (slug) of the context
+     */
     contextId: string;
+    /**
+     * free-form context description for users
+     */
     description: string;
     labels: string[];
+    /**
+     * name of the context
+     */
     name: string;
+    /**
+     * ID (slug) of the space the context is in
+     */
     spaceId: string;
 }
 
@@ -42,109 +105,265 @@ export interface GetContextsLabel {
 }
 
 export interface GetModuleAzureDevop {
+    /**
+     * ID of the Azure Devops integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Azure Devops integration
+     */
     isDefault: boolean;
+    /**
+     * The name of the Azure DevOps project
+     */
     project: string;
 }
 
 export interface GetModuleBitbucketCloud {
+    /**
+     * ID of the Bitbucket Cloud integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Bitbucket Cloud integration
+     */
     isDefault: boolean;
+    /**
+     * Bitbucket Cloud namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetModuleBitbucketDatacenter {
+    /**
+     * ID of the Bitbucket Datacenter integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Bitbucket Datacenter integration
+     */
     isDefault: boolean;
+    /**
+     * Bitbucket Datacenter namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetModuleGithubEnterprise {
+    /**
+     * ID of the GitHub Enterprise integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default GitHub Enterprise integration
+     */
     isDefault: boolean;
+    /**
+     * GitHub Enterprise namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetModuleGitlab {
+    /**
+     * ID of the Gitlab integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Gitlab integration
+     */
     isDefault: boolean;
+    /**
+     * GitLab namespace of the repository
+     */
     namespace: string;
 }
 
 export interface GetPoliciesPolicy {
+    /**
+     * ID of the policy
+     */
     id: string;
     labels: string[];
+    /**
+     * Name of the policy
+     */
     name: string;
+    /**
+     * ID (slug) of the space the policy is in
+     */
     spaceId: string;
+    /**
+     * Type of the policy
+     */
     type: string;
 }
 
 export interface GetSpacesSpace {
+    /**
+     * free-form space description for users
+     */
     description: string;
+    /**
+     * indication whether access to this space inherits read access to entities from the parent space
+     */
     inheritEntities: boolean;
+    /**
+     * list of labels describing a space
+     */
     labels: string[];
+    /**
+     * name of the space
+     */
     name: string;
+    /**
+     * immutable ID (slug) of parent space
+     */
     parentSpaceId: string;
+    /**
+     * immutable ID (slug) of the space
+     */
     spaceId: string;
 }
 
 export interface GetStackAnsible {
+    /**
+     * The playbook the Ansible stack should run.
+     */
     playbook: string;
 }
 
 export interface GetStackAzureDevop {
+    /**
+     * ID of the Azure Devops VCS integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Azure Devops VCS integration
+     */
     isDefault: boolean;
+    /**
+     * The name of the Azure DevOps project
+     */
     project: string;
 }
 
 export interface GetStackBitbucketCloud {
+    /**
+     * ID of the Bitbucket Cloud integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Bitbucket Cloud integration
+     */
     isDefault: boolean;
+    /**
+     * Bitbucket Cloud namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetStackBitbucketDatacenter {
+    /**
+     * ID of the Bitbucket Datacenter integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Bitbucket Datacenter integration
+     */
     isDefault: boolean;
+    /**
+     * Bitbucket Datacenter namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetStackCloudformation {
+    /**
+     * Template file `cloudformation package` will be called on
+     */
     entryTemplateFile: string;
+    /**
+     * AWS region to use
+     */
     region: string;
+    /**
+     * CloudFormation stack name
+     */
     stackName: string;
+    /**
+     * S3 bucket to save CloudFormation templates to
+     */
     templateBucket: string;
 }
 
 export interface GetStackGithubEnterprise {
+    /**
+     * ID of the GitHub Enterprise integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default GitHub Enterprise integration
+     */
     isDefault: boolean;
+    /**
+     * GitHub Enterprise namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetStackGitlab {
+    /**
+     * ID of the Gitlab integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Gitlab integration
+     */
     isDefault: boolean;
+    /**
+     * GitLab namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetStackKubernete {
+    /**
+     * Kubectl version.
+     */
     kubectlVersion: string;
+    /**
+     * Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
+     */
     namespace: string;
 }
 
 export interface GetStackPulumi {
+    /**
+     * State backend to log into on Run initialize.
+     */
     loginUrl: string;
+    /**
+     * Pulumi stack name to use with the state backend.
+     */
     stackName: string;
 }
 
 export interface GetStackRawGit {
+    /**
+     * User-friendly namespace for the repository, this is for cosmetic purposes only
+     */
     namespace: string;
+    /**
+     * HTTPS URL of the Git repository
+     */
     url: string;
 }
 
 export interface GetStackShowcase {
+    /**
+     * GitHub namespace of the stack's repository
+     */
     namespace: string;
 }
 
@@ -181,110 +400,314 @@ export interface GetStacksRepository {
 }
 
 export interface GetStacksStack {
+    /**
+     * Project globs is an optional list of paths to track changes of in addition to the project root.
+     */
     additionalProjectGlobs?: string[];
+    /**
+     * indicates whether this stack can administer others
+     */
     administrative: boolean;
+    /**
+     * List of after-apply scripts
+     */
     afterApplies: string[];
+    /**
+     * List of after-destroy scripts
+     */
     afterDestroys: string[];
+    /**
+     * List of after-init scripts
+     */
     afterInits: string[];
+    /**
+     * List of after-perform scripts
+     */
     afterPerforms: string[];
+    /**
+     * List of after-plan scripts
+     */
     afterPlans: string[];
+    /**
+     * List of after-run scripts
+     */
     afterRuns?: string[];
+    /**
+     * Ansible-specific configuration. Presence means this Stack is an Ansible Stack.
+     */
     ansibles: outputs.GetStacksStackAnsible[];
+    /**
+     * indicates whether changes to this stack can be automatically deployed
+     */
     autodeploy: boolean;
+    /**
+     * indicates whether obsolete proposed changes should automatically be retried
+     */
     autoretry: boolean;
+    /**
+     * AWS IAM assume role policy statement setting up trust relationship
+     */
     awsAssumeRolePolicyStatement: string;
+    /**
+     * Azure DevOps VCS settings
+     */
     azureDevops: outputs.GetStacksStackAzureDevop[];
+    /**
+     * List of before-apply scripts
+     */
     beforeApplies: string[];
+    /**
+     * List of before-destroy scripts
+     */
     beforeDestroys: string[];
+    /**
+     * List of before-init scripts
+     */
     beforeInits: string[];
+    /**
+     * List of before-perform scripts
+     */
     beforePerforms: string[];
+    /**
+     * List of before-plan scripts
+     */
     beforePlans: string[];
+    /**
+     * Bitbucket Cloud VCS settings
+     */
     bitbucketClouds: outputs.GetStacksStackBitbucketCloud[];
+    /**
+     * Bitbucket Datacenter VCS settings
+     */
     bitbucketDatacenters: outputs.GetStacksStackBitbucketDatacenter[];
+    /**
+     * Repository branch to treat as the default 'main' branch
+     */
     branch: string;
+    /**
+     * CloudFormation-specific configuration. Presence means this Stack is a CloudFormation Stack.
+     */
     cloudformations: outputs.GetStacksStackCloudformation[];
+    /**
+     * free-form stack description for users
+     */
     description: string;
+    /**
+     * Indicates whether local preview runs can be triggered on this Stack.
+     */
     enableLocalPreview: boolean;
+    /**
+     * GitHub Enterprise (self-hosted) VCS settings
+     */
     githubEnterprises: outputs.GetStacksStackGithubEnterprise[];
+    /**
+     * GitLab VCS settings
+     */
     gitlabs: outputs.GetStacksStackGitlab[];
+    /**
+     * Kubernetes-specific configuration. Presence means this Stack is a Kubernetes Stack.
+     */
     kubernetes: outputs.GetStacksStackKubernete[];
     labels: string[];
+    /**
+     * Determines if Spacelift should manage state for this stack
+     */
     manageState: boolean;
+    /**
+     * Name of the stack - should be unique in one account
+     */
     name: string;
+    /**
+     * Project root is the optional directory relative to the workspace root containing the entrypoint to the Stack.
+     */
     projectRoot: string;
+    /**
+     * Protect this stack from accidental deletion. If set, attempts to delete this stack will fail.
+     */
     protectFromDeletion: boolean;
+    /**
+     * Pulumi-specific configuration. Presence means this Stack is a Pulumi Stack.
+     */
     pulumis: outputs.GetStacksStackPulumi[];
+    /**
+     * One-way VCS integration using a raw Git repository link
+     */
     rawGits: outputs.GetStacksStackRawGit[];
+    /**
+     * Name of the repository, without the owner part
+     */
     repository: string;
+    /**
+     * Name of the Docker image used to process Runs
+     */
     runnerImage: string;
+    /**
+     * Showcase-related attributes
+     */
     showcases: outputs.GetStacksStackShowcase[];
+    /**
+     * ID (slug) of the space the stack is in
+     */
     spaceId: string;
+    /**
+     * ID (slug) of the stack
+     */
     stackId: string;
+    /**
+     * Indicates whether you can access the Stack state file from other stacks or outside of Spacelift.
+     */
     terraformExternalStateAccess: boolean;
     terraformSmartSanitization: boolean;
     terraformVersion: string;
+    /**
+     * Defines the tool that will be used to execute the workflow. This can be one of `OPEN_TOFU`, `TERRAFORM_FOSS` or `CUSTOM`.
+     */
     terraformWorkflowTool: string;
     terraformWorkspace: string;
+    /**
+     * ID of the worker pool to use
+     */
     workerPoolId: string;
 }
 
 export interface GetStacksStackAnsible {
+    /**
+     * The playbook the Ansible stack should run.
+     */
     playbook: string;
 }
 
 export interface GetStacksStackAzureDevop {
+    /**
+     * ID of the Azure Devops VCS integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Azure Devops VCS integration
+     */
     isDefault: boolean;
+    /**
+     * The name of the Azure DevOps project
+     */
     project: string;
 }
 
 export interface GetStacksStackBitbucketCloud {
+    /**
+     * ID of the Bitbucket Cloud integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Bitbucket Cloud integration
+     */
     isDefault: boolean;
+    /**
+     * Bitbucket Cloud namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetStacksStackBitbucketDatacenter {
+    /**
+     * ID of the Bitbucket Datacenter integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Bitbucket Datacenter integration
+     */
     isDefault: boolean;
+    /**
+     * Bitbucket Datacenter namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetStacksStackCloudformation {
+    /**
+     * Template file `cloudformation package` will be called on
+     */
     entryTemplateFile: string;
+    /**
+     * AWS region to use
+     */
     region: string;
+    /**
+     * CloudFormation stack name
+     */
     stackName: string;
+    /**
+     * S3 bucket to save CloudFormation templates to
+     */
     templateBucket: string;
 }
 
 export interface GetStacksStackGithubEnterprise {
+    /**
+     * ID of the GitHub Enterprise integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default GitHub Enterprise integration
+     */
     isDefault: boolean;
+    /**
+     * GitHub Enterprise namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetStacksStackGitlab {
+    /**
+     * ID of the Gitlab integration
+     */
     id: string;
+    /**
+     * Indicates whether this is the default Gitlab integration
+     */
     isDefault: boolean;
+    /**
+     * GitLab namespace of the stack's repository
+     */
     namespace: string;
 }
 
 export interface GetStacksStackKubernete {
+    /**
+     * Kubectl version.
+     */
     kubectlVersion: string;
+    /**
+     * Namespace of the Kubernetes cluster to run commands on. Leave empty for multi-namespace Stacks.
+     */
     namespace: string;
 }
 
 export interface GetStacksStackPulumi {
+    /**
+     * State backend to log into on Run initialize.
+     */
     loginUrl: string;
+    /**
+     * Pulumi stack name to use with the state backend.
+     */
     stackName: string;
 }
 
 export interface GetStacksStackRawGit {
+    /**
+     * User-friendly namespace for the repository, this is for cosmetic purposes only
+     */
     namespace: string;
+    /**
+     * HTTPS URL of the Git repository
+     */
     url: string;
 }
 
 export interface GetStacksStackShowcase {
+    /**
+     * GitHub namespace of the stack's repository
+     */
     namespace: string;
 }
 
@@ -301,16 +724,40 @@ export interface GetStacksWorkerPool {
 }
 
 export interface GetVcsAgentPoolsVcsAgentPool {
+    /**
+     * Free-form VCS agent pool description for users
+     */
     description: string;
+    /**
+     * Name of the VCS agent pool
+     */
     name: string;
+    /**
+     * ID of the VCS agent pool to retrieve
+     */
     vcsAgentPoolId: string;
 }
 
 export interface GetWorkerPoolsWorkerPool {
+    /**
+     * credentials necessary to connect WorkerPool's workers to the control plane
+     */
     config: string;
+    /**
+     * description of the worker pool
+     */
     description: string;
+    /**
+     * name of the worker pool
+     */
     name: string;
+    /**
+     * ID (slug) of the space the worker pool is in
+     */
     spaceId: string;
+    /**
+     * ID of the worker pool
+     */
     workerPoolId: string;
 }
 

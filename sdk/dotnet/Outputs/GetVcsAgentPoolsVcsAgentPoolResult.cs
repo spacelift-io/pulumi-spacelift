@@ -13,8 +13,17 @@ namespace Pulumi.Spacelift.Outputs
     [OutputType]
     public sealed class GetVcsAgentPoolsVcsAgentPoolResult
     {
+        /// <summary>
+        /// Free-form VCS agent pool description for users
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Name of the VCS agent pool
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID of the VCS agent pool to retrieve
+        /// </summary>
         public readonly string VcsAgentPoolId;
 
         [OutputConstructor]

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 	"github.com/spacelift-io/pulumi-spacelift/sdk/v2/go/spacelift/internal"
 )
 
@@ -123,12 +122,6 @@ func (o LookupAwsRoleResultOutput) ToLookupAwsRoleResultOutput() LookupAwsRoleRe
 
 func (o LookupAwsRoleResultOutput) ToLookupAwsRoleResultOutputWithContext(ctx context.Context) LookupAwsRoleResultOutput {
 	return o
-}
-
-func (o LookupAwsRoleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAwsRoleResult] {
-	return pulumix.Output[LookupAwsRoleResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // AWS IAM role session duration in seconds

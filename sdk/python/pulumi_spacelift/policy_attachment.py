@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['PolicyAttachmentArgs', 'PolicyAttachment']
@@ -23,34 +23,11 @@ class PolicyAttachmentArgs:
         :param pulumi.Input[str] module_id: ID of the module to attach the policy to
         :param pulumi.Input[str] stack_id: ID of the stack to attach the policy to
         """
-        PolicyAttachmentArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            policy_id=policy_id,
-            module_id=module_id,
-            stack_id=stack_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             policy_id: Optional[pulumi.Input[str]] = None,
-             module_id: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if policy_id is None and 'policyId' in kwargs:
-            policy_id = kwargs['policyId']
-        if policy_id is None:
-            raise TypeError("Missing 'policy_id' argument")
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
-        _setter("policy_id", policy_id)
+        pulumi.set(__self__, "policy_id", policy_id)
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter(name="policyId")
@@ -101,33 +78,12 @@ class _PolicyAttachmentState:
         :param pulumi.Input[str] policy_id: ID of the policy to attach
         :param pulumi.Input[str] stack_id: ID of the stack to attach the policy to
         """
-        _PolicyAttachmentState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            module_id=module_id,
-            policy_id=policy_id,
-            stack_id=stack_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             module_id: Optional[pulumi.Input[str]] = None,
-             policy_id: Optional[pulumi.Input[str]] = None,
-             stack_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if module_id is None and 'moduleId' in kwargs:
-            module_id = kwargs['moduleId']
-        if policy_id is None and 'policyId' in kwargs:
-            policy_id = kwargs['policyId']
-        if stack_id is None and 'stackId' in kwargs:
-            stack_id = kwargs['stackId']
-
         if module_id is not None:
-            _setter("module_id", module_id)
+            pulumi.set(__self__, "module_id", module_id)
         if policy_id is not None:
-            _setter("policy_id", policy_id)
+            pulumi.set(__self__, "policy_id", policy_id)
         if stack_id is not None:
-            _setter("stack_id", stack_id)
+            pulumi.set(__self__, "stack_id", stack_id)
 
     @property
     @pulumi.getter(name="moduleId")
@@ -249,10 +205,6 @@ class PolicyAttachment(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            PolicyAttachmentArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
