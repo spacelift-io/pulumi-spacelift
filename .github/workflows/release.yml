@@ -21,7 +21,7 @@ jobs:
         run: apk add --no-cache alpine-sdk git aws-cli bash
 
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Treat repo as safe
         run: git config --global --add safe.directory /__w/pulumi-spacelift/pulumi-spacelift
@@ -64,7 +64,7 @@ jobs:
         run: mkdir -p upload/pulumi-plugins && mv package/*/*.tar.gz upload/pulumi-plugins/ && ls -la upload/pulumi-plugins/
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-region: ${{ secrets.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
