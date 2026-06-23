@@ -63,7 +63,7 @@ jobs:
 
       - name: Configure AWS credentials
         if: github.ref == 'refs/heads/future'
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-region: ${{ secrets.PREPROD_AWS_REGION }}
           role-to-assume: ${{ secrets.PREPROD_AWS_ROLE_TO_ASSUME }}
