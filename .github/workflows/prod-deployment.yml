@@ -62,7 +62,7 @@ jobs:
         run: mkdir -p upload/pulumi-plugins && mv package/*/*.tar.gz upload/pulumi-plugins/ && ls -la upload/pulumi-plugins/
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         if: github.ref == 'refs/heads/main'
         with:
           aws-region: ${{ secrets.AWS_REGION }}
